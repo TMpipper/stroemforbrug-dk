@@ -96,6 +96,8 @@ h1, h2, h3, h4, h5, h6 {
 .prose-editorial {
   line-height: 1.75;
   color: var(--color-ink-700);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .prose-editorial h2 {
@@ -128,6 +130,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .prose-editorial table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
