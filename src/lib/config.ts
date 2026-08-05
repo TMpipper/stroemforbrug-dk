@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   locale: "da_DK",
   description:
     "Alt om strømforbrug i Danmark. Se hvor meget strøm dine apparater bruger, beregn din årlige udgift og få tips til at spare på strømmen.",
-  lastUpdated: "2026-08-04",
+  lastUpdated: "2026-08-05",
   editorName: "Mathias Clausen",
   editorRole: "Redaktør & Energirådgiver",
   editorCredential:
