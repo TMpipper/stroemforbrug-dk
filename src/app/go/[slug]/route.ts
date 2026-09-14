@@ -1,19 +1,47 @@
-import { redirect } from "next/navigation";
+// /go/[slug] → central redirector go.tjekelregning.dk/c/stroemforbrug/<slug>
+// The redirector decides the affiliate URL (site_tracking_links), stamps our click id +
+// site on the network link (source/aff_sub2 or epi2) and logs the click. This route
+// only validates the slug and forwards ad attribution from the URL or the consented `_att` cookie.
+import { NextRequest, NextResponse } from "next/server";
 
-const TRACKING_URLS: Record<string, string> = {
-  "altid-energi": "https://aceconversions.go2cloud.org/aff_c?offer_id=30&aff_id=1043",
-};
+export const dynamic = "force-dynamic";
 
-export async function GET(
-  _request: Request,
-  { params }: { params: Promise<{ slug: string }> }
-) {
-  const { slug } = await params;
-  const url = TRACKING_URLS[slug];
+const SITE = "stroemforbrug";
+const TRACK_BASE = process.env.TRACK_BASE_URL ?? "https://go.tjekelregning.dk";
+const FORWARD = ["gclid", "gbraid", "wbraid", "fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "lp", "pl", "ref"];
+const SAFE = /^[A-Za-z0-9_./-]{1,200}$/;
 
-  if (!url) {
-    redirect("/");
+function decodeAtt(raw: string | undefined): Record<string, string> {
+  if (!raw) return {};
+  try {
+    const b64 = raw.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((raw.length + 3) % 4);
+    const obj = JSON.parse(Buffer.from(b64, "base64").toString("utf8")) as Record<string, unknown>;
+    const out: Record<string, string> = {};
+    for (const [k, v] of Object.entries(obj)) if (typeof v === "string" && SAFE.test(v)) out[k] = v;
+    return out;
+  } catch {
+    return {};
   }
+}
 
-  redirect(url);
+const SLUGS = new Set(["altid-energi", "ok", "aura", "dcc-energi", "sef-energi", "ewii", "norlys"]);
+async function isKnownSlug(slug: string): Promise<boolean> { return SLUGS.has(slug); }
+
+export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  if (!/^[a-z0-9-]{1,80}$/.test(slug) || !(await isKnownSlug(slug))) return NextResponse.redirect(new URL("/", request.url), 302);
+
+  const target = new URL(`${TRACK_BASE}/c/${SITE}/${slug}`);
+  const cookieAtt = decodeAtt(request.cookies.get("_att")?.value);
+  const consented = request.cookies.get("_cc")?.value === "1";
+  for (const k of FORWARD) {
+    const v = request.nextUrl.searchParams.get(k) ?? (consented ? cookieAtt[k] : undefined) ?? (k === "ref" && consented ? request.cookies.get("tk_ref")?.value : undefined);
+    if (v && SAFE.test(v)) target.searchParams.set(k, v);
+  }
+  if (!target.searchParams.has("lp")) {
+    const ref = request.headers.get("referer");
+    try { if (ref) target.searchParams.set("lp", new URL(ref).pathname); } catch { /* ignore */ }
+  }
+  target.searchParams.set("consent", consented ? "1" : "0");
+  return NextResponse.redirect(target, { status: 302, headers: { "cache-control": "private, no-store, max-age=0" } });
 }

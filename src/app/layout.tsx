@@ -6,6 +6,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SITE_CONFIG } from "@/lib/config";
+import ConsentBar from "@/components/ConsentBar";
+import GoogleTag from "@/components/GoogleTag";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -140,6 +142,8 @@ export default function RootLayout({
         <Footer />
         <Analytics />
         <SpeedInsights />
+        <ConsentBar />
+        <GoogleTag />
       </body>
     </html>
   );
