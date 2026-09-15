@@ -4,7 +4,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   {
     slug: "laptop",
     name: "Laptop",
-    title: "Laptop strømforbrug (2026) → Se kWh og pris",
+    title: "Laptop strømforbrug (2026) → Watt, kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en laptop? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med danske 2026-priser.",
     heading: "Hvor meget strøm bruger en laptop?",
@@ -125,8 +125,8 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     ],
     relatedSlugs: ["computer", "tv", "router"],
     sources: [
-      { name: "Energistyrelsen – Elektronik og elforbrug", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Forbrugerguide", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Elektronik og elforbrug" },
+      { name: "SparEnergi.dk – Forbrugerguide" },
       { name: "EU Energy Star-specifikationer for computere" },
     ],
     calculatorConfig: {
@@ -147,7 +147,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   {
     slug: "playstation",
     name: "PlayStation",
-    title: "PlayStation strømforbrug (2026) → Se kWh og pris",
+    title: "PlayStation strømforbrug (2026) → Watt i spil og standby",
     description:
       "Hvor meget strøm bruger en PlayStation? Se elforbrug for PS5 og PS4 i kWh, sammenlign tilstande og beregn din årlige udgift. Opdateret 2026-data.",
     heading: "Hvor meget strøm bruger en PlayStation?",
@@ -255,7 +255,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     sources: [
       { name: "Sony – PlayStation 5 tekniske specifikationer", url: "https://www.playstation.com" },
       { name: "Eurogamer – PS5 Power Consumption Tests" },
-      { name: "Energistyrelsen – Elektronik og standby", url: "https://ens.dk" },
+      { name: "Energistyrelsen – Elektronik og standby" },
     ],
     calculatorConfig: {
       title: "Beregn din PlayStations strømforbrug",
@@ -387,8 +387,8 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     ],
     relatedSlugs: ["stoevsuger", "robotplaeneklipper", "vaskemaskine"],
     sources: [
-      { name: "Energistyrelsen – Husholdningsapparater", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Rengøringsapparater", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Husholdningsapparater" },
+      { name: "SparEnergi.dk – Rengøringsapparater" },
       { name: "iRobot – Roomba tekniske specifikationer" },
     ],
     calculatorConfig: {
@@ -409,7 +409,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   {
     slug: "elkedel",
     name: "Elkedel",
-    title: "Elkedel strømforbrug (2026) → Se kWh og pris",
+    title: "Elkedel strømforbrug (2026) → Pris pr. liter kogt vand",
     description:
       "Hvor meget strøm bruger en elkedel? Se elforbrug pr. kogning i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger en elkedel?",
@@ -525,8 +525,8 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     ],
     relatedSlugs: ["quooker", "kaffemaskine", "induktion", "mikroovn"],
     sources: [
-      { name: "Energistyrelsen – Husholdningsapparater", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Køkkenudstyr", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Husholdningsapparater" },
+      { name: "SparEnergi.dk – Køkkenudstyr" },
       { name: "Which? UK – Kettle Energy Testing" },
     ],
     calculatorConfig: {
@@ -547,7 +547,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   {
     slug: "varmtvandsbeholder",
     name: "Varmtvandsbeholder",
-    title: "Varmtvandsbeholder strømforbrug (2026) → Se kWh",
+    title: "Varmtvandsbeholder strømforbrug (2026) → kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en varmtvandsbeholder? Se elforbrug i kWh for 60–300 liter, beregn din udgift og find besparelsestips. Opdateret 2026.",
     heading: "Hvor meget strøm bruger en varmtvandsbeholder?",
@@ -657,9 +657,9 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     ],
     relatedSlugs: ["varmepumpe", "elradiator", "gulvvarme", "sauna"],
     sources: [
-      { name: "Energistyrelsen – Varmt brugsvand", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Varmtvandsbeholder", url: "https://sparenergi.dk" },
-      { name: "Bolius – Varmtvandsbeholder guide", url: "https://www.bolius.dk" },
+      { name: "Energistyrelsen – Varmt brugsvand" },
+      { name: "SparEnergi.dk – Varmtvandsbeholder" },
+      { name: "Bolius – Varmtvandsbeholder guide" },
     ],
     calculatorConfig: {
       title: "Beregn din varmtvandsbeholders strømforbrug",
@@ -680,7 +680,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   {
     slug: "varmeblaeser",
     name: "Varmeblæser",
-    title: "Varmeblæser strømforbrug (2026) → Se kWh og pris",
+    title: "Varmeblæser strømforbrug (2026) → kWh pr. time og pris",
     description:
       "Hvor meget strøm bruger en varmeblæser? Se elforbrug i kWh, sammenlign med elradiatorer og beregn din udgift. Opdateret med 2026-priser.",
     heading: "Hvor meget strøm bruger en varmeblæser?",
@@ -792,9 +792,9 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     ],
     relatedSlugs: ["elradiator", "varmepumpe", "gulvvarme"],
     sources: [
-      { name: "Energistyrelsen – Elopvarmning", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Varmeblæsere", url: "https://sparenergi.dk" },
-      { name: "Bolius – Elopvarmning guide", url: "https://www.bolius.dk" },
+      { name: "Energistyrelsen – Elopvarmning" },
+      { name: "SparEnergi.dk – Varmeblæsere" },
+      { name: "Bolius – Elopvarmning guide" },
     ],
     calculatorConfig: {
       title: "Beregn din varmeblæsers strømforbrug",
@@ -815,7 +815,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   {
     slug: "lyskaede",
     name: "Lyskæde",
-    title: "Lyskæde strømforbrug (2026) → Se kWh og pris",
+    title: "Lyskæde strømforbrug (2026) → LED vs. glødepærer i kWh",
     description:
       "Hvor meget strøm bruger en lyskæde? Se elforbrug for LED og glødepærer i kWh, beregn din udgift for hele julen. Opdateret med 2026-data.",
     heading: "Hvor meget strøm bruger en lyskæde?",
@@ -919,8 +919,8 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     ],
     relatedSlugs: ["led-paere", "tv", "router"],
     sources: [
-      { name: "Energistyrelsen – Belysning", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Julebelysning", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Belysning" },
+      { name: "SparEnergi.dk – Julebelysning" },
       { name: "Dansk Energi – LED-belysning guide" },
     ],
     calculatorConfig: {
@@ -942,7 +942,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   {
     slug: "akvarium",
     name: "Akvarium",
-    title: "Akvarium strømforbrug (2026) → Se kWh og pris",
+    title: "Akvarium strømforbrug (2026) → Varme, lys og filter i kWh",
     description:
       "Hvor meget strøm bruger et akvarium? Se elforbrug for filter, varme og lys i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger et akvarium?",
@@ -1046,7 +1046,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     ],
     relatedSlugs: ["led-paere", "koeleskab", "varmtvandsbeholder"],
     sources: [
-      { name: "Energistyrelsen – Hobbyudstyr", url: "https://ens.dk" },
+      { name: "Energistyrelsen – Hobbyudstyr" },
       { name: "Practical Fishkeeping – Energy Efficiency Guide" },
       { name: "Juwel Aquarium – Tekniske specifikationer", url: "https://www.juwel-aquarium.de" },
     ],
@@ -1069,7 +1069,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   {
     slug: "pool",
     name: "Pool",
-    title: "Pool strømforbrug (2026) → Se kWh og pris",
+    title: "Pool strømforbrug (2026) → Varmepumpe, pumpe og årlig pris",
     description:
       "Hvor meget strøm bruger en pool? Se elforbrug for pumpe, opvarmning og rensning i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger en pool?",
@@ -1183,8 +1183,8 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     ],
     relatedSlugs: ["varmepumpe", "varmtvandsbeholder", "sauna"],
     sources: [
-      { name: "Energistyrelsen – Swimmingpools", url: "https://ens.dk" },
-      { name: "Bolius – Pool og energiforbrug", url: "https://www.bolius.dk" },
+      { name: "Energistyrelsen – Swimmingpools" },
+      { name: "Bolius – Pool og energiforbrug" },
       { name: "Poolmagasinet – Driftsomkostninger 2025" },
     ],
     calculatorConfig: {
@@ -1206,7 +1206,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   {
     slug: "sauna",
     name: "Sauna",
-    title: "Sauna strømforbrug (2026) → Se kWh og pris",
+    title: "Sauna strømforbrug (2026) → kWh pr. opvarmning og år",
     description:
       "Hvor meget strøm bruger en sauna? Se elforbrug pr. session og årligt i kWh, sammenlign ovntyper og beregn din udgift. Opdateret 2026-data.",
     heading: "Hvor meget strøm bruger en sauna?",
@@ -1328,8 +1328,8 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     relatedSlugs: ["varmeblaeser", "varmtvandsbeholder", "varmepumpe", "pool"],
     sources: [
       { name: "Harvia – Saunaovn specifikationer", url: "https://www.harvia.com" },
-      { name: "Energistyrelsen – Elopvarmning", url: "https://ens.dk" },
-      { name: "Bolius – Sauna i hjemmet", url: "https://www.bolius.dk" },
+      { name: "Energistyrelsen – Elopvarmning" },
+      { name: "Bolius – Sauna i hjemmet" },
     ],
     calculatorConfig: {
       title: "Beregn din saunas strømforbrug",

@@ -133,7 +133,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
     ],
     relatedSlugs: ["elradiator", "elbil", "koeleskab"],
     sources: [
-      { name: "Energistyrelsen — Varmepumper i Danmark", url: "https://ens.dk" },
+      { name: "Energistyrelsen — Varmepumper i Danmark" },
       { name: "Bolius — Varmepumpe guide" },
       { name: "EU Energy Label regulation" },
     ],
@@ -229,7 +229,28 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 
 <h2>Hvad koster en opvask i strøm?</h2>
 <p>En enkelt opvask koster mellem 1,75 og 4,50 kr. i strøm afhængigt af program og maskinens energimærke. Med 365 opvaske om året bliver det samlede strømforbrug den næststørste post efter <a href="/koeleskab/">køleskabet</a> og <a href="/toerretumbler/">tørretumbleren</a> i køkkenet.</p>
-<p>Den gode nyhed er, at opvaskemaskinen er et af de apparater med lavest energimærkning — nye modeller med A-mærke bruger under 0,8 kWh pr. vask og er dermed meget økonomiske at køre.</p>`,
+<p>Den gode nyhed er, at opvaskemaskinen er et af de apparater med lavest energimærkning — nye modeller med A-mærke bruger under 0,8 kWh pr. vask og er dermed meget økonomiske at køre.</p>
+<h2>Eco-programmet er billigst – og det er ikke tæt løb</h2>
+<p>Opvaskemaskinen bruger langt det meste af sin strøm på at varme vand. Derfor er programvalget afgørende, og eco vinder af samme grund som på <a href="/vaskemaskine/">vaskemaskinen</a>: det bruger længere tid ved lavere temperatur, og tid er gratis, mens varme ikke er.</p>
+<table>
+<thead><tr><th>Program</th><th>Temperatur</th><th>Typisk forbrug</th><th>Varighed</th></tr></thead>
+<tbody>
+<tr><td>Eco 50 °C</td><td>50 °C</td><td>0,70–0,95 kWh</td><td>3–4 timer</td></tr>
+<tr><td>Normal 65 °C</td><td>65 °C</td><td>1,00–1,30 kWh</td><td>2–2,5 timer</td></tr>
+<tr><td>Intensiv 70 °C</td><td>70 °C</td><td>1,30–1,60 kWh</td><td>2,5–3 timer</td></tr>
+<tr><td>Hurtig 45 min.</td><td>60 °C</td><td>0,90–1,20 kWh</td><td>45 min.</td></tr>
+</tbody>
+</table>
+<p>Læg mærke til hurtigprogrammet: det er hurtigt, men ikke billigt. Fordi maskinen skal nå samme rengøring på en tredjedel af tiden, skruer den op for temperaturen – og bruger derfor mere end eco, selv om det føles som det modsatte.</p>
+
+<h2>Skyl ikke af i hånden først</h2>
+<p>At skylle service under den varme hane, før det stilles i maskinen, er en af de dyreste vaner i køkkenet. Varmt vand fra hanen koster energi at producere, og en moderne opvaskemaskine er designet til at klare indtørret snavs selv. Skrab rester af, og sæt resten ind som det er.</p>
+<p>Regnestykket er skævt: et par minutter under den varme hane kan bruge mere vand end hele maskinens program. Sensorstyrede maskiner måler oven i købet, hvor snavset vandet er, og doserer derefter – har du skyllet af først, tror maskinen at opvasken er renere, end den er, men den har allerede brugt dit varme vand.</p>
+
+<h2>Fyld den – og kør den fuld</h2>
+<p>En opvaskemaskine bruger næsten det samme, uanset om den er halvt eller helt fyldt, fordi vandmængde og opvarmning er bundet til programmet frem for til antallet af tallerkener. To halve opvask koster derfor tæt på det dobbelte af én fuld.</p>
+<p>Det er samtidig grunden til, at opvaskemaskinen normalt slår håndopvask: en fuld maskine bruger omkring 10 liter vand, hvor håndopvask under rindende vand hurtigt bruger det tre- til firedobbelte – og det vand skal også varmes op.</p>
+`,
     faqs: [
       { question: "Hvor meget strøm bruger en opvaskemaskine pr. vask?", answer: "En opvaskemaskine bruger 0,8-1,5 kWh pr. vask afhængigt af program. Eco-programmet bruger 0,7-0,9 kWh, normalprogrammet 1,0-1,3 kWh og intensivprogrammet 1,3-1,8 kWh." },
       { question: "Hvad koster det at køre opvaskemaskinen?", answer: "Det koster 1,30-3,35 kr. pr. vask i strøm (ved 1,86 kr./kWh). Med eco-programmet og daglig brug koster det ca. 446-595 kr./år." },
@@ -341,7 +362,27 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 <p>Et typisk 55" tv bruger 70-120 watt i timen (0,07-0,12 kWh). Det koster 18-30 øre pr. time ved 1,86 kr./kWh. Sammenligner du med andre aktiviteter i hjemmet, er tv-kigning en af de billigste — en <a href="/ovn/">ovn på 200 grader</a> bruger 10 gange så meget pr. time.</p>
 
 <h2>Hvor meget strøm bruger et tv om måneden?</h2>
-<p>Ved 4 timers daglig brug bruger et 55" tv ca. 8-12 kWh pr. måned, svarende til 15-22 kr. Et 65" tv bruger 11-16 kWh/md. (21-30 kr.). Med familiens samlede tv-tid (inkl. børnenes skærme) kan det totale tv-relaterede forbrug nå 30-50 kWh/md. inklusive tilhørende streaming-enheder og <a href="/computer/">computere</a>.</p>`,
+<p>Ved 4 timers daglig brug bruger et 55" tv ca. 8-12 kWh pr. måned, svarende til 15-22 kr. Et 65" tv bruger 11-16 kWh/md. (21-30 kr.). Med familiens samlede tv-tid (inkl. børnenes skærme) kan det totale tv-relaterede forbrug nå 30-50 kWh/md. inklusive tilhørende streaming-enheder og <a href="/computer/">computere</a>.</p>
+<h2>Skærmteknologien afgør forbruget</h2>
+<p>To tv i samme størrelse kan bruge vidt forskelligt, fordi panelet laver lys på forskellige måder. OLED-paneler lyser pixel for pixel og bruger derfor meget lidt på mørke billeder, men til gengæld en del på lyse. LED/LCD har konstant baggrundsbelysning, og QLED ligger derimellem.</p>
+<table>
+<thead><tr><th>Type</th><th>55" typisk effekt</th><th>Karakteristik</th></tr></thead>
+<tbody>
+<tr><td>LED/LCD</td><td>60–90 W</td><td>Jævnt forbrug uanset billedindhold</td></tr>
+<tr><td>QLED</td><td>80–120 W</td><td>Højere lysstyrke, højere forbrug</td></tr>
+<tr><td>OLED</td><td>60–110 W</td><td>Svinger meget med, hvor lyst billedet er</td></tr>
+</tbody>
+</table>
+<p>Størrelsen betyder dog mere end teknologien. Forbruget følger nogenlunde skærmarealet, så springet fra 55" til 75" er omtrent en fordobling af arealet – og dermed også af strømmen ved samme indstillinger.</p>
+
+<h2>Butiksindstillingen er den dyreste</h2>
+<p>De fleste tv leveres i en billedtilstand, der er lavet til at skille sig ud under lysstofrør i en butik: maksimal lysstyrke, forstærkede farver og ofte dynamisk kontrast. Den tilstand bruger typisk 30–50 % mere end en almindelig hjemmetilstand og ser sjældent bedre ud i en dansk stue.</p>
+<p>Skift til "Film", "Cinema" eller "Eco" og skru lysstyrken ned til, hvad rummet kræver. Det er den enkeltstående indstilling, der flytter mest, og den koster ikke andet end et minut i menuen. Har dit tv en lyssensor, gør den arbejdet automatisk.</p>
+
+<h2>Standby, TV-boks og lydsystem</h2>
+<p>Et moderne tv bruger typisk under 1 watt i standby, og der er derfor ikke meget at hente ved at slukke på kontakten – det er en af de myter, Energistyrelsen selv aflyser. Det interessante er det, der står ved siden af.</p>
+<p>En <a href="/router/">TV-boks</a>, en soundbar og en spillekonsol er ofte tændt eller i halvvågen tilstand hele døgnet og bruger tilsammen mere end selve tv'et gør i standby. Skal du slukke noget på kontakten, er det dem – ikke tv'et. Se også vores side om <a href="/standby/">standbyforbrug i hjemmet</a>.</p>
+`,
     faqs: [
       { question: "Hvor mange kWh bruger et tv om året?", answer: "Et typisk 55\" tv bruger 80-145 kWh/år ved 4 timers daglig brug. Et 43\" bruger 65-95 kWh, og et 65\" bruger 130-220 kWh afhængigt af teknologi (LED/OLED)." },
       { question: "Hvad koster det at have tv'et tændt i timen?", answer: "Et 55\" tv koster ca. 18-30 øre pr. time i strøm (0,07-0,12 kWh × 1,86 kr.). Et 65\" tv koster ca. 23-38 øre pr. time." },
@@ -457,7 +498,28 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 
 <h2>Hvad koster et køleskab i strøm over 10 år?</h2>
 <p>Over et køleskabs typiske levetid (15-20 år) bruger du mere på strøm end selve køleskabet kostede at købe. Et nyt A-mærket køle/fryseskab til 5.000-8.000 kr. bruger strøm for ca. 3.500-6.500 kr. over 15 år. Et billigt D-mærket køleskab til 3.000 kr. bruger derimod strøm for 8.000-14.000 kr. i samme periode.</p>
-<p>Konklusion: det kan altid betale sig at vælge et energieffektivt køleskab, selvom det koster mere i indkøb. Du tjener merudgiften hjem på 3-5 år i sparede strømudgifter — og køleskabet holder i 15+ år. Se også vores guide til <a href="/opvaskemaskine/">opvaskemaskine strømforbrug</a> for lignende beregninger.</p>`,
+<p>Konklusion: det kan altid betale sig at vælge et energieffektivt køleskab, selvom det koster mere i indkøb. Du tjener merudgiften hjem på 3-5 år i sparede strømudgifter — og køleskabet holder i 15+ år. Se også vores guide til <a href="/opvaskemaskine/">opvaskemaskine strømforbrug</a> for lignende beregninger.</p>
+<h2>Temperaturen: 5 grader, ikke koldere</h2>
+<p>Køleskabet skal stå på 5 grader. Hver grad koldere end nødvendigt koster typisk omkring 5 % ekstra strøm uden at forlænge holdbarheden nævneværdigt, og mange køleskabe står unødigt koldt, fordi termostaten er en skala fra 1 til 7 uden grader på.</p>
+<p>Et almindeligt stuetermometer i et glas vand midt i skabet giver svaret på et døgn. Står det på 2–3 grader, er der en besparelse at hente ved at skrue en tak op – og ingen kommer til at mærke forskel på mælken.</p>
+
+<h2>Køl og frys er en femtedel af elregningen</h2>
+<p>Energistyrelsen opgør, at danskerne bruger omkring en femtedel af deres strøm på køl og frys. Det er usædvanligt, fordi ingen af apparaterne føles energikrævende – de står bare og summer. Men de står der døgnet rundt, året rundt, og det er netop pointen.</p>
+<p>Tre vaner flytter mest, og de koster ingenting: lad varm mad køle af, før den sættes ind, tø frostvarer op i køleskabet i stedet for på køkkenbordet – så gør de kølearbejdet for dig – og hold døren lukket, mens du finder ud af, hvad du vil have.</p>
+<table>
+<thead><tr><th>Vane</th><th>Hvorfor det virker</th></tr></thead>
+<tbody>
+<tr><td>Lad mad køle af først</td><td>Varm mad tvinger kompressoren til at køre ekstra</td></tr>
+<tr><td>Optø i køleskabet</td><td>Frostvaren afgiver kulde til skabet undervejs</td></tr>
+<tr><td>Hold døren lukket</td><td>Hver åbning erstatter kold luft med rumtemperatur</td></tr>
+<tr><td>Støvsug køleribberne</td><td>Støv isolerer, så varmen ikke kan komme væk</td></tr>
+</tbody>
+</table>
+
+<h2>Placering og luft bagved</h2>
+<p>Et køleskab flytter varme fra sit indre ud i rummet via ribberne på bagsiden. Kan varmen ikke komme væk, stiger forbruget. Derfor er de få centimeter luft bag skabet ikke en anbefaling, men en forudsætning – og støv på ribberne virker som isolering det forkerte sted.</p>
+<p>Undgå desuden at placere køleskabet ved siden af <a href="/ovn/">ovnen</a>, opvaskemaskinen eller i direkte sol. Den samme model bruger mærkbart mindre i et køkken på 20 grader end i et på 24, og det er den billigste ændring overhovedet: den koster kun, at du flytter det én gang.</p>
+`,
     faqs: [
       { question: "Hvor mange kWh bruger et køleskab om året?", answer: "Et nyt køle/fryseskab bruger 100-170 kWh/år. Et 10+ år gammelt bruger 250-400 kWh/år. Et amerikanerkøleskab bruger 200-400 kWh/år." },
       { question: "Hvad koster et køleskab i strøm om måneden?", answer: "Et nyt køleskab koster ca. 16-26 kr./md. i strøm (ved 1,86 kr./kWh). Et gammelt køleskab kan koste 58-100+ kr./md." },

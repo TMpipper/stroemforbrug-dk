@@ -4,7 +4,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "airfryer",
     name: "Airfryer",
-    title: "Airfryer strømforbrug (2026) → Se pris og kWh",
+    title: "Airfryer strømforbrug (2026) → Se kWh og pris vs. ovn",
     description:
       "Hvor meget strøm bruger en airfryer? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
     heading: "Hvor meget strøm bruger en airfryer?",
@@ -104,8 +104,8 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     ],
     relatedSlugs: ["ovn", "vaskemaskine", "kummefryser", "elradiator"],
     sources: [
-      { name: "Energistyrelsen – Husholdningsapparaters elforbrug", url: "https://ens.dk" },
-      { name: "Elsparefondens forbrugsguide", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Husholdningsapparaters elforbrug" },
+      { name: "Elsparefondens forbrugsguide" },
       { name: "EU Energy Label Regulation 2019/2017" },
     ],
     calculatorConfig: {
@@ -126,7 +126,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "kummefryser",
     name: "Kummefryser",
-    title: "Kummefryser strømforbrug (2026) → Se kWh og pris",
+    title: "Kummefryser strømforbrug (2026) → kWh pr. liter og år",
     description:
       "Hvad bruger en kummefryser i strøm? Se typisk elforbrug i kWh pr. år, sammenlign energimærker og beregn din årlige udgift. Opdateret 2026-data.",
     heading: "Hvor meget strøm bruger en kummefryser?",
@@ -215,7 +215,28 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <p>Se også vores guide til <a href="/fryser/">skabsfryserens strømforbrug</a> og <a href="/elradiator/">elradiatorens elforbrug</a> for at optimere hele dit hjem.</p>
 
 <h2>Sæsonvariation i kummefryserens forbrug</h2>
-<p>Kummefryserens elforbrug varierer over året. Om sommeren arbejder kompressoren hårdere pga. højere omgivelsestemperatur, hvilket øger forbruget med 10–20 %. Om vinteren, især i uopvarmede rum, falder forbruget tilsvarende. Gennemsnitlig månedlig variation er 15–25 kWh om sommeren mod 12–18 kWh om vinteren.</p>`,
+<p>Kummefryserens elforbrug varierer over året. Om sommeren arbejder kompressoren hårdere pga. højere omgivelsestemperatur, hvilket øger forbruget med 10–20 %. Om vinteren, især i uopvarmede rum, falder forbruget tilsvarende. Gennemsnitlig månedlig variation er 15–25 kWh om sommeren mod 12–18 kWh om vinteren.</p>
+<h2>Derfor bruger en kummefryser mindre end en skabsfryser</h2>
+<p>Kold luft er tungere end varm. Når du åbner låget på en kummefryser, bliver kulden liggende i kummen, mens den i en skabsfryser vælter ud af døren og erstattes af rumtemperatur luft, der straks skal køles ned igen. Det er hele forklaringen på, hvorfor samme volumen bruger mindre i en kumme.</p>
+<p>Oven i det har en kummefryser typisk tykkere isolering, fordi der er plads til det, og færre kuldebroer omkring en låge end omkring en dør med hylder. Til gengæld fylder den mere på gulvet og kræver, at du graver for at finde noget – det er den reelle afvejning, ikke strømmen.</p>
+
+<h2>Fyldningsgrad og placering</h2>
+<p>Frossen mad er sit eget kølelager. En velfyldt kummefryser genvinder derfor temperaturen hurtigere efter hver åbning, og kompressoren kører kortere tid. Er den halvtom, kan dunke med vand udfylde pladsen og gøre præcis samme nytte.</p>
+<table>
+<thead><tr><th>Forhold</th><th>Betydning for forbruget</th></tr></thead>
+<tbody>
+<tr><td>Fyldt 75–100 %</td><td>Lavest forbrug pr. liter</td></tr>
+<tr><td>Køligt rum (10–14 °C)</td><td>Markant lavere end i et varmt køkken</td></tr>
+<tr><td>Rim over 5 mm</td><td>Mærkbart højere forbrug</td></tr>
+<tr><td>Utæt tætningsliste</td><td>Konstant merforbrug døgnet rundt</td></tr>
+</tbody>
+</table>
+<p>Tjek klimaklassen på typeskiltet, før du stiller den i et uopvarmet rum. Mange frysere er ikke godkendt under 10 grader, fordi kompressoren så ikke starter ofte nok til at holde temperaturen – og en fryser, der ikke starter, er et større problem end en, der bruger lidt for meget.</p>
+
+<h2>Hvornår kan det betale sig at have to frysere?</h2>
+<p>Sjældent. To halvtomme frysere bruger mere end én fuld af samme samlede volumen, fordi hver enhed har sin egen kompressor, sin egen isolering og sit eget varmetab. Har du en gammel fryser stående i garagen "til jul", er den ofte en af husstandens dyreste vaner.</p>
+<p>Undtagelsen er den store husholdning, der reelt fylder begge – eller jagt- og havehusstande med sæsonvis store mængder. Ellers er regnestykket enkelt: én ordentlig fryser, der er fyldt, slår to der ikke er. Se også <a href="/fryser/">fryserens strømforbrug</a> og <a href="/koeleskab/">køleskabets</a>.</p>
+`,
     faqs: [
       { question: "Hvor meget strøm bruger en kummefryser om måneden?", answer: "En typisk kummefryser bruger 12–30 kWh om måneden afhængigt af model og energiklasse. Det svarer til 22–56 kr. ved en elpris på 1,86 kr./kWh." },
       { question: "Bruger en kummefryser mere strøm end et køleskab?", answer: "Ja, en kummefryser bruger typisk 50–100 % mere end et køleskab, da den skal holde en lavere temperatur (-18°C mod 4–5°C)." },
@@ -228,8 +249,8 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     ],
     relatedSlugs: ["fryser", "koeleskab", "elradiator"],
     sources: [
-      { name: "Energistyrelsen – Hvidevarer og energimærkning", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Kummefryser", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Hvidevarer og energimærkning" },
+      { name: "SparEnergi.dk – Kummefryser" },
       { name: "EU Energimærkeforordning 2019/2016" },
     ],
     calculatorConfig: {
@@ -251,7 +272,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "ovn",
     name: "Ovn",
-    title: "Ovn strømforbrug (2026) → Se kWh-forbrug og pris",
+    title: "Ovn strømforbrug (2026) → kWh pr. tilberedning og år",
     description:
       "Hvor meget strøm bruger en ovn? Se det typiske elforbrug i kWh for konventionel og varmluftovn, sammenlign modeller og beregn din udgift.",
     heading: "Hvor meget strøm bruger en ovn?",
@@ -369,8 +390,8 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     ],
     relatedSlugs: ["airfryer", "elradiator", "quooker", "vaskemaskine"],
     sources: [
-      { name: "Energistyrelsen – Ovne og komfurer", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Madlavning", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Ovne og komfurer" },
+      { name: "SparEnergi.dk – Madlavning" },
       { name: "EU Energy Labelling Regulation (EU) 2019/2016" },
     ],
     calculatorConfig: {
@@ -391,7 +412,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "elbil",
     name: "Elbil",
-    title: "Elbil strømforbrug (2026) → Se kWh og ladepris",
+    title: "Elbil strømforbrug (2026) → kWh pr. 100 km og ladepris",
     description:
       "Hvor meget strøm bruger en elbil? Se typisk forbrug i kWh pr. km og pr. år, sammenlign modeller og beregn din ladeudgift. Opdateret 2026.",
     heading: "Hvor meget strøm bruger en elbil?",
@@ -507,7 +528,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     relatedSlugs: ["varmepumpe", "elradiator", "router"],
     sources: [
       { name: "FDM – Elbiltest og forbrugsdata", url: "https://fdm.dk" },
-      { name: "Energistyrelsen – Elbiler og ladning", url: "https://ens.dk" },
+      { name: "Energistyrelsen – Elbiler og ladning" },
       { name: "Dansk Elbil Alliance – Statistik 2026" },
     ],
     calculatorConfig: {
@@ -528,7 +549,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "router",
     name: "Router",
-    title: "Router strømforbrug (2026) → Se kWh og årlig pris",
+    title: "Router strømforbrug (2026) → Watt i døgndrift og pris",
     description:
       "Hvor meget strøm bruger en WiFi-router? Se det typiske elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026.",
     heading: "Hvor meget strøm bruger en router?",
@@ -635,9 +656,9 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     ],
     relatedSlugs: ["computer", "tv", "elbil"],
     sources: [
-      { name: "Energistyrelsen – Standby og netværksudstyr", url: "https://ens.dk" },
+      { name: "Energistyrelsen – Standby og netværksudstyr" },
       { name: "EU Code of Conduct on Energy Consumption of Broadband Equipment" },
-      { name: "SparEnergi.dk – Elektronik og IT", url: "https://sparenergi.dk" },
+      { name: "SparEnergi.dk – Elektronik og IT" },
     ],
     calculatorConfig: {
       title: "Beregn din routers strømforbrug",
@@ -658,7 +679,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "computer",
     name: "Computer",
-    title: "Computer strømforbrug (2026) → Se kWh og pris",
+    title: "Computer strømforbrug (2026) → Stationær vs. bærbar i kWh",
     description:
       "Hvor meget strøm bruger en computer? Se typisk elforbrug for stationær og bærbar i kWh, sammenlign og beregn din årlige elregning. 2026-data.",
     heading: "Hvor meget strøm bruger en computer?",
@@ -774,9 +795,9 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     ],
     relatedSlugs: ["router", "tv", "elradiator"],
     sources: [
-      { name: "Energistyrelsen – IT-udstyr og elforbrug", url: "https://ens.dk" },
+      { name: "Energistyrelsen – IT-udstyr og elforbrug" },
       { name: "EU Energy Star – Computer Efficiency Standards" },
-      { name: "SparEnergi.dk – Kontorudstyr", url: "https://sparenergi.dk" },
+      { name: "SparEnergi.dk – Kontorudstyr" },
     ],
     calculatorConfig: {
       title: "Beregn din computers strømforbrug",
@@ -797,7 +818,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "elradiator",
     name: "Elradiator",
-    title: "Elradiator strømforbrug (2026) → Se kWh og pris",
+    title: "Elradiator strømforbrug (2026) → kWh, pris og alternativer",
     description:
       "Hvor meget strøm bruger en elradiator? Se typisk elforbrug i kWh, sammenlign typer og beregn din årlige varmeudgift. Opdateret med 2026-priser.",
     heading: "Hvor meget strøm bruger en elradiator?",
@@ -907,9 +928,9 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     ],
     relatedSlugs: ["varmepumpe", "elbil", "ovn", "quooker"],
     sources: [
-      { name: "Energistyrelsen – Opvarmning af boliger", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Elvarme", url: "https://sparenergi.dk" },
-      { name: "Bolius – Guide til elvarme", url: "https://bolius.dk" },
+      { name: "Energistyrelsen – Opvarmning af boliger" },
+      { name: "SparEnergi.dk – Elvarme" },
+      { name: "Bolius – Guide til elvarme" },
     ],
     calculatorConfig: {
       title: "Beregn din elradiators strømforbrug",
@@ -930,7 +951,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "fryser",
     name: "Fryser",
-    title: "Fryser strømforbrug (2026) → Se kWh og årlig pris",
+    title: "Fryser strømforbrug (2026) → Se kWh, rim og årlig pris",
     description:
       "Hvor meget strøm bruger en skabsfryser? Se typisk elforbrug i kWh, sammenlign energiklasser og modeller, og beregn din årlige udgift. 2026-data.",
     heading: "Hvor meget strøm bruger en fryser?",
@@ -1046,8 +1067,8 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     ],
     relatedSlugs: ["kummefryser", "koeleskab", "vaskemaskine"],
     sources: [
-      { name: "Energistyrelsen – Hvidevarer", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Køl og frys", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Hvidevarer" },
+      { name: "SparEnergi.dk – Køl og frys" },
       { name: "EU Energimærkeforordning (EU) 2019/2016" },
     ],
     calculatorConfig: {
@@ -1069,7 +1090,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "quooker",
     name: "Quooker",
-    title: "Quooker strømforbrug (2026) → Se kWh og pris",
+    title: "Quooker strømforbrug (2026) → Standby, kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en Quooker? Se det typiske elforbrug i kWh for kogende vandhane, sammenlign med elkedel og beregn din årlige udgift.",
     heading: "Hvor meget strøm bruger en Quooker?",
@@ -1177,8 +1198,8 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     relatedSlugs: ["ovn", "opvaskemaskine", "vaskemaskine", "airfryer"],
     sources: [
       { name: "Quooker.dk – Officielle energispecifikationer", url: "https://quooker.dk" },
-      { name: "Energistyrelsen – Køkkenudstyr", url: "https://ens.dk" },
-      { name: "Bolius – Test af kogende vandhaner", url: "https://bolius.dk" },
+      { name: "Energistyrelsen – Køkkenudstyr" },
+      { name: "Bolius – Test af kogende vandhaner" },
     ],
     calculatorConfig: {
       title: "Beregn din Quookers strømforbrug",
@@ -1199,7 +1220,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "vaskemaskine",
     name: "Vaskemaskine",
-    title: "Vaskemaskine strømforbrug (2026) → Se kWh og pris",
+    title: "Vaskemaskine strømforbrug (2026) → kWh pr. vask og år",
     description:
       "Hvor meget strøm bruger en vaskemaskine? Se typisk elforbrug i kWh pr. vask og pr. år, sammenlign modeller og beregn din udgift. 2026-data.",
     heading: "Hvor meget strøm bruger en vaskemaskine?",
@@ -1318,8 +1339,8 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     ],
     relatedSlugs: ["toerretumbler", "opvaskemaskine", "airfryer", "quooker"],
     sources: [
-      { name: "Energistyrelsen – Vaskemaskiner", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Tøjvask", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Vaskemaskiner" },
+      { name: "SparEnergi.dk – Tøjvask" },
       { name: "EU Energimærkning (EU) 2019/2014" },
     ],
     calculatorConfig: {

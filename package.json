@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "indexnow": "node scripts/indexnow.mjs",
-    "audit-prices": "tsx scripts/audit-prices.mts"
+    "audit-prices": "tsx scripts/audit-prices.mts",
+    "audit-seo": "tsx scripts/audit-seo.mts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

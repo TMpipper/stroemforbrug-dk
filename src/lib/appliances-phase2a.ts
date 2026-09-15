@@ -4,7 +4,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "affugter",
     name: "Affugter",
-    title: "Affugter strømforbrug (2026) → Se kWh og pris",
+    title: "Affugter strømforbrug (2026) → Se kWh pr. døgn og år",
     description:
       "Hvor meget strøm bruger en affugter? Se typisk elforbrug i kWh pr. år, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
     heading: "Hvor meget strøm bruger en affugter?",
@@ -121,9 +121,9 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["varmepumpe", "elradiator", "toerretumbler", "vaskemaskine"],
     sources: [
-      { name: "Energistyrelsen – Affugtning og indeklima", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Fugtproblemer", url: "https://sparenergi.dk" },
-      { name: "Bolius – Affugtere til sommerhuse", url: "https://www.bolius.dk" },
+      { name: "Energistyrelsen – Affugtning og indeklima" },
+      { name: "SparEnergi.dk – Fugtproblemer" },
+      { name: "Bolius – Affugtere til sommerhuse" },
     ],
     calculatorConfig: {
       title: "Beregn din affugters strømforbrug",
@@ -143,7 +143,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "induktion",
     name: "Induktionskogeplade",
-    title: "Induktion strømforbrug (2026) → Se kWh og pris",
+    title: "Induktion strømforbrug (2026) → kWh vs. gas og keramisk",
     description:
       "Hvor meget strøm bruger en induktionskogeplade? Se typisk elforbrug i kWh, sammenlign med keramisk og gas, og beregn din årlige udgift i 2026.",
     heading: "Hvor meget strøm bruger en induktionskogeplade?",
@@ -248,8 +248,8 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["ovn", "elkedel", "mikroovn", "airfryer"],
     sources: [
-      { name: "Energistyrelsen – Madlavning og energi", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Kogeplader", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Madlavning og energi" },
+      { name: "SparEnergi.dk – Kogeplader" },
       { name: "Teknologisk Institut – Test af induktionskogeplader" },
     ],
     calculatorConfig: {
@@ -270,7 +270,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "led-paere",
     name: "LED-pære",
-    title: "LED-pære strømforbrug (2026) → Se kWh og pris",
+    title: "LED-pære strømforbrug (2026) → Watt, kWh og besparelse",
     description:
       "Hvor meget strøm bruger en LED-pære? Se elforbrug i kWh, sammenlign med halogener og sparepærer, og beregn din årlige udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en LED-pære?",
@@ -378,8 +378,8 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["lyskaede", "tv", "computer", "router"],
     sources: [
-      { name: "Energistyrelsen – Belysning og energimærkning", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Belysning", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Belysning og energimærkning" },
+      { name: "SparEnergi.dk – Belysning" },
       { name: "EU Energimærkeforordning (EU) 2019/2015 – Lyskilder" },
     ],
     calculatorConfig: {
@@ -401,7 +401,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "kaffemaskine",
     name: "Kaffemaskine",
-    title: "Kaffemaskine strømforbrug (2026) → Se kWh og pris",
+    title: "Kaffemaskine strømforbrug (2026) → kWh pr. kop og år",
     description:
       "Hvor meget strøm bruger en kaffemaskine? Se elforbrug i kWh for filterkaffe, kapsel og fuldautomatisk. Beregn din årlige udgift med 2026-priser.",
     heading: "Hvor meget strøm bruger en kaffemaskine?",
@@ -509,8 +509,8 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["elkedel", "quooker", "opvaskemaskine", "mikroovn"],
     sources: [
-      { name: "Energistyrelsen – Elforbrug i køkkenet", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Køkkenudstyr", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Elforbrug i køkkenet" },
+      { name: "SparEnergi.dk – Køkkenudstyr" },
       { name: "EU Ecodesign-forordning for kaffemaskiner (EU) 801/2013" },
     ],
     calculatorConfig: {
@@ -532,7 +532,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "mikroovn",
     name: "Mikroovn",
-    title: "Mikroovn strømforbrug (2026) → Se kWh og pris",
+    title: "Mikroovn strømforbrug (2026) → kWh pr. opvarmning og år",
     description:
       "Hvor meget strøm bruger en mikroovn? Se elforbrug i kWh pr. brug og pr. år, sammenlign med ovn og airfryer, og beregn din udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en mikroovn?",
@@ -638,8 +638,8 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["ovn", "airfryer", "induktion", "kaffemaskine"],
     sources: [
-      { name: "Energistyrelsen – Husholdningsapparaters elforbrug", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Madlavning", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Husholdningsapparaters elforbrug" },
+      { name: "SparEnergi.dk – Madlavning" },
       { name: "EU Ecodesign-regulering for mikrobølgeovne" },
     ],
     calculatorConfig: {
@@ -660,7 +660,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "gulvvarme",
     name: "Gulvvarme",
-    title: "Gulvvarme strømforbrug (2026) → Se kWh og pris",
+    title: "Gulvvarme strømforbrug (2026) → Vand vs. el i kWh og pris",
     description:
       "Hvor meget strøm bruger el-gulvvarme? Se typisk elforbrug i kWh for badeværelse, køkken og hele huset. Beregn din årlige udgift med 2026-priser.",
     heading: "Hvor meget strøm bruger el-gulvvarme?",
@@ -774,8 +774,8 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["varmepumpe", "elradiator", "varmeblaeser"],
     sources: [
-      { name: "Energistyrelsen – Opvarmning af boliger", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Gulvvarme", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Opvarmning af boliger" },
+      { name: "SparEnergi.dk – Gulvvarme" },
       { name: "Danfoss – Gulvvarmeguide", url: "https://www.danfoss.com" },
     ],
     calculatorConfig: {
@@ -923,7 +923,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["robotstoevsuger", "pool", "stoevsuger"],
     sources: [
-      { name: "Energistyrelsen – Haveapparater og el", url: "https://ens.dk" },
+      { name: "Energistyrelsen – Haveapparater og el" },
       { name: "Husqvarna – Automower specifikationer", url: "https://www.husqvarna.com/dk/" },
       { name: "Testlab.dk – Test af robotplæneklippere" },
     ],
@@ -946,7 +946,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "strygejern",
     name: "Strygejern",
-    title: "Strygejern strømforbrug (2026) → Se kWh og pris",
+    title: "Strygejern strømforbrug (2026) → Watt, kWh og årlig pris",
     description:
       "Hvor meget strøm bruger et strygejern? Se typisk elforbrug i kWh, sammenlign dampstationer og beregn din årlige udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger et strygejern?",
@@ -1037,7 +1037,26 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Strygning er tæt forbundet med tøjvask. Se også <a href="/vaskemaskine/">vaskemaskinens strømforbrug</a> og <a href="/toerretumbler/">tørretumblerens elforbrug</a> for at forstå dit samlede tøjpleje-forbrug.</p>
 
 <h2>Sæsonvariation i strygning</h2>
-<p>Strygeforbruget er relativt stabilt over året, men mange familier stryger lidt mere om vinteren, hvor der bruges flere lag tøj. Sommeren bringer lettere tøj, der sjældnere kræver strygning. Den samlede variation er dog minimal sammenlignet med fx <a href="/gulvvarme/">gulvvarme</a> eller <a href="/elradiator/">elradiatorer</a>.</p>`,
+<p>Strygeforbruget er relativt stabilt over året, men mange familier stryger lidt mere om vinteren, hvor der bruges flere lag tøj. Sommeren bringer lettere tøj, der sjældnere kræver strygning. Den samlede variation er dog minimal sammenlignet med fx <a href="/gulvvarme/">gulvvarme</a> eller <a href="/elradiator/">elradiatorer</a>.</p>
+<h2>Watt er ikke det samme som forbrug</h2>
+<p>Et strygejern på 2.400 watt bruger ikke 2.400 watt hele tiden. Effekten gælder, når varmelegemet er tændt, og termostaten slår det til og fra for at holde temperaturen. I praksis er et strygejern tændt 30–50 % af tiden under strygning, og det er derfor det reelle forbrug ligger langt under mærkepladen.</p>
+<p>Høj effekt er faktisk en fordel: jernet når arbejdstemperatur hurtigere og falder mindre i temperatur, når du rammer en tyk søm. Et kraftigt jern, der er tændt kortere tid, kan sagtens bruge mindre end et svagt, der kæmper.</p>
+
+<h2>Dampstation eller almindeligt strygejern?</h2>
+<p>En dampstation har en kedel, der holder vand under tryk, og bruger derfor mere, mens den står klar. Til gengæld stryger den hurtigere, fordi dampen gør arbejdet – og kortere tid ved brættet er også sparet strøm.</p>
+<table>
+<thead><tr><th>Type</th><th>Typisk effekt</th><th>Opvarmningstid</th><th>Bedst til</th></tr></thead>
+<tbody>
+<tr><td>Almindeligt strygejern</td><td>2.000–2.600 W</td><td>30–60 sek.</td><td>Få stykker ad gangen</td></tr>
+<tr><td>Dampstation</td><td>2.200–3.000 W</td><td>2–5 min.</td><td>Store mængder i én omgang</td></tr>
+</tbody>
+</table>
+<p>Konklusionen følger brugsmønstret: stryger du en skjorte ad gangen, er det almindelige jern billigst, fordi dampstationens opvarmning skal betales hver gang. Stryger du en kurv fuld hver anden uge, vinder dampstationen på tid.</p>
+
+<h2>Sådan halverer du strygetiden</h2>
+<p>Den største besparelse ligger før brættet. Tag tøjet ud af tørretumbleren lige når den er færdig og hæng det op – varmt tøj, der ligger sammenkrøllet, sætter folderne fast. Tøj, der hænges op fugtigt, skal ofte slet ikke stryges.</p>
+<p>Stryg desuden alt i én omgang og start med det, der kræver lavest temperatur. Et jern varmer hurtigt op, men køler langsomt ned, så rækkefølgen fra køligt til varmt betyder, at du aldrig venter på, at jernet falder i temperatur.</p>
+`,
     faqs: [
       { question: "Hvor meget koster det at stryge i en time?", answer: "En times strygning med et 2.400 W dampstrygejern koster ca. 2,23–2,60 kr., da termostaten gør, at det reelle forbrug er 1,2–1,4 kWh/time." },
       { question: "Bruger en dampstation mere strøm end et strygejern?", answer: "Ja, en dampstation bruger typisk 10–30 % mere strøm pr. time. Men den stryger hurtigere, så det samlede forbrug pr. tøjstyk er omtrent det samme." },
@@ -1050,8 +1069,8 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["toerretumbler", "vaskemaskine", "haartoerrere"],
     sources: [
-      { name: "Energistyrelsen – Husholdningsapparaters elforbrug", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Strygning", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Husholdningsapparaters elforbrug" },
+      { name: "SparEnergi.dk – Strygning" },
       { name: "Testlab.dk – Test af strygejern og dampstationer" },
     ],
     calculatorConfig: {
@@ -1072,7 +1091,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "stoevsuger",
     name: "Støvsuger",
-    title: "Støvsuger strømforbrug (2026) → Se kWh og pris",
+    title: "Støvsuger strømforbrug (2026) → Watt, kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en støvsuger? Se elforbrug i kWh for lednings- og akku-støvsugere, sammenlign modeller og beregn din udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en støvsuger?",
@@ -1164,7 +1183,27 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Støvsugning er ofte kombineret med andre rengøringsaktiviteter. Se også <a href="/vaskemaskine/">vaskemaskinens strømforbrug</a> for det samlede rengøringsbillede, og <a href="/robotplaeneklipper/">robotplæneklipperens elforbrug</a> for et energieffektivt haveapparat.</p>
 
 <h2>Sæsonvariation i støvsugning</h2>
-<p>Støvsugning er en helårsaktivitet med minimale sæsonudsving. Dog støvsuger mange danskere lidt oftere om foråret (forårsstorrengøring) og når dørene er åbne om sommeren, da mere støv og pollen kommer ind. Den samlede variation er dog under 10 % mellem sæsonerne.</p>`,
+<p>Støvsugning er en helårsaktivitet med minimale sæsonudsving. Dog støvsuger mange danskere lidt oftere om foråret (forårsstorrengøring) og når dørene er åbne om sommeren, da mere støv og pollen kommer ind. Den samlede variation er dog under 10 % mellem sæsonerne.</p>
+<h2>EU satte en grænse – og det ændrede alt</h2>
+<p>Før 2014 blev støvsugere markedsført på watt, og 2.000 W var almindeligt. EU's ecodesign-forordning (666/2013) satte først loftet ved 1.600 W og fra september 2017 ved 900 W, netop fordi effekt viste sig at være et dårligt mål for sugeevne.</p>
+<p>Resultatet er, at en ny støvsuger på 700 W typisk rengør lige så godt som en gammel på 2.000 W. Forskellen ligger i dyse, luftveje og filter – ikke i motorens effekt. Skal du sammenligne to modeller, er det rengøringsklassen på energimærket, der siger noget, ikke watt-tallet.</p>
+<table>
+<thead><tr><th>Generation</th><th>Typisk effekt</th><th>kWh/år ved 1 time om ugen</th></tr></thead>
+<tbody>
+<tr><td>Før 2014</td><td>1.800–2.200 W</td><td>94–114 kWh</td></tr>
+<tr><td>2014–2017</td><td>1.200–1.600 W</td><td>62–83 kWh</td></tr>
+<tr><td>Efter 2017</td><td>600–900 W</td><td>31–47 kWh</td></tr>
+</tbody>
+</table>
+
+<h2>Ledning, batteri eller robot?</h2>
+<p>De tre typer bruger strøm på hver sin måde. En ledningsstøvsuger trækker direkte og bruger kun strøm, mens den kører. En batteristøvsuger har et ladetab oveni, men er til gengæld ofte i brug i kortere tid ad gangen. En robotstøvsuger kører længe med lav effekt og har en ladestation, der står tændt konstant.</p>
+<p>I ren energi ligger de tættere på hinanden, end man skulle tro, fordi en støvsuger alligevel kun er tændt en time eller to om ugen. Vælg derfor efter, hvordan du vil gøre rent – forskellen på elregningen er små tal for alle tre.</p>
+
+<h2>Fyldt pose og tilstoppet filter koster</h2>
+<p>En støvsuger med fyldt pose eller tilsmudset filter skal arbejde hårdere for at flytte den samme luft. Motoren trækker mere, sugeevnen falder, og du bruger længere tid på det samme gulv – dobbelt tab.</p>
+<p>Skift posen ved cirka trefjerdedeles fyldning frem for at presse den til det sidste, og rens eller udskift filtrene efter producentens interval. Det er vedligehold, der betaler sig på både strøm, støjniveau og motorens levetid.</p>
+`,
     faqs: [
       { question: "Hvor mange kWh bruger en støvsuger pr. time?", answer: "En moderne støvsuger (under 900 W) bruger 0,5–0,9 kWh pr. time. Ældre modeller fra før 2014 kan bruge 1,6–2,4 kWh pr. time." },
       { question: "Er en akkustøvsuger billigere i strøm?", answer: "Ja, akkustøvsugere bruger typisk 20–50 kWh/år mod 55–90 kWh for ledningsmodeller. Besparelsen er 35–100 kr. årligt." },
@@ -1177,8 +1216,8 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["robotstoevsuger", "vaskemaskine", "robotplaeneklipper"],
     sources: [
-      { name: "Energistyrelsen – EU-regler for støvsugere", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Støvsugere", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – EU-regler for støvsugere" },
+      { name: "SparEnergi.dk – Støvsugere" },
       { name: "EU Ecodesign-forordning (EU) 666/2013 – Støvsugere" },
     ],
     calculatorConfig: {
@@ -1199,7 +1238,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "haartoerrere",
     name: "Hårtørrer",
-    title: "Hårtørrer strømforbrug (2026) → Se kWh og pris",
+    title: "Hårtørrer strømforbrug (2026) → Watt, kWh og pris pr. brug",
     description:
       "Hvor meget strøm bruger en hårtørrer? Se elforbrug i kWh pr. brug og pr. år, sammenlign modeller og beregn din udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger en hårtørrer?",
@@ -1305,8 +1344,8 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     ],
     relatedSlugs: ["strygejern", "gulvvarme", "vaskemaskine", "varmeblaeser"],
     sources: [
-      { name: "Energistyrelsen – Personlig pleje og elforbrug", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Husholdningsapparater", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Personlig pleje og elforbrug" },
+      { name: "SparEnergi.dk – Husholdningsapparater" },
       { name: "Testlab.dk – Test af hårtørrere" },
     ],
     calculatorConfig: {

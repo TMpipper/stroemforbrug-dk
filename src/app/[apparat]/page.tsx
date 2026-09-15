@@ -94,7 +94,7 @@ export default async function AppliancePage({
       description: withCurrentYear(data.description),
       url,
       datePublished: "2026-07-29",
-      dateModified: SITE_CONFIG.lastUpdated,
+      dateModified: data.updated ?? SITE_CONFIG.lastUpdated,
     }),
   ];
 

@@ -4,7 +4,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "komfur",
     name: "Komfur",
-    title: "Komfur strømforbrug (2026) → Se kWh og pris",
+    title: "Komfur strømforbrug (2026) → Kogeplader, ovn og årlig pris",
     description:
       "Hvor meget strøm bruger et komfur? Se typisk elforbrug i kWh for el-komfur, induktion og gas. Sammenlign modeller og beregn din årlige udgift i 2026.",
     heading: "Hvor meget strøm bruger et komfur?",
@@ -128,8 +128,8 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     ],
     relatedSlugs: ["induktion", "ovn", "airfryer", "opvaskemaskine"],
     sources: [
-      { name: "Energistyrelsen – Husholdningsapparater", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Madlavning og energi", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Husholdningsapparater" },
+      { name: "SparEnergi.dk – Madlavning og energi" },
       { name: "EU-energimærkning for komfurer og kogesektioner" },
     ],
     calculatorConfig: {
@@ -262,8 +262,8 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     ],
     relatedSlugs: ["laptop", "computer", "router"],
     sources: [
-      { name: "Energistyrelsen – Standby og elektronik", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Opladere og standby", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Standby og elektronik" },
+      { name: "SparEnergi.dk – Opladere og standby" },
       { name: "Wireless Power Consortium – Qi-standarder" },
     ],
     calculatorConfig: {
@@ -285,7 +285,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "broedrister",
     name: "Brødrister",
-    title: "Brødrister strømforbrug (2026) → Se kWh og pris",
+    title: "Brødrister strømforbrug (2026) → Watt, kWh og pris pr. brug",
     description:
       "Hvor meget strøm bruger en brødrister? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift med danske 2026-priser.",
     heading: "Hvor meget strøm bruger en brødrister?",
@@ -402,8 +402,8 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     ],
     relatedSlugs: ["ovn", "airfryer", "elkedel", "komfur"],
     sources: [
-      { name: "Energistyrelsen – Husholdningselektronik", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Køkkenapparater", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Husholdningselektronik" },
+      { name: "SparEnergi.dk – Køkkenapparater" },
       { name: "Forbrugerrådet Tænk – Brødristertest" },
     ],
     calculatorConfig: {
@@ -425,7 +425,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "gaming-pc",
     name: "Gaming-PC",
-    title: "Gaming-PC strømforbrug (2026) → Se kWh og pris",
+    title: "Gaming-PC strømforbrug (2026) → Watt under belastning og kWh",
     description:
       "Hvor meget strøm bruger en gaming-PC? Se typisk elforbrug i kWh for gaming-computere, sammenlign opsætninger og beregn din årlige udgift i 2026.",
     heading: "Hvor meget strøm bruger en gaming-PC?",
@@ -553,7 +553,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     sources: [
       { name: "Tom's Hardware – GPU Power Consumption Database", url: "https://www.tomshardware.com" },
       { name: "NVIDIA – GeForce RTX 40-series specifikationer", url: "https://www.nvidia.com" },
-      { name: "Energistyrelsen – Elektronik og elforbrug", url: "https://ens.dk" },
+      { name: "Energistyrelsen – Elektronik og elforbrug" },
     ],
     calculatorConfig: {
       title: "Beregn din gaming-PC's strømforbrug",
@@ -575,7 +575,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "ladestander",
     name: "Ladestander",
-    title: "Ladestander strømforbrug (2026) → Se kWh og pris",
+    title: "Ladestander strømforbrug (2026) → kWh, ladetab og pris",
     description:
       "Hvor meget strøm bruger en ladestander til elbil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign hjemmeladere og beregn med 2026-priser.",
     heading: "Hvor meget strøm bruger en ladestander?",
@@ -684,7 +684,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     relatedSlugs: ["elbil", "solceller", "varmepumpe"],
     sources: [
       { name: "Dansk Elbil Alliance – Opladning og elforbrug", url: "https://www.danskelbilalliance.dk" },
-      { name: "Energistyrelsen – Elbiler og opladning", url: "https://ens.dk" },
+      { name: "Energistyrelsen – Elbiler og opladning" },
       { name: "FDM – Test af hjemmeladere", url: "https://fdm.dk" },
     ],
     calculatorConfig: {
@@ -706,7 +706,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "solceller",
     name: "Solceller",
-    title: "Solceller strømforbrug og produktion (2026) → kWh",
+    title: "Solceller (2026) → Produktion i kWh og eget forbrug",
     description:
       "Hvor meget strøm producerer og bruger solceller? Se kWh-produktion, egetforbrug og besparelse. Beregn dit solcelleanlægs økonomi med 2026-priser.",
     heading: "Hvor meget strøm producerer og bruger solceller?",
@@ -810,8 +810,8 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     ],
     relatedSlugs: ["varmepumpe", "elbil", "ladestander"],
     sources: [
-      { name: "Energistyrelsen – Solceller i Danmark", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Solcelleberegner", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Solceller i Danmark" },
+      { name: "SparEnergi.dk – Solcelleberegner" },
       { name: "Dansk Solcelleforening – Produktionsdata" },
     ],
     calculatorConfig: {
@@ -833,7 +833,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "gulvvarme-el",
     name: "Gulvvarme (el-måtter)",
-    title: "El-gulvvarmemåtter strømforbrug (2026) → Se kWh",
+    title: "El-gulvvarme strømforbrug (2026) → kWh pr. m² og årlig pris",
     description:
       "Hvor meget strøm bruger el-gulvvarmemåtter? Se kWh for badeværelse og renovering. Sammenlign med varmekabel og beregn din årlige pris i 2026.",
     heading: "Hvor meget strøm bruger el-gulvvarmemåtter?",
@@ -952,8 +952,8 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     ],
     relatedSlugs: ["gulvvarme", "varmepumpe", "elradiator"],
     sources: [
-      { name: "Energistyrelsen – Elopvarmning og gulvvarme", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Gulvvarme og isolering", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Elopvarmning og gulvvarme" },
+      { name: "SparEnergi.dk – Gulvvarme og isolering" },
       { name: "Devi – Teknisk dokumentation for DTIF-varmemåtter" },
     ],
     calculatorConfig: {
@@ -975,7 +975,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "jordvarme",
     name: "Jordvarme",
-    title: "Jordvarme strømforbrug (2026) → Se kWh og pris",
+    title: "Jordvarme strømforbrug (2026) → kWh, COP og årlig pris",
     description:
       "Hvor meget strøm bruger jordvarme? Se typisk elforbrug i kWh for jordvarmepumper, COP-værdier og beregn din årlige udgift med danske 2026-priser.",
     heading: "Hvor meget strøm bruger jordvarme?",
@@ -1103,8 +1103,8 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     ],
     relatedSlugs: ["varmepumpe", "solceller", "elradiator", "gulvvarme"],
     sources: [
-      { name: "Energistyrelsen – Varmepumper og jordvarme", url: "https://ens.dk" },
-      { name: "SparEnergi.dk – Jordvarmeanlæg", url: "https://sparenergi.dk" },
+      { name: "Energistyrelsen – Varmepumper og jordvarme" },
+      { name: "SparEnergi.dk – Jordvarmeanlæg" },
       { name: "Dansk Varmepumpe Industri – Teknisk dokumentation" },
     ],
     calculatorConfig: {
