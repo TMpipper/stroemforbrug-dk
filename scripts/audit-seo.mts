@@ -15,12 +15,22 @@
  * Run: npm run audit-seo
  */
 
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { join } from "node:path";
 import { APPLIANCES, getAllSlugs } from "../src/lib/appliances.ts";
 import { applianceRank } from "../src/lib/appliance-insights.ts";
 import { sourcesFor } from "../src/lib/sources.ts";
 import { assertHouseholds } from "../src/lib/home-insights.ts";
 import { articleFor } from "../src/lib/appliance-insights.ts";
+
+function walkHtml(dir: string, out: string[] = []): string[] {
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    if (statSync(full).isDirectory()) walkHtml(full, out);
+    else if (entry.endsWith(".html")) out.push(full);
+  }
+  return out;
+}
 
 let failures = 0;
 let warnings = 0;
@@ -179,6 +189,50 @@ if (existsSync(".next/server/app")) {
   else ok(`every built hub page is at least ${HUB_MIN_WORDS} rendered words`);
 } else {
   warn("no build found — run npm run build first to check hub page depth");
+}
+
+/* ---------- 8b. hub page meta ---------- */
+
+/*
+ * Titles and descriptions were only checked for the 43 appliances, so nine hub
+ * pages sat outside the band unnoticed — and one description still quoted a
+ * figure the page's own body had already corrected. Read the built HTML so the
+ * check sees exactly what Google will.
+ *
+ * Measured in CHARACTERS, not bytes: æ, ø, å and → are multi-byte in UTF-8, and
+ * counting bytes makes every Danish title look ~5 too long.
+ */
+const UTILITY = /\/(om-os|kontakt|privatlivspolitik|_not-found|_global-error)\.html$/;
+/** Next.js ships its own error shell; it is not a page we author. */
+const FRAMEWORK = /_global-error\.html$/;
+if (existsSync(".next/server/app")) {
+  let metaProblems = 0;
+  const seenTitles = new Map<string, string>();
+  for (const file of walkHtml(".next/server/app")) {
+    if (FRAMEWORK.test(file)) continue;
+    const html = readFileSync(file, "utf8");
+    const title = html.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
+    const desc = html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "";
+    const rel = file.replace(".next/server/app/", "/");
+
+    if (seenTitles.has(title) && title) {
+      fail(`duplicate <title> on ${rel} and ${seenTitles.get(title)}: "${title}"`);
+      metaProblems++;
+    } else if (title) seenTitles.set(title, rel);
+
+    if (UTILITY.test(file)) continue;
+    if (!title) { fail(`${rel}: no <title>`); metaProblems++; }
+    else if ([...title].length < TITLE_MIN || [...title].length > TITLE_MAX) {
+      fail(`${rel}: title is ${[...title].length} characters (want ${TITLE_MIN}-${TITLE_MAX}) — "${title}"`);
+      metaProblems++;
+    }
+    if (!desc) { fail(`${rel}: no meta description`); metaProblems++; }
+    else if ([...desc].length < DESC_MIN || [...desc].length > DESC_MAX) {
+      fail(`${rel}: description is ${[...desc].length} characters (want ${DESC_MIN}-${DESC_MAX})`);
+      metaProblems++;
+    }
+  }
+  if (!metaProblems) ok("every built page has a unique title and description inside the length bands");
 }
 
 /* ---------- 9. Danish gender ---------- */

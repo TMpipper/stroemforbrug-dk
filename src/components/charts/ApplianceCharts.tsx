@@ -49,9 +49,9 @@ export function SeasonalChart({ data }: { data: ApplianceData }) {
         role="img"
         aria-labelledby={`${titleId} ${descId}`}
       >
-        <title id={titleId}>
-          {data.name}: strømudgift fordelt på årets måneder
-        </title>
+        {/* One expression, not expression + literal: mixing them yields two text
+            nodes, which the SVG parser merges and React then fails to hydrate. */}
+        <title id={titleId}>{`${data.name}: strømudgift fordelt på årets måneder`}</title>
         <desc id={descId}>
           {`Søjlediagram over ${data.name.toLowerCase()}ens månedlige strømudgift. ` +
             `${season.peak.month} er dyrest med ${formatKr(season.peak.cost)} kr., ` +
@@ -134,7 +134,7 @@ export function EnergyLabelChart({ data }: { data: ApplianceData }) {
   return (
     <figure className="my-6">
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto" role="img" aria-labelledby={`${titleId} ${descId}`}>
-        <title id={titleId}>{data.name}: forbrug pr. {unit}</title>
+        <title id={titleId}>{`${data.name}: forbrug pr. ${unit}`}</title>
         <desc id={descId}>
           {`Vandret søjlediagram. ${r.worstClass} bruger ${formatKr(r.worstKwh)} kWh om året ` +
             `(${formatKr(r.worstCost)} kr.), mens ${r.bestClass} bruger ${formatKr(r.bestKwh)} kWh ` +
@@ -192,7 +192,7 @@ export function HouseholdShareChart({ data }: { data: ApplianceData }) {
   return (
     <figure className="my-6">
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto" role="img" aria-labelledby={`${titleId} ${descId}`}>
-        <title id={titleId}>{data.name}s andel af en husstands strømforbrug</title>
+        <title id={titleId}>{`${data.name}s andel af en husstands strømforbrug`}</title>
         <desc id={descId}>
           {`${articleFor(data) === "et" ? "Et" : "En"} ${data.name.toLowerCase()} bruger ${formatKr(data.typicalKwh)} kWh om året, ` +
             `svarende til ${pct} procent af en husstand på ${formatKr(REFERENCE_KWH)} kWh. ` +

@@ -8,7 +8,7 @@ import AffiliateCta from "@/components/marketing/AffiliateCta";
 import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: withCurrentYear("Strømslugere i hjemmet (2026) → Top 10 værste"),
+  title: withCurrentYear("Strømslugere i hjemmet (2026) → Top 10 over de værste"),
   description:
     "Se de 10 største strømslugere i en dansk husstand. Tørretumbleren, den gamle kummefryser og elradiatoren topper listen. Se kWh/år og pris for hvert apparat.",
   alternates: { canonical: `${SITE_CONFIG.url}/stromslugere/` },

@@ -11,7 +11,7 @@ import { REFERENCE_KWH, formatPrice, formatKr } from "@/lib/pricing";
 export const metadata: Metadata = {
   title: "Hvad koster en kWh i 2026? → Se aktuel pris inkl. afgifter",
   description:
-    "En kWh koster i gennemsnit 1,86 kr. inkl. alle afgifter i 2026 — 1,95 kr. når abonnementet regnes med. Se prisens sammensætning, spotpris vs. fastpris, og hvilke elselskaber der er billigst.",
+    "En kWh koster i gennemsnit 1,86 kr. inkl. alle afgifter — 1,95 kr. med abonnement. Se prisens sammensætning, spotpris vs. fastpris og hvem der er billigst.",
   alternates: { canonical: `${SITE_CONFIG.url}/hvad-koster-en-kwh/` },
 };
 

@@ -10,7 +10,7 @@ import { withCurrentYear } from "@/lib/pricing";
 export const metadata: Metadata = {
   title: withCurrentYear("Spare strøm (2026) → 15 tips der sænker din elregning"),
   description:
-    "15 konkrete sparetips der kan sænke din elregning med 2.000-5.000 kr./år. Se hvilke tiltag der giver størst besparelse — fra hvidevarer til standby-forbrug og valg af elselskab.",
+    "15 konkrete sparetips til en lavere elregning. Se hvilke tiltag der giver størst besparelse — fra hvidevarer og standby til valg af elselskab.",
   alternates: { canonical: `${SITE_CONFIG.url}/sparetips/` },
 };
 

@@ -140,7 +140,7 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
               i ti år — eller under {formatKr(i.replacement.breakEvenPrice5yr)} kr. på fem
               år.
             </p>
-            <p className="text-xs text-ink-500 mt-2">
+            <p className="text-xs text-ink-600 mt-2">
               Vi kender ikke prisen på netop den model, du kigger på, så vi vender
               regnestykket om: det her er det beløb, købet må koste, før besparelsen er
               spist op. Beregnet ved {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh og

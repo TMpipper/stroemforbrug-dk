@@ -10,7 +10,7 @@ import { withCurrentYear } from "@/lib/pricing";
 export const metadata: Metadata = {
   title: withCurrentYear("Hvad koster det at lade en elbil? (2026) → Se pris pr. kWh"),
   description:
-    "Det koster 75-175 kr. at lade en elbil fuldt op derhjemme i 2026 (1,86 kr./kWh). Se pris pr. km, sammenlign hjemmeladning vs. offentlig ladning, og beregn din månedlige udgift.",
+    "Det koster 56-130 kr. at lade en elbil fuldt op derhjemme (1,86 kr./kWh). Se pris pr. km, hjemmeladning vs. hurtigladning og din månedlige udgift.",
   alternates: { canonical: `${SITE_CONFIG.url}/hvad-koster-det-at-lade-en-elbil/` },
 };
 
@@ -39,7 +39,7 @@ export default function ElbilLadningPage() {
             faqSchema(faqs),
             articleSchema({
               title: "Hvad koster det at lade en elbil? 2026",
-              description: "Det koster 75-175 kr. at lade en elbil fuldt op derhjemme med en elpris på 1,86 kr./kWh.",
+              description: "Det koster 56-130 kr. at lade en elbil fuldt op derhjemme med en elpris på 1,86 kr./kWh.",
               url: `${SITE_CONFIG.url}/hvad-koster-det-at-lade-en-elbil/`,
               datePublished: "2026-07-29",
               dateModified: SITE_CONFIG.lastUpdated,
@@ -62,7 +62,7 @@ export default function ElbilLadningPage() {
 
         <QuickAnswer>
           <p>
-            Det koster 75-175 kr. at lade en elbil fuldt op derhjemme med en
+            Det koster 56-130 kr. at lade en elbil fuldt op derhjemme med en
             gennemsnitlig elpris på 1,86 kr./kWh. Pr. kilometer koster det
             0,38-0,50 kr. — ca. 3-4 gange billigere end benzin. Med det
             billigste elselskab (Altid Energi, 1,76 kr./kWh) falder prisen til

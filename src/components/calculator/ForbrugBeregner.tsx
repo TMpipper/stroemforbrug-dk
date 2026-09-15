@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Zap, TrendingDown } from "lucide-react";
 import { bestOfferFor } from "@/lib/offers";
 import { REFERENCE_KWH } from "@/lib/pricing";
@@ -33,6 +33,8 @@ export default function ForbrugBeregner({
   usageDefault = 3,
   usageStep = 1,
 }: ForbrugBeregnerProps) {
+  // useId keeps the label/input pair unique when several calculators share a page
+  const sliderId = useId();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [usage, setUsage] = useState(usageDefault);
 
@@ -62,9 +64,9 @@ export default function ForbrugBeregner({
       <div className="bg-brand-800 px-6 py-5 text-center">
         <div className="flex items-center justify-center gap-2 mb-1">
           <Zap className="w-5 h-5 text-accent-400" />
-          <h3 className="font-heading text-xl sm:text-2xl font-medium text-white">
+          <h2 className="font-heading text-xl sm:text-2xl font-medium text-white">
             {title}
-          </h3>
+          </h2>
         </div>
         <p className="text-brand-200 text-sm">
           Beregn dit strømforbrug og se hvad det koster
@@ -97,15 +99,17 @@ export default function ForbrugBeregner({
         {/* Usage slider */}
         <div>
           <div className="flex justify-between items-center mb-2">
-            <p className="font-heading font-medium text-sm text-ink-900">
+            <label htmlFor={sliderId} className="font-heading font-medium text-sm text-ink-900">
               {usageLabel}:
-            </p>
+            </label>
             <span className="text-lg font-bold text-brand-700">
               {usage} {usageUnit}
             </span>
           </div>
           <input
+            id={sliderId}
             type="range"
+            aria-valuetext={`${usage} ${usageUnit}`}
             min={usageMin}
             max={usageMax}
             step={usageStep}
@@ -113,7 +117,7 @@ export default function ForbrugBeregner({
             onChange={(e) => setUsage(Number(e.target.value))}
             className="w-full h-2 bg-ink-200 rounded-full appearance-none cursor-pointer accent-brand-600"
           />
-          <div className="flex justify-between text-xs text-ink-400 mt-1">
+          <div className="flex justify-between text-xs text-ink-600 mt-1">
             <span>
               {usageMin} {usageUnit}
             </span>

@@ -76,7 +76,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-ink-700 pt-6 text-xs text-ink-400">
+        <div className="border-t border-ink-700 pt-6 text-xs text-ink-300">
           <p>
             &copy; {new Date().getFullYear()} {SITE_CONFIG.company.legalName} &middot; CVR {SITE_CONFIG.company.cvr} &middot; {SITE_CONFIG.company.address}
           </p>
