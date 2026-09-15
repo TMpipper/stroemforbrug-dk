@@ -34,7 +34,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   const target = new URL(`${TRACK_BASE}/c/${SITE}/${slug}`);
   const cookieAtt = decodeAtt(request.cookies.get("_att")?.value);
   for (const k of FORWARD) {
-    const v = request.nextUrl.searchParams.get(k) ?? cookieAtt[k] ?? (k === "ref" ? request.cookies.get("tk_ref")?.value : undefined);
+    const v = request.nextUrl.searchParams.get(k) ?? cookieAtt[k] ?? (k === "ref" ? request.cookies.get("tk_ref")?.value : k === "pl" ? request.cookies.get("tk_pl")?.value : undefined);
     if (v && SAFE.test(v)) target.searchParams.set(k, v);
   }
   if (!target.searchParams.has("lp")) {
