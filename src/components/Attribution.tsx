@@ -10,7 +10,8 @@
 //     (30 days, last code wins).
 //   • Outbound /go/ and /gaa/ links get the current URL's ids appended at click time as well,
 //     so even a same-page click is attributed without any cookie.
-//   • Every /go/ or /gaa/ click fires the Google Ads browser conversion when the tag is present.
+//   • Every /go/ or /gaa/ click opens in a new tab (target=_blank, rel=noopener) and fires the
+//     Google Ads browser conversion when the tag is present.
 //   • Optional visit beacon for direct ?ref= landings (tjekelregning: /api/ref/visit/).
 // ============================================
 
@@ -92,6 +93,9 @@ function installLinkPropagation() {
     }
     if (!href.searchParams.has("lp")) { href.searchParams.set("lp", location.pathname); changed = true; }
     if (changed) a.setAttribute("href", href.pathname + href.search);
+    // Affiliate links always open in a new tab (owner decision 2026-09-15) so the visitor keeps our site open.
+    a.target = "_blank";
+    if (!/\bnoopener\b/.test(a.rel)) a.rel = (a.rel + " noopener").trim(); // keep nofollow/sponsored
     // Google Ads browser conversion ("Klik til elselskab") – only when the tag is present
     try { (window as unknown as { __tkGadsClick?: () => void }).__tkGadsClick?.(); } catch { /* no tag */ }
   };
