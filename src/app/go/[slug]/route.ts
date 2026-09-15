@@ -1,7 +1,7 @@
 // /go/[slug] → central redirector go.tjekelregning.dk/c/stroemforbrug/<slug>
 // The redirector decides the affiliate URL (site_tracking_links), stamps our click id +
 // site on the network link (source/aff_sub2 or epi2) and logs the click. This route
-// only validates the slug and forwards ad attribution from the URL or the consented `_att` cookie.
+// only validates the slug and forwards ad attribution from the URL or the `_att` / `tk_ref` cookies (no consent bar since 2026-09-15).
 import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -33,15 +33,14 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
   const target = new URL(`${TRACK_BASE}/c/${SITE}/${slug}`);
   const cookieAtt = decodeAtt(request.cookies.get("_att")?.value);
-  const consented = request.cookies.get("_cc")?.value === "1";
   for (const k of FORWARD) {
-    const v = request.nextUrl.searchParams.get(k) ?? (consented ? cookieAtt[k] : undefined) ?? (k === "ref" && consented ? request.cookies.get("tk_ref")?.value : undefined);
+    const v = request.nextUrl.searchParams.get(k) ?? cookieAtt[k] ?? (k === "ref" ? request.cookies.get("tk_ref")?.value : undefined);
     if (v && SAFE.test(v)) target.searchParams.set(k, v);
   }
   if (!target.searchParams.has("lp")) {
     const ref = request.headers.get("referer");
     try { if (ref) target.searchParams.set("lp", new URL(ref).pathname); } catch { /* ignore */ }
   }
-  target.searchParams.set("consent", consented ? "1" : "0");
+  target.searchParams.set("consent", "1");
   return NextResponse.redirect(target, { status: 302, headers: { "cache-control": "private, no-store, max-age=0" } });
 }
