@@ -55,11 +55,25 @@ export interface Offer {
 }
 
 /**
+ * Today in Europe/Copenhagen as YYYY-MM-DD. Deliberately NOT the UTC date: in
+ * CEST a build run between 00:00 and 02:00 Danish time would otherwise still see
+ * yesterday, so a campaign starting that morning would not go live.
+ */
+function copenhagenToday(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Copenhagen",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+/**
  * Build date as YYYY-MM-DD. Campaigns switch on and off against this. The site
  * is statically generated, so a campaign starting on a given morning needs a
  * deploy that morning. Override with CAMPAIGN_DATE to preview a future date.
  */
-export const BUILD_DATE: string = process.env.CAMPAIGN_DATE || new Date().toISOString().slice(0, 10);
+export const BUILD_DATE: string = process.env.CAMPAIGN_DATE || copenhagenToday();
 
 export function activeCampaign(campaigns: Campaign[] | undefined, on: string = BUILD_DATE): Campaign | undefined {
   if (!campaigns?.length) return undefined;
