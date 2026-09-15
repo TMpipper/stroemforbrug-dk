@@ -11,7 +11,7 @@ import { REFERENCE_KWH, formatPrice, formatKr } from "@/lib/pricing";
 export const metadata: Metadata = {
   title: "Hvad koster en kWh i 2026? → Se aktuel pris inkl. afgifter",
   description:
-    "En kWh koster i gennemsnit 2,50 kr. inkl. alle afgifter i 2026. Se prisens sammensætning, spotpris vs. fastpris, og hvilke elselskaber der er billigst.",
+    "En kWh koster i gennemsnit 1,86 kr. inkl. alle afgifter i 2026 — 1,95 kr. når abonnementet regnes med. Se prisens sammensætning, spotpris vs. fastpris, og hvilke elselskaber der er billigst.",
   alternates: { canonical: `${SITE_CONFIG.url}/hvad-koster-en-kwh/` },
 };
 
@@ -19,7 +19,7 @@ const faqs = [
   { question: "Hvad koster 1 kWh strøm i Danmark i 2026?", answer: "I gennemsnit koster 1 kWh ca. 1,86 kr. inkl. spotpris, transport, elafgift og moms. Den rene spotpris svinger mellem 0,37-2,23 kr., men med faste tillæg lander totalen typisk på 1,49-2,60 kr." },
   { question: "Hvad er inkluderet i kWh-prisen?", answer: "Prisen består af: spotpris (ca. 40%), nettarif/transport (ca. 20%), elafgift (0,8 øre/kWh fra 2026), moms (25%), og dit elselskabs tillæg (0-10 øre). Den fulde pris er alt dette lagt sammen." },
   { question: "Hvornår er strømmen billigst?", answer: "Strømmen er billigst om natten (kl. 0-6) og dyrest i aftentimerne (kl. 17-20). Forskellen kan være 0,50-2,00 kr./kWh. Med fleksibel elpris betaler du spotprisen time for time." },
-  { question: "Hvad koster en kWh hos Altid Energi?", answer: "Altid Energi tilbyder spotpris + 0 øre tillæg + 0 kr. abonnement, hvilket giver den laveste samlede kWh-pris. I gennemsnit ca. 1,54 kr./kWh (DK1) inkl. transport og afgifter." },
+  { question: "Hvad koster en kWh hos Altid Energi?", answer: "Altid Energi tilbyder spotpris + 0 øre tillæg og abonnement fra 18 kr./md., hvilket giver en af de laveste samlede kWh-priser. I gennemsnit ca. 1,76 kr./kWh før abonnement inkl. transport og afgifter." },
   { question: "Hvad er forskellen på spotpris og fastpris?", answer: "Spotpris varierer time for time med markedet — du betaler den reelle markedspris. Fastpris er en fast kWh-pris (typisk højere) der ikke ændrer sig. De fleste sparer penge med spotpris." },
   { question: "Er elafgiften sænket i 2026?", answer: "Ja, elafgiften er sænket markant til 0,8 øre/kWh (fra 76 øre). Det gør strøm billigere og varmepumper mere fordelagtige end nogensinde." },
   { question: "Hvad koster en kWh inkl. alt?", answer: "Inkl. alle komponenter (spotpris, nettarif, elafgift, PSO-tillæg, moms og elselskabstillæg) koster 1 kWh typisk 1,49-2,60 kr. i 2026. Gennemsnittet er ca. 1,86 kr." },
@@ -40,7 +40,7 @@ export default function HvadKosterEnKwhPage() {
             faqSchema(faqs),
             articleSchema({
               title: "Hvad koster en kWh i 2026?",
-              description: "En kWh koster i gennemsnit 2,50 kr. inkl. alle afgifter.",
+              description: "En kWh koster i gennemsnit 1,86 kr. inkl. alle afgifter.",
               url: `${SITE_CONFIG.url}/hvad-koster-en-kwh/`,
               datePublished: "2026-07-29",
               dateModified: SITE_CONFIG.lastUpdated,
@@ -63,10 +63,11 @@ export default function HvadKosterEnKwhPage() {
 
         <QuickAnswer>
           <p>
-            En kWh strøm koster i gennemsnit ca. 2,50 kr. i Danmark i 2026 inkl.
-            spotpris, transport, elafgift og moms. Prisen varierer fra ca. 1,50
-            kr. om natten til 3,50+ kr. i spidstimerne. Med det billigste
-            elselskab (Altid Energi) betaler du ca. 1,54 kr./kWh i gennemsnit.
+            En kWh strøm koster i gennemsnit ca. 1,86 kr. i Danmark i 2026 inkl.
+            spotpris, transport, elafgift og moms — 1,95 kr. når abonnementet
+            regnes med. Prisen varierer fra ca. 1,00 kr. om natten til 3,50+ kr.
+            i spidstimerne. Med den billigste elaftale betaler du ca. 1,76
+            kr./kWh før abonnement.
           </p>
         </QuickAnswer>
 
@@ -79,15 +80,15 @@ export default function HvadKosterEnKwhPage() {
           </p>
           <table>
             <thead>
-              <tr><th>Komponent</th><th>Typisk pris</th><th>Andel</th><th>Kan du påvirke?</th></tr>
+              <tr><th>Komponent</th><th>Typisk pris inkl. moms</th><th>Andel</th><th>Kan du påvirke?</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Spotpris (Nord Pool)</strong></td><td>0,50-2,50 kr.</td><td>~40%</td><td>Ja (brug strøm om natten)</td></tr>
-              <tr><td><strong>Nettarif (transport)</strong></td><td>0,30-0,60 kr.</td><td>~20%</td><td>Nej (afhænger af netselskab)</td></tr>
-              <tr><td><strong>Elafgift</strong></td><td>0,008 kr.</td><td>&lt;1%</td><td>Nej (fastsat af staten)</td></tr>
-              <tr><td><strong>Elselskabstillæg</strong></td><td>0-0,10 kr.</td><td>0-4%</td><td>Ja (vælg billigste selskab)</td></tr>
-              <tr><td><strong>Moms (25%)</strong></td><td>~0,50 kr.</td><td>~20%</td><td>Nej</td></tr>
-              <tr><td><strong>Total</strong></td><td><strong>~2,50 kr.</strong></td><td>100%</td><td></td></tr>
+              <tr><td><strong>Spotpris (Nord Pool)</strong></td><td>1,18 kr.</td><td>~64%</td><td>Ja (brug strøm om natten)</td></tr>
+              <tr><td><strong>Nettarif + Energinet</strong></td><td>0,57 kr.</td><td>~31%</td><td>Nej (afhænger af netselskab)</td></tr>
+              <tr><td><strong>Elafgift</strong></td><td>0,01 kr.</td><td>&lt;1%</td><td>Nej (fastsat af staten)</td></tr>
+              <tr><td><strong>Elselskabets spottillæg</strong></td><td>0-0,10 kr.</td><td>0-5%</td><td>Ja (vælg billigste aftale)</td></tr>
+              <tr><td><strong>Total pr. kWh</strong></td><td><strong>~1,86 kr.</strong></td><td>100%</td><td></td></tr>
+              <tr><td>Abonnement (fast, ikke pr. kWh)</td><td>0-127 kr./md.</td><td>—</td><td>Ja (vælg billigste aftale)</td></tr>
             </tbody>
           </table>
 
@@ -103,8 +104,8 @@ export default function HvadKosterEnKwhPage() {
               <tr><th>Pristype</th><th>Gennemsnit kWh</th><th>Fordel</th><th>Ulempe</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Spotpris</strong></td><td>~2,50 kr.</td><td>Billigst over tid</td><td>Varierer time for time</td></tr>
-              <tr><td><strong>Fastpris</strong></td><td>~3,00 kr.</td><td>Forudsigelig regning</td><td>Typisk 10-20% dyrere</td></tr>
+              <tr><td><strong>Spotpris</strong></td><td>~1,86 kr.</td><td>Billigst over tid</td><td>Varierer time for time</td></tr>
+              <tr><td><strong>Fastpris</strong></td><td>~2,10 kr.</td><td>Forudsigelig regning</td><td>Typisk 10-20% dyrere</td></tr>
             </tbody>
           </table>
 

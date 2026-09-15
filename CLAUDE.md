@@ -27,7 +27,9 @@ vercel deploy --prod --yes --scope mondomedia
 
 | File | Purpose |
 |------|---------|
-| `src/lib/config.ts` | SITE_CONFIG, ELECTRICITY_PRICE_KR_PER_KWH, affiliate pricing |
+| `src/lib/pricing.ts` | **Canonical price engine.** MARKET inputs, marginal elpris, formatters, `assertPriceModel()` |
+| `src/lib/offers.ts` | The 7 elaftaler + campaign engine, `bestOfferFor(kwh)`, `assertOffers()` |
+| `src/lib/config.ts` | SITE_CONFIG; re-exports the price constants from `pricing.ts` |
 | `src/lib/types.ts` | ApplianceData, CalculatorConfig, FAQ, etc. |
 | `src/lib/appliances.ts` | Barrel file — exports APPLIANCES, getAppliance(), getAllSlugs() |
 | `src/lib/appliances-core.ts` | First 5 appliances: varmepumpe, opvaskemaskine, tv, koeleskab, toerretumbler |
@@ -63,7 +65,7 @@ beregner, gennemsnitligt, husstand, varmepumpe, sparetips, om-os, kontakt, priva
 
 ### Adding a New Appliance
 
-1. Add ApplianceData object to `appliances-extra.ts`
+1. Add ApplianceData object to `appliances-extra.ts` (or a `phase*` file)
 2. Page auto-generates via `[apparat]/page.tsx`
 3. Auto-added to sitemap via `getAllSlugs()`
 4. Content should be 2,000+ words with tables, FAQ, calculator config
@@ -78,13 +80,20 @@ beregner, gennemsnitligt, husstand, varmepumpe, sparetips, om-os, kontakt, priva
 - **Import paths** — `@/` maps to `src/`
 - **Next.js 16 async params** — `params: Promise<{ slug: string }>` — always `await params`
 - **AEO format** — start every H2 with a 40-60 word direct answer paragraph
-- **Electricity price** — use `ELECTRICITY_PRICE_KR_PER_KWH` (2.50) from config, never hardcode
+- **Electricity price** — import from `pricing.ts`, never type a price or a cost into prose.
+  `EL_PRICE_KR_PER_KWH` (marginal, currently 1,86) is what appliances cost to run;
+  `TYPICAL_ALL_IN_KR_PER_KWH` (1,95) includes abonnement and is the baseline for savings;
+  `CHEAPEST_MARGINAL_KR_PER_KWH` (1,76) is the cheapest aftale before abonnement.
+  Never compare a marginal price against an all-in one — that overstates savings.
+  Petrol, diesel, public charging, gas and fjernvarme prices are NOT tied to the elpris.
+- **Run `npm run audit-prices`** after touching any figure. Drift fails; a hardcoded
+  but still-correct number warns. It also catches expired campaigns.
 - **External links** — always `target="_blank" rel="noopener noreferrer nofollow"`
 - **Affiliate links** — route through `/go/[slug]`, never expose raw tracking URLs
 
 ## Company Details
 
-- **Company:** Mondo Media ApS
+- **Company:** Elpriser.dk ApS (never "Mondo Media ApS" in user-facing text)
 - **CVR:** 43489984
 - **Address:** Hestehave 15, 6400 Sønderborg, Danmark
 - **Email:** hej@stroemforbrug.dk

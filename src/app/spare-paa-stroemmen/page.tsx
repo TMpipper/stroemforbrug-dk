@@ -273,9 +273,9 @@ export default function SparePaaStroemmenPage() {
             </tbody>
           </table>
           <p>
-            <em>Alle besparelser beregnet med 1,86 kr./kWh. Med Altid Energi
-            (1,54 kr./kWh) er de absolutte tal lavere, men du sparer allerede på
-            tiltag #1.</em>
+            <em>Alle besparelser beregnet med 1,86 kr./kWh. Med den billigste
+            elaftale (ca. 1,76 kr./kWh før abonnement) er de absolutte tal lidt
+            lavere, men rangordenen er den samme.</em>
           </p>
         </div>
 

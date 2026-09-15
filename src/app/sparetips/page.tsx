@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const faqs = [
   { question: "Hvad er det nemmeste tip til at spare strøm?", answer: "Det nemmeste tip er at slukke for standby-forbrug. Ved at slukke tv, computer og andre apparater helt (ikke bare standby) kan du spare 400-800 kr./år uden at ændre dine vaner." },
   { question: "Hvor meget kan man spare ved at skifte til LED-pærer?", answer: "Ved at skifte alle pærer i hjemmet til LED kan du spare 500-1.200 kr./år. En LED-pære bruger ca. 80% mindre strøm end en glødepære og holder 15-25 gange længere." },
-  { question: "Er det billigere at vaske tøj om natten?", answer: "Ja, med spotpris-aftale er strøm typisk 30-50% billigere om natten (kl. 0-6). En vask der koster 2,50 kr. om aftenen kan koste under 1,50 kr. om natten. Over et år giver det 200-400 kr. i besparelse." },
+  { question: "Er det billigere at vaske tøj om natten?", answer: "Ja, med spotpris-aftale er strøm typisk 30-50% billigere om natten (kl. 0-6). En vask der koster 2,60 kr. om aftenen kan koste under 1,50 kr. om natten. Over et år giver det 200-400 kr. i besparelse." },
   { question: "Hvor meget sparer man ved at sænke vasketemperaturen?", answer: "Ved at vaske på 30°C i stedet for 60°C bruger vaskemaskinen ca. 60% mindre strøm pr. vask. For en familie med 5 ugentlige vaske giver det ca. 300-500 kr. i besparelse om året." },
   { question: "Kan man spare strøm ved at skifte elselskab?", answer: "Ja. Forskellen mellem en gennemsnitlig og den billigste elaftale er ca. 10 øre/kWh. For en husstand med 4.000 kWh/år svarer det til ca. 544 kr./år — et af de nemmeste enkelt-tiltag, men langt fra det største." },
   { question: "Hvor meget strøm bruger en gammel kummefryser?", answer: "En gammel kummefryser (15+ år) bruger typisk 400-600 kWh/år (744-1.116 kr.). En ny A-mærket model bruger kun 150-200 kWh/år. Udskiftning sparer dig 372-744 kr./år." },
@@ -101,8 +101,8 @@ export default function SparetipsPage() {
           </table>
           <p>
             <em>Besparelserne er beregnet med en gennemsnitspris på 1,86 kr./kWh. Med
-            det billigste elselskab (Altid Energi, ca. 1,54 kr./kWh) er de
-            absolutte besparelser lavere, men den procentvise effekt er den samme.</em>
+            den billigste elaftale (ca. 1,76 kr./kWh før abonnement) er de
+            absolutte besparelser lidt lavere, men den procentvise effekt er den samme.</em>
           </p>
 
           <h2>Hvidevarer — de store strømslugere</h2>
@@ -260,11 +260,11 @@ export default function SparetipsPage() {
 
           <h2>Skift elselskab — den største enkeltbesparelse</h2>
           <p>
-            At skifte til det billigste elselskab er det enkelt-tiltag der giver
-            den absolut største besparelse. Forskellen mellem gennemsnitsprisen
-            (1,86 kr./kWh) og det billigste elselskab (Altid Energi, ca. 1,54
-            kr./kWh) er næsten 1,00 kr./kWh — det er 4.000 kr./år for en familie
-            der bruger 4.000 kWh.
+            At skifte elaftale er det nemmeste enkelt-tiltag, men ikke det største.
+            Forskellen mellem en gennemsnitlig aftale (1,86 kr./kWh) og den
+            billigste (ca. 1,76 kr./kWh) er ca. 10 øre/kWh — omkring 544 kr./år
+            for en familie der bruger 4.000 kWh. De store besparelser ligger i
+            selve forbruget: varmepumpe, tørretumbler og elbil.
           </p>
 
           <h3>Tip 1: Vælg et elselskab med 0 kr. tillæg</h3>
