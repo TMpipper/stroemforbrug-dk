@@ -35,10 +35,10 @@ export function DirectAnswer() {
         </h2>
         <p className="text-lg text-ink-800 leading-relaxed">
           En gennemsnitlig dansker bruger omkring{" "}
-          <strong>{formatKr(AVERAGE_PER_PERSON_KWH)} kWh strøm om året</strong>. En
-          person i lejlighed lander typisk på {formatKr(flat.totalKwh)} kWh —{" "}
-          <strong>{formatKr(flat.totalCost)} kr.</strong> — mens en familie på fire i
-          hus bruger omkring {formatKr(family.totalKwh)} kWh, altså{" "}
+          <strong>{formatKr(AVERAGE_PER_PERSON_KWH)} kWh strøm om året</strong> —
+          altså <strong>{formatKr(flat.totalCost)} kr.</strong> for en person i
+          lejlighed. En familie på fire i hus bruger omkring{" "}
+          {formatKr(family.totalKwh)} kWh, svarende til{" "}
           <strong>{formatKr(family.totalCost)} kr. om året</strong>. Har I varmepumpe
           eller elbil, fordobles det let.
         </p>
