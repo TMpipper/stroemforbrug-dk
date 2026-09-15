@@ -8,8 +8,20 @@ export const dynamic = "force-dynamic";
 
 const SITE = "stroemforbrug";
 const TRACK_BASE = process.env.TRACK_BASE_URL ?? "https://go.tjekelregning.dk";
-const FORWARD = ["gclid", "gbraid", "wbraid", "fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "lp", "pl", "ref"];
-const SAFE = /^[A-Za-z0-9_./-]{1,200}$/;
+const FORWARD = ["gclid", "gbraid", "wbraid", "fbclid",
+  // appended by Google auto-tagging itself
+  "gad_campaignid", "gad_source", "gclsrc",
+  // ValueTrack from the account-level final URL suffix
+  "tk_cid", "tk_aid", "tk_kw", "tk_mt", "tk_dev", "tk_net", "tk_cr", "tk_tid", "tk_plc",
+  "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
+  "lp", "pl", "ref"];
+// Two validator classes: ids keep the strict charset; the bid keyword and utm_term/content are
+// free text and need spaces and æøå. Safe to allow — these values only ever reach parameterised
+// SQL server-side and URLSearchParams.set() here, never raw SQL and never raw HTML.
+const SAFE_ID = /^[A-Za-z0-9_./-]{1,200}$/;
+const SAFE_TEXT = /^[\p{L}\p{N}][\p{L}\p{N} ._+&%/()-]{0,119}$/u;
+const TEXT_KEYS = new Set(["tk_kw", "tk_plc", "utm_campaign", "utm_term", "utm_content"]);
+const okValue = (k: string, v: string) => (TEXT_KEYS.has(k) ? SAFE_TEXT.test(v) : SAFE_ID.test(v));
 
 function decodeAtt(raw: string | undefined): Record<string, string> {
   if (!raw) return {};
@@ -17,7 +29,7 @@ function decodeAtt(raw: string | undefined): Record<string, string> {
     const b64 = raw.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((raw.length + 3) % 4);
     const obj = JSON.parse(Buffer.from(b64, "base64").toString("utf8")) as Record<string, unknown>;
     const out: Record<string, string> = {};
-    for (const [k, v] of Object.entries(obj)) if (typeof v === "string" && SAFE.test(v)) out[k] = v;
+    for (const [k, v] of Object.entries(obj)) if (typeof v === "string" && okValue(k, v)) out[k] = v;
     return out;
   } catch {
     return {};
@@ -35,7 +47,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   const cookieAtt = decodeAtt(request.cookies.get("_att")?.value);
   for (const k of FORWARD) {
     const v = request.nextUrl.searchParams.get(k) ?? cookieAtt[k] ?? (k === "ref" ? request.cookies.get("tk_ref")?.value : k === "pl" ? request.cookies.get("tk_pl")?.value : undefined);
-    if (v && SAFE.test(v)) target.searchParams.set(k, v);
+    if (v && okValue(k, v)) target.searchParams.set(k, v);
   }
   if (!target.searchParams.has("lp")) {
     const ref = request.headers.get("referer");
