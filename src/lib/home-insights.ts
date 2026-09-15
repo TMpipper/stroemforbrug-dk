@@ -305,3 +305,70 @@ export function topEverydayAppliances(n = 5): TopAppliance[] {
       optional: false,
     }));
 }
+
+/* ---------- consumption bands ---------- */
+
+export interface ConsumptionBand {
+  label: string;
+  href?: string;
+  /** kWh/år without electric heating */
+  withoutHeatPump: [number, number];
+  /** kWh/år with a heat pump, where that applies */
+  withHeatPump?: [number, number];
+}
+
+/**
+ * Typical bands by household type. These drive /gennemsnitligt/ and /husstand/,
+ * which previously each carried their own hardcoded table — with different
+ * numbers for the same household and prices still computed at the old
+ * 2,50 kr./kWh. One source, rendered in both places, so the site gives a single
+ * answer to "how much does a household like mine use".
+ */
+export const CONSUMPTION_BANDS: ConsumptionBand[] = [
+  { label: "1 person, lejlighed", href: "/husstand/1-person/", withoutHeatPump: [1500, 2000] },
+  { label: "1 person, hus", withoutHeatPump: [2000, 2500], withHeatPump: [5000, 7000] },
+  { label: "2 personer, lejlighed", href: "/husstand/2-personer/", withoutHeatPump: [2000, 3000] },
+  { label: "2 personer, hus", withoutHeatPump: [2500, 3500], withHeatPump: [5500, 8500] },
+  { label: "Familie (3-4 pers.), hus", href: "/husstand/familie/", withoutHeatPump: [3500, 5000], withHeatPump: [6500, 10500] },
+  { label: "Stor familie (5+ pers.)", withoutHeatPump: [4500, 6000], withHeatPump: [7500, 12000] },
+];
+
+/** Full annual cost span for a band, from its cheapest to its most expensive case. */
+export function bandCostRange(b: ConsumptionBand): [number, number] {
+  const lo = b.withoutHeatPump[0];
+  const hi = (b.withHeatPump ?? b.withoutHeatPump)[1];
+  return [lo * EL_PRICE_KR_PER_KWH, hi * EL_PRICE_KR_PER_KWH];
+}
+
+/**
+ * The bands and the profile totals describe the same households and must not
+ * contradict each other. Called from `npm run audit-seo`.
+ */
+export function assertBands(): void {
+  for (const b of CONSUMPTION_BANDS) {
+    if (b.withoutHeatPump[0] >= b.withoutHeatPump[1]) {
+      throw new Error(`home-insights: band "${b.label}" has an inverted kWh range`);
+    }
+    if (b.withHeatPump && b.withHeatPump[0] <= b.withoutHeatPump[0]) {
+      throw new Error(`home-insights: band "${b.label}" claims a heat pump lowers consumption`);
+    }
+  }
+  // Each profile total should land inside, or close to, the matching band.
+  const pairs: [string, string][] = [
+    ["lejlighed-1", "1 person, lejlighed"],
+    ["lejlighed-2", "2 personer, lejlighed"],
+    ["hus-familie", "Familie (3-4 pers.), hus"],
+  ];
+  for (const [slug, label] of pairs) {
+    const profile = HOUSEHOLD_PROFILES.find((p) => p.slug === slug);
+    const band = CONSUMPTION_BANDS.find((b) => b.label === label);
+    if (!profile || !band) throw new Error(`home-insights: cannot pair profile "${slug}" with band "${label}"`);
+    const [lo, hi] = band.withoutHeatPump;
+    if (profile.totalKwh < lo * 0.9 || profile.totalKwh > hi * 1.1) {
+      throw new Error(
+        `home-insights: profile "${slug}" states ${profile.totalKwh} kWh but band "${label}" says ${lo}-${hi} kWh — ` +
+          `the homepage and /gennemsnitligt/ would contradict each other.`,
+      );
+    }
+  }
+}

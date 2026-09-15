@@ -84,16 +84,16 @@ export default function StromslugerePage() {
               <tr><th>#</th><th>Apparat</th><th>kWh/år</th><th>Pris/år</th><th>Kører</th></tr>
             </thead>
             <tbody>
-              <tr><td>1</td><td><strong><Link href="/elradiator/">Elradiator</Link></strong></td><td>500-2.000</td><td>1.250-5.000 kr.</td><td>Sæson (vinter)</td></tr>
-              <tr><td>2</td><td><strong><Link href="/toerretumbler/">Tørretumbler</Link></strong></td><td>300-500</td><td>750-1.250 kr.</td><td>4-5x/uge</td></tr>
-              <tr><td>3</td><td><strong><Link href="/koeleskab/">Køleskab/svale-frys</Link></strong></td><td>200-500</td><td>500-1.250 kr.</td><td>24/7</td></tr>
-              <tr><td>4</td><td><strong><Link href="/kummefryser/">Kummefryser</Link></strong></td><td>150-600</td><td>375-1.500 kr.</td><td>24/7</td></tr>
-              <tr><td>5</td><td><strong><Link href="/ovn/">Ovn</Link></strong></td><td>150-300</td><td>375-750 kr.</td><td>4-5x/uge</td></tr>
-              <tr><td>6</td><td><strong><Link href="/opvaskemaskine/">Opvaskemaskine</Link></strong></td><td>200-300</td><td>500-750 kr.</td><td>Dagligt</td></tr>
-              <tr><td>7</td><td><strong><Link href="/vaskemaskine/">Vaskemaskine</Link></strong></td><td>150-250</td><td>375-625 kr.</td><td>4-5x/uge</td></tr>
-              <tr><td>8</td><td><strong><Link href="/computer/">Stationær computer</Link></strong></td><td>150-400</td><td>375-1.000 kr.</td><td>6-10 t/dag</td></tr>
-              <tr><td>9</td><td><strong><Link href="/tv/">TV (55-65&quot;)</Link></strong></td><td>80-200</td><td>200-500 kr.</td><td>4-6 t/dag</td></tr>
-              <tr><td>10</td><td><strong>Belysning (samlet)</strong></td><td>200-500</td><td>500-1.250 kr.</td><td>6-10 t/dag</td></tr>
+              <tr><td>1</td><td><strong><Link href="/elradiator/">Elradiator</Link></strong></td><td>500-2.000</td><td>930-3.720 kr.</td><td>Sæson (vinter)</td></tr>
+              <tr><td>2</td><td><strong><Link href="/toerretumbler/">Tørretumbler</Link></strong></td><td>300-500</td><td>558-930 kr.</td><td>4-5x/uge</td></tr>
+              <tr><td>3</td><td><strong><Link href="/koeleskab/">Køleskab/svale-frys</Link></strong></td><td>200-500</td><td>372-930 kr.</td><td>24/7</td></tr>
+              <tr><td>4</td><td><strong><Link href="/kummefryser/">Kummefryser</Link></strong></td><td>150-600</td><td>279-1.116 kr.</td><td>24/7</td></tr>
+              <tr><td>5</td><td><strong><Link href="/ovn/">Ovn</Link></strong></td><td>150-300</td><td>279-558 kr.</td><td>4-5x/uge</td></tr>
+              <tr><td>6</td><td><strong><Link href="/opvaskemaskine/">Opvaskemaskine</Link></strong></td><td>200-300</td><td>372-558 kr.</td><td>Dagligt</td></tr>
+              <tr><td>7</td><td><strong><Link href="/vaskemaskine/">Vaskemaskine</Link></strong></td><td>150-250</td><td>279-465 kr.</td><td>4-5x/uge</td></tr>
+              <tr><td>8</td><td><strong><Link href="/computer/">Stationær computer</Link></strong></td><td>150-400</td><td>279-744 kr.</td><td>6-10 t/dag</td></tr>
+              <tr><td>9</td><td><strong><Link href="/tv/">TV (55-65&quot;)</Link></strong></td><td>80-200</td><td>149-372 kr.</td><td>4-6 t/dag</td></tr>
+              <tr><td>10</td><td><strong>Belysning (samlet)</strong></td><td>200-500</td><td>372-930 kr.</td><td>6-10 t/dag</td></tr>
             </tbody>
           </table>
           <p>
@@ -130,9 +130,9 @@ export default function StromslugerePage() {
               <tr><th>Tørretumbler-type</th><th>kWh/tørring</th><th>kWh/år (5x/uge)</th><th>Pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Kondenstørretumbler</strong></td><td>3,5-4,5</td><td>910-1.170</td><td>2.275-2.925 kr.</td></tr>
-              <tr><td><strong>Varmepumpetørretumbler</strong></td><td>1,5-2,5</td><td>390-650</td><td>975-1.625 kr.</td></tr>
-              <tr><td><strong>Aftræktørretumbler</strong></td><td>3,0-4,0</td><td>780-1.040</td><td>1.950-2.600 kr.</td></tr>
+              <tr><td><strong>Kondenstørretumbler</strong></td><td>3,5-4,5</td><td>910-1.170</td><td>1.693-2.176 kr.</td></tr>
+              <tr><td><strong>Varmepumpetørretumbler</strong></td><td>1,5-2,5</td><td>390-650</td><td>725-1.209 kr.</td></tr>
+              <tr><td><strong>Aftræktørretumbler</strong></td><td>3,0-4,0</td><td>780-1.040</td><td>1.950-1.934 kr.</td></tr>
             </tbody>
           </table>
           <p>
@@ -160,10 +160,10 @@ export default function StromslugerePage() {
               <tr><th>Apparat</th><th>Gammel model (10+ år)</th><th>Ny A-model</th><th>Årlig besparelse</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong><Link href="/koeleskab/">Køleskab</Link></strong></td><td>300-500 kWh</td><td>100-150 kWh</td><td>375-875 kr.</td></tr>
+              <tr><td><strong><Link href="/koeleskab/">Køleskab</Link></strong></td><td>300-500 kWh</td><td>100-150 kWh</td><td>279-875 kr.</td></tr>
               <tr><td><strong><Link href="/kummefryser/">Kummefryser</Link></strong></td><td>400-600 kWh</td><td>150-200 kWh</td><td>372-744 kr.</td></tr>
               <tr><td><strong><Link href="/fryser/">Fryser (skabs)</Link></strong></td><td>350-500 kWh</td><td>150-200 kWh</td><td>375-750 kr.</td></tr>
-              <tr><td><strong>Køle/frys-kombi</strong></td><td>400-600 kWh</td><td>150-250 kWh</td><td>375-875 kr.</td></tr>
+              <tr><td><strong>Køle/frys-kombi</strong></td><td>400-600 kWh</td><td>150-250 kWh</td><td>279-875 kr.</td></tr>
             </tbody>
           </table>
 
@@ -258,9 +258,9 @@ export default function StromslugerePage() {
               <tr><th>Apparat</th><th>Gammel (kWh/år)</th><th>Ny A-model (kWh/år)</th><th>Du sparer/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Køleskab</strong></td><td>350-500</td><td>100-150</td><td>500-875 kr.</td></tr>
-              <tr><td><strong>Kummefryser</strong></td><td>400-600</td><td>150-200</td><td>500-1.000 kr.</td></tr>
-              <tr><td><strong>Tørretumbler</strong></td><td>500-700</td><td>200-300</td><td>500-1.000 kr.</td></tr>
+              <tr><td><strong>Køleskab</strong></td><td>350-500</td><td>100-150</td><td>500-651 kr.</td></tr>
+              <tr><td><strong>Kummefryser</strong></td><td>400-600</td><td>150-200</td><td>372-744 kr.</td></tr>
+              <tr><td><strong>Tørretumbler</strong></td><td>500-700</td><td>200-300</td><td>372-1.000 kr.</td></tr>
               <tr><td><strong>Opvaskemaskine</strong></td><td>300-400</td><td>180-250</td><td>125-375 kr.</td></tr>
               <tr><td><strong>Vaskemaskine</strong></td><td>200-300</td><td>100-170</td><td>75-325 kr.</td></tr>
             </tbody>

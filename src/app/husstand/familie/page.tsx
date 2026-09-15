@@ -82,10 +82,10 @@ export default function FamiliePage() {
               <tr><th>Familiestørrelse</th><th>kWh/år (uden VP)</th><th>kWh/år (med VP)</th><th>Pris/år (uden VP)</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>2 voksne + 1 barn</strong></td><td>3.500-4.500</td><td>6.500-9.500</td><td>8.750-11.250 kr.</td></tr>
-              <tr><td><strong>2 voksne + 2 børn</strong></td><td>4.000-5.500</td><td>7.000-11.000</td><td>10.000-13.750 kr.</td></tr>
-              <tr><td><strong>2 voksne + 3 børn</strong></td><td>4.500-6.000</td><td>7.500-12.000</td><td>11.250-15.000 kr.</td></tr>
-              <tr><td><strong>Storfamilie (6+)</strong></td><td>5.500-7.500</td><td>8.500-13.500</td><td>13.750-18.750 kr.</td></tr>
+              <tr><td><strong>2 voksne + 1 barn</strong></td><td>3.500-4.500</td><td>6.500-9.500</td><td>6.510-8.370 kr.</td></tr>
+              <tr><td><strong>2 voksne + 2 børn</strong></td><td>4.000-5.500</td><td>7.000-11.000</td><td>7.440-10.230 kr.</td></tr>
+              <tr><td><strong>2 voksne + 3 børn</strong></td><td>4.500-6.000</td><td>7.500-12.000</td><td>11.250-11.160 kr.</td></tr>
+              <tr><td><strong>Storfamilie (6+)</strong></td><td>5.500-7.500</td><td>8.500-13.500</td><td>13.750-13.950 kr.</td></tr>
             </tbody>
           </table>
 

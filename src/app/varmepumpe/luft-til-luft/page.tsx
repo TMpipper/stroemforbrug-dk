@@ -136,12 +136,12 @@ export default function LuftTilLuftPage() {
               <tr><th>Måned</th><th>kWh</th><th>Pris</th><th>Note</th></tr>
             </thead>
             <tbody>
-              <tr><td>Jan-Feb</td><td>400-700</td><td>1.000-1.750 kr.</td><td>Fuld drift, lavt COP</td></tr>
-              <tr><td>Mar-Apr</td><td>200-400</td><td>500-1.000 kr.</td><td>Moderat drift</td></tr>
-              <tr><td>Maj</td><td>50-150</td><td>125-375 kr.</td><td>Minimal drift</td></tr>
-              <tr><td>Jun-Aug</td><td>30-90</td><td>75-225 kr.</td><td>Evt. køling</td></tr>
-              <tr><td>Sep-Okt</td><td>100-300</td><td>250-750 kr.</td><td>Moderat drift</td></tr>
-              <tr><td>Nov-Dec</td><td>350-650</td><td>875-1.625 kr.</td><td>Fuld drift</td></tr>
+              <tr><td>Jan-Feb</td><td>400-700</td><td>744-1.302 kr.</td><td>Fuld drift, lavt COP</td></tr>
+              <tr><td>Mar-Apr</td><td>200-400</td><td>372-744 kr.</td><td>Moderat drift</td></tr>
+              <tr><td>Maj</td><td>50-150</td><td>93-279 kr.</td><td>Minimal drift</td></tr>
+              <tr><td>Jun-Aug</td><td>30-90</td><td>56-167 kr.</td><td>Evt. køling</td></tr>
+              <tr><td>Sep-Okt</td><td>100-300</td><td>186-558 kr.</td><td>Moderat drift</td></tr>
+              <tr><td>Nov-Dec</td><td>350-650</td><td>651-1.209 kr.</td><td>Fuld drift</td></tr>
             </tbody>
           </table>
 

@@ -145,6 +145,58 @@ for (const file of walk("src")) {
   }
 }
 
+/* ---------- 3b. stale table rows ---------- */
+
+/*
+ * The prose sweep only sees figures with a unit attached. In a JSX table the
+ * kWh unit usually lives in the column HEADER, so a row like
+ *   <td>1.500-2.000</td><td>3.750-5.000 kr.</td>
+ * has no anchor in the cell and slipped through twice — roughly 50 rows across
+ * seven hub pages were still priced at the old 2,50 kr./kWh long after the
+ * prose was corrected. This checks each row against its own bare-number cells.
+ */
+
+const OLD_PRICE = 2.5;
+const NUMBER = String.raw`\d{1,3}(?:\.\d{3})*(?:,\d+)?`;
+const daNumber = (v: string) => Number(v.replace(/\./g, "").replace(",", "."));
+/** Rows comparing against another fuel move the opposite way and are excluded. */
+const CROSS_FUEL = /gasfyr|oliefyr|fjernvarme|naturgas|benzin|diesel|besparelse vs|vs\. gas/i;
+
+let staleRows = 0;
+for (const file of walk("src/app")) {
+  const rel = file.replace(/\\/g, "/");
+  const text = readFileSync(file, "utf8");
+  for (const row of text.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)) {
+    const body = row[1];
+    // A row inherits its table's meaning: "besparelse vs. gasfyr" usually sits
+    // in the <thead> or the footnote, not in the row itself.
+    const tableStart = text.lastIndexOf("<table", row.index ?? 0);
+    const tableEnd = text.indexOf("</table>", row.index ?? 0);
+    const tableContext = tableStart >= 0 ? text.slice(tableStart, tableEnd > 0 ? tableEnd + 400 : undefined) : body;
+    if (CROSS_FUEL.test(body) || CROSS_FUEL.test(tableContext)) continue;
+    const cells = [...body.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((m) => m[1]);
+    const anchors: number[] = [];
+    for (const c of cells) {
+      if (/kr/.test(c)) continue;
+      for (const n of c.replace(/<[^>]+>/g, "").matchAll(new RegExp(`(${NUMBER})`, "g"))) {
+        anchors.push(daNumber(n[1]));
+      }
+    }
+    if (!anchors.length) continue;
+    for (const k of body.matchAll(new RegExp(`(${NUMBER})\\s*kr\\.`, "g"))) {
+      const v = daNumber(k[1]);
+      const stale = anchors.some((a) => a > 50 && Math.abs(v / (a * OLD_PRICE) - 1) < 0.015);
+      const current = anchors.some((a) => a > 50 && Math.abs(v / (a * EL_PRICE_KR_PER_KWH) - 1) < 0.015);
+      if (stale && !current) {
+        fail(`${rel}: table row has ${k[1]} kr. — that is a same-row figure priced at the old ${OLD_PRICE} kr./kWh`);
+        staleRows++;
+        break;
+      }
+    }
+  }
+}
+if (!staleRows) ok("no table row is still priced at the old 2,50 kr./kWh");
+
 /* ---------- 4. summary ---------- */
 
 console.log("");

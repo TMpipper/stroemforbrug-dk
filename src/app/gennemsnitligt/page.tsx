@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
+import { CONSUMPTION_BANDS, bandCostRange } from "@/lib/home-insights";
+import { formatKr } from "@/lib/pricing";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
@@ -76,42 +78,30 @@ export default function GennemsnitligtPage() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong><Link href="/husstand/">1 person, lejlighed</Link></strong></td>
-                <td>1.500-2.000</td>
-                <td>—</td>
-                <td>3.750-5.000 kr.</td>
-              </tr>
-              <tr>
-                <td><strong>1 person, hus</strong></td>
-                <td>2.000-2.500</td>
-                <td>5.000-7.000</td>
-                <td>5.000-17.500 kr.</td>
-              </tr>
-              <tr>
-                <td><strong>2 personer, lejlighed</strong></td>
-                <td>2.000-3.000</td>
-                <td>—</td>
-                <td>5.000-7.500 kr.</td>
-              </tr>
-              <tr>
-                <td><strong>2 personer, hus</strong></td>
-                <td>2.500-3.500</td>
-                <td>5.500-8.500</td>
-                <td>6.250-21.250 kr.</td>
-              </tr>
-              <tr>
-                <td><strong>Familie (3-4 pers.), hus</strong></td>
-                <td>3.500-5.000</td>
-                <td>6.500-10.500</td>
-                <td>8.750-26.250 kr.</td>
-              </tr>
-              <tr>
-                <td><strong>Stor familie (5+ pers.)</strong></td>
-                <td>4.500-6.000</td>
-                <td>7.500-12.000</td>
-                <td>11.250-30.000 kr.</td>
-              </tr>
+              {CONSUMPTION_BANDS.map((b) => {
+                const [lo, hi] = bandCostRange(b);
+                return (
+                  <tr key={b.label}>
+                    <td>
+                      <strong>
+                        {b.href ? <Link href={b.href}>{b.label}</Link> : b.label}
+                      </strong>
+                    </td>
+                    <td>
+                      {b.withoutHeatPump[0].toLocaleString("da-DK")}-
+                      {b.withoutHeatPump[1].toLocaleString("da-DK")}
+                    </td>
+                    <td>
+                      {b.withHeatPump
+                        ? `${b.withHeatPump[0].toLocaleString("da-DK")}-${b.withHeatPump[1].toLocaleString("da-DK")}`
+                        : "—"}
+                    </td>
+                    <td>
+                      {formatKr(lo)}-{formatKr(hi)} kr.
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
           <p>

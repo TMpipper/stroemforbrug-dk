@@ -141,9 +141,9 @@ export default function LuftTilVandPage() {
               <tr><th>Periode</th><th>kWh/md.</th><th>Pris/md.</th><th>Drift</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Dec-Feb (vinter)</strong></td><td>600-1.200</td><td>1.500-3.000 kr.</td><td>Fuld varme + brugsvand</td></tr>
-              <tr><td><strong>Mar-Maj, Sep-Nov</strong></td><td>250-600</td><td>625-1.500 kr.</td><td>Moderat varme + brugsvand</td></tr>
-              <tr><td><strong>Jun-Aug (sommer)</strong></td><td>50-150</td><td>125-375 kr.</td><td>Kun brugsvand</td></tr>
+              <tr><td><strong>Dec-Feb (vinter)</strong></td><td>600-1.200</td><td>1.116-2.232 kr.</td><td>Fuld varme + brugsvand</td></tr>
+              <tr><td><strong>Mar-Maj, Sep-Nov</strong></td><td>250-600</td><td>465-1.116 kr.</td><td>Moderat varme + brugsvand</td></tr>
+              <tr><td><strong>Jun-Aug (sommer)</strong></td><td>50-150</td><td>93-279 kr.</td><td>Kun brugsvand</td></tr>
             </tbody>
           </table>
 

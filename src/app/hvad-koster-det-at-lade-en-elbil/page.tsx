@@ -83,11 +83,11 @@ export default function ElbilLadningPage() {
               <tr><th>Elbil</th><th>Batteri (kWh)</th><th>Rækkevidde (km)</th><th>Pris fuld ladning</th><th>Pris m/ Altid Energi</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Tesla Model 3 LR</strong></td><td>75</td><td>~580</td><td>188 kr.</td><td>116 kr.</td></tr>
-              <tr><td><strong>VW ID.4 Pro</strong></td><td>77</td><td>~520</td><td>193 kr.</td><td>119 kr.</td></tr>
-              <tr><td><strong>Hyundai Kona Electric</strong></td><td>64</td><td>~460</td><td>160 kr.</td><td>99 kr.</td></tr>
-              <tr><td><strong>Skoda Enyaq iV 80</strong></td><td>77</td><td>~510</td><td>193 kr.</td><td>119 kr.</td></tr>
-              <tr><td><strong>Peugeot e-208</strong></td><td>50</td><td>~360</td><td>125 kr.</td><td>77 kr.</td></tr>
+              <tr><td><strong>Tesla Model 3 LR</strong></td><td>75</td><td>~580</td><td>140 kr.</td><td>132 kr.</td></tr>
+              <tr><td><strong>VW ID.4 Pro</strong></td><td>77</td><td>~520</td><td>143 kr.</td><td>136 kr.</td></tr>
+              <tr><td><strong>Hyundai Kona Electric</strong></td><td>64</td><td>~460</td><td>119 kr.</td><td>113 kr.</td></tr>
+              <tr><td><strong>Skoda Enyaq iV 80</strong></td><td>77</td><td>~510</td><td>143 kr.</td><td>136 kr.</td></tr>
+              <tr><td><strong>Peugeot e-208</strong></td><td>50</td><td>~360</td><td>93 kr.</td><td>88 kr.</td></tr>
             </tbody>
           </table>
           <p>

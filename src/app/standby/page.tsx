@@ -98,26 +98,26 @@ export default function StandbyPage() {
               <tr><th>Apparat</th><th>Standby (W)</th><th>kWh/år</th><th>Pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong><Link href="/playstation/">PlayStation 5</Link></strong></td><td>3-15</td><td>26-131</td><td>65-328 kr.</td></tr>
-              <tr><td><strong>Xbox Series X</strong></td><td>5-13</td><td>44-114</td><td>110-285 kr.</td></tr>
-              <tr><td><strong>Streaming-boks (Apple TV, Chromecast)</strong></td><td>2-6</td><td>17-52</td><td>43-131 kr.</td></tr>
-              <tr><td><strong>Kabel-/IPTV-boks</strong></td><td>5-12</td><td>44-105</td><td>110-263 kr.</td></tr>
-              <tr><td><strong><Link href="/computer/">Stationær computer</Link></strong></td><td>2-10</td><td>17-88</td><td>44-219 kr.</td></tr>
+              <tr><td><strong><Link href="/playstation/">PlayStation 5</Link></strong></td><td>3-15</td><td>26-131</td><td>48-244 kr.</td></tr>
+              <tr><td><strong>Xbox Series X</strong></td><td>5-13</td><td>44-114</td><td>82-212 kr.</td></tr>
+              <tr><td><strong>Streaming-boks (Apple TV, Chromecast)</strong></td><td>2-6</td><td>17-52</td><td>32-97 kr.</td></tr>
+              <tr><td><strong>Kabel-/IPTV-boks</strong></td><td>5-12</td><td>44-105</td><td>82-196 kr.</td></tr>
+              <tr><td><strong><Link href="/computer/">Stationær computer</Link></strong></td><td>2-10</td><td>17-88</td><td>44-163 kr.</td></tr>
               <tr><td><strong><Link href="/laptop/">Laptop (lukket)</Link></strong></td><td>0,5-3</td><td>4-26</td><td>11-66 kr.</td></tr>
               <tr><td><strong>Computerskærm</strong></td><td>0,5-2</td><td>4-17</td><td>11-44 kr.</td></tr>
-              <tr><td><strong><Link href="/tv/">TV (LED/QLED)</Link></strong></td><td>0,5-2</td><td>4-17</td><td>10-44 kr.</td></tr>
-              <tr><td><strong>TV (OLED)</strong></td><td>1-10</td><td>9-88</td><td>22-219 kr.</td></tr>
-              <tr><td><strong>Soundbar</strong></td><td>1-5</td><td>9-44</td><td>22-110 kr.</td></tr>
-              <tr><td><strong>Subwoofer</strong></td><td>2-8</td><td>17-70</td><td>44-175 kr.</td></tr>
-              <tr><td><strong><Link href="/router/">Router/modem</Link></strong></td><td>6-12</td><td>52-105</td><td>131-263 kr.</td></tr>
-              <tr><td><strong>Printer</strong></td><td>1-5</td><td>9-44</td><td>22-110 kr.</td></tr>
+              <tr><td><strong><Link href="/tv/">TV (LED/QLED)</Link></strong></td><td>0,5-2</td><td>4-17</td><td>7-44 kr.</td></tr>
+              <tr><td><strong>TV (OLED)</strong></td><td>1-10</td><td>9-88</td><td>22-163 kr.</td></tr>
+              <tr><td><strong>Soundbar</strong></td><td>1-5</td><td>9-44</td><td>22-82 kr.</td></tr>
+              <tr><td><strong>Subwoofer</strong></td><td>2-8</td><td>17-70</td><td>44-130 kr.</td></tr>
+              <tr><td><strong><Link href="/router/">Router/modem</Link></strong></td><td>6-12</td><td>52-105</td><td>97-196 kr.</td></tr>
+              <tr><td><strong>Printer</strong></td><td>1-5</td><td>9-44</td><td>22-82 kr.</td></tr>
               <tr><td><strong><Link href="/kaffemaskine/">Kaffemaskine (kapsel)</Link></strong></td><td>0,5-2</td><td>4-17</td><td>11-44 kr.</td></tr>
               <tr><td><strong><Link href="/mikroovn/">Mikroovn</Link></strong></td><td>1-3</td><td>9-26</td><td>22-66 kr.</td></tr>
-              <tr><td><strong><Link href="/ovn/">Ovn (med ur/display)</Link></strong></td><td>1-4</td><td>9-35</td><td>22-88 kr.</td></tr>
+              <tr><td><strong><Link href="/ovn/">Ovn (med ur/display)</Link></strong></td><td>1-4</td><td>9-35</td><td>22-65 kr.</td></tr>
               <tr><td><strong>Mobiloplader (uden telefon)</strong></td><td>0,3-0,5</td><td>3-4</td><td>7-11 kr.</td></tr>
               <tr><td><strong>Laptop-oplader (uden laptop)</strong></td><td>0,5-1</td><td>4-9</td><td>11-22 kr.</td></tr>
               <tr><td><strong>Elektrisk tandbørste (holder)</strong></td><td>0,5-1</td><td>4-9</td><td>11-22 kr.</td></tr>
-              <tr><td><strong>Smart-højtaler (Echo, Nest)</strong></td><td>2-4</td><td>17-35</td><td>44-88 kr.</td></tr>
+              <tr><td><strong>Smart-højtaler (Echo, Nest)</strong></td><td>2-4</td><td>17-35</td><td>44-65 kr.</td></tr>
               <tr><td><strong>Trådløs oplader (tom)</strong></td><td>0,5-1,5</td><td>4-13</td><td>11-33 kr.</td></tr>
             </tbody>
           </table>
@@ -174,9 +174,9 @@ export default function StandbyPage() {
               <tr><th>Stue-setup</th><th>Samlet standby (W)</th><th>kWh/år</th><th>Pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Minimalt</strong> (TV + streaming-boks)</td><td>3-8</td><td>26-70</td><td>66-175 kr.</td></tr>
-              <tr><td><strong>Typisk</strong> (TV + soundbar + konsol + streaming)</td><td>10-25</td><td>88-219</td><td>219-547 kr.</td></tr>
-              <tr><td><strong>Fuldt setup</strong> (alt + subwoofer + ekstra konsol)</td><td>20-45</td><td>175-394</td><td>438-985 kr.</td></tr>
+              <tr><td><strong>Minimalt</strong> (TV + streaming-boks)</td><td>3-8</td><td>26-70</td><td>66-130 kr.</td></tr>
+              <tr><td><strong>Typisk</strong> (TV + soundbar + konsol + streaming)</td><td>10-25</td><td>88-219</td><td>163-407 kr.</td></tr>
+              <tr><td><strong>Fuldt setup</strong> (alt + subwoofer + ekstra konsol)</td><td>20-45</td><td>175-394</td><td>326-733 kr.</td></tr>
             </tbody>
           </table>
 

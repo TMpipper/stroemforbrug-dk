@@ -84,11 +84,11 @@ export default function MedVarmepumpePage() {
               <tr><th>Husstand + VP-type</th><th>Husholdning</th><th>Varmepumpe</th><th>Total kWh/år</th><th>Total pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>1 person + luft-til-luft</strong></td><td>2.000</td><td>2.500</td><td>4.500</td><td>11.250 kr.</td></tr>
-              <tr><td><strong>Par + luft-til-vand</strong></td><td>3.000</td><td>4.500</td><td>7.500</td><td>18.750 kr.</td></tr>
-              <tr><td><strong>Familie (4) + luft-til-vand</strong></td><td>4.500</td><td>5.000</td><td>9.500</td><td>23.750 kr.</td></tr>
-              <tr><td><strong>Familie (4) + jordvarme</strong></td><td>4.500</td><td>4.000</td><td>8.500</td><td>21.250 kr.</td></tr>
-              <tr><td><strong>Stor familie (5+) + l-t-v</strong></td><td>5.500</td><td>5.500</td><td>11.000</td><td>27.500 kr.</td></tr>
+              <tr><td><strong>1 person + luft-til-luft</strong></td><td>2.000</td><td>2.500</td><td>4.500</td><td>8.370 kr.</td></tr>
+              <tr><td><strong>Par + luft-til-vand</strong></td><td>3.000</td><td>4.500</td><td>7.500</td><td>13.950 kr.</td></tr>
+              <tr><td><strong>Familie (4) + luft-til-vand</strong></td><td>4.500</td><td>5.000</td><td>9.500</td><td>17.670 kr.</td></tr>
+              <tr><td><strong>Familie (4) + jordvarme</strong></td><td>4.500</td><td>4.000</td><td>8.500</td><td>15.810 kr.</td></tr>
+              <tr><td><strong>Stor familie (5+) + l-t-v</strong></td><td>5.500</td><td>5.500</td><td>11.000</td><td>20.460 kr.</td></tr>
             </tbody>
           </table>
           <p><em>Priser beregnet med 1,86 kr./kWh inkl. afgifter og transport.</em></p>
