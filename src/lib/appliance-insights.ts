@@ -78,7 +78,6 @@ export interface SeasonalCost {
 export function seasonalCost(a: ApplianceData, price = EL_PRICE_KR_PER_KWH): SeasonalCost {
   const profile = a.seasonalProfile?.length === 12 ? a.seasonalProfile : new Array(12).fill(1);
   const total = profile.reduce((n, v) => n + v, 0);
-  const yearCost = a.typicalKwh * price;
 
   const months: SeasonalMonth[] = profile.map((v, i) => {
     const kwh = (a.typicalKwh * v) / total;

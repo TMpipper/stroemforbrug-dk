@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { CONSUMPTION_BANDS, bandCostRange } from "@/lib/home-insights";
-import { formatKr } from "@/lib/pricing";
+import { EL_PRICE_KR_PER_KWH, formatKr, formatPrice } from "@/lib/pricing";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
@@ -181,6 +181,72 @@ export default function GennemsnitligtPage() {
               </details>
             ))}
           </div>
+
+          <h2>Gennemsnit er et dårligt mål for en enkelt husstand</h2>
+          <p>
+            Et gennemsnit på tværs af alle danske husstande dækker over enormt
+            forskellige boliger. En lejlighed med fjernvarme og en enlig beboer og et
+            parcelhus med varmepumpe, elbil og fem personer indgår i samme tal — og
+            ligger op til ti gange fra hinanden. Derfor siger &quot;gennemsnittet&quot;
+            meget lidt om, hvorvidt netop dit forbrug er fornuftigt.
+          </p>
+          <p>
+            Sammenlign i stedet med din egen husstandstype i tabellen ovenfor, og
+            bemærk, om du har elvarme eller elbil. De to ting flytter mere end alt
+            andet tilsammen. Vil du vide, om dit forbrug er for højt, er{" "}
+            <Link href="/husstand/">normalt forbrug pr. husstand</Link> den rigtige
+            side.
+          </p>
+
+          <h2>Hvorfor svinger forbruget over året?</h2>
+          <p>
+            Danske husstande bruger markant mere strøm om vinteren end om sommeren, og
+            det skyldes tre ting, der forstærker hinanden: der er mørkt flere timer i
+            døgnet, varmen skal holdes ved lige, og køl og frys arbejder omvendt
+            mindre, fordi køkkenet er køligere.
+          </p>
+          <table>
+            <thead>
+              <tr><th>Periode</th><th>Andel af årsforbruget</th><th>Hvad driver det</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>December-februar</strong></td><td>ca. 30-35 %</td><td>Belysning, opvarmning, tørretumbler frem for tørresnor</td></tr>
+              <tr><td><strong>Marts-maj</strong></td><td>ca. 24 %</td><td>Aftagende varmebehov</td></tr>
+              <tr><td><strong>Juni-august</strong></td><td>ca. 16-18 %</td><td>Lavest — lange lyse dage, tøj tørrer ude</td></tr>
+              <tr><td><strong>September-november</strong></td><td>ca. 25 %</td><td>Stigende varme- og lysbehov</td></tr>
+            </tbody>
+          </table>
+          <p>
+            Har du varmepumpe, er udsvinget langt kraftigere — se{" "}
+            <Link href="/varmepumpe/luft-til-vand/">luft-til-vand varmepumpe</Link>, hvor
+            januar typisk koster ti gange så meget som juli.
+          </p>
+
+          <h2>Er gennemsnittet faldet eller steget?</h2>
+          <p>
+            Selve elforbruget pr. husstand har været svagt faldende i en årrække, fordi
+            hvidevarer, belysning og elektronik er blevet markant mere effektive. En
+            LED-pære bruger under en tiendedel af en glødepære, og et køleskab fra 2026
+            bruger omtrent halvdelen af et fra 2010.
+          </p>
+          <p>
+            Den udvikling bliver dog mere end opvejet af elektrificeringen. Hver gang en
+            husstand skifter gasfyr ud med en <Link href="/varmepumpe/">varmepumpe</Link>{" "}
+            eller en benzinbil med en <Link href="/elbil/">elbil</Link>, flytter energi
+            fra et andet marked over på elregningen. Den samlede energiudgift falder,
+            men elforbruget stiger — og det er derfor, et stigende elforbrug ikke i sig
+            selv er et dårligt tegn.
+          </p>
+
+          <h2>Hvad betyder det for din elregning?</h2>
+          <p>
+            Ved den aktuelle elpris på {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh koster
+            hver 1.000 kWh omkring {formatKr(1000 * EL_PRICE_KR_PER_KWH)} kr. om året.
+            Ligger du 1.000 kWh over gennemsnittet for din husstandstype, er det altså
+            den regning, det handler om — og det er som regel én konkret årsag, ikke
+            mange små.
+          </p>
+
         </div>
       </article>
     </>
