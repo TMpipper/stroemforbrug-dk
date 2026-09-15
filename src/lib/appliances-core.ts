@@ -553,7 +553,27 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 <p>En tørresnor koster 0 kr. i strøm. Med 3 tørringer/uge à 2 kWh sparer du ca. 580 kr./år ved at tørre udendørs. Om vinteren er det dog ikke altid praktisk i Danmark, og mange lejligheder har ikke mulighed for udendørs tørring. En god kombination er tumbler om vinteren + tørresnor om sommeren, hvilket halverer det årlige forbrug.</p>
 
 <h2>Hvad koster en tørring i strøm?</h2>
-<p>En enkelt tørring koster mellem 3,75 og 10,23 kr. i strøm afhængigt af maskinens type og alder. Tørringstype (bomuldstør, skabstør, strygetør) påvirker også — bomuldstør bruger 15-20% mere end skabstør, da tøjet skal være helt tørt. Sammenligner du med <a href="/opvaskemaskine/">opvaskemaskinen</a> (1,30-3,35 kr./gang), er tumbleren klart det dyrere apparat at køre.</p>`,
+<p>En enkelt tørring koster mellem 3,75 og 10,23 kr. i strøm afhængigt af maskinens type og alder. Tørringstype (bomuldstør, skabstør, strygetør) påvirker også — bomuldstør bruger 15-20% mere end skabstør, da tøjet skal være helt tørt. Sammenligner du med <a href="/opvaskemaskine/">opvaskemaskinen</a> (1,30-3,35 kr./gang), er tumbleren klart det dyrere apparat at køre.</p>
+<h2>Centrifugering er halvdelen af regnestykket</h2>
+<p>En tørretumbler bruger strøm på at fordampe vand. Hvert gram vand, der bliver i tøjet efter vask, skal derfor betales to gange: en gang i <a href="/vaskemaskine/">vaskemaskinen</a> og en gang i tumbleren. Energistyrelsen peger på centrifugering som det enkleste greb – den fjerner vandet mekanisk i stedet for med varme, og mekanisk er billigere.</p>
+<table>
+<thead><tr><th>Centrifugering</th><th>Restfugt efter vask</th><th>Betydning for tørretiden</th></tr></thead>
+<tbody>
+<tr><td>800 omdr./min.</td><td>ca. 70 %</td><td>Længst tørretid</td></tr>
+<tr><td>1.200 omdr./min.</td><td>ca. 53 %</td><td>Mærkbart kortere</td></tr>
+<tr><td>1.600 omdr./min.</td><td>ca. 44 %</td><td>Kortest tørretid</td></tr>
+</tbody>
+</table>
+<p>Springet fra 800 til 1.400 omdrejninger fjerner omtrent en fjerdedel af vandet, inden tøjet overhovedet når tumbleren. Det er den billigste kWh, du kan spare, fordi vaskemaskinens motor bruger langt mindre energi på at slynge vandet ud, end tumbleren bruger på at koge det væk.</p>
+
+<h2>Varmepumpe, kondens eller aftræk?</h2>
+<p>De tre typer løser samme opgave på vidt forskellige måder. En aftrækstumbler varmer luft, sender den gennem tøjet og blæser den ud af huset – al varmen er tabt. En kondenstumbler genbruger noget af varmen. En varmepumpetumbler flytter varmen i et lukket kredsløb og genbruger den igen og igen, og det er derfor, den bruger under halvdelen.</p>
+<p>Til gengæld tørrer varmepumpemodeller ved lavere temperatur og tager derfor længere tid pr. omgang. Det er skånsomt for tøjet, men det overrasker folk, der skifter fra en gammel aftrækstumbler – tiden er ikke et tegn på, at maskinen er ineffektiv, den er præcis grunden til, at den er effektiv.</p>
+
+<h2>Tørresnoren er stadig gratis</h2>
+<p>Ingen tumbler kan konkurrere med luft. Tørrer du halvdelen af vaskene på snor i sommerhalvåret, halverer du tumblerens årsforbrug – og for et apparat i denne klasse er det en af de største enkeltbesparelser i hele husholdningen.</p>
+<p>Indendørs tørring har dog en pris, der ikke står på elregningen: vandet skal ud af tøjet og ender i rumluften. I en tæt bolig uden god udluftning øger det fugten og dermed risikoen for skimmel, og skal du varme luften op for at få den til at optage fugten, har du flyttet udgiften i stedet for at fjerne den.</p>
+`,
     faqs: [
       { question: "Hvor meget strøm bruger en tørretumbler pr. tørring?", answer: "En varmepumpetumbler (A+++) bruger 1,5-2,0 kWh pr. tørring. En kondenstumbler (B) bruger 3,0-3,8 kWh, og en gammel model bruger 4,0-5,5 kWh." },
       { question: "Hvad koster det at køre tørretumbleren?", answer: "Det koster 2,79-10,23 kr. pr. tørring afhængigt af type. En ny varmepumpemodel koster ca. 3-4 kr., mens en gammel model koster 7-10 kr. pr. gang." },

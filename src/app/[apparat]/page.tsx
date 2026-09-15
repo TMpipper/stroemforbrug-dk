@@ -9,6 +9,7 @@ import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import ApplianceInsights from "@/components/content/ApplianceInsights";
+import { sourcesFor, SOURCES_VERIFIED_AT } from "@/lib/sources";
 import { Zap, Calendar, BarChart3 } from "lucide-react";
 import { withCurrentYear } from "@/lib/pricing";
 
@@ -72,6 +73,12 @@ export default async function AppliancePage({
   }
 
   const url = `${SITE_CONFIG.url}/${data.slug}/`;
+
+  // Verified source links for this appliance, plus any named reference the data
+  // already carried that is not one of the old generic homepage links.
+  const GENERIC_HOSTS = ["https://ens.dk", "https://sparenergi.dk", "https://www.bolius.dk", "https://bolius.dk"];
+  const ownReferences = data.sources.filter((s) => !s.url || !GENERIC_HOSTS.includes(s.url));
+  const sources = [...sourcesFor(data.slug), ...ownReferences];
   const costMin = Math.round(data.kwhRange[0] * ELECTRICITY_PRICE_KR_PER_KWH);
   const costMax = Math.round(data.kwhRange[1] * ELECTRICITY_PRICE_KR_PER_KWH);
   const costTypical = Math.round(data.typicalKwh * ELECTRICITY_PRICE_KR_PER_KWH);
@@ -309,14 +316,17 @@ export default async function AppliancePage({
         {/* Related appliances */}
         <RelatedAppliances slugs={data.relatedSlugs} />
 
-        {/* Sources */}
-        {data.sources.length > 0 && (
+        {/* Sources — verified first-party links, plus the appliance's own named
+            references (EU regulations, manufacturer specs, test labs). The
+            generic homepage links that used to sit here were replaced: they
+            claimed to be specific pages and resolved to a front page. */}
+        {sources.length > 0 && (
           <div className="mt-10 pt-6 border-t border-ink-200">
             <p className="text-xs text-ink-400 mb-2 font-medium uppercase tracking-wide">
               Kilder
             </p>
             <ul className="text-xs text-ink-500 space-y-1">
-              {data.sources.map((source, i) => (
+              {sources.map((source, i) => (
                 <li key={i}>
                   {source.url ? (
                     <a
@@ -333,6 +343,9 @@ export default async function AppliancePage({
                 </li>
               ))}
             </ul>
+            <p className="text-xs text-ink-400 mt-2">
+              Links kontrolleret {new Date(SOURCES_VERIFIED_AT).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}.
+            </p>
           </div>
         )}
       </article>

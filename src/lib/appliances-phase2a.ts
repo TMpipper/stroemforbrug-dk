@@ -890,7 +890,27 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Robotplæneklipperen er et godt eksempel på, at moderne teknologi kan spare energi. Sammenlign med <a href="/robotstoevsuger/">robotstøvsugerens strømforbrug</a> – en anden robot, der passer hjemmet automatisk. Se også <a href="/pool/">poolens strømforbrug</a>, der er en væsentligt større post i havens energibudget.</p>
 
 <h2>Sæsonvariation i robotplæneklipperens forbrug</h2>
-<p>Robotplæneklipperen har den mest udprægede sæsonvariation af alle husholdningsapparater. Den kører kun fra april til oktober, med højdepunkt i juni–juli, hvor græsset vokser hurtigst. I vintermånederne er forbruget nul, hvis du husker at slukke ladestationen.</p>`,
+<p>Robotplæneklipperen har den mest udprægede sæsonvariation af alle husholdningsapparater. Den kører kun fra april til oktober, med højdepunkt i juni–juli, hvor græsset vokser hurtigst. I vintermånederne er forbruget nul, hvis du husker at slukke ladestationen.</p>
+<h2>Robot, elklipper eller benzin?</h2>
+<p>En robotplæneklipper bruger overraskende lidt strøm, fordi den klipper få millimeter ad gangen i stedet for at rydde højt græs én gang om ugen. Motoren er derfor lille, og selv om den kører mange timer, er den samlede energimængde beskeden.</p>
+<table>
+<thead><tr><th>Type</th><th>Energikilde</th><th>Typisk sæsonforbrug</th></tr></thead>
+<tbody>
+<tr><td>Robotplæneklipper</td><td>El</td><td>20–60 kWh</td></tr>
+<tr><td>Elektrisk plæneklipper</td><td>El</td><td>15–35 kWh</td></tr>
+<tr><td>Benzinplæneklipper</td><td>Benzin</td><td>15–30 liter</td></tr>
+</tbody>
+</table>
+<p>Elektrisk klipper og robot ligger tæt på hinanden i ren energi. Forskellen er, hvad du bruger tiden på, og at robotten holder græsset ensartet kort, hvilket giver det bioklip, som mange køber den for. Benzinklipperen er den, der skiller sig ud – ikke på tid, men på driftsomkostning og lokal forurening.</p>
+
+<h2>Køreplanen er den vigtigste indstilling</h2>
+<p>De fleste robotter kommer fra fabrikken med en køreplan, der er rigelig. Mange haver bliver holdt fint med markant færre timer, end standardindstillingen lægger op til, og hver time mindre er både sparet strøm og sparet slid på knive og hjul.</p>
+<p>Tommelfingerreglen er at skrue ned, til græsset lige akkurat holdes, og så lade det stå. Har robotten regnsensor, er den værd at slå til: klipning i vådt græs sætter sig fast under skjoldet, øger belastningen på motoren og giver et dårligere resultat.</p>
+
+<h2>Ladestationen bruger også strøm</h2>
+<p>Ladestationen står tændt hele sæsonen – og hos mange hele året. Den bruger typisk 2–5 watt, når robotten ikke lader, og det bliver til 18–44 kWh om året, hvis den aldrig slukkes. For en robot, der selv bruger 20–60 kWh på en sæson, er det ikke en detalje.</p>
+<p>Derfor er der reel besparelse i at tage stationen fra stikket om vinteren, når robotten alligevel står i garagen. Det er samtidig godt for batteriet, der har bedst af at overvintre halvt opladet et frostfrit sted frem for at stå i konstant vedligeholdelsesladning.</p>
+`,
     faqs: [
       { question: "Hvad koster det i strøm at have en robotplæneklipper?", answer: "En robotplæneklipper koster typisk 37–112 kr. i strøm pr. sæson (april–oktober) for en gennemsnitlig dansk have på 500–1.000 m²." },
       { question: "Bruger en robotplæneklipper meget strøm?", answer: "Nej, en robotplæneklipper er meget energieffektiv. Med en motoreffekt på kun 20–30 W bruger den langt mindre end en traditionel el-plæneklipper." },
