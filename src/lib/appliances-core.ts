@@ -499,10 +499,6 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 <h2>Hvad koster et køleskab i strøm over 10 år?</h2>
 <p>Over et køleskabs typiske levetid (15-20 år) bruger du mere på strøm end selve køleskabet kostede at købe. Et nyt A-mærket køle/fryseskab til 5.000-8.000 kr. bruger strøm for ca. 3.500-6.500 kr. over 15 år. Et billigt D-mærket køleskab til 3.000 kr. bruger derimod strøm for 8.000-14.000 kr. i samme periode.</p>
 <p>Konklusion: det kan altid betale sig at vælge et energieffektivt køleskab, selvom det koster mere i indkøb. Du tjener merudgiften hjem på 3-5 år i sparede strømudgifter — og køleskabet holder i 15+ år. Se også vores guide til <a href="/opvaskemaskine/">opvaskemaskine strømforbrug</a> for lignende beregninger.</p>
-<h2>Temperaturen: 5 grader, ikke koldere</h2>
-<p>Køleskabet skal stå på 5 grader. Hver grad koldere end nødvendigt koster typisk omkring 5 % ekstra strøm uden at forlænge holdbarheden nævneværdigt, og mange køleskabe står unødigt koldt, fordi termostaten er en skala fra 1 til 7 uden grader på.</p>
-<p>Et almindeligt stuetermometer i et glas vand midt i skabet giver svaret på et døgn. Står det på 2–3 grader, er der en besparelse at hente ved at skrue en tak op – og ingen kommer til at mærke forskel på mælken.</p>
-
 <h2>Køl og frys er en femtedel af elregningen</h2>
 <p>Energistyrelsen opgør, at danskerne bruger omkring en femtedel af deres strøm på køl og frys. Det er usædvanligt, fordi ingen af apparaterne føles energikrævende – de står bare og summer. Men de står der døgnet rundt, året rundt, og det er netop pointen.</p>
 <p>Tre vaner flytter mest, og de koster ingenting: lad varm mad køle af, før den sættes ind, tø frostvarer op i køleskabet i stedet for på køkkenbordet – så gør de kølearbejdet for dig – og hold døren lukket, mens du finder ud af, hvad du vil have.</p>
@@ -628,13 +624,6 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </table>
 <p>Springet fra 800 til 1.400 omdrejninger fjerner omtrent en fjerdedel af vandet, inden tøjet overhovedet når tumbleren. Det er den billigste kWh, du kan spare, fordi vaskemaskinens motor bruger langt mindre energi på at slynge vandet ud, end tumbleren bruger på at koge det væk.</p>
 
-<h2>Varmepumpe, kondens eller aftræk?</h2>
-<p>De tre typer løser samme opgave på vidt forskellige måder. En aftrækstumbler varmer luft, sender den gennem tøjet og blæser den ud af huset – al varmen er tabt. En kondenstumbler genbruger noget af varmen. En varmepumpetumbler flytter varmen i et lukket kredsløb og genbruger den igen og igen, og det er derfor, den bruger under halvdelen.</p>
-<p>Til gengæld tørrer varmepumpemodeller ved lavere temperatur og tager derfor længere tid pr. omgang. Det er skånsomt for tøjet, men det overrasker folk, der skifter fra en gammel aftrækstumbler – tiden er ikke et tegn på, at maskinen er ineffektiv, den er præcis grunden til, at den er effektiv.</p>
-
-<h2>Tørresnoren er stadig gratis</h2>
-<p>Ingen tumbler kan konkurrere med luft. Tørrer du halvdelen af vaskene på snor i sommerhalvåret, halverer du tumblerens årsforbrug – og for et apparat i denne klasse er det en af de største enkeltbesparelser i hele husholdningen.</p>
-<p>Indendørs tørring har dog en pris, der ikke står på elregningen: vandet skal ud af tøjet og ender i rumluften. I en tæt bolig uden god udluftning øger det fugten og dermed risikoen for skimmel, og skal du varme luften op for at få den til at optage fugten, har du flyttet udgiften i stedet for at fjerne den.</p>
 `,
     faqs: [
       { question: "Hvor meget strøm bruger en tørretumbler pr. tørring?", answer: "En varmepumpetumbler (A+++) bruger 1,5-2,0 kWh pr. tørring. En kondenstumbler (B) bruger 3,0-3,8 kWh, og en gammel model bruger 4,0-5,5 kWh." },

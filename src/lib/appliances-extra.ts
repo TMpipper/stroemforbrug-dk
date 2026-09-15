@@ -1035,10 +1035,6 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 
 <h2>Samlet køle-/fryseudgift for en dansk husstand</h2>
 <p>En typisk dansk husstand med køleskab + fryser bruger samlet 400–700 kWh/år til køling og frysning. Det udgør 10–20 % af det samlede elforbrug og koster 744–1.302 kr./år. Ved at opgradere til A-klasse på begge kan du spare 149–298 kr. årligt.</p>
-<h2>Rim er den skjulte strømsluger</h2>
-<p>Rim virker som isolering det forkerte sted: det lægger sig på fordamperen og gør det sværere for fryseren at komme af med varmen. Energistyrelsen anbefaler at afrime, når laget overstiger 5 mm, netop fordi forbruget stiger mærkbart derefter.</p>
-<p>Rimen kommer fra fugtig luft, så de fleste kilder er dagligdags: en dør der står åben for længe, varme madvarer der sættes direkte ind, og utætte lister. En liste, der ikke længere slutter tæt, er værd at tjekke med en seddel – kan du trække den ud uden modstand, slutter døren ikke, og fryseren arbejder mod rumluften døgnet rundt.</p>
-
 <h2>Placeringen betyder mere end mærket</h2>
 <p>En fryser flytter varme fra sit indre ud i rummet omkring den. Jo varmere det rum er, desto hårdere skal den arbejde. Derfor bruger den samme fryser markant mindre i et uopvarmet bryggers på 12 grader end ved siden af <a href="/ovn/">ovnen</a> i et køkken på 22.</p>
 <table>
@@ -1255,18 +1251,6 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <tr><td>Standardvask</td><td>40°C</td><td>0,50–0,80 kWh</td><td>0,93–1,49 kr.</td><td>130–208 kWh</td></tr>
 <tr><td>Standardvask</td><td>60°C</td><td>1,00–1,50 kWh</td><td>1,86–2,79 kr.</td><td>260–390 kWh</td></tr>
 <tr><td>Kogevask</td><td>90°C</td><td>1,80–2,50 kWh</td><td>3,35–4,65 kr.</td><td>468–650 kWh</td></tr>
-</tbody>
-</table>
-
-<h2>Temperaturens enorme betydning for elforbruget</h2>
-<p>At sænke vasketemperaturen fra 60°C til 40°C reducerer elforbruget med 40–50 %. Fra 60°C til 30°C spares hele 60–70 %. Moderne vaskemidler er designet til at virke effektivt ved 30–40°C, så der er sjældent behov for 60°C til daglig tøjvask.</p>
-
-<table>
-<thead><tr><th>Skift</th><th>Besparelse pr. vask</th><th>Årlig besparelse (5 vaske/uge)</th></tr></thead>
-<tbody>
-<tr><td>60°C → 40°C</td><td>0,4–0,7 kWh</td><td>104–182 kWh (193–339 kr.)</td></tr>
-<tr><td>60°C → 30°C</td><td>0,6–1,0 kWh</td><td>156–260 kWh (290–484 kr.)</td></tr>
-<tr><td>40°C → 20°C</td><td>0,3–0,5 kWh</td><td>78–130 kWh (145–242 kr.)</td></tr>
 </tbody>
 </table>
 

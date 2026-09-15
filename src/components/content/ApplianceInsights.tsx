@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ApplianceData } from "@/lib/types";
-import { insightsFor } from "@/lib/appliance-insights";
+import { articleFor, possessiveFor, insightsFor } from "@/lib/appliance-insights";
+import { SeasonalChart, HouseholdShareChart } from "@/components/charts/ApplianceCharts";
 import { formatKr, formatPrice, EL_PRICE_KR_PER_KWH, PRICE_DK1, PRICE_DK2 } from "@/lib/pricing";
 
 /**
@@ -15,16 +16,18 @@ import { formatKr, formatPrice, EL_PRICE_KR_PER_KWH, PRICE_DK1, PRICE_DK2 } from
 export default function ApplianceInsights({ data }: { data: ApplianceData }) {
   const i = insightsFor(data);
   const name = data.name.toLowerCase();
+  const art = articleFor(data);
+  const poss = possessiveFor(data);
 
   return (
     <>
       {/* ---------- region ---------- */}
       <section className="my-10">
         <h2 className="font-heading text-xl font-medium text-ink-900 mb-3">
-          Hvad koster en {name} i din landsdel?
+          Hvad koster {art} {name} i din landsdel?
         </h2>
         <p className="text-ink-700 mb-4">
-          En {name} koster{" "}
+          {art.charAt(0).toUpperCase() + art.slice(1)} {name} koster{" "}
           <strong>{formatKr(i.regional.dk1)} kr. om året i Vestdanmark</strong> og{" "}
           <strong>{formatKr(i.regional.dk2)} kr. i Østdanmark</strong> ved et typisk
           forbrug på {formatKr(data.typicalKwh)} kWh.{" "}
@@ -84,8 +87,11 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
       {/* ---------- season ---------- */}
       {i.seasonal.isSeasonal && (
         <section className="my-10">
+          {/* 14 appliances already have a prose "Sæsonvariation" section explaining
+              WHEN they get used. This one is deliberately the money view — what it
+              costs month by month — so the two do not say the same thing twice. */}
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-3">
-            Hvornår på året koster din {name} mest?
+            Hvad koster {poss} {name} måned for måned?
           </h2>
           <p className="text-ink-700 mb-4">
             Forbruget er ikke jævnt fordelt over året. {i.seasonal.peak.month} er
@@ -95,33 +101,7 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
             {i.seasonal.ratio.toFixed(1).replace(".", ",")} gange. Det er værd at
             vide, hvis din elregning pludselig stiger om vinteren.
           </p>
-          <div className="bg-surface-alt rounded-card p-4">
-            <div className="flex items-end gap-1 sm:gap-2 h-32">
-              {i.seasonal.months.map((m) => (
-                <div key={m.month} className="flex-1 flex flex-col items-center justify-end h-full">
-                  <span className="text-[10px] text-ink-500 mb-1 tabular-nums">
-                    {formatKr(m.cost)}
-                  </span>
-                  <div
-                    className="w-full bg-brand-500 rounded-t"
-                    style={{ height: `${(m.cost / i.seasonal.peak.cost) * 100}%` }}
-                    aria-hidden="true"
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="flex gap-1 sm:gap-2 mt-2">
-              {i.seasonal.months.map((m) => (
-                <div key={m.month} className="flex-1 text-center text-[10px] text-ink-500">
-                  {m.short}
-                </div>
-              ))}
-            </div>
-          </div>
-          <p className="text-xs text-ink-400 mt-2">
-            Månedsfordeling baseret på et typisk brugsmønster for en {name}. De tolv
-            måneder summer til årsforbruget på {formatKr(data.typicalKwh)} kWh.
-          </p>
+          <SeasonalChart data={data} />
         </section>
       )}
 
@@ -129,12 +109,12 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
       {i.replacement && (
         <section className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-3">
-            Kan det betale sig at udskifte din {name}?
+            Kan det betale sig at udskifte {poss} {name}?
           </h2>
           <p className="text-ink-700 mb-4">
             {i.replacement.usesEnergyClasses ? (
               <>
-                En {name} i energiklasse {i.replacement.worstClass} bruger{" "}
+                {art.charAt(0).toUpperCase() + art.slice(1)} {name} i energiklasse {i.replacement.worstClass} bruger{" "}
                 {formatKr(i.replacement.worstKwh)} kWh om året —{" "}
                 <strong>{formatKr(i.replacement.worstCost)} kr.</strong> En i klasse{" "}
                 {i.replacement.bestClass} bruger {formatKr(i.replacement.bestKwh)} kWh,
@@ -154,7 +134,7 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
           </p>
           <div className="bg-brand-50 border border-brand-200 rounded-card p-4">
             <p className="text-sm text-ink-800">
-              <strong>Regnestykket:</strong> en ny {name} tjener sig hjem på strøm alene,
+              <strong>Regnestykket:</strong> {art} ny {name} tjener sig hjem på strøm alene,
               hvis den koster under{" "}
               <strong>{formatKr(i.replacement.breakEvenPrice10yr)} kr.</strong> og holder
               i ti år — eller under {formatKr(i.replacement.breakEvenPrice5yr)} kr. på fem
@@ -179,7 +159,7 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
           <p className="text-ink-700">
             {i.standby.isAlwaysOn ? (
               <>
-                En {name} er tændt hele døgnet, så de {i.standby.watts} watt er reelt
+                {art.charAt(0).toUpperCase() + art.slice(1)} {name} er tændt hele døgnet, så de {i.standby.watts} watt er reelt
                 hele forbruget:{" "}
                 <strong>{formatKr(i.standby.kwhPerYear)} kWh om året</strong>, svarende
                 til <strong>{formatKr(i.standby.costPerYear)} kr.</strong> Det er her,
@@ -187,7 +167,7 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
               </>
             ) : (
               <>
-                De {i.standby.watts} watt, din {name} bruger i standby, bliver til{" "}
+                De {i.standby.watts} watt, {poss} {name} bruger i standby, bliver til{" "}
                 <strong>{formatKr(i.standby.kwhPerYear)} kWh om året</strong> —{" "}
                 <strong>{formatKr(i.standby.costPerYear)} kr.</strong>, eller{" "}
                 {Math.round(i.standby.share * 100)} % af apparatets samlede forbrug.
@@ -201,30 +181,46 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
       {/* ---------- rank ---------- */}
       <section className="my-10">
         <h2 className="font-heading text-xl font-medium text-ink-900 mb-3">
-          Hvor stor en del af elregningen er en {name}?
+          Hvor stor en del af elregningen er {art} {name}?
         </h2>
+        <HouseholdShareChart data={data} />
         <p className="text-ink-700">
-          En {name} er nr. <strong>{i.rank.rank} ud af {i.rank.total}</strong> på vores
-          liste over apparaters strømforbrug og står for ca.{" "}
+          {art.charAt(0).toUpperCase() + art.slice(1)} {name} er nr.{" "}
+          <strong>{i.rank.rank} ud af {i.rank.total}</strong> på vores liste over
+          apparaters strømforbrug og står for ca.{" "}
           <strong>{(i.rank.householdShare * 100).toFixed(1).replace(".", ",")} %</strong>{" "}
           af forbruget i en husstand på 4.000 kWh om året.{" "}
           {i.rank.costlier && (
             <>
-              Til sammenligning bruger{" "}
-              <Link href={`/${i.rank.costlier.slug}/`} className="text-brand-700 underline underline-offset-2">
-                en {i.rank.costlier.name.toLowerCase()}
-              </Link>{" "}
-              mere ({formatKr(i.rank.costlier.typicalKwh)} kWh)
-              {i.rank.cheaper && (
+              {/* Sixteen pairs on the list share a typicalKwh, so "bruger mere"
+                  would be false for them — say they are level instead. */}
+              {i.rank.costlier.typicalKwh === data.typicalKwh ? (
                 <>
-                  , mens{" "}
-                  <Link href={`/${i.rank.cheaper.slug}/`} className="text-brand-700 underline underline-offset-2">
-                    en {i.rank.cheaper.name.toLowerCase()}
+                  Den ligger på niveau med{" "}
+                  <Link href={`/${i.rank.costlier.slug}/`} className="text-brand-700 underline underline-offset-2">
+                    {articleFor(i.rank.costlier)} {i.rank.costlier.name.toLowerCase()}
+                  </Link>
+                  , der bruger det samme.
+                </>
+              ) : (
+                <>
+                  Til sammenligning bruger{" "}
+                  <Link href={`/${i.rank.costlier.slug}/`} className="text-brand-700 underline underline-offset-2">
+                    {articleFor(i.rank.costlier)} {i.rank.costlier.name.toLowerCase()}
                   </Link>{" "}
-                  bruger mindre ({formatKr(i.rank.cheaper.typicalKwh)} kWh)
+                  mere ({formatKr(i.rank.costlier.typicalKwh)} kWh)
+                  {i.rank.cheaper && i.rank.cheaper.typicalKwh !== data.typicalKwh && (
+                    <>
+                      , mens{" "}
+                      <Link href={`/${i.rank.cheaper.slug}/`} className="text-brand-700 underline underline-offset-2">
+                        {articleFor(i.rank.cheaper)} {i.rank.cheaper.name.toLowerCase()}
+                      </Link>{" "}
+                      bruger mindre ({formatKr(i.rank.cheaper.typicalKwh)} kWh)
+                    </>
+                  )}
+                  .
                 </>
               )}
-              .
             </>
           )}{" "}
           Se hele listen på{" "}

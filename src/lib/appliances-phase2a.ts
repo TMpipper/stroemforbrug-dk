@@ -1141,18 +1141,6 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 </tbody>
 </table>
 
-<h2>EU-regler for støvsugeres effekt</h2>
-<p>Siden 2017 må nye støvsugere solgt i EU ikke overskride 900 watt. Det har reduceret det gennemsnitlige forbrug markant uden at forværre sugeevnen – moderne motorer er langt mere effektive. Hvis din støvsuger er fra før 2014, bruger den sandsynligvis 2–3 gange så meget strøm som en ny model.</p>
-
-<table>
-<thead><tr><th>Periode</th><th>Max effekt</th><th>Typisk forbrug/time</th><th>Årligt kWh (2 t/uge)</th></tr></thead>
-<tbody>
-<tr><td>Før 2014</td><td>Ingen grænse</td><td>1,6–2,4 kWh</td><td>165–250 kWh</td></tr>
-<tr><td>2014–2017</td><td>1.600 W</td><td>1,0–1,6 kWh</td><td>100–165 kWh</td></tr>
-<tr><td>2017–nu</td><td>900 W</td><td>0,5–0,9 kWh</td><td>55–90 kWh</td></tr>
-</tbody>
-</table>
-
 <h2>Populære støvsugere og deres energiforbrug</h2>
 <p>De mest solgte støvsugere i Danmark spænder fra klassiske Miele-modeller til moderne Dyson-akkumodeller. Her er en sammenligning af energiforbruget for populære modeller ved typisk dansk brug.</p>
 
@@ -1195,10 +1183,6 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <tr><td>Efter 2017</td><td>600–900 W</td><td>31–47 kWh</td></tr>
 </tbody>
 </table>
-
-<h2>Ledning, batteri eller robot?</h2>
-<p>De tre typer bruger strøm på hver sin måde. En ledningsstøvsuger trækker direkte og bruger kun strøm, mens den kører. En batteristøvsuger har et ladetab oveni, men er til gengæld ofte i brug i kortere tid ad gangen. En robotstøvsuger kører længe med lav effekt og har en ladestation, der står tændt konstant.</p>
-<p>I ren energi ligger de tættere på hinanden, end man skulle tro, fordi en støvsuger alligevel kun er tændt en time eller to om ugen. Vælg derfor efter, hvordan du vil gøre rent – forskellen på elregningen er små tal for alle tre.</p>
 
 <h2>Fyldt pose og tilstoppet filter koster</h2>
 <p>En støvsuger med fyldt pose eller tilsmudset filter skal arbejde hårdere for at flytte den samme luft. Motoren trækker mere, sugeevnen falder, og du bruger længere tid på det samme gulv – dobbelt tab.</p>

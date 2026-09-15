@@ -20,6 +20,7 @@ import { APPLIANCES, getAllSlugs } from "../src/lib/appliances.ts";
 import { applianceRank } from "../src/lib/appliance-insights.ts";
 import { sourcesFor } from "../src/lib/sources.ts";
 import { assertHouseholds } from "../src/lib/home-insights.ts";
+import { articleFor } from "../src/lib/appliance-insights.ts";
 
 let failures = 0;
 let warnings = 0;
@@ -178,6 +179,32 @@ if (existsSync(".next/server/app")) {
   else ok(`every built hub page is at least ${HUB_MIN_WORDS} rendered words`);
 } else {
   warn("no build found — run npm run build first to check hub page depth");
+}
+
+/* ---------- 9. Danish gender ---------- */
+
+/*
+ * Five of the 43 appliances are neuter (tv, køleskab, strygejern, akvarium,
+ * komfur). Building "en {name}" or "din {name}" in a component produces
+ * "en køleskab", which reads as broken Danish and shipped briefly on both the
+ * share cards and the rank prose. Components must use articleFor() and
+ * possessiveFor(); this checks the rendered output rather than the source, so
+ * it catches the phrase however it was built.
+ */
+const neuter = APPLIANCES.filter((a) => articleFor(a) === "et").map((a) => a.name.toLowerCase());
+if (existsSync(".next/server/app") && neuter.length) {
+  // "en tv-boks" is correct — boks is common gender — so require a word boundary
+  // that is not a hyphen continuing into a compound.
+  const pattern = new RegExp(`\\b(en|din) (${neuter.join("|")})(?![\\w-])`, "i");
+  let genderErrors = 0;
+  for (const a of APPLIANCES) {
+    const f = `.next/server/app/${a.slug}.html`;
+    if (!existsSync(f)) continue;
+    const text = readFileSync(f, "utf8").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+    const m = pattern.exec(text);
+    if (m) { fail(`${a.slug}: "${m[0]}" — neuter noun with a common-gender article; use articleFor()/possessiveFor()`); genderErrors++; }
+  }
+  if (!genderErrors) ok(`Danish gender correct for the ${neuter.length} neuter appliances`);
 }
 
 /* ---------- summary ---------- */

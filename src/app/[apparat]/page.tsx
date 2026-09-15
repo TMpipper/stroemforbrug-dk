@@ -9,6 +9,7 @@ import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import ApplianceInsights from "@/components/content/ApplianceInsights";
+import { EnergyLabelChart } from "@/components/charts/ApplianceCharts";
 import { sourcesFor, SOURCES_VERIFIED_AT } from "@/lib/sources";
 import { Zap, Calendar, BarChart3 } from "lucide-react";
 import { withCurrentYear } from "@/lib/pricing";
@@ -198,6 +199,7 @@ export default async function AppliancePage({
         {/* Energy labels table */}
         {data.energyLabels.length > 0 && (
           <div className="my-10">
+            <EnergyLabelChart data={data} />
             <h2 className="font-heading text-xl font-medium text-ink-900 mb-4">
               Energimærkning — {data.name}
             </h2>

@@ -244,3 +244,24 @@ export function insightsFor(a: ApplianceData, price = EL_PRICE_KR_PER_KWH): Appl
     period: MARKET.period,
   };
 }
+
+/* ---------- Danish grammar ---------- */
+
+/**
+ * "en" or "et" for this appliance. Danish nouns are common or neuter, and
+ * getting it wrong is immediately visible: "en køleskab" reads as broken.
+ * The appliance's own `heading` is written correctly per appliance, so the
+ * article is read from there rather than guessed — never build the phrase by
+ * hand. Five of the 43 are neuter (tv, køleskab, strygejern, akvarium, komfur).
+ */
+export function articleFor(a: ApplianceData): "en" | "et" {
+  return /\bbruger et\b/i.test(a.heading) ? "et" : "en";
+}
+
+/**
+ * "din" or "dit". Danish possessives inflect with the same gender as the
+ * article, so "din køleskab" is as wrong as "en køleskab".
+ */
+export function possessiveFor(a: ApplianceData): "din" | "dit" {
+  return articleFor(a) === "et" ? "dit" : "din";
+}
