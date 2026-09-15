@@ -6,7 +6,7 @@
  */
 
 const SITE_URL = "https://stroemforbrug.dk";
-const KEY = "stroemforbrug-dk-indexnow-key";
+const KEY = "72a543b1d8598e95700a035517060a1a";
 
 async function fetchSitemap() {
   const res = await fetch(`${SITE_URL}/sitemap.xml`);
