@@ -4,7 +4,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "affugter",
     name: "Affugter",
-    title: "Affugter strømforbrug 2026 → Se kWh og pris",
+    title: "Affugter strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en affugter? Se typisk elforbrug i kWh pr. år, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
     heading: "Hvor meget strøm bruger en affugter?",
@@ -143,7 +143,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "induktion",
     name: "Induktionskogeplade",
-    title: "Induktion strømforbrug 2026 → Se kWh og pris",
+    title: "Induktion strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en induktionskogeplade? Se typisk elforbrug i kWh, sammenlign med keramisk og gas, og beregn din årlige udgift i 2026.",
     heading: "Hvor meget strøm bruger en induktionskogeplade?",
@@ -270,7 +270,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "led-paere",
     name: "LED-pære",
-    title: "LED-pære strømforbrug 2026 → Se kWh og pris",
+    title: "LED-pære strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en LED-pære? Se elforbrug i kWh, sammenlign med halogener og sparepærer, og beregn din årlige udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en LED-pære?",
@@ -401,7 +401,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "kaffemaskine",
     name: "Kaffemaskine",
-    title: "Kaffemaskine strømforbrug 2026 → Se kWh og pris",
+    title: "Kaffemaskine strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en kaffemaskine? Se elforbrug i kWh for filterkaffe, kapsel og fuldautomatisk. Beregn din årlige udgift med 2026-priser.",
     heading: "Hvor meget strøm bruger en kaffemaskine?",
@@ -532,7 +532,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "mikroovn",
     name: "Mikroovn",
-    title: "Mikroovn strømforbrug 2026 → Se kWh og pris",
+    title: "Mikroovn strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en mikroovn? Se elforbrug i kWh pr. brug og pr. år, sammenlign med ovn og airfryer, og beregn din udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en mikroovn?",
@@ -660,7 +660,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "gulvvarme",
     name: "Gulvvarme",
-    title: "Gulvvarme strømforbrug 2026 → Se kWh og pris",
+    title: "Gulvvarme strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger el-gulvvarme? Se typisk elforbrug i kWh for badeværelse, køkken og hele huset. Beregn din årlige udgift med 2026-priser.",
     heading: "Hvor meget strøm bruger el-gulvvarme?",
@@ -796,7 +796,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "robotplaeneklipper",
     name: "Robotplæneklipper",
-    title: "Robotplæneklipper strømforbrug 2026 → kWh og pris",
+    title: "Robotplæneklipper strømforbrug (2026) → kWh og pris",
     description:
       "Hvor meget strøm bruger en robotplæneklipper? Se elforbrug i kWh pr. sæson og pr. år, sammenlign modeller og beregn din udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en robotplæneklipper?",
@@ -926,7 +926,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "strygejern",
     name: "Strygejern",
-    title: "Strygejern strømforbrug 2026 → Se kWh og pris",
+    title: "Strygejern strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger et strygejern? Se typisk elforbrug i kWh, sammenlign dampstationer og beregn din årlige udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger et strygejern?",
@@ -1052,7 +1052,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "stoevsuger",
     name: "Støvsuger",
-    title: "Støvsuger strømforbrug 2026 → Se kWh og pris",
+    title: "Støvsuger strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en støvsuger? Se elforbrug i kWh for lednings- og akku-støvsugere, sammenlign modeller og beregn din udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en støvsuger?",
@@ -1179,7 +1179,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   {
     slug: "haartoerrere",
     name: "Hårtørrer",
-    title: "Hårtørrer strømforbrug 2026 → Se kWh og pris",
+    title: "Hårtørrer strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en hårtørrer? Se elforbrug i kWh pr. brug og pr. år, sammenlign modeller og beregn din udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger en hårtørrer?",

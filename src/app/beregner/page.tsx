@@ -5,9 +5,10 @@ import { getPublishedAppliances } from "@/lib/appliances";
 import { breadcrumbSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Strømberegner 2026 → Beregn dit strømforbrug og pris",
+  title: withCurrentYear("Strømberegner (2026) → Beregn dit strømforbrug og pris"),
   description:
     "Beregn dit strømforbrug og se hvad det koster i kr. Vælg apparat, indstil forbrug og få præcist resultat pr. dag, måned og år.",
   alternates: { canonical: `${SITE_CONFIG.url}/beregner/` },

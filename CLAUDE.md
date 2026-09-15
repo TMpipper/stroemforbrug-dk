@@ -34,6 +34,7 @@ vercel deploy --prod --yes --scope mondomedia
 | `src/lib/appliances.ts` | Barrel file — exports APPLIANCES, getAppliance(), getAllSlugs() |
 | `src/lib/appliances-core.ts` | First 5 appliances: varmepumpe, opvaskemaskine, tv, koeleskab, toerretumbler |
 | `src/lib/appliances-extra.ts` | Additional appliances (airfryer, kummefryser, etc.) |
+| `src/lib/appliance-insights.ts` | Computed depth per appliance: region, season, replacement, standby, ranking |
 | `src/lib/schema.ts` | JSON-LD generators: breadcrumb, FAQ, article, howTo |
 
 ### Page Structure
@@ -53,6 +54,7 @@ vercel deploy --prod --yes --scope mondomedia
 |-----------|---------|
 | `ForbrugBeregner` | Interactive calculator (client component) |
 | `QuickAnswer` | AEO-optimized answer box |
+| `ApplianceInsights` | The 5 computed sections that differentiate the page from the SERP |
 | `AffiliateCta` | Contextual energy provider CTA |
 | `RelatedAppliances` | Internal link grid |
 | `Breadcrumb` | With BreadcrumbList data |
@@ -80,6 +82,17 @@ beregner, gennemsnitligt, husstand, varmepumpe, sparetips, om-os, kontakt, priva
 - **Import paths** — `@/` maps to `src/`
 - **Next.js 16 async params** — `params: Promise<{ slug: string }>` — always `await params`
 - **AEO format** — start every H2 with a 40-60 word direct answer paragraph
+- **SEO titles** — `Main keyword (YEAR) → supporting text`. No brand suffix: `layout.tsx`
+  sets `template: "%s"` deliberately. Write the year as a literal `(2026)` in the data
+  and wrap the title in `withCurrentYear()` so it never goes stale.
+- **Depth comes from computation, not prose.** `appliance-insights.ts` derives the
+  region/season/replacement/standby/ranking sections from data the appliance already
+  carries, so all 43 pages stay correct when MARKET changes. Sections hide themselves
+  when the data does not support them. Two rules learned the hard way:
+  never present a replacement saving as a discount off `typicalKwh` (the energy labels
+  describe heavier use, so it can exceed the appliance's own cost — show both endpoints
+  with their own kr./år instead), and check `usesEnergyClasses` before calling a label
+  an "energimærke" — 17 appliances use descriptive labels like "Gaming/avanceret"
 - **Electricity price** — import from `pricing.ts`, never type a price or a cost into prose.
   `EL_PRICE_KR_PER_KWH` (marginal, currently 1,86) is what appliances cost to run;
   `TYPICAL_ALL_IN_KR_PER_KWH` (1,95) includes abonnement and is the baseline for savings;

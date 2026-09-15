@@ -207,3 +207,18 @@ export function costOre(kwh: number, price = EL_PRICE_KR_PER_KWH): number {
 
 /** The formatted price string used throughout prose: "1,85 kr./kWh" */
 export const PRICE_LABEL = `${formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh`;
+
+/* ---------- SEO helpers ---------- */
+
+/**
+ * Swaps the year in a title or description for the current one at build time.
+ *
+ * Titles are written with a literal "(2026)" in the content files so they read
+ * correctly in the editor, but a hardcoded year silently goes stale every
+ * January — on a site whose whole pitch is current prices, that is the first
+ * thing a reader notices. The site is statically generated and redeployed, so
+ * rendering the year keeps every title current without touching 43 data files.
+ */
+export function withCurrentYear(text: string, now: Date = new Date()): string {
+  return text.replace(/\((19|20)\d{2}\)/g, `(${now.getFullYear()})`);
+}

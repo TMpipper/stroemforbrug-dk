@@ -5,9 +5,10 @@ import { breadcrumbSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Strømforbrug husstand 2026 → Se normalt forbrug pr. person",
+  title: withCurrentYear("Strømforbrug husstand (2026) → Se normalt forbrug pr. person"),
   description:
     "En dansk husstand bruger 3.000-4.500 kWh/år uden varmepumpe. Se normalt strømforbrug for 1 person, par og familie — og hvad det koster i kr.",
   alternates: { canonical: `${SITE_CONFIG.url}/husstand/` },

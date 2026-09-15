@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Standby strømforbrug 2026 → Hvad koster det dig?",
+  title: withCurrentYear("Standby strømforbrug (2026) → Hvad koster det dig?"),
   description:
     "Standby-forbrug koster den gennemsnitlige husstand 400-800 kr./år. Se standby-watt for 20+ apparater og lær hvordan du eliminerer det skjulte strømforbrug.",
   alternates: { canonical: `${SITE_CONFIG.url}/standby/` },
@@ -37,7 +38,7 @@ export default function StandbyPage() {
             ]),
             faqSchema(faqs),
             articleSchema({
-              title: "Standby strømforbrug 2026 — Hvad koster det dig?",
+              title: withCurrentYear("Standby strømforbrug (2026) — Hvad koster det dig?"),
               description: "Standby-forbrug koster den gennemsnitlige husstand 400-800 kr./år.",
               url: `${SITE_CONFIG.url}/standby/`,
               datePublished: "2026-07-29",

@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Strømforbrug med varmepumpe 2026 → Se samlet forbrug",
+  title: withCurrentYear("Strømforbrug med varmepumpe (2026) → Se samlet forbrug"),
   description:
     "En familie med varmepumpe bruger 7.000-11.000 kWh/år. Se samlet forbrug for luft-til-luft, luft-til-vand og jordvarme — og hvad du sparer vs. gas.",
   alternates: { canonical: `${SITE_CONFIG.url}/husstand/med-varmepumpe/` },

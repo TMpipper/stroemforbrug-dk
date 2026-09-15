@@ -8,6 +8,7 @@ import Footer from "@/components/layout/Footer";
 import { SITE_CONFIG } from "@/lib/config";
 import Attribution from "@/components/Attribution";
 import GoogleTag from "@/components/GoogleTag";
+import { withCurrentYear } from "@/lib/pricing";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,8 +26,10 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Strømforbrug 2026 → Se hvad dine apparater bruger i strøm",
-    template: `%s | ${SITE_CONFIG.name}`,
+    default: withCurrentYear("Strømforbrug (2026) → Se hvad dine apparater bruger i strøm"),
+    // No brand suffix: it costs ~18 characters of title space on every page
+    // and Google rewrites or truncates it anyway.
+    template: "%s",
   },
   description: SITE_CONFIG.description,
   metadataBase: new URL(SITE_CONFIG.url),

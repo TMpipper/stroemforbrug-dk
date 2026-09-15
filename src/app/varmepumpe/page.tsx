@@ -9,9 +9,10 @@ import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import { Zap, Calendar, BarChart3 } from "lucide-react";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Varmepumpe strømforbrug 2026 → Se kWh og pris pr. type",
+  title: withCurrentYear("Varmepumpe strømforbrug (2026) → Se kWh og pris pr. type"),
   description:
     "En varmepumpe bruger 2.000-6.000 kWh/år afhængigt af type. Se præcist forbrug for luft-til-luft, luft-til-vand og jordvarme — og beregn din årlige udgift.",
   alternates: { canonical: `${SITE_CONFIG.url}/varmepumpe/` },
@@ -30,7 +31,7 @@ export default function VarmepumpePage() {
     faqSchema(data.faqs),
     articleSchema({
       title: data.heading,
-      description: data.description,
+      description: withCurrentYear(data.description),
       url,
       datePublished: "2026-07-29",
       dateModified: SITE_CONFIG.lastUpdated,

@@ -4,7 +4,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "airfryer",
     name: "Airfryer",
-    title: "Airfryer strømforbrug 2026 → Se pris og kWh",
+    title: "Airfryer strømforbrug (2026) → Se pris og kWh",
     description:
       "Hvor meget strøm bruger en airfryer? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
     heading: "Hvor meget strøm bruger en airfryer?",
@@ -126,7 +126,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "kummefryser",
     name: "Kummefryser",
-    title: "Kummefryser strømforbrug 2026 → Se kWh og pris",
+    title: "Kummefryser strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvad bruger en kummefryser i strøm? Se typisk elforbrug i kWh pr. år, sammenlign energimærker og beregn din årlige udgift. Opdateret 2026-data.",
     heading: "Hvor meget strøm bruger en kummefryser?",
@@ -251,7 +251,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "ovn",
     name: "Ovn",
-    title: "Ovn strømforbrug 2026 → Se kWh-forbrug og pris",
+    title: "Ovn strømforbrug (2026) → Se kWh-forbrug og pris",
     description:
       "Hvor meget strøm bruger en ovn? Se det typiske elforbrug i kWh for konventionel og varmluftovn, sammenlign modeller og beregn din udgift.",
     heading: "Hvor meget strøm bruger en ovn?",
@@ -361,7 +361,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "elbil",
     name: "Elbil",
-    title: "Elbil strømforbrug 2026 → Se kWh og ladepris",
+    title: "Elbil strømforbrug (2026) → Se kWh og ladepris",
     description:
       "Hvor meget strøm bruger en elbil? Se typisk forbrug i kWh pr. km og pr. år, sammenlign modeller og beregn din ladeudgift. Opdateret 2026.",
     heading: "Hvor meget strøm bruger en elbil?",
@@ -478,7 +478,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "router",
     name: "Router",
-    title: "Router strømforbrug 2026 → Se kWh og årlig pris",
+    title: "Router strømforbrug (2026) → Se kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en WiFi-router? Se det typiske elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026.",
     heading: "Hvor meget strøm bruger en router?",
@@ -587,7 +587,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "computer",
     name: "Computer",
-    title: "Computer strømforbrug 2026 → Se kWh og pris",
+    title: "Computer strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en computer? Se typisk elforbrug for stationær og bærbar i kWh, sammenlign og beregn din årlige elregning. 2026-data.",
     heading: "Hvor meget strøm bruger en computer?",
@@ -699,7 +699,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "elradiator",
     name: "Elradiator",
-    title: "Elradiator strømforbrug 2026 → Se kWh og pris",
+    title: "Elradiator strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en elradiator? Se typisk elforbrug i kWh, sammenlign typer og beregn din årlige varmeudgift. Opdateret med 2026-priser.",
     heading: "Hvor meget strøm bruger en elradiator?",
@@ -812,7 +812,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "fryser",
     name: "Fryser",
-    title: "Fryser strømforbrug 2026 → Se kWh og årlig pris",
+    title: "Fryser strømforbrug (2026) → Se kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en skabsfryser? Se typisk elforbrug i kWh, sammenlign energiklasser og modeller, og beregn din årlige udgift. 2026-data.",
     heading: "Hvor meget strøm bruger en fryser?",
@@ -931,7 +931,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "quooker",
     name: "Quooker",
-    title: "Quooker strømforbrug 2026 → Se kWh og pris",
+    title: "Quooker strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en Quooker? Se det typiske elforbrug i kWh for kogende vandhane, sammenlign med elkedel og beregn din årlige udgift.",
     heading: "Hvor meget strøm bruger en Quooker?",
@@ -1040,7 +1040,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
   {
     slug: "vaskemaskine",
     name: "Vaskemaskine",
-    title: "Vaskemaskine strømforbrug 2026 → Se kWh og pris",
+    title: "Vaskemaskine strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en vaskemaskine? Se typisk elforbrug i kWh pr. vask og pr. år, sammenlign modeller og beregn din udgift. 2026-data.",
     heading: "Hvor meget strøm bruger en vaskemaskine?",

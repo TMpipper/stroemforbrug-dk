@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Strømforbrug familie 2026 → Normalt forbrug for familie på 4",
+  title: withCurrentYear("Strømforbrug familie (2026) → Normalt forbrug for familie på 4"),
   description:
     "En familie på 4 bruger 4.000-5.500 kWh/år uden varmepumpe. Se hvad der bruger mest strøm, og få sparetips der kan skære 2.000+ kr. af elregningen.",
   alternates: { canonical: `${SITE_CONFIG.url}/husstand/familie/` },

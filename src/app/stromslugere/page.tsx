@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Strømslugere i hjemmet 2026 → Top 10 værste",
+  title: withCurrentYear("Strømslugere i hjemmet (2026) → Top 10 værste"),
   description:
     "Se de 10 største strømslugere i en dansk husstand. Tørretumbleren, den gamle kummefryser og elradiatoren topper listen. Se kWh/år og pris for hvert apparat.",
   alternates: { canonical: `${SITE_CONFIG.url}/stromslugere/` },
@@ -37,7 +38,7 @@ export default function StromslugerePage() {
             ]),
             faqSchema(faqs),
             articleSchema({
-              title: "Strømslugere i hjemmet 2026 — Top 10 værste",
+              title: withCurrentYear("Strømslugere i hjemmet (2026) — Top 10 værste"),
               description: "Se de 10 største strømslugere i en dansk husstand med kWh/år og pris.",
               url: `${SITE_CONFIG.url}/stromslugere/`,
               datePublished: "2026-07-29",

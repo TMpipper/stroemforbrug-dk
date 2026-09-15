@@ -4,7 +4,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
   {
     slug: "varmepumpe",
     name: "Varmepumpe",
-    title: "Varmepumpe strømforbrug 2026 → Se kWh og pris pr. type",
+    title: "Varmepumpe strømforbrug (2026) → Se kWh og pris pr. type",
     description: "En varmepumpe bruger 2.000-6.000 kWh/år afhængigt af type. Se præcist forbrug for luft-til-luft, luft-til-vand og jordvarme — og beregn din årlige udgift.",
     heading: "Hvor meget strøm bruger en varmepumpe?",
     quickAnswer: "En varmepumpe bruger typisk mellem 2.000 og 6.000 kWh strøm om året. En luft-til-luft model bruger mindst (2.000-4.000 kWh), mens luft-til-vand bruger mest (4.000-6.000 kWh). Med en gennemsnitspris på 1,86 kr./kWh koster det 3.720-11.160 kr. årligt — men du får 3-4 gange så meget varme ud.",
@@ -155,7 +155,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
   {
     slug: "opvaskemaskine",
     name: "Opvaskemaskine",
-    title: "Opvaskemaskine strømforbrug 2026 → Se kWh og pris",
+    title: "Opvaskemaskine strømforbrug (2026) → Se kWh og pris",
     description: "En opvaskemaskine bruger 150-300 kWh/år. Se strømforbrug pr. vask, sammenlign energimærkninger og beregn din årlige udgift med vores beregner.",
     heading: "Hvor meget strøm bruger en opvaskemaskine?",
     quickAnswer: "En opvaskemaskine bruger typisk 0,8-1,5 kWh pr. vask, svarende til 150-300 kWh om året ved daglig brug. Med en elpris på 1,86 kr./kWh koster det 279-558 kr. årligt. Et eco-program bruger ca. 30% mindre end et normalprogram.",
@@ -264,7 +264,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
   {
     slug: "tv",
     name: "TV",
-    title: "TV strømforbrug 2026 → Se hvad dit tv koster i strøm",
+    title: "TV strømforbrug (2026) → Se hvad dit tv koster i strøm",
     description: "Et tv bruger 50-200 kWh/år afhængigt af størrelse. Se strømforbrug for 43\", 55\" og 65\" tv — og hvad standby koster dig om året.",
     heading: "Hvor meget strøm bruger et tv?",
     quickAnswer: "Et moderne tv bruger typisk 50-200 kWh om året ved 4-5 timers daglig brug. Et 55\" LED-tv bruger ca. 80-100 kWh/år (149-186 kr.), mens et 65\" OLED bruger 130-180 kWh/år (242-335 kr.). Standby koster ekstra 11-37 kr./år.",
@@ -379,7 +379,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
   {
     slug: "koeleskab",
     name: "Køleskab",
-    title: "Køleskab strømforbrug 2026 → Se kWh og årlig pris",
+    title: "Køleskab strømforbrug (2026) → Se kWh og årlig pris",
     description: "Et køleskab bruger 100-400 kWh/år og kører 24/7. Se forbrug for køle/fryseskab, amerikanerkøleskab og vinkøleskab — og hvornår det kan betale sig at skifte.",
     heading: "Hvor meget strøm bruger et køleskab?",
     quickAnswer: "Et køleskab bruger typisk 100-400 kWh strøm om året — det kører 24 timer i døgnet, 365 dage om året. Et nyt A-mærket køleskab bruger ca. 100-130 kWh/år (186-242 kr.), mens et 15+ år gammelt køleskab let bruger 350-500 kWh/år (651-930 kr.).",
@@ -494,7 +494,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
   {
     slug: "toerretumbler",
     name: "Tørretumbler",
-    title: "Tørretumbler strømforbrug 2026 → Se kWh pr. tørring",
+    title: "Tørretumbler strømforbrug (2026) → Se kWh pr. tørring",
     description: "En tørretumbler bruger 1,5-5,0 kWh pr. tørring. Se forskel på varmepumpe, kondens og aftræk — og beregn din årlige strømudgift.",
     heading: "Hvor meget strøm bruger en tørretumbler?",
     quickAnswer: "En tørretumbler bruger 1,5-5,0 kWh pr. tørring afhængigt af type. En moderne varmepumpetumbler (A+++) bruger kun 1,5-2,0 kWh, mens en gammel aftrækstumbler bruger 4,0-5,0 kWh. Med 3 tørringer/uge koster det 585-1.950 kr./år.",

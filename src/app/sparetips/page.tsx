@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Spare strøm 2026 → 15 tips der sænker din elregning",
+  title: withCurrentYear("Spare strøm (2026) → 15 tips der sænker din elregning"),
   description:
     "15 konkrete sparetips der kan sænke din elregning med 2.000-5.000 kr./år. Se hvilke tiltag der giver størst besparelse — fra hvidevarer til standby-forbrug og valg af elselskab.",
   alternates: { canonical: `${SITE_CONFIG.url}/sparetips/` },
@@ -37,7 +38,7 @@ export default function SparetipsPage() {
             ]),
             faqSchema(faqs),
             articleSchema({
-              title: "Spare strøm 2026 — 15 tips der sænker din elregning",
+              title: withCurrentYear("Spare strøm (2026) — 15 tips der sænker din elregning"),
               description: "15 konkrete sparetips der kan sænke din elregning med 2.000-5.000 kr./år.",
               url: `${SITE_CONFIG.url}/sparetips/`,
               datePublished: "2026-07-29",

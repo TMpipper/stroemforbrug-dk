@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Strømforbrug 1 person 2026 → Se normalt forbrug og pris",
+  title: withCurrentYear("Strømforbrug 1 person (2026) → Se normalt forbrug og pris"),
   description:
     "En person bruger typisk 1.500-2.500 kWh strøm om året. Se normalt forbrug i lejlighed vs. hus, hvad der bruger mest, og hvordan du sparer.",
   alternates: { canonical: `${SITE_CONFIG.url}/husstand/1-person/` },

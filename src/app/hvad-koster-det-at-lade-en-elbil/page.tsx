@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Hvad koster det at lade en elbil? 2026 → Se pris pr. kWh",
+  title: withCurrentYear("Hvad koster det at lade en elbil? (2026) → Se pris pr. kWh"),
   description:
     "Det koster 75-175 kr. at lade en elbil fuldt op derhjemme i 2026 (1,86 kr./kWh). Se pris pr. km, sammenlign hjemmeladning vs. offentlig ladning, og beregn din månedlige udgift.",
   alternates: { canonical: `${SITE_CONFIG.url}/hvad-koster-det-at-lade-en-elbil/` },

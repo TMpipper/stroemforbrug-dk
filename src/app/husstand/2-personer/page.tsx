@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Strømforbrug 2 personer 2026 → Se normalt forbrug for par",
+  title: withCurrentYear("Strømforbrug 2 personer (2026) → Se normalt forbrug for par"),
   description:
     "Et par bruger typisk 2.500-3.500 kWh strøm om året. Se normalt forbrug i lejlighed vs. hus, og hvordan I kan spare som husstand på 2.",
   alternates: { canonical: `${SITE_CONFIG.url}/husstand/2-personer/` },

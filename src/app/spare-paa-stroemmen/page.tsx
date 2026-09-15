@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Spar på strømmen 2026 → Komplet guide til lavere elregning",
+  title: withCurrentYear("Spar på strømmen (2026) → Komplet guide til lavere elregning"),
   description:
     "Komplet guide til at spare på strømmen i 2026. Tjek dit forbrug på Eloverblik.dk, prioritér de store besparelser, og gå rum for rum. Spar 3.000-6.000 kr./år.",
   alternates: { canonical: `${SITE_CONFIG.url}/spare-paa-stroemmen/` },
@@ -37,7 +38,7 @@ export default function SparePaaStroemmenPage() {
             ]),
             faqSchema(faqs),
             articleSchema({
-              title: "Spar på strømmen 2026 — Komplet guide til lavere elregning",
+              title: withCurrentYear("Spar på strømmen (2026) — Komplet guide til lavere elregning"),
               description: "Komplet guide til at spare på strømmen rum for rum. Spar 3.000-6.000 kr./år.",
               url: `${SITE_CONFIG.url}/spare-paa-stroemmen/`,
               datePublished: "2026-07-29",

@@ -4,7 +4,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "komfur",
     name: "Komfur",
-    title: "Komfur strømforbrug 2026 → Se kWh og pris",
+    title: "Komfur strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger et komfur? Se typisk elforbrug i kWh for el-komfur, induktion og gas. Sammenlign modeller og beregn din årlige udgift i 2026.",
     heading: "Hvor meget strøm bruger et komfur?",
@@ -151,7 +151,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "mobil-opladning",
     name: "Mobil-opladning",
-    title: "Mobil opladning strømforbrug 2026 → Se kWh og pris",
+    title: "Mobil opladning strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger det at oplade en mobil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign trådløs og kabel-opladning med 2026-priser.",
     heading: "Hvor meget strøm bruger mobil-opladning?",
@@ -285,7 +285,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "broedrister",
     name: "Brødrister",
-    title: "Brødrister strømforbrug 2026 → Se kWh og pris",
+    title: "Brødrister strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en brødrister? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift med danske 2026-priser.",
     heading: "Hvor meget strøm bruger en brødrister?",
@@ -425,7 +425,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "gaming-pc",
     name: "Gaming-PC",
-    title: "Gaming-PC strømforbrug 2026 → Se kWh og pris",
+    title: "Gaming-PC strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en gaming-PC? Se typisk elforbrug i kWh for gaming-computere, sammenlign opsætninger og beregn din årlige udgift i 2026.",
     heading: "Hvor meget strøm bruger en gaming-PC?",
@@ -575,7 +575,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "ladestander",
     name: "Ladestander",
-    title: "Ladestander strømforbrug 2026 → Se kWh og pris",
+    title: "Ladestander strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en ladestander til elbil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign hjemmeladere og beregn med 2026-priser.",
     heading: "Hvor meget strøm bruger en ladestander?",
@@ -706,7 +706,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "solceller",
     name: "Solceller",
-    title: "Solceller strømforbrug og produktion 2026 → kWh",
+    title: "Solceller strømforbrug og produktion (2026) → kWh",
     description:
       "Hvor meget strøm producerer og bruger solceller? Se kWh-produktion, egetforbrug og besparelse. Beregn dit solcelleanlægs økonomi med 2026-priser.",
     heading: "Hvor meget strøm producerer og bruger solceller?",
@@ -833,7 +833,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "gulvvarme-el",
     name: "Gulvvarme (el-måtter)",
-    title: "El-gulvvarmemåtter strømforbrug 2026 → Se kWh",
+    title: "El-gulvvarmemåtter strømforbrug (2026) → Se kWh",
     description:
       "Hvor meget strøm bruger el-gulvvarmemåtter? Se kWh for badeværelse og renovering. Sammenlign med varmekabel og beregn din årlige pris i 2026.",
     heading: "Hvor meget strøm bruger el-gulvvarmemåtter?",
@@ -975,7 +975,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "jordvarme",
     name: "Jordvarme",
-    title: "Jordvarme strømforbrug 2026 → Se kWh og pris",
+    title: "Jordvarme strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger jordvarme? Se typisk elforbrug i kWh for jordvarmepumper, COP-værdier og beregn din årlige udgift med danske 2026-priser.",
     heading: "Hvor meget strøm bruger jordvarme?",

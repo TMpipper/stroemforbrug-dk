@@ -6,9 +6,10 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Luft-til-vand varmepumpe strømforbrug 2026 → Pris og kWh",
+  title: withCurrentYear("Luft-til-vand varmepumpe strømforbrug (2026) → Pris og kWh"),
   description:
     "En luft-til-vand varmepumpe bruger 4.000-6.000 kWh/år. Se forbrug pr. måned, sammenligning med gasfyr, og beregn din besparelse.",
   alternates: { canonical: `${SITE_CONFIG.url}/varmepumpe/luft-til-vand/` },

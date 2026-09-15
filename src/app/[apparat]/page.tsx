@@ -8,7 +8,9 @@ import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
+import ApplianceInsights from "@/components/content/ApplianceInsights";
 import { Zap, Calendar, BarChart3 } from "lucide-react";
+import { withCurrentYear } from "@/lib/pricing";
 
 // Reserved slugs that should NOT be handled by this dynamic route
 const RESERVED_SLUGS = [
@@ -44,12 +46,12 @@ export async function generateMetadata({
   if (!data) return {};
 
   return {
-    title: data.title,
-    description: data.description,
+    title: withCurrentYear(data.title),
+    description: withCurrentYear(data.description),
     alternates: { canonical: `${SITE_CONFIG.url}/${data.slug}/` },
     openGraph: {
-      title: data.title,
-      description: data.description,
+      title: withCurrentYear(data.title),
+      description: withCurrentYear(data.description),
       url: `${SITE_CONFIG.url}/${data.slug}/`,
       type: "article",
       locale: SITE_CONFIG.locale,
@@ -82,7 +84,7 @@ export default async function AppliancePage({
     faqSchema(data.faqs),
     articleSchema({
       title: data.heading,
-      description: data.description,
+      description: withCurrentYear(data.description),
       url,
       datePublished: "2026-07-29",
       dateModified: SITE_CONFIG.lastUpdated,
@@ -178,6 +180,9 @@ export default async function AppliancePage({
           className="prose-editorial"
           dangerouslySetInnerHTML={{ __html: data.content }}
         />
+
+        {/* Computed depth: region, season, replacement, standby, ranking */}
+        <ApplianceInsights data={data} />
 
         {/* Second CTA */}
         <AffiliateCta />

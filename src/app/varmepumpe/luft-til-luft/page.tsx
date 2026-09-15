@@ -6,9 +6,10 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Luft-til-luft varmepumpe strømforbrug 2026 → Pris og kWh",
+  title: withCurrentYear("Luft-til-luft varmepumpe strømforbrug (2026) → Pris og kWh"),
   description:
     "En luft-til-luft varmepumpe bruger 2.000-4.000 kWh/år. Se pris pr. måned, sæsonvariation, COP-faktor og 5 tips til at spare på strømmen.",
   alternates: { canonical: `${SITE_CONFIG.url}/varmepumpe/luft-til-luft/` },

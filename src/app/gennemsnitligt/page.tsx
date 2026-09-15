@@ -5,9 +5,10 @@ import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { withCurrentYear } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Gennemsnitligt strømforbrug 2026 → Se forbrug pr. husstand",
+  title: withCurrentYear("Gennemsnitligt strømforbrug (2026) → Se forbrug pr. husstand"),
   description:
     "Det gennemsnitlige strømforbrug i Danmark er 3.000-4.500 kWh/år for en husstand uden varmepumpe. Se forbrug pr. person, familie og boligtype.",
   alternates: { canonical: `${SITE_CONFIG.url}/gennemsnitligt/` },
