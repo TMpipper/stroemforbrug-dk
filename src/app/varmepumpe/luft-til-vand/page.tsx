@@ -15,13 +15,13 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: "Hvor meget strøm bruger en luft-til-vand varmepumpe?", answer: "En luft-til-vand varmepumpe bruger typisk 4.000-6.000 kWh/år for et 130 m² hus, svarende til 10.000-15.000 kr. ved 2,50 kr./kWh." },
-  { question: "Hvad koster en luft-til-vand i strøm pr. måned?", answer: "Gennemsnitligt 830-1.250 kr./md. Om vinteren 1.500-3.000 kr./md., om sommeren kun 75-375 kr./md. (kun varmt brugsvand)." },
+  { question: "Hvor meget strøm bruger en luft-til-vand varmepumpe?", answer: "En luft-til-vand varmepumpe bruger typisk 4.000-6.000 kWh/år for et 130 m² hus, svarende til 7.440-11.160 kr. ved 1,86 kr./kWh." },
+  { question: "Hvad koster en luft-til-vand i strøm pr. måned?", answer: "Gennemsnitligt 618-930 kr./md. Om vinteren 1.116-2.232 kr./md., om sommeren kun 56-279 kr./md. (kun varmt brugsvand)." },
   { question: "Hvad er COP på luft-til-vand?", answer: "COP er typisk 3,0-3,5 (SCOP over hele året). Ved +7°C er COP ca. 3,5-4,0, ved -7°C falder den til 2,0-2,5." },
-  { question: "Kan luft-til-vand erstatte gasfyr?", answer: "Ja, fuldstændigt. Luft-til-vand opvarmer radiatorer/gulvvarme og producerer varmt brugsvand. Den erstatter gasfyr 1:1 og sparer 6.000-14.000 kr./år." },
+  { question: "Kan luft-til-vand erstatte gasfyr?", answer: "Ja, fuldstændigt. Luft-til-vand opvarmer radiatorer/gulvvarme og producerer varmt brugsvand. Den erstatter gasfyr 1:1 og sparer 10.500-12.800 kr./år." },
   { question: "Hvad koster en luft-til-vand varmepumpe?", answer: "80.000-140.000 kr. inkl. installation. Med en besparelse på 6.000-14.000 kr./år er tilbagebetalingstiden 5-8 år." },
   { question: "Er luft-til-vand bedre med gulvvarme eller radiatorer?", answer: "Gulvvarme er bedst — den kræver kun 30-35°C fremløb vs. 50-60°C for radiatorer. Lavere fremløb = højere COP = lavere strømforbrug (typisk 15-25% mindre)." },
-  { question: "Hvor mange kWh bruger en luft-til-vand om vinteren?", answer: "Om vinteren (dec-feb) bruger en luft-til-vand typisk 600-1.200 kWh/md. for et 130 m² hus, svarende til 1.500-3.000 kr./md." },
+  { question: "Hvor mange kWh bruger en luft-til-vand om vinteren?", answer: "Om vinteren (dec-feb) bruger en luft-til-vand typisk 600-1.200 kWh/md. for et 130 m² hus, svarende til 1.116-2.232 kr./md." },
   { question: "Hvad er forskellen på luft-til-vand og jordvarme?", answer: "Jordvarme har højere COP (3,5-4,5 vs. 3,0-3,5) og bruger 10-20% mindre strøm, men koster 40.000-60.000 kr. mere at installere og kræver gravetilladelse." },
 ];
 
@@ -64,9 +64,9 @@ export default function LuftTilVandPage() {
         <QuickAnswer>
           <p>
             En luft-til-vand varmepumpe bruger typisk 4.000-6.000 kWh strøm om
-            året for et 130 m² parcelhus, svarende til 10.000-15.000 kr. ved
-            2,50 kr./kWh. Den erstatter dit gasfyr fuldstændigt og sparer de
-            fleste familier 6.000-14.000 kr./år i samlede energiudgifter.
+            året for et 130 m² parcelhus, svarende til 7.440-11.160 kr. ved
+            1,86 kr./kWh. Den erstatter dit gasfyr fuldstændigt og sparer de
+            fleste familier 10.500-12.800 kr./år i samlede energiudgifter.
           </p>
         </QuickAnswer>
 
@@ -99,13 +99,13 @@ export default function LuftTilVandPage() {
               <tr><th>Boligstørrelse</th><th>kWh/år</th><th>Pris/år</th><th>Besparelse vs. gas</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>80-100 m²</strong></td><td>3.000-4.500 kWh</td><td>7.500-11.250 kr.</td><td>~6.000 kr./år</td></tr>
-              <tr><td><strong>100-130 m²</strong></td><td>4.000-5.500 kWh</td><td>10.000-13.750 kr.</td><td>~8.000 kr./år</td></tr>
-              <tr><td><strong>130-160 m²</strong></td><td>5.000-6.500 kWh</td><td>12.500-16.250 kr.</td><td>~10.000 kr./år</td></tr>
-              <tr><td><strong>160-200 m²</strong></td><td>6.000-8.000 kWh</td><td>15.000-20.000 kr.</td><td>~12.000 kr./år</td></tr>
+              <tr><td><strong>80-100 m²</strong></td><td>3.000-4.500 kWh</td><td>5.580-8.370 kr.</td><td>~7.600 kr./år</td></tr>
+              <tr><td><strong>100-130 m²</strong></td><td>4.000-5.500 kWh</td><td>7.440-10.230 kr.</td><td>~9.700 kr./år</td></tr>
+              <tr><td><strong>130-160 m²</strong></td><td>5.000-6.500 kWh</td><td>9.300-12.090 kr.</td><td>~12.700 kr./år</td></tr>
+              <tr><td><strong>160-200 m²</strong></td><td>6.000-8.000 kWh</td><td>11.160-14.880 kr.</td><td>~16.100 kr./år</td></tr>
             </tbody>
           </table>
-          <p><em>Besparelsen er beregnet vs. gasfyr med udgift på 18.000-24.000 kr./år for et 130 m² hus.</em></p>
+          <p><em>Besparelsen er beregnet vs. gasfyr med en udgift på 18.000-24.000 kr./år for et 130 m² hus — ca. 162 kr./m²/år — og en elpris på 1,86 kr./kWh.</em></p>
 
           <h2>Gulvvarme vs. radiatorer — COP og forbrug</h2>
           <p>
@@ -118,9 +118,9 @@ export default function LuftTilVandPage() {
               <tr><th>Varmeafgiver</th><th>Fremløbstemp.</th><th>COP (gns.)</th><th>kWh/år (130 m²)</th><th>Pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Gulvvarme</strong></td><td>30-35°C</td><td>3,5-4,0</td><td>3.500-4.500 kWh</td><td>8.750-11.250 kr.</td></tr>
-              <tr><td><strong>Lavtemperatur radiatorer</strong></td><td>40-50°C</td><td>3,0-3,5</td><td>4.000-5.500 kWh</td><td>10.000-13.750 kr.</td></tr>
-              <tr><td><strong>Gamle radiatorer</strong></td><td>55-70°C</td><td>2,5-3,0</td><td>5.000-7.000 kWh</td><td>12.500-17.500 kr.</td></tr>
+              <tr><td><strong>Gulvvarme</strong></td><td>30-35°C</td><td>3,5-4,0</td><td>3.500-4.500 kWh</td><td>6.510-8.370 kr.</td></tr>
+              <tr><td><strong>Lavtemperatur radiatorer</strong></td><td>40-50°C</td><td>3,0-3,5</td><td>4.000-5.500 kWh</td><td>7.440-10.230 kr.</td></tr>
+              <tr><td><strong>Gamle radiatorer</strong></td><td>55-70°C</td><td>2,5-3,0</td><td>5.000-7.000 kWh</td><td>9.300-13.020 kr.</td></tr>
             </tbody>
           </table>
           <p>
@@ -203,7 +203,7 @@ export default function LuftTilVandPage() {
           </p>
         </div>
 
-        <AffiliateCta />
+        <AffiliateCta kwh={9000} household="et hus med luft-til-vand varmepumpe" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>

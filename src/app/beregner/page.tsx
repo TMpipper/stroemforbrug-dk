@@ -80,7 +80,7 @@ export default function BeregnerPage() {
           <p>
             <strong>Eksempel:</strong> Et tv på 85 watt der kører 4 timer om
             dagen: 85 &times; 4 &times; 365 &divide; 1.000 = 124 kWh/år. Med en
-            elpris på 2,50 kr./kWh koster det 310 kr. om året.
+            elpris på 1,86 kr./kWh koster det 231 kr. om året.
           </p>
 
           <h2>Beregn forbrug for specifikke apparater</h2>

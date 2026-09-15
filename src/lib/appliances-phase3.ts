@@ -9,7 +9,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
       "Hvor meget strøm bruger et komfur? Se typisk elforbrug i kWh for el-komfur, induktion og gas. Sammenlign modeller og beregn din årlige udgift i 2026.",
     heading: "Hvor meget strøm bruger et komfur?",
     quickAnswer:
-      "Et el-komfur bruger typisk 400–800 kWh om året afhængigt af kogetype, antal kogezoner og brugstimer. Det svarer til en årlig elregning på 1.000–2.000 kr. ved 2,50 kr./kWh. Induktionskomfurer er 20–30 % mere energieffektive end traditionelle komfurer med støbejernsplader.",
+      "Et el-komfur bruger typisk 400–800 kWh om året afhængigt af kogetype, antal kogezoner og brugstimer. Det svarer til en årlig elregning på 744–1.488 kr. ved 1,86 kr./kWh. Induktionskomfurer er 20–30 % mere energieffektive end traditionelle komfurer med støbejernsplader.",
     kwhRange: [400, 800],
     typicalKwh: 550,
     wattage: 2000,
@@ -30,14 +30,14 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <p>Komfuret er et af de mest brugte apparater i ethvert dansk køkken, og det står for en betydelig del af husholdningens samlede elforbrug. Alt fra morgengrøden til aftensmaden kræver energi – men hvor meget afhænger i høj grad af komfurtypen. I denne guide gennemgår vi det faktiske energiforbrug for de mest almindelige komfurtyper i Danmark, sammenligner populære modeller og giver dig konkrete råd til at spare på elregningen, når du laver mad.</p>
 
 <h2>Hvor mange kWh bruger et komfur om året?</h2>
-<p>Et komfur bruger typisk 400–800 kWh årligt afhængigt af type, antal kogezoner og daglig brugstid. Ved en elpris på 2,50 kr./kWh svarer det til 1.000–2.000 kr. om året. Induktionskomfurer ligger i den lave ende, mens ældre støbejernsplader bruger mest. En gennemsnitlig dansk familie laver mad 1–2 timer dagligt med komfuret.</p>
+<p>Et komfur bruger typisk 400–800 kWh årligt afhængigt af type, antal kogezoner og daglig brugstid. Ved en elpris på 1,86 kr./kWh svarer det til 744–1.488 kr. om året. Induktionskomfurer ligger i den lave ende, mens ældre støbejernsplader bruger mest. En gennemsnitlig dansk familie laver mad 1–2 timer dagligt med komfuret.</p>
 
 <table>
-<thead><tr><th>Komfurtype</th><th>Typisk effekt</th><th>Daglig brug</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Komfurtype</th><th>Typisk effekt</th><th>Daglig brug</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Induktionskomfur</td><td>1.400–2.000 W</td><td>1 time</td><td>350–450 kWh</td><td>875–1.125 kr.</td></tr>
-<tr><td>Keramisk komfur</td><td>1.200–2.200 W</td><td>1 time</td><td>500–650 kWh</td><td>1.250–1.625 kr.</td></tr>
-<tr><td>Støbejernsplader</td><td>1.500–2.500 W</td><td>1 time</td><td>600–800 kWh</td><td>1.500–2.000 kr.</td></tr>
+<tr><td>Induktionskomfur</td><td>1.400–2.000 W</td><td>1 time</td><td>350–450 kWh</td><td>651–837 kr.</td></tr>
+<tr><td>Keramisk komfur</td><td>1.200–2.200 W</td><td>1 time</td><td>500–650 kWh</td><td>930–1.209 kr.</td></tr>
+<tr><td>Støbejernsplader</td><td>1.500–2.500 W</td><td>1 time</td><td>600–800 kWh</td><td>1.116–1.488 kr.</td></tr>
 <tr><td>Gaskomfur</td><td>N/A (gas)</td><td>1 time</td><td>0 kWh el</td><td>600–1.000 kr. (gas)</td></tr>
 </tbody>
 </table>
@@ -52,7 +52,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <tr><td>Opvarmningstid (1 L vand)</td><td>3–4 min.</td><td>6–8 min.</td><td>8–12 min.</td></tr>
 <tr><td>Typisk effekt pr. zone</td><td>1.400–3.000 W</td><td>1.200–2.200 W</td><td>1.500–2.500 W</td></tr>
 <tr><td>Årligt kWh (typisk)</td><td>400 kWh</td><td>550 kWh</td><td>720 kWh</td></tr>
-<tr><td>Årlig pris (2,50 kr.)</td><td>1.000 kr.</td><td>1.375 kr.</td><td>1.800 kr.</td></tr>
+<tr><td>Årlig pris (1,86 kr.)</td><td>744 kr.</td><td>1.023 kr.</td><td>1.339 kr.</td></tr>
 </tbody>
 </table>
 
@@ -64,22 +64,22 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Type</th><th>Antal zoner</th><th>kWh/år</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Siemens EX645LYC1E</td><td>Induktion</td><td>4</td><td>420 kWh</td><td>1.050 kr.</td></tr>
-<tr><td>Bosch PKE645FP1E</td><td>Keramisk</td><td>4</td><td>560 kWh</td><td>1.400 kr.</td></tr>
-<tr><td>Gram EK 6650-90</td><td>Støbejern</td><td>4</td><td>720 kWh</td><td>1.800 kr.</td></tr>
+<tr><td>Siemens EX645LYC1E</td><td>Induktion</td><td>4</td><td>420 kWh</td><td>781 kr.</td></tr>
+<tr><td>Bosch PKE645FP1E</td><td>Keramisk</td><td>4</td><td>560 kWh</td><td>1.042 kr.</td></tr>
+<tr><td>Gram EK 6650-90</td><td>Støbejern</td><td>4</td><td>720 kWh</td><td>1.339 kr.</td></tr>
 </tbody>
 </table>
 
 <h2>Standbyforbrug og skjulte strømtyve</h2>
-<p>Et moderne komfur med digitalt display bruger typisk 0,5–2 watt i standby – det svarer til 4–17 kWh om året (10–43 kr.). Ældre modeller med mekaniske drejeknapper har intet standbyforbrug. Den integrerede ovn i et komfur er ofte den største skjulte strømpost, da den kan bruge 0,8–1,5 kWh pr. tilberedning.</p>
+<p>Et moderne komfur med digitalt display bruger typisk 0,5–2 watt i standby – det svarer til 4–17 kWh om året (7–32 kr.). Ældre modeller med mekaniske drejeknapper har intet standbyforbrug. Den integrerede ovn i et komfur er ofte den største skjulte strømpost, da den kan bruge 0,8–1,5 kWh pr. tilberedning.</p>
 
 <table>
 <thead><tr><th>Funktion</th><th>Wattforbrug</th><th>Timer/dag</th><th>Årligt kWh</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Aktiv kogning</td><td>1.200–2.500 W</td><td>1</td><td>400–800 kWh</td><td>1.000–2.000 kr.</td></tr>
-<tr><td>Varmholdning</td><td>200–500 W</td><td>0,5</td><td>36–91 kWh</td><td>90–228 kr.</td></tr>
-<tr><td>Standby (digitalt display)</td><td>0,5–2 W</td><td>23</td><td>4–17 kWh</td><td>10–43 kr.</td></tr>
-<tr><td>Integreret ovn (pr. brug)</td><td>2.000–3.500 W</td><td>1</td><td>0,8–1,5 kWh</td><td>2–4 kr.</td></tr>
+<tr><td>Aktiv kogning</td><td>1.200–2.500 W</td><td>1</td><td>400–800 kWh</td><td>744–1.488 kr.</td></tr>
+<tr><td>Varmholdning</td><td>200–500 W</td><td>0,5</td><td>36–91 kWh</td><td>67–170 kr.</td></tr>
+<tr><td>Standby (digitalt display)</td><td>0,5–2 W</td><td>23</td><td>4–17 kWh</td><td>7–32 kr.</td></tr>
+<tr><td>Integreret ovn (pr. brug)</td><td>2.000–3.500 W</td><td>1</td><td>0,8–1,5 kWh</td><td>1–3 kr.</td></tr>
 </tbody>
 </table>
 
@@ -117,7 +117,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om komfurets strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om komfurets energiforbrug baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget strøm bruger et komfur om dagen?", answer: "Et komfur bruger typisk 1–2,5 kWh om dagen ved 1 times daglig madlavning. Det svarer til 2,50–6,25 kr. pr. dag afhængigt af komfurtype." },
+      { question: "Hvor meget strøm bruger et komfur om dagen?", answer: "Et komfur bruger typisk 1–2,5 kWh om dagen ved 1 times daglig madlavning. Det svarer til 1,86–4,65 kr. pr. dag afhængigt af komfurtype." },
       { question: "Er induktion billigere i drift end keramisk?", answer: "Ja, induktion bruger 20–30 % mindre strøm end keramisk. En typisk familie sparer 150–300 kr. om året ved at skifte til induktion." },
       { question: "Hvad bruger mest strøm – komfur eller ovn?", answer: "Komfuret bruger typisk mere strøm samlet, fordi det bruges oftere. En ovn bruger 0,8–1,5 kWh pr. brug, mens komfuret bruger 1–2,5 kWh dagligt." },
       { question: "Bruger et komfur strøm i standby?", answer: "Moderne komfurer med digitalt display bruger 0,5–2 watt i standby (4–17 kWh/år). Mekaniske modeller har intet standbyforbrug." },
@@ -156,7 +156,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
       "Hvor meget strøm bruger det at oplade en mobil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign trådløs og kabel-opladning med 2026-priser.",
     heading: "Hvor meget strøm bruger mobil-opladning?",
     quickAnswer:
-      "At oplade en smartphone bruger typisk 3–8 kWh om året afhængigt af batteriets størrelse og opladningsfrekvens. Det svarer til en årlig elregning på 8–20 kr. ved 2,50 kr./kWh. En fuld opladning koster under 0,10 kr. – mobilen er et af de billigste apparater at drive.",
+      "At oplade en smartphone bruger typisk 3–8 kWh om året afhængigt af batteriets størrelse og opladningsfrekvens. Det svarer til en årlig elregning på 6–15 kr. ved 1,86 kr./kWh. En fuld opladning koster under 0,07 kr. – mobilen er et af de billigste apparater at drive.",
     kwhRange: [3, 8],
     typicalKwh: 5,
     wattage: 20,
@@ -177,15 +177,15 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <p>Mobiltelefonen er det apparat, de fleste danskere oplader dagligt – ofte uden at tænke over elforbruget. Og med god grund: en smartphones årlige elforbrug er blandt de laveste af alle elektroniske apparater. Men når man lægger opladeren sammen med standby-forbrug, trådløse ladepuder og hurtigladning, kan det samlede billede overraske. I denne guide gennemgår vi det faktiske strømforbrug ved mobil-opladning, sammenligner forskellige opladningsmetoder og afslører, hvad din oplader virkelig koster dig.</p>
 
 <h2>Hvor mange kWh bruger mobil-opladning om året?</h2>
-<p>En mobiltelefon bruger typisk 3–8 kWh om året til opladning, afhængigt af batteriets størrelse, opladningsfrekvens og opladningsmetode. Ved en elpris på 2,50 kr./kWh svarer det til beskedne 8–20 kr. årligt. Den lave pris skyldes, at et typisk mobilbatteri kun rummer 15–25 Wh energi.</p>
+<p>En mobiltelefon bruger typisk 3–8 kWh om året til opladning, afhængigt af batteriets størrelse, opladningsfrekvens og opladningsmetode. Ved en elpris på 1,86 kr./kWh svarer det til beskedne 6–15 kr. årligt. Den lave pris skyldes, at et typisk mobilbatteri kun rummer 15–25 Wh energi.</p>
 
 <table>
-<thead><tr><th>Opladningsmetode</th><th>Effektivitet</th><th>kWh pr. opladning</th><th>Årligt kWh (1×/dag)</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Opladningsmetode</th><th>Effektivitet</th><th>kWh pr. opladning</th><th>Årligt kWh (1×/dag)</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Kabel (5W standard)</td><td>85–90 %</td><td>0,008–0,012 kWh</td><td>3,0–4,5 kWh</td><td>8–11 kr.</td></tr>
-<tr><td>Kabel hurtigladning (20W)</td><td>80–85 %</td><td>0,010–0,015 kWh</td><td>3,5–5,5 kWh</td><td>9–14 kr.</td></tr>
-<tr><td>Kabel hurtigladning (45W)</td><td>75–82 %</td><td>0,012–0,018 kWh</td><td>4,5–6,5 kWh</td><td>11–16 kr.</td></tr>
-<tr><td>Trådløs (15W Qi2)</td><td>60–75 %</td><td>0,015–0,022 kWh</td><td>5,5–8,0 kWh</td><td>14–20 kr.</td></tr>
+<tr><td>Kabel (5W standard)</td><td>85–90 %</td><td>0,008–0,012 kWh</td><td>3,0–4,5 kWh</td><td>6–8 kr.</td></tr>
+<tr><td>Kabel hurtigladning (20W)</td><td>80–85 %</td><td>0,010–0,015 kWh</td><td>3,5–5,5 kWh</td><td>7–10 kr.</td></tr>
+<tr><td>Kabel hurtigladning (45W)</td><td>75–82 %</td><td>0,012–0,018 kWh</td><td>4,5–6,5 kWh</td><td>8–12 kr.</td></tr>
+<tr><td>Trådløs (15W Qi2)</td><td>60–75 %</td><td>0,015–0,022 kWh</td><td>5,5–8,0 kWh</td><td>10–15 kr.</td></tr>
 </tbody>
 </table>
 
@@ -199,7 +199,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <tr><td>Opladningstid (0–100 %)</td><td>30–90 min.</td><td>90–180 min.</td></tr>
 <tr><td>Standbyforbrug (oplader i stik)</td><td>0,1–0,3 W</td><td>0,5–1,5 W</td></tr>
 <tr><td>Årligt standbyforbrug</td><td>0,5–1,5 kWh</td><td>2,5–8,0 kWh</td></tr>
-<tr><td>Årlig totalpris</td><td>9–14 kr.</td><td>14–20 kr.</td></tr>
+<tr><td>Årlig totalpris</td><td>7–10 kr.</td><td>10–15 kr.</td></tr>
 </tbody>
 </table>
 
@@ -209,10 +209,10 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Batteri</th><th>Wh pr. opladning</th><th>kWh/år (1×/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>iPhone 16 Pro Max</td><td>4.685 mAh / 18,1 Wh</td><td>0,021 kWh</td><td>4,5 kWh</td><td>11 kr.</td></tr>
-<tr><td>Samsung Galaxy S25 Ultra</td><td>5.000 mAh / 19,3 Wh</td><td>0,023 kWh</td><td>5,2 kWh</td><td>13 kr.</td></tr>
-<tr><td>Google Pixel 9 Pro</td><td>5.060 mAh / 19,5 Wh</td><td>0,024 kWh</td><td>5,5 kWh</td><td>14 kr.</td></tr>
-<tr><td>OnePlus 13</td><td>6.000 mAh / 23,1 Wh</td><td>0,028 kWh</td><td>6,2 kWh</td><td>16 kr.</td></tr>
+<tr><td>iPhone 16 Pro Max</td><td>4.685 mAh / 18,1 Wh</td><td>0,021 kWh</td><td>4,5 kWh</td><td>8 kr.</td></tr>
+<tr><td>Samsung Galaxy S25 Ultra</td><td>5.000 mAh / 19,3 Wh</td><td>0,023 kWh</td><td>5,2 kWh</td><td>10 kr.</td></tr>
+<tr><td>Google Pixel 9 Pro</td><td>5.060 mAh / 19,5 Wh</td><td>0,024 kWh</td><td>5,5 kWh</td><td>10 kr.</td></tr>
+<tr><td>OnePlus 13</td><td>6.000 mAh / 23,1 Wh</td><td>0,028 kWh</td><td>6,2 kWh</td><td>12 kr.</td></tr>
 </tbody>
 </table>
 
@@ -222,10 +222,10 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Opladertype</th><th>Standby watt</th><th>Timer standby/dag</th><th>Årligt kWh</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>USB-C oplader (20W)</td><td>0,1–0,3 W</td><td>22</td><td>0,8–2,4 kWh</td><td>2–6 kr.</td></tr>
-<tr><td>MagSafe-pude</td><td>0,8–1,5 W</td><td>22</td><td>6,4–12 kWh</td><td>16–30 kr.</td></tr>
-<tr><td>Qi2-ladepude</td><td>0,5–1,2 W</td><td>22</td><td>4,0–9,6 kWh</td><td>10–24 kr.</td></tr>
-<tr><td>Multioplader (3-i-1)</td><td>1,0–2,5 W</td><td>22</td><td>8,0–20 kWh</td><td>20–50 kr.</td></tr>
+<tr><td>USB-C oplader (20W)</td><td>0,1–0,3 W</td><td>22</td><td>0,8–2,4 kWh</td><td>1–4 kr.</td></tr>
+<tr><td>MagSafe-pude</td><td>0,8–1,5 W</td><td>22</td><td>6,4–12 kWh</td><td>12–22 kr.</td></tr>
+<tr><td>Qi2-ladepude</td><td>0,5–1,2 W</td><td>22</td><td>4,0–9,6 kWh</td><td>7–18 kr.</td></tr>
+<tr><td>Multioplader (3-i-1)</td><td>1,0–2,5 W</td><td>22</td><td>8,0–20 kWh</td><td>15–37 kr.</td></tr>
 </tbody>
 </table>
 
@@ -236,7 +236,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 
 <ul>
 <li><strong>Batterikapacitet:</strong> Større batterier (5.000+ mAh) bruger 30–50 % mere pr. opladning end mindre (3.000 mAh).</li>
-<li><strong>Opladningsfrekvens:</strong> Oplader du 2 gange dagligt, fordobles forbruget – men det er stadig under 20 kr./år.</li>
+<li><strong>Opladningsfrekvens:</strong> Oplader du 2 gange dagligt, fordobles forbruget – men det er stadig under 15 kr./år.</li>
 <li><strong>Opladningsmetode:</strong> Trådløs opladning bruger 25–40 % mere end kabel pga. energitab.</li>
 <li><strong>Hurtigladning:</strong> Hurtigladning (45W+) er lidt mindre effektiv end langsom opladning (5W), men forskellen er minimal.</li>
 <li><strong>Omgivelsestemperatur:</strong> Opladning i varme omgivelser (over 35°C) reducerer effektiviteten med 5–10 %.</li>
@@ -251,13 +251,13 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om mobil-opladning og strøm</h2>
 <p>Her er svar på de mest almindelige spørgsmål om mobilens opladning og elforbrug baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at oplade en iPhone?", answer: "En fuld opladning af en iPhone 16 Pro Max koster ca. 0,05 kr. Ved daglig opladning bliver det ca. 11–18 kr. om året afhængigt af opladningsmetode." },
+      { question: "Hvor meget koster det at oplade en iPhone?", answer: "En fuld opladning af en iPhone 16 Pro Max koster ca. 0,04 kr. Ved daglig opladning bliver det ca. 8–13 kr. om året afhængigt af opladningsmetode." },
       { question: "Bruger trådløs opladning mere strøm?", answer: "Ja, trådløs opladning bruger 25–40 % mere strøm end kabelopladning pga. energitab i den elektromagnetiske overførsel. Forskellen er dog kun 5–10 kr. om året." },
       { question: "Bruger opladeren strøm, når mobilen ikke er tilsluttet?", answer: "Ja, en oplader i stikkontakten trækker 0,1–1,5 watt i standby afhængigt af type. Tag den ud, når den ikke bruges – især trådløse ladepuder." },
-      { question: "Er hurtigladning dyrere end langsom opladning?", answer: "Lidt – hurtigladning er 5–10 % mindre energieffektiv end langsom opladning. Men forskellen er under 3 kr. om året og negligerbar." },
+      { question: "Er hurtigladning dyrere end langsom opladning?", answer: "Lidt – hurtigladning er 5–10 % mindre energieffektiv end langsom opladning. Men forskellen er under 2 kr. om året og negligerbar." },
       { question: "Hvor mange watt bruger en mobiloplader?", answer: "Standard USB-C opladere leverer 5–20 W, hurtigladere 25–65 W og trådløse ladepuder 5–15 W. Det faktiske forbrug varierer med batteriets ladeniveau." },
-      { question: "Kan man spare strøm ved at oplade om natten?", answer: "Nej, tidspunktet påvirker ikke forbruget. Men mange elselskaber har lavere spotpriser om natten, så du kan spare 1–3 kr./år med en variabel aftale." },
-      { question: "Hvor mange kWh bruger en mobil om året?", answer: "En smartphone bruger typisk 3–8 kWh om året til opladning. Det svarer til 8–20 kr. og er et af de laveste elforbrug i husstanden." },
+      { question: "Kan man spare strøm ved at oplade om natten?", answer: "Nej, tidspunktet påvirker ikke forbruget. Men mange elselskaber har lavere spotpriser om natten, så du kan spare 1–2 kr./år med en variabel aftale." },
+      { question: "Hvor mange kWh bruger en mobil om året?", answer: "En smartphone bruger typisk 3–8 kWh om året til opladning. Det svarer til 6–15 kr. og er et af de laveste elforbrug i husstanden." },
       { question: "Slider hurtigladning på batteriet?", answer: "Ja, hurtigladning genererer mere varme og kan reducere batteriets levetid hurtigere. Moderne telefoner har dog intelligente ladesystemer, der begrænser slitagen." },
     ],
     relatedSlugs: ["laptop", "computer", "router"],
@@ -290,7 +290,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
       "Hvor meget strøm bruger en brødrister? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift med danske 2026-priser.",
     heading: "Hvor meget strøm bruger en brødrister?",
     quickAnswer:
-      "En brødrister bruger typisk 30–60 kWh om året ved daglig brug. Det svarer til en årlig elregning på 75–150 kr. ved 2,50 kr./kWh. En enkelt ristning koster ca. 0,10–0,20 kr. og tager kun 2–4 minutter. Brødristeren er et af køkkenets mest energieffektive apparater.",
+      "En brødrister bruger typisk 30–60 kWh om året ved daglig brug. Det svarer til en årlig elregning på 56–112 kr. ved 1,86 kr./kWh. En enkelt ristning koster ca. 0,07–0,15 kr. og tager kun 2–4 minutter. Brødristeren er et af køkkenets mest energieffektive apparater.",
     kwhRange: [30, 60],
     typicalKwh: 40,
     wattage: 900,
@@ -311,15 +311,15 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <p>Brødristeren er et fast inventar i de fleste danske køkkener – morgenbordet uden ristet brød er nærmest utænkeligt. Heldigvis er brødristeren et af de mest energieffektive køkkenapparater, fordi den kun kører i få minutter ad gangen. Men med en effekt på 800–1.800 watt trækker den faktisk meget strøm, mens den er tændt. I denne guide gennemgår vi det reelle energiforbrug for brødristere, sammenligner 2-skivers og 4-skivers modeller og viser dig, hvad det egentlig koster at riste brød.</p>
 
 <h2>Hvor mange kWh bruger en brødrister om året?</h2>
-<p>En brødrister bruger typisk 30–60 kWh om året ved daglig brug, afhængigt af antal skiver, effekt og brugshyppighed. Ved en elpris på 2,50 kr./kWh svarer det til 75–150 kr. årligt. Den korte brugstid (2–4 minutter pr. ristning) er årsagen til det lave årsforsbrug, trods den høje effekt.</p>
+<p>En brødrister bruger typisk 30–60 kWh om året ved daglig brug, afhængigt af antal skiver, effekt og brugshyppighed. Ved en elpris på 1,86 kr./kWh svarer det til 56–112 kr. årligt. Den korte brugstid (2–4 minutter pr. ristning) er årsagen til det lave årsforsbrug, trods den høje effekt.</p>
 
 <table>
 <thead><tr><th>Brødristertype</th><th>Effekt</th><th>Tid pr. ristning</th><th>kWh pr. ristning</th><th>Årligt kWh (1×/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>2 skiver (kompakt)</td><td>800–1.000 W</td><td>2–3 min.</td><td>0,03–0,05 kWh</td><td>11–18 kWh</td><td>28–45 kr.</td></tr>
-<tr><td>2 skiver (standard)</td><td>1.000–1.200 W</td><td>2–4 min.</td><td>0,04–0,08 kWh</td><td>15–29 kWh</td><td>38–73 kr.</td></tr>
-<tr><td>4 skiver</td><td>1.400–1.800 W</td><td>2–4 min.</td><td>0,05–0,12 kWh</td><td>18–44 kWh</td><td>45–110 kr.</td></tr>
-<tr><td>Sandwich-rister</td><td>700–1.000 W</td><td>3–5 min.</td><td>0,04–0,08 kWh</td><td>15–29 kWh</td><td>38–73 kr.</td></tr>
+<tr><td>2 skiver (kompakt)</td><td>800–1.000 W</td><td>2–3 min.</td><td>0,03–0,05 kWh</td><td>11–18 kWh</td><td>21–33 kr.</td></tr>
+<tr><td>2 skiver (standard)</td><td>1.000–1.200 W</td><td>2–4 min.</td><td>0,04–0,08 kWh</td><td>15–29 kWh</td><td>28–54 kr.</td></tr>
+<tr><td>4 skiver</td><td>1.400–1.800 W</td><td>2–4 min.</td><td>0,05–0,12 kWh</td><td>18–44 kWh</td><td>33–82 kr.</td></tr>
+<tr><td>Sandwich-rister</td><td>700–1.000 W</td><td>3–5 min.</td><td>0,04–0,08 kWh</td><td>15–29 kWh</td><td>28–54 kr.</td></tr>
 </tbody>
 </table>
 
@@ -332,7 +332,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <tr><td>Effekt</td><td>800–1.200 W</td><td>1.400–1.800 W</td></tr>
 <tr><td>kWh pr. ristning</td><td>0,04–0,06 kWh</td><td>0,07–0,12 kWh</td></tr>
 <tr><td>kWh pr. skive</td><td>0,02–0,03 kWh</td><td>0,018–0,03 kWh</td></tr>
-<tr><td>Pris pr. skive</td><td>0,05–0,08 kr.</td><td>0,05–0,08 kr.</td></tr>
+<tr><td>Pris pr. skive</td><td>0,04–0,06 kr.</td><td>0,04–0,06 kr.</td></tr>
 <tr><td>Bedst til</td><td>1–2 personer</td><td>3+ personer</td></tr>
 </tbody>
 </table>
@@ -343,9 +343,9 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Skiver</th><th>Effekt</th><th>kWh pr. ristning</th><th>kWh/år (1×/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Smeg TSF01</td><td>2</td><td>950 W</td><td>0,04 kWh</td><td>35 kWh</td><td>88 kr.</td></tr>
-<tr><td>Dualit Classic 4 Slot</td><td>4</td><td>1.600 W</td><td>0,09 kWh</td><td>50 kWh</td><td>125 kr.</td></tr>
-<tr><td>OBH Nordica Toaster Prime</td><td>2</td><td>870 W</td><td>0,04 kWh</td><td>38 kWh</td><td>95 kr.</td></tr>
+<tr><td>Smeg TSF01</td><td>2</td><td>950 W</td><td>0,04 kWh</td><td>35 kWh</td><td>65 kr.</td></tr>
+<tr><td>Dualit Classic 4 Slot</td><td>4</td><td>1.600 W</td><td>0,09 kWh</td><td>50 kWh</td><td>93 kr.</td></tr>
+<tr><td>OBH Nordica Toaster Prime</td><td>2</td><td>870 W</td><td>0,04 kWh</td><td>38 kWh</td><td>71 kr.</td></tr>
 </tbody>
 </table>
 
@@ -355,10 +355,10 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Metode</th><th>Tid</th><th>kWh pr. omgang</th><th>Pris pr. omgang</th></tr></thead>
 <tbody>
-<tr><td>Brødrister</td><td>2–4 min.</td><td>0,04–0,06 kWh</td><td>0,10–0,15 kr.</td></tr>
-<tr><td>Airfryer</td><td>3–5 min.</td><td>0,08–0,15 kWh</td><td>0,20–0,38 kr.</td></tr>
-<tr><td>Ovn (med forvarmning)</td><td>15–20 min.</td><td>0,30–0,50 kWh</td><td>0,75–1,25 kr.</td></tr>
-<tr><td>Grill i ovn</td><td>8–12 min.</td><td>0,15–0,25 kWh</td><td>0,38–0,63 kr.</td></tr>
+<tr><td>Brødrister</td><td>2–4 min.</td><td>0,04–0,06 kWh</td><td>0,07–0,11 kr.</td></tr>
+<tr><td>Airfryer</td><td>3–5 min.</td><td>0,08–0,15 kWh</td><td>0,15–0,28 kr.</td></tr>
+<tr><td>Ovn (med forvarmning)</td><td>15–20 min.</td><td>0,30–0,50 kWh</td><td>0,56–0,93 kr.</td></tr>
+<tr><td>Grill i ovn</td><td>8–12 min.</td><td>0,15–0,25 kWh</td><td>0,28–0,47 kr.</td></tr>
 </tbody>
 </table>
 
@@ -391,8 +391,8 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om brødristerens strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om brødristerens energiforbrug baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at riste brød?", answer: "En enkelt ristning koster ca. 0,10–0,15 kr. i strøm. Ved daglig brug (365 ristninger/år) koster det 37–55 kr. om året for en 2-skivers brødrister." },
-      { question: "Bruger en brødrister meget strøm?", answer: "Nej, trods en høj effekt (800–1.800 W) bruger brødristeren kun 30–60 kWh/år pga. den korte brugstid. Det svarer til 75–150 kr. – et af køkkenets billigste apparater." },
+      { question: "Hvor meget koster det at riste brød?", answer: "En enkelt ristning koster ca. 0,07–0,11 kr. i strøm. Ved daglig brug (365 ristninger/år) koster det 28–41 kr. om året for en 2-skivers brødrister." },
+      { question: "Bruger en brødrister meget strøm?", answer: "Nej, trods en høj effekt (800–1.800 W) bruger brødristeren kun 30–60 kWh/år pga. den korte brugstid. Det svarer til 56–112 kr. – et af køkkenets billigste apparater." },
       { question: "Er en 4-skivers brødrister dyrere i drift?", answer: "Ja, den bruger ca. 40–60 % mere pr. ristning. Men pr. skive er den lige så effektiv, så for familier er den faktisk et bedre valg end to omgange i en 2-skivers." },
       { question: "Bruger brødristeren strøm, når den ikke bruges?", answer: "Nej, de fleste brødristere har intet standbyforbrug – de har kun en mekanisk tænd/sluk. Modeller med LCD-display kan trække 0,5–1 W i standby." },
       { question: "Er det billigere at riste brød i brødrister end i ovn?", answer: "Ja, markant. En brødrister bruger 0,04–0,06 kWh pr. ristning, mens ovnen bruger 0,30–0,50 kWh. Brødristeren er 5–10 gange billigere." },
@@ -430,7 +430,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
       "Hvor meget strøm bruger en gaming-PC? Se typisk elforbrug i kWh for gaming-computere, sammenlign opsætninger og beregn din årlige udgift i 2026.",
     heading: "Hvor meget strøm bruger en gaming-PC?",
     quickAnswer:
-      "En gaming-PC bruger typisk 300–1.200 kWh om året afhængigt af hardware, skærm og brugstimer. Det svarer til en årlig elregning på 750–3.000 kr. ved 2,50 kr./kWh. Under gaming trækker en typisk opsætning 300–600 watt, mens en high-end PC med RTX 4090 kan trække over 800 watt.",
+      "En gaming-PC bruger typisk 300–1.200 kWh om året afhængigt af hardware, skærm og brugstimer. Det svarer til en årlig elregning på 558–2.232 kr. ved 1,86 kr./kWh. Under gaming trækker en typisk opsætning 300–600 watt, mens en high-end PC med RTX 4090 kan trække over 800 watt.",
     kwhRange: [300, 1200],
     typicalKwh: 600,
     wattage: 450,
@@ -451,15 +451,15 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <p>En gaming-PC er et af de mest strømkrævende apparater i hjemmet – kun overgået af varmepumper, elbiler og visse hvidevarer. Moderne grafikkort og processorer kan trække hundredvis af watt under fuld belastning, og med lange gaming-sessioner løber elregningen hurtigt op. I denne guide gennemgår vi det faktiske energiforbrug for gaming-PC'er på alle budgetniveauer, sammenligner med konsoller og laptops og giver dig konkrete råd til at sænke elforbruget uden at gå på kompromis med ydelsen.</p>
 
 <h2>Hvor mange kWh bruger en gaming-PC om året?</h2>
-<p>En gaming-PC bruger typisk 300–1.200 kWh om året afhængigt af hardware, brugstimer og om du medregner skærmen. Ved en elpris på 2,50 kr./kWh svarer det til 750–3.000 kr. årligt. Den største faktor er grafikkortets effektforbrug (TDP), der alene kan stå for 50–70 % af det samlede forbrug under gaming.</p>
+<p>En gaming-PC bruger typisk 300–1.200 kWh om året afhængigt af hardware, brugstimer og om du medregner skærmen. Ved en elpris på 1,86 kr./kWh svarer det til 558–2.232 kr. årligt. Den største faktor er grafikkortets effektforbrug (TDP), der alene kan stå for 50–70 % af det samlede forbrug under gaming.</p>
 
 <table>
-<thead><tr><th>Gaming-niveau</th><th>Typisk forbrug (PC + skærm)</th><th>Timer/dag</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Gaming-niveau</th><th>Typisk forbrug (PC + skærm)</th><th>Timer/dag</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Budget (1080p gaming)</td><td>200–300 W</td><td>4 timer</td><td>250–400 kWh</td><td>625–1.000 kr.</td></tr>
-<tr><td>Midrange (1440p gaming)</td><td>350–500 W</td><td>4 timer</td><td>450–650 kWh</td><td>1.125–1.625 kr.</td></tr>
-<tr><td>High-end (4K gaming)</td><td>500–700 W</td><td>4 timer</td><td>650–900 kWh</td><td>1.625–2.250 kr.</td></tr>
-<tr><td>Enthusiast (4K Ultra)</td><td>700–1.000 W</td><td>4 timer</td><td>900–1.200 kWh</td><td>2.250–3.000 kr.</td></tr>
+<tr><td>Budget (1080p gaming)</td><td>200–300 W</td><td>4 timer</td><td>250–400 kWh</td><td>465–744 kr.</td></tr>
+<tr><td>Midrange (1440p gaming)</td><td>350–500 W</td><td>4 timer</td><td>450–650 kWh</td><td>837–1.209 kr.</td></tr>
+<tr><td>High-end (4K gaming)</td><td>500–700 W</td><td>4 timer</td><td>650–900 kWh</td><td>1.209–1.674 kr.</td></tr>
+<tr><td>Enthusiast (4K Ultra)</td><td>700–1.000 W</td><td>4 timer</td><td>900–1.200 kWh</td><td>1.674–2.232 kr.</td></tr>
 </tbody>
 </table>
 
@@ -483,11 +483,11 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Enhed</th><th>Forbrug under spil</th><th>Standby</th><th>kWh/år (4 t/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Gaming-PC (midrange)</td><td>350–500 W</td><td>3–8 W</td><td>500–650 kWh</td><td>1.250–1.625 kr.</td></tr>
-<tr><td>PlayStation 5</td><td>100–200 W</td><td>1–3 W</td><td>150–290 kWh</td><td>375–725 kr.</td></tr>
-<tr><td>Xbox Series X</td><td>150–220 W</td><td>1–13 W</td><td>200–320 kWh</td><td>500–800 kr.</td></tr>
-<tr><td>Gaming-laptop</td><td>80–180 W</td><td>0,5–2 W</td><td>120–260 kWh</td><td>300–650 kr.</td></tr>
-<tr><td>Nintendo Switch</td><td>18–40 W</td><td>0,5–1 W</td><td>30–60 kWh</td><td>75–150 kr.</td></tr>
+<tr><td>Gaming-PC (midrange)</td><td>350–500 W</td><td>3–8 W</td><td>500–650 kWh</td><td>930–1.209 kr.</td></tr>
+<tr><td>PlayStation 5</td><td>100–200 W</td><td>1–3 W</td><td>150–290 kWh</td><td>279–539 kr.</td></tr>
+<tr><td>Xbox Series X</td><td>150–220 W</td><td>1–13 W</td><td>200–320 kWh</td><td>372–595 kr.</td></tr>
+<tr><td>Gaming-laptop</td><td>80–180 W</td><td>0,5–2 W</td><td>120–260 kWh</td><td>223–484 kr.</td></tr>
+<tr><td>Nintendo Switch</td><td>18–40 W</td><td>0,5–1 W</td><td>30–60 kWh</td><td>56–112 kr.</td></tr>
 </tbody>
 </table>
 
@@ -540,14 +540,14 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om gaming-PC'ens strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om gaming-PC'ens energiforbrug baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at game 4 timer om dagen?", answer: "En midrange gaming-PC bruger ca. 1,5–2,5 kWh pr. 4-timers session (PC + skærm). Det koster 3,75–6,25 kr. pr. dag eller ca. 1.375–2.280 kr. om året." },
+      { question: "Hvor meget koster det at game 4 timer om dagen?", answer: "En midrange gaming-PC bruger ca. 1,5–2,5 kWh pr. 4-timers session (PC + skærm). Det koster 2,79–4,65 kr. pr. dag eller ca. 1.023–1.696 kr. om året." },
       { question: "Bruger en gaming-PC strøm, når den er slukket?", answer: "Ja, en slukket PC med tændt strømforsyning trækker 2–5 watt (15–40 kWh/år). Sluk på kontakten ved stikkontakten for at eliminere dette." },
       { question: "Hvad trækker mest strøm i en gaming-PC?", answer: "Grafikkort er den klart største strømforbruger og står for 50–70 % af forbruget under gaming. Processoren er nr. 2 med 15–25 %." },
       { question: "Hvor mange watt skal min strømforsyning (PSU) være?", answer: "Tommelfingerregel: tag GPU'ens TDP + CPU'ens TDP + 200 W til resten. En midrange PC klarer sig med 650–750 W, high-end med 850–1.000 W." },
       { question: "Er det billigere at game på konsol end PC?", answer: "Ja, en PS5 bruger 100–200 W under gaming mod 350–500 W for en midrange PC. Du sparer 300–600 kr./år i strøm, men PC'en er mere alsidig." },
       { question: "Kan undervolting skade min PC?", answer: "Nej, undervolting reducerer spændingen og temperaturen. I værste fald bliver systemet ustabilt, og du skal nulstille indstillingerne. Det skader ikke hardwaren." },
-      { question: "Hvor meget strøm bruger en gaming-skærm?", answer: "En 27\" 1440p 144Hz-skærm bruger 25–40 W, mens en 32\" 4K HDR-skærm bruger 50–80 W. Over et år svarer det til 35–120 kWh (88–300 kr.)." },
-      { question: "Bruger RGB-belysning meget strøm?", answer: "Nej, RGB-LED'er bruger typisk kun 5–15 watt i alt. Det svarer til under 30 kWh/år (75 kr.) – en ubetydelig post i gaming-PC'ens samlede forbrug." },
+      { question: "Hvor meget strøm bruger en gaming-skærm?", answer: "En 27\" 1440p 144Hz-skærm bruger 25–40 W, mens en 32\" 4K HDR-skærm bruger 50–80 W. Over et år svarer det til 35–120 kWh (65–223 kr.)." },
+      { question: "Bruger RGB-belysning meget strøm?", answer: "Nej, RGB-LED'er bruger typisk kun 5–15 watt i alt. Det svarer til under 30 kWh/år (56 kr.) – en ubetydelig post i gaming-PC'ens samlede forbrug." },
     ],
     relatedSlugs: ["computer", "playstation", "laptop", "tv"],
     sources: [
@@ -580,7 +580,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
       "Hvor meget strøm bruger en ladestander til elbil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign hjemmeladere og beregn med 2026-priser.",
     heading: "Hvor meget strøm bruger en ladestander?",
     quickAnswer:
-      "En ladestander til elbil bruger typisk 2.500–5.000 kWh om året afhængigt af bilens batterikapacitet og kørselsbehov. Det svarer til en årlig elregning på 6.250–12.500 kr. ved 2,50 kr./kWh. En typisk dansk elbilejer kører 15.000 km/år og bruger ca. 2.500–3.500 kWh til opladning.",
+      "En ladestander til elbil bruger typisk 2.500–5.000 kWh om året afhængigt af bilens batterikapacitet og kørselsbehov. Det svarer til en årlig elregning på 4.650–9.300 kr. ved 1,86 kr./kWh. En typisk dansk elbilejer kører 15.000 km/år og bruger ca. 2.500–3.500 kWh til opladning.",
     kwhRange: [2500, 5000],
     typicalKwh: 3000,
     wattage: 11000,
@@ -601,10 +601,10 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <p>En hjemmeladestander er den mest praktiske og billigste måde at oplade din elbil på. Men den er samtidig det enkeltapparat i hjemmet, der bruger mest strøm – typisk 2.500–5.000 kWh om året, hvilket er mere end et køleskab, en vaskemaskine og en tørretumbler tilsammen. I denne guide gennemgår vi det faktiske energiforbrug ved hjemmeopladning, sammenligner ladebokse og giver dig konkrete råd til at minimere udgiften.</p>
 
 <h2>Hvor mange kWh bruger en ladestander om året?</h2>
-<p>En ladestander bruger typisk 2.500–5.000 kWh om året afhængigt af bilens elforbrug, kørselsbehov og ladetab. Ved en elpris på 2,50 kr./kWh svarer det til 6.250–12.500 kr. årligt. En gennemsnitlig dansk elbilejer kører ca. 15.000 km/år og bruger 2.500–3.500 kWh til opladning inklusive ladetab.</p>
+<p>En ladestander bruger typisk 2.500–5.000 kWh om året afhængigt af bilens elforbrug, kørselsbehov og ladetab. Ved en elpris på 1,86 kr./kWh svarer det til 4.650–9.300 kr. årligt. En gennemsnitlig dansk elbilejer kører ca. 15.000 km/år og bruger 2.500–3.500 kWh til opladning inklusive ladetab.</p>
 
 <table>
-<thead><tr><th>Kørsel pr. år</th><th>Elforbrug pr. km</th><th>kWh (ren kørsel)</th><th>Ladetab (10–15 %)</th><th>Total kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Kørsel pr. år</th><th>Elforbrug pr. km</th><th>kWh (ren kørsel)</th><th>Ladetab (10–15 %)</th><th>Total kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
 <tr><td>10.000 km</td><td>0,15–0,20 kWh/km</td><td>1.500–2.000</td><td>150–300</td><td>1.650–2.300</td><td>4.125–5.750 kr.</td></tr>
 <tr><td>15.000 km</td><td>0,15–0,20 kWh/km</td><td>2.250–3.000</td><td>225–450</td><td>2.475–3.450</td><td>6.188–8.625 kr.</td></tr>
@@ -619,10 +619,10 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Lademetode</th><th>Effekt</th><th>Typisk ladetab</th><th>Ekstra kWh/år</th><th>Ekstra pris/år</th></tr></thead>
 <tbody>
-<tr><td>Stikkontakt (Schuko)</td><td>2,3 kW</td><td>12–18 %</td><td>360–540 kWh</td><td>900–1.350 kr.</td></tr>
-<tr><td>Hjemmelader (3,7 kW)</td><td>3,7 kW</td><td>10–14 %</td><td>300–420 kWh</td><td>750–1.050 kr.</td></tr>
-<tr><td>Hjemmelader (7,4 kW)</td><td>7,4 kW</td><td>8–12 %</td><td>240–360 kWh</td><td>600–900 kr.</td></tr>
-<tr><td>Hjemmelader (11 kW)</td><td>11 kW</td><td>8–10 %</td><td>240–300 kWh</td><td>600–750 kr.</td></tr>
+<tr><td>Stikkontakt (Schuko)</td><td>2,3 kW</td><td>12–18 %</td><td>360–540 kWh</td><td>670–1.004 kr.</td></tr>
+<tr><td>Hjemmelader (3,7 kW)</td><td>3,7 kW</td><td>10–14 %</td><td>300–420 kWh</td><td>558–781 kr.</td></tr>
+<tr><td>Hjemmelader (7,4 kW)</td><td>7,4 kW</td><td>8–12 %</td><td>240–360 kWh</td><td>446–670 kr.</td></tr>
+<tr><td>Hjemmelader (11 kW)</td><td>11 kW</td><td>8–10 %</td><td>240–300 kWh</td><td>446–558 kr.</td></tr>
 </tbody>
 </table>
 
@@ -672,9 +672,9 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om ladestanderens strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om hjemmeopladning af elbiler baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at lade en elbil derhjemme?", answer: "En fuld opladning af et 60 kWh-batteri koster ca. 150–175 kr. ved 2,50 kr./kWh. Over et år (15.000 km) koster hjemmeopladning 6.000–9.000 kr." },
+      { question: "Hvor meget koster det at lade en elbil derhjemme?", answer: "En fuld opladning af et 60 kWh-batteri koster ca. 112–130 kr. ved 1,86 kr./kWh. Over et år (15.000 km) koster hjemmeopladning 4.464–6.696 kr." },
       { question: "Hvad er ladetabet ved hjemmeladning?", answer: "Ladetabet er typisk 8–15 % afhængigt af ladehastighed. Ved 11 kW ladning er tabet 8–10 %, mens stikkontaktladning (2,3 kW) giver 12–18 % tab." },
-      { question: "Bruger ladestanteren strøm, når bilen ikke er tilsluttet?", answer: "Ja, 2–5 watt i standby (15–40 kWh/år). Det svarer til 38–100 kr./år – ubetydelig ift. selve opladningen." },
+      { question: "Bruger ladestanteren strøm, når bilen ikke er tilsluttet?", answer: "Ja, 2–5 watt i standby (15–40 kWh/år). Det svarer til 28–74 kr./år – ubetydelig ift. selve opladningen." },
       { question: "Er det billigere at lade om natten?", answer: "Ja, med en variabel elaftale kan du spare 20–40 % ved at lade mellem kl. 00–06, hvor spotprisen typisk er 1,20–1,80 kr./kWh." },
       { question: "Hvilken ladestander bruger mindst strøm?", answer: "Alle moderne ladestander har omtrent samme effektivitet. Forskellen ligger i bilens interne lader og ladeeffekten – ikke i selve ladeboksen." },
       { question: "Hvor mange kWh bruger en elbil pr. 100 km?", answer: "Typisk 14–22 kWh/100 km afhængigt af biltype, kørestil og temperatur. En Tesla Model 3 bruger ca. 14 kWh/100 km, mens en elbil-SUV bruger 20–25 kWh." },
@@ -735,7 +735,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <p>Et solcelleanlæg i Danmark producerer typisk 900–1.100 kWh pr. installeret kWp om året. Et standard 6 kWp-anlæg producerer dermed 5.400–6.600 kWh årligt – nok til at dække 30–50 % af en gennemsnitlig husstand med et årsforbrug på 4.000–6.000 kWh. Produktionen varierer markant mellem sommer og vinter.</p>
 
 <table>
-<thead><tr><th>Anlægsstørrelse</th><th>Antal paneler (ca.)</th><th>Årlig produktion</th><th>Dækker forbrug for</th><th>Årlig besparelse (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Anlægsstørrelse</th><th>Antal paneler (ca.)</th><th>Årlig produktion</th><th>Dækker forbrug for</th><th>Årlig besparelse (1,86 kr.)</th></tr></thead>
 <tbody>
 <tr><td>3 kWp</td><td>7–8</td><td>2.700–3.300 kWh</td><td>1–2 personer</td><td>4.500–7.000 kr.</td></tr>
 <tr><td>6 kWp</td><td>14–16</td><td>5.400–6.600 kWh</td><td>2–4 personer</td><td>8.000–14.000 kr.</td></tr>
@@ -750,10 +750,10 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Komponent</th><th>Forbrug (watt)</th><th>Driftstimer/dag</th><th>Årligt kWh</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Inverter (aktiv, dag)</td><td>15–40 W</td><td>10</td><td>55–146 kWh</td><td>138–365 kr.</td></tr>
-<tr><td>Inverter (standby, nat)</td><td>2–10 W</td><td>14</td><td>10–51 kWh</td><td>25–128 kr.</td></tr>
-<tr><td>Overvågningssystem</td><td>2–5 W</td><td>24</td><td>18–44 kWh</td><td>45–110 kr.</td></tr>
-<tr><td>Samlet egetforbrug</td><td>—</td><td>—</td><td>50–150 kWh</td><td>125–375 kr.</td></tr>
+<tr><td>Inverter (aktiv, dag)</td><td>15–40 W</td><td>10</td><td>55–146 kWh</td><td>103–272 kr.</td></tr>
+<tr><td>Inverter (standby, nat)</td><td>2–10 W</td><td>14</td><td>10–51 kWh</td><td>19–95 kr.</td></tr>
+<tr><td>Overvågningssystem</td><td>2–5 W</td><td>24</td><td>18–44 kWh</td><td>33–82 kr.</td></tr>
+<tr><td>Samlet egetforbrug</td><td>—</td><td>—</td><td>50–150 kWh</td><td>93–279 kr.</td></tr>
 </tbody>
 </table>
 
@@ -772,7 +772,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 </table>
 
 <h2>Egetforbrug vs. nettoafregning</h2>
-<p>Egetforbruget – den andel af produktionen du selv bruger direkte – er den mest værdifulde del af solcelleproduktionen, da du sparer den fulde elpris (2,50 kr./kWh). Strøm du sælger til nettet afregnes typisk til 0,50–1,00 kr./kWh. Jo højere egetforbrug, jo bedre økonomi i dit solcelleanlæg.</p>
+<p>Egetforbruget – den andel af produktionen du selv bruger direkte – er den mest værdifulde del af solcelleproduktionen, da du sparer den fulde elpris (1,86 kr./kWh). Strøm du sælger til nettet afregnes typisk til 0,50–1,00 kr./kWh. Jo højere egetforbrug, jo bedre økonomi i dit solcelleanlæg.</p>
 
 <p>Kombinerer du solceller med en <a href="/varmepumpe/">varmepumpe</a> eller en <a href="/ladestander/">elbil-ladestander</a>, kan du øge egetforbruget fra 30 % til 50–70 % og forbedre anlæggets økonomi markant.</p>
 
@@ -838,7 +838,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
       "Hvor meget strøm bruger el-gulvvarmemåtter? Se kWh for badeværelse og renovering. Sammenlign med varmekabel og beregn din årlige pris i 2026.",
     heading: "Hvor meget strøm bruger el-gulvvarmemåtter?",
     quickAnswer:
-      "El-gulvvarmemåtter bruger typisk 300–1.500 kWh om året afhængigt af areal, isolering og driftstimer. Et badeværelse på 5 m² med varmemåtter koster 500–1.000 kr./år ved 2,50 kr./kWh. Måtter er den letteste løsning ved renovering, men dyrere i drift end vandbaseret gulvvarme.",
+      "El-gulvvarmemåtter bruger typisk 300–1.500 kWh om året afhængigt af areal, isolering og driftstimer. Et badeværelse på 5 m² med varmemåtter koster 372–744 kr./år ved 1,86 kr./kWh. Måtter er den letteste løsning ved renovering, men dyrere i drift end vandbaseret gulvvarme.",
     kwhRange: [300, 1500],
     typicalKwh: 700,
     wattage: 500,
@@ -859,15 +859,15 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <p>El-gulvvarmemåtter er den mest populære løsning, når du vil have gulvvarme i forbindelse med renovering – de er tynde (3–5 mm), nemme at installere under fliser og kræver ikke, at gulvhøjden hæves væsentligt. Men komforten har en pris: direkte elopvarmning er den dyreste varmeform pr. kWh. I denne guide gennemgår vi det faktiske strømforbrug for el-gulvvarmemåtter, sammenligner med varmekabel og vandbaseret gulvvarme og giver dig strategier til at holde udgiften nede.</p>
 
 <h2>Hvor mange kWh bruger el-gulvvarmemåtter om året?</h2>
-<p>El-gulvvarmemåtter bruger typisk 80–150 kWh pr. m² om året i opvarmede rum, afhængigt af isolering, termostattype og driftstimer. Et badeværelse på 5 m² bruger 300–750 kWh årligt, mens et større areal på 15 m² kan nå 1.200–2.250 kWh. Med en elpris på 2,50 kr./kWh svarer det til 750–5.625 kr.</p>
+<p>El-gulvvarmemåtter bruger typisk 80–150 kWh pr. m² om året i opvarmede rum, afhængigt af isolering, termostattype og driftstimer. Et badeværelse på 5 m² bruger 300–750 kWh årligt, mens et større areal på 15 m² kan nå 1.200–2.250 kWh. Med en elpris på 1,86 kr./kWh svarer det til 558–4.185 kr.</p>
 
 <table>
-<thead><tr><th>Rum / areal</th><th>Effekt (W/m²)</th><th>Drift (t/dag)</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Rum / areal</th><th>Effekt (W/m²)</th><th>Drift (t/dag)</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Badeværelse (3 m²)</td><td>150–200 W/m²</td><td>4–6</td><td>200–500 kWh</td><td>500–1.250 kr.</td></tr>
-<tr><td>Badeværelse (5 m²)</td><td>150–200 W/m²</td><td>4–6</td><td>300–750 kWh</td><td>750–1.875 kr.</td></tr>
-<tr><td>Køkken (10 m²)</td><td>100–150 W/m²</td><td>6–8</td><td>600–1.200 kWh</td><td>1.500–3.000 kr.</td></tr>
-<tr><td>Stue (20 m²)</td><td>100–150 W/m²</td><td>8–10</td><td>1.000–2.000 kWh</td><td>2.500–5.000 kr.</td></tr>
+<tr><td>Badeværelse (3 m²)</td><td>150–200 W/m²</td><td>4–6</td><td>200–500 kWh</td><td>372–930 kr.</td></tr>
+<tr><td>Badeværelse (5 m²)</td><td>150–200 W/m²</td><td>4–6</td><td>300–750 kWh</td><td>558–1.395 kr.</td></tr>
+<tr><td>Køkken (10 m²)</td><td>100–150 W/m²</td><td>6–8</td><td>600–1.200 kWh</td><td>1.116–2.232 kr.</td></tr>
+<tr><td>Stue (20 m²)</td><td>100–150 W/m²</td><td>8–10</td><td>1.000–2.000 kWh</td><td>1.860–3.720 kr.</td></tr>
 </tbody>
 </table>
 
@@ -894,9 +894,9 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Effekt (W/m²)</th><th>Tykkelse</th><th>kWh/år pr. 5 m²</th><th>Årlig pris (5 m²)</th></tr></thead>
 <tbody>
-<tr><td>Devimat DTIF-150</td><td>150 W/m²</td><td>3,5 mm</td><td>500 kWh</td><td>1.250 kr.</td></tr>
-<tr><td>Ebeco Thermoflex Kit 200</td><td>200 W/m²</td><td>4 mm</td><td>600 kWh</td><td>1.500 kr.</td></tr>
-<tr><td>Warmup StickyMat 200</td><td>200 W/m²</td><td>3,8 mm</td><td>620 kWh</td><td>1.550 kr.</td></tr>
+<tr><td>Devimat DTIF-150</td><td>150 W/m²</td><td>3,5 mm</td><td>500 kWh</td><td>930 kr.</td></tr>
+<tr><td>Ebeco Thermoflex Kit 200</td><td>200 W/m²</td><td>4 mm</td><td>600 kWh</td><td>1.116 kr.</td></tr>
+<tr><td>Warmup StickyMat 200</td><td>200 W/m²</td><td>3,8 mm</td><td>620 kWh</td><td>1.153 kr.</td></tr>
 </tbody>
 </table>
 
@@ -906,10 +906,10 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Termostattype</th><th>Besparelse vs. konstant drift</th><th>Årligt kWh (5 m² bad)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Konstant drift (ingen termostat)</td><td>0 %</td><td>1.200 kWh</td><td>3.000 kr.</td></tr>
-<tr><td>Manuel on/off termostat</td><td>20–30 %</td><td>840–960 kWh</td><td>2.100–2.400 kr.</td></tr>
-<tr><td>Programmerbar termostat</td><td>35–45 %</td><td>660–780 kWh</td><td>1.650–1.950 kr.</td></tr>
-<tr><td>Smart termostat (gulv+luftsensor)</td><td>40–55 %</td><td>540–720 kWh</td><td>1.350–1.800 kr.</td></tr>
+<tr><td>Konstant drift (ingen termostat)</td><td>0 %</td><td>1.200 kWh</td><td>2.232 kr.</td></tr>
+<tr><td>Manuel on/off termostat</td><td>20–30 %</td><td>840–960 kWh</td><td>1.562–1.786 kr.</td></tr>
+<tr><td>Programmerbar termostat</td><td>35–45 %</td><td>660–780 kWh</td><td>1.228–1.451 kr.</td></tr>
+<tr><td>Smart termostat (gulv+luftsensor)</td><td>40–55 %</td><td>540–720 kWh</td><td>1.004–1.339 kr.</td></tr>
 </tbody>
 </table>
 
@@ -980,7 +980,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
       "Hvor meget strøm bruger jordvarme? Se typisk elforbrug i kWh for jordvarmepumper, COP-værdier og beregn din årlige udgift med danske 2026-priser.",
     heading: "Hvor meget strøm bruger jordvarme?",
     quickAnswer:
-      "Et jordvarmeanlæg bruger typisk 3.000–6.000 kWh el om året til at opvarme et parcelhus. Med en COP på 3,5–4,5 leverer det 10.000–25.000 kWh varme. Det svarer til en årlig elregning på 7.500–15.000 kr. ved 2,50 kr./kWh – typisk 40–60 % billigere end olie- eller gasfyr.",
+      "Et jordvarmeanlæg bruger typisk 3.000–6.000 kWh el om året til at opvarme et parcelhus. Med en COP på 3,5–4,5 leverer det 10.000–25.000 kWh varme. Det svarer til en årlig elregning på 5.580–11.160 kr. ved 1,86 kr./kWh – typisk 40–60 % billigere end olie- eller gasfyr.",
     kwhRange: [3000, 6000],
     typicalKwh: 4500,
     wattage: 3000,
@@ -1001,10 +1001,10 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <p>Jordvarme er en af de mest energieffektive opvarmningsformer til danske parcelhuse. Ved at udnytte den stabile jordtemperatur (7–10°C året rundt) kan en jordvarmepumpe levere 3,5–4,5 kWh varme for hver kWh el den bruger. Det gør jordvarme markant billigere end direkte elopvarmning og jævnbyrdigt med de bedste luft/vand-varmepumper. I denne guide gennemgår vi det faktiske elforbrug for jordvarmeanlæg, sammenligner med andre varmepumpetyper og giver dig et realistisk billede af den årlige driftsudgift.</p>
 
 <h2>Hvor mange kWh el bruger jordvarme om året?</h2>
-<p>En jordvarmepumpe bruger typisk 3.000–6.000 kWh el om året til opvarmning af et parcelhus på 130–180 m². Ved en elpris på 2,50 kr./kWh svarer det til 7.500–15.000 kr. årligt. Det præcise forbrug afhænger af husets isolering, varmebehov, jordforhold og anlæggets COP-værdi.</p>
+<p>En jordvarmepumpe bruger typisk 3.000–6.000 kWh el om året til opvarmning af et parcelhus på 130–180 m². Ved en elpris på 1,86 kr./kWh svarer det til 5.580–11.160 kr. årligt. Det præcise forbrug afhænger af husets isolering, varmebehov, jordforhold og anlæggets COP-værdi.</p>
 
 <table>
-<thead><tr><th>Hustype</th><th>Varmebehov (kWh/år)</th><th>COP</th><th>Elforbrug (kWh)</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Hustype</th><th>Varmebehov (kWh/år)</th><th>COP</th><th>Elforbrug (kWh)</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
 <tr><td>Nyere parcelhus (130 m²)</td><td>10.000–13.000</td><td>4,0–4,5</td><td>2.500–3.250</td><td>6.250–8.125 kr.</td></tr>
 <tr><td>Ældre parcelhus (150 m²)</td><td>15.000–20.000</td><td>3,5–4,0</td><td>3.750–5.700</td><td>9.375–14.250 kr.</td></tr>
@@ -1019,10 +1019,10 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Varmepumpetype</th><th>SCOP (typisk)</th><th>Elforbrug (15.000 kWh varmebehov)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Jordvarme (horisontalt)</td><td>4,0–4,5</td><td>3.300–3.750 kWh</td><td>8.250–9.375 kr.</td></tr>
-<tr><td>Jordvarme (vertikalt/boring)</td><td>3,5–4,2</td><td>3.570–4.290 kWh</td><td>8.925–10.725 kr.</td></tr>
-<tr><td>Luft/vand-varmepumpe</td><td>3,0–3,8</td><td>3.950–5.000 kWh</td><td>9.875–12.500 kr.</td></tr>
-<tr><td>Luft/luft-varmepumpe</td><td>2,5–3,5</td><td>4.290–6.000 kWh</td><td>10.725–15.000 kr.</td></tr>
+<tr><td>Jordvarme (horisontalt)</td><td>4,0–4,5</td><td>3.300–3.750 kWh</td><td>6.138–6.975 kr.</td></tr>
+<tr><td>Jordvarme (vertikalt/boring)</td><td>3,5–4,2</td><td>3.570–4.290 kWh</td><td>6.640–7.979 kr.</td></tr>
+<tr><td>Luft/vand-varmepumpe</td><td>3,0–3,8</td><td>3.950–5.000 kWh</td><td>7.347–9.300 kr.</td></tr>
+<tr><td>Luft/luft-varmepumpe</td><td>2,5–3,5</td><td>4.290–6.000 kWh</td><td>7.979–11.160 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1049,9 +1049,9 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Effekt</th><th>SCOP</th><th>Elforbrug (kWh/år)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>NIBE F1255-6</td><td>6 kW</td><td>4,5</td><td>3.200 kWh</td><td>8.000 kr.</td></tr>
-<tr><td>Vaillant flexoTHERM 8 kW</td><td>8 kW</td><td>4,0</td><td>4.000 kWh</td><td>10.000 kr.</td></tr>
-<tr><td>IVT GEO 312C</td><td>12 kW</td><td>3,8</td><td>4.800 kWh</td><td>12.000 kr.</td></tr>
+<tr><td>NIBE F1255-6</td><td>6 kW</td><td>4,5</td><td>3.200 kWh</td><td>5.952 kr.</td></tr>
+<tr><td>Vaillant flexoTHERM 8 kW</td><td>8 kW</td><td>4,0</td><td>4.000 kWh</td><td>7.440 kr.</td></tr>
+<tr><td>IVT GEO 312C</td><td>12 kW</td><td>3,8</td><td>4.800 kWh</td><td>8.928 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1061,12 +1061,12 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <table>
 <thead><tr><th>Opvarmning</th><th>Varmebehov 15.000 kWh</th><th>Brændsel/el</th><th>Pris pr. kWh varme</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Jordvarme</td><td>3.750 kWh el</td><td>El</td><td>0,63 kr.</td><td>9.375 kr.</td></tr>
-<tr><td>Luft/vand-varmepumpe</td><td>4.700 kWh el</td><td>El</td><td>0,78 kr.</td><td>11.750 kr.</td></tr>
+<tr><td>Jordvarme</td><td>3.750 kWh el</td><td>El</td><td>0,47 kr.</td><td>6.975 kr.</td></tr>
+<tr><td>Luft/vand-varmepumpe</td><td>4.700 kWh el</td><td>El</td><td>0,58 kr.</td><td>8.742 kr.</td></tr>
 <tr><td>Fjernvarme</td><td>15.000 kWh</td><td>Fjernvarme</td><td>0,70–1,00 kr.</td><td>10.500–15.000 kr.</td></tr>
 <tr><td>Naturgasfyr</td><td>18.750 kWh gas</td><td>Gas</td><td>1,00–1,30 kr.</td><td>15.000–19.500 kr.</td></tr>
 <tr><td>Oliefyr</td><td>1.700 L olie</td><td>Olie</td><td>1,20–1,50 kr.</td><td>18.000–22.500 kr.</td></tr>
-<tr><td>Direkte elopvarmning</td><td>15.000 kWh el</td><td>El</td><td>2,50 kr.</td><td>37.500 kr.</td></tr>
+<tr><td>Direkte elopvarmning</td><td>15.000 kWh el</td><td>El</td><td>1,86 kr.</td><td>27.900 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1092,8 +1092,8 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om jordvarmens strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om jordvarme og elforbrug baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget strøm bruger jordvarme?", answer: "Et jordvarmeanlæg bruger typisk 3.000–6.000 kWh el om året for et gennemsnitligt parcelhus. Med en elpris på 2,50 kr./kWh svarer det til 7.500–15.000 kr." },
-      { question: "Er jordvarme billigere end fjernvarme?", answer: "Det afhænger af den lokale fjernvarmepris. Jordvarme koster typisk 0,60–0,80 kr./kWh varme, fjernvarme 0,70–1,00 kr. I mange områder er jordvarme lidt billigere." },
+      { question: "Hvor meget strøm bruger jordvarme?", answer: "Et jordvarmeanlæg bruger typisk 3.000–6.000 kWh el om året for et gennemsnitligt parcelhus. Med en elpris på 1,86 kr./kWh svarer det til 5.580–11.160 kr." },
+      { question: "Er jordvarme billigere end fjernvarme?", answer: "Det afhænger af den lokale fjernvarmepris. Jordvarme koster typisk 0,41–0,53 kr./kWh varme, fjernvarme 0,70–1,00 kr. I mange områder er jordvarme lidt billigere." },
       { question: "Hvad er COP for jordvarme?", answer: "COP for jordvarme er typisk 3,5–4,5 afhængigt af model, jordforhold og fremløbstemperatur. Det betyder, at 1 kWh el giver 3,5–4,5 kWh varme." },
       { question: "Hvor dyrt er det at installere jordvarme?", answer: "Et horisontalt anlæg koster 80.000–130.000 kr. installeret. Et vertikalt (boring) koster 120.000–200.000 kr. Tilbagebetalingstiden er 5–12 år." },
       { question: "Kan jordvarme bruges til køling?", answer: "Ja, mange jordvarmepumper kan køle passivt om sommeren ved at cirkulere den kolde jordvæske direkte. Det bruger kun 200–500 kWh ekstra om året." },

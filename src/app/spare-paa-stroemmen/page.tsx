@@ -19,9 +19,9 @@ const faqs = [
   { question: "Hvor tjekker jeg mit strømforbrug?", answer: "Log ind på Eloverblik.dk med MitID. Her kan du se dit forbrug time for time, dag for dag og måned for måned. Du kan også se din gennemsnitlige kWh-pris og sammenligne med landsgennemsnittet." },
   { question: "Hvad bruger mest strøm i køkkenet?", answer: "Køleskabet er den største strømsluger i køkkenet fordi det kører 24/7 (200-500 kWh/år). Derefter kommer ovnen (150-300 kWh/år) og opvaskemaskinen (200-300 kWh/år). Brug eco-program og undgå at åbne køleskabet unødvendigt." },
   { question: "Kan man spare strøm i badeværelset?", answer: "Ja, de største besparelser i badeværelset er: kortere brusebade (sparer varmt vand og evt. el til varmtvandsbeholder), sluk lys når du forlader rummet, og brug en hårtørrer på lav effekt. En varmtvandsbeholder kan bruge 1.500-3.000 kWh/år." },
-  { question: "Sparer det at slukke for computeren om natten?", answer: "Ja, en stationær computer i standby bruger 2-10 W (17-88 kWh/år, op til 219 kr.). Sluk den helt om natten og i weekender. Endnu bedre: brug dvale-tilstand der bruger under 1 W og starter op på sekunder." },
-  { question: "Er det dyrt at oplade telefonen?", answer: "Nej, det koster ca. 3-5 kr./år at oplade en smartphone dagligt. En opladning bruger ca. 0,01 kWh. Selv med 2 telefoner og en tablet er den samlede udgift under 15 kr./år." },
-  { question: "Hvad er den største enkeltbesparelse?", answer: "Skift til det billigste elselskab. Forskellen mellem gennemsnitsprisen (2,50 kr./kWh) og billigste udbyder (ca. 1,54 kr./kWh) er ca. 1,00 kr./kWh. For en familie med 4.000 kWh/år svarer det til 4.000 kr./år i besparelse." },
+  { question: "Sparer det at slukke for computeren om natten?", answer: "Ja, en stationær computer i standby bruger 2-10 W (17-88 kWh/år, op til 163 kr.). Sluk den helt om natten og i weekender. Endnu bedre: brug dvale-tilstand der bruger under 1 W og starter op på sekunder." },
+  { question: "Er det dyrt at oplade telefonen?", answer: "Nej, det koster ca. 2-4 kr./år at oplade en smartphone dagligt. En opladning bruger ca. 0,01 kWh. Selv med 2 telefoner og en tablet er den samlede udgift under 11 kr./år." },
+  { question: "Hvad er den største enkeltbesparelse?", answer: "De største besparelser kommer fra forbruget selv — varmepumpe, tørretumbler og elbil. Et skifte til den billigste elaftale giver ca. 10 øre/kWh, svarende til ca. 544 kr./år for en familie med 4.000 kWh/år." },
 ];
 
 export default function SparePaaStroemmenPage() {
@@ -173,13 +173,13 @@ export default function SparePaaStroemmenPage() {
             Vask og tørring af tøj er overraskende dyrt i strøm. En
             <Link href="/vaskemaskine/"> vaskemaskine</Link> og
             <Link href="/toerretumbler/"> tørretumbler</Link> bruger tilsammen
-            450-750 kWh/år (1.125-1.875 kr.). Her er de vigtigste besparelser.
+            450-750 kWh/år (837-1.395 kr.). Her er de vigtigste besparelser.
           </p>
           <ul>
             <li><strong>Vask ved 30°C</strong> — sparer 60% strøm sammenlignet med 60°C. Moderne vaskemidler virker fint ved 30°C.</li>
             <li><strong>Brug eco-program</strong> — tager længere tid men bruger markant mindre strøm og vand.</li>
             <li><strong>Fyld maskinen helt</strong> — en halvfyldt maskine bruger næsten lige så meget som en fuld.</li>
-            <li><strong>Drop tørretumbleren</strong> — brug tørrestativ og spar 300-500 kWh/år (750-1.250 kr.).</li>
+            <li><strong>Drop tørretumbleren</strong> — brug tørrestativ og spar 300-500 kWh/år (558-930 kr.).</li>
             <li><strong>Centrifuger først</strong> — jo højere centrifugehastighed, jo mindre energi bruger tørretumbleren.</li>
             <li><strong>Kør om natten</strong> — billigere strøm med spotprisaftale (30-50% besparelse kl. 0-6).</li>
           </ul>
@@ -190,7 +190,7 @@ export default function SparePaaStroemmenPage() {
             Et typisk stue-setup med <Link href="/tv/">tv</Link>, soundbar,
             <Link href="/playstation/"> spillekonsol</Link>, streaming-boks og
             subwoofer bruger tilsammen 10-40 W i standby — det er 88-350 kWh/år
-            (219-876 kr.) i ren spild.
+            (163-652 kr.) i ren spild.
           </p>
           <p>
             Tilslut alle stue-apparater til en stikdåse med afbryder, og sluk
@@ -214,7 +214,7 @@ export default function SparePaaStroemmenPage() {
             standby bruger 2-10 W.
           </p>
           <ul>
-            <li><strong>Brug laptop fremfor stationær</strong> — sparer 200-300 kWh/år (500-750 kr.).</li>
+            <li><strong>Brug laptop fremfor stationær</strong> — sparer 200-300 kWh/år (372-558 kr.).</li>
             <li><strong>Reducér skærmens lysstyrke</strong> — spar 10-20% på skærmens strømforbrug.</li>
             <li><strong>Sluk printer og skærm</strong> — brug stikdåse med afbryder til alt kontorudstyr.</li>
             <li><strong>Aktivér dvaletilstand</strong> — computeren sover efter 5-10 min. uden brug.</li>
@@ -224,7 +224,7 @@ export default function SparePaaStroemmenPage() {
           <p>
             Badeværelset bruger typisk ikke meget strøm direkte, men hvis du har
             en elektrisk <Link href="/varmtvandsbeholder/">varmtvandsbeholder</Link>,
-            kan den bruge 1.500-3.000 kWh/år (3.750-7.500 kr.) — det er en af
+            kan den bruge 1.500-3.000 kWh/år (2.790-5.580 kr.) — det er en af
             hjemmets absolut største strømslugere.
           </p>
           <ul>
@@ -273,7 +273,7 @@ export default function SparePaaStroemmenPage() {
             </tbody>
           </table>
           <p>
-            <em>Alle besparelser beregnet med 2,50 kr./kWh. Med Altid Energi
+            <em>Alle besparelser beregnet med 1,86 kr./kWh. Med Altid Energi
             (1,54 kr./kWh) er de absolutte tal lavere, men du sparer allerede på
             tiltag #1.</em>
           </p>

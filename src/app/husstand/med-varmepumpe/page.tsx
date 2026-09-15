@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 
 const faqs = [
   { question: "Hvor meget strøm bruger en familie med varmepumpe?", answer: "En typisk familie på 4 i et 130 m² hus med luft-til-vand varmepumpe bruger 7.000-11.000 kWh/år totalt — heraf 4.000-6.000 kWh til varmepumpen og 3.500-5.000 kWh til husholdning." },
-  { question: "Er det dyrt at have varmepumpe?", answer: "Nej, det er billigere end gas/oliefyr. Selvom elforbruget stiger til 17.500-27.500 kr./år, sparer du 18.000-30.000 kr./år i gas/olie. Nettobesparelsen er typisk 5.000-15.000 kr./år." },
+  { question: "Er det dyrt at have varmepumpe?", answer: "Nej, det er billigere end gas/oliefyr. Selvom elforbruget stiger til 13.000-20.500 kr./år, sparer du 18.000-30.000 kr./år i gas/olie. Nettobesparelsen er typisk 5.000-9.500 kr./år." },
   { question: "Hvor meget ekstra strøm bruger en varmepumpe?", answer: "En luft-til-luft tilføjer 2.000-4.000 kWh/år, luft-til-vand 4.000-6.000 kWh/år og jordvarme 3.500-5.500 kWh/år. Det afhænger af boligens størrelse og isolering." },
   { question: "Hvad er det samlede elforbrug med jordvarme?", answer: "Med jordvarme bruger en gennemsnitlig husstand 7.000-10.500 kWh/år totalt (husholdning + varme). Jordvarme har højere COP end luft-til-vand og bruger derfor lidt mindre strøm." },
-  { question: "Stiger elregningen meget med varmepumpe?", answer: "Ja, elforbruget fordobles typisk. Men den samlede energiudgift falder — du betaler mere i strøm men slipper for gas/olie. Netto sparer de fleste 5.000-15.000 kr./år." },
+  { question: "Stiger elregningen meget med varmepumpe?", answer: "Ja, elforbruget fordobles typisk. Men den samlede energiudgift falder — du betaler mere i strøm men slipper for gas/olie. Netto sparer de fleste 3.720-11.160 kr./år." },
   { question: "Hvad koster opvarmning med varmepumpe om måneden?", answer: "Varmepumpen koster gennemsnitligt 830-1.250 kr./md. i strøm. Om vinteren er det 1.500-3.000 kr./md., mens det om sommeren kun er 75-375 kr./md." },
-  { question: "Bør jeg skifte elselskab med varmepumpe?", answer: "Ja, absolut! Med 9.000 kWh/år giver et billigere elselskab stor besparelse. Forskellen mellem gns. (2,00 kr.) og Altid Energi (1,54 kr.) er 4.140 kr./år ved det forbrug." },
+  { question: "Bør jeg skifte elselskab med varmepumpe?", answer: "Ja. Med 9.000 kWh/år er forskellen mellem en gennemsnitlig elaftale (1,95 kr./kWh alt i alt) og den billigste (1,83 kr./kWh inkl. abonnement) ca. 1.014 kr./år." },
   { question: "Hvornår på døgnet bruger varmepumpen mest?", answer: "Varmepumpen arbejder hårdest om morgenen (6-9) og aftenen (17-21). Med fleksibel elpris kan du programmere den til at forvarme om natten når strømmen er billigst." },
 ];
 
@@ -90,7 +90,7 @@ export default function MedVarmepumpePage() {
               <tr><td><strong>Stor familie (5+) + l-t-v</strong></td><td>5.500</td><td>5.500</td><td>11.000</td><td>27.500 kr.</td></tr>
             </tbody>
           </table>
-          <p><em>Priser beregnet med 2,50 kr./kWh inkl. afgifter og transport.</em></p>
+          <p><em>Priser beregnet med 1,86 kr./kWh inkl. afgifter og transport.</em></p>
 
           <h2>Varmepumpe vs. gasfyr — den samlede besparelse</h2>
           <p>
@@ -149,15 +149,16 @@ export default function MedVarmepumpePage() {
 
           <h2>Vigtigheden af elselskabsvalg med varmepumpe</h2>
           <p>
-            Med et elforbrug på 9.000 kWh/år er forskellen mellem elselskaber enorm.
-            Et skifte fra gennemsnitsprisen (2,00 kr./kWh) til det billigste selskab
-            (1,54 kr./kWh) giver en besparelse på <strong>4.140 kr./år</strong> — det
-            er nok til at betale hele familiens <Link href="/opvaskemaskine/">opvaskemaskine</Link>- og
-            <Link href="/vaskemaskine/"> vaskemaskine</Link>-forbrug.
+            Med et elforbrug på 9.000 kWh/år betyder valget af elselskab mere end for
+            de fleste. Et skifte fra en gennemsnitlig elaftale (1,95 kr./kWh alt i alt)
+            til den billigste (1,83 kr./kWh inkl. abonnement) giver en besparelse på{" "}
+            <strong>ca. 1.014 kr./år</strong> — nok til at dække familiens{" "}
+            <Link href="/opvaskemaskine/">opvaskemaskine</Link> og{" "}
+            <Link href="/vaskemaskine/">vaskemaskine</Link> året rundt.
           </p>
         </div>
 
-        <AffiliateCta />
+        <AffiliateCta kwh={9000} household="et hus med varmepumpe" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>

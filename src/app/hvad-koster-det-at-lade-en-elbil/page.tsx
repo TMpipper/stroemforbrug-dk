@@ -9,18 +9,18 @@ import AffiliateCta from "@/components/marketing/AffiliateCta";
 export const metadata: Metadata = {
   title: "Hvad koster det at lade en elbil? 2026 → Se pris pr. kWh",
   description:
-    "Det koster 75-175 kr. at lade en elbil fuldt op derhjemme i 2026 (2,50 kr./kWh). Se pris pr. km, sammenlign hjemmeladning vs. offentlig ladning, og beregn din månedlige udgift.",
+    "Det koster 75-175 kr. at lade en elbil fuldt op derhjemme i 2026 (1,86 kr./kWh). Se pris pr. km, sammenlign hjemmeladning vs. offentlig ladning, og beregn din månedlige udgift.",
   alternates: { canonical: `${SITE_CONFIG.url}/hvad-koster-det-at-lade-en-elbil/` },
 };
 
 const faqs = [
-  { question: "Hvad koster det at lade en elbil derhjemme?", answer: "Med en gennemsnitlig elpris på 2,50 kr./kWh koster det 75-175 kr. at lade en elbil fuldt op derhjemme, afhængigt af batteristørrelse (30-70 kWh). Med det billigste elselskab (1,54 kr./kWh) koster det kun 46-108 kr." },
-  { question: "Hvad koster det pr. km at køre elbil?", answer: "En elbil bruger typisk 15-20 kWh/100 km. Med en elpris på 2,50 kr./kWh koster det 0,38-0,50 kr./km — ca. 3-4 gange billigere end en benzinbil (1,20-1,60 kr./km)." },
-  { question: "Er det billigere at lade hjemme eller offentligt?", answer: "Hjemmeladning er altid billigst: 2,00-3,00 kr./kWh. Offentlig AC-ladning koster 3,50-5,00 kr./kWh, og hurtigladning (DC) koster 4,50-8,00 kr./kWh. Hjemmeladning sparer dig 40-70% sammenlignet med hurtigladning." },
+  { question: "Hvad koster det at lade en elbil derhjemme?", answer: "Med en gennemsnitlig elpris på 1,86 kr./kWh koster det 56-130 kr. at lade en elbil fuldt op derhjemme, afhængigt af batteristørrelse (30-70 kWh). Med det billigste elselskab (1,76 kr./kWh) koster det 53-123 kr." },
+  { question: "Hvad koster det pr. km at køre elbil?", answer: "En elbil bruger typisk 15-20 kWh/100 km. Med en elpris på 1,86 kr./kWh koster det 0,28-0,37 kr./km — ca. 4 gange billigere end en benzinbil (1,20-1,60 kr./km)." },
+  { question: "Er det billigere at lade hjemme eller offentligt?", answer: "Hjemmeladning er altid billigst: 1,76-1,95 kr./kWh. Offentlig AC-ladning koster 3,50-5,00 kr./kWh, og hurtigladning (DC) koster 4,50-8,00 kr./kWh. Hjemmeladning sparer dig 50-75 % sammenlignet med hurtigladning." },
   { question: "Hvor lang tid tager det at lade en elbil derhjemme?", answer: "Med en standard hjemmelader (7,4 kW / 1-faset 32A) tager en fuld opladning 5-10 timer. Med en 11 kW 3-faset lader tager det 3-6 timer. Med almindelig stikkontakt (2,3 kW) tager det 15-30 timer — det frarådes til daglig brug." },
   { question: "Hvad koster en hjemmelader til elbil?", answer: "En hjemmelader (wallbox) koster 5.000-15.000 kr. inkl. installation. Det er en engangsinvestering der betaler sig hjem hurtigt, da hjemmeladning er markant billigere end offentlig ladning. Vælg en med smart styring for at lade om natten." },
-  { question: "Hvad koster det i strøm at køre 15.000 km om året?", answer: "Med et gennemsnitligt forbrug på 17 kWh/100 km og 15.000 km/år bruger du ca. 2.550 kWh. Med 2,50 kr./kWh koster det 6.375 kr./år — mod ca. 15.000-18.000 kr. for en benzinbil. Du sparer 9.000-12.000 kr./år." },
-  { question: "Stiger min elregning meget med en elbil?", answer: "Ja, en elbil øger dit årlige elforbrug med typisk 2.000-3.500 kWh (5.000-8.750 kr./år). Men det er stadig langt billigere end benzin/diesel. For at minimere udgiften, lad om natten med spotpris og vælg billigste elselskab." },
+  { question: "Hvad koster det i strøm at køre 15.000 km om året?", answer: "Med et gennemsnitligt forbrug på 17 kWh/100 km og 15.000 km/år bruger du ca. 2.550 kWh. Med 1,86 kr./kWh koster det 4.743 kr./år — mod ca. 15.000-18.000 kr. for en benzinbil. Du sparer 10.000-13.000 kr./år." },
+  { question: "Stiger min elregning meget med en elbil?", answer: "Ja, en elbil øger dit årlige elforbrug med typisk 2.000-3.500 kWh (3.720-6.510 kr./år). Men det er stadig langt billigere end benzin/diesel. For at minimere udgiften, lad om natten med spotpris og vælg billigste elselskab." },
   { question: "Kan man lade en elbil med solceller?", answer: "Ja, solceller og elbil er en perfekt kombination. Et typisk solcelleanlæg producerer 4.000-8.000 kWh/år — mere end nok til at dække elbilens forbrug. Med en smart lader kan du programmere bilen til at lade når solcellerne producerer mest." },
 ];
 
@@ -38,7 +38,7 @@ export default function ElbilLadningPage() {
             faqSchema(faqs),
             articleSchema({
               title: "Hvad koster det at lade en elbil? 2026",
-              description: "Det koster 75-175 kr. at lade en elbil fuldt op derhjemme med en elpris på 2,50 kr./kWh.",
+              description: "Det koster 75-175 kr. at lade en elbil fuldt op derhjemme med en elpris på 1,86 kr./kWh.",
               url: `${SITE_CONFIG.url}/hvad-koster-det-at-lade-en-elbil/`,
               datePublished: "2026-07-29",
               dateModified: SITE_CONFIG.lastUpdated,
@@ -62,10 +62,10 @@ export default function ElbilLadningPage() {
         <QuickAnswer>
           <p>
             Det koster 75-175 kr. at lade en elbil fuldt op derhjemme med en
-            gennemsnitlig elpris på 2,50 kr./kWh. Pr. kilometer koster det
+            gennemsnitlig elpris på 1,86 kr./kWh. Pr. kilometer koster det
             0,38-0,50 kr. — ca. 3-4 gange billigere end benzin. Med det
-            billigste elselskab (Altid Energi, 1,54 kr./kWh) falder prisen til
-            46-108 kr. pr. fuld opladning.
+            billigste elselskab (Altid Energi, 1,76 kr./kWh) falder prisen til
+            53-123 kr. pr. fuld opladning.
           </p>
         </QuickAnswer>
 
@@ -75,7 +75,7 @@ export default function ElbilLadningPage() {
             Prisen for at lade en elbil afhænger af batteristørrelse, forbrug og
             kWh-pris. Nedenstående tabel viser hvad det koster at lade 5 af de
             mest populære elbiler i Danmark fuldt op derhjemme — både med
-            gennemsnitspris (2,50 kr./kWh) og med Altid Energi (1,54 kr./kWh).
+            gennemsnitspris (1,86 kr./kWh) og med Altid Energi (1,76 kr./kWh).
           </p>
           <table>
             <thead>
@@ -131,8 +131,8 @@ export default function ElbilLadningPage() {
               <tr><th>Drivmiddel</th><th>Forbrug</th><th>Pris pr. enhed</th><th>Pris pr. km</th><th>15.000 km/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Elbil (hjemme)</strong></td><td>17 kWh/100 km</td><td>2,50 kr./kWh</td><td>0,43 kr.</td><td>6.375 kr.</td></tr>
-              <tr><td><strong>Elbil (Altid Energi)</strong></td><td>17 kWh/100 km</td><td>1,54 kr./kWh</td><td>0,26 kr.</td><td>3.927 kr.</td></tr>
+              <tr><td><strong>Elbil (hjemme)</strong></td><td>17 kWh/100 km</td><td>1,86 kr./kWh</td><td>0,32 kr.</td><td>4.743 kr.</td></tr>
+              <tr><td><strong>Elbil (billigste aftale)</strong></td><td>17 kWh/100 km</td><td>1,76 kr./kWh</td><td>0,30 kr.</td><td>4.488 kr.</td></tr>
               <tr><td><strong>Elbil (hurtiglader)</strong></td><td>17 kWh/100 km</td><td>6,00 kr./kWh</td><td>1,02 kr.</td><td>15.300 kr.</td></tr>
               <tr><td><strong>Benzinbil</strong></td><td>6,5 l/100 km</td><td>13,50 kr./l</td><td>0,88 kr.</td><td>13.163 kr.</td></tr>
               <tr><td><strong>Dieselbil</strong></td><td>5,5 l/100 km</td><td>12,50 kr./l</td><td>0,69 kr.</td><td>10.313 kr.</td></tr>
@@ -154,10 +154,10 @@ export default function ElbilLadningPage() {
               <tr><th>Elpris</th><th>kWh/år</th><th>Pris/måned</th><th>Pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>1,54 kr./kWh (Altid Energi)</strong></td><td>2.550</td><td>327 kr.</td><td>3.927 kr.</td></tr>
-              <tr><td><strong>2,00 kr./kWh (nat-ladning)</strong></td><td>2.550</td><td>425 kr.</td><td>5.100 kr.</td></tr>
-              <tr><td><strong>2,50 kr./kWh (gennemsnit)</strong></td><td>2.550</td><td>531 kr.</td><td>6.375 kr.</td></tr>
-              <tr><td><strong>3,00 kr./kWh (dyr periode)</strong></td><td>2.550</td><td>638 kr.</td><td>7.650 kr.</td></tr>
+              <tr><td><strong>1,45 kr./kWh (nat-ladning)</strong></td><td>2.550</td><td>308 kr.</td><td>3.698 kr.</td></tr>
+              <tr><td><strong>1,76 kr./kWh (billigste aftale)</strong></td><td>2.550</td><td>374 kr.</td><td>4.488 kr.</td></tr>
+              <tr><td><strong>1,86 kr./kWh (gennemsnit)</strong></td><td>2.550</td><td>395 kr.</td><td>4.743 kr.</td></tr>
+              <tr><td><strong>3,00 kr./kWh (dyr vinterperiode)</strong></td><td>2.550</td><td>638 kr.</td><td>7.650 kr.</td></tr>
             </tbody>
           </table>
           <p>
@@ -176,9 +176,10 @@ export default function ElbilLadningPage() {
 
           <h3>1. Vælg billigste elselskab</h3>
           <p>
-            Skift til et elselskab med 0 øre tillæg og 0 kr. abonnement (f.eks.
-            Altid Energi). Forskellen mellem 2,50 kr./kWh og 1,54 kr./kWh er
-            næsten 1,00 kr./kWh — det sparer dig ca. 2.450 kr./år på
+            Skift til et elselskab med 0 øre i spottillæg og lavt abonnement
+            (f.eks. Altid Energi, abonnement fra 18 kr./md.). Forskellen mellem
+            en gennemsnitlig aftale (1,86 kr./kWh) og den billigste (1,76
+            kr./kWh) er ca. 10 øre/kWh — det sparer dig ca. 255 kr./år på
             elbil-ladning alene. Læs mere om <Link href="/hvad-koster-en-kwh/">hvad en kWh koster</Link>.
           </p>
 
@@ -217,13 +218,13 @@ export default function ElbilLadningPage() {
           </p>
           <table>
             <thead>
-              <tr><th>Scenario</th><th>Forbrug/år</th><th>Pris/år (2,50 kr.)</th><th>Pris/år (1,54 kr.)</th></tr>
+              <tr><th>Scenario</th><th>Forbrug/år</th><th>Pris/år (1,86 kr.)</th><th>Pris/år (1,76 kr.)</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Husstand uden elbil</strong></td><td>4.000 kWh</td><td>10.000 kr.</td><td>6.160 kr.</td></tr>
-              <tr><td><strong>Husstand + elbil (10.000 km)</strong></td><td>5.700 kWh</td><td>14.250 kr.</td><td>8.778 kr.</td></tr>
-              <tr><td><strong>Husstand + elbil (15.000 km)</strong></td><td>6.550 kWh</td><td>16.375 kr.</td><td>10.087 kr.</td></tr>
-              <tr><td><strong>Husstand + elbil (20.000 km)</strong></td><td>7.400 kWh</td><td>18.500 kr.</td><td>11.396 kr.</td></tr>
+              <tr><td><strong>Husstand uden elbil</strong></td><td>4.000 kWh</td><td>7.440 kr.</td><td>7.040 kr.</td></tr>
+              <tr><td><strong>Husstand + elbil (10.000 km)</strong></td><td>5.700 kWh</td><td>10.602 kr.</td><td>10.032 kr.</td></tr>
+              <tr><td><strong>Husstand + elbil (15.000 km)</strong></td><td>6.550 kWh</td><td>12.183 kr.</td><td>11.528 kr.</td></tr>
+              <tr><td><strong>Husstand + elbil (20.000 km)</strong></td><td>7.400 kWh</td><td>13.764 kr.</td><td>13.024 kr.</td></tr>
             </tbody>
           </table>
           <p>
@@ -237,8 +238,8 @@ export default function ElbilLadningPage() {
           <p>
             Mange husstande med <Link href="/varmepumpe/">varmepumpe</Link> og elbil
             har et samlet elforbrug på 8.000-14.000 kWh/år. Det gør valg af
-            elselskab endnu vigtigere — forskellen mellem 2,50 kr./kWh og 1,54
-            kr./kWh er op til 13.440 kr./år ved 14.000 kWh. Har du både
+            elselskab endnu vigtigere — forskellen mellem 1,86 kr./kWh og 1,76
+            kr./kWh er ca. 1.400 kr./år ved 14.000 kWh. Har du både
             varmepumpe og elbil, er det den absolut vigtigste besparelse at
             vælge det billigste elselskab.
           </p>
@@ -250,7 +251,7 @@ export default function ElbilLadningPage() {
           </p>
         </div>
 
-        <AffiliateCta />
+        <AffiliateCta kwh={7000} household="en husstand med elbil" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>

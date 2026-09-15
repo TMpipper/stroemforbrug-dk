@@ -9,7 +9,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger en affugter? Se typisk elforbrug i kWh pr. år, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
     heading: "Hvor meget strøm bruger en affugter?",
     quickAnswer:
-      "En affugter bruger typisk 200–600 kWh om året afhængigt af type, kapacitet og driftstimer. Det svarer til en årlig elregning på 500–1.500 kr. ved 2,50 kr./kWh. En kompressoraffugter er mest effektiv i opvarmede rum, mens en adsorptionsaffugter klarer sig bedst ved lave temperaturer.",
+      "En affugter bruger typisk 200–600 kWh om året afhængigt af type, kapacitet og driftstimer. Det svarer til en årlig elregning på 372–1.116 kr. ved 1,86 kr./kWh. En kompressoraffugter er mest effektiv i opvarmede rum, mens en adsorptionsaffugter klarer sig bedst ved lave temperaturer.",
     kwhRange: [200, 600],
     typicalKwh: 370,
     wattage: 450,
@@ -30,15 +30,15 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>En affugter er et vigtigt apparat i mange danske hjem – særligt i kældre, bryggerser og sommerhuse, hvor fugt kan føre til skimmelsvamp og dårligt indeklima. Men affugteren kører ofte mange timer i døgnet, og det kan mærkes på elregningen. I denne guide gennemgår vi det faktiske strømforbrug for forskellige typer affugtere, sammenligner populære modeller og giver dig konkrete råd til at holde udgifterne nede.</p>
 
 <h2>Hvor mange kWh bruger en affugter om året?</h2>
-<p>En affugter bruger typisk 200–600 kWh årligt afhængigt af type, kapacitet og antal driftstimer. Ved en elpris på 2,50 kr./kWh svarer det til 500–1.500 kr. om året. Den største forskel ligger i, om du bruger en kompressoraffugter eller en adsorptionsaffugter – og hvor mange timer den kører dagligt.</p>
+<p>En affugter bruger typisk 200–600 kWh årligt afhængigt af type, kapacitet og antal driftstimer. Ved en elpris på 1,86 kr./kWh svarer det til 372–1.116 kr. om året. Den største forskel ligger i, om du bruger en kompressoraffugter eller en adsorptionsaffugter – og hvor mange timer den kører dagligt.</p>
 
 <table>
-<thead><tr><th>Affugtertype</th><th>Effekt (watt)</th><th>Timer/dag</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Affugtertype</th><th>Effekt (watt)</th><th>Timer/dag</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Kompressor (lille, 10 L)</td><td>200–280 W</td><td>8 timer</td><td>180–250 kWh</td><td>450–625 kr.</td></tr>
-<tr><td>Kompressor (stor, 20 L)</td><td>350–500 W</td><td>8 timer</td><td>300–450 kWh</td><td>750–1.125 kr.</td></tr>
-<tr><td>Adsorption (10 L)</td><td>500–700 W</td><td>8 timer</td><td>400–600 kWh</td><td>1.000–1.500 kr.</td></tr>
-<tr><td>Peltier (mini)</td><td>50–80 W</td><td>24 timer</td><td>150–250 kWh</td><td>375–625 kr.</td></tr>
+<tr><td>Kompressor (lille, 10 L)</td><td>200–280 W</td><td>8 timer</td><td>180–250 kWh</td><td>335–465 kr.</td></tr>
+<tr><td>Kompressor (stor, 20 L)</td><td>350–500 W</td><td>8 timer</td><td>300–450 kWh</td><td>558–837 kr.</td></tr>
+<tr><td>Adsorption (10 L)</td><td>500–700 W</td><td>8 timer</td><td>400–600 kWh</td><td>744–1.116 kr.</td></tr>
+<tr><td>Peltier (mini)</td><td>50–80 W</td><td>24 timer</td><td>150–250 kWh</td><td>279–465 kr.</td></tr>
 </tbody>
 </table>
 
@@ -62,10 +62,10 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Type</th><th>Kapacitet</th><th>Watt</th><th>kWh/år (8 t/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Meaco Arete One 20L</td><td>Kompressor</td><td>20 L/dag</td><td>255 W</td><td>230 kWh</td><td>575 kr.</td></tr>
-<tr><td>Woods MDK26</td><td>Kompressor</td><td>25 L/dag</td><td>430 W</td><td>340 kWh</td><td>850 kr.</td></tr>
-<tr><td>Honeywell TP-Big</td><td>Kompressor</td><td>24 L/dag</td><td>550 W</td><td>480 kWh</td><td>1.200 kr.</td></tr>
-<tr><td>Wood's SW-22FW</td><td>Adsorption</td><td>8 L/dag</td><td>600 W</td><td>520 kWh</td><td>1.300 kr.</td></tr>
+<tr><td>Meaco Arete One 20L</td><td>Kompressor</td><td>20 L/dag</td><td>255 W</td><td>230 kWh</td><td>428 kr.</td></tr>
+<tr><td>Woods MDK26</td><td>Kompressor</td><td>25 L/dag</td><td>430 W</td><td>340 kWh</td><td>632 kr.</td></tr>
+<tr><td>Honeywell TP-Big</td><td>Kompressor</td><td>24 L/dag</td><td>550 W</td><td>480 kWh</td><td>893 kr.</td></tr>
+<tr><td>Wood's SW-22FW</td><td>Adsorption</td><td>8 L/dag</td><td>600 W</td><td>520 kWh</td><td>967 kr.</td></tr>
 </tbody>
 </table>
 
@@ -77,17 +77,17 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <li><strong>Luftfugtighed:</strong> Jo højere fugt, jo længere kører affugteren. I en fugtig kælder kan den køre 12–16 timer dagligt, mens et tørt soveværelse kun kræver 4–6 timer.</li>
 <li><strong>Temperatur:</strong> Kompressoraffugtere mister 50–70 % af deres kapacitet ved temperaturer under 10°C.</li>
 <li><strong>Hygrostat:</strong> En indbygget hygrostat slukker automatisk, når den ønskede fugtighed er nået – det sparer 20–40 % strøm.</li>
-<li><strong>Energiklasse:</strong> Forskellen mellem A++ og C kan være over 300 kWh om året (750 kr.).</li>
+<li><strong>Energiklasse:</strong> Forskellen mellem A++ og C kan være over 300 kWh om året (558 kr.).</li>
 </ul>
 
 <h2>Affugter i sommerhus – særlige hensyn</h2>
-<p>Mange danske sommerhusejere bruger en affugter året rundt for at beskytte mod fugt og skimmel. I et uopvarmet sommerhus er en adsorptionsaffugter det bedste valg, da den fungerer ned til 1°C. Forbruget kan dog blive betydeligt: 500–800 kWh om året, svarende til 1.250–2.000 kr.</p>
+<p>Mange danske sommerhusejere bruger en affugter året rundt for at beskytte mod fugt og skimmel. I et uopvarmet sommerhus er en adsorptionsaffugter det bedste valg, da den fungerer ned til 1°C. Forbruget kan dog blive betydeligt: 500–800 kWh om året, svarende til 930–1.488 kr.</p>
 
 <table>
 <thead><tr><th>Sæson</th><th>Timer/dag</th><th>Månedligt kWh</th><th>Månedlig pris</th></tr></thead>
 <tbody>
-<tr><td>Vinter (okt–mar)</td><td>10–16 timer</td><td>45–70 kWh</td><td>113–175 kr.</td></tr>
-<tr><td>Sommer (apr–sep)</td><td>6–10 timer</td><td>25–40 kWh</td><td>63–100 kr.</td></tr>
+<tr><td>Vinter (okt–mar)</td><td>10–16 timer</td><td>45–70 kWh</td><td>84–130 kr.</td></tr>
+<tr><td>Sommer (apr–sep)</td><td>6–10 timer</td><td>25–40 kWh</td><td>47–74 kr.</td></tr>
 </tbody>
 </table>
 
@@ -115,7 +115,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       { question: "Hvad er billigst – kompressor eller adsorption?", answer: "En kompressoraffugter bruger 30–50 % mindre strøm ved stuetemperatur. Men under 10°C er adsorption mere effektiv og dermed billigst i drift." },
       { question: "Kan man spare strøm med en hygrostat?", answer: "Ja, en hygrostat kan reducere forbruget med 20–40 % ved at slukke affugteren, når den ønskede fugtighed er opnået. De fleste moderne modeller har den indbygget." },
       { question: "Hvor mange timer skal en affugter køre?", answer: "Typisk 6–12 timer dagligt afhængigt af rummets fugtighed. Med hygrostat kører den kun, når det er nødvendigt, og du behøver ikke tænke over det." },
-      { question: "Hvad koster det at køre en affugter 24 timer?", answer: "En kompressoraffugter på 350 W koster ca. 21 kr. pr. døgn (0,35 kW × 24 timer × 2,50 kr.). En adsorptionsaffugter på 600 W koster ca. 36 kr." },
+      { question: "Hvad koster det at køre en affugter 24 timer?", answer: "En kompressoraffugter på 350 W koster ca. 16 kr. pr. døgn (0,35 kW × 24 timer × 1,86 kr.). En adsorptionsaffugter på 600 W koster ca. 27 kr." },
       { question: "Er det nødvendigt med affugter i sommerhus?", answer: "I de fleste danske sommerhuse ja, især om vinteren. Uden affugter kan luftfugtigheden nå 80–90 %, hvilket fører til skimmelsvamp og lugtgener." },
       { question: "Hvilken affugter bruger mindst strøm?", answer: "Kompressoraffugtere med A++ energimærke som Meaco Arete One bruger mindst strøm – ned til 200 kWh/år ved normal brug." },
     ],
@@ -148,7 +148,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger en induktionskogeplade? Se typisk elforbrug i kWh, sammenlign med keramisk og gas, og beregn din årlige udgift i 2026.",
     heading: "Hvor meget strøm bruger en induktionskogeplade?",
     quickAnswer:
-      "En induktionskogeplade bruger typisk 300–550 kWh om året ved daglig madlavning. Det svarer til 750–1.375 kr. årligt ved 2,50 kr./kWh. Induktion er den mest energieffektive kogepladettype og bruger 25–40 % mindre strøm end en keramisk kogeplade.",
+      "En induktionskogeplade bruger typisk 300–550 kWh om året ved daglig madlavning. Det svarer til 558–1.023 kr. årligt ved 1,86 kr./kWh. Induktion er den mest energieffektive kogepladettype og bruger 25–40 % mindre strøm end en keramisk kogeplade.",
     kwhRange: [300, 550],
     typicalKwh: 400,
     wattage: 2000,
@@ -169,14 +169,14 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Induktionskogeplader er blevet standarden i danske køkkener – og med god grund. De er hurtigere, sikrere og markant mere energieffektive end både keramiske og gaskomfurer. Men hvor meget strøm bruger de egentlig? I denne guide gennemgår vi det faktiske energiforbrug, sammenligner med andre kogetyper og giver dig konkrete tips til at holde elregningen nede.</p>
 
 <h2>Hvor mange kWh bruger en induktionskogeplade om året?</h2>
-<p>En induktionskogeplade bruger typisk 300–550 kWh årligt ved daglig madlavning for en gennemsnitlig dansk familie. Det svarer til 750–1.375 kr. om året ved 2,50 kr./kWh. Forbruget afhænger primært af, hvor ofte og hvor længe du tilbereder mad, samt kogepladens effektivitet.</p>
+<p>En induktionskogeplade bruger typisk 300–550 kWh årligt ved daglig madlavning for en gennemsnitlig dansk familie. Det svarer til 558–1.023 kr. om året ved 1,86 kr./kWh. Forbruget afhænger primært af, hvor ofte og hvor længe du tilbereder mad, samt kogepladens effektivitet.</p>
 
 <table>
-<thead><tr><th>Husstand</th><th>Madlavning/dag</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Husstand</th><th>Madlavning/dag</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>1 person</td><td>20–30 min</td><td>180–280 kWh</td><td>450–700 kr.</td></tr>
-<tr><td>2 personer</td><td>30–45 min</td><td>280–400 kWh</td><td>700–1.000 kr.</td></tr>
-<tr><td>Familie (4 pers.)</td><td>45–75 min</td><td>400–550 kWh</td><td>1.000–1.375 kr.</td></tr>
+<tr><td>1 person</td><td>20–30 min</td><td>180–280 kWh</td><td>335–521 kr.</td></tr>
+<tr><td>2 personer</td><td>30–45 min</td><td>280–400 kWh</td><td>521–744 kr.</td></tr>
+<tr><td>Familie (4 pers.)</td><td>45–75 min</td><td>400–550 kWh</td><td>744–1.023 kr.</td></tr>
 </tbody>
 </table>
 
@@ -192,7 +192,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 </tbody>
 </table>
 
-<p>Skifter du fra keramisk til induktion, kan du spare 200–300 kWh om året – svarende til 500–750 kr. En <a href="/elkedel/">elkedel</a> er dog endnu mere effektiv til blot at koge vand.</p>
+<p>Skifter du fra keramisk til induktion, kan du spare 200–300 kWh om året – svarende til 372–558 kr. En <a href="/elkedel/">elkedel</a> er dog endnu mere effektiv til blot at koge vand.</p>
 
 <h2>Populære induktionskogeplader og deres energiforbrug</h2>
 <p>De mest solgte induktionsplader i Danmark har effektforbrug fra 2.000 til 7.400 watt på tværs af alle zoner. Det maksimale watttal bruges dog sjældent – under normal madlavning trækker en enkelt zone typisk 1.000–2.000 watt.</p>
@@ -200,28 +200,28 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Max. effekt</th><th>Antal zoner</th><th>kWh/år (daglig brug)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Siemens EX875LYC1E flexInduction</td><td>7.400 W</td><td>4</td><td>310 kWh</td><td>775 kr.</td></tr>
-<tr><td>Bosch PXY875KW1E</td><td>7.400 W</td><td>4</td><td>370 kWh</td><td>925 kr.</td></tr>
-<tr><td>Electrolux EIV654 SenseBoil</td><td>7.400 W</td><td>4</td><td>420 kWh</td><td>1.050 kr.</td></tr>
-<tr><td>IKEA Möjlig Induktion</td><td>7.000 W</td><td>4</td><td>450 kWh</td><td>1.125 kr.</td></tr>
+<tr><td>Siemens EX875LYC1E flexInduction</td><td>7.400 W</td><td>4</td><td>310 kWh</td><td>577 kr.</td></tr>
+<tr><td>Bosch PXY875KW1E</td><td>7.400 W</td><td>4</td><td>370 kWh</td><td>688 kr.</td></tr>
+<tr><td>Electrolux EIV654 SenseBoil</td><td>7.400 W</td><td>4</td><td>420 kWh</td><td>781 kr.</td></tr>
+<tr><td>IKEA Möjlig Induktion</td><td>7.000 W</td><td>4</td><td>450 kWh</td><td>837 kr.</td></tr>
 </tbody>
 </table>
 
 <h2>Hvad koster én tilberedning på induktion?</h2>
-<p>En typisk tilberedning på induktion – fx at koge pasta og lave sauce – bruger 0,5–1,0 kWh og koster 1,25–2,50 kr. Det er markant billigere end en <a href="/ovn/">ovn</a>, der bruger 1,0–1,8 kWh pr. tilberedning. Hurtig opvarmning er induktionens største fordel energimæssigt.</p>
+<p>En typisk tilberedning på induktion – fx at koge pasta og lave sauce – bruger 0,5–1,0 kWh og koster 0,93–1,86 kr. Det er markant billigere end en <a href="/ovn/">ovn</a>, der bruger 1,0–1,8 kWh pr. tilberedning. Hurtig opvarmning er induktionens største fordel energimæssigt.</p>
 
 <table>
-<thead><tr><th>Madlavningsopgave</th><th>Tid</th><th>kWh</th><th>Pris (2,50 kr./kWh)</th></tr></thead>
+<thead><tr><th>Madlavningsopgave</th><th>Tid</th><th>kWh</th><th>Pris (1,86 kr./kWh)</th></tr></thead>
 <tbody>
-<tr><td>Koge vand (1 L)</td><td>3–4 min</td><td>0,10 kWh</td><td>0,25 kr.</td></tr>
-<tr><td>Stege bøf (2 stk.)</td><td>8–10 min</td><td>0,30 kWh</td><td>0,75 kr.</td></tr>
-<tr><td>Koge pasta + sauce</td><td>20–30 min</td><td>0,60 kWh</td><td>1,50 kr.</td></tr>
-<tr><td>Simre gryderet (60 min)</td><td>60 min</td><td>0,80 kWh</td><td>2,00 kr.</td></tr>
+<tr><td>Koge vand (1 L)</td><td>3–4 min</td><td>0,10 kWh</td><td>0,19 kr.</td></tr>
+<tr><td>Stege bøf (2 stk.)</td><td>8–10 min</td><td>0,30 kWh</td><td>0,56 kr.</td></tr>
+<tr><td>Koge pasta + sauce</td><td>20–30 min</td><td>0,60 kWh</td><td>1,12 kr.</td></tr>
+<tr><td>Simre gryderet (60 min)</td><td>60 min</td><td>0,80 kWh</td><td>1,49 kr.</td></tr>
 </tbody>
 </table>
 
 <h2>Standbyforbrug og skjulte strømtyve</h2>
-<p>Induktionskogeplader med digitalt display og timer bruger 0,5–2 watt i standby, svarende til 4–18 kWh om året (10–45 kr.). Det er et minimalt forbrug sammenlignet med den aktive brug. Modeller med WiFi-forbindelse kan trække op til 3 watt i standby.</p>
+<p>Induktionskogeplader med digitalt display og timer bruger 0,5–2 watt i standby, svarende til 4–18 kWh om året (7–33 kr.). Det er et minimalt forbrug sammenlignet med den aktive brug. Modeller med WiFi-forbindelse kan trække op til 3 watt i standby.</p>
 
 <h2>Tips til at reducere induktionskogepladens strømforbrug</h2>
 <p>Induktion er allerede den mest effektive kogemulighed, men med de rette vaner kan du spare yderligere 10–20 % på energiforbruget. Her er de mest effektive tiltag.</p>
@@ -237,14 +237,14 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <h2>Sæsonvariation i kogepladens forbrug</h2>
 <p>Induktionskogepladens forbrug er relativt jævnt over året, men de fleste danske familier tilbereder mere varm mad i vintermånederne. Om sommeren falder forbruget typisk 10–20 %, da man oftere griller, spiser salater eller bruger en <a href="/airfryer/">airfryer</a> til lettere retter. En <a href="/mikroovn/">mikroovn</a> er også et energieffektivt alternativ til hurtig opvarmning.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at lave mad på induktion?", answer: "En typisk tilberedning (30 min) koster 1,25–2,50 kr. ved 2,50 kr./kWh. Det er ca. halvdelen af, hvad det koster at bruge en ovn." },
+      { question: "Hvor meget koster det at lave mad på induktion?", answer: "En typisk tilberedning (30 min) koster 0,93–1,86 kr. ved 1,86 kr./kWh. Det er ca. halvdelen af, hvad det koster at bruge en ovn." },
       { question: "Bruger induktion mere strøm end keramisk?", answer: "Nej, induktion bruger 25–40 % mindre strøm end en keramisk kogeplade, da virkningsgraden er 85–90 % mod 50–60 %." },
-      { question: "Hvad er standbyforbruget på en induktionskogeplade?", answer: "De fleste induktionsplader bruger 0,5–2 watt i standby, svarende til 4–18 kWh om året (10–45 kr.)." },
+      { question: "Hvad er standbyforbruget på en induktionskogeplade?", answer: "De fleste induktionsplader bruger 0,5–2 watt i standby, svarende til 4–18 kWh om året (7–33 kr.)." },
       { question: "Kan induktion belaste elsystemet i huset?", answer: "Ja, en induktionsplade kan trække op til 7.400 watt. De fleste danske huse har 25 A-sikring pr. gruppe (5.750 W), så pladen kræver typisk en dedikeret sikringsgruppe." },
       { question: "Er det billigere at koge vand på induktion eller i elkedel?", answer: "En elkedel er 20–30 % mere effektiv til at koge vand. Til 1 liter vand bruger elkedlen ca. 0,08 kWh mod induktionens 0,10 kWh." },
       { question: "Hvor mange kWh bruger induktion pr. time?", answer: "Ved medium effekt bruger en enkelt zone 1,0–1,5 kWh pr. time. Ved fuld boost kan forbruget nå 2,0–3,7 kWh pr. time pr. zone." },
       { question: "Kan man spare strøm ved at skifte fra gas til induktion?", answer: "Du sparer ikke el, men du sparer samlet energi. Induktions højere virkningsgrad (85–90 %) kompenserer for gassens lavere pris. Det samlede energiforbrug falder ca. 30 %." },
-      { question: "Hvor meget sparer man ved at bruge låg?", answer: "At bruge låg kan reducere energiforbruget med op til 30 % ved kogning. Over et år kan det spare 50–100 kWh (125–250 kr.)." },
+      { question: "Hvor meget sparer man ved at bruge låg?", answer: "At bruge låg kan reducere energiforbruget med op til 30 % ved kogning. Over et år kan det spare 50–100 kWh (93–186 kr.)." },
     ],
     relatedSlugs: ["ovn", "elkedel", "mikroovn", "airfryer"],
     sources: [
@@ -275,7 +275,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger en LED-pære? Se elforbrug i kWh, sammenlign med halogener og sparepærer, og beregn din årlige udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en LED-pære?",
     quickAnswer:
-      "En LED-pære bruger typisk 5–15 watt og forbruger 8–25 kWh om året pr. pære ved 4 timers daglig brug. Det svarer til kun 20–63 kr. årligt ved 2,50 kr./kWh. LED bruger op til 85 % mindre strøm end en gammeldags glødepære og 50 % mindre end en halogen.",
+      "En LED-pære bruger typisk 5–15 watt og forbruger 8–25 kWh om året pr. pære ved 4 timers daglig brug. Det svarer til kun 15–47 kr. årligt ved 1,86 kr./kWh. LED bruger op til 85 % mindre strøm end en gammeldags glødepære og 50 % mindre end en halogen.",
     kwhRange: [8, 25],
     typicalKwh: 15,
     wattage: 10,
@@ -296,15 +296,15 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>LED-pærer har revolutioneret energiforbruget til belysning i danske hjem. Hvor en gammeldags 60 W glødepære bruger 87 kWh om året, klarer en tilsvarende LED-pære det samme med blot 10 kWh. I denne guide gennemgår vi det præcise energiforbrug for LED-pærer, sammenligner med andre pæretyper og beregner, hvor meget du kan spare ved at skifte til LED i hele hjemmet.</p>
 
 <h2>Hvor mange kWh bruger en LED-pære om året?</h2>
-<p>En enkelt LED-pære bruger typisk 8–25 kWh om året ved 4 timers daglig brug. Det svarer til 20–63 kr. årligt ved 2,50 kr./kWh. Et gennemsnitligt dansk hjem har 20–30 lyskilder, så det samlede belysningsforbrug med LED er 200–500 kWh årligt – mod 1.500–2.500 kWh med glødepærer.</p>
+<p>En enkelt LED-pære bruger typisk 8–25 kWh om året ved 4 timers daglig brug. Det svarer til 15–47 kr. årligt ved 1,86 kr./kWh. Et gennemsnitligt dansk hjem har 20–30 lyskilder, så det samlede belysningsforbrug med LED er 200–500 kWh årligt – mod 1.500–2.500 kWh med glødepærer.</p>
 
 <table>
 <thead><tr><th>LED-pære (watt)</th><th>Svarer til glødepære</th><th>Lumen</th><th>kWh/år (4 t/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>5 W</td><td>40 W</td><td>470 lm</td><td>7 kWh</td><td>18 kr.</td></tr>
-<tr><td>7 W</td><td>60 W</td><td>806 lm</td><td>10 kWh</td><td>25 kr.</td></tr>
-<tr><td>10 W</td><td>75 W</td><td>1.055 lm</td><td>15 kWh</td><td>38 kr.</td></tr>
-<tr><td>13 W</td><td>100 W</td><td>1.521 lm</td><td>19 kWh</td><td>48 kr.</td></tr>
+<tr><td>5 W</td><td>40 W</td><td>470 lm</td><td>7 kWh</td><td>13 kr.</td></tr>
+<tr><td>7 W</td><td>60 W</td><td>806 lm</td><td>10 kWh</td><td>19 kr.</td></tr>
+<tr><td>10 W</td><td>75 W</td><td>1.055 lm</td><td>15 kWh</td><td>28 kr.</td></tr>
+<tr><td>13 W</td><td>100 W</td><td>1.521 lm</td><td>19 kWh</td><td>36 kr.</td></tr>
 </tbody>
 </table>
 
@@ -314,22 +314,22 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Pæretype</th><th>Watt (for 806 lm)</th><th>kWh/år (4 t/dag)</th><th>Levetid</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>LED</td><td>7 W</td><td>10 kWh</td><td>15.000–25.000 timer</td><td>25 kr.</td></tr>
-<tr><td>Halogen</td><td>42 W</td><td>61 kWh</td><td>2.000 timer</td><td>153 kr.</td></tr>
-<tr><td>Sparepære (CFL)</td><td>11 W</td><td>16 kWh</td><td>8.000 timer</td><td>40 kr.</td></tr>
-<tr><td>Glødepære</td><td>60 W</td><td>87 kWh</td><td>1.000 timer</td><td>218 kr.</td></tr>
+<tr><td>LED</td><td>7 W</td><td>10 kWh</td><td>15.000–25.000 timer</td><td>19 kr.</td></tr>
+<tr><td>Halogen</td><td>42 W</td><td>61 kWh</td><td>2.000 timer</td><td>114 kr.</td></tr>
+<tr><td>Sparepære (CFL)</td><td>11 W</td><td>16 kWh</td><td>8.000 timer</td><td>30 kr.</td></tr>
+<tr><td>Glødepære</td><td>60 W</td><td>87 kWh</td><td>1.000 timer</td><td>162 kr.</td></tr>
 </tbody>
 </table>
 
 <h2>Samlet belysningsforbrug i et dansk hjem</h2>
-<p>Et gennemsnitligt dansk hjem bruger 300–700 kWh om året på belysning, svarende til 750–1.750 kr. Ved at skifte alle lyskilder til LED kan du typisk spare 50–70 % af belysningsforbruget. For en bolig med 25 lyskilder ser regnestykket sådan ud.</p>
+<p>Et gennemsnitligt dansk hjem bruger 300–700 kWh om året på belysning, svarende til 558–1.302 kr. Ved at skifte alle lyskilder til LED kan du typisk spare 50–70 % af belysningsforbruget. For en bolig med 25 lyskilder ser regnestykket sådan ud.</p>
 
 <table>
 <thead><tr><th>Pæretype</th><th>25 pærer (kWh/år)</th><th>Samlet årlig pris</th><th>Besparelse vs. halogen</th></tr></thead>
 <tbody>
-<tr><td>LED (7 W gns.)</td><td>255 kWh</td><td>638 kr.</td><td>—</td></tr>
-<tr><td>Halogen (42 W gns.)</td><td>1.533 kWh</td><td>3.833 kr.</td><td>0 kr.</td></tr>
-<tr><td>Blandet (halv LED/halv halogen)</td><td>894 kWh</td><td>2.235 kr.</td><td>1.598 kr.</td></tr>
+<tr><td>LED (7 W gns.)</td><td>255 kWh</td><td>475 kr.</td><td>—</td></tr>
+<tr><td>Halogen (42 W gns.)</td><td>1.533 kWh</td><td>2.852 kr.</td><td>0 kr.</td></tr>
+<tr><td>Blandet (halv LED/halv halogen)</td><td>894 kWh</td><td>1.663 kr.</td><td>1.598 kr.</td></tr>
 </tbody>
 </table>
 
@@ -349,7 +349,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 </table>
 
 <h2>Smarte LED-pærer og ekstra strømforbrug</h2>
-<p>WiFi-tilsluttede LED-pærer (Philips Hue, IKEA TRÅDFRI) bruger 0,3–1 watt i standby – også når lyset er slukket. Med 10 smarte pærer kan standbyforbruget nå 30–90 kWh om året (75–225 kr.). Det er væsentligt mere end almindelige LED-pærer og bør indregnes.</p>
+<p>WiFi-tilsluttede LED-pærer (Philips Hue, IKEA TRÅDFRI) bruger 0,3–1 watt i standby – også når lyset er slukket. Med 10 smarte pærer kan standbyforbruget nå 30–90 kWh om året (56–167 kr.). Det er væsentligt mere end almindelige LED-pærer og bør indregnes.</p>
 
 <h2>Tips til at reducere belysningsforbruget</h2>
 <p>Selv med LED kan du optimere belysningsforbruget yderligere. De største besparelser kommer fra at vælge den rette lysstyrke og automatisere slukning.</p>
@@ -367,13 +367,13 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <h2>Sæsonvariation i belysningsforbruget</h2>
 <p>Belysningsforbruget i danske hjem varierer kraftigt over året. I december bruger vi typisk dobbelt så meget strøm på belysning som i juni pga. de korte dage. Fra november til februar står belysning for en væsentlig del af stigningen i det samlede elforbrug. Dertil kommer <a href="/lyskaede/">lyskæder</a> i juleperioden.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at have en LED-pære tændt i en time?", answer: "En typisk 7 W LED-pære koster under 2 øre pr. time (0,007 kW × 2,50 kr.). Det er næsten gratis sammenlignet med en halogen, der koster ca. 11 øre pr. time." },
+      { question: "Hvor meget koster det at have en LED-pære tændt i en time?", answer: "En typisk 7 W LED-pære koster under 2 øre pr. time (0,007 kW × 1,86 kr.). Det er næsten gratis sammenlignet med en halogen, der koster ca. 11 øre pr. time." },
       { question: "Hvor mange kWh bruger LED-belysning i et helt hus?", answer: "Et dansk hjem med 20–30 LED-pærer bruger typisk 200–500 kWh om året på belysning. Med halogenpærer ville det samme hjem bruge 1.200–2.200 kWh." },
-      { question: "Kan det betale sig at skifte fra halogen til LED?", answer: "Ja, absolut. En halogenpære til 42 W koster 153 kr./år i strøm, mens en tilsvarende LED koster 25 kr. Med 15 pærer sparer du næsten 2.000 kr. om året." },
+      { question: "Kan det betale sig at skifte fra halogen til LED?", answer: "Ja, absolut. En halogenpære til 42 W koster 114 kr./år i strøm, mens en tilsvarende LED koster 19 kr. Med 15 pærer sparer du næsten 1.488 kr. om året." },
       { question: "Bruger smarte LED-pærer mere strøm?", answer: "Ja, smarte pærer bruger 0,3–1 watt i standby, selv når lyset er slukket. Med 10 pærer kan det koste 75–225 kr. ekstra om året." },
       { question: "Hvad er den billigste LED-pære at bruge?", answer: "De mindste LED-pærer på 3–5 W bruger kun 4–7 kWh om året. IKEA SOLHETTA er et af markedets bedste valg i forhold til pris og effektivitet." },
       { question: "Hvor lang levetid har en LED-pære?", answer: "En kvalitets-LED-pære holder 15.000–25.000 timer. Ved 4 timers daglig brug svarer det til 10–17 år – langt mere end halogeners 2.000 timer." },
-      { question: "Hvor meget kan man spare ved at skifte alle pærer til LED?", answer: "En typisk husstand kan spare 800–1.500 kWh om året ved at skifte fra halogen til LED. Det svarer til 2.000–3.750 kr. årligt." },
+      { question: "Hvor meget kan man spare ved at skifte alle pærer til LED?", answer: "En typisk husstand kan spare 800–1.500 kWh om året ved at skifte fra halogen til LED. Det svarer til 1.488–2.790 kr. årligt." },
       { question: "Bruger en dæmpet LED-pære mindre strøm?", answer: "Ja, en LED dæmpet til 50 % bruger ca. 40 % mindre strøm. Dæmpning er en nem måde at spare ekstra på belysningen." },
     ],
     relatedSlugs: ["lyskaede", "tv", "computer", "router"],
@@ -406,7 +406,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger en kaffemaskine? Se elforbrug i kWh for filterkaffe, kapsel og fuldautomatisk. Beregn din årlige udgift med 2026-priser.",
     heading: "Hvor meget strøm bruger en kaffemaskine?",
     quickAnswer:
-      "En kaffemaskine bruger typisk 50–200 kWh om året afhængigt af type og brugsmønster. Det svarer til 125–500 kr. årligt ved 2,50 kr./kWh. En filterkaffemaskine med varmeplade er den mest strømkrævende, mens en kapselmaskine bruger mindst energi pr. kop.",
+      "En kaffemaskine bruger typisk 50–200 kWh om året afhængigt af type og brugsmønster. Det svarer til 93–372 kr. årligt ved 1,86 kr./kWh. En filterkaffemaskine med varmeplade er den mest strømkrævende, mens en kapselmaskine bruger mindst energi pr. kop.",
     kwhRange: [50, 200],
     typicalKwh: 110,
     wattage: 1000,
@@ -427,15 +427,15 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Danskerne drikker i gennemsnit 4 kopper kaffe om dagen, og kaffemaskinen er et af de mest brugte apparater i det danske hjem. Men hvor meget strøm bruger den egentlig? I denne guide gennemgår vi energiforbruget for alle typer kaffemaskiner – fra filterkaffemaskiner til fuldautomatiske espressomaskiner – og viser dig, hvordan du kan spare på elregningen uden at gå på kompromis med kaffekvaliteten.</p>
 
 <h2>Hvor mange kWh bruger en kaffemaskine om året?</h2>
-<p>En kaffemaskine bruger typisk 50–200 kWh årligt afhængigt af type, antal kopper og om varmepladen er tændt. Det svarer til 125–500 kr. om året ved 2,50 kr./kWh. Den største synder er filterkaffemaskiner med varmeplade, der bruger 80–100 W blot for at holde kaffen varm.</p>
+<p>En kaffemaskine bruger typisk 50–200 kWh årligt afhængigt af type, antal kopper og om varmepladen er tændt. Det svarer til 93–372 kr. om året ved 1,86 kr./kWh. Den største synder er filterkaffemaskiner med varmeplade, der bruger 80–100 W blot for at holde kaffen varm.</p>
 
 <table>
 <thead><tr><th>Maskintype</th><th>Watt (brygning)</th><th>kWh pr. kop</th><th>kWh/år (4 kopper/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Kapselmaskine (Nespresso)</td><td>1.200–1.500 W</td><td>0,03–0,05 kWh</td><td>45–70 kWh</td><td>113–175 kr.</td></tr>
-<tr><td>Filterkaffemaskine (m. termokande)</td><td>1.000–1.400 W</td><td>0,05–0,08 kWh</td><td>70–115 kWh</td><td>175–288 kr.</td></tr>
-<tr><td>Filterkaffemaskine (m. varmeplade)</td><td>900–1.200 W</td><td>0,10–0,15 kWh</td><td>150–220 kWh</td><td>375–550 kr.</td></tr>
-<tr><td>Fuldautomatisk (bønne-til-kop)</td><td>1.300–1.500 W</td><td>0,05–0,08 kWh</td><td>75–120 kWh</td><td>188–300 kr.</td></tr>
+<tr><td>Kapselmaskine (Nespresso)</td><td>1.200–1.500 W</td><td>0,03–0,05 kWh</td><td>45–70 kWh</td><td>84–130 kr.</td></tr>
+<tr><td>Filterkaffemaskine (m. termokande)</td><td>1.000–1.400 W</td><td>0,05–0,08 kWh</td><td>70–115 kWh</td><td>130–214 kr.</td></tr>
+<tr><td>Filterkaffemaskine (m. varmeplade)</td><td>900–1.200 W</td><td>0,10–0,15 kWh</td><td>150–220 kWh</td><td>279–409 kr.</td></tr>
+<tr><td>Fuldautomatisk (bønne-til-kop)</td><td>1.300–1.500 W</td><td>0,05–0,08 kWh</td><td>75–120 kWh</td><td>140–223 kr.</td></tr>
 </tbody>
 </table>
 
@@ -446,8 +446,8 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <thead><tr><th>Funktion</th><th>Energiforbrug pr. brygning</th><th>Ekstra årligt kWh</th><th>Ekstra årlig pris</th></tr></thead>
 <tbody>
 <tr><td>Brygning alene</td><td>0,05–0,08 kWh</td><td>0 kWh</td><td>0 kr.</td></tr>
-<tr><td>Varmeplade (30 min)</td><td>+0,05 kWh</td><td>+18 kWh</td><td>+45 kr.</td></tr>
-<tr><td>Varmeplade (2 timer)</td><td>+0,18 kWh</td><td>+66 kWh</td><td>+165 kr.</td></tr>
+<tr><td>Varmeplade (30 min)</td><td>+0,05 kWh</td><td>+18 kWh</td><td>+33 kr.</td></tr>
+<tr><td>Varmeplade (2 timer)</td><td>+0,18 kWh</td><td>+66 kWh</td><td>+123 kr.</td></tr>
 </tbody>
 </table>
 
@@ -459,10 +459,10 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Type</th><th>Watt</th><th>kWh/år (4 kopper/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Nespresso Vertuo Next</td><td>Kapsel</td><td>1.260 W</td><td>55 kWh</td><td>138 kr.</td></tr>
-<tr><td>Moccamaster KBGV Select</td><td>Filter + termokande</td><td>1.400 W</td><td>110 kWh</td><td>275 kr.</td></tr>
-<tr><td>De'Longhi Magnifica Evo</td><td>Fuldautomatisk</td><td>1.450 W</td><td>160 kWh</td><td>400 kr.</td></tr>
-<tr><td>Melitta Enjoy Top Therm</td><td>Filter + termokande</td><td>1.000 W</td><td>90 kWh</td><td>225 kr.</td></tr>
+<tr><td>Nespresso Vertuo Next</td><td>Kapsel</td><td>1.260 W</td><td>55 kWh</td><td>103 kr.</td></tr>
+<tr><td>Moccamaster KBGV Select</td><td>Filter + termokande</td><td>1.400 W</td><td>110 kWh</td><td>205 kr.</td></tr>
+<tr><td>De'Longhi Magnifica Evo</td><td>Fuldautomatisk</td><td>1.450 W</td><td>160 kWh</td><td>298 kr.</td></tr>
+<tr><td>Melitta Enjoy Top Therm</td><td>Filter + termokande</td><td>1.000 W</td><td>90 kWh</td><td>167 kr.</td></tr>
 </tbody>
 </table>
 
@@ -470,15 +470,15 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Mange kaffemaskiner trækker strøm selv i standby. Fuldautomatiske espressomaskiner er de værste syndere med 2–5 watt i standby pga. elektronik og opvarmningselement. Over et år kan standbyforbruget alene koste 20–50 kr. En kapselmaskine slukker derimod typisk helt efter 9 minutter.</p>
 
 <h2>Hvad koster en kop kaffe i strøm?</h2>
-<p>En enkelt kop kaffe koster kun 0,08–0,38 kr. i strøm afhængigt af maskintype. Strømprisen er dermed en forsvindende lille del af den samlede koppris – det er bønner og kapsler, der driver prisen. Men over et år med 1.460 kopper (4/dag) kan forskellen mellem maskintyper nå 200–400 kr.</p>
+<p>En enkelt kop kaffe koster kun 0,06–0,28 kr. i strøm afhængigt af maskintype. Strømprisen er dermed en forsvindende lille del af den samlede koppris – det er bønner og kapsler, der driver prisen. Men over et år med 1.460 kopper (4/dag) kan forskellen mellem maskintyper nå 149–298 kr.</p>
 
 <table>
 <thead><tr><th>Maskintype</th><th>Strømpris pr. kop</th><th>Bønne/kapselpris pr. kop</th><th>Samlet pris pr. kop</th></tr></thead>
 <tbody>
-<tr><td>Kapselmaskine</td><td>0,08–0,13 kr.</td><td>3,00–5,00 kr.</td><td>3,08–5,13 kr.</td></tr>
-<tr><td>Filter (termokande)</td><td>0,13–0,20 kr.</td><td>0,50–1,00 kr.</td><td>0,63–1,20 kr.</td></tr>
-<tr><td>Filter (varmeplade)</td><td>0,25–0,38 kr.</td><td>0,50–1,00 kr.</td><td>0,75–1,38 kr.</td></tr>
-<tr><td>Fuldautomatisk</td><td>0,13–0,20 kr.</td><td>0,80–1,50 kr.</td><td>0,93–1,70 kr.</td></tr>
+<tr><td>Kapselmaskine</td><td>0,06–0,10 kr.</td><td>2,23–3,72 kr.</td><td>2,29–3,82 kr.</td></tr>
+<tr><td>Filter (termokande)</td><td>0,10–0,15 kr.</td><td>0,37–0,74 kr.</td><td>0,47–0,89 kr.</td></tr>
+<tr><td>Filter (varmeplade)</td><td>0,19–0,28 kr.</td><td>0,37–0,74 kr.</td><td>0,56–1,03 kr.</td></tr>
+<tr><td>Fuldautomatisk</td><td>0,10–0,15 kr.</td><td>0,60–1,12 kr.</td><td>0,69–1,26 kr.</td></tr>
 </tbody>
 </table>
 
@@ -498,14 +498,14 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <h2>Sæsonvariation i kaffeforbrug</h2>
 <p>Kaffemaskinen er et af de få apparater med næsten jævnt forbrug hen over året. Danskernes kaffevaner ændrer sig minimalt med sæsonen. Dog ses en lille stigning i julemåneden pga. ekstra gæster og kaffebrygning. Forbruget stiger også let, når klokken stilles til vintertid og morgenerne bliver mørkere.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at brygge en kop kaffe?", answer: "En kop kaffe koster 0,08–0,38 kr. i strøm afhængigt af maskintype. Filterkaffe med termokande koster ca. 0,15 kr., mens varmeplade-modeller koster op til 0,38 kr." },
+      { question: "Hvor meget koster det at brygge en kop kaffe?", answer: "En kop kaffe koster 0,06–0,28 kr. i strøm afhængigt af maskintype. Filterkaffe med termokande koster ca. 0,11 kr., mens varmeplade-modeller koster op til 0,28 kr." },
       { question: "Bruger en Nespresso-maskine meget strøm?", answer: "Nej, en Nespresso-maskine er meget energieffektiv. Den bruger 0,03–0,05 kWh pr. kop og slukker automatisk efter ca. 9 minutter. Årligt forbrug: 45–70 kWh." },
       { question: "Er filterkaffe eller kapsler billigst i strøm?", answer: "Kapselmaskiner bruger mindst strøm – typisk 45–70 kWh/år mod 70–220 kWh/år for filtermaskiner. Men filterkaffe er billigst samlet pga. lavere pris pr. kop." },
-      { question: "Hvor meget strøm bruger varmepladen?", answer: "En varmeplade trækker 80–100 watt. Hvis den kører 2 timer dagligt, koster det ca. 165 kr. om året i strøm." },
+      { question: "Hvor meget strøm bruger varmepladen?", answer: "En varmeplade trækker 80–100 watt. Hvis den kører 2 timer dagligt, koster det ca. 123 kr. om året i strøm." },
       { question: "Hvad er standbyforbruget på en kaffemaskine?", answer: "Kapselmaskiner har næsten nul standby. Fuldautomatiske maskiner bruger 2–5 watt i standby, svarende til 20–50 kr. om året." },
       { question: "Skal man slukke kaffemaskinen på kontakten?", answer: "For fuldautomatiske maskiner: ja, det sparer 20–50 kr. årligt. For kapselmaskiner med auto-sluk er det ikke nødvendigt." },
       { question: "Bruger en fuldautomatisk espressomaskine meget strøm?", answer: "Mere end en kapselmaskine (75–160 kWh/år), men mindre end en filtermaskine med varmeplade. Standbyforbruget er dog højere end andre typer." },
-      { question: "Hvor meget kan man spare ved at skifte til termokande?", answer: "Ved at skifte fra varmeplade til termokande sparer du 60–75 kWh om året – ca. 150–190 kr. Det er den enkleste besparelse på kaffemaskinens elforbrug." },
+      { question: "Hvor meget kan man spare ved at skifte til termokande?", answer: "Ved at skifte fra varmeplade til termokande sparer du 60–75 kWh om året – ca. 112–141 kr. Det er den enkleste besparelse på kaffemaskinens elforbrug." },
     ],
     relatedSlugs: ["elkedel", "quooker", "opvaskemaskine", "mikroovn"],
     sources: [
@@ -537,7 +537,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger en mikroovn? Se elforbrug i kWh pr. brug og pr. år, sammenlign med ovn og airfryer, og beregn din udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en mikroovn?",
     quickAnswer:
-      "En mikroovn bruger typisk 40–100 kWh om året ved daglig brug. Det svarer til kun 100–250 kr. årligt ved 2,50 kr./kWh. Mikroovnen er et af køkkenets mest energieffektive apparater – den bruger 50–75 % mindre strøm end en konventionel ovn til opvarmning.",
+      "En mikroovn bruger typisk 40–100 kWh om året ved daglig brug. Det svarer til kun 74–186 kr. årligt ved 1,86 kr./kWh. Mikroovnen er et af køkkenets mest energieffektive apparater – den bruger 50–75 % mindre strøm end en konventionel ovn til opvarmning.",
     kwhRange: [40, 100],
     typicalKwh: 70,
     wattage: 1000,
@@ -558,14 +558,14 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Mikroovnen er et af de mest energieffektive køkkenapparater og findes i 85 % af alle danske hjem. Den bruger markant mindre strøm end en konventionel ovn til opvarmning og hurtig tilberedning. I denne guide gennemgår vi det faktiske elforbrug, sammenligner med andre apparater og giver dig konkrete tips til at udnytte mikroovnen optimalt.</p>
 
 <h2>Hvor mange kWh bruger en mikroovn om året?</h2>
-<p>En mikroovn bruger typisk 40–100 kWh årligt ved gennemsnitlig dansk brug. Det svarer til 100–250 kr. om året ved 2,50 kr./kWh. Forbruget afhænger af, hvor ofte du bruger den, effektindstillingen og om det er en solo-mikroovn eller en kombimodel med grill og varmluft.</p>
+<p>En mikroovn bruger typisk 40–100 kWh årligt ved gennemsnitlig dansk brug. Det svarer til 74–186 kr. om året ved 1,86 kr./kWh. Forbruget afhænger af, hvor ofte du bruger den, effektindstillingen og om det er en solo-mikroovn eller en kombimodel med grill og varmluft.</p>
 
 <table>
-<thead><tr><th>Brugsfrekvens</th><th>Gns. tid pr. brug</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Brugsfrekvens</th><th>Gns. tid pr. brug</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Sjælden (2-3x/uge)</td><td>3 min</td><td>15–25 kWh</td><td>38–63 kr.</td></tr>
-<tr><td>Moderat (daglig)</td><td>4 min</td><td>40–65 kWh</td><td>100–163 kr.</td></tr>
-<tr><td>Hyppig (2-3x/dag)</td><td>4 min</td><td>80–120 kWh</td><td>200–300 kr.</td></tr>
+<tr><td>Sjælden (2-3x/uge)</td><td>3 min</td><td>15–25 kWh</td><td>28–47 kr.</td></tr>
+<tr><td>Moderat (daglig)</td><td>4 min</td><td>40–65 kWh</td><td>74–121 kr.</td></tr>
+<tr><td>Hyppig (2-3x/dag)</td><td>4 min</td><td>80–120 kWh</td><td>149–223 kr.</td></tr>
 </tbody>
 </table>
 
@@ -575,10 +575,10 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Apparat</th><th>Opgave: Opvarm portion</th><th>kWh</th><th>Pris</th><th>Tid</th></tr></thead>
 <tbody>
-<tr><td>Mikroovn</td><td>800 W, 3 min</td><td>0,04 kWh</td><td>0,10 kr.</td><td>3 min</td></tr>
-<tr><td>Ovn</td><td>180°C, 15 min</td><td>0,50 kWh</td><td>1,25 kr.</td><td>15 min + forvarmning</td></tr>
-<tr><td>Airfryer</td><td>180°C, 8 min</td><td>0,19 kWh</td><td>0,48 kr.</td><td>8 min</td></tr>
-<tr><td>Induktionskogeplade</td><td>Stegepande, 5 min</td><td>0,15 kWh</td><td>0,38 kr.</td><td>5 min</td></tr>
+<tr><td>Mikroovn</td><td>800 W, 3 min</td><td>0,04 kWh</td><td>0,07 kr.</td><td>3 min</td></tr>
+<tr><td>Ovn</td><td>180°C, 15 min</td><td>0,50 kWh</td><td>0,93 kr.</td><td>15 min + forvarmning</td></tr>
+<tr><td>Airfryer</td><td>180°C, 8 min</td><td>0,19 kWh</td><td>0,36 kr.</td><td>8 min</td></tr>
+<tr><td>Induktionskogeplade</td><td>Stegepande, 5 min</td><td>0,15 kWh</td><td>0,28 kr.</td><td>5 min</td></tr>
 </tbody>
 </table>
 
@@ -588,9 +588,9 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Effektindstilling</th><th>kWh pr. minut</th><th>Pris pr. minut</th><th>Typisk brug</th></tr></thead>
 <tbody>
-<tr><td>1.000 W (fuld effekt)</td><td>0,017 kWh</td><td>0,04 kr.</td><td>Opvarmning af væsker</td></tr>
-<tr><td>800 W</td><td>0,013 kWh</td><td>0,03 kr.</td><td>Opvarmning af mad</td></tr>
-<tr><td>600 W</td><td>0,010 kWh</td><td>0,03 kr.</td><td>Optøning af store stykker</td></tr>
+<tr><td>1.000 W (fuld effekt)</td><td>0,017 kWh</td><td>0,03 kr.</td><td>Opvarmning af væsker</td></tr>
+<tr><td>800 W</td><td>0,013 kWh</td><td>0,02 kr.</td><td>Opvarmning af mad</td></tr>
+<tr><td>600 W</td><td>0,010 kWh</td><td>0,02 kr.</td><td>Optøning af store stykker</td></tr>
 <tr><td>300 W (lav effekt)</td><td>0,005 kWh</td><td>0,01 kr.</td><td>Blød optøning</td></tr>
 </tbody>
 </table>
@@ -601,15 +601,15 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Type</th><th>Watt (mikro)</th><th>kWh/år (daglig brug)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Samsung MS23K3513AK</td><td>Solo</td><td>800 W</td><td>50 kWh</td><td>125 kr.</td></tr>
-<tr><td>Panasonic NN-E28JBMBPQ</td><td>Solo</td><td>800 W</td><td>65 kWh</td><td>163 kr.</td></tr>
-<tr><td>Whirlpool MWP 304 M</td><td>Kombi</td><td>1.000 W</td><td>90 kWh</td><td>225 kr.</td></tr>
-<tr><td>Siemens BF634LGS1 (indbygning)</td><td>Solo</td><td>900 W</td><td>70 kWh</td><td>175 kr.</td></tr>
+<tr><td>Samsung MS23K3513AK</td><td>Solo</td><td>800 W</td><td>50 kWh</td><td>93 kr.</td></tr>
+<tr><td>Panasonic NN-E28JBMBPQ</td><td>Solo</td><td>800 W</td><td>65 kWh</td><td>121 kr.</td></tr>
+<tr><td>Whirlpool MWP 304 M</td><td>Kombi</td><td>1.000 W</td><td>90 kWh</td><td>167 kr.</td></tr>
+<tr><td>Siemens BF634LGS1 (indbygning)</td><td>Solo</td><td>900 W</td><td>70 kWh</td><td>130 kr.</td></tr>
 </tbody>
 </table>
 
 <h2>Standbyforbrug – den oversete udgift</h2>
-<p>Mikroovne med digitalt ur og display bruger typisk 2–3 watt i standby, svarende til 18–26 kWh om året (45–65 kr.). Det er faktisk en betydelig del af det samlede forbrug for en mikroovn, der kun bruges kortvarigt. Sluk på kontakten eller vælg en model uden konstant display.</p>
+<p>Mikroovne med digitalt ur og display bruger typisk 2–3 watt i standby, svarende til 18–26 kWh om året (33–48 kr.). Det er faktisk en betydelig del af det samlede forbrug for en mikroovn, der kun bruges kortvarigt. Sluk på kontakten eller vælg en model uden konstant display.</p>
 
 <h2>Tips til at reducere mikroovnens strømforbrug</h2>
 <p>Mikroovnen er allerede energieffektiv, men du kan spare yderligere med disse simple tiltag.</p>
@@ -627,14 +627,14 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <h2>Sæsonvariation i mikroovnens forbrug</h2>
 <p>Mikroovnens forbrug er meget jævnt over året, da den primært bruges til opvarmning af mad og drikke. Der er ingen nævneværdig sæsonvariation – i modsætning til <a href="/ovn/">ovnen</a> og <a href="/airfryer/">airfryeren</a>, der bruges mere om vinteren.</p>`,
     faqs: [
-      { question: "Hvad koster det at varme mad i mikroovnen?", answer: "En typisk opvarmning på 3–4 minutter ved 800 W koster ca. 0,10 kr. i strøm. Det er 10–12 gange billigere end at bruge ovnen til samme opgave." },
+      { question: "Hvad koster det at varme mad i mikroovnen?", answer: "En typisk opvarmning på 3–4 minutter ved 800 W koster ca. 0,07 kr. i strøm. Det er 10–12 gange billigere end at bruge ovnen til samme opgave." },
       { question: "Bruger mikroovnen meget strøm i standby?", answer: "Ja, relativt set. Standbyforbruget er 2–3 watt (18–26 kWh/år), hvilket kan udgøre 25–35 % af det samlede forbrug ved moderat brug." },
-      { question: "Er det billigere at bruge mikroovn eller ovn?", answer: "Mikroovnen er 50–75 % billigere til opvarmning. En opvarmning i mikroovn koster 0,10 kr. mod 1,25 kr. i ovnen." },
+      { question: "Er det billigere at bruge mikroovn eller ovn?", answer: "Mikroovnen er 50–75 % billigere til opvarmning. En opvarmning i mikroovn koster 0,07 kr. mod 0,93 kr. i ovnen." },
       { question: "Bruger en kombi-mikroovn mere strøm?", answer: "Ja, kombimodeller med grill og varmluft bruger 20–50 % mere end solo-modeller, da grill- og varmluftelementerne har højere effekt." },
       { question: "Hvor mange kWh bruger en mikroovn pr. time?", answer: "Ved fuld effekt (1.000 W) bruger en mikroovn 1,0 kWh pr. time. Ved 800 W er det 0,8 kWh. Men typisk brug er kun 3–5 minutter ad gangen." },
       { question: "Kan mikroovnen erstatte ovnen?", answer: "Til opvarmning og simple tilberedninger ja. Men til bagning, stegning og retter med sprød overflade er ovnen eller en airfryer nødvendig." },
       { question: "Er det farligt at bruge mikroovnen?", answer: "Nej, moderne mikroovne er sikre. Mikrobølgerne forbliver inde i ovnen og stopper, når døren åbnes. Brug altid mikroovnsegnet service." },
-      { question: "Hvor meget kan man spare ved at slukke mikroovnen på kontakten?", answer: "Du sparer 18–26 kWh om året (45–65 kr.) ved at eliminere standbyforbruget. Det er en af de letteste besparelser i hjemmet." },
+      { question: "Hvor meget kan man spare ved at slukke mikroovnen på kontakten?", answer: "Du sparer 18–26 kWh om året (33–48 kr.) ved at eliminere standbyforbruget. Det er en af de letteste besparelser i hjemmet." },
     ],
     relatedSlugs: ["ovn", "airfryer", "induktion", "kaffemaskine"],
     sources: [
@@ -665,7 +665,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger el-gulvvarme? Se typisk elforbrug i kWh for badeværelse, køkken og hele huset. Beregn din årlige udgift med 2026-priser.",
     heading: "Hvor meget strøm bruger el-gulvvarme?",
     quickAnswer:
-      "Elektrisk gulvvarme bruger typisk 500–3.000 kWh om året afhængigt af areal, isolering og brugstimer. Et badeværelse på 5 m² bruger ca. 500–800 kWh årligt (1.250–2.000 kr.), mens gulvvarme i et helt hus (100 m²) kan bruge 8.000–15.000 kWh. Det er en af de dyreste varmeformer.",
+      "Elektrisk gulvvarme bruger typisk 500–3.000 kWh om året afhængigt af areal, isolering og brugstimer. Et badeværelse på 5 m² bruger ca. 500–800 kWh årligt (930–1.488 kr.), mens gulvvarme i et helt hus (100 m²) kan bruge 8.000–15.000 kWh. Det er en af de dyreste varmeformer.",
     kwhRange: [500, 3000],
     typicalKwh: 1200,
     wattage: 600,
@@ -686,15 +686,15 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Elektrisk gulvvarme er en af de mest populære opvarmningsformer i danske badeværelser og køkkener. Den giver behagelig komfort, men kan også være en af de største poster på elregningen. I denne guide gennemgår vi det faktiske energiforbrug for el-gulvvarme, sammenligner med vandbaseret gulvvarme og giver dig konkrete råd til at holde udgifterne nede.</p>
 
 <h2>Hvor mange kWh bruger el-gulvvarme om året?</h2>
-<p>El-gulvvarme bruger typisk 100–150 kWh pr. m² om året i opvarmede rum, afhængigt af isolering, termostatindstilling og driftstimer. Et badeværelse på 5 m² bruger 500–800 kWh årligt, mens et køkken på 15 m² kan bruge 1.500–2.250 kWh. Med en elpris på 2,50 kr./kWh svarer det til 1.250–5.625 kr.</p>
+<p>El-gulvvarme bruger typisk 100–150 kWh pr. m² om året i opvarmede rum, afhængigt af isolering, termostatindstilling og driftstimer. Et badeværelse på 5 m² bruger 500–800 kWh årligt, mens et køkken på 15 m² kan bruge 1.500–2.250 kWh. Med en elpris på 1,86 kr./kWh svarer det til 930–4.185 kr.</p>
 
 <table>
-<thead><tr><th>Rum</th><th>Areal</th><th>Effekt (W/m²)</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Rum</th><th>Areal</th><th>Effekt (W/m²)</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Badeværelse</td><td>5 m²</td><td>100–160 W/m²</td><td>500–800 kWh</td><td>1.250–2.000 kr.</td></tr>
-<tr><td>Køkken</td><td>15 m²</td><td>80–120 W/m²</td><td>1.200–1.800 kWh</td><td>3.000–4.500 kr.</td></tr>
-<tr><td>Stue</td><td>30 m²</td><td>80–120 W/m²</td><td>2.400–3.600 kWh</td><td>6.000–9.000 kr.</td></tr>
-<tr><td>Hele huset</td><td>100 m²</td><td>80–150 W/m²</td><td>8.000–15.000 kWh</td><td>20.000–37.500 kr.</td></tr>
+<tr><td>Badeværelse</td><td>5 m²</td><td>100–160 W/m²</td><td>500–800 kWh</td><td>930–1.488 kr.</td></tr>
+<tr><td>Køkken</td><td>15 m²</td><td>80–120 W/m²</td><td>1.200–1.800 kWh</td><td>2.232–3.348 kr.</td></tr>
+<tr><td>Stue</td><td>30 m²</td><td>80–120 W/m²</td><td>2.400–3.600 kWh</td><td>4.464–6.696 kr.</td></tr>
+<tr><td>Hele huset</td><td>100 m²</td><td>80–150 W/m²</td><td>8.000–15.000 kWh</td><td>14.880–27.900 kr.</td></tr>
 </tbody>
 </table>
 
@@ -704,7 +704,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Type</th><th>Energikilde</th><th>Driftspris pr. kWh varme</th><th>Årlig pris (badeværelse 5 m²)</th></tr></thead>
 <tbody>
-<tr><td>El-gulvvarme</td><td>Elektricitet</td><td>2,50 kr./kWh</td><td>1.250–2.000 kr.</td></tr>
+<tr><td>El-gulvvarme</td><td>Elektricitet</td><td>1,86 kr./kWh</td><td>930–1.488 kr.</td></tr>
 <tr><td>Vandbaseret + fjernvarme</td><td>Fjernvarme</td><td>0,70–1,00 kr./kWh</td><td>350–800 kr.</td></tr>
 <tr><td>Vandbaseret + varmepumpe</td><td>El (COP 3-4)</td><td>0,60–0,85 kr./kWh</td><td>300–680 kr.</td></tr>
 </tbody>
@@ -741,9 +741,9 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Driftsscenario</th><th>Timer/dag</th><th>Årligt kWh (5 m²)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Kun morgen og aften (4 t)</td><td>4 timer</td><td>350–500 kWh</td><td>875–1.250 kr.</td></tr>
-<tr><td>Dag og aften (10 t)</td><td>10 timer</td><td>600–900 kWh</td><td>1.500–2.250 kr.</td></tr>
-<tr><td>Konstant (24 t)</td><td>24 timer</td><td>1.200–1.700 kWh</td><td>3.000–4.250 kr.</td></tr>
+<tr><td>Kun morgen og aften (4 t)</td><td>4 timer</td><td>350–500 kWh</td><td>651–930 kr.</td></tr>
+<tr><td>Dag og aften (10 t)</td><td>10 timer</td><td>600–900 kWh</td><td>1.116–1.674 kr.</td></tr>
+<tr><td>Konstant (24 t)</td><td>24 timer</td><td>1.200–1.700 kWh</td><td>2.232–3.162 kr.</td></tr>
 </tbody>
 </table>
 
@@ -764,11 +764,11 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>El-gulvvarmens forbrug følger tydeligt sæsonerne. I vintermånederne (november–marts) kører gulvvarmen ofte 8–16 timer dagligt, mens den typisk er slukket fra maj til september. Forbruget i januar er typisk 10–20 gange højere end i juli. Dette gør gulvvarme til et af de mest sæsonbetingede apparater overhovedet.</p>`,
     faqs: [
       { question: "Hvad koster el-gulvvarme i badeværelset?", answer: "Et badeværelse på 5 m² med el-gulvvarme koster typisk 875–2.000 kr. om året i strøm, afhængigt af driftstimer og termostattype." },
-      { question: "Er el-gulvvarme dyrt?", answer: "Ja, el-gulvvarme er en af de dyreste opvarmningsformer med en pris på 2,50 kr./kWh. Til sammenligning koster fjernvarme 0,70–1,00 kr./kWh og varmepumpe 0,60–0,85 kr./kWh." },
-      { question: "Hvor meget strøm bruger gulvvarme pr. m²?", answer: "El-gulvvarme bruger typisk 100–150 kWh pr. m² pr. år ved normal brug. Det svarer til 250–375 kr. pr. m² årligt." },
+      { question: "Er el-gulvvarme dyrt?", answer: "Ja, el-gulvvarme er en af de dyreste opvarmningsformer med en pris på 1,86 kr./kWh. Til sammenligning koster fjernvarme 0,70–1,00 kr./kWh og varmepumpe 0,53–0,62 kr./kWh." },
+      { question: "Hvor meget strøm bruger gulvvarme pr. m²?", answer: "El-gulvvarme bruger typisk 100–150 kWh pr. m² pr. år ved normal brug. Det svarer til 186–279 kr. pr. m² årligt." },
       { question: "Kan man spare strøm med smart termostat?", answer: "Ja, en smart termostat kan reducere forbruget med 30–40 % sammenlignet med konstant drift. Investeringen er typisk tjent hjem på 1–3 år." },
       { question: "Skal gulvvarme stå på hele tiden?", answer: "Nej, det er mest økonomisk at bruge tidsindstillinger, så gulvvarmen kun er tændt, når rummet bruges. Konstant drift kan fordoble forbruget." },
-      { question: "Hvad bruger el-gulvvarme pr. time?", answer: "Et badeværelse med 5 m² el-gulvvarme (600 W) bruger ca. 0,3–0,6 kWh pr. time, svarende til 0,75–1,50 kr." },
+      { question: "Hvad bruger el-gulvvarme pr. time?", answer: "Et badeværelse med 5 m² el-gulvvarme (600 W) bruger ca. 0,3–0,6 kWh pr. time, svarende til 0,56–1,12 kr." },
       { question: "Er vandbaseret gulvvarme billigere end el-gulvvarme?", answer: "Ja, vandbaseret gulvvarme med fjernvarme eller varmepumpe er 2–4 gange billigere i drift. Men el-gulvvarme er billigere at installere." },
       { question: "Kan el-gulvvarme bruges som eneste varmekilde?", answer: "Det kan det teknisk, men det er meget dyrt. Et 100 m² hus med kun el-gulvvarme kan koste 20.000–37.500 kr. årligt i strøm. Brug det som supplement." },
     ],
@@ -801,7 +801,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger en robotplæneklipper? Se elforbrug i kWh pr. sæson og pr. år, sammenlign modeller og beregn din udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en robotplæneklipper?",
     quickAnswer:
-      "En robotplæneklipper bruger typisk 20–60 kWh pr. sæson (april–oktober). Det svarer til kun 50–150 kr. ved 2,50 kr./kWh. Robotplæneklipperen er et af de mest energieffektive haveapparater og bruger markant mindre strøm end en traditionel el-plæneklipper.",
+      "En robotplæneklipper bruger typisk 20–60 kWh pr. sæson (april–oktober). Det svarer til kun 37–112 kr. ved 1,86 kr./kWh. Robotplæneklipperen er et af de mest energieffektive haveapparater og bruger markant mindre strøm end en traditionel el-plæneklipper.",
     kwhRange: [20, 60],
     typicalKwh: 35,
     wattage: 25,
@@ -822,15 +822,15 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Robotplæneklipperen er blevet en fast del af mange danske haver. Den klipper automatisk og holder plænen pæn uden din indblanding. Men hvor meget strøm bruger den egentlig? I denne guide gennemgår vi det faktiske energiforbrug, sammenligner med andre plæneklippertyper og beregner, hvad det koster at lade robotten passe haven.</p>
 
 <h2>Hvor mange kWh bruger en robotplæneklipper om året?</h2>
-<p>En robotplæneklipper bruger typisk 20–60 kWh pr. klippesæson (april–oktober). Det svarer til 50–150 kr. ved 2,50 kr./kWh. Forbruget afhænger primært af plænens størrelse, klippefrekvens og modellens effektivitet. Selv for store plæner er udgiften minimal.</p>
+<p>En robotplæneklipper bruger typisk 20–60 kWh pr. klippesæson (april–oktober). Det svarer til 37–112 kr. ved 1,86 kr./kWh. Forbruget afhænger primært af plænens størrelse, klippefrekvens og modellens effektivitet. Selv for store plæner er udgiften minimal.</p>
 
 <table>
-<thead><tr><th>Plænestørrelse</th><th>Klippetid/dag</th><th>Sæson-kWh (7 mdr.)</th><th>Sæsonpris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Plænestørrelse</th><th>Klippetid/dag</th><th>Sæson-kWh (7 mdr.)</th><th>Sæsonpris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Under 250 m²</td><td>2–3 timer</td><td>12–20 kWh</td><td>30–50 kr.</td></tr>
-<tr><td>250–500 m²</td><td>4–6 timer</td><td>20–35 kWh</td><td>50–88 kr.</td></tr>
-<tr><td>500–1.000 m²</td><td>6–10 timer</td><td>30–50 kWh</td><td>75–125 kr.</td></tr>
-<tr><td>1.000–2.000 m²</td><td>10–16 timer</td><td>45–75 kWh</td><td>113–188 kr.</td></tr>
+<tr><td>Under 250 m²</td><td>2–3 timer</td><td>12–20 kWh</td><td>22–37 kr.</td></tr>
+<tr><td>250–500 m²</td><td>4–6 timer</td><td>20–35 kWh</td><td>37–65 kr.</td></tr>
+<tr><td>500–1.000 m²</td><td>6–10 timer</td><td>30–50 kWh</td><td>56–93 kr.</td></tr>
+<tr><td>1.000–2.000 m²</td><td>10–16 timer</td><td>45–75 kWh</td><td>84–140 kr.</td></tr>
 </tbody>
 </table>
 
@@ -853,26 +853,26 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Max. areal</th><th>Motoreffekt</th><th>Sæson-kWh</th><th>Sæsonpris</th></tr></thead>
 <tbody>
-<tr><td>Gardena SILENO city 250</td><td>250 m²</td><td>18 W</td><td>18 kWh</td><td>45 kr.</td></tr>
-<tr><td>Husqvarna Automower 305</td><td>600 m²</td><td>20 W</td><td>22 kWh</td><td>55 kr.</td></tr>
-<tr><td>Worx Landroid M700</td><td>700 m²</td><td>28 W</td><td>30 kWh</td><td>75 kr.</td></tr>
-<tr><td>Husqvarna Automower 430X</td><td>3.200 m²</td><td>25 W</td><td>65 kWh</td><td>163 kr.</td></tr>
+<tr><td>Gardena SILENO city 250</td><td>250 m²</td><td>18 W</td><td>18 kWh</td><td>33 kr.</td></tr>
+<tr><td>Husqvarna Automower 305</td><td>600 m²</td><td>20 W</td><td>22 kWh</td><td>41 kr.</td></tr>
+<tr><td>Worx Landroid M700</td><td>700 m²</td><td>28 W</td><td>30 kWh</td><td>56 kr.</td></tr>
+<tr><td>Husqvarna Automower 430X</td><td>3.200 m²</td><td>25 W</td><td>65 kWh</td><td>121 kr.</td></tr>
 </tbody>
 </table>
 
 <h2>Ladestationens standbyforbrug</h2>
-<p>Ladestationen bruger typisk 2–4 watt i standby, selv når robotplæneklipperen er fuldt opladet eller ude at klippe. Over en hel sæson (7 måneder) giver standbyforbruget 10–20 kWh ekstra (25–50 kr.). Over vinterhalvåret er det klogt at slukke stationen helt.</p>
+<p>Ladestationen bruger typisk 2–4 watt i standby, selv når robotplæneklipperen er fuldt opladet eller ude at klippe. Over en hel sæson (7 måneder) giver standbyforbruget 10–20 kWh ekstra (19–37 kr.). Over vinterhalvåret er det klogt at slukke stationen helt.</p>
 
 <h2>Hvad koster det at klippe plænen med robot?</h2>
-<p>En enkelt klipning med robotplæneklipper koster mellem 0,25 og 0,75 kr. i strøm for en typisk dansk have. Det er nærmest gratis og langt billigere end både benzin og selv en traditionel el-plæneklipper.</p>
+<p>En enkelt klipning med robotplæneklipper koster mellem 0,25 og 0,56 kr. i strøm for en typisk dansk have. Det er nærmest gratis og langt billigere end både benzin og selv en traditionel el-plæneklipper.</p>
 
 <table>
-<thead><tr><th>Tidsenhed</th><th>kWh (500 m² plæne)</th><th>Pris (2,50 kr./kWh)</th></tr></thead>
+<thead><tr><th>Tidsenhed</th><th>kWh (500 m² plæne)</th><th>Pris (1,86 kr./kWh)</th></tr></thead>
 <tbody>
-<tr><td>Pr. dag (aktiv sæson)</td><td>0,15–0,25 kWh</td><td>0,38–0,63 kr.</td></tr>
-<tr><td>Pr. uge</td><td>1,0–1,8 kWh</td><td>2,50–4,50 kr.</td></tr>
-<tr><td>Pr. måned (sæson)</td><td>4–7 kWh</td><td>10–18 kr.</td></tr>
-<tr><td>Hele sæsonen</td><td>25–40 kWh</td><td>63–100 kr.</td></tr>
+<tr><td>Pr. dag (aktiv sæson)</td><td>0,15–0,25 kWh</td><td>0,28–0,47 kr.</td></tr>
+<tr><td>Pr. uge</td><td>1,0–1,8 kWh</td><td>1,86–3,35 kr.</td></tr>
+<tr><td>Pr. måned (sæson)</td><td>4–7 kWh</td><td>7–13 kr.</td></tr>
+<tr><td>Hele sæsonen</td><td>25–40 kWh</td><td>47–74 kr.</td></tr>
 </tbody>
 </table>
 
@@ -892,11 +892,11 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <h2>Sæsonvariation i robotplæneklipperens forbrug</h2>
 <p>Robotplæneklipperen har den mest udprægede sæsonvariation af alle husholdningsapparater. Den kører kun fra april til oktober, med højdepunkt i juni–juli, hvor græsset vokser hurtigst. I vintermånederne er forbruget nul, hvis du husker at slukke ladestationen.</p>`,
     faqs: [
-      { question: "Hvad koster det i strøm at have en robotplæneklipper?", answer: "En robotplæneklipper koster typisk 50–150 kr. i strøm pr. sæson (april–oktober) for en gennemsnitlig dansk have på 500–1.000 m²." },
+      { question: "Hvad koster det i strøm at have en robotplæneklipper?", answer: "En robotplæneklipper koster typisk 37–112 kr. i strøm pr. sæson (april–oktober) for en gennemsnitlig dansk have på 500–1.000 m²." },
       { question: "Bruger en robotplæneklipper meget strøm?", answer: "Nej, en robotplæneklipper er meget energieffektiv. Med en motoreffekt på kun 20–30 W bruger den langt mindre end en traditionel el-plæneklipper." },
       { question: "Hvad er standbyforbruget for ladestationen?", answer: "Ladestationen bruger 2–4 watt i standby (10–20 kWh pr. sæson). Sluk den om vinteren for at spare strøm." },
-      { question: "Er det billigere at bruge robotklipper end benzinklipper?", answer: "Ja, markant. En robotklipper koster 50–150 kr./sæson i strøm, mens en benzinklipper koster 250–500 kr./sæson i brændstof." },
-      { question: "Hvor mange kWh bruger en robotplæneklipper pr. dag?", answer: "Ved aktiv drift bruger den 0,15–0,25 kWh pr. dag for en 500 m² plæne, svarende til 0,38–0,63 kr." },
+      { question: "Er det billigere at bruge robotklipper end benzinklipper?", answer: "Ja, markant. En robotklipper koster 37–112 kr./sæson i strøm, mens en benzinklipper koster 186–372 kr./sæson i brændstof." },
+      { question: "Hvor mange kWh bruger en robotplæneklipper pr. dag?", answer: "Ved aktiv drift bruger den 0,15–0,25 kWh pr. dag for en 500 m² plæne, svarende til 0,28–0,47 kr." },
       { question: "Kan man lade robotplæneklipperen køre om natten?", answer: "Teknisk ja, men det frarådes af hensyn til pindsvin og andre natdyr. Kør den i dagtimerne – det koster det samme i strøm." },
       { question: "Bruger robotten strøm i regnvejr?", answer: "De fleste moderne robotplæneklippere har regnsensor og kører automatisk tilbage til ladestationen i regn. Ladestationen bruger dog stadig standby-strøm." },
       { question: "Hvornår skal man slukke robotplæneklipperen for vinteren?", answer: "Sluk robotten og ladestationen, når græsset stopper med at vokse – typisk i november. Start igen i april, når græsset begynder at gro." },
@@ -931,7 +931,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger et strygejern? Se typisk elforbrug i kWh, sammenlign dampstationer og beregn din årlige udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger et strygejern?",
     quickAnswer:
-      "Et strygejern bruger typisk 50–150 kWh om året ved 1–3 timers ugentlig strygning. Det svarer til 125–375 kr. årligt ved 2,50 kr./kWh. Et almindeligt dampstrygejern trækker 2.000–2.800 watt, men termostatregulering gør, at det reelle forbrug er 40–60 % af mærkeeffekten.",
+      "Et strygejern bruger typisk 50–150 kWh om året ved 1–3 timers ugentlig strygning. Det svarer til 93–279 kr. årligt ved 1,86 kr./kWh. Et almindeligt dampstrygejern trækker 2.000–2.800 watt, men termostatregulering gør, at det reelle forbrug er 40–60 % af mærkeeffekten.",
     kwhRange: [50, 150],
     typicalKwh: 90,
     wattage: 2400,
@@ -952,14 +952,14 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Strygejernet er et af hjemmets mest effektkrævende apparater med op til 2.800 watt. Men da det typisk kun bruges 1–3 timer om ugen, er det samlede energiforbrug moderat. I denne guide gennemgår vi det faktiske strømforbrug for strygejern og dampstationer, sammenligner modeller og giver dig tips til at stryge energieffektivt.</p>
 
 <h2>Hvor mange kWh bruger et strygejern om året?</h2>
-<p>Et strygejern bruger typisk 50–150 kWh om året ved 1–3 timers ugentlig strygning. Det svarer til 125–375 kr. ved 2,50 kr./kWh. Forbruget afhænger af strygejernets effekt, strygning pr. uge og om du bruger et dampstrygejern eller en dampstation. Termostaten gør, at jernet kun trækker fuld effekt ca. 40–60 % af tiden.</p>
+<p>Et strygejern bruger typisk 50–150 kWh om året ved 1–3 timers ugentlig strygning. Det svarer til 93–279 kr. ved 1,86 kr./kWh. Forbruget afhænger af strygejernets effekt, strygning pr. uge og om du bruger et dampstrygejern eller en dampstation. Termostaten gør, at jernet kun trækker fuld effekt ca. 40–60 % af tiden.</p>
 
 <table>
-<thead><tr><th>Strygefrekvens</th><th>Timer/uge</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Strygefrekvens</th><th>Timer/uge</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Sjælden (30 min/uge)</td><td>0,5 timer</td><td>30–45 kWh</td><td>75–113 kr.</td></tr>
-<tr><td>Moderat (1 time/uge)</td><td>1 time</td><td>60–90 kWh</td><td>150–225 kr.</td></tr>
-<tr><td>Hyppig (2–3 timer/uge)</td><td>2,5 timer</td><td>120–170 kWh</td><td>300–425 kr.</td></tr>
+<tr><td>Sjælden (30 min/uge)</td><td>0,5 timer</td><td>30–45 kWh</td><td>56–84 kr.</td></tr>
+<tr><td>Moderat (1 time/uge)</td><td>1 time</td><td>60–90 kWh</td><td>112–167 kr.</td></tr>
+<tr><td>Hyppig (2–3 timer/uge)</td><td>2,5 timer</td><td>120–170 kWh</td><td>223–316 kr.</td></tr>
 </tbody>
 </table>
 
@@ -976,15 +976,15 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 </table>
 
 <h2>Hvad koster det at stryge en skjorte?</h2>
-<p>Det koster 0,10–0,25 kr. i strøm at stryge en skjorte med et dampstrygejern. En dampstation er lidt dyrere pr. minut men hurtigere, så prisen pr. skjorte er omtrent den samme. Over et år med 5 skjorter om ugen bruger du ca. 15–30 kWh alene på skjorter.</p>
+<p>Det koster 0,07–0,19 kr. i strøm at stryge en skjorte med et dampstrygejern. En dampstation er lidt dyrere pr. minut men hurtigere, så prisen pr. skjorte er omtrent den samme. Over et år med 5 skjorter om ugen bruger du ca. 15–30 kWh alene på skjorter.</p>
 
 <table>
-<thead><tr><th>Tøjtype</th><th>Strygetid</th><th>kWh</th><th>Pris (2,50 kr./kWh)</th></tr></thead>
+<thead><tr><th>Tøjtype</th><th>Strygetid</th><th>kWh</th><th>Pris (1,86 kr./kWh)</th></tr></thead>
 <tbody>
-<tr><td>Skjorte</td><td>3–5 min</td><td>0,05–0,10 kWh</td><td>0,13–0,25 kr.</td></tr>
-<tr><td>Par bukser</td><td>4–6 min</td><td>0,07–0,12 kWh</td><td>0,18–0,30 kr.</td></tr>
-<tr><td>Dug (stor)</td><td>8–12 min</td><td>0,13–0,22 kWh</td><td>0,33–0,55 kr.</td></tr>
-<tr><td>Sengelinned</td><td>5–8 min</td><td>0,08–0,15 kWh</td><td>0,20–0,38 kr.</td></tr>
+<tr><td>Skjorte</td><td>3–5 min</td><td>0,05–0,10 kWh</td><td>0,10–0,19 kr.</td></tr>
+<tr><td>Par bukser</td><td>4–6 min</td><td>0,07–0,12 kWh</td><td>0,13–0,22 kr.</td></tr>
+<tr><td>Dug (stor)</td><td>8–12 min</td><td>0,13–0,22 kWh</td><td>0,25–0,41 kr.</td></tr>
+<tr><td>Sengelinned</td><td>5–8 min</td><td>0,08–0,15 kWh</td><td>0,15–0,28 kr.</td></tr>
 </tbody>
 </table>
 
@@ -994,9 +994,9 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Type</th><th>Watt</th><th>kWh/år (1,5 t/uge)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Philips Azur 8000 DST8041</td><td>Dampstrygejern</td><td>2.600 W</td><td>75 kWh</td><td>188 kr.</td></tr>
-<tr><td>Braun TexStyle 9 SI9288</td><td>Dampstrygejern</td><td>2.800 W</td><td>85 kWh</td><td>213 kr.</td></tr>
-<tr><td>Tefal Pro Express Ultimate II</td><td>Dampstation</td><td>3.000 W</td><td>115 kWh</td><td>288 kr.</td></tr>
+<tr><td>Philips Azur 8000 DST8041</td><td>Dampstrygejern</td><td>2.600 W</td><td>75 kWh</td><td>140 kr.</td></tr>
+<tr><td>Braun TexStyle 9 SI9288</td><td>Dampstrygejern</td><td>2.800 W</td><td>85 kWh</td><td>158 kr.</td></tr>
+<tr><td>Tefal Pro Express Ultimate II</td><td>Dampstation</td><td>3.000 W</td><td>115 kWh</td><td>214 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1019,12 +1019,12 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <h2>Sæsonvariation i strygning</h2>
 <p>Strygeforbruget er relativt stabilt over året, men mange familier stryger lidt mere om vinteren, hvor der bruges flere lag tøj. Sommeren bringer lettere tøj, der sjældnere kræver strygning. Den samlede variation er dog minimal sammenlignet med fx <a href="/gulvvarme/">gulvvarme</a> eller <a href="/elradiator/">elradiatorer</a>.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at stryge i en time?", answer: "En times strygning med et 2.400 W dampstrygejern koster ca. 3,00–3,50 kr., da termostaten gør, at det reelle forbrug er 1,2–1,4 kWh/time." },
+      { question: "Hvor meget koster det at stryge i en time?", answer: "En times strygning med et 2.400 W dampstrygejern koster ca. 2,23–2,60 kr., da termostaten gør, at det reelle forbrug er 1,2–1,4 kWh/time." },
       { question: "Bruger en dampstation mere strøm end et strygejern?", answer: "Ja, en dampstation bruger typisk 10–30 % mere strøm pr. time. Men den stryger hurtigere, så det samlede forbrug pr. tøjstyk er omtrent det samme." },
       { question: "Hvad er det mest energieffektive strygejern?", answer: "Moderne dampstrygejern med effektiv termostat og hurtig opvarmning er mest energieffektive. En dampstryger (vertikal) bruger mindst strøm men er langsommere." },
       { question: "Hvor mange watt trækker et strygejern?", answer: "Et typisk dampstrygejern trækker 2.000–2.800 watt. Men termostatstyring gør, at det reelle forbrug er 40–60 % af mærkeeffekten under normal strygning." },
       { question: "Kan man spare strøm ved at stryge med lavere temperatur?", answer: "Ja, syntetik og silke kræver lavere temperatur (110–150°C) og bruger 30–40 % mindre energi end bomuldsstrygning (200°C)." },
-      { question: "Hvor meget koster det at stryge en skjorte?", answer: "Det koster ca. 0,13–0,25 kr. i strøm at stryge en skjorte. Over et år med 5 skjorter/uge er det ca. 35–65 kr." },
+      { question: "Hvor meget koster det at stryge en skjorte?", answer: "Det koster ca. 0,10–0,19 kr. i strøm at stryge en skjorte. Over et år med 5 skjorter/uge er det ca. 26–48 kr." },
       { question: "Er det billigst at stryge alt på én gang?", answer: "Ja, da opvarmningen (2–3 min) bruger energi. Ved at samle strygning sparer du 5–10 % sammenlignet med at stryge i flere omgange." },
       { question: "Bruger et strygejern strøm i standby?", answer: "Nej, et strygejern har intet standbyforbrug. Det bruger kun strøm, når det er tændt og opvarmer." },
     ],
@@ -1057,7 +1057,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger en støvsuger? Se elforbrug i kWh for lednings- og akku-støvsugere, sammenlign modeller og beregn din udgift. 2026-priser.",
     heading: "Hvor meget strøm bruger en støvsuger?",
     quickAnswer:
-      "En støvsuger bruger typisk 30–100 kWh om året ved 2–3 timers ugentlig støvsugning. Det svarer til 75–250 kr. årligt ved 2,50 kr./kWh. EU-reglerne begrænser nye støvsugere til max 900 watt, men ældre modeller kan trække op til 2.400 watt.",
+      "En støvsuger bruger typisk 30–100 kWh om året ved 2–3 timers ugentlig støvsugning. Det svarer til 56–186 kr. årligt ved 1,86 kr./kWh. EU-reglerne begrænser nye støvsugere til max 900 watt, men ældre modeller kan trække op til 2.400 watt.",
     kwhRange: [30, 100],
     typicalKwh: 60,
     wattage: 700,
@@ -1078,14 +1078,14 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Støvsugeren er et af de mest brugte apparater i det danske hjem – de fleste støvsuger 2–4 gange om ugen. Men hvor meget strøm bruger den egentlig? Siden EU i 2017 begrænsede nye støvsugere til max 900 watt, er forbruget faldet markant. I denne guide gennemgår vi det faktiske energiforbrug, sammenligner lednings- og akkumodeller og hjælper dig med at vælge energieffektivt.</p>
 
 <h2>Hvor mange kWh bruger en støvsuger om året?</h2>
-<p>En moderne støvsuger bruger typisk 30–100 kWh om året ved 2–3 timers ugentlig støvsugning. Det svarer til 75–250 kr. årligt ved 2,50 kr./kWh. Forbruget afhænger af støvsugerens effekt, brugsfrekvens og om det er en lednings- eller akkumodel.</p>
+<p>En moderne støvsuger bruger typisk 30–100 kWh om året ved 2–3 timers ugentlig støvsugning. Det svarer til 56–186 kr. årligt ved 1,86 kr./kWh. Forbruget afhænger af støvsugerens effekt, brugsfrekvens og om det er en lednings- eller akkumodel.</p>
 
 <table>
-<thead><tr><th>Støvsugningsfrekvens</th><th>Timer/uge</th><th>Årligt kWh (700 W)</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Støvsugningsfrekvens</th><th>Timer/uge</th><th>Årligt kWh (700 W)</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Sjælden (1x/uge)</td><td>0,75 timer</td><td>25–35 kWh</td><td>63–88 kr.</td></tr>
-<tr><td>Moderat (2-3x/uge)</td><td>1,5 timer</td><td>45–65 kWh</td><td>113–163 kr.</td></tr>
-<tr><td>Hyppig (daglig)</td><td>3 timer</td><td>90–120 kWh</td><td>225–300 kr.</td></tr>
+<tr><td>Sjælden (1x/uge)</td><td>0,75 timer</td><td>25–35 kWh</td><td>47–65 kr.</td></tr>
+<tr><td>Moderat (2-3x/uge)</td><td>1,5 timer</td><td>45–65 kWh</td><td>84–121 kr.</td></tr>
+<tr><td>Hyppig (daglig)</td><td>3 timer</td><td>90–120 kWh</td><td>167–223 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1095,10 +1095,10 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Type</th><th>Effekt</th><th>kWh pr. times brug</th><th>Årligt kWh (2 t/uge)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Ledning (ny, EU-maks)</td><td>600–900 W</td><td>0,6–0,9 kWh</td><td>55–90 kWh</td><td>138–225 kr.</td></tr>
-<tr><td>Ledning (ældre model)</td><td>1.400–2.400 W</td><td>1,4–2,4 kWh</td><td>130–240 kWh</td><td>325–600 kr.</td></tr>
-<tr><td>Akku (Dyson, Samsung)</td><td>200–500 W (opladning)</td><td>0,2–0,5 kWh</td><td>20–50 kWh</td><td>50–125 kr.</td></tr>
-<tr><td>Robotstøvsuger</td><td>30–70 W</td><td>0,03–0,07 kWh</td><td>10–25 kWh</td><td>25–63 kr.</td></tr>
+<tr><td>Ledning (ny, EU-maks)</td><td>600–900 W</td><td>0,6–0,9 kWh</td><td>55–90 kWh</td><td>103–167 kr.</td></tr>
+<tr><td>Ledning (ældre model)</td><td>1.400–2.400 W</td><td>1,4–2,4 kWh</td><td>130–240 kWh</td><td>242–446 kr.</td></tr>
+<tr><td>Akku (Dyson, Samsung)</td><td>200–500 W (opladning)</td><td>0,2–0,5 kWh</td><td>20–50 kWh</td><td>37–93 kr.</td></tr>
+<tr><td>Robotstøvsuger</td><td>30–70 W</td><td>0,03–0,07 kWh</td><td>10–25 kWh</td><td>19–47 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1120,10 +1120,10 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Type</th><th>Watt</th><th>kWh/år (2 t/uge)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Miele Complete C3 EcoLine</td><td>Ledning</td><td>550 W</td><td>35 kWh</td><td>88 kr.</td></tr>
-<tr><td>Dyson V15 Detect</td><td>Akku</td><td>200–500 W</td><td>25 kWh</td><td>63 kr.</td></tr>
-<tr><td>Bosch Serie 4 ProPower</td><td>Ledning</td><td>700 W</td><td>50 kWh</td><td>125 kr.</td></tr>
-<tr><td>Samsung Jet 90</td><td>Akku</td><td>200–500 W</td><td>30 kWh</td><td>75 kr.</td></tr>
+<tr><td>Miele Complete C3 EcoLine</td><td>Ledning</td><td>550 W</td><td>35 kWh</td><td>65 kr.</td></tr>
+<tr><td>Dyson V15 Detect</td><td>Akku</td><td>200–500 W</td><td>25 kWh</td><td>47 kr.</td></tr>
+<tr><td>Bosch Serie 4 ProPower</td><td>Ledning</td><td>700 W</td><td>50 kWh</td><td>93 kr.</td></tr>
+<tr><td>Samsung Jet 90</td><td>Akku</td><td>200–500 W</td><td>30 kWh</td><td>56 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1148,9 +1148,9 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     faqs: [
       { question: "Hvor mange kWh bruger en støvsuger pr. time?", answer: "En moderne støvsuger (under 900 W) bruger 0,5–0,9 kWh pr. time. Ældre modeller fra før 2014 kan bruge 1,6–2,4 kWh pr. time." },
       { question: "Er en akkustøvsuger billigere i strøm?", answer: "Ja, akkustøvsugere bruger typisk 20–50 kWh/år mod 55–90 kWh for ledningsmodeller. Besparelsen er 35–100 kr. årligt." },
-      { question: "Hvad koster det at støvsuge?", answer: "En halv times støvsugning med en 700 W støvsuger koster ca. 0,88 kr. Over et år med 2–3 ugentlige støvsugninger er det 100–200 kr." },
+      { question: "Hvad koster det at støvsuge?", answer: "En halv times støvsugning med en 700 W støvsuger koster ca. 0,65 kr. Over et år med 2–3 ugentlige støvsugninger er det 74–149 kr." },
       { question: "Bruger en støvsuger strøm i standby?", answer: "De fleste ledningsstøvsugere har intet standbyforbrug. Akkustøvsugere med ladestation kan bruge 0,5–2 W i standby." },
-      { question: "Hvor meget kan man spare ved at skifte til ny støvsuger?", answer: "Ved at skifte fra en ældre 2.000 W model til en ny 700 W model sparer du typisk 100–150 kWh/år (250–375 kr.)." },
+      { question: "Hvor meget kan man spare ved at skifte til ny støvsuger?", answer: "Ved at skifte fra en ældre 2.000 W model til en ny 700 W model sparer du typisk 100–150 kWh/år (186–279 kr.)." },
       { question: "Er 900 watt nok til en god støvsuger?", answer: "Ja, moderne motorteknologi gør 700–900 W støvsugere mindst lige så effektive som gamle 2.000 W modeller. Sugeevnen afhænger af motorens design, ikke kun watt." },
       { question: "Bruger en robotstøvsuger mindre strøm end en alm. støvsuger?", answer: "Ja, en robotstøvsuger bruger 10–25 kWh/år mod 30–100 kWh for en manuel støvsuger. Men robotstøvsugeren supplerer typisk – den erstatter ikke." },
       { question: "Forbruger en støvsuger mere strøm med fuld pose?", answer: "Ja, en fuld pose eller beholder øger motorbelastningen og strømforbruget med op til 20–30 %. Tøm eller skift jævnligt." },
@@ -1184,7 +1184,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
       "Hvor meget strøm bruger en hårtørrer? Se elforbrug i kWh pr. brug og pr. år, sammenlign modeller og beregn din udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger en hårtørrer?",
     quickAnswer:
-      "En hårtørrer bruger typisk 30–80 kWh om året ved daglig brug i 10–15 minutter. Det svarer til 75–200 kr. årligt ved 2,50 kr./kWh. Hårtørrere trækker 1.200–2.200 watt og er dermed et af badeværelsets mest effektkrævende apparater, men den korte brugstid holder forbruget nede.",
+      "En hårtørrer bruger typisk 30–80 kWh om året ved daglig brug i 10–15 minutter. Det svarer til 56–149 kr. årligt ved 1,86 kr./kWh. Hårtørrere trækker 1.200–2.200 watt og er dermed et af badeværelsets mest effektkrævende apparater, men den korte brugstid holder forbruget nede.",
     kwhRange: [30, 80],
     typicalKwh: 50,
     wattage: 1800,
@@ -1205,27 +1205,27 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <p>Hårtørreren er et af de mest effektkrævende apparater i badeværelset med typisk 1.200–2.200 watt. Men da den kun bruges i korte perioder, er det samlede årsforbrug overraskende beskedent. I denne guide gennemgår vi det faktiske energiforbrug, sammenligner populære modeller og giver dig tips til at minimere udgiften.</p>
 
 <h2>Hvor mange kWh bruger en hårtørrer om året?</h2>
-<p>En hårtørrer bruger typisk 30–80 kWh om året ved daglig brug i 10–15 minutter. Det svarer til 75–200 kr. årligt ved 2,50 kr./kWh. Forbruget afhænger af hårtørrerens effekt, brugsfrekvens og tørretid. Langt hår kræver typisk dobbelt så lang tørretid som kort hår.</p>
+<p>En hårtørrer bruger typisk 30–80 kWh om året ved daglig brug i 10–15 minutter. Det svarer til 56–149 kr. årligt ved 1,86 kr./kWh. Forbruget afhænger af hårtørrerens effekt, brugsfrekvens og tørretid. Langt hår kræver typisk dobbelt så lang tørretid som kort hår.</p>
 
 <table>
-<thead><tr><th>Brugsscenario</th><th>Tid/gang</th><th>Frekvens</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Brugsscenario</th><th>Tid/gang</th><th>Frekvens</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Kort hår, daglig</td><td>5 min</td><td>Dagligt</td><td>25–35 kWh</td><td>63–88 kr.</td></tr>
-<tr><td>Mellemlangt hår, daglig</td><td>10 min</td><td>Dagligt</td><td>45–65 kWh</td><td>113–163 kr.</td></tr>
-<tr><td>Langt hår, daglig</td><td>15–20 min</td><td>Dagligt</td><td>70–100 kWh</td><td>175–250 kr.</td></tr>
-<tr><td>Mellemlangt hår, 3x/uge</td><td>10 min</td><td>3x/uge</td><td>18–28 kWh</td><td>45–70 kr.</td></tr>
+<tr><td>Kort hår, daglig</td><td>5 min</td><td>Dagligt</td><td>25–35 kWh</td><td>47–65 kr.</td></tr>
+<tr><td>Mellemlangt hår, daglig</td><td>10 min</td><td>Dagligt</td><td>45–65 kWh</td><td>84–121 kr.</td></tr>
+<tr><td>Langt hår, daglig</td><td>15–20 min</td><td>Dagligt</td><td>70–100 kWh</td><td>130–186 kr.</td></tr>
+<tr><td>Mellemlangt hår, 3x/uge</td><td>10 min</td><td>3x/uge</td><td>18–28 kWh</td><td>33–52 kr.</td></tr>
 </tbody>
 </table>
 
 <h2>Hvad koster det at tørre hår?</h2>
-<p>En enkelt tørring med en 1.800 W hårtørrer i 10 minutter koster ca. 0,75 kr. i strøm. Det er en af badeværelsets billigste rutiner – til sammenligning koster et varmt bad 5–15 kr. i vand og varme. Over et år med daglig brug løber det dog op til 100–250 kr.</p>
+<p>En enkelt tørring med en 1.800 W hårtørrer i 10 minutter koster ca. 0,56 kr. i strøm. Det er en af badeværelsets billigste rutiner – til sammenligning koster et varmt bad 4–11 kr. i vand og varme. Over et år med daglig brug løber det dog op til 74–186 kr.</p>
 
 <table>
 <thead><tr><th>Effekt</th><th>5 min brug</th><th>10 min brug</th><th>15 min brug</th></tr></thead>
 <tbody>
-<tr><td>1.200 W (rejsemodel)</td><td>0,25 kr.</td><td>0,50 kr.</td><td>0,75 kr.</td></tr>
-<tr><td>1.800 W (standard)</td><td>0,38 kr.</td><td>0,75 kr.</td><td>1,13 kr.</td></tr>
-<tr><td>2.200 W (professionel)</td><td>0,46 kr.</td><td>0,92 kr.</td><td>1,38 kr.</td></tr>
+<tr><td>1.200 W (rejsemodel)</td><td>0,19 kr.</td><td>0,37 kr.</td><td>0,56 kr.</td></tr>
+<tr><td>1.800 W (standard)</td><td>0,28 kr.</td><td>0,56 kr.</td><td>0,84 kr.</td></tr>
+<tr><td>2.200 W (professionel)</td><td>0,34 kr.</td><td>0,68 kr.</td><td>1,03 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1235,10 +1235,10 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Watt</th><th>Teknologi</th><th>kWh/år (daglig, 10 min)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Dyson Supersonic HD15</td><td>1.600 W</td><td>Digital motor, ionisk</td><td>40 kWh</td><td>100 kr.</td></tr>
-<tr><td>Philips DryCare Pro BHD274</td><td>2.100 W</td><td>ThermoProtect, ionisk</td><td>50 kWh</td><td>125 kr.</td></tr>
-<tr><td>GHD Helios</td><td>2.200 W</td><td>Dual-zone, ionisk</td><td>60 kWh</td><td>150 kr.</td></tr>
-<tr><td>Remington Pro-Air Turbo D5220</td><td>2.400 W</td><td>Keramisk gitter</td><td>70 kWh</td><td>175 kr.</td></tr>
+<tr><td>Dyson Supersonic HD15</td><td>1.600 W</td><td>Digital motor, ionisk</td><td>40 kWh</td><td>74 kr.</td></tr>
+<tr><td>Philips DryCare Pro BHD274</td><td>2.100 W</td><td>ThermoProtect, ionisk</td><td>50 kWh</td><td>93 kr.</td></tr>
+<tr><td>GHD Helios</td><td>2.200 W</td><td>Dual-zone, ionisk</td><td>60 kWh</td><td>112 kr.</td></tr>
+<tr><td>Remington Pro-Air Turbo D5220</td><td>2.400 W</td><td>Keramisk gitter</td><td>70 kWh</td><td>130 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1251,10 +1251,10 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <table>
 <thead><tr><th>Apparat</th><th>Watt</th><th>Typisk brugstid</th><th>kWh/brug</th><th>Pris/brug</th></tr></thead>
 <tbody>
-<tr><td>Hårtørrer</td><td>1.800 W</td><td>10 min</td><td>0,30 kWh</td><td>0,75 kr.</td></tr>
-<tr><td>Strygejern</td><td>2.400 W</td><td>30 min</td><td>1,20 kWh</td><td>3,00 kr.</td></tr>
-<tr><td>Elradiator</td><td>2.000 W</td><td>8 timer</td><td>16,0 kWh</td><td>40,00 kr.</td></tr>
-<tr><td>Varmeblæser</td><td>2.000 W</td><td>2 timer</td><td>4,0 kWh</td><td>10,00 kr.</td></tr>
+<tr><td>Hårtørrer</td><td>1.800 W</td><td>10 min</td><td>0,30 kWh</td><td>0,56 kr.</td></tr>
+<tr><td>Strygejern</td><td>2.400 W</td><td>30 min</td><td>1,20 kWh</td><td>2,23 kr.</td></tr>
+<tr><td>Elradiator</td><td>2.000 W</td><td>8 timer</td><td>16,0 kWh</td><td>29,76 kr.</td></tr>
+<tr><td>Varmeblæser</td><td>2.000 W</td><td>2 timer</td><td>4,0 kWh</td><td>7,44 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1274,14 +1274,14 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
 <h2>Sæsonvariation i hårtørrerforbrug</h2>
 <p>Hårtørrerens forbrug er stort set konstant over året, da det bestemmes af personlige vaner snarere end sæsoner. Dog vasker og tørrer nogle danskere håret oftere om vinteren, hvor man er mere udendørs i koldt vejr og vil undgå at gå med vådt hår. Variationen er dog under 5 %.</p>`,
     faqs: [
-      { question: "Hvad koster det at tørre hår én gang?", answer: "En tørring på 10 minutter med en 1.800 W hårtørrer koster ca. 0,75 kr. Med en professionel 2.200 W model koster det 0,92 kr." },
-      { question: "Bruger en hårtørrer meget strøm?", answer: "Hårtørreren trækker 1.200–2.200 W, men da den kun bruges i 5–20 min, er det årlige forbrug beskedent: 30–80 kWh (75–200 kr.)." },
+      { question: "Hvad koster det at tørre hår én gang?", answer: "En tørring på 10 minutter med en 1.800 W hårtørrer koster ca. 0,56 kr. Med en professionel 2.200 W model koster det 0,68 kr." },
+      { question: "Bruger en hårtørrer meget strøm?", answer: "Hårtørreren trækker 1.200–2.200 W, men da den kun bruges i 5–20 min, er det årlige forbrug beskedent: 30–80 kWh (56–149 kr.)." },
       { question: "Er en Dyson Supersonic mere energieffektiv?", answer: "Ja, Dyson Supersonic bruger 1.600 W og tørrer hurtigere pga. digital motor og ionteknologi. Det giver et lavere årsforbrug end mange 2.200 W modeller." },
       { question: "Hvor mange kWh bruger en hårtørrer pr. time?", answer: "Ved fuld effekt bruger en 1.800 W hårtørrer 1,8 kWh pr. time. Men typisk brug er kun 10–15 min ad gangen." },
       { question: "Kan man spare strøm ved at bruge kold luft?", answer: "Kold luft bruger ca. 50–70 % mindre strøm, da varmelegemet er slukket. Men tørretiden fordobles, så den samlede besparelse er 20–30 %." },
       { question: "Bruger en hårtørrer strøm i standby?", answer: "Nej, en hårtørrer har intet standbyforbrug. Den bruger kun strøm, når den er tændt." },
-      { question: "Hvad er billigst: Hårtørrer eller naturlig tørring?", answer: "Naturlig tørring er gratis, men tager 30–60 minutter. Med en hårtørrer koster det 0,50–1,00 kr., men du sparer 20–50 minutters ventetid." },
-      { question: "Hvor meget strøm bruger en hårtørrer om måneden?", answer: "Ved daglig brug i 10 minutter bruger en 1.800 W hårtørrer ca. 4–6 kWh pr. måned, svarende til 10–15 kr." },
+      { question: "Hvad er billigst: Hårtørrer eller naturlig tørring?", answer: "Naturlig tørring er gratis, men tager 30–60 minutter. Med en hårtørrer koster det 0,37–0,74 kr., men du sparer 20–50 minutters ventetid." },
+      { question: "Hvor meget strøm bruger en hårtørrer om måneden?", answer: "Ved daglig brug i 10 minutter bruger en 1.800 W hårtørrer ca. 4–6 kWh pr. måned, svarende til 7–11 kr." },
     ],
     relatedSlugs: ["strygejern", "gulvvarme", "vaskemaskine", "varmeblaeser"],
     sources: [

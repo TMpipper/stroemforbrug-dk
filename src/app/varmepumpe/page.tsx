@@ -111,7 +111,7 @@ export default function VarmepumpePage() {
 
         <div className="prose-editorial" dangerouslySetInnerHTML={{ __html: data.content }} />
 
-        <AffiliateCta />
+        <AffiliateCta kwh={9000} household="et hus med varmepumpe" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">

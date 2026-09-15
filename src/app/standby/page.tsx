@@ -15,13 +15,13 @@ export const metadata: Metadata = {
 
 const faqs = [
   { question: "Hvad er standby-forbrug?", answer: "Standby-forbrug er den strøm et apparat bruger når det er 'slukket' men stadig tilsluttet stikkontakten. Apparatet er klar til at tænde med fjernbetjening eller knaptryk, men bruger konstant en lille mængde strøm — typisk 0,5-15 W." },
-  { question: "Hvor meget koster standby-forbrug om året?", answer: "En gennemsnitlig dansk husstand betaler 400-800 kr./år for standby-forbrug. Det svarer til 160-320 kWh/år — strøm der bruges uden at apparaterne reelt er i brug." },
+  { question: "Hvor meget koster standby-forbrug om året?", answer: "En gennemsnitlig dansk husstand betaler 298-595 kr./år for standby-forbrug. Det svarer til 160-320 kWh/år — strøm der bruges uden at apparaterne reelt er i brug." },
   { question: "Hvad bruger mest strøm i standby?", answer: "Spillekonsoller (PlayStation, Xbox) er de værste standby-slugere med 5-15 W. Derefter kommer stationære computere (2-10 W), tv-bokse/streaming-enheder (5-12 W) og ældre tv-apparater (1-5 W)." },
-  { question: "Koster det noget at lade opladeren sidde i stikkontakten?", answer: "En mobiloplader uden telefon bruger ca. 0,3-0,5 W, hvilket koster under 10 kr./år. En laptop-oplader bruger lidt mere (0,5-1 W). Det er altså minimalt, men alle småforbrug lægges sammen." },
-  { question: "Bruger et tv strøm i standby?", answer: "Ja, et moderne tv bruger typisk 0,5-2 W i standby, svarende til 4-17 kWh/år (10-43 kr.). Ældre tv-modeller kan bruge op til 5 W (44 kWh/år). Et OLED-tv med pixel refresh kan bruge op til 10 W periodevis." },
+  { question: "Koster det noget at lade opladeren sidde i stikkontakten?", answer: "En mobiloplader uden telefon bruger ca. 0,3-0,5 W, hvilket koster under 7 kr./år. En laptop-oplader bruger lidt mere (0,5-1 W). Det er altså minimalt, men alle småforbrug lægges sammen." },
+  { question: "Bruger et tv strøm i standby?", answer: "Ja, et moderne tv bruger typisk 0,5-2 W i standby, svarende til 4-17 kWh/år (7-32 kr.). Ældre tv-modeller kan bruge op til 5 W (44 kWh/år). Et OLED-tv med pixel refresh kan bruge op til 10 W periodevis." },
   { question: "Hvordan kan jeg måle standby-forbruget?", answer: "Køb en elmåler (energimåler) til 50-150 kr. i et byggemarked. Sæt den mellem stikkontakten og apparatet, og aflæs watt-forbruget når apparatet er i standby. Multiplicer med 8.760 timer for at få årligt kWh-forbrug." },
   { question: "Hvad er en smart stikdåse?", answer: "En smart stikdåse (smart plug) er en stikdåse du kan styre via app eller timer. Den kan automatisk slukke for strømmen om natten eller når du forlader hjemmet, så du eliminerer standby-forbrug uden at tænke over det." },
-  { question: "Bruger en router strøm i standby?", answer: "En router har ikke egentlig standby-tilstand — den kører 24/7 og bruger typisk 6-12 W konstant. Det giver 52-105 kWh/år (130-263 kr.). Mange vælger at lade routeren køre hele tiden, da den skal genstartes for at fungere." },
+  { question: "Bruger en router strøm i standby?", answer: "En router har ikke egentlig standby-tilstand — den kører 24/7 og bruger typisk 6-12 W konstant. Det giver 52-105 kWh/år (97-196 kr.). Mange vælger at lade routeren køre hele tiden, da den skal genstartes for at fungere." },
 ];
 
 export default function StandbyPage() {
@@ -62,7 +62,7 @@ export default function StandbyPage() {
         <QuickAnswer>
           <p>
             Standby-forbrug koster den gennemsnitlige danske husstand mellem 400
-            og 800 kr. om året. Det svarer til 160-320 kWh i strøm der bruges
+            og 595 kr. om året. Det svarer til 160-320 kWh i strøm der bruges
             af apparater der tilsyneladende er slukket. Ved at bruge stikdåser
             med afbryder eller smart plugs kan du eliminere stort set hele dette
             skjulte forbrug.
@@ -81,7 +81,7 @@ export default function StandbyPage() {
           <p>
             Ifølge Energistyrelsen udgør standby-forbruget 5-10% af en dansk
             husstands samlede elforbrug. For en familie med et forbrug på 4.000
-            kWh/år svarer det til 200-400 kWh — eller 500-1.000 kr. ved 2,50
+            kWh/år svarer det til 200-400 kWh — eller 372-744 kr. ved 1,86
             kr./kWh.
           </p>
 
@@ -90,7 +90,7 @@ export default function StandbyPage() {
             Nedenstående tabel viser det typiske standby-forbrug for de mest
             almindelige apparater i en dansk husstand. Watt-forbruget er målt når
             apparatet er slukket men stadig tilsluttet stikkontakten. Den årlige
-            pris er beregnet med 2,50 kr./kWh.
+            pris er beregnet med 1,86 kr./kWh.
           </p>
           <table>
             <thead>
@@ -130,7 +130,7 @@ export default function StandbyPage() {
             Spillekonsoller er de absolut værste standby-slugere i de fleste hjem.
             En <Link href="/playstation/">PlayStation 5</Link> i rest mode med
             netværksfunktioner aktiveret kan bruge op til 15 W — det svarer til
-            131 kWh/år og en udgift på 328 kr. blot for at stå tændt. Xbox Series X
+            131 kWh/år og en udgift på 244 kr. blot for at stå tændt. Xbox Series X
             er næsten lige så slem med op til 13 W i instant-on tilstand.
           </p>
           <p>
@@ -165,7 +165,7 @@ export default function StandbyPage() {
             Stuen er typisk den zone i hjemmet med højest samlet standby-forbrug.
             Et typisk stue-setup med <Link href="/tv/">tv</Link>, soundbar,
             spillekonsol, streaming-boks og subwoofer bruger tilsammen 10-40 W
-            i standby. Det svarer til 88-350 kWh/år — en udgift på 219-876 kr.
+            i standby. Det svarer til 88-350 kWh/år — en udgift på 163-652 kr.
             bare for at have udstyret klar.
           </p>
           <table>

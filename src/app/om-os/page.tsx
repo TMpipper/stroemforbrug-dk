@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Om Strømforbrug.dk — Hvem vi er",
-  description: "Strømforbrug.dk drives af Mondo Media ApS. Vi hjælper danske forbrugere med at forstå, beregne og reducere deres strømforbrug.",
+  description: "Strømforbrug.dk drives af Elpriser.dk ApS. Vi hjælper danske forbrugere med at forstå, beregne og reducere deres strømforbrug.",
   alternates: { canonical: `${SITE_CONFIG.url}/om-os/` },
 };
 
@@ -39,8 +39,7 @@ export default function OmOsPage() {
           Strømforbrug.dk skrives og redigeres af <strong>{SITE_CONFIG.editorName}</strong>,
           {" "}{SITE_CONFIG.editorRole.toLowerCase()} hos {SITE_CONFIG.company.legalName}.
           Mathias har analyseret det danske energimarked siden 2024 og driver
-          også Billigste-elselskab.nu — Danmarks største uafhængige
-          sammenligning af elselskaber.
+          også Billigste-elselskab.nu, der sammenligner danske elselskaber.
         </p>
 
         <h2>Selskabsoplysninger</h2>

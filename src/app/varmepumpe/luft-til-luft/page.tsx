@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: "Hvor meget strøm bruger en luft-til-luft varmepumpe?", answer: "En luft-til-luft varmepumpe bruger typisk 2.000-4.000 kWh/år, svarende til 5.000-10.000 kr. ved 2,50 kr./kWh. Det afhænger af boligens størrelse og isolering." },
-  { question: "Hvad koster en luft-til-luft varmepumpe i strøm pr. måned?", answer: "Gennemsnitligt ca. 415-830 kr./md. Om vinteren er det 750-1.500 kr./md., mens det om sommeren kun er 25-100 kr./md." },
+  { question: "Hvor meget strøm bruger en luft-til-luft varmepumpe?", answer: "En luft-til-luft varmepumpe bruger typisk 2.000-4.000 kWh/år, svarende til 3.720-7.440 kr. ved 1,86 kr./kWh. Det afhænger af boligens størrelse og isolering." },
+  { question: "Hvad koster en luft-til-luft varmepumpe i strøm pr. måned?", answer: "Gennemsnitligt ca. 309-618 kr./md. Om vinteren er det 558-1.116 kr./md., mens det om sommeren kun er 19-74 kr./md." },
   { question: "Kan en luft-til-luft opvarme hele huset?", answer: "En luft-til-luft opvarmer primært det rum den står i + tilstødende rum. Den er ideel som supplement til fjernvarme/radiatorer, men kan sjældent opvarme et helt hus alene (medmindre det er en åben planløsning)." },
   { question: "Hvad er COP på luft-til-luft?", answer: "COP er typisk 3,0-4,0. Ved 7°C ude er COP ca. 4,0 (du får 4 kWh varme pr. 1 kWh strøm). Ved -7°C falder COP til ca. 2,5-3,0." },
   { question: "Er luft-til-luft billigere end luft-til-vand?", answer: "Ja, både i indkøb (15.000-35.000 vs. 80.000-140.000 kr.) og drift (2.000-4.000 vs. 4.000-6.000 kWh/år). Men luft-til-vand erstatter hele dit varmesystem." },
-  { question: "Kan luft-til-luft også køle om sommeren?", answer: "Ja, de fleste luft-til-luft modeller kan køle. Køling bruger typisk 1-3 kWh/dag (2,50-7,50 kr./dag) og er langt billigere end en mobil aircondition." },
+  { question: "Kan luft-til-luft også køle om sommeren?", answer: "Ja, de fleste luft-til-luft modeller kan køle. Køling bruger typisk 1-3 kWh/dag (1,86-5,58 kr./dag) og er langt billigere end en mobil aircondition." },
   { question: "Hvad koster det at installere en luft-til-luft?", answer: "En luft-til-luft koster 15.000-35.000 kr. inkl. installation. Med en besparelse på 3.000-8.000 kr./år er tilbagebetalingstiden 2-5 år." },
   { question: "Støjer en luft-til-luft varmepumpe?", answer: "Udedelen støjer typisk 40-55 dB (som en stille samtale). Indedelen er næsten lydløs på laveste hastighed (20-25 dB). Nye modeller er markant mere støjsvage end ældre." },
 ];
@@ -64,7 +64,7 @@ export default function LuftTilLuftPage() {
         <QuickAnswer>
           <p>
             En luft-til-luft varmepumpe bruger typisk 2.000-4.000 kWh strøm om
-            året, svarende til 5.000-10.000 kr. ved 2,50 kr./kWh. Den er den
+            året, svarende til 3.720-7.440 kr. ved 1,86 kr./kWh. Den er den
             billigste varmepumpetype både i indkøb og drift, og bruges primært
             som supplement til eksisterende opvarmning. COP er 3,0-4,0.
           </p>
@@ -98,10 +98,10 @@ export default function LuftTilLuftPage() {
               <tr><th>Boligstørrelse</th><th>kWh/år</th><th>Pris/år</th><th>Anbefalet kapacitet</th></tr>
             </thead>
             <tbody>
-              <tr><td>40-60 m² (lejlighed)</td><td>1.200-2.000 kWh</td><td>3.000-5.000 kr.</td><td>2,5-3,5 kW</td></tr>
-              <tr><td>60-90 m² (lejlighed/rækkehus)</td><td>1.800-3.000 kWh</td><td>4.500-7.500 kr.</td><td>3,5-5,0 kW</td></tr>
-              <tr><td>90-130 m² (hus)</td><td>2.500-3.500 kWh</td><td>6.250-8.750 kr.</td><td>5,0-7,0 kW</td></tr>
-              <tr><td>130-180 m² (stort hus)</td><td>3.000-4.500 kWh</td><td>7.500-11.250 kr.</td><td>7,0+ kW (evt. 2 enheder)</td></tr>
+              <tr><td>40-60 m² (lejlighed)</td><td>1.200-2.000 kWh</td><td>2.232-3.720 kr.</td><td>2,5-3,5 kW</td></tr>
+              <tr><td>60-90 m² (lejlighed/rækkehus)</td><td>1.800-3.000 kWh</td><td>3.348-5.580 kr.</td><td>3,5-5,0 kW</td></tr>
+              <tr><td>90-130 m² (hus)</td><td>2.500-3.500 kWh</td><td>4.650-6.510 kr.</td><td>5,0-7,0 kW</td></tr>
+              <tr><td>130-180 m² (stort hus)</td><td>3.000-4.500 kWh</td><td>5.580-8.370 kr.</td><td>7,0+ kW (evt. 2 enheder)</td></tr>
             </tbody>
           </table>
 
@@ -187,14 +187,14 @@ export default function LuftTilLuftPage() {
               <tr><th>Model</th><th>Kapacitet</th><th>SCOP</th><th>kWh/år (est.)</th><th>Pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td>Mitsubishi MSZ-AY35VGK</td><td>3,5 kW</td><td>4,6</td><td>2.200 kWh</td><td>5.500 kr.</td></tr>
-              <tr><td>Daikin Stylish FTXA35</td><td>3,5 kW</td><td>4,6</td><td>2.300 kWh</td><td>5.750 kr.</td></tr>
-              <tr><td>Panasonic Etherea CS-Z35</td><td>3,5 kW</td><td>4,5</td><td>2.400 kWh</td><td>6.000 kr.</td></tr>
+              <tr><td>Mitsubishi MSZ-AY35VGK</td><td>3,5 kW</td><td>4,6</td><td>2.200 kWh</td><td>4.092 kr.</td></tr>
+              <tr><td>Daikin Stylish FTXA35</td><td>3,5 kW</td><td>4,6</td><td>2.300 kWh</td><td>4.278 kr.</td></tr>
+              <tr><td>Panasonic Etherea CS-Z35</td><td>3,5 kW</td><td>4,5</td><td>2.400 kWh</td><td>4.464 kr.</td></tr>
             </tbody>
           </table>
         </div>
 
-        <AffiliateCta />
+        <AffiliateCta kwh={7000} household="et hus med luft-til-luft varmepumpe" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>

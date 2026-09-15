@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
     "Specialist i dansk husholdningens energiforbrug. Analyserer strømforbrug og hjælper familier med at spare på strømmen.",
   editorImage: "/images/mathias-clausen.jpg",
   company: {
-    legalName: "Mondo Media ApS",
+    legalName: "Elpriser.dk ApS",
     cvr: "43489984",
     address: "Hestehave 15, 6400 Sønderborg, Danmark",
     phone: "+45 22 41 05 57",
@@ -21,7 +21,14 @@ export const SITE_CONFIG = {
   },
 };
 
-// Single source of truth for electricity price used in all calculations
-export const ELECTRICITY_PRICE_KR_PER_KWH = 2.5;
-export const CHEAP_PROVIDER_PRICE = 1.54; // Altid Energi
+// Single source of truth for electricity price used in all calculations.
+// Computed from market data in pricing.ts — never type a price here.
+export {
+  EL_PRICE_KR_PER_KWH as ELECTRICITY_PRICE_KR_PER_KWH,
+  TYPICAL_ALL_IN_KR_PER_KWH,
+  PRICE_LABEL,
+  PRICE_DEFINITION,
+  MARKET,
+} from "./pricing";
+
 export const CHEAP_PROVIDER_NAME = "Altid Energi";

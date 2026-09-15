@@ -5,6 +5,8 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import AffiliateCta from "@/components/marketing/AffiliateCta";
+import { rankByFirstYear, formatOre, OFFERS_VERIFIED_AT } from "@/lib/offers";
+import { REFERENCE_KWH, formatPrice, formatKr } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Hvad koster en kWh i 2026? → Se aktuel pris inkl. afgifter",
@@ -14,13 +16,13 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: "Hvad koster 1 kWh strøm i Danmark i 2026?", answer: "I gennemsnit koster 1 kWh ca. 2,50 kr. inkl. spotpris, transport, elafgift og moms. Den rene spotpris svinger mellem 0,50-3,00 kr., men med faste tillæg lander totalen typisk på 2,00-3,50 kr." },
+  { question: "Hvad koster 1 kWh strøm i Danmark i 2026?", answer: "I gennemsnit koster 1 kWh ca. 1,86 kr. inkl. spotpris, transport, elafgift og moms. Den rene spotpris svinger mellem 0,37-2,23 kr., men med faste tillæg lander totalen typisk på 1,49-2,60 kr." },
   { question: "Hvad er inkluderet i kWh-prisen?", answer: "Prisen består af: spotpris (ca. 40%), nettarif/transport (ca. 20%), elafgift (0,8 øre/kWh fra 2026), moms (25%), og dit elselskabs tillæg (0-10 øre). Den fulde pris er alt dette lagt sammen." },
   { question: "Hvornår er strømmen billigst?", answer: "Strømmen er billigst om natten (kl. 0-6) og dyrest i aftentimerne (kl. 17-20). Forskellen kan være 0,50-2,00 kr./kWh. Med fleksibel elpris betaler du spotprisen time for time." },
   { question: "Hvad koster en kWh hos Altid Energi?", answer: "Altid Energi tilbyder spotpris + 0 øre tillæg + 0 kr. abonnement, hvilket giver den laveste samlede kWh-pris. I gennemsnit ca. 1,54 kr./kWh (DK1) inkl. transport og afgifter." },
   { question: "Hvad er forskellen på spotpris og fastpris?", answer: "Spotpris varierer time for time med markedet — du betaler den reelle markedspris. Fastpris er en fast kWh-pris (typisk højere) der ikke ændrer sig. De fleste sparer penge med spotpris." },
   { question: "Er elafgiften sænket i 2026?", answer: "Ja, elafgiften er sænket markant til 0,8 øre/kWh (fra 76 øre). Det gør strøm billigere og varmepumper mere fordelagtige end nogensinde." },
-  { question: "Hvad koster en kWh inkl. alt?", answer: "Inkl. alle komponenter (spotpris, nettarif, elafgift, PSO-tillæg, moms og elselskabstillæg) koster 1 kWh typisk 2,00-3,50 kr. i 2026. Gennemsnittet er ca. 2,50 kr." },
+  { question: "Hvad koster en kWh inkl. alt?", answer: "Inkl. alle komponenter (spotpris, nettarif, elafgift, PSO-tillæg, moms og elselskabstillæg) koster 1 kWh typisk 1,49-2,60 kr. i 2026. Gennemsnittet er ca. 1,86 kr." },
   { question: "Hvordan finder jeg den billigste kWh-pris?", answer: "Vælg et elselskab med 0 øre tillæg og lavt/intet abonnement (f.eks. Altid Energi). Brug strøm når spotprisen er lav (nat/tidlig morgen). Tjek Eloverblik.dk for dine faktiske priser." },
 ];
 
@@ -145,14 +147,32 @@ export default function HvadKosterEnKwhPage() {
           </p>
           <table>
             <thead>
-              <tr><th>Elselskab</th><th>Tillæg/kWh</th><th>Abonnement/md.</th><th>Total kWh-pris (gns.)</th></tr>
+              <tr><th>Elselskab</th><th>Produkt</th><th>Tillæg/kWh</th><th>Abonnement/md.</th><th>Første års kWh-pris</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Altid Energi</strong></td><td>0 øre</td><td>0 kr.</td><td>~1,54 kr.</td></tr>
-              <tr><td><strong>SEF Energi</strong></td><td>2 øre</td><td>29 kr.</td><td>~1,65 kr.</td></tr>
-              <tr><td><strong>EWII</strong></td><td>4 øre</td><td>0 kr. (intro)</td><td>~1,67 kr.</td></tr>
+              {rankByFirstYear(REFERENCE_KWH).map(({ offer, product, firstYear, campaign }) => {
+                const fee = product.feeTiers.find((t) => t.upToKwh === null || REFERENCE_KWH <= t.upToKwh) ?? product.feeTiers[0];
+                return (
+                  <tr key={offer.slug}>
+                    <td><strong>{offer.name}</strong></td>
+                    <td>{product.name}</td>
+                    <td>{formatOre(product.tillaegOre)} øre</td>
+                    <td>{fee.feeKrMonth} kr.{campaign?.feeKrMonth === 0 ? " (0 kr. i kampagnen)" : ""}</td>
+                    <td>{formatPrice(firstYear / REFERENCE_KWH)} kr.</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
+          <p className="text-sm">
+            <em>
+              Alle syv aftaler vi følger, ved {formatKr(REFERENCE_KWH)} kWh/år og
+              inkl. abonnement og aktuelle introtilbud. Vilkår kontrolleret{" "}
+              {new Date(OFFERS_VERIFIED_AT).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}.
+              Rækkefølgen skifter med forbruget — et hus med varmepumpe får et andet
+              svar end en lejlighed.
+            </em>
+          </p>
           <p>
             <em>Forskellen mellem billigste og gennemsnittet kan spare dig 1.000-3.000 kr./år
             afhængigt af dit <Link href="/husstand/">husstandens forbrug</Link>.</em>
@@ -165,7 +185,7 @@ export default function HvadKosterEnKwhPage() {
             du køber den af.
           </p>
           <ol>
-            <li><strong>Skift til billigste elselskab</strong> — 0 øre tillæg + 0 kr. abonnement</li>
+            <li><strong>Skift til billigste elselskab</strong> — se tabellen ovenfor; forskellen ligger i tillæg og abonnement</li>
             <li><strong>Brug strøm om natten</strong> — timer-funktion på hvidevarer</li>
             <li><strong>Reducer dit forbrug</strong> — se vores <Link href="/beregner/">strømberegner</Link></li>
             <li><strong>Tjek din nettarif</strong> — lavtarifperioder varierer med netselskab</li>

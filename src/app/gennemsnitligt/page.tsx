@@ -14,11 +14,11 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: "Hvad er det gennemsnitlige strømforbrug i Danmark?", answer: "Det gennemsnitlige strømforbrug for en dansk husstand uden varmepumpe er ca. 3.000-4.500 kWh/år, svarende til 7.500-11.250 kr. Med varmepumpe stiger det til 6.000-10.000 kWh/år." },
-  { question: "Hvor meget strøm bruger en person om året?", answer: "En enkelt person bruger typisk 1.500-2.500 kWh/år (3.750-6.250 kr.). I en lejlighed er forbruget lavere (1.500-2.000 kWh), i et hus højere (2.000-2.500 kWh)." },
-  { question: "Hvor meget strøm bruger en familie på 4?", answer: "En familie på 4 bruger typisk 4.000-5.500 kWh/år uden varmepumpe (10.000-13.750 kr.). Med varmepumpe stiger det til 7.000-11.000 kWh/år." },
+  { question: "Hvad er det gennemsnitlige strømforbrug i Danmark?", answer: "Det gennemsnitlige strømforbrug for en dansk husstand uden varmepumpe er ca. 3.000-4.500 kWh/år, svarende til 5.580-8.370 kr. Med varmepumpe stiger det til 6.000-10.000 kWh/år." },
+  { question: "Hvor meget strøm bruger en person om året?", answer: "En enkelt person bruger typisk 1.500-2.500 kWh/år (2.790-4.650 kr.). I en lejlighed er forbruget lavere (1.500-2.000 kWh), i et hus højere (2.000-2.500 kWh)." },
+  { question: "Hvor meget strøm bruger en familie på 4?", answer: "En familie på 4 bruger typisk 4.000-5.500 kWh/år uden varmepumpe (7.440-10.230 kr.). Med varmepumpe stiger det til 7.000-11.000 kWh/år." },
   { question: "Er mit strømforbrug normalt?", answer: "Se din seneste elregning og sammenlign med gennemsnittet for din husstandsstørrelse. Under gennemsnittet er godt, over 20% mere end gennemsnittet tyder på besparelsespotentiale." },
-  { question: "Hvad koster 1 kWh strøm i 2026?", answer: "Den gennemsnitlige elpris i Danmark er ca. 2,50 kr./kWh inkl. afgifter, transport og moms. Prisen varierer med spotprisen og dit elselskab — de billigste tilbyder ca. 1,50-1,80 kr./kWh." },
+  { question: "Hvad koster 1 kWh strøm i 2026?", answer: "Den gennemsnitlige elpris i Danmark er ca. 1,86 kr./kWh inkl. afgifter, transport og moms. Prisen varierer med spotprisen og dit elselskab — de billigste aftaler ligger ca. 10 øre under gennemsnittet på 1,76 kr./kWh før abonnement." },
   { question: "Hvordan kan jeg sænke mit strømforbrug?", answer: "De mest effektive tiltag er: 1) skift gamle hvidevarer til A-mærkede, 2) reducer standby-forbrug, 3) skift til LED-pærer, 4) vælg et billigere elselskab, 5) brug eco-programmer på vaskemaskine og opvaskemaskine." },
 ];
 
@@ -52,8 +52,8 @@ export default function GennemsnitligtPage() {
         <QuickAnswer>
           <p>
             Det gennemsnitlige strømforbrug for en dansk husstand uden varmepumpe
-            er 3.000-4.500 kWh om året, svarende til 7.500-11.250 kr. ved en
-            elpris på 2,50 kr./kWh. Med varmepumpe stiger det til 6.000-10.000
+            er 3.000-4.500 kWh om året, svarende til 5.580-8.370 kr. ved en
+            elpris på 1,86 kr./kWh. Med varmepumpe stiger det til 6.000-10.000
             kWh/år (15.000-25.000 kr.).
           </p>
         </QuickAnswer>
@@ -115,7 +115,7 @@ export default function GennemsnitligtPage() {
           </table>
           <p>
             <em>
-              VP = varmepumpe. Priser beregnet med 2,50 kr./kWh. Husstande med
+              VP = varmepumpe. Priser beregnet med 1,86 kr./kWh. Husstande med
               varmepumpe har markant højere elforbrug, men lavere samlet
               varmepris fordi varmepumpen erstatter gas/olie.
             </em>

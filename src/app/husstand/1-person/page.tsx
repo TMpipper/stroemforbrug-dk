@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: "Hvor meget strøm bruger 1 person om året?", answer: "En enkelt person bruger typisk 1.500-2.500 kWh om året uden varmepumpe. I en lejlighed er det 1.500-2.000 kWh (3.750-5.000 kr.), og i et hus 2.000-2.500 kWh (5.000-6.250 kr.)." },
+  { question: "Hvor meget strøm bruger 1 person om året?", answer: "En enkelt person bruger typisk 1.500-2.500 kWh om året uden varmepumpe. I en lejlighed er det 1.500-2.000 kWh (2.790-3.720 kr.), og i et hus 2.000-2.500 kWh (3.720-4.650 kr.)." },
   { question: "Hvad er normalt strømforbrug for en single?", answer: "Et normalt strømforbrug for en single i en lejlighed er 1.500-2.000 kWh/år. Over 2.500 kWh tyder på besparelsespotentiale — typisk i form af ældre hvidevarer eller høj standby-belastning." },
-  { question: "Hvad koster strøm for 1 person om måneden?", answer: "Med en elpris på 2,50 kr./kWh koster strømmen for 1 person ca. 310-520 kr./md. i en lejlighed og 415-520 kr./md. i et hus (begge uden varmepumpe)." },
+  { question: "Hvad koster strøm for 1 person om måneden?", answer: "Med en elpris på 1,86 kr./kWh koster strømmen for 1 person ca. 231-387 kr./md. i en lejlighed og 309-387 kr./md. i et hus (begge uden varmepumpe)." },
   { question: "Hvad bruger mest strøm som single?", answer: "De tre største poster er køleskab (24/7, 100-200 kWh/år), madlavning (ovn, komfur, 100-200 kWh/år) og underholdning (tv, computer, router, 100-250 kWh/år)." },
   { question: "Bruger man mere strøm i hus end lejlighed?", answer: "Ja, typisk 20-40% mere. Et hus har mere areal at belyse, ofte en ekstra fryser, og evt. udendørsbelysning. Desuden er varmtvandsforbruget ofte højere i et hus." },
   { question: "Hvad kan jeg gøre for at spare strøm som single?", answer: "De mest effektive tiltag er: 1) skift til et billigere elselskab, 2) skift gammelt køleskab, 3) sluk standby, 4) brug eco-programmer, 5) skift til LED-pærer." },
   { question: "Er 3.000 kWh meget for 1 person?", answer: "Ja, 3.000 kWh er højt for 1 person (typisk er det 1.500-2.500). Det kan skyldes et gammelt køleskab, elvarme, mange elektroniske apparater eller en varmepumpe." },
-  { question: "Hvad er det billigste elselskab for en single?", answer: "Altid Energi tilbyder 1,54 kr./kWh uden abonnement og binding. For en single med 2.000 kWh/år sparer du ca. 920 kr./år sammenlignet med gennemsnitsprisen (2,00 kr./kWh)." },
+  { question: "Hvad er det billigste elselskab for en single?", answer: "Altid Energi har 0 øre i spottillæg og abonnement fra 18 kr./md. — ca. 1,86 kr./kWh alt i alt ved 2.000 kWh/år. Det er ca. 164 kr./år billigere end en gennemsnitlig elaftale (1,95 kr./kWh). Ingen binding." },
 ];
 
 export default function EnPersonPage() {
@@ -68,7 +68,7 @@ export default function EnPersonPage() {
         <QuickAnswer>
           <p>
             En enkelt person bruger typisk 1.500-2.500 kWh strøm om året,
-            svarende til 3.750-6.250 kr. ved 2,50 kr./kWh. I en lejlighed er
+            svarende til 2.790-4.650 kr. ved 1,86 kr./kWh. I en lejlighed er
             forbruget 1.500-2.000 kWh, mens det i et hus stiger til 2.000-2.500
             kWh pga. større areal og flere apparater.
           </p>
@@ -95,19 +95,19 @@ export default function EnPersonPage() {
                 <td><strong>Lejlighed (50-70 m²)</strong></td>
                 <td>1.500-2.000 kWh</td>
                 <td>2.000+ kWh</td>
-                <td>3.750-5.000 kr.</td>
+                <td>2.790-3.720 kr.</td>
               </tr>
               <tr>
                 <td><strong>Rækkehus (70-100 m²)</strong></td>
                 <td>1.800-2.300 kWh</td>
                 <td>2.300+ kWh</td>
-                <td>4.500-5.750 kr.</td>
+                <td>3.348-4.278 kr.</td>
               </tr>
               <tr>
                 <td><strong>Hus (100-130 m²)</strong></td>
                 <td>2.000-2.500 kWh</td>
                 <td>2.500+ kWh</td>
-                <td>5.000-6.250 kr.</td>
+                <td>3.720-4.650 kr.</td>
               </tr>
             </tbody>
           </table>
@@ -133,43 +133,43 @@ export default function EnPersonPage() {
                 <td><strong><Link href="/koeleskab/">Køleskab/fryser</Link></strong></td>
                 <td>150-250 kWh</td>
                 <td>10-14%</td>
-                <td>375-625 kr.</td>
+                <td>279-465 kr.</td>
               </tr>
               <tr>
                 <td><strong>Madlavning (<Link href="/ovn/">ovn</Link>, <Link href="/induktion/">induktion</Link>)</strong></td>
                 <td>150-250 kWh</td>
                 <td>8-14%</td>
-                <td>375-625 kr.</td>
+                <td>279-465 kr.</td>
               </tr>
               <tr>
                 <td><strong>Underholdning (<Link href="/tv/">tv</Link>, <Link href="/computer/">pc</Link>, <Link href="/router/">router</Link>)</strong></td>
                 <td>150-300 kWh</td>
                 <td>8-17%</td>
-                <td>375-750 kr.</td>
+                <td>279-558 kr.</td>
               </tr>
               <tr>
                 <td><strong>Belysning (<Link href="/led-paere/">LED</Link>)</strong></td>
                 <td>100-200 kWh</td>
                 <td>6-11%</td>
-                <td>250-500 kr.</td>
+                <td>186-372 kr.</td>
               </tr>
               <tr>
                 <td><strong><Link href="/vaskemaskine/">Vaskemaskine</Link></strong></td>
                 <td>50-100 kWh</td>
                 <td>3-6%</td>
-                <td>125-250 kr.</td>
+                <td>93-186 kr.</td>
               </tr>
               <tr>
                 <td><strong>Varmt vand (elkedel, bruser)</strong></td>
                 <td>200-400 kWh</td>
                 <td>11-22%</td>
-                <td>500-1.000 kr.</td>
+                <td>372-744 kr.</td>
               </tr>
               <tr>
                 <td><strong>Øvrige apparater</strong></td>
                 <td>300-500 kWh</td>
                 <td>17-28%</td>
-                <td>750-1.250 kr.</td>
+                <td>558-930 kr.</td>
               </tr>
             </tbody>
           </table>
@@ -214,7 +214,7 @@ export default function EnPersonPage() {
 
           <h2>Strømforbrug pr. måned som single</h2>
           <p>
-            En enkelt person bruger ca. 125-210 kWh pr. måned (310-525 kr./md.).
+            En enkelt person bruger ca. 125-210 kWh pr. måned (231-391 kr./md.).
             Forbruget varierer over året — om vinteren er det typisk 10-20% højere pga.
             mere belysning og brug af <Link href="/elradiator/">elvarme</Link> i badeværelset.
             Om sommeren falder forbruget da du bruger mindre lys og sjældnere
@@ -222,7 +222,7 @@ export default function EnPersonPage() {
           </p>
         </div>
 
-        <AffiliateCta />
+        <AffiliateCta kwh={2500} household="en enlig i lejlighed" />
 
         {/* FAQ */}
         <div className="my-10">

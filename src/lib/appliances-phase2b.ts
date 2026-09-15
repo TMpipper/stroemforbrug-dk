@@ -9,7 +9,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger en laptop? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med danske 2026-priser.",
     heading: "Hvor meget strøm bruger en laptop?",
     quickAnswer:
-      "En typisk laptop bruger mellem 15 og 80 kWh om året afhængigt af model og brug. Det svarer til en årlig elregning på 38–200 kr. ved 2,50 kr./kWh. Laptops er langt mere energieffektive end stationære computere og bruger typisk 30–65 watt under normal brug.",
+      "En typisk laptop bruger mellem 15 og 80 kWh om året afhængigt af model og brug. Det svarer til en årlig elregning på 28–149 kr. ved 1,86 kr./kWh. Laptops er langt mere energieffektive end stationære computere og bruger typisk 30–65 watt under normal brug.",
     kwhRange: [15, 80],
     typicalKwh: 40,
     wattage: 50,
@@ -30,15 +30,15 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>En laptop er et af de mest energieffektive elektroniske apparater i hjemmet. Selv ved daglig brug i 6–8 timer bruger en gennemsnitlig laptop kun 15–80 kWh om året, hvilket gør den markant billigere i drift end en stationær computer. I denne guide gennemgår vi det faktiske energiforbrug for forskellige laptoptyper, sammenligner populære modeller og giver dig konkrete tips til at reducere elforbruget.</p>
 
 <h2>Hvor mange kWh bruger en laptop om året?</h2>
-<p>En laptop bruger typisk 15–80 kWh årligt afhængigt af processortype, skærmstørrelse, brug og ladevaner. En ultrabook til kontorarbejde ligger i den lave ende, mens en gaming-laptop med dedikeret grafikkort kan bruge 60–80 kWh. Forbruget svarer til en årlig udgift på 38–200 kr. ved en elpris på 2,50 kr./kWh.</p>
+<p>En laptop bruger typisk 15–80 kWh årligt afhængigt af processortype, skærmstørrelse, brug og ladevaner. En ultrabook til kontorarbejde ligger i den lave ende, mens en gaming-laptop med dedikeret grafikkort kan bruge 60–80 kWh. Forbruget svarer til en årlig udgift på 28–149 kr. ved en elpris på 1,86 kr./kWh.</p>
 
 <table>
-<thead><tr><th>Laptoptype</th><th>Typisk wattforbrug</th><th>Daglig brug</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Laptoptype</th><th>Typisk wattforbrug</th><th>Daglig brug</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Ultrabook (kontorarbejde)</td><td>15–30 W</td><td>6 timer</td><td>15–30 kWh</td><td>38–75 kr.</td></tr>
-<tr><td>Standard laptop</td><td>30–50 W</td><td>6 timer</td><td>30–55 kWh</td><td>75–138 kr.</td></tr>
-<tr><td>Gaming-laptop</td><td>80–180 W</td><td>4 timer</td><td>60–80 kWh</td><td>150–200 kr.</td></tr>
-<tr><td>Workstation-laptop</td><td>60–120 W</td><td>8 timer</td><td>50–70 kWh</td><td>125–175 kr.</td></tr>
+<tr><td>Ultrabook (kontorarbejde)</td><td>15–30 W</td><td>6 timer</td><td>15–30 kWh</td><td>28–56 kr.</td></tr>
+<tr><td>Standard laptop</td><td>30–50 W</td><td>6 timer</td><td>30–55 kWh</td><td>56–103 kr.</td></tr>
+<tr><td>Gaming-laptop</td><td>80–180 W</td><td>4 timer</td><td>60–80 kWh</td><td>112–149 kr.</td></tr>
+<tr><td>Workstation-laptop</td><td>60–120 W</td><td>8 timer</td><td>50–70 kWh</td><td>93–130 kr.</td></tr>
 </tbody>
 </table>
 
@@ -48,10 +48,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Enhed</th><th>Typisk wattforbrug</th><th>Årligt kWh (6 t/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Laptop (kontorarbejde)</td><td>30 W</td><td>35 kWh</td><td>88 kr.</td></tr>
-<tr><td>Stationær PC + skærm</td><td>150 W</td><td>165 kWh</td><td>413 kr.</td></tr>
-<tr><td>Gaming-laptop</td><td>120 W</td><td>70 kWh</td><td>175 kr.</td></tr>
-<tr><td>Gaming-PC + skærm</td><td>400 W</td><td>290 kWh</td><td>725 kr.</td></tr>
+<tr><td>Laptop (kontorarbejde)</td><td>30 W</td><td>35 kWh</td><td>65 kr.</td></tr>
+<tr><td>Stationær PC + skærm</td><td>150 W</td><td>165 kWh</td><td>307 kr.</td></tr>
+<tr><td>Gaming-laptop</td><td>120 W</td><td>70 kWh</td><td>130 kr.</td></tr>
+<tr><td>Gaming-PC + skærm</td><td>400 W</td><td>290 kWh</td><td>539 kr.</td></tr>
 </tbody>
 </table>
 
@@ -63,10 +63,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Processor</th><th>Typisk forbrug</th><th>kWh/år (6 t/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>MacBook Air M3</td><td>Apple M3</td><td>10–25 W</td><td>18 kWh</td><td>45 kr.</td></tr>
-<tr><td>Lenovo ThinkPad X1 Carbon</td><td>Intel Core Ultra 7</td><td>20–45 W</td><td>35 kWh</td><td>88 kr.</td></tr>
-<tr><td>ASUS ROG Zephyrus G16</td><td>Intel + RTX 4070</td><td>60–180 W</td><td>72 kWh</td><td>180 kr.</td></tr>
-<tr><td>HP Spectre x360 14</td><td>Intel Core Ultra 5</td><td>15–35 W</td><td>28 kWh</td><td>70 kr.</td></tr>
+<tr><td>MacBook Air M3</td><td>Apple M3</td><td>10–25 W</td><td>18 kWh</td><td>33 kr.</td></tr>
+<tr><td>Lenovo ThinkPad X1 Carbon</td><td>Intel Core Ultra 7</td><td>20–45 W</td><td>35 kWh</td><td>65 kr.</td></tr>
+<tr><td>ASUS ROG Zephyrus G16</td><td>Intel + RTX 4070</td><td>60–180 W</td><td>72 kWh</td><td>134 kr.</td></tr>
+<tr><td>HP Spectre x360 14</td><td>Intel Core Ultra 5</td><td>15–35 W</td><td>28 kWh</td><td>52 kr.</td></tr>
 </tbody>
 </table>
 
@@ -76,10 +76,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Tilstand</th><th>Wattforbrug</th><th>Timer/dag</th><th>Årligt kWh</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Aktiv brug</td><td>30–50 W</td><td>6</td><td>33–55 kWh</td><td>83–138 kr.</td></tr>
-<tr><td>Dvale/sleep</td><td>0,5–2 W</td><td>16</td><td>3–12 kWh</td><td>7–30 kr.</td></tr>
-<tr><td>Slukket (lader tilsluttet)</td><td>0,1–0,5 W</td><td>24</td><td>0,9–4,4 kWh</td><td>2–11 kr.</td></tr>
-<tr><td>Oplader uden laptop</td><td>0,1–0,3 W</td><td>24</td><td>0,9–2,6 kWh</td><td>2–7 kr.</td></tr>
+<tr><td>Aktiv brug</td><td>30–50 W</td><td>6</td><td>33–55 kWh</td><td>62–103 kr.</td></tr>
+<tr><td>Dvale/sleep</td><td>0,5–2 W</td><td>16</td><td>3–12 kWh</td><td>5–22 kr.</td></tr>
+<tr><td>Slukket (lader tilsluttet)</td><td>0,1–0,5 W</td><td>24</td><td>0,9–4,4 kWh</td><td>1–8 kr.</td></tr>
+<tr><td>Oplader uden laptop</td><td>0,1–0,3 W</td><td>24</td><td>0,9–2,6 kWh</td><td>1–5 kr.</td></tr>
 </tbody>
 </table>
 
@@ -114,10 +114,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om laptoppens strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om laptoppens energiforbrug baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at lade en laptop op?", answer: "En fuld opladning koster typisk 0,10–0,25 kr. afhængigt af batteriets størrelse (50–100 Wh). Ved daglig opladning bliver det 36–91 kr. om året." },
-      { question: "Bruger en laptop strøm, når den er slukket?", answer: "Ja, hvis laderen sidder i stikkontakten, trækker den 0,1–0,5 watt. Det koster under 5 kr. om året, men du kan spare det ved at tage laderen ud." },
+      { question: "Hvor meget koster det at lade en laptop op?", answer: "En fuld opladning koster typisk 0,07–0,19 kr. afhængigt af batteriets størrelse (50–100 Wh). Ved daglig opladning bliver det 27–68 kr. om året." },
+      { question: "Bruger en laptop strøm, når den er slukket?", answer: "Ja, hvis laderen sidder i stikkontakten, trækker den 0,1–0,5 watt. Det koster under 4 kr. om året, men du kan spare det ved at tage laderen ud." },
       { question: "Hvad bruger mest strøm på en laptop?", answer: "Skærmen og processoren er de to største strømforbrugere. En dedikeret GPU kan dog overhale begge under gaming eller videoredigering." },
-      { question: "Bruger en gaming-laptop meget strøm?", answer: "Ja, en gaming-laptop kan bruge 80–180 watt under spil, svarende til 60–80 kWh om året ved 4 timers daglig brug – ca. 150–200 kr." },
+      { question: "Bruger en gaming-laptop meget strøm?", answer: "Ja, en gaming-laptop kan bruge 80–180 watt under spil, svarende til 60–80 kWh om året ved 4 timers daglig brug – ca. 112–149 kr." },
       { question: "Er det billigere at bruge laptop end stationær PC?", answer: "Ja, en laptop bruger typisk 3–5 gange mindre strøm end en stationær PC med skærm. Du sparer 200–600 kr. om året ved at skifte." },
       { question: "Bruger en MacBook mindre strøm end en Windows-laptop?", answer: "Generelt ja. Apple Silicon-chips (M1–M3) er meget energieffektive og bruger 30–50 % mindre end tilsvarende Intel/AMD-processer." },
       { question: "Hvor mange watt bruger en laptop under opladning?", answer: "En standard laptop-oplader er typisk 45–65 W, gaming-laptops 120–240 W. Den faktiske effekt varierer med batteriets ladeniveau." },
@@ -152,7 +152,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger en PlayStation? Se elforbrug for PS5 og PS4 i kWh, sammenlign tilstande og beregn din årlige udgift. Opdateret 2026-data.",
     heading: "Hvor meget strøm bruger en PlayStation?",
     quickAnswer:
-      "En PlayStation 5 bruger typisk 100–200 kWh om året ved 3–4 timers daglig brug. Det svarer til 250–500 kr. årligt ved 2,50 kr./kWh. Under gaming trækker en PS5 ca. 100–200 watt, mens standbyforbruget er 1–3 watt afhængigt af indstillinger.",
+      "En PlayStation 5 bruger typisk 100–200 kWh om året ved 3–4 timers daglig brug. Det svarer til 186–372 kr. årligt ved 1,86 kr./kWh. Under gaming trækker en PS5 ca. 100–200 watt, mens standbyforbruget er 1–3 watt afhængigt af indstillinger.",
     kwhRange: [60, 200],
     typicalKwh: 130,
     wattage: 150,
@@ -168,14 +168,14 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>En PlayStation er en af de mest strømkrævende former for underholdningselektronik i hjemmet. Med et forbrug på 100–200 watt under gaming og et standby-forbrug der kan løbe op, er det vigtigt at forstå, hvad din konsol koster i drift. I denne guide gennemgår vi det faktiske energiforbrug for PS5 og PS4, sammenligner tilstande og giver dig konkrete sparetips.</p>
 
 <h2>Hvor mange kWh bruger en PlayStation om året?</h2>
-<p>En PlayStation 5 bruger typisk 60–200 kWh årligt afhængigt af, hvor meget du spiller, og hvilke tilstande konsollen bruger mest tid i. Ved 3 timers daglig gaming og 21 timers standby/rest mode ligger det typiske årsforbrug på 120–150 kWh svarende til 300–375 kr.</p>
+<p>En PlayStation 5 bruger typisk 60–200 kWh årligt afhængigt af, hvor meget du spiller, og hvilke tilstande konsollen bruger mest tid i. Ved 3 timers daglig gaming og 21 timers standby/rest mode ligger det typiske årsforbrug på 120–150 kWh svarende til 223–279 kr.</p>
 
 <table>
-<thead><tr><th>Brugsscenarie</th><th>Timer gaming/dag</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Brugsscenarie</th><th>Timer gaming/dag</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Let brug (casual)</td><td>1–2 timer</td><td>60–90 kWh</td><td>150–225 kr.</td></tr>
-<tr><td>Moderat brug</td><td>3–4 timer</td><td>120–160 kWh</td><td>300–400 kr.</td></tr>
-<tr><td>Hardcore gamer</td><td>5–8 timer</td><td>170–250 kWh</td><td>425–625 kr.</td></tr>
+<tr><td>Let brug (casual)</td><td>1–2 timer</td><td>60–90 kWh</td><td>112–167 kr.</td></tr>
+<tr><td>Moderat brug</td><td>3–4 timer</td><td>120–160 kWh</td><td>223–298 kr.</td></tr>
+<tr><td>Hardcore gamer</td><td>5–8 timer</td><td>170–250 kWh</td><td>316–465 kr.</td></tr>
 </tbody>
 </table>
 
@@ -218,10 +218,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Streamingenhed</th><th>Watt ved streaming</th><th>Årligt kWh (2 t/dag)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Chromecast/Apple TV</td><td>3–8 W</td><td>2–6 kWh</td><td>5–15 kr.</td></tr>
-<tr><td>Smart TV (indbygget)</td><td>60–100 W</td><td>44–73 kWh</td><td>110–183 kr.</td></tr>
-<tr><td>PlayStation 5</td><td>40–60 W</td><td>29–44 kWh</td><td>73–110 kr.</td></tr>
-<tr><td>PlayStation 4 Pro</td><td>70–90 W</td><td>51–66 kWh</td><td>128–165 kr.</td></tr>
+<tr><td>Chromecast/Apple TV</td><td>3–8 W</td><td>2–6 kWh</td><td>4–11 kr.</td></tr>
+<tr><td>Smart TV (indbygget)</td><td>60–100 W</td><td>44–73 kWh</td><td>82–136 kr.</td></tr>
+<tr><td>PlayStation 5</td><td>40–60 W</td><td>29–44 kWh</td><td>54–82 kr.</td></tr>
+<tr><td>PlayStation 4 Pro</td><td>70–90 W</td><td>51–66 kWh</td><td>95–123 kr.</td></tr>
 </tbody>
 </table>
 
@@ -242,12 +242,12 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om PlayStations strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om PlayStations energiforbrug baseret på danske gameres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at game på PlayStation i timen?", answer: "Med et forbrug på ca. 150 watt koster en times gaming på PS5 ca. 0,38 kr. ved en elpris på 2,50 kr./kWh. Over en hel aften (4 timer) bliver det ca. 1,50 kr." },
+      { question: "Hvor meget koster det at game på PlayStation i timen?", answer: "Med et forbrug på ca. 150 watt koster en times gaming på PS5 ca. 0,28 kr. ved en elpris på 1,86 kr./kWh. Over en hel aften (4 timer) bliver det ca. 1,12 kr." },
       { question: "Bruger PS5 mere strøm end PS4?", answer: "Under krævende spil ja – PS5 bruger op til 200 W mod PS4 Pros 165 W. Men PS5 er markant mere effektiv i rest mode og til streaming." },
-      { question: "Hvad koster det at have PlayStation i rest mode?", answer: "PS5 i rest mode koster 2–7 kr. om året. PS4 Pro kan koste op til 50–145 kr. om året i rest mode med USB-opladning aktiveret." },
-      { question: "Bruger PlayStation strøm, når den er slukket?", answer: "Ja, selv helt slukket trækker den 0,3–0,5 watt. Det koster under 4 kr. om året og er praktisk talt ubemærkeligt." },
+      { question: "Hvad koster det at have PlayStation i rest mode?", answer: "PS5 i rest mode koster 1–5 kr. om året. PS4 Pro kan koste op til 37–108 kr. om året i rest mode med USB-opladning aktiveret." },
+      { question: "Bruger PlayStation strøm, når den er slukket?", answer: "Ja, selv helt slukket trækker den 0,3–0,5 watt. Det koster under 3 kr. om året og er praktisk talt ubemærkeligt." },
       { question: "Er det billigere at spille på PlayStation end på gaming-PC?", answer: "Ja, en PS5 bruger typisk 150–200 W mod en gaming-PC's 300–500 W. Du sparer ca. 200–400 kr. om året i strøm." },
-      { question: "Hvor meget strøm bruger en PlayStation om måneden?", answer: "Ved 3 timers daglig brug bruger en PS5 ca. 10–14 kWh om måneden, svarende til 25–35 kr." },
+      { question: "Hvor meget strøm bruger en PlayStation om måneden?", answer: "Ved 3 timers daglig brug bruger en PS5 ca. 10–14 kWh om måneden, svarende til 19–26 kr." },
       { question: "Bruger PlayStation mere strøm med 4K eller HDR?", answer: "Ja, 4K-gaming øger GPU-belastningen og dermed strømforbruget med 10–25 % sammenlignet med 1080p." },
       { question: "Skal man slukke PlayStation helt eller bruge rest mode?", answer: "Helt sluk sparer mest strøm. Brug kun rest mode, hvis du har brug for download af spil/opdateringer natten over." },
     ],
@@ -280,7 +280,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger en robotstøvsuger? Se elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-elpriser.",
     heading: "Hvor meget strøm bruger en robotstøvsuger?",
     quickAnswer:
-      "En robotstøvsuger bruger typisk 20–50 kWh om året ved daglig kørsel. Det svarer til en årlig udgift på kun 50–125 kr. ved 2,50 kr./kWh. Robotstøvsugere er markant mere energieffektive end traditionelle støvsugere med et effektforbrug på 25–70 watt under rengøring.",
+      "En robotstøvsuger bruger typisk 20–50 kWh om året ved daglig kørsel. Det svarer til en årlig udgift på kun 37–93 kr. ved 1,86 kr./kWh. Robotstøvsugere er markant mere energieffektive end traditionelle støvsugere med et effektforbrug på 25–70 watt under rengøring.",
     kwhRange: [15, 50],
     typicalKwh: 30,
     wattage: 40,
@@ -299,11 +299,11 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>En robotstøvsuger bruger typisk 15–50 kWh årligt afhængigt af model, boligens størrelse og hvor ofte den kører. Det inkluderer både selve rengøringen og ladestationens standby-forbrug. Ladestationen alene bruger typisk 3–5 watt døgnet rundt, hvilket udgør en væsentlig del af det samlede forbrug.</p>
 
 <table>
-<thead><tr><th>Boligstørrelse</th><th>Rengøringstid/dag</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Boligstørrelse</th><th>Rengøringstid/dag</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Lejlighed (60 m²)</td><td>45 min</td><td>18–25 kWh</td><td>45–63 kr.</td></tr>
-<tr><td>Rækkehus (100 m²)</td><td>75 min</td><td>25–35 kWh</td><td>63–88 kr.</td></tr>
-<tr><td>Villa (150+ m²)</td><td>90–120 min</td><td>35–50 kWh</td><td>88–125 kr.</td></tr>
+<tr><td>Lejlighed (60 m²)</td><td>45 min</td><td>18–25 kWh</td><td>33–47 kr.</td></tr>
+<tr><td>Rækkehus (100 m²)</td><td>75 min</td><td>25–35 kWh</td><td>47–65 kr.</td></tr>
+<tr><td>Villa (150+ m²)</td><td>90–120 min</td><td>35–50 kWh</td><td>65–93 kr.</td></tr>
 </tbody>
 </table>
 
@@ -313,10 +313,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Støvsugertype</th><th>Wattforbrug</th><th>Ugentlig brug</th><th>Årligt kWh</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Robotstøvsuger</td><td>25–70 W</td><td>Daglig (1 t)</td><td>20–35 kWh</td><td>50–88 kr.</td></tr>
-<tr><td>Traditionel med pose</td><td>700–1.400 W</td><td>3x30 min</td><td>55–110 kWh</td><td>138–275 kr.</td></tr>
-<tr><td>Traditionel uden pose</td><td>800–2.000 W</td><td>3x30 min</td><td>62–156 kWh</td><td>155–390 kr.</td></tr>
-<tr><td>Ledningsfri stavstøvsuger</td><td>100–500 W</td><td>3x20 min</td><td>16–78 kWh</td><td>40–195 kr.</td></tr>
+<tr><td>Robotstøvsuger</td><td>25–70 W</td><td>Daglig (1 t)</td><td>20–35 kWh</td><td>37–65 kr.</td></tr>
+<tr><td>Traditionel med pose</td><td>700–1.400 W</td><td>3x30 min</td><td>55–110 kWh</td><td>103–205 kr.</td></tr>
+<tr><td>Traditionel uden pose</td><td>800–2.000 W</td><td>3x30 min</td><td>62–156 kWh</td><td>115–290 kr.</td></tr>
+<tr><td>Ledningsfri stavstøvsuger</td><td>100–500 W</td><td>3x20 min</td><td>16–78 kWh</td><td>30–145 kr.</td></tr>
 </tbody>
 </table>
 
@@ -328,10 +328,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Sugeeffekt (W)</th><th>Funktioner</th><th>kWh/år (daglig brug)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>iRobot Roomba j7+</td><td>30 W</td><td>Selvtømning, Smart Map</td><td>28 kWh</td><td>70 kr.</td></tr>
-<tr><td>Roborock S8 MaxV Ultra</td><td>55 W</td><td>Moppe, selvtømning, AI</td><td>35 kWh</td><td>88 kr.</td></tr>
-<tr><td>Ecovacs Deebot X2 Omni</td><td>45 W</td><td>Moppe, selvtømning, LiDAR</td><td>32 kWh</td><td>80 kr.</td></tr>
-<tr><td>Dreame L20 Ultra</td><td>50 W</td><td>Moppe, varmtvandsrens</td><td>38 kWh</td><td>95 kr.</td></tr>
+<tr><td>iRobot Roomba j7+</td><td>30 W</td><td>Selvtømning, Smart Map</td><td>28 kWh</td><td>52 kr.</td></tr>
+<tr><td>Roborock S8 MaxV Ultra</td><td>55 W</td><td>Moppe, selvtømning, AI</td><td>35 kWh</td><td>65 kr.</td></tr>
+<tr><td>Ecovacs Deebot X2 Omni</td><td>45 W</td><td>Moppe, selvtømning, LiDAR</td><td>32 kWh</td><td>60 kr.</td></tr>
+<tr><td>Dreame L20 Ultra</td><td>50 W</td><td>Moppe, varmtvandsrens</td><td>38 kWh</td><td>71 kr.</td></tr>
 </tbody>
 </table>
 
@@ -341,9 +341,9 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Stationstype</th><th>Standby (watt)</th><th>Årligt standby-kWh</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Simpel ladestation</td><td>2–4 W</td><td>18–35 kWh</td><td>45–88 kr.</td></tr>
-<tr><td>Selvtømningsstation</td><td>4–8 W</td><td>35–70 kWh</td><td>88–175 kr.</td></tr>
-<tr><td>Alt-i-en station (moppe + tømning)</td><td>5–12 W</td><td>44–105 kWh</td><td>110–263 kr.</td></tr>
+<tr><td>Simpel ladestation</td><td>2–4 W</td><td>18–35 kWh</td><td>33–65 kr.</td></tr>
+<tr><td>Selvtømningsstation</td><td>4–8 W</td><td>35–70 kWh</td><td>65–130 kr.</td></tr>
+<tr><td>Alt-i-en station (moppe + tømning)</td><td>5–12 W</td><td>44–105 kWh</td><td>82–196 kr.</td></tr>
 </tbody>
 </table>
 
@@ -379,8 +379,8 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       { question: "Hvor meget koster det at køre en robotstøvsuger dagligt?", answer: "En daglig rengøring koster typisk 5–15 øre i strøm for selve rengøringen. Ladestationens standby koster dog yderligere 12–30 øre pr. dag." },
       { question: "Bruger en robotstøvsuger mere strøm end en normal støvsuger?", answer: "Nej, markant mindre. En robotstøvsuger bruger 25–70 W mod en traditionel støvsugers 700–2.000 W. Årligt bruger robotten 20–50 kWh mod 55–156 kWh." },
       { question: "Hvor meget strøm bruger ladestationen i standby?", answer: "En simpel ladestation bruger 2–4 W i standby, en selvtømningsstation 4–8 W. Det bliver 18–70 kWh om året – ofte mere end selve rengøringen." },
-      { question: "Skal man slukke ladestationen om natten?", answer: "Det er ikke nødvendigt, men du kan spare 45–175 kr. om året ved at sætte ladestationen på en timer, der kun giver strøm i rengøringstiden." },
-      { question: "Hvor mange kWh bruger en Roomba om måneden?", answer: "En iRobot Roomba bruger typisk 2–4 kWh om måneden inklusiv ladestationens standby, svarende til 5–10 kr." },
+      { question: "Skal man slukke ladestationen om natten?", answer: "Det er ikke nødvendigt, men du kan spare 33–130 kr. om året ved at sætte ladestationen på en timer, der kun giver strøm i rengøringstiden." },
+      { question: "Hvor mange kWh bruger en Roomba om måneden?", answer: "En iRobot Roomba bruger typisk 2–4 kWh om måneden inklusiv ladestationens standby, svarende til 4–7 kr." },
       { question: "Bruger turbo-tilstand meget mere strøm?", answer: "Ja, turbo-tilstand øger effektforbruget med 30–50 % og forkorter batteritiden. Brug kun turbo på tæpper med dyrehår." },
       { question: "Hvad bruger mest strøm – robotten eller ladestationen?", answer: "Overraskende nok kan ladestationens standby-forbrug udgøre 50–70 % af det samlede årlige elforbrug, især for modeller med selvtømning." },
       { question: "Er en robotstøvsuger en god investering rent energimæssigt?", answer: "Ja, du sparer typisk 50–200 kr. om året i strøm sammenlignet med en traditionel støvsuger – plus tiden du sparer på manuel rengøring." },
@@ -414,7 +414,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger en elkedel? Se elforbrug pr. kogning i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger en elkedel?",
     quickAnswer:
-      "En typisk elkedel bruger 2.000–3.000 watt og forbruger 0,10–0,15 kWh pr. kogning af 1 liter vand. Ved 3–4 daglige kogninger svarer det til 110–220 kWh om året og en årlig udgift på 275–550 kr. ved 2,50 kr./kWh. Elkedlen er det mest energieffektive redskab til at koge vand.",
+      "En typisk elkedel bruger 2.000–3.000 watt og forbruger 0,10–0,15 kWh pr. kogning af 1 liter vand. Ved 3–4 daglige kogninger svarer det til 110–220 kWh om året og en årlig udgift på 205–409 kr. ved 1,86 kr./kWh. Elkedlen er det mest energieffektive redskab til at koge vand.",
     kwhRange: [70, 220],
     typicalKwh: 140,
     wattage: 2200,
@@ -430,14 +430,14 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>Elkedlen er et af de mest brugte køkkenapparater i danske hjem og samtidig et af de mest effektive til at koge vand. Med et typisk effektforbrug på 2.000–3.000 watt kan den koge 1 liter vand på blot 2–4 minutter. I denne guide gennemgår vi det faktiske kWh-forbrug, sammenligner elkedler med alternativer og giver dig tips til at minimere dit elforbrug.</p>
 
 <h2>Hvor mange kWh bruger en elkedel om året?</h2>
-<p>En elkedel bruger typisk 70–220 kWh om året afhængigt af, hvor ofte du koger vand, og hvor meget du koger ad gangen. En gennemsnitlig dansk husstand koger vand 3–4 gange dagligt og bruger ca. 140 kWh årligt. Det svarer til en årlig udgift på 350 kr. ved en elpris på 2,50 kr./kWh.</p>
+<p>En elkedel bruger typisk 70–220 kWh om året afhængigt af, hvor ofte du koger vand, og hvor meget du koger ad gangen. En gennemsnitlig dansk husstand koger vand 3–4 gange dagligt og bruger ca. 140 kWh årligt. Det svarer til en årlig udgift på 260 kr. ved en elpris på 1,86 kr./kWh.</p>
 
 <table>
-<thead><tr><th>Forbrug</th><th>Kogninger/dag</th><th>Liter/kogning</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Forbrug</th><th>Kogninger/dag</th><th>Liter/kogning</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Let (1 person)</td><td>1–2</td><td>0,5 L</td><td>35–70 kWh</td><td>88–175 kr.</td></tr>
-<tr><td>Moderat (2 personer)</td><td>3–4</td><td>0,75 L</td><td>100–160 kWh</td><td>250–400 kr.</td></tr>
-<tr><td>Højt (familie)</td><td>5–7</td><td>1,0 L</td><td>160–260 kWh</td><td>400–650 kr.</td></tr>
+<tr><td>Let (1 person)</td><td>1–2</td><td>0,5 L</td><td>35–70 kWh</td><td>65–130 kr.</td></tr>
+<tr><td>Moderat (2 personer)</td><td>3–4</td><td>0,75 L</td><td>100–160 kWh</td><td>186–298 kr.</td></tr>
+<tr><td>Højt (familie)</td><td>5–7</td><td>1,0 L</td><td>160–260 kWh</td><td>298–484 kr.</td></tr>
 </tbody>
 </table>
 
@@ -447,11 +447,11 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Vandmængde</th><th>Kogetid (2.200 W)</th><th>kWh pr. kogning</th><th>Pris pr. kogning</th></tr></thead>
 <tbody>
-<tr><td>250 ml (1 kop)</td><td>55 sek.</td><td>0,034 kWh</td><td>0,08 kr.</td></tr>
-<tr><td>500 ml (2 kopper)</td><td>1 min 50 sek.</td><td>0,067 kWh</td><td>0,17 kr.</td></tr>
-<tr><td>750 ml (3 kopper)</td><td>2 min 40 sek.</td><td>0,098 kWh</td><td>0,25 kr.</td></tr>
-<tr><td>1,0 L (4 kopper)</td><td>3 min 30 sek.</td><td>0,128 kWh</td><td>0,32 kr.</td></tr>
-<tr><td>1,5 L (fuld kedel)</td><td>5 min 15 sek.</td><td>0,193 kWh</td><td>0,48 kr.</td></tr>
+<tr><td>250 ml (1 kop)</td><td>55 sek.</td><td>0,034 kWh</td><td>0,06 kr.</td></tr>
+<tr><td>500 ml (2 kopper)</td><td>1 min 50 sek.</td><td>0,067 kWh</td><td>0,13 kr.</td></tr>
+<tr><td>750 ml (3 kopper)</td><td>2 min 40 sek.</td><td>0,098 kWh</td><td>0,19 kr.</td></tr>
+<tr><td>1,0 L (4 kopper)</td><td>3 min 30 sek.</td><td>0,128 kWh</td><td>0,24 kr.</td></tr>
+<tr><td>1,5 L (fuld kedel)</td><td>5 min 15 sek.</td><td>0,193 kWh</td><td>0,36 kr.</td></tr>
 </tbody>
 </table>
 
@@ -461,10 +461,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Metode</th><th>kWh for 1 L kogende vand</th><th>Tid</th><th>Pris pr. liter</th></tr></thead>
 <tbody>
-<tr><td>Elkedel (2.200 W)</td><td>0,13 kWh</td><td>3,5 min</td><td>0,32 kr.</td></tr>
-<tr><td>Induktionskomfur</td><td>0,15 kWh</td><td>4–5 min</td><td>0,38 kr.</td></tr>
-<tr><td>Gaskomfur</td><td>0,21 kWh (ækvivalent)</td><td>6–8 min</td><td>0,25 kr. (gas)</td></tr>
-<tr><td>Keramisk komfur</td><td>0,20 kWh</td><td>7–9 min</td><td>0,50 kr.</td></tr>
+<tr><td>Elkedel (2.200 W)</td><td>0,13 kWh</td><td>3,5 min</td><td>0,24 kr.</td></tr>
+<tr><td>Induktionskomfur</td><td>0,15 kWh</td><td>4–5 min</td><td>0,28 kr.</td></tr>
+<tr><td>Gaskomfur</td><td>0,21 kWh (ækvivalent)</td><td>6–8 min</td><td>0,19 kr. (gas)</td></tr>
+<tr><td>Keramisk komfur</td><td>0,20 kWh</td><td>7–9 min</td><td>0,37 kr.</td></tr>
 <tr><td>Quooker (standby + brug)</td><td>0,03 kWh (brug) + standby</td><td>Instant</td><td>Se standby</td></tr>
 </tbody>
 </table>
@@ -514,7 +514,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om elkedlens strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om elkedlens energiforbrug baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvad koster det at koge en kop vand i elkedlen?", answer: "At koge 250 ml vand (én kop) koster ca. 8 øre i strøm ved en elpris på 2,50 kr./kWh. En fuld kedel på 1,5 liter koster ca. 48 øre." },
+      { question: "Hvad koster det at koge en kop vand i elkedlen?", answer: "At koge 250 ml vand (én kop) koster ca. 8 øre i strøm ved en elpris på 1,86 kr./kWh. En fuld kedel på 1,5 liter koster ca. 48 øre." },
       { question: "Bruger en elkedel mere strøm end et komfur?", answer: "Nej, en elkedel er 30–50 % mere effektiv end et keramisk komfur til at koge vand. Kun induktion kommer tæt på elkedlens effektivitet." },
       { question: "Er det billigere at bruge Quooker end elkedel?", answer: "Nej, en Quooker bruger typisk 800–1.200 kWh om året i standby alene. En elkedel bruger 70–220 kWh årligt og er langt billigere i drift." },
       { question: "Hvor mange kWh bruger en elkedel pr. kogning?", answer: "En typisk kogning af 1 liter vand bruger 0,10–0,15 kWh afhængigt af elkedlens effekt og starttemperatur." },
@@ -552,7 +552,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger en varmtvandsbeholder? Se elforbrug i kWh for 60–300 liter, beregn din udgift og find besparelsestips. Opdateret 2026.",
     heading: "Hvor meget strøm bruger en varmtvandsbeholder?",
     quickAnswer:
-      "En elektrisk varmtvandsbeholder bruger typisk 1.500–4.000 kWh om året afhængigt af størrelse og forbrug. Det svarer til 3.750–10.000 kr. årligt ved 2,50 kr./kWh og er ofte den største enkeltpost på elregningen. En 120-liters beholder til en gennemsnitlig familie bruger ca. 2.500 kWh.",
+      "En elektrisk varmtvandsbeholder bruger typisk 1.500–4.000 kWh om året afhængigt af størrelse og forbrug. Det svarer til 2.790–7.440 kr. årligt ved 1,86 kr./kWh og er ofte den største enkeltpost på elregningen. En 120-liters beholder til en gennemsnitlig familie bruger ca. 2.500 kWh.",
     kwhRange: [1500, 4000],
     typicalKwh: 2500,
     wattage: 2000,
@@ -573,15 +573,15 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>En elektrisk varmtvandsbeholder er typisk det mest strømkrævende apparat i en dansk husstand. Den varmer og holder vand på 55–65°C døgnet rundt, og det konstante energitab gør den til en stor post på elregningen. I denne guide gennemgår vi det faktiske forbrug for forskellige størrelse, sammenligner med alternativer og giver konkrete tips til at reducere dit elforbrug markant.</p>
 
 <h2>Hvor mange kWh bruger en varmtvandsbeholder om året?</h2>
-<p>En varmtvandsbeholder bruger typisk 1.500–4.000 kWh om året afhængigt af størrelse, isolering, temperaturindstilling og husstandens vandforbrug. En gennemsnitlig dansk familie med en 120-liters beholder bruger ca. 2.500 kWh årligt. Det svarer til 6.250 kr. ved en elpris på 2,50 kr./kWh.</p>
+<p>En varmtvandsbeholder bruger typisk 1.500–4.000 kWh om året afhængigt af størrelse, isolering, temperaturindstilling og husstandens vandforbrug. En gennemsnitlig dansk familie med en 120-liters beholder bruger ca. 2.500 kWh årligt. Det svarer til 4.650 kr. ved en elpris på 1,86 kr./kWh.</p>
 
 <table>
-<thead><tr><th>Beholder</th><th>Husstand</th><th>Typisk forbrug</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Beholder</th><th>Husstand</th><th>Typisk forbrug</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>60 L</td><td>1 person</td><td>Lavt</td><td>1.200–1.800 kWh</td><td>3.000–4.500 kr.</td></tr>
-<tr><td>120 L</td><td>2–3 personer</td><td>Middel</td><td>2.000–2.800 kWh</td><td>5.000–7.000 kr.</td></tr>
-<tr><td>200 L</td><td>4–5 personer</td><td>Højt</td><td>2.800–3.800 kWh</td><td>7.000–9.500 kr.</td></tr>
-<tr><td>300 L</td><td>5+ personer</td><td>Meget højt</td><td>3.500–4.500 kWh</td><td>8.750–11.250 kr.</td></tr>
+<tr><td>60 L</td><td>1 person</td><td>Lavt</td><td>1.200–1.800 kWh</td><td>2.232–3.348 kr.</td></tr>
+<tr><td>120 L</td><td>2–3 personer</td><td>Middel</td><td>2.000–2.800 kWh</td><td>3.720–5.208 kr.</td></tr>
+<tr><td>200 L</td><td>4–5 personer</td><td>Højt</td><td>2.800–3.800 kWh</td><td>5.208–7.068 kr.</td></tr>
+<tr><td>300 L</td><td>5+ personer</td><td>Meget højt</td><td>3.500–4.500 kWh</td><td>6.510–8.370 kr.</td></tr>
 </tbody>
 </table>
 
@@ -591,9 +591,9 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Isoleringstype</th><th>Standbytab pr. dag</th><th>Årligt standbytab</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>God isolering (ny model)</td><td>1,0–1,5 kWh</td><td>365–548 kWh</td><td>913–1.370 kr.</td></tr>
-<tr><td>Middel isolering</td><td>2,0–3,0 kWh</td><td>730–1.095 kWh</td><td>1.825–2.738 kr.</td></tr>
-<tr><td>Dårlig isolering (gammel)</td><td>3,5–5,0 kWh</td><td>1.278–1.825 kWh</td><td>3.195–4.563 kr.</td></tr>
+<tr><td>God isolering (ny model)</td><td>1,0–1,5 kWh</td><td>365–548 kWh</td><td>679–1.019 kr.</td></tr>
+<tr><td>Middel isolering</td><td>2,0–3,0 kWh</td><td>730–1.095 kWh</td><td>1.358–2.037 kr.</td></tr>
+<tr><td>Dårlig isolering (gammel)</td><td>3,5–5,0 kWh</td><td>1.278–1.825 kWh</td><td>2.377–3.395 kr.</td></tr>
 </tbody>
 </table>
 
@@ -603,9 +603,9 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Type</th><th>Årligt kWh (familie)</th><th>Årlig pris</th><th>Investering</th><th>Tilbagebetalingstid</th></tr></thead>
 <tbody>
-<tr><td>El-varmtvandsbeholder</td><td>2.500 kWh</td><td>6.250 kr.</td><td>3.000–8.000 kr.</td><td>—</td></tr>
-<tr><td>Varmepumpe-vandvarmer</td><td>800–1.000 kWh</td><td>2.000–2.500 kr.</td><td>15.000–25.000 kr.</td><td>3–5 år</td></tr>
-<tr><td>Solvarme + beholder</td><td>1.000–1.500 kWh</td><td>2.500–3.750 kr.</td><td>30.000–50.000 kr.</td><td>8–12 år</td></tr>
+<tr><td>El-varmtvandsbeholder</td><td>2.500 kWh</td><td>4.650 kr.</td><td>2.232–5.952 kr.</td><td>—</td></tr>
+<tr><td>Varmepumpe-vandvarmer</td><td>800–1.000 kWh</td><td>1.488–1.860 kr.</td><td>15.000–25.000 kr.</td><td>3–5 år</td></tr>
+<tr><td>Solvarme + beholder</td><td>1.000–1.500 kWh</td><td>1.860–2.790 kr.</td><td>30.000–50.000 kr.</td><td>8–12 år</td></tr>
 </tbody>
 </table>
 
@@ -629,7 +629,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <ul>
 <li><strong>Sænk temperaturen til 55°C:</strong> Spar 10–20 % ved at sænke fra 65°C til 55°C.</li>
 <li><strong>Tidsur på beholderen:</strong> Sluk beholderen om natten (23–05) og spar 10–15 % af standby-tabet.</li>
-<li><strong>Isolér beholderen:</strong> En isoleringskappe reducerer varmetabet med 25–40 % og koster under 500 kr.</li>
+<li><strong>Isolér beholderen:</strong> En isoleringskappe reducerer varmetabet med 25–40 % og koster under 372 kr.</li>
 <li><strong>Isolér vandrør:</strong> Rørskåle på synlige varmt-vandsrør sparer 50–100 kWh om året.</li>
 <li><strong>Kortere brusebade:</strong> Reducér badetiden med 2 minutter og spar 200–400 kWh årligt.</li>
 <li><strong>Sparebrusehoved:</strong> Et vandbesparende brusehoved bruger 6–8 L/min mod 12–15 L/min og halverer vandforbruget.</li>
@@ -646,9 +646,9 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om varmtvandsbeholderens strømforbrug</h2>
 <p>Her er svar på de hyppigste spørgsmål om varmtvandsbeholderens energiforbrug.</p>`,
     faqs: [
-      { question: "Hvor meget strøm bruger en varmtvandsbeholder om måneden?", answer: "En typisk 120-liters beholder bruger 170–230 kWh om måneden, svarende til 425–575 kr. ved 2,50 kr./kWh. Om vinteren kan det være op til 280 kWh." },
+      { question: "Hvor meget strøm bruger en varmtvandsbeholder om måneden?", answer: "En typisk 120-liters beholder bruger 170–230 kWh om måneden, svarende til 316–428 kr. ved 1,86 kr./kWh. Om vinteren kan det være op til 280 kWh." },
       { question: "Er en varmepumpe-vandvarmer bedre end en el-beholder?", answer: "Ja, en varmepumpe-vandvarmer bruger 60–70 % mindre strøm. En familie kan spare 3.000–5.000 kr. om året, og investeringen er betalt hjem på 3–5 år." },
-      { question: "Hvad koster et brusebad i strøm?", answer: "Et 8-minutters brusebad med 10 L/min bruger ca. 3–4 kWh varmt vand, svarende til 7,50–10 kr. i strøm med en el-varmtvandsbeholder." },
+      { question: "Hvad koster et brusebad i strøm?", answer: "Et 8-minutters brusebad med 10 L/min bruger ca. 3–4 kWh varmt vand, svarende til 5,58–7 kr. i strøm med en el-varmtvandsbeholder." },
       { question: "Skal man slukke varmtvandsbeholderen om natten?", answer: "Ja, et tidsur kan spare 10–15 % af standby-tabet. Vandet holder temperaturen i mange timer pga. isoleringen, så du har stadig varmt vand om morgenen." },
       { question: "Hvilken temperatur skal varmtvandsbeholderen stå på?", answer: "55°C er det anbefalede minimum for at undgå legionella. Hver grad over 55°C øger forbruget med 3–5 %, så sæt den ikke højere end nødvendigt." },
       { question: "Hvor stor varmtvandsbeholder har jeg brug for?", answer: "Tommelfingerregel: 30–50 liter pr. person. En familie på 4 klarer sig typisk med 120–160 liter. En for stor beholder spilder energi på at holde ubrugt vand varmt." },
@@ -685,7 +685,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger en varmeblæser? Se elforbrug i kWh, sammenlign med elradiatorer og beregn din udgift. Opdateret med 2026-priser.",
     heading: "Hvor meget strøm bruger en varmeblæser?",
     quickAnswer:
-      "En varmeblæser bruger typisk 1.000–3.000 watt og forbruger 200–1.500 kWh om året afhængigt af brug. Det svarer til 500–3.750 kr. årligt ved 2,50 kr./kWh. Varmeblæsere er effektive til hurtig opvarmning, men dyre i drift ved langvarig brug sammenlignet med varmepumper.",
+      "En varmeblæser bruger typisk 1.000–3.000 watt og forbruger 200–1.500 kWh om året afhængigt af brug. Det svarer til 372–2.790 kr. årligt ved 1,86 kr./kWh. Varmeblæsere er effektive til hurtig opvarmning, men dyre i drift ved langvarig brug sammenlignet med varmepumper.",
     kwhRange: [200, 1500],
     typicalKwh: 600,
     wattage: 2000,
@@ -701,27 +701,27 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>En varmeblæser er et populært supplement til opvarmning i danske hjem, især i overgangsperioder og kolde rum. Med et effektforbrug på typisk 1.000–3.000 watt er den dog en af de mest strømhungrende apparater, du kan bruge til opvarmning. I denne guide gennemgår vi det faktiske energiforbrug, sammenligner med alternative opvarmningsformer og giver dig tips til at bruge varmeblæseren økonomisk.</p>
 
 <h2>Hvor mange kWh bruger en varmeblæser om året?</h2>
-<p>En varmeblæsers årlige forbrug varierer enormt afhængigt af, hvor ofte og hvor længe du bruger den. Ved lejlighedsvis brug (1–2 timer om dagen i vinterhalvåret) bruger den 200–400 kWh. Som primær varmekilde i et rum kan den bruge over 1.500 kWh årligt og koste mere end 3.750 kr. i strøm.</p>
+<p>En varmeblæsers årlige forbrug varierer enormt afhængigt af, hvor ofte og hvor længe du bruger den. Ved lejlighedsvis brug (1–2 timer om dagen i vinterhalvåret) bruger den 200–400 kWh. Som primær varmekilde i et rum kan den bruge over 1.500 kWh årligt og koste mere end 2.790 kr. i strøm.</p>
 
 <table>
-<thead><tr><th>Brugsscenarie</th><th>Timer/dag</th><th>Måneder i brug</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Brugsscenarie</th><th>Timer/dag</th><th>Måneder i brug</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Lejlighedsvis (supplement)</td><td>1–2</td><td>4 mdr.</td><td>120–240 kWh</td><td>300–600 kr.</td></tr>
-<tr><td>Daglig brug (vinterhalvår)</td><td>3–4</td><td>6 mdr.</td><td>360–720 kWh</td><td>900–1.800 kr.</td></tr>
-<tr><td>Primær varmekilde (ét rum)</td><td>6–8</td><td>7 mdr.</td><td>840–1.680 kWh</td><td>2.100–4.200 kr.</td></tr>
+<tr><td>Lejlighedsvis (supplement)</td><td>1–2</td><td>4 mdr.</td><td>120–240 kWh</td><td>223–446 kr.</td></tr>
+<tr><td>Daglig brug (vinterhalvår)</td><td>3–4</td><td>6 mdr.</td><td>360–720 kWh</td><td>670–1.339 kr.</td></tr>
+<tr><td>Primær varmekilde (ét rum)</td><td>6–8</td><td>7 mdr.</td><td>840–1.680 kWh</td><td>1.562–3.125 kr.</td></tr>
 </tbody>
 </table>
 
 <h2>Hvad koster det at bruge en varmeblæser i timen?</h2>
-<p>En 2.000 W varmeblæser koster 5 kr. pr. time ved en elpris på 2,50 kr./kWh. Det lyder måske overkommeligt, men ved daglig brug i 4 timer løber det hurtigt op til 20 kr. pr. dag eller 600 kr. pr. måned i vinterhalvåret. Her er prisen for de mest almindelige effektniveauer.</p>
+<p>En 2.000 W varmeblæser koster 4 kr. pr. time ved en elpris på 1,86 kr./kWh. Det lyder måske overkommeligt, men ved daglig brug i 4 timer løber det hurtigt op til 15 kr. pr. dag eller 446 kr. pr. måned i vinterhalvåret. Her er prisen for de mest almindelige effektniveauer.</p>
 
 <table>
 <thead><tr><th>Effekt</th><th>Pris pr. time</th><th>Pris pr. dag (4 timer)</th><th>Pris pr. måned</th></tr></thead>
 <tbody>
-<tr><td>1.000 W</td><td>2,50 kr.</td><td>10,00 kr.</td><td>300 kr.</td></tr>
-<tr><td>1.500 W</td><td>3,75 kr.</td><td>15,00 kr.</td><td>450 kr.</td></tr>
-<tr><td>2.000 W</td><td>5,00 kr.</td><td>20,00 kr.</td><td>600 kr.</td></tr>
-<tr><td>3.000 W</td><td>7,50 kr.</td><td>30,00 kr.</td><td>900 kr.</td></tr>
+<tr><td>1.000 W</td><td>1,86 kr.</td><td>7,44 kr.</td><td>223 kr.</td></tr>
+<tr><td>1.500 W</td><td>2,79 kr.</td><td>11,16 kr.</td><td>335 kr.</td></tr>
+<tr><td>2.000 W</td><td>3,72 kr.</td><td>14,88 kr.</td><td>446 kr.</td></tr>
+<tr><td>3.000 W</td><td>5,58 kr.</td><td>22,32 kr.</td><td>670 kr.</td></tr>
 </tbody>
 </table>
 
@@ -731,9 +731,9 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Opvarmning</th><th>COP/effektivitet</th><th>kWh/år (20 m² rum)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Varmeblæser (2.000 W)</td><td>1,0 (100 %)</td><td>600–1.200 kWh</td><td>1.500–3.000 kr.</td></tr>
-<tr><td>Elradiator (1.500 W)</td><td>1,0 (100 %)</td><td>600–1.200 kWh</td><td>1.500–3.000 kr.</td></tr>
-<tr><td>Luft-luft varmepumpe</td><td>3,0–4,5</td><td>150–400 kWh</td><td>375–1.000 kr.</td></tr>
+<tr><td>Varmeblæser (2.000 W)</td><td>1,0 (100 %)</td><td>600–1.200 kWh</td><td>1.116–2.232 kr.</td></tr>
+<tr><td>Elradiator (1.500 W)</td><td>1,0 (100 %)</td><td>600–1.200 kWh</td><td>1.116–2.232 kr.</td></tr>
+<tr><td>Luft-luft varmepumpe</td><td>3,0–4,5</td><td>150–400 kWh</td><td>279–744 kr.</td></tr>
 <tr><td>Fjernvarme</td><td>—</td><td>—</td><td>600–1.200 kr.</td></tr>
 </tbody>
 </table>
@@ -746,10 +746,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Model</th><th>Effekttrin</th><th>Termostat</th><th>kWh/år (3 t/dag, 5 mdr.)</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>Dyson Hot+Cool AM09</td><td>1.000/2.000 W</td><td>Ja (digital)</td><td>500 kWh</td><td>1.250 kr.</td></tr>
-<tr><td>DeLonghi HVA 3220</td><td>1.000/2.200 W</td><td>Ja</td><td>650 kWh</td><td>1.625 kr.</td></tr>
-<tr><td>Dimplex DXFF30TSN</td><td>1.500/3.000 W</td><td>Ja</td><td>550 kWh</td><td>1.375 kr.</td></tr>
-<tr><td>Adax VV23T</td><td>1.000/2.000 W</td><td>Ja</td><td>480 kWh</td><td>1.200 kr.</td></tr>
+<tr><td>Dyson Hot+Cool AM09</td><td>1.000/2.000 W</td><td>Ja (digital)</td><td>500 kWh</td><td>930 kr.</td></tr>
+<tr><td>DeLonghi HVA 3220</td><td>1.000/2.200 W</td><td>Ja</td><td>650 kWh</td><td>1.209 kr.</td></tr>
+<tr><td>Dimplex DXFF30TSN</td><td>1.500/3.000 W</td><td>Ja</td><td>550 kWh</td><td>1.023 kr.</td></tr>
+<tr><td>Adax VV23T</td><td>1.000/2.000 W</td><td>Ja</td><td>480 kWh</td><td>893 kr.</td></tr>
 </tbody>
 </table>
 
@@ -781,13 +781,13 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om varmeblæserens strømforbrug</h2>
 <p>Her er svar på de hyppigste spørgsmål om varmeblæserens energiforbrug.</p>`,
     faqs: [
-      { question: "Hvad koster det at bruge en varmeblæser i timen?", answer: "Ved 2.000 W koster den 5,00 kr. pr. time ved en elpris på 2,50 kr./kWh. Ved 1.000 W koster den 2,50 kr." },
+      { question: "Hvad koster det at bruge en varmeblæser i timen?", answer: "Ved 2.000 W koster den 3,72 kr. pr. time ved en elpris på 1,86 kr./kWh. Ved 1.000 W koster den 1,86 kr." },
       { question: "Er en varmeblæser dyr i drift?", answer: "Ja, sammenlignet med alternativer. 4 timers daglig brug ved 2.000 W koster ca. 600 kr./måned. En varmepumpe leverer samme varme for 150–200 kr./måned." },
       { question: "Bruger en varmeblæser mere strøm end en elradiator?", answer: "Nej, begge omdanner strøm til varme med 100 % effektivitet. Men varmeblæseren har ofte højere watttal og bruges mere intensivt." },
       { question: "Kan en varmeblæser opvarme et helt rum?", answer: "Ja, en 2.000 W varmeblæser kan opvarme et rum på 15–20 m², men det er dyrt. For større rum eller langvarig brug er en varmepumpe langt billigere." },
       { question: "Er det farligt at have en varmeblæser kørende om natten?", answer: "Det anbefales ikke pga. brandrisiko. Moderne modeller har overvågning mod overophedning, men brug altid et tidsur og lad den aldrig stå tildækket." },
-      { question: "Hvor meget strøm bruger en varmeblæser om måneden?", answer: "Ved 3 timers daglig brug på 2.000 W bruger den ca. 180 kWh om måneden, svarende til 450 kr. i strøm." },
-      { question: "Er en varmeblæser billigere end fjernvarme?", answer: "Nej, fjernvarme koster typisk 0,50–0,80 kr./kWh mod 2,50 kr./kWh for el. En varmeblæser er 3–5 gange dyrere pr. kWh varme." },
+      { question: "Hvor meget strøm bruger en varmeblæser om måneden?", answer: "Ved 3 timers daglig brug på 2.000 W bruger den ca. 180 kWh om måneden, svarende til 335 kr. i strøm." },
+      { question: "Er en varmeblæser billigere end fjernvarme?", answer: "Nej, fjernvarme koster typisk 0,50–0,80 kr./kWh mod 1,86 kr./kWh for el. En varmeblæser er 3–5 gange dyrere pr. kWh varme." },
       { question: "Kan en varmeblæser erstatte centralvarme?", answer: "Ikke anbefalet for hele boligen. En 2.000 W varmeblæser i ét rum koster 1.500–3.000 kr./år i strøm. For hele boligen vil det koste 10.000+ kr." },
     ],
     relatedSlugs: ["elradiator", "varmepumpe", "gulvvarme"],
@@ -850,7 +850,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 </table>
 
 <h2>LED vs. glødepærer – strømforbrug</h2>
-<p>LED-lyskæder bruger 80–95 % mindre strøm end traditionelle glødepærelyskæder. En 200-pæres glødekæde bruger 80 watt – en tilsvarende LED-kæde bruger blot 6 watt. Over en hel december sparer du ca. 13 kWh og 33 kr. pr. lyskæde ved at skifte til LED.</p>
+<p>LED-lyskæder bruger 80–95 % mindre strøm end traditionelle glødepærelyskæder. En 200-pæres glødekæde bruger 80 watt – en tilsvarende LED-kæde bruger blot 6 watt. Over en hel december sparer du ca. 13 kWh og 25 kr. pr. lyskæde ved at skifte til LED.</p>
 
 <table>
 <thead><tr><th>Parameter</th><th>LED-lyskæde</th><th>Glødepærelyskæde</th><th>Besparelse</th></tr></thead>
@@ -872,13 +872,13 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <thead><tr><th>Juleopsætning</th><th>LED – pris/december</th><th>Gløde – pris/december</th></tr></thead>
 <tbody>
 <tr><td>Lille (2 lyskæder inde)</td><td>3–6 kr.</td><td>30–55 kr.</td></tr>
-<tr><td>Middel (4 inde + 1 ude)</td><td>10–20 kr.</td><td>90–180 kr.</td></tr>
+<tr><td>Middel (4 inde + 1 ude)</td><td>7–15 kr.</td><td>67–134 kr.</td></tr>
 <tr><td>Stor (6 inde + 3 ude + figurer)</td><td>25–50 kr.</td><td>200–400 kr.</td></tr>
 </tbody>
 </table>
 
 <h2>Udendørs lyskæder og helårsbrug</h2>
-<p>Mange danskere lader udendørs lyskæder hænge hele året med et skumringsrelæ eller tidsur. En LED-lyskæde med 200 pærer og et skumringsrelæ, der giver 4–8 timers lys afhængigt af sæsonen, bruger ca. 8–16 kWh om året – svarende til 20–40 kr. Det er en meget billig dekoration.</p>
+<p>Mange danskere lader udendørs lyskæder hænge hele året med et skumringsrelæ eller tidsur. En LED-lyskæde med 200 pærer og et skumringsrelæ, der giver 4–8 timers lys afhængigt af sæsonen, bruger ca. 8–16 kWh om året – svarende til 15–30 kr. Det er en meget billig dekoration.</p>
 
 <h2>Hvad påvirker lyskædens strømforbrug?</h2>
 <p>Flere faktorer bestemmer, hvor mange kWh dine lyskæder bruger. De vigtigste er teknologien (LED vs. glødepærer) og brugstiden.</p>
@@ -908,7 +908,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om lyskædens strømforbrug</h2>
 <p>Her er svar på de mest stillede spørgsmål om lyskæders energiforbrug.</p>`,
     faqs: [
-      { question: "Hvad koster det at have en lyskæde tændt hele december?", answer: "En LED-lyskæde med 200 pærer (6 W) koster ca. 2–3 kr. for hele december ved 6 timers daglig brug. En glødepærekæde koster 30–45 kr." },
+      { question: "Hvad koster det at have en lyskæde tændt hele december?", answer: "En LED-lyskæde med 200 pærer (6 W) koster ca. 1–2 kr. for hele december ved 6 timers daglig brug. En glødepærekæde koster 22–33 kr." },
       { question: "Bruger LED-lyskæder meget strøm?", answer: "Nej, LED-lyskæder er ekstremt energieffektive. En typisk 200-pæres kæde bruger kun 4–8 watt – mindre end en enkelt gammel glødepære." },
       { question: "Hvad koster julebelysning i strøm?", answer: "Med LED-lyskæder koster en typisk dansk julebelysning (4–6 kæder) kun 15–40 kr. for hele december. Med glødepærer kan det koste 150–400 kr." },
       { question: "Skal man skifte gamle lyskæder til LED?", answer: "Absolut. LED-lyskæder sparer 80–95 % strøm, holder 15–25x længere og har ingen brandrisiko pga. varme. Prisen er fra 50 kr. for en kvalitetskæde." },
@@ -947,7 +947,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger et akvarium? Se elforbrug for filter, varme og lys i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger et akvarium?",
     quickAnswer:
-      "Et typisk ferskvandsakvarium på 100–200 liter bruger 200–500 kWh om året, svarende til 500–1.250 kr. ved 2,50 kr./kWh. De tre største strømforbrugere er varmelegemet (60 %), belysningen (25 %) og filterpumpen (15 %). Saltvandsakvarier bruger typisk 50–100 % mere.",
+      "Et typisk ferskvandsakvarium på 100–200 liter bruger 200–500 kWh om året, svarende til 372–930 kr. ved 1,86 kr./kWh. De tre største strømforbrugere er varmelegemet (60 %), belysningen (25 %) og filterpumpen (15 %). Saltvandsakvarier bruger typisk 50–100 % mere.",
     kwhRange: [150, 800],
     typicalKwh: 350,
     wattage: 100,
@@ -966,11 +966,11 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>Et akvarium bruger typisk 150–800 kWh om året afhængigt af størrelse, type (ferskvand/saltvand), og udstyr. Et standard ferskvandsakvarium på 100–200 liter bruger ca. 250–400 kWh. Et saltvandsakvarium med ekstra pumper, protein skimmer og metalhalogenlamper kan bruge 500–800+ kWh.</p>
 
 <table>
-<thead><tr><th>Akvarietype</th><th>Størrelse</th><th>Udstyr</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Akvarietype</th><th>Størrelse</th><th>Udstyr</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Lille ferskvand</td><td>50–80 L</td><td>Varme, filter, LED</td><td>150–250 kWh</td><td>375–625 kr.</td></tr>
-<tr><td>Medium ferskvand</td><td>100–200 L</td><td>Varme, filter, LED</td><td>250–400 kWh</td><td>625–1.000 kr.</td></tr>
-<tr><td>Stort ferskvand</td><td>300–500 L</td><td>Varme, filter, LED, CO₂</td><td>400–650 kWh</td><td>1.000–1.625 kr.</td></tr>
+<tr><td>Lille ferskvand</td><td>50–80 L</td><td>Varme, filter, LED</td><td>150–250 kWh</td><td>279–465 kr.</td></tr>
+<tr><td>Medium ferskvand</td><td>100–200 L</td><td>Varme, filter, LED</td><td>250–400 kWh</td><td>465–744 kr.</td></tr>
+<tr><td>Stort ferskvand</td><td>300–500 L</td><td>Varme, filter, LED, CO₂</td><td>400–650 kWh</td><td>744–1.209 kr.</td></tr>
 <tr><td>Saltvand (rev)</td><td>200–400 L</td><td>Varme, pumper, skimmer, LED</td><td>500–800+ kWh</td><td>1.250–2.000+ kr.</td></tr>
 </tbody>
 </table>
@@ -997,10 +997,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Belysningstype</th><th>Watt (120 cm akvarium)</th><th>Timer/dag</th><th>Årligt kWh</th><th>Årlig pris</th></tr></thead>
 <tbody>
-<tr><td>LED-ramme (ny)</td><td>20–35 W</td><td>8–10 t</td><td>58–128 kWh</td><td>145–320 kr.</td></tr>
-<tr><td>T5 lysstofrør (2 rør)</td><td>50–80 W</td><td>8–10 t</td><td>146–292 kWh</td><td>365–730 kr.</td></tr>
-<tr><td>T8 lysstofrør (2 rør)</td><td>60–100 W</td><td>8–10 t</td><td>175–365 kWh</td><td>438–913 kr.</td></tr>
-<tr><td>Metalhalogen (saltvand)</td><td>150–250 W</td><td>6–8 t</td><td>329–730 kWh</td><td>823–1.825 kr.</td></tr>
+<tr><td>LED-ramme (ny)</td><td>20–35 W</td><td>8–10 t</td><td>58–128 kWh</td><td>108–238 kr.</td></tr>
+<tr><td>T5 lysstofrør (2 rør)</td><td>50–80 W</td><td>8–10 t</td><td>146–292 kWh</td><td>272–543 kr.</td></tr>
+<tr><td>T8 lysstofrør (2 rør)</td><td>60–100 W</td><td>8–10 t</td><td>175–365 kWh</td><td>326–679 kr.</td></tr>
+<tr><td>Metalhalogen (saltvand)</td><td>150–250 W</td><td>6–8 t</td><td>329–730 kWh</td><td>612–1.358 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1038,7 +1038,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       { question: "Hvad koster det at have et akvarium kørende?", answer: "Et standard ferskvandsakvarium på 100–200 liter koster typisk 625–1.000 kr. om året i strøm. Et saltvandsakvarium kan koste 1.250–2.000+ kr." },
       { question: "Hvad bruger mest strøm i et akvarium?", answer: "Varmelegemet er den største forbruger (50–65 %), efterfulgt af belysning (15–25 %) og filterpumpe (10–15 %)." },
       { question: "Bruger et saltvandsakvarium mere strøm end ferskvand?", answer: "Ja, typisk 50–100 % mere pga. ekstra strømpumper, protein skimmer og ofte kraftigere belysning til koraller." },
-      { question: "Hvor meget strøm bruger et akvarium om måneden?", answer: "Et 200 L ferskvandsakvarium bruger ca. 20–35 kWh om måneden, svarende til 50–88 kr. Om vinteren kan det være 30–50 kWh." },
+      { question: "Hvor meget strøm bruger et akvarium om måneden?", answer: "Et 200 L ferskvandsakvarium bruger ca. 20–35 kWh om måneden, svarende til 37–65 kr. Om vinteren kan det være 30–50 kWh." },
       { question: "Kan man spare strøm ved at slukke lyset om natten?", answer: "Ja, men lyset skal være slukket om natten uanset – fiskene har brug for en dag-nat-cyklus. Brug tidsur til 8–10 timers belysning." },
       { question: "Bruger et lille akvarium mindre strøm?", answer: "Ja, men ikke proportionelt. Et 50 L akvarium bruger typisk 60–70 % af, hvad et 200 L akvarium bruger, fordi varmelegeme og filter stadig kører." },
       { question: "Er LED-lys bedre for akvariet end lysstofrør?", answer: "Ja, LED bruger 50–60 % mindre strøm, har bedre lysspektrum for planter, holder 5–10x længere og afgiver mindre varme til vandet." },
@@ -1074,7 +1074,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger en pool? Se elforbrug for pumpe, opvarmning og rensning i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
     heading: "Hvor meget strøm bruger en pool?",
     quickAnswer:
-      "En typisk villahavepool bruger 3.000–8.000 kWh om året for pumpe, opvarmning og rensning. Det svarer til 7.500–20.000 kr. årligt ved 2,50 kr./kWh. Poolopvarmning med varmepumpe udgør den største post, mens filterpumpen kører 8–12 timer dagligt i sæsonen.",
+      "En typisk villahavepool bruger 3.000–8.000 kWh om året for pumpe, opvarmning og rensning. Det svarer til 5.580–14.880 kr. årligt ved 1,86 kr./kWh. Poolopvarmning med varmepumpe udgør den største post, mens filterpumpen kører 8–12 timer dagligt i sæsonen.",
     kwhRange: [2000, 10000],
     typicalKwh: 5000,
     wattage: 1500,
@@ -1093,12 +1093,12 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>En typisk villahavepool (4x8 meter, opvarmet til 26–28°C) bruger 3.000–8.000 kWh om året i den danske sæson (maj–september). Opvarmning tegner sig for 50–70 % af forbruget, filterpumpen for 20–30 % og øvrige systemer (belysning, robotrenser, saltanlæg) for 10–20 %.</p>
 
 <table>
-<thead><tr><th>Pooltype</th><th>Størrelse</th><th>Opvarmning</th><th>Årligt kWh</th><th>Årlig pris (2,50 kr.)</th></tr></thead>
+<thead><tr><th>Pooltype</th><th>Størrelse</th><th>Opvarmning</th><th>Årligt kWh</th><th>Årlig pris (1,86 kr.)</th></tr></thead>
 <tbody>
-<tr><td>Overground (Intex)</td><td>5,5 x 2,7 m</td><td>Solvarme</td><td>1.500–2.500 kWh</td><td>3.750–6.250 kr.</td></tr>
-<tr><td>Nedgravet (lille)</td><td>6 x 3 m</td><td>Varmepumpe</td><td>3.000–4.500 kWh</td><td>7.500–11.250 kr.</td></tr>
-<tr><td>Nedgravet (standard)</td><td>8 x 4 m</td><td>Varmepumpe</td><td>4.500–7.000 kWh</td><td>11.250–17.500 kr.</td></tr>
-<tr><td>Nedgravet (stor)</td><td>10 x 5 m</td><td>Varmepumpe</td><td>6.500–10.000 kWh</td><td>16.250–25.000 kr.</td></tr>
+<tr><td>Overground (Intex)</td><td>5,5 x 2,7 m</td><td>Solvarme</td><td>1.500–2.500 kWh</td><td>2.790–4.650 kr.</td></tr>
+<tr><td>Nedgravet (lille)</td><td>6 x 3 m</td><td>Varmepumpe</td><td>3.000–4.500 kWh</td><td>5.580–8.370 kr.</td></tr>
+<tr><td>Nedgravet (standard)</td><td>8 x 4 m</td><td>Varmepumpe</td><td>4.500–7.000 kWh</td><td>8.370–13.020 kr.</td></tr>
+<tr><td>Nedgravet (stor)</td><td>10 x 5 m</td><td>Varmepumpe</td><td>6.500–10.000 kWh</td><td>12.090–18.600 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1108,9 +1108,9 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Pumpetype</th><th>Effekt</th><th>Timer/dag</th><th>kWh/sæson (5 mdr.)</th><th>Pris/sæson</th></tr></thead>
 <tbody>
-<tr><td>Standard (single-speed)</td><td>750 W</td><td>10</td><td>1.125 kWh</td><td>2.813 kr.</td></tr>
-<tr><td>Standard (kraftig)</td><td>1.500 W</td><td>10</td><td>2.250 kWh</td><td>5.625 kr.</td></tr>
-<tr><td>Inverter (variabel)</td><td>200–500 W</td><td>10</td><td>450–750 kWh</td><td>1.125–1.875 kr.</td></tr>
+<tr><td>Standard (single-speed)</td><td>750 W</td><td>10</td><td>1.125 kWh</td><td>2.093 kr.</td></tr>
+<tr><td>Standard (kraftig)</td><td>1.500 W</td><td>10</td><td>2.250 kWh</td><td>4.185 kr.</td></tr>
+<tr><td>Inverter (variabel)</td><td>200–500 W</td><td>10</td><td>450–750 kWh</td><td>837–1.395 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1120,10 +1120,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Opvarmningsmetode</th><th>COP</th><th>kWh/sæson (8x4 m pool)</th><th>Pris/sæson</th><th>Investering</th></tr></thead>
 <tbody>
-<tr><td>Pool-varmepumpe</td><td>4–6</td><td>2.000–3.500 kWh</td><td>5.000–8.750 kr.</td><td>15.000–35.000 kr.</td></tr>
-<tr><td>Elpatron (3 kW)</td><td>1,0</td><td>8.000–14.000 kWh</td><td>20.000–35.000 kr.</td><td>3.000–8.000 kr.</td></tr>
+<tr><td>Pool-varmepumpe</td><td>4–6</td><td>2.000–3.500 kWh</td><td>3.720–6.510 kr.</td><td>15.000–35.000 kr.</td></tr>
+<tr><td>Elpatron (3 kW)</td><td>1,0</td><td>8.000–14.000 kWh</td><td>14.880–26.040 kr.</td><td>2.232–5.952 kr.</td></tr>
 <tr><td>Solvarme (paneler)</td><td>Gratis</td><td>0 kWh (el)</td><td>0 kr. (el)</td><td>10.000–25.000 kr.</td></tr>
-<tr><td>Hybrid (varmepumpe + sol)</td><td>—</td><td>1.000–2.000 kWh</td><td>2.500–5.000 kr.</td><td>20.000–45.000 kr.</td></tr>
+<tr><td>Hybrid (varmepumpe + sol)</td><td>—</td><td>1.000–2.000 kWh</td><td>1.860–3.720 kr.</td><td>20.000–45.000 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1158,7 +1158,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>Du kan spare 30–50 % af poolens elforbrug med relativt simple tiltag. De mest effektive investeringer betaler sig hjem på 1–3 sæsoner.</p>
 
 <ul>
-<li><strong>Brug altid afdækning:</strong> En termisk bobleplast koster fra 500 kr. og sparer 1.500–2.500 kWh/år.</li>
+<li><strong>Brug altid afdækning:</strong> En termisk bobleplast koster fra 372 kr. og sparer 1.500–2.500 kWh/år.</li>
 <li><strong>Skift til inverter-pumpe:</strong> Spar 50–70 % på pumpedrift – betalt hjem på 2–3 sæsoner.</li>
 <li><strong>Sænk temperaturen:</strong> 26°C i stedet for 28°C sparer 20–30 % opvarmningsenergi.</li>
 <li><strong>Reducér pumptiden:</strong> 6–8 timer er ofte tilstrækkeligt – test med vandkvaliteten.</li>
@@ -1175,11 +1175,11 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       { question: "Hvor meget koster det at drive en pool om året?", answer: "En typisk villahavepool (8x4 m) med varmepumpe koster 7.500–17.500 kr. om året i strøm. Med afdækning og inverter-pumpe kan du reducere det til 5.000–10.000 kr." },
       { question: "Hvad bruger mest strøm i en pool?", answer: "Opvarmning (50–70 %) er den største post, efterfulgt af filterpumpen (20–30 %). Belysning, robotrenser og saltanlæg udgør de resterende 10–20 %." },
       { question: "Er en pool-varmepumpe bedre end elpatron?", answer: "Ja, markant. En varmepumpe med COP 5 leverer 5 kWh varme pr. kWh strøm. En elpatron leverer kun 1 kWh pr. kWh. Du sparer 60–80 % på opvarmningen." },
-      { question: "Hvor mange kWh bruger en poolpumpe om måneden?", answer: "En standard 750 W pumpe ved 10 timers daglig drift bruger ca. 225 kWh/måned (563 kr.). En inverter-pumpe bruger 60–112 kWh/måned (150–280 kr.)." },
+      { question: "Hvor mange kWh bruger en poolpumpe om måneden?", answer: "En standard 750 W pumpe ved 10 timers daglig drift bruger ca. 225 kWh/måned (419 kr.). En inverter-pumpe bruger 60–112 kWh/måned (112–208 kr.)." },
       { question: "Kan solceller betale for poolens strømforbrug?", answer: "Ja, et 6–10 kW solcelleanlæg producerer nok strøm til at dække det meste af poolens forbrug i sæsonen, da sol og poolbrug falder sammen." },
-      { question: "Hvor meget sparer en poolafdækning?", answer: "En termisk bobleplast reducerer varmetabet med 50–60 % og sparer typisk 1.500–2.500 kWh/år, svarende til 3.750–6.250 kr." },
+      { question: "Hvor meget sparer en poolafdækning?", answer: "En termisk bobleplast reducerer varmetabet med 50–60 % og sparer typisk 1.500–2.500 kWh/år, svarende til 2.790–4.650 kr." },
       { question: "Hvad koster det at opvarme en pool til 28°C?", answer: "Med en varmepumpe koster det typisk 5.000–8.750 kr. for en 8x4 m pool i en dansk sæson. Med elpatron kan det koste 20.000–35.000 kr." },
-      { question: "Bruger en pool strøm om vinteren?", answer: "Minimalt. En frostsikringspumpe bruger 50–100 kWh over vinteren (125–250 kr.). Uden frostsikring: 0 kWh, men risiko for frostskader." },
+      { question: "Bruger en pool strøm om vinteren?", answer: "Minimalt. En frostsikringspumpe bruger 50–100 kWh over vinteren (93–186 kr.). Uden frostsikring: 0 kWh, men risiko for frostskader." },
     ],
     relatedSlugs: ["varmepumpe", "varmtvandsbeholder", "sauna"],
     sources: [
@@ -1211,7 +1211,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger en sauna? Se elforbrug pr. session og årligt i kWh, sammenlign ovntyper og beregn din udgift. Opdateret 2026-data.",
     heading: "Hvor meget strøm bruger en sauna?",
     quickAnswer:
-      "En typisk hjemmesauna med en 6–9 kW ovn bruger 6–12 kWh pr. session (inkl. opvarmning). Ved 2–3 ugentlige sessioner svarer det til 600–1.800 kWh om året og en udgift på 1.500–4.500 kr. ved 2,50 kr./kWh. Opvarmningstiden er 30–60 minutter og udgør halvdelen af energiforbruget.",
+      "En typisk hjemmesauna med en 6–9 kW ovn bruger 6–12 kWh pr. session (inkl. opvarmning). Ved 2–3 ugentlige sessioner svarer det til 600–1.800 kWh om året og en udgift på 1.116–3.348 kr. ved 1,86 kr./kWh. Opvarmningstiden er 30–60 minutter og udgør halvdelen af energiforbruget.",
     kwhRange: [300, 2000],
     typicalKwh: 1000,
     wattage: 7500,
@@ -1227,15 +1227,15 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>En hjemmesauna er en luksus, der koster mærkbart på elregningen. Med ovne på typisk 4,5–9 kW og sessioner der varer 1–2 timer, er energiforbruget sammenligneligt med at køre en stor varmeblæser. I denne guide gennemgår vi det faktiske kWh-forbrug for forskellige saunatyper, sammenligner finske saunaer med infrarøde og giver dig konkrete tips til at reducere driftsomkostningerne.</p>
 
 <h2>Hvor mange kWh bruger en sauna pr. session?</h2>
-<p>En saunasession bruger typisk 6–12 kWh afhængigt af ovnens størrelse, kabinens isolering og sessionens varighed. Opvarmning til 80–90°C tager 30–60 minutter og bruger 3–6 kWh. Vedligeholdelse af temperaturen under selve saunabadet bruger yderligere 2–5 kWh. En gennemsnitlig session koster 15–30 kr. i strøm.</p>
+<p>En saunasession bruger typisk 6–12 kWh afhængigt af ovnens størrelse, kabinens isolering og sessionens varighed. Opvarmning til 80–90°C tager 30–60 minutter og bruger 3–6 kWh. Vedligeholdelse af temperaturen under selve saunabadet bruger yderligere 2–5 kWh. En gennemsnitlig session koster 11–22 kr. i strøm.</p>
 
 <table>
 <thead><tr><th>Saunatype</th><th>Ovneffekt</th><th>Opvarmning</th><th>Session (1,5 t total)</th><th>Pris pr. session</th></tr></thead>
 <tbody>
-<tr><td>Lille finsk (2–3 pers.)</td><td>4,5 kW</td><td>3,0 kWh</td><td>5,5 kWh</td><td>14 kr.</td></tr>
-<tr><td>Standard finsk (4–5 pers.)</td><td>6–8 kW</td><td>4,5 kWh</td><td>8,5 kWh</td><td>21 kr.</td></tr>
-<tr><td>Stor finsk (6+ pers.)</td><td>9 kW</td><td>6,0 kWh</td><td>11,5 kWh</td><td>29 kr.</td></tr>
-<tr><td>Infrarød (2 pers.)</td><td>1,5–3 kW</td><td>0,5 kWh</td><td>3,0 kWh</td><td>8 kr.</td></tr>
+<tr><td>Lille finsk (2–3 pers.)</td><td>4,5 kW</td><td>3,0 kWh</td><td>5,5 kWh</td><td>10 kr.</td></tr>
+<tr><td>Standard finsk (4–5 pers.)</td><td>6–8 kW</td><td>4,5 kWh</td><td>8,5 kWh</td><td>16 kr.</td></tr>
+<tr><td>Stor finsk (6+ pers.)</td><td>9 kW</td><td>6,0 kWh</td><td>11,5 kWh</td><td>22 kr.</td></tr>
+<tr><td>Infrarød (2 pers.)</td><td>1,5–3 kW</td><td>0,5 kWh</td><td>3,0 kWh</td><td>6 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1249,9 +1249,9 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <tr><td>Opvarmningstid</td><td>30–60 min</td><td>10–15 min</td></tr>
 <tr><td>Ovneffekt</td><td>4,5–9 kW</td><td>1,5–3 kW</td></tr>
 <tr><td>kWh pr. session</td><td>6–12 kWh</td><td>2–4 kWh</td></tr>
-<tr><td>Pris pr. session</td><td>15–30 kr.</td><td>5–10 kr.</td></tr>
+<tr><td>Pris pr. session</td><td>11–22 kr.</td><td>4–7 kr.</td></tr>
 <tr><td>Årligt kWh (2x/uge)</td><td>600–1.250 kWh</td><td>200–400 kWh</td></tr>
-<tr><td>Årlig pris</td><td>1.500–3.125 kr.</td><td>500–1.000 kr.</td></tr>
+<tr><td>Årlig pris</td><td>1.116–2.325 kr.</td><td>372–744 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1261,10 +1261,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Brugsfrekvens</th><th>Finsk sauna (6 kW)</th><th>Infrarød sauna (2 kW)</th><th>Finsk – årlig pris</th><th>Infrarød – årlig pris</th></tr></thead>
 <tbody>
-<tr><td>1 gang/uge</td><td>350–550 kWh</td><td>100–200 kWh</td><td>875–1.375 kr.</td><td>250–500 kr.</td></tr>
-<tr><td>2 gange/uge</td><td>700–1.100 kWh</td><td>200–400 kWh</td><td>1.750–2.750 kr.</td><td>500–1.000 kr.</td></tr>
-<tr><td>3 gange/uge</td><td>1.050–1.650 kWh</td><td>300–600 kWh</td><td>2.625–4.125 kr.</td><td>750–1.500 kr.</td></tr>
-<tr><td>Daglig</td><td>2.200–3.650 kWh</td><td>730–1.460 kWh</td><td>5.500–9.125 kr.</td><td>1.825–3.650 kr.</td></tr>
+<tr><td>1 gang/uge</td><td>350–550 kWh</td><td>100–200 kWh</td><td>651–1.023 kr.</td><td>186–372 kr.</td></tr>
+<tr><td>2 gange/uge</td><td>700–1.100 kWh</td><td>200–400 kWh</td><td>1.302–2.046 kr.</td><td>372–744 kr.</td></tr>
+<tr><td>3 gange/uge</td><td>1.050–1.650 kWh</td><td>300–600 kWh</td><td>1.953–3.069 kr.</td><td>558–1.116 kr.</td></tr>
+<tr><td>Daglig</td><td>2.200–3.650 kWh</td><td>730–1.460 kWh</td><td>4.092–6.789 kr.</td><td>1.358–2.716 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1317,7 +1317,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>Her er svar på de hyppigste spørgsmål om saunaens energiforbrug.</p>`,
     faqs: [
       { question: "Hvad koster en saunasession i strøm?", answer: "En typisk session i en finsk sauna (1,5 time inkl. opvarmning) koster 15–30 kr. i strøm. En infrarød sauna koster 5–10 kr. pr. session." },
-      { question: "Hvor meget strøm bruger en sauna om måneden?", answer: "Ved 2 sessioner pr. uge bruger en finsk sauna ca. 60–100 kWh om måneden, svarende til 150–250 kr. Om vinteren kan det være 80–130 kWh." },
+      { question: "Hvor meget strøm bruger en sauna om måneden?", answer: "Ved 2 sessioner pr. uge bruger en finsk sauna ca. 60–100 kWh om måneden, svarende til 112–186 kr. Om vinteren kan det være 80–130 kWh." },
       { question: "Er en infrarød sauna billigere i drift?", answer: "Ja, markant. En infrarød sauna bruger 50–70 % mindre strøm end en finsk sauna og har kun 10–15 minutters opvarmningstid." },
       { question: "Kan en sauna køre på en almindelig stikkontakt?", answer: "Kun ovne under 4,5 kW (230V). De fleste finske saunaovne kræver 400V (trefaset) og installation af autoriseret elektriker." },
       { question: "Hvor lang tid tager det at opvarme en sauna?", answer: "En finsk sauna: 30–60 minutter til 80–90°C. En infrarød sauna: 10–15 minutter til 40–60°C. God isolering kan reducere opvarmningstiden med 30–40 %." },

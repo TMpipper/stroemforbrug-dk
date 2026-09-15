@@ -38,7 +38,7 @@ export default function HusstandPage() {
         <QuickAnswer>
           <p>
             En gennemsnitlig dansk husstand bruger 3.000-4.500 kWh strøm om
-            året uden varmepumpe. Det svarer til 7.500-11.250 kr. ved 2,50
+            året uden varmepumpe. Det svarer til 5.580-8.370 kr. ved 1,86
             kr./kWh. En enlig person bruger ca. 1.500-2.500 kWh, mens en
             familie på 4 bruger 4.000-5.500 kWh.
           </p>
@@ -114,7 +114,7 @@ export default function HusstandPage() {
           <h2>Strømforbrug familie på 4</h2>
           <p>
             En typisk dansk familie på 4 i et parcelhus bruger 4.000-5.500 kWh strøm om året
-            (uden varmepumpe), svarende til 10.000-13.750 kr. De største poster er{" "}
+            (uden varmepumpe), svarende til 7.440-10.230 kr. De største poster er{" "}
             <Link href="/koeleskab/">køleskab/fryser</Link> (24/7),{" "}
             <Link href="/toerretumbler/">tørretumbler</Link> og{" "}
             <Link href="/opvaskemaskine/">opvaskemaskine</Link>.
@@ -123,7 +123,7 @@ export default function HusstandPage() {
           <h2>Strømforbrug 1 person</h2>
           <p>
             Bor du alene i en lejlighed, er et normalt strømforbrug 1.500-2.000 kWh/år
-            (3.750-5.000 kr.). I et hus stiger det til 2.000-2.500 kWh/år fordi der er
+            (2.790-3.720 kr.). I et hus stiger det til 2.000-2.500 kWh/år fordi der er
             flere apparater og større arealer at belyse.
           </p>
 
@@ -132,7 +132,9 @@ export default function HusstandPage() {
             Har du en <Link href="/varmepumpe/">varmepumpe</Link>, stiger det samlede elforbrug
             markant — men din samlede energiudgift falder fordi varmepumpen erstatter gas eller
             olie. En familie på 4 med luft-til-vand varmepumpe bruger typisk 8.000-11.000 kWh/år
-            (20.000-27.500 kr. i strøm), men sparer 6.000-14.000 kr./år i gasfyr-udgifter.
+            i alt (14.880-20.460 kr. i strøm). Selve varmepumpen står for 4.000-6.000 kWh af det
+            — 7.440-11.160 kr. — og erstatter et gasfyr til 18.000-24.000 kr./år. Nettobesparelsen
+            er typisk 10.500-12.800 kr./år.
           </p>
 
           <h2>Sådan tjekker du dit eget forbrug</h2>

@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { Zap, TrendingDown } from "lucide-react";
-import { ELECTRICITY_PRICE_KR_PER_KWH, CHEAP_PROVIDER_PRICE, CHEAP_PROVIDER_NAME } from "@/lib/config";
+import { bestOfferFor } from "@/lib/offers";
+import { REFERENCE_KWH } from "@/lib/pricing";
+import {
+  EL_PRICE_KR_PER_KWH,
+  applianceSaving,
+  formatPrice,
+  MARKET,
+} from "@/lib/pricing";
 import type { CalculatorOption } from "@/lib/types";
 
 interface ForbrugBeregnerProps {
@@ -34,10 +41,15 @@ export default function ForbrugBeregner({
   const kwhPerYear = kwhPerWeek * 52;
   const kwhPerMonth = kwhPerYear / 12;
 
-  const costPerYear = kwhPerYear * ELECTRICITY_PRICE_KR_PER_KWH;
-  const costPerMonth = kwhPerMonth * ELECTRICITY_PRICE_KR_PER_KWH;
-  const cheapCostPerYear = kwhPerYear * CHEAP_PROVIDER_PRICE;
-  const savings = costPerYear - cheapCostPerYear;
+  const costPerYear = kwhPerYear * EL_PRICE_KR_PER_KWH;
+  const costPerMonth = kwhPerMonth * EL_PRICE_KR_PER_KWH;
+  // The saving comes from the household's aftale, not from this appliance alone,
+  // so it scales with the per-kWh differential — never (elpris − udbyderpris).
+  const savings = applianceSaving(kwhPerYear);
+  // Cheapest aftale over the first year for a typical household. This calculator
+  // measures one appliance, so the household reference consumption is the honest
+  // basis for the switch recommendation.
+  const best = bestOfferFor(REFERENCE_KWH);
 
   const fmt = (n: number) =>
     n < 10
@@ -120,7 +132,7 @@ export default function ForbrugBeregner({
             <div className="bg-surface-alt rounded-card px-4 py-3 text-center">
               <p className="text-xs text-ink-500">Pr. gang</p>
               <p className="text-lg font-bold text-ink-900">
-                {fmt(selected.kwhPerUse * ELECTRICITY_PRICE_KR_PER_KWH)} kr.
+                {fmt(selected.kwhPerUse * EL_PRICE_KR_PER_KWH)} kr.
               </p>
               <p className="text-xs text-ink-400">
                 {selected.kwhPerUse.toFixed(1)} kWh
@@ -160,26 +172,29 @@ export default function ForbrugBeregner({
                   <strong className="text-ink-900">
                     Spar {fmt(savings)} kr./år
                   </strong>{" "}
-                  ved at skifte til {CHEAP_PROVIDER_NAME} ({CHEAP_PROVIDER_PRICE.toFixed(2).replace(".", ",")} kr./kWh)
+                  på dette apparat ved at skifte til {best.offer.name}. Skiftet
+                  gælder hele husstandens forbrug, så den samlede besparelse er
+                  typisk en del større.
                 </p>
               </div>
               <a
-                href="/go/altid-energi"
+                href={`/go/${best.offer.slug}`}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 className="shrink-0 btn-cta whitespace-nowrap"
               >
-                Se {CHEAP_PROVIDER_NAME}
+                Se {best.offer.name}
               </a>
             </div>
           </div>
         )}
 
         <p className="text-xs text-ink-400 text-center">
-          Beregnet med gennemsnitlig elpris på{" "}
-          {ELECTRICITY_PRICE_KR_PER_KWH.toFixed(2).replace(".", ",")} kr./kWh
-          inkl. afgifter og transport (2026). Faktisk pris afhænger af dit
-          elselskab og spotprisen.
+          Beregnet med en gennemsnitlig elpris på{" "}
+          {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh inkl. moms, afgifter og
+          transport ({MARKET.period}). Abonnement er ikke medregnet, da det er en
+          fast udgift uanset forbrug. Faktisk pris afhænger af dit elselskab,
+          landsdel og spotprisen.
         </p>
       </div>
     </div>

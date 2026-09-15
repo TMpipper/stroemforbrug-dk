@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 
 const faqs = [
   { question: "Hvad bruger mest strøm i hjemmet?", answer: "Uden varmepumpe er tørretumbleren, køleskab/fryser og ovnen de tre største strømslugere. Med varmepumpe er den suverænt størst med 3.000-7.000 kWh/år. En gammel elradiator kan også bruge enorme mængder strøm." },
-  { question: "Hvor meget strøm bruger en tørretumbler om året?", answer: "En tørretumbler bruger typisk 300-500 kWh/år (750-1.250 kr.) ved 4-5 tørringer om ugen. En kondenstørretumbler bruger mest, mens en varmepumpetørretumbler bruger ca. 40% mindre." },
+  { question: "Hvor meget strøm bruger en tørretumbler om året?", answer: "En tørretumbler bruger typisk 300-500 kWh/år (558-930 kr.) ved 4-5 tørringer om ugen. En kondenstørretumbler bruger mest, mens en varmepumpetørretumbler bruger ca. 40% mindre." },
   { question: "Er køleskabet en stor strømsluger?", answer: "Ja, køleskabet er en af de største fordi det kører 24/7/365. Et moderne A-mærket køleskab bruger 100-150 kWh/år, men en gammel model (10+ år) kan bruge 300-500 kWh/år. Det betaler sig at udskifte." },
-  { question: "Bruger en opvaskemaskine meget strøm?", answer: "En opvaskemaskine bruger ca. 200-300 kWh/år ved daglig brug (500-750 kr.). På eco-program bruger den 30-40% mindre. Det er primært opvarmningen af vand der bruger strøm." },
-  { question: "Hvad bruger en computer i strøm om året?", answer: "En stationær computer bruger 150-400 kWh/år (375-1.000 kr.) afhængigt af brug og hardware. En gaming-PC bruger mest. En laptop bruger kun 30-70 kWh/år — markant mindre end en stationær." },
-  { question: "Hvor meget strøm bruger et tv?", answer: "Et moderne LED/QLED-tv bruger 80-200 kWh/år (200-500 kr.) afhængigt af størrelse og brugstid. Et 55\" tv der er tændt 5 timer/dag bruger ca. 120-150 kWh. OLED bruger lidt mindre under aktiv brug." },
-  { question: "Er airfryeren en strømsluger?", answer: "Nej, en airfryer bruger kun 50-100 kWh/år (125-250 kr.) ved daglig brug. Den er faktisk mere energieffektiv end en traditionel ovn, fordi den opvarmer et mindre rum hurtigere." },
+  { question: "Bruger en opvaskemaskine meget strøm?", answer: "En opvaskemaskine bruger ca. 200-300 kWh/år ved daglig brug (372-558 kr.). På eco-program bruger den 30-40% mindre. Det er primært opvarmningen af vand der bruger strøm." },
+  { question: "Hvad bruger en computer i strøm om året?", answer: "En stationær computer bruger 150-400 kWh/år (279-744 kr.) afhængigt af brug og hardware. En gaming-PC bruger mest. En laptop bruger kun 30-70 kWh/år — markant mindre end en stationær." },
+  { question: "Hvor meget strøm bruger et tv?", answer: "Et moderne LED/QLED-tv bruger 80-200 kWh/år (149-372 kr.) afhængigt af størrelse og brugstid. Et 55\" tv der er tændt 5 timer/dag bruger ca. 120-150 kWh. OLED bruger lidt mindre under aktiv brug." },
+  { question: "Er airfryeren en strømsluger?", answer: "Nej, en airfryer bruger kun 50-100 kWh/år (93-186 kr.) ved daglig brug. Den er faktisk mere energieffektiv end en traditionel ovn, fordi den opvarmer et mindre rum hurtigere." },
   { question: "Hvordan finder jeg mine strømslugere?", answer: "Brug en elmåler (50-150 kr. i byggemarkedet) til at måle hvert apparat. Alternativt kan du bruge vores strømberegner til at estimere forbruget baseret på watt og brugstid." },
 ];
 
@@ -75,7 +75,7 @@ export default function StromslugerePage() {
           <p>
             Vi har rangeret de 10 apparater der bruger mest strøm i en typisk dansk
             husstand. Forbruget er baseret på gennemsnitlig brug, og prisen er
-            beregnet med 2,50 kr./kWh. Varmepumpen er udeladt da den erstatter
+            beregnet med 1,86 kr./kWh. Varmepumpen er udeladt da den erstatter
             anden opvarmning — se separat side om <Link href="/varmepumpe/">varmepumpers strømforbrug</Link>.
           </p>
           <table>
@@ -121,8 +121,8 @@ export default function StromslugerePage() {
           <p>
             <Link href="/toerretumbler/">Tørretumbleren</Link> er det husholdningsapparat
             (ud over opvarmning) der bruger mest strøm pr. brug. En enkelt
-            tørretumbling bruger 2-4 kWh (5-10 kr.), og med 4-5 tørringer om
-            ugen løber det op i 400-1.000 kWh/år (1.000-2.500 kr.).
+            tørretumbling bruger 2-4 kWh (4-7 kr.), og med 4-5 tørringer om
+            ugen løber det op i 400-1.000 kWh/år (744-1.860 kr.).
           </p>
           <table>
             <thead>
@@ -160,7 +160,7 @@ export default function StromslugerePage() {
             </thead>
             <tbody>
               <tr><td><strong><Link href="/koeleskab/">Køleskab</Link></strong></td><td>300-500 kWh</td><td>100-150 kWh</td><td>375-875 kr.</td></tr>
-              <tr><td><strong><Link href="/kummefryser/">Kummefryser</Link></strong></td><td>400-600 kWh</td><td>150-200 kWh</td><td>500-1.000 kr.</td></tr>
+              <tr><td><strong><Link href="/kummefryser/">Kummefryser</Link></strong></td><td>400-600 kWh</td><td>150-200 kWh</td><td>372-744 kr.</td></tr>
               <tr><td><strong><Link href="/fryser/">Fryser (skabs)</Link></strong></td><td>350-500 kWh</td><td>150-200 kWh</td><td>375-750 kr.</td></tr>
               <tr><td><strong>Køle/frys-kombi</strong></td><td>400-600 kWh</td><td>150-250 kWh</td><td>375-875 kr.</td></tr>
             </tbody>
@@ -172,7 +172,7 @@ export default function StromslugerePage() {
             er ofte den mest oversete strømsluger. Mange familier har en gammel
             model der har stået og brummet i 15-20 år uden at nogen har tænkt over
             strømforbruget. En gammel kummefryser kan sagtens bruge 500-600 kWh/år
-            (1.250-1.500 kr.).
+            (930-1.116 kr.).
           </p>
           <p>
             Tjek om din kummefryser virkelig er nødvendig. Mange familier har den
@@ -203,14 +203,14 @@ export default function StromslugerePage() {
           <p>
             En stationær <Link href="/computer/">computer</Link> bruger 80-300 W
             under brug og 2-10 W i standby. For en der arbejder hjemme 8 timer/dag
-            giver det 200-400 kWh/år (500-1.000 kr.) — plus standby-forbrug om
+            giver det 200-400 kWh/år (372-744 kr.) — plus standby-forbrug om
             natten. En gaming-PC med kraftigt grafikkort kan bruge op til 500 W
             under spil, hvilket giver et endnu højere årsforbrug.
           </p>
           <p>
             Til sammenligning bruger en <Link href="/laptop/">laptop</Link> kun
             20-60 W under brug og 0,5-3 W i dvale. Årligt forbrug: 30-70 kWh/år
-            (75-175 kr.). Skifter du fra stationær til laptop, sparer du 300-900
+            (56-130 kr.). Skifter du fra stationær til laptop, sparer du 300-900
             kr./år i strøm alene.
           </p>
 
@@ -219,7 +219,7 @@ export default function StromslugerePage() {
             Et <Link href="/tv/">tv</Link> bruger 60-200 W afhængigt af størrelse og
             teknologi. Et 55&quot; LED-tv bruger ca. 80-120 W, mens et 75&quot; QLED
             bruger 150-200 W. Med 5 timers daglig brug giver det 150-365 kWh/år
-            (375-913 kr.).
+            (279-679 kr.).
           </p>
           <p>
             Husk også <Link href="/standby/">standby-forbruget</Link> — et tv i
@@ -239,9 +239,9 @@ export default function StromslugerePage() {
               <tr><th>Pæretype</th><th>Watt (pr. pære)</th><th>20 pærer × 4 t/dag</th><th>Pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Glødepære</strong></td><td>40-60 W</td><td>1.168-1.752 kWh</td><td>2.920-4.380 kr.</td></tr>
-              <tr><td><strong>Halogenpære</strong></td><td>28-42 W</td><td>818-1.226 kWh</td><td>2.044-3.066 kr.</td></tr>
-              <tr><td><strong>LED-pære</strong></td><td>6-10 W</td><td>175-292 kWh</td><td>438-730 kr.</td></tr>
+              <tr><td><strong>Glødepære</strong></td><td>40-60 W</td><td>1.168-1.752 kWh</td><td>2.172-3.259 kr.</td></tr>
+              <tr><td><strong>Halogenpære</strong></td><td>28-42 W</td><td>818-1.226 kWh</td><td>1.521-2.281 kr.</td></tr>
+              <tr><td><strong>LED-pære</strong></td><td>6-10 W</td><td>175-292 kWh</td><td>326-543 kr.</td></tr>
             </tbody>
           </table>
 

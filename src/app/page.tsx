@@ -161,8 +161,8 @@ export default function HomePage() {
           <p>
             Den gennemsnitlige danske husstand bruger{" "}
             <Link href="/gennemsnitligt/">3.000-4.500 kWh strøm om året</Link>,
-            svarende til 7.500-11.250 kr. ved den aktuelle gennemsnitspris på
-            2,50 kr./kWh. Inkluderer husstanden en{" "}
+            svarende til 5.580-8.370 kr. ved den aktuelle gennemsnitspris på
+            1,86 kr./kWh. Inkluderer husstanden en{" "}
             <Link href="/varmepumpe/">varmepumpe</Link>, stiger forbruget typisk
             til 6.000-10.000 kWh/år.
           </p>
@@ -211,7 +211,7 @@ export default function HomePage() {
             Formlen er enkel: <strong>Watt × timer × dage ÷ 1.000 = kWh</strong>
             . Eksempel: et <Link href="/tv/">55&quot; tv</Link> på 85W der kører 4
             timer dagligt bruger 85 × 4 × 365 ÷ 1.000 = 124 kWh/år, svarende
-            til 310 kr.
+            til 231 kr.
           </p>
           <p>
             Brug vores{" "}
