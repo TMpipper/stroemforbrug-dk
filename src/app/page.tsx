@@ -1,14 +1,56 @@
 import Link from "next/link";
 import { Zap, Calculator, Home, BarChart3 } from "lucide-react";
 import { SITE_CONFIG, ELECTRICITY_PRICE_KR_PER_KWH } from "@/lib/config";
+import { formatKr } from "@/lib/pricing";
 import { getPublishedAppliances } from "@/lib/appliances";
+import { homeFaqs, topEverydayAppliances } from "@/lib/home-insights";
+import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
+import {
+  DirectAnswer,
+  HouseholdProfiles,
+  WhatDominates,
+  Methodology,
+} from "@/components/home/HomePillar";
 
 export default function HomePage() {
   // Sort by typical kWh descending for the ranking
   const sorted = [...getPublishedAppliances()].sort((a, b) => b.typicalKwh - a.typicalKwh);
+  const faqs = homeFaqs();
+  const everyday = topEverydayAppliances(5);
+
+  // The pillar page previously carried no page-level schema at all — every
+  // appliance page it links to was better marked up than the page itself.
+  const schema = [
+    breadcrumbSchema([{ name: "Forside", url: `${SITE_CONFIG.url}/` }]),
+    articleSchema({
+      title: "Strømforbrug i Danmark — se hvad dine apparater bruger",
+      description: SITE_CONFIG.description,
+      url: `${SITE_CONFIG.url}/`,
+      datePublished: "2026-07-29",
+      dateModified: SITE_CONFIG.lastUpdated,
+    }),
+    faqSchema(faqs),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Apparaters strømforbrug",
+      description: "Typisk årligt strømforbrug for almindelige apparater i danske hjem",
+      numberOfItems: sorted.length,
+      itemListElement: sorted.map((a, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: a.name,
+        url: `${SITE_CONFIG.url}/${a.slug}/`,
+      })),
+    },
+  ];
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       {/* Hero */}
       <section className="bg-brand-800 text-white py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
@@ -85,6 +127,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <DirectAnswer />
+      <HouseholdProfiles />
+      <WhatDominates />
 
       {/* Appliance ranking */}
       <section className="py-16">
@@ -167,44 +213,31 @@ export default function HomePage() {
             til 6.000-10.000 kWh/år.
           </p>
 
-          <h2>Hvad bruger mest strøm i hjemmet?</h2>
+          <h2>Hvilke hvidevarer bruger mest?</h2>
           <p>
-            De største strømslugere i en dansk husstand er typisk opvarmning
-            (varmepumpe/elvarme), hvidevarer og underholdningselektronik. Her er
-            top 5 for en gennemsnitlig familie uden varmepumpe:
+            Ser man bort fra opvarmning, varmt vand og elbil — som er behandlet
+            ovenfor — er det madlavning, tørring og køl/frys, der fylder mest. Her er
+            de fem største blandt de apparater, de fleste husstande faktisk har:
           </p>
           <ol>
-            <li>
-              <strong>
-                <Link href="/koeleskab/">Køleskab/fryser</Link>
-              </strong>{" "}
-              — 200-400 kWh/år (kører 24/7)
-            </li>
-            <li>
-              <strong>
-                <Link href="/toerretumbler/">Tørretumbler</Link>
-              </strong>{" "}
-              — 200-750 kWh/år (afhængigt af type og brug)
-            </li>
-            <li>
-              <strong>
-                <Link href="/opvaskemaskine/">Opvaskemaskine</Link>
-              </strong>{" "}
-              — 150-300 kWh/år
-            </li>
-            <li>
-              <strong>
-                <Link href="/vaskemaskine/">Vaskemaskine</Link>
-              </strong>{" "}
-              — 100-200 kWh/år
-            </li>
-            <li>
-              <strong>
-                <Link href="/tv/">TV og underholdning</Link>
-              </strong>{" "}
-              — 100-300 kWh/år (inkl. streaming-enheder)
-            </li>
+            {everyday.map((t) => (
+              <li key={t.appliance.slug}>
+                <strong>
+                  <Link href={`/${t.appliance.slug}/`}>{t.appliance.name}</Link>
+                </strong>{" "}
+                — {t.appliance.kwhRange[0].toLocaleString("da-DK")}-
+                {t.appliance.kwhRange[1].toLocaleString("da-DK")} kWh/år, typisk{" "}
+                {formatKr(t.cost)} kr.
+              </li>
+            ))}
           </ol>
+          <p>
+            Rækkefølgen overrasker mange: <Link href="/komfur/">komfuret</Link> og
+            kogepladen slår både <Link href="/toerretumbler/">tørretumbleren</Link> og{" "}
+            <Link href="/koeleskab/">køleskabet</Link>, fordi de bruger meget effekt
+            hver dag året rundt. Til gengæld betyder{" "}
+            <Link href="/tv/">tv</Link> og elektronik mindre, end de fleste tror.
+          </p>
 
           <h2>Sådan beregner du dit strømforbrug</h2>
           <p>
@@ -233,6 +266,27 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+      <Methodology />
+
+      {/* FAQ — answers computed from the same data as the tables above */}
+      <section className="py-16 bg-surface-alt">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <h2 className="font-heading text-2xl sm:text-3xl font-medium text-ink-900 mb-8">
+            Ofte stillede spørgsmål om strømforbrug
+          </h2>
+          <div className="space-y-6">
+            {faqs.map((faq) => (
+              <div key={faq.question}>
+                <h3 className="font-heading text-lg font-medium text-ink-900 mb-2">
+                  {faq.question}
+                </h3>
+                <p className="text-ink-700">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </>
   );
 }

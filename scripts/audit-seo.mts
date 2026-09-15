@@ -15,10 +15,11 @@
  * Run: npm run audit-seo
  */
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { APPLIANCES, getAllSlugs } from "../src/lib/appliances.ts";
 import { applianceRank } from "../src/lib/appliance-insights.ts";
 import { sourcesFor } from "../src/lib/sources.ts";
+import { assertHouseholds } from "../src/lib/home-insights.ts";
 
 let failures = 0;
 let warnings = 0;
@@ -139,6 +140,44 @@ if (genericCites) {
 
 for (const a of APPLIANCES) {
   if (sourcesFor(a.slug).length === 0) fail(`${a.slug}: no verified sources mapped in sources.ts`);
+}
+
+/* ---------- 8. hub pages ---------- */
+
+// The hub pages were unguarded while the appliance pages were audited, and they
+// ended up the thinnest content on the site — the homepage at 663 words linking
+// out to 43 far deeper pages.
+try {
+  assertHouseholds();
+  ok("household profiles are plausible and reference known appliances");
+} catch (e) {
+  fail((e as Error).message);
+}
+
+const homeSrc = readFileSync("src/app/page.tsx", "utf8");
+for (const type of ["articleSchema", "breadcrumbSchema", "faqSchema"]) {
+  if (!homeSrc.includes(type)) fail(`homepage is missing ${type} — every appliance page has richer markup than the pillar`);
+}
+if (homeSrc.includes("articleSchema") && homeSrc.includes("faqSchema")) ok("homepage carries Article, Breadcrumb and FAQ schema");
+
+// Rendered depth, when a build is present.
+const HUB_MIN_WORDS = 900;
+const HUBS = ["index", "beregner", "husstand", "gennemsnitligt", "hvad-koster-en-kwh", "stromslugere", "standby", "sparetips", "spare-paa-stroemmen", "varmepumpe"];
+if (existsSync(".next/server/app")) {
+  const thinHubs: string[] = [];
+  for (const h of HUBS) {
+    const f = `.next/server/app/${h}.html`;
+    if (!existsSync(f)) continue;
+    const html = readFileSync(f, "utf8");
+    const body = (html.split("</header>")[1] ?? html).split("<footer")[0];
+    const text = body.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ").replace(/\s+/g, " ").trim();
+    const n = text.split(" ").length;
+    if (n < HUB_MIN_WORDS) thinHubs.push(`${h} (${n})`);
+  }
+  if (thinHubs.length) warn(`hub page(s) under ${HUB_MIN_WORDS} rendered words: ${thinHubs.join(", ")}`);
+  else ok(`every built hub page is at least ${HUB_MIN_WORDS} rendered words`);
+} else {
+  warn("no build found — run npm run build first to check hub page depth");
 }
 
 /* ---------- summary ---------- */
