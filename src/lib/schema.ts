@@ -35,12 +35,19 @@ export function articleSchema({
   url,
   datePublished,
   dateModified,
+  image,
 }: {
   title: string;
   description: string;
   url: string;
   datePublished: string;
   dateModified: string;
+  /**
+   * Absolute URL of the page's share card. Google lists `image` as recommended
+   * for Article, and every page now generates one from its own data, so there
+   * is no reason to omit it.
+   */
+  image?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -50,6 +57,7 @@ export function articleSchema({
     url,
     datePublished,
     dateModified,
+    ...(image ? { image: [image] } : {}),
     author: {
       "@type": "Person",
       name: SITE_CONFIG.editorName,

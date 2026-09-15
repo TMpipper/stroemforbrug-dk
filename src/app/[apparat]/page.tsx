@@ -95,6 +95,7 @@ export default async function AppliancePage({
       url,
       datePublished: "2026-07-29",
       dateModified: data.updated ?? SITE_CONFIG.lastUpdated,
+      image: `${url}opengraph-image/og/`,
     }),
   ];
 

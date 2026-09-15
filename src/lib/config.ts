@@ -9,7 +9,6 @@ export const SITE_CONFIG = {
   editorRole: "Redaktør & Energirådgiver",
   editorCredential:
     "Specialist i dansk husholdningens energiforbrug. Analyserer strømforbrug og hjælper familier med at spare på strømmen.",
-  editorImage: "/images/mathias-clausen.jpg",
   company: {
     legalName: "Elpriser.dk ApS",
     cvr: "43489984",

@@ -28,6 +28,7 @@ export default function HomePage() {
       url: `${SITE_CONFIG.url}/`,
       datePublished: "2026-07-29",
       dateModified: SITE_CONFIG.lastUpdated,
+      image: `${SITE_CONFIG.url}/opengraph-image/`,
     }),
     faqSchema(faqs),
     {
