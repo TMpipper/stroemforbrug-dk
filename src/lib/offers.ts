@@ -182,7 +182,19 @@ export const OFFERS: Offer[] = [
       { name: "OK El Lavt Forbrug", tillaegOre: 19, feeTiers: [{ upToKwh: null, feeKrMonth: 0 }] },
     ],
     campaigns: [
-      { months: 12, cashbackKr: 500, label: "500 kr. velkomstrabat", validUntil: "2026-09-21", conditions: "Nye elkunder uden OK el de seneste 12 måneder" },
+      {
+        // Replaces the "500 kr. velkomstrabat" that could be signed until 2026-09-21.
+        // Verified on ok.dk/privat/produkter/el/bestil-ok-el 2026-09-23: "lige nu får
+        // du 300 kr. i velkomstrabat" — gælder til og med 22. nov. 2026, nye elkunder
+        // only, one-off amount deducted on the elregning. Applies to both OK El
+        // products; product terms (0 øre + 49 kr./md., 19 øre + 0 kr./md.) unchanged.
+        // validUntil gates it, so the CTA drops it by itself after 2026-11-22.
+        months: 12,
+        cashbackKr: 300,
+        label: "300 kr. velkomstrabat",
+        validUntil: "2026-11-22",
+        conditions: "Nye elkunder uden OK el de seneste 12 måneder, modregnes på elregningen",
+      },
     ],
     trustpilot: 4.3,
     binding: "Ingen binding",
