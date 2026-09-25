@@ -109,4 +109,4 @@ beregner, gennemsnitligt, husstand, varmepumpe, sparetips, om-os, kontakt, priva
 - **Company:** Elpriser.dk ApS (never "Mondo Media ApS" in user-facing text)
 - **CVR:** 43489984
 - **Address:** Hestehave 15, 6400 Sønderborg, Danmark
-- **Email:** hej@stroemforbrug.dk
+- **Email:** mail@elpriser.dk (the one contact address on the energy sites since 2026-09-25; hej@stroemforbrug.dk has no mailbox — the domain has no MX)
