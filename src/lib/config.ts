@@ -14,7 +14,7 @@ export const SITE_CONFIG = {
     cvr: "43489984",
     address: "Hestehave 15, 6400 Sønderborg, Danmark",
     phone: "+45 22 41 05 57",
-    email: "hej@stroemforbrug.dk",
+    email: "mail@elpriser.dk",
     linkedin: "https://www.linkedin.com/company/mondomedia/",
     website: "https://mondomedia.dk/",
   },
