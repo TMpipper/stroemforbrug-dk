@@ -1,0 +1,374 @@
+[
+  {
+    "path": "/",
+    "title": "Strømforbrug (2026) → Se hvad dine apparater bruger i strøm",
+    "description": "Alt om strømforbrug i Danmark. Se hvor meget strøm dine apparater bruger, beregn din årlige udgift og få tips til at spare på strømmen.",
+    "noindex": false
+  },
+  {
+    "path": "/affugter/",
+    "title": "Affugter strømforbrug (2026) → Se kWh pr. døgn og år",
+    "description": "Hvor meget strøm bruger en affugter? Se typisk elforbrug i kWh pr. år, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/airfryer/",
+    "title": "Airfryer strømforbrug (2026) → Se kWh og pris vs. ovn",
+    "description": "Hvor meget strøm bruger en airfryer? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/akvarium/",
+    "title": "Akvarium strømforbrug (2026) → Varme, lys og filter i kWh",
+    "description": "Hvor meget strøm bruger et akvarium? Se elforbrug for filter, varme og lys i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/beregner/",
+    "title": "Strømberegner (2026) → Beregn dit strømforbrug og pris",
+    "description": "Beregn dit strømforbrug og se hvad det koster i kr. Vælg apparat, indstil forbrug og få præcist resultat pr. dag, måned og år.",
+    "noindex": false
+  },
+  {
+    "path": "/broedrister/",
+    "title": "Brødrister strømforbrug (2026) → Watt, kWh og pris pr. brug",
+    "description": "Hvor meget strøm bruger en brødrister? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift med danske 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/computer/",
+    "title": "Computer strømforbrug (2026) → Stationær vs. bærbar i kWh",
+    "description": "Hvor meget strøm bruger en computer? Se typisk elforbrug for stationær og bærbar i kWh, sammenlign og beregn din årlige elregning. 2026-data.",
+    "noindex": false
+  },
+  {
+    "path": "/elbil/",
+    "title": "Elbil strømforbrug (2026) → kWh pr. 100 km og ladepris",
+    "description": "Hvor meget strøm bruger en elbil? Se typisk forbrug i kWh pr. km og pr. år, sammenlign modeller og beregn din ladeudgift. Opdateret 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/elkedel/",
+    "title": "Elkedel strømforbrug (2026) → Pris pr. liter kogt vand",
+    "description": "Hvor meget strøm bruger en elkedel? Se elforbrug pr. kogning i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/elradiator/",
+    "title": "Elradiator strømforbrug (2026) → kWh, pris og alternativer",
+    "description": "Hvor meget strøm bruger en elradiator? Se typisk elforbrug i kWh, sammenlign typer og beregn din årlige varmeudgift. Opdateret med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/fryser/",
+    "title": "Fryser strømforbrug (2026) → Se kWh, rim og årlig pris",
+    "description": "Hvor meget strøm bruger en skabsfryser? Se typisk elforbrug i kWh, sammenlign energiklasser og modeller, og beregn din årlige udgift. 2026-data.",
+    "noindex": false
+  },
+  {
+    "path": "/gaming-pc/",
+    "title": "Gaming-PC strømforbrug (2026) → Watt under belastning og kWh",
+    "description": "Hvor meget strøm bruger en gaming-PC? Se typisk elforbrug i kWh for gaming-computere, sammenlign opsætninger og beregn din årlige udgift i 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/gennemsnitligt/",
+    "title": "Gennemsnitligt strømforbrug (2026) → Se forbrug pr. husstand",
+    "description": "Det gennemsnitlige strømforbrug i Danmark er 3.000-4.500 kWh/år for en husstand uden varmepumpe. Se forbrug pr. person, familie og boligtype.",
+    "noindex": false
+  },
+  {
+    "path": "/gulvvarme-el/",
+    "title": "El-gulvvarme strømforbrug (2026) → kWh pr. m² og årlig pris",
+    "description": "Hvor meget strøm bruger el-gulvvarmemåtter? Se kWh for badeværelse og renovering. Sammenlign med varmekabel og beregn din årlige pris i 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/gulvvarme/",
+    "title": "Gulvvarme strømforbrug (2026) → Vand vs. el i kWh og pris",
+    "description": "Hvor meget strøm bruger el-gulvvarme? Se typisk elforbrug i kWh for badeværelse, køkken og hele huset. Beregn din årlige udgift med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/husstand/",
+    "title": "Strømforbrug husstand (2026) → Se normalt forbrug pr. person",
+    "description": "En dansk husstand bruger 3.000-4.500 kWh/år uden varmepumpe. Se normalt strømforbrug for 1 person, par og familie — og hvad det koster i kr.",
+    "noindex": false
+  },
+  {
+    "path": "/husstand/1-person/",
+    "title": "Strømforbrug 1 person (2026) → Se normalt forbrug og pris",
+    "description": "En person bruger typisk 1.500-2.500 kWh strøm om året. Se normalt forbrug i lejlighed vs. hus, hvad der bruger mest, og hvordan du sparer.",
+    "noindex": false
+  },
+  {
+    "path": "/husstand/2-personer/",
+    "title": "Strømforbrug 2 personer (2026) → Se normalt forbrug for par",
+    "description": "Et par bruger typisk 2.500-3.500 kWh strøm om året. Se normalt forbrug i lejlighed vs. hus, og hvordan I kan spare som husstand på 2.",
+    "noindex": false
+  },
+  {
+    "path": "/husstand/familie/",
+    "title": "Strømforbrug familie (2026) → Normalt forbrug for 4 personer",
+    "description": "En familie på 4 bruger 4.000-5.500 kWh/år uden varmepumpe. Se hvad der bruger mest strøm, og få sparetips der kan skære 2.000+ kr. af elregningen.",
+    "noindex": false
+  },
+  {
+    "path": "/husstand/med-varmepumpe/",
+    "title": "Strømforbrug med varmepumpe (2026) → Se samlet forbrug",
+    "description": "En familie med varmepumpe bruger 7.000-11.000 kWh/år. Se samlet forbrug for luft-til-luft, luft-til-vand og jordvarme — og hvad du sparer vs. gas.",
+    "noindex": false
+  },
+  {
+    "path": "/hvad-koster-det-at-lade-en-elbil/",
+    "title": "Hvad koster det at lade en elbil? (2026) → Se pris pr. kWh",
+    "description": "Det koster 56-130 kr. at lade en elbil fuldt op derhjemme (1,86 kr./kWh). Se pris pr. km, hjemmeladning vs. hurtigladning og din månedlige udgift.",
+    "noindex": false
+  },
+  {
+    "path": "/hvad-koster-en-kwh/",
+    "title": "Hvad koster en kWh i 2026? → Se aktuel pris inkl. afgifter",
+    "description": "En kWh koster i gennemsnit 1,86 kr. inkl. alle afgifter — 1,95 kr. med abonnement. Se prisens sammensætning, spotpris vs. fastpris og hvem der er billigst.",
+    "noindex": false
+  },
+  {
+    "path": "/haartoerrere/",
+    "title": "Hårtørrer strømforbrug (2026) → Watt, kWh og pris pr. brug",
+    "description": "Hvor meget strøm bruger en hårtørrer? Se elforbrug i kWh pr. brug og pr. år, sammenlign modeller og beregn din udgift. Opdateret 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/induktion/",
+    "title": "Induktion strømforbrug (2026) → kWh vs. gas og keramisk",
+    "description": "Hvor meget strøm bruger en induktionskogeplade? Se typisk elforbrug i kWh, sammenlign med keramisk og gas, og beregn din årlige udgift i 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/jordvarme/",
+    "title": "Jordvarme strømforbrug (2026) → kWh, COP og årlig pris",
+    "description": "Hvor meget strøm bruger jordvarme? Se typisk elforbrug i kWh for jordvarmepumper, COP-værdier og beregn din årlige udgift med danske 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/kaffemaskine/",
+    "title": "Kaffemaskine strømforbrug (2026) → kWh pr. kop og år",
+    "description": "Hvor meget strøm bruger en kaffemaskine? Se elforbrug i kWh for filterkaffe, kapsel og fuldautomatisk. Beregn din årlige udgift med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/koeleskab/",
+    "title": "Køleskab strømforbrug (2026) → Se kWh og årlig pris",
+    "description": "Et køleskab bruger 100-400 kWh/år og kører 24/7. Se forbrug for køle/fryseskab, amerikanerkøleskab og vinkøleskab — og hvornår det kan betale sig at skifte.",
+    "noindex": false
+  },
+  {
+    "path": "/komfur/",
+    "title": "Komfur strømforbrug (2026) → Kogeplader, ovn og årlig pris",
+    "description": "Hvor meget strøm bruger et komfur? Se typisk elforbrug i kWh for el-komfur, induktion og gas. Sammenlign modeller og beregn din årlige udgift i 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/kontakt/",
+    "title": "Kontakt Strømforbrug.dk",
+    "description": "Kontakt Strømforbrug.dk på mail@elpriser.dk eller +45 22 41 05 57.",
+    "noindex": false
+  },
+  {
+    "path": "/kummefryser/",
+    "title": "Kummefryser strømforbrug (2026) → kWh pr. liter og år",
+    "description": "Hvad bruger en kummefryser i strøm? Se typisk elforbrug i kWh pr. år, sammenlign energimærker og beregn din årlige udgift. Opdateret 2026-data.",
+    "noindex": false
+  },
+  {
+    "path": "/ladestander/",
+    "title": "Ladestander strømforbrug (2026) → kWh, ladetab og pris",
+    "description": "Hvor meget strøm bruger en ladestander til elbil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign hjemmeladere og beregn med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/laptop/",
+    "title": "Laptop strømforbrug (2026) → Watt, kWh og årlig pris",
+    "description": "Hvor meget strøm bruger en laptop? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med danske 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/led-paere/",
+    "title": "LED-pære strømforbrug (2026) → Watt, kWh og besparelse",
+    "description": "Hvor meget strøm bruger en LED-pære? Se elforbrug i kWh, sammenlign med halogener og sparepærer, og beregn din årlige udgift. 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/lyskaede/",
+    "title": "Lyskæde strømforbrug (2026) → LED vs. glødepærer i kWh",
+    "description": "Hvor meget strøm bruger en lyskæde? Se elforbrug for LED og glødepærer i kWh, beregn din udgift for hele julen. Opdateret med 2026-data.",
+    "noindex": false
+  },
+  {
+    "path": "/mikroovn/",
+    "title": "Mikroovn strømforbrug (2026) → kWh pr. opvarmning og år",
+    "description": "Hvor meget strøm bruger en mikroovn? Se elforbrug i kWh pr. brug og pr. år, sammenlign med ovn og airfryer, og beregn din udgift. 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/mobil-opladning/",
+    "title": "Mobil opladning strømforbrug (2026) → Se kWh og pris",
+    "description": "Hvor meget strøm bruger det at oplade en mobil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign trådløs og kabel-opladning med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/om-os/",
+    "title": "Om Strømforbrug.dk — Hvem vi er",
+    "description": "Strømforbrug.dk drives af Elpriser.dk ApS. Vi hjælper danske forbrugere med at forstå, beregne og reducere deres strømforbrug.",
+    "noindex": false
+  },
+  {
+    "path": "/opvaskemaskine/",
+    "title": "Opvaskemaskine strømforbrug (2026) → Se kWh og pris",
+    "description": "En opvaskemaskine bruger 150-300 kWh/år. Se strømforbrug pr. vask, sammenlign energimærkninger og beregn din årlige udgift med vores beregner.",
+    "noindex": false
+  },
+  {
+    "path": "/ovn/",
+    "title": "Ovn strømforbrug (2026) → kWh pr. tilberedning og år",
+    "description": "Hvor meget strøm bruger en ovn? Se det typiske elforbrug i kWh for konventionel og varmluftovn, sammenlign modeller og beregn din udgift.",
+    "noindex": false
+  },
+  {
+    "path": "/playstation/",
+    "title": "PlayStation strømforbrug (2026) → Watt i spil og standby",
+    "description": "Hvor meget strøm bruger en PlayStation? Se elforbrug for PS5 og PS4 i kWh, sammenlign tilstande og beregn din årlige udgift. Opdateret 2026-data.",
+    "noindex": false
+  },
+  {
+    "path": "/pool/",
+    "title": "Pool strømforbrug (2026) → Varmepumpe, pumpe og årlig pris",
+    "description": "Hvor meget strøm bruger en pool? Se elforbrug for pumpe, opvarmning og rensning i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/privatlivspolitik/",
+    "title": "Privatlivspolitik",
+    "description": "Privatlivspolitik for Strømforbrug.dk — sådan håndterer vi dine personoplysninger.",
+    "noindex": true
+  },
+  {
+    "path": "/quooker/",
+    "title": "Quooker strømforbrug (2026) → Standby, kWh og årlig pris",
+    "description": "Hvor meget strøm bruger en Quooker? Se det typiske elforbrug i kWh for kogende vandhane, sammenlign med elkedel og beregn din årlige udgift.",
+    "noindex": false
+  },
+  {
+    "path": "/robotplaeneklipper/",
+    "title": "Robotplæneklipper strømforbrug (2026) → kWh og pris",
+    "description": "Hvor meget strøm bruger en robotplæneklipper? Se elforbrug i kWh pr. sæson og pr. år, sammenlign modeller og beregn din udgift. 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/robotstoevsuger/",
+    "title": "Robotstøvsuger strømforbrug (2026) → Se kWh og pris",
+    "description": "Hvor meget strøm bruger en robotstøvsuger? Se elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-elpriser.",
+    "noindex": false
+  },
+  {
+    "path": "/router/",
+    "title": "Router strømforbrug (2026) → Watt i døgndrift og pris",
+    "description": "Hvor meget strøm bruger en WiFi-router? Se det typiske elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/sauna/",
+    "title": "Sauna strømforbrug (2026) → kWh pr. opvarmning og år",
+    "description": "Hvor meget strøm bruger en sauna? Se elforbrug pr. session og årligt i kWh, sammenlign ovntyper og beregn din udgift. Opdateret 2026-data.",
+    "noindex": false
+  },
+  {
+    "path": "/solceller/",
+    "title": "Solceller (2026) → Produktion i kWh og eget forbrug",
+    "description": "Hvor meget strøm producerer og bruger solceller? Se kWh-produktion, egetforbrug og besparelse. Beregn dit solcelleanlægs økonomi med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/spare-paa-stroemmen/",
+    "title": "Spar på strømmen (2026) → Komplet guide til lavere elregning",
+    "description": "Komplet guide til at spare på strømmen i 2026. Tjek dit forbrug på Eloverblik.dk, prioritér de store besparelser, og gå rum for rum. Spar 3.000-6.000 kr./år.",
+    "noindex": false
+  },
+  {
+    "path": "/sparetips/",
+    "title": "Spare strøm (2026) → 15 tips der sænker din elregning",
+    "description": "15 konkrete sparetips til en lavere elregning. Se hvilke tiltag der giver størst besparelse — fra hvidevarer og standby til valg af elselskab.",
+    "noindex": false
+  },
+  {
+    "path": "/standby/",
+    "title": "Standby strømforbrug (2026) → Hvad koster det dig?",
+    "description": "Standby-forbrug koster den gennemsnitlige husstand 400-800 kr./år. Se standby-watt for 20+ apparater og lær hvordan du eliminerer det skjulte strømforbrug.",
+    "noindex": false
+  },
+  {
+    "path": "/stoevsuger/",
+    "title": "Støvsuger strømforbrug (2026) → Watt, kWh og årlig pris",
+    "description": "Hvor meget strøm bruger en støvsuger? Se elforbrug i kWh for lednings- og akku-støvsugere, sammenlign modeller og beregn din udgift. 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/stromslugere/",
+    "title": "Strømslugere i hjemmet (2026) → Top 10 over de værste",
+    "description": "Se de 10 største strømslugere i en dansk husstand. Tørretumbleren, den gamle kummefryser og elradiatoren topper listen. Se kWh/år og pris for hvert apparat.",
+    "noindex": false
+  },
+  {
+    "path": "/strygejern/",
+    "title": "Strygejern strømforbrug (2026) → Watt, kWh og årlig pris",
+    "description": "Hvor meget strøm bruger et strygejern? Se typisk elforbrug i kWh, sammenlign dampstationer og beregn din årlige udgift. Opdateret 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/toerretumbler/",
+    "title": "Tørretumbler strømforbrug (2026) → Se kWh pr. tørring",
+    "description": "En tørretumbler bruger 1,5-5,0 kWh pr. tørring. Se forskel på varmepumpe, kondens og aftræk — og beregn din årlige strømudgift.",
+    "noindex": false
+  },
+  {
+    "path": "/tv/",
+    "title": "TV strømforbrug (2026) → Se hvad dit tv koster i strøm",
+    "description": "Et tv bruger 50-200 kWh/år afhængigt af størrelse. Se strømforbrug for 43\", 55\" og 65\" tv — og hvad standby koster dig om året.",
+    "noindex": false
+  },
+  {
+    "path": "/varmeblaeser/",
+    "title": "Varmeblæser strømforbrug (2026) → kWh pr. time og pris",
+    "description": "Hvor meget strøm bruger en varmeblæser? Se elforbrug i kWh, sammenlign med elradiatorer og beregn din udgift. Opdateret med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/varmepumpe/",
+    "title": "Varmepumpe strømforbrug (2026) → Se kWh og pris pr. type",
+    "description": "En varmepumpe bruger 2.000-6.000 kWh/år afhængigt af type. Se præcist forbrug for luft-til-luft, luft-til-vand og jordvarme — og beregn din årlige udgift.",
+    "noindex": false
+  },
+  {
+    "path": "/varmepumpe/luft-til-luft/",
+    "title": "Luft-til-luft varmepumpe strømforbrug (2026) → Pris og kWh",
+    "description": "En luft-til-luft varmepumpe bruger 2.000-4.000 kWh/år. Se pris pr. måned, sæsonvariation, COP-faktor og 5 tips til at spare på strømmen.",
+    "noindex": false
+  },
+  {
+    "path": "/varmepumpe/luft-til-vand/",
+    "title": "Luft-til-vand varmepumpe strømforbrug (2026) → Pris og kWh",
+    "description": "En luft-til-vand varmepumpe bruger 4.000-6.000 kWh/år. Se forbrug pr. måned, sammenligning med gasfyr, og beregn din besparelse.",
+    "noindex": false
+  },
+  {
+    "path": "/varmtvandsbeholder/",
+    "title": "Varmtvandsbeholder strømforbrug (2026) → kWh og årlig pris",
+    "description": "Hvor meget strøm bruger en varmtvandsbeholder? Se elforbrug i kWh for 60–300 liter, beregn din udgift og find besparelsestips. Opdateret 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/vaskemaskine/",
+    "title": "Vaskemaskine strømforbrug (2026) → kWh pr. vask og år",
+    "description": "Hvor meget strøm bruger en vaskemaskine? Se typisk elforbrug i kWh pr. vask og pr. år, sammenlign modeller og beregn din udgift. 2026-data.",
+    "noindex": false
+  }
+]

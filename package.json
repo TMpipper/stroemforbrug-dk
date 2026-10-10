@@ -7,9 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "indexnow": "node scripts/indexnow.mjs",
+    "typecheck": "tsc --noEmit",
+    "prebuild": "node scripts/audit-upstream.mjs && node scripts/audit-feed.mjs && node scripts/prices-updated.mjs",
+    "postbuild": "node scripts/snapshot-urls.mjs && tsx scripts/audit-prices.mts && tsx scripts/audit-seo.mts",
+    "audit": "eslint src scripts && node scripts/audit-upstream.mjs && node scripts/audit-feed.mjs && node scripts/snapshot-urls.mjs && tsx scripts/audit-prices.mts && tsx scripts/audit-seo.mts",
+    "audit-upstream": "node scripts/audit-upstream.mjs",
+    "audit-feed": "node scripts/audit-feed.mjs",
     "audit-prices": "tsx scripts/audit-prices.mts",
-    "audit-seo": "tsx scripts/audit-seo.mts"
+    "audit-seo": "tsx scripts/audit-seo.mts",
+    "prices-updated": "node scripts/prices-updated.mjs",
+    "snapshot-urls": "node scripts/snapshot-urls.mjs",
+    "feed-sync": "node scripts/feed-sync.mjs",
+    "deploy": "rm -rf .next .vercel/output && vercel pull --yes --environment=production --scope mondomedia && vercel build --prod && npm run audit && vercel deploy --prebuilt --prod --yes --scope mondomedia",
+    "post-deploy": "npm run indexnow",
+    "indexnow": "node scripts/indexnow.mjs",
+    "prices": "tsx scripts/print-prices.mts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

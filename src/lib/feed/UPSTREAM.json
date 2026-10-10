@@ -1,0 +1,14 @@
+{
+  "repo": "TMpipper/el-feed",
+  "path": "examples/site",
+  "commit": "23327e967322f8483039cf6e21ef7ba2bf2f521f",
+  "files": {
+    "src/lib/feed/types.ts": "ded904338c516ccde5fc82c15f3bd5a37ad70c225da6856d8d2b881c4021416f",
+    "src/lib/feed/compare.ts": "b34d767287e3db1874b2a23f78a4db0d610b29f4040bfd16a1856ca01c4b46be",
+    "src/lib/feed/client.ts": "53903a1a85fbc3ffa5326a201f4f90b4d6d42886d5977fb4b8f0df3e8494c586",
+    "src/lib/feed/site-adapter.ts": "b8ed1a7cae22481539133979ed1e70b17a07f66276e115b58ab12a367932fc22",
+    "src/lib/feed/marginal.ts": "0153ed6cc181dab6acb9080b136a21d68692b5d0a34f0dfa43efe07cfcf49af3",
+    "src/components/widget/ElpriserWidget.tsx": "962b2eaf3d5727d2d8be136babb796440076c44dbdccd29b03d858366f538c55",
+    "src/components/widget/ElpriserWidgetResize.tsx": "73161deb97b14e2276ae0eaa22f3a93625376afebe2413b1d679dc53a8c978b3"
+  }
+}
