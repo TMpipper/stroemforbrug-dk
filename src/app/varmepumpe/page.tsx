@@ -123,7 +123,7 @@ export default async function VarmepumpePage() {
         />
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
         <BestTimeToday data={data} today={today} />
-        <ElpriserWidget sted="dk1" kompakt className="my-8" />
+        <div className="breakout my-8"><ElpriserWidget sted="dk1" kompakt /></div>
 
         <div className="prose-content" dangerouslySetInnerHTML={{ __html: wrapTables(renderWith(t, data.content)) }} />
 

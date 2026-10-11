@@ -93,8 +93,8 @@ export default async function HomePage() {
       {/* Elprisen i dag — Elpriser.dk's kort og dagens billigste timer, regnet på samme feed */}
       <section className="py-16 border-b border-border" aria-labelledby="elprisen-i-dag" data-home-hourly>
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
-            <div>
+          <div className="grid gap-8">
+            <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">Elpriser time for time · fra Elpriser.dk</p>
               <h2 id="elprisen-i-dag" className="mt-2 font-heading text-2xl sm:text-3xl font-semibold text-ink">
                 Hvornår er strømmen billigst i dag?
@@ -114,6 +114,7 @@ export default async function HomePage() {
                 Spotpris, nettarif, Energinets tariffer og elafgift pr. time, inkl. moms, uden abonnement og tillæg. Dit eget postnummer kan slås op på Elpriser.dk.
               </p>
             </div>
+            {/* Fuld bredde (≈ 1000 px): kortet viser diagrammet fra 48 rem og timelisten under. */}
             <ElpriserWidget sted="dk1" />
           </div>
         </div>

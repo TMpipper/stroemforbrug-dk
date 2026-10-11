@@ -79,8 +79,11 @@ export default async function ElpriserPage() {
       />
 
       <div className="container-text py-10 md:py-14">
-        {/* Ét kort: det har selv postnummerfeltet, så læseren skifter landsdel og netområde inde i kortet. */}
-        <ElpriserWidget sted="dk1" />
+        {/* Ét kort: det har selv postnummerfeltet, så læseren skifter landsdel og netområde inde i kortet.
+            Kortet vælger selv diagram eller timeliste efter sin bredde (diagram fra 48 rem) — derfor breakout på desktop. */}
+        <div className="breakout">
+          <ElpriserWidget sted="dk1" />
+        </div>
 
         <section className="mt-14" aria-labelledby="apparater-i-dag">
           <h2 id="apparater-i-dag" className="font-heading text-2xl font-semibold text-ink md:text-3xl">

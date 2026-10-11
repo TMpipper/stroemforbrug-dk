@@ -203,7 +203,7 @@ export default async function AppliancePage({
 
         {/* Sidens differentiator: hvornår på dagen apparatet er billigst — dagens timepriser fra Elpriser.dk */}
         <BestTimeToday data={data} today={today} />
-        {HEAVY_RUN.has(data.slug) && <ElpriserWidget sted="dk1" kompakt className="my-8" />}
+        {HEAVY_RUN.has(data.slug) && <div className="breakout my-8"><ElpriserWidget sted="dk1" kompakt /></div>}
 
         {/* Main content */}
         <div
