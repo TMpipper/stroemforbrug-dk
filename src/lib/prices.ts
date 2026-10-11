@@ -54,6 +54,13 @@ export interface CheapestDeal {
   allInKrPerKwh: AllInKr;
   /** Aftalens energipris/tillæg, øre/kWh inkl. moms. */
   energyOreInclVat: number;
+  /** Elselskabets abonnement ved dette forbrug, kr./md. inkl. moms (Altids trin ved 4.000 kWh = 18). */
+  subscriptionKrMonth: number;
+  /** Alle gebyrer pr. år inkl. moms: kWh-gebyrer, månedlige gebyrer og betalingsgebyr. */
+  feesKrYear: number;
+  /** Elselskabets samlede andel af regningen pr. år (abonnement + tillæg × kWh + gebyrer), kr. inkl. moms. */
+  supplierKrYear: number;
+  bindingMonths: number;
   /** Aftalens marginalpris: markedets grundlag + aftalens tillæg (spot) eller net+afgifter + fast energipris. */
   marginalKrPerKwh: MarginalKr;
   validTo: string | null;
@@ -151,6 +158,10 @@ function cheapestFrom(p: FeedEstimateProduct, kwh: number, m: MarginalPrice): Ch
     allInKr: p.estimate.totalInclVat,
     allInKrPerKwh: roundOre(p.estimate.totalInclVat / kwh),
     energyOreInclVat,
+    subscriptionKrMonth: p.prices.subscriptionKrMonthInclVat,
+    feesKrYear: Math.round((p.prices.perKwhFeesOreInclVat * kwh) / 100 + p.prices.monthlyFeesKrMonthInclVat * 12 + p.prices.paymentFeesKrYearInclVat),
+    supplierKrYear: Math.round(p.supplierCost.annualInclVat),
+    bindingMonths: p.bindingMonths ?? 0,
     marginalKrPerKwh: roundOre(marginalKrPerKwh),
     validTo: p.prices.validTo,
   };

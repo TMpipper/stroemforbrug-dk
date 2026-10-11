@@ -1,6 +1,7 @@
 import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, REFERENCE_KWH } from "@/lib/prices";
 import { formatKr } from "@/lib/format";
+import { CircleCheck } from "lucide-react";
 
 /**
  * Den store knap på hver side (ejerens ønske 2026-10-11): den billigste elaftale ved 4.000 kWh blandt de
@@ -31,7 +32,32 @@ export default async function PartnerCta() {
               {sameSupplier && dk2 ? <> og <strong className="text-white tabular">{formatKr(dk2.allInKr)} kr.</strong> i Østdanmark</> : null} — billigst{" "}
               {dk1.partnerScope}
               {dk1.tiedWithCheapest ? ", og på niveau med markedets billigste aftale" : dk1.rankInMarket <= 3 ? `, og nr. ${dk1.rankInMarket} i hele markedet` : ""}.
-              Abonnement, nettarif, afgifter og moms er med; velkomstrabatter og introtilbud er ikke.
+            </p>
+            {/* Elselskabets egen andel — feedets tal for netop denne aftale ved 4.000 kWh; en linje vises kun, når tallet bærer den. */}
+            <ul className="mt-4 space-y-1.5 text-base text-white/90" aria-label="Det betaler du til elselskabet">
+              <li className="flex items-start gap-2">
+                <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-price-cheap" aria-hidden />
+                <span>
+                  Elselskabet får kun <strong className="text-white tabular">{formatKr(dk1.subscriptionKrMonth)} kr. om måneden</strong>
+                  {dk1.energyOreInclVat === 0 ? " — strømmen til indkøbspris uden spottillæg" : <> og <strong className="text-white tabular">{Math.round(dk1.energyOreInclVat)} øre</strong> pr. kWh i tillæg</>}
+                </span>
+              </li>
+              {dk1.feesKrYear === 0 && (
+                <li className="flex items-start gap-2">
+                  <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-price-cheap" aria-hidden />
+                  <span>Ingen gebyrer — ingen kWh-gebyr, intet månedligt gebyr, intet betalingsgebyr</span>
+                </li>
+              )}
+              {dk1.bindingMonths === 0 && (
+                <li className="flex items-start gap-2">
+                  <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-price-cheap" aria-hidden />
+                  <span>Ingen binding — skift frit, når du vil</span>
+                </li>
+              )}
+            </ul>
+            <p className="mt-3 text-sm text-white/70">
+              Resten af de {formatKr(dk1.allInKr)} kr. — {formatKr(dk1.allInKr - dk1.supplierKrYear)} kr. — er strømmen selv, nettarif, Energinets tariffer, elafgift og
+              moms, som du betaler uanset elselskab. Velkomstrabatter og introtilbud er ikke regnet med.
             </p>
             <p className="mt-2 text-sm text-white/60">
               Samme beregning som på{" "}
