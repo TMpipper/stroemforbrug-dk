@@ -2,6 +2,7 @@ import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, REFERENCE_KWH } from "@/lib/prices";
 import { formatKr } from "@/lib/format";
 import { CircleCheck } from "lucide-react";
+import CompanyLogo from "@/components/ui/CompanyLogo";
 
 /**
  * Den store knap på hver side (ejerens ønske 2026-10-11): den billigste elaftale ved 4.000 kWh blandt de
@@ -24,9 +25,12 @@ export default async function PartnerCta() {
         <p className="text-xs font-semibold uppercase tracking-wide text-white/60">Annonce · elaftale</p>
         <div className="mt-3 grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <div className="max-w-2xl">
-            <h2 id="partner-cta-titel" className="font-heading text-2xl font-semibold text-white md:text-3xl">
-              Billigste elaftale ved {formatKr(REFERENCE_KWH)} kWh: {dk1.supplierName}
-            </h2>
+            <div className="flex items-center gap-4">
+              <CompanyLogo name={dk1.supplierName} logoUrl={dk1.logoUrl} size="lg" shape="wide" className="bg-white" />
+              <h2 id="partner-cta-titel" className="font-heading text-2xl font-semibold text-white md:text-3xl">
+                Billigste elaftale ved {formatKr(REFERENCE_KWH)} kWh: {dk1.supplierName}
+              </h2>
+            </div>
             <p className="mt-3 text-base leading-relaxed text-white/80">
               {dk1.productName}: <strong className="text-white tabular">{formatKr(dk1.allInKr)} kr.</strong> om året alt inklusive i Vestdanmark
               {sameSupplier && dk2 ? <> og <strong className="text-white tabular">{formatKr(dk2.allInKr)} kr.</strong> i Østdanmark</> : null} — billigst{" "}

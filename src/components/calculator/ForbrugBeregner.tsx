@@ -1,9 +1,10 @@
 "use client";
 
 import { useId, useState } from "react";
-import { Zap, TrendingDown } from "lucide-react";
+import { Zap } from "lucide-react";
 import { formatPrice, danishMonth } from "@/lib/format";
 import type { CalculatorOption } from "@/lib/types";
+import CompanyLogo from "@/components/ui/CompanyLogo";
 
 /** Priserne kommer fra serveren (getPrices()) — klienten kender ingen konstant. */
 export interface CalculatorPrices {
@@ -15,6 +16,7 @@ export interface CalculatorPrices {
 /** Den billigste rene, varige aftale pr. landsdel og hvad én kWh er billigere på den. */
 export interface CalculatorDealRegion {
   supplierName: string;
+  logoUrl: string | null;
   productName: string;
   goSlug: string | null;
   savingPerKwh: number;
@@ -211,8 +213,8 @@ export default function ForbrugBeregner({
         {best && (
           <div className="bg-bg-blue rounded-card px-4 py-4" data-calculator-deal={best.goSlug ?? "none"}>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-start gap-2">
-                <TrendingDown className="w-5 h-5 text-success-ink shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3">
+                <CompanyLogo name={best.supplierName} logoUrl={best.logoUrl} size="md" />
                 <div className="text-sm text-ink-body">
                   <p>
                     {savings > 10 ? (

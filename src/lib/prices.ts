@@ -45,6 +45,8 @@ export interface CheapestDeal {
   id: string;
   supplierSlug: string;
   supplierName: string;
+  /** Feedets spejlede logo (/api/v1/logo/<slug>.<ext>?v=…) — aldrig en lokal fil. */
+  logoUrl: string | null;
   productName: string;
   /** /go/-slug når selskabet er partner, ellers null (ingen knap). */
   goSlug: string | null;
@@ -152,6 +154,7 @@ function cheapestFrom(p: FeedEstimateProduct, kwh: number, m: MarginalPrice): Ch
     id: p.slug,
     supplierSlug: p.supplier.slug,
     supplierName: p.supplier.name,
+    logoUrl: p.supplier.logoUrl ?? null,
     productName: p.name,
     goSlug: goSlugFor(p.supplier.slug),
     spotBased,
@@ -233,6 +236,7 @@ export function calculatorDeal(p: SitePrices) {
     const marginal = p.marginal[r === "DK1" ? "dk1" : "dk2"].krPerKwh;
     return {
       supplierName: c.supplierName,
+      logoUrl: c.logoUrl,
       productName: c.productName,
       goSlug: c.goSlug,
       savingPerKwh: Math.max(0, roundOre(marginal - c.marginalKrPerKwh)),
