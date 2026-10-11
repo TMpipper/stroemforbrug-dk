@@ -3,11 +3,12 @@ import type { ApplianceData } from "./types";
 export const APPLIANCES_PHASE3: ApplianceData[] = [
   {
     slug: "komfur",
+    article: "et",
     name: "Komfur",
     title: "Komfur strømforbrug (2026) → Kogeplader, ovn og årlig pris",
     description:
       "Hvor meget strøm bruger et komfur? Se typisk elforbrug i kWh for el-komfur, induktion og gas. Sammenlign modeller og beregn din årlige udgift i 2026.",
-    heading: "Hvor meget strøm bruger et komfur?",
+    heading: "Strømforbrug for et komfur: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "Et el-komfur bruger typisk 400–800 kWh om året afhængigt af kogetype, antal kogezoner og brugstimer. Det svarer til en årlig elregning på {{kr 400}}–{{kr 800}} kr. ved {{pris_kwh_tal}} kr./kWh. Induktionskomfurer er 20–30 % mere energieffektive end traditionelle komfurer med støbejernsplader.",
     kwhRange: [400, 800],
@@ -154,7 +155,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     title: "Mobil opladning strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger det at oplade en mobil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign trådløs og kabel-opladning med 2026-priser.",
-    heading: "Hvor meget strøm bruger mobil-opladning?",
+    heading: "Strømforbrug for mobil-opladning: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "At oplade en smartphone bruger typisk 3–8 kWh om året afhængigt af batteriets størrelse og opladningsfrekvens. Det svarer til en årlig elregning på {{kr 3,2}}–{{kr 8}} kr. ved {{pris_kwh_tal}} kr./kWh. En fuld opladning koster under 0,07 kr. – mobilen er et af de billigste apparater at drive.",
     kwhRange: [3, 8],
@@ -288,7 +289,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     title: "Brødrister strømforbrug (2026) → Watt, kWh og pris pr. brug",
     description:
       "Hvor meget strøm bruger en brødrister? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift med danske 2026-priser.",
-    heading: "Hvor meget strøm bruger en brødrister?",
+    heading: "Strømforbrug for en brødrister: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En brødrister bruger typisk 30–60 kWh om året ved daglig brug. Det svarer til en årlig elregning på {{kr 30}}–{{kr 60}} kr. ved {{pris_kwh_tal}} kr./kWh. En enkelt ristning koster ca. 0,07–0,15 kr. og tager kun 2–4 minutter. Brødristeren er et af køkkenets mest energieffektive apparater.",
     kwhRange: [30, 60],
@@ -428,7 +429,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     title: "Gaming-PC strømforbrug (2026) → Watt under belastning og kWh",
     description:
       "Hvor meget strøm bruger en gaming-PC? Se typisk elforbrug i kWh for gaming-computere, sammenlign opsætninger og beregn din årlige udgift i 2026.",
-    heading: "Hvor meget strøm bruger en gaming-PC?",
+    heading: "Strømforbrug for en gaming-PC: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En gaming-PC bruger typisk 300–1.200 kWh om året afhængigt af hardware, skærm og brugstimer. Det svarer til en årlig elregning på {{kr 300}}–{{kr 1200}} kr. ved {{pris_kwh_tal}} kr./kWh. Under gaming trækker en typisk opsætning 300–600 watt, mens en high-end PC med RTX 4090 kan trække over 800 watt.",
     kwhRange: [300, 1200],
@@ -578,7 +579,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     title: "Ladestander strømforbrug (2026) → kWh, ladetab og pris",
     description:
       "Hvor meget strøm bruger en ladestander til elbil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign hjemmeladere og beregn med 2026-priser.",
-    heading: "Hvor meget strøm bruger en ladestander?",
+    heading: "Strømforbrug for en ladestander: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En ladestander til elbil bruger typisk 2.500–5.000 kWh om året afhængigt af bilens batterikapacitet og kørselsbehov. Det svarer til en årlig elregning på {{kr 2500}}–{{kr 5000}} kr. ved {{pris_kwh_tal}} kr./kWh. En typisk dansk elbilejer kører 15.000 km/år og bruger ca. 2.500–3.500 kWh til opladning.",
     kwhRange: [2500, 5000],
@@ -709,7 +710,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     title: "Solceller (2026) → Produktion i kWh og eget forbrug",
     description:
       "Hvor meget strøm producerer og bruger solceller? Se kWh-produktion, egetforbrug og besparelse. Beregn dit solcelleanlægs økonomi med 2026-priser.",
-    heading: "Hvor meget strøm producerer og bruger solceller?",
+    heading: "Solceller: produktion, egetforbrug og hvornår strømmen er billigst",
     quickAnswer:
       "Et typisk dansk solcelleanlæg på 6 kWp producerer 5.400–6.600 kWh om året og dækker 30–50 % af en husstands forbrug. Anlægget har et eget elforbrug på 50–150 kWh/år til inverter og overvågning. Med nettoafregning sparer du 8.000–15.000 kr. årligt på elregningen.",
     kwhRange: [-6600, 150],
@@ -836,7 +837,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     title: "El-gulvvarme strømforbrug (2026) → kWh pr. m² og årlig pris",
     description:
       "Hvor meget strøm bruger el-gulvvarmemåtter? Se kWh for badeværelse og renovering. Sammenlign med varmekabel og beregn din årlige pris i 2026.",
-    heading: "Hvor meget strøm bruger el-gulvvarmemåtter?",
+    heading: "Strømforbrug for el-gulvvarmemåtter: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "El-gulvvarmemåtter bruger typisk 300–1.500 kWh om året afhængigt af areal, isolering og driftstimer. Et badeværelse på 5 m² med varmemåtter koster {{kr 200}}–{{kr 400}} kr./år ved {{pris_kwh_tal}} kr./kWh. Måtter er den letteste løsning ved renovering, men dyrere i drift end vandbaseret gulvvarme.",
     kwhRange: [300, 1500],
@@ -978,7 +979,7 @@ export const APPLIANCES_PHASE3: ApplianceData[] = [
     title: "Jordvarme strømforbrug (2026) → kWh, COP og årlig pris",
     description:
       "Hvor meget strøm bruger jordvarme? Se typisk elforbrug i kWh for jordvarmepumper, COP-værdier og beregn din årlige udgift med danske 2026-priser.",
-    heading: "Hvor meget strøm bruger jordvarme?",
+    heading: "Strømforbrug for jordvarme: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "Et jordvarmeanlæg bruger typisk 3.000–6.000 kWh el om året til at opvarme et parcelhus. Med en COP på 3,5–4,5 leverer det 10.000–25.000 kWh varme. Det svarer til en årlig elregning på {{kr 3000}}–{{kr 6000}} kr. ved {{pris_kwh_tal}} kr./kWh – typisk 40–60 % billigere end olie- eller gasfyr.",
     kwhRange: [3000, 6000],

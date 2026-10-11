@@ -58,7 +58,12 @@ export default function Logo({ inverted = false, lang = "da", className = "", fa
           </span>
         </span>
       </Link>
-      {family && <FamilyLine inverted={inverted} className="hidden sm:inline-flex" />}
+      {/* Tailwind v4 lader `inline-flex` vinde over `hidden` i samme klasseliste — derfor en wrapper. */}
+      {family && (
+        <span className="hidden sm:inline-flex">
+          <FamilyLine inverted={inverted} />
+        </span>
+      )}
     </span>
   );
 }

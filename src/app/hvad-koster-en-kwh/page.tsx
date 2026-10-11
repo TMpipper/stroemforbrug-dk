@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
-import Breadcrumb from "@/components/layout/Breadcrumb";
+
 import QuickAnswer from "@/components/content/QuickAnswer";
 import SwitchCta from "@/components/marketing/SwitchCta";
 import PriceBasis from "@/components/content/PriceBasis";
@@ -10,7 +10,7 @@ import { getPrices, tokenPrices, REFERENCE_KWH, type SitePrices, type Region } f
 import { VAT_FACTOR } from "@/lib/feed/marginal";
 import { formatPrice, formatKr, danishMonth, withCurrentYear } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
-import { danishDate } from "@/lib/format";
+
 import PageHero from "@/components/marketing/PageHero";
 import { motifForPath } from "@/lib/visuals/defaults";
 import FaqBand from "@/components/marketing/FaqBand";

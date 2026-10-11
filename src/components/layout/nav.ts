@@ -17,11 +17,11 @@ export interface NavItem {
 export const NAV: Record<NavLang, NavItem[]> = {
   da: [
     { href: "/", label: "Strømforbrug" },
-    { href: "/apparater/", label: "Apparater", publishDate: "2026-10-12" },
+    { href: "/apparater/", label: "Apparater", publishDate: "2026-10-11" },
     { href: "/beregner/", label: "Beregner" },
     { href: "/husstand/", label: "Husstand" },
     { href: "/varmepumpe/", label: "Varmepumpe" },
-    { href: "/elpriser/", label: "Elpriser", publishDate: "2026-10-12" },
+    { href: "/elpriser/", label: "Elpriser", publishDate: "2026-10-11" },
     { href: "/sparetips/", label: "Sparetips" },
   ],
 };

@@ -7,7 +7,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     title: "Affugter strømforbrug (2026) → Se kWh pr. døgn og år",
     description:
       "Hvor meget strøm bruger en affugter? Se typisk elforbrug i kWh pr. år, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
-    heading: "Hvor meget strøm bruger en affugter?",
+    heading: "Strømforbrug for en affugter: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En affugter bruger typisk 200–600 kWh om året afhængigt af type, kapacitet og driftstimer. Det svarer til en årlig elregning på {{kr 200}}–{{kr 600}} kr. ved {{pris_kwh_tal}} kr./kWh. En kompressoraffugter er mest effektiv i opvarmede rum, mens en adsorptionsaffugter klarer sig bedst ved lave temperaturer.",
     kwhRange: [200, 600],
@@ -146,7 +146,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     title: "Induktion strømforbrug (2026) → kWh vs. gas og keramisk",
     description:
       "Hvor meget strøm bruger en induktionskogeplade? Se typisk elforbrug i kWh, sammenlign med keramisk og gas, og beregn din årlige udgift i 2026.",
-    heading: "Hvor meget strøm bruger en induktionskogeplade?",
+    heading: "Strømforbrug for en induktionskogeplade: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En induktionskogeplade bruger typisk 300–550 kWh om året ved daglig madlavning. Det svarer til {{kr 300}}–{{kr 550}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Induktion er den mest energieffektive kogepladettype og bruger 25–40 % mindre strøm end en keramisk kogeplade.",
     kwhRange: [300, 550],
@@ -273,7 +273,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     title: "LED-pære strømforbrug (2026) → Watt, kWh og besparelse",
     description:
       "Hvor meget strøm bruger en LED-pære? Se elforbrug i kWh, sammenlign med halogener og sparepærer, og beregn din årlige udgift. 2026-priser.",
-    heading: "Hvor meget strøm bruger en LED-pære?",
+    heading: "Strømforbrug for en LED-pære: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En LED-pære bruger typisk 5–15 watt og forbruger 8–25 kWh om året pr. pære ved 4 timers daglig brug. Det svarer til kun {{kr 8}}–{{kr 25}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. LED bruger op til 85 % mindre strøm end en gammeldags glødepære og 50 % mindre end en halogen.",
     kwhRange: [8, 25],
@@ -404,7 +404,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     title: "Kaffemaskine strømforbrug (2026) → kWh pr. kop og år",
     description:
       "Hvor meget strøm bruger en kaffemaskine? Se elforbrug i kWh for filterkaffe, kapsel og fuldautomatisk. Beregn din årlige udgift med 2026-priser.",
-    heading: "Hvor meget strøm bruger en kaffemaskine?",
+    heading: "Strømforbrug for en kaffemaskine: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En kaffemaskine bruger typisk 50–200 kWh om året afhængigt af type og brugsmønster. Det svarer til {{kr 50}}–{{kr 200}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. En filterkaffemaskine med varmeplade er den mest strømkrævende, mens en kapselmaskine bruger mindst energi pr. kop.",
     kwhRange: [50, 200],
@@ -535,7 +535,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     title: "Mikroovn strømforbrug (2026) → kWh pr. opvarmning og år",
     description:
       "Hvor meget strøm bruger en mikroovn? Se elforbrug i kWh pr. brug og pr. år, sammenlign med ovn og airfryer, og beregn din udgift. 2026-priser.",
-    heading: "Hvor meget strøm bruger en mikroovn?",
+    heading: "Strømforbrug for en mikroovn: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En mikroovn bruger typisk 40–100 kWh om året ved daglig brug. Det svarer til kun {{kr 40}}–{{kr 100}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Mikroovnen er et af køkkenets mest energieffektive apparater – den bruger 50–75 % mindre strøm end en konventionel ovn til opvarmning.",
     kwhRange: [40, 100],
@@ -663,7 +663,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     title: "Gulvvarme strømforbrug (2026) → Vand vs. el i kWh og pris",
     description:
       "Hvor meget strøm bruger el-gulvvarme? Se typisk elforbrug i kWh for badeværelse, køkken og hele huset. Beregn din årlige udgift med 2026-priser.",
-    heading: "Hvor meget strøm bruger el-gulvvarme?",
+    heading: "Strømforbrug for el-gulvvarme: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "Elektrisk gulvvarme bruger typisk 500–3.000 kWh om året afhængigt af areal, isolering og brugstimer. Et badeværelse på 5 m² bruger ca. 500–800 kWh årligt ({{kr 500}}–{{kr 800}} kr.), mens gulvvarme i et helt hus (100 m²) kan bruge 8.000–15.000 kWh. Det er en af de dyreste varmeformer.",
     kwhRange: [500, 3000],
@@ -799,7 +799,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     title: "Robotplæneklipper strømforbrug (2026) → kWh og pris",
     description:
       "Hvor meget strøm bruger en robotplæneklipper? Se elforbrug i kWh pr. sæson og pr. år, sammenlign modeller og beregn din udgift. 2026-priser.",
-    heading: "Hvor meget strøm bruger en robotplæneklipper?",
+    heading: "Strømforbrug for en robotplæneklipper: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En robotplæneklipper bruger typisk 20–60 kWh pr. sæson (april–oktober). Det svarer til kun {{kr 20}}–{{kr 60}} kr. ved {{pris_kwh_tal}} kr./kWh. Robotplæneklipperen er et af de mest energieffektive haveapparater og bruger markant mindre strøm end en traditionel el-plæneklipper.",
     kwhRange: [20, 60],
@@ -945,11 +945,12 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
   },
   {
     slug: "strygejern",
+    article: "et",
     name: "Strygejern",
     title: "Strygejern strømforbrug (2026) → Watt, kWh og årlig pris",
     description:
       "Hvor meget strøm bruger et strygejern? Se typisk elforbrug i kWh, sammenlign dampstationer og beregn din årlige udgift. Opdateret 2026-priser.",
-    heading: "Hvor meget strøm bruger et strygejern?",
+    heading: "Strømforbrug for et strygejern: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "Et strygejern bruger typisk 50–150 kWh om året ved 1–3 timers ugentlig strygning. Det svarer til {{kr 50}}–{{kr 150}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Et almindeligt dampstrygejern trækker 2.000–2.800 watt, men termostatregulering gør, at det reelle forbrug er 40–60 % af mærkeeffekten.",
     kwhRange: [50, 150],
@@ -1094,7 +1095,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     title: "Støvsuger strømforbrug (2026) → Watt, kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en støvsuger? Se elforbrug i kWh for lednings- og akku-støvsugere, sammenlign modeller og beregn din udgift. 2026-priser.",
-    heading: "Hvor meget strøm bruger en støvsuger?",
+    heading: "Strømforbrug for en støvsuger: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En støvsuger bruger typisk 30–100 kWh om året ved 2–3 timers ugentlig støvsugning. Det svarer til {{kr 30}}–{{kr 100}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. EU-reglerne begrænser nye støvsugere til max 900 watt, men ældre modeller kan trække op til 2.400 watt.",
     kwhRange: [30, 100],
@@ -1225,7 +1226,7 @@ export const APPLIANCES_PHASE2A: ApplianceData[] = [
     title: "Hårtørrer strømforbrug (2026) → Watt, kWh og pris pr. brug",
     description:
       "Hvor meget strøm bruger en hårtørrer? Se elforbrug i kWh pr. brug og pr. år, sammenlign modeller og beregn din udgift. Opdateret 2026-priser.",
-    heading: "Hvor meget strøm bruger en hårtørrer?",
+    heading: "Strømforbrug for en hårtørrer: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En hårtørrer bruger typisk 30–80 kWh om året ved daglig brug i 10–15 minutter. Det svarer til {{kr 30}}–{{kr 80}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Hårtørrere trækker 1.200–2.200 watt og er dermed et af badeværelsets mest effektkrævende apparater, men den korte brugstid holder forbruget nede.",
     kwhRange: [30, 80],

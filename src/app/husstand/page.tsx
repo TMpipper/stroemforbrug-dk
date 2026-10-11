@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
-import Breadcrumb from "@/components/layout/Breadcrumb";
+
 import QuickAnswer from "@/components/content/QuickAnswer";
 import SwitchCta from "@/components/marketing/SwitchCta";
 import { withCurrentYear, formatKr, formatPrice } from "@/lib/format";
-import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
+import { getPrices, tokenPrices } from "@/lib/prices";
 import PriceBasis from "@/components/content/PriceBasis";
 import type { TokenPrices } from "@/lib/tokens";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";

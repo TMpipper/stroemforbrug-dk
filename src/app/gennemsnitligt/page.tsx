@@ -7,12 +7,12 @@ import { formatKr, formatPrice, danishMonth } from "@/lib/format";
 import { getPrices, tokenPrices } from "@/lib/prices";
 import type { TokenPrices } from "@/lib/tokens";
 import PriceBasis from "@/components/content/PriceBasis";
-import Breadcrumb from "@/components/layout/Breadcrumb";
+
 import QuickAnswer from "@/components/content/QuickAnswer";
 import SwitchCta from "@/components/marketing/SwitchCta";
 import { withCurrentYear } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
-import { danishDate } from "@/lib/format";
+
 import PageHero from "@/components/marketing/PageHero";
 import { motifForPath } from "@/lib/visuals/defaults";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";

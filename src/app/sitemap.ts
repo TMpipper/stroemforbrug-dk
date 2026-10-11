@@ -12,7 +12,7 @@ import { pageMeta } from "@/lib/pages";
 
 interface StaticEntry {
   path: string;
-  changeFrequency: "weekly" | "monthly" | "yearly";
+  changeFrequency: "daily" | "weekly" | "monthly" | "yearly";
   priority: number;
 }
 
@@ -29,6 +29,9 @@ const STATIC_PAGES: StaticEntry[] = [
   { path: "varmepumpe/luft-til-luft", changeFrequency: "monthly", priority: 0.7 },
   { path: "varmepumpe/luft-til-vand", changeFrequency: "monthly", priority: 0.7 },
   { path: "hvad-koster-en-kwh", changeFrequency: "monthly", priority: 0.8 },
+  { path: "elpriser", changeFrequency: "daily", priority: 0.9 },
+  { path: "apparater", changeFrequency: "weekly", priority: 0.8 },
+  { path: "metode", changeFrequency: "monthly", priority: 0.4 },
   { path: "sparetips", changeFrequency: "monthly", priority: 0.7 },
   { path: "standby", changeFrequency: "monthly", priority: 0.7 },
   { path: "stromslugere", changeFrequency: "monthly", priority: 0.7 },
@@ -41,7 +44,7 @@ const STATIC_PAGES: StaticEntry[] = [
 
 const RESERVED_SLUGS = [
   "beregner", "gennemsnitligt", "husstand", "varmepumpe",
-  "sparetips", "om-os", "kontakt", "privatlivspolitik", "go",
+  "sparetips", "om-os", "kontakt", "privatlivspolitik", "go", "elpriser", "apparater", "metode",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

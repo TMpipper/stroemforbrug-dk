@@ -2,7 +2,7 @@
   {
     "path": "/",
     "title": "Strømforbrug (2026) → Se hvad dine apparater bruger i strøm",
-    "description": "Alt om strømforbrug i Danmark. Se hvor meget strøm dine apparater bruger, beregn din årlige udgift og få tips til at spare på strømmen.",
+    "description": "Alt om strømforbrug i Danmark. Se hvor meget strøm dine apparater bruger, hvad det koster ved månedens elpris, og hvornår det er billigst at bruge dem.",
     "noindex": false
   },
   {
@@ -21,6 +21,12 @@
     "path": "/akvarium/",
     "title": "Akvarium strømforbrug (2026) → Varme, lys og filter i kWh",
     "description": "Hvor meget strøm bruger et akvarium? Se elforbrug for filter, varme og lys i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/apparater/",
+    "title": "Apparaters strømforbrug (2026) → Alle apparater, kWh og pris",
+    "description": "Alle apparater på Strømforbrug.dk sorteret efter forbrug: typisk kWh om året, pris ved månedens marginalpris og om apparatet kan flyttes til døgnets billige timer.",
     "noindex": false
   },
   {
@@ -51,6 +57,12 @@
     "path": "/elkedel/",
     "title": "Elkedel strømforbrug (2026) → Pris pr. liter kogt vand",
     "description": "Hvor meget strøm bruger en elkedel? Se elforbrug pr. kogning i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/elpriser/",
+    "title": "Elpriser time for time (2026) → Billigste timer i dag",
+    "description": "Elpriser time for time for Vest- og Østdanmark i dag og i morgen, og hvad én vask, én opvask eller én opladning koster i den billige og den dyre time.",
     "noindex": false
   },
   {
@@ -121,14 +133,14 @@
   },
   {
     "path": "/hvad-koster-det-at-lade-en-elbil/",
-    "title": "Hvad koster det at lade en elbil? (2026) → Se pris pr. kWh",
-    "description": "Det koster 56-130 kr. at lade en elbil fuldt op derhjemme (1,86 kr./kWh). Se pris pr. km, hjemmeladning vs. hurtigladning og din månedlige udgift.",
+    "title": "Hvad koster det at lade en elbil? (2026) → Pris pr. km",
+    "description": "Hvad koster det at lade en elbil derhjemme? Se prisen for en fuld opladning og pr. kilometer ved månedens marginalpris, og forskellen til offentlig ladning.",
     "noindex": false
   },
   {
     "path": "/hvad-koster-en-kwh/",
-    "title": "Hvad koster en kWh i 2026? → Se aktuel pris inkl. afgifter",
-    "description": "En kWh koster i gennemsnit 1,86 kr. inkl. alle afgifter — 1,95 kr. med abonnement. Se prisens sammensætning, spotpris vs. fastpris og hvem der er billigst.",
+    "title": "Hvad koster en kWh (2026)? → Prisens dele og dagens niveau",
+    "description": "Hvad koster en kWh strøm lige nu? Se marginalprisen for Vest- og Østdanmark, hvad spot, nettarif, afgifter og tillæg udgør, og hvad en typisk elaftale koster.",
     "noindex": false
   },
   {
@@ -204,6 +216,12 @@
     "noindex": false
   },
   {
+    "path": "/metode/",
+    "title": "Sådan regner vi (2026) → Marginalpris, billigste aftale og tidspunkt",
+    "description": "Metoden bag hvert tal på Strømforbrug.dk: marginalprisen fra Elpriser.dk's feed, hvorfor abonnementet ikke er med, hvordan den billigste aftale findes i hele markedet, og hvad tidspunkt-blokken regner.",
+    "noindex": false
+  },
+  {
     "path": "/mikroovn/",
     "title": "Mikroovn strømforbrug (2026) → kWh pr. opvarmning og år",
     "description": "Hvor meget strøm bruger en mikroovn? Se elforbrug i kWh pr. brug og pr. år, sammenlign med ovn og airfryer, og beregn din udgift. 2026-priser.",
@@ -217,8 +235,8 @@
   },
   {
     "path": "/om-os/",
-    "title": "Om Strømforbrug.dk — Hvem vi er",
-    "description": "Strømforbrug.dk drives af Elpriser.dk ApS. Vi hjælper danske forbrugere med at forstå, beregne og reducere deres strømforbrug.",
+    "title": "Om Strømforbrug.dk → Et site af Elpriser.dk",
+    "description": "Strømforbrug.dk er et site af Elpriser.dk: samme selskab, samme data og samme metode. Her handler det om, hvad apparaterne bruger, hvad det koster, og hvornår det er billigst.",
     "noindex": false
   },
   {

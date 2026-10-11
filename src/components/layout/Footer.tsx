@@ -14,7 +14,7 @@ const COLS: Record<NavLang, Column[]> = {
       title: "Strømforbrug",
       links: [
         ["/", "Strømforbrug i Danmark"],
-        ["/apparater/", "Alle apparater", "2026-10-12"],
+        ["/apparater/", "Alle apparater", "2026-10-11"],
         ["/stromslugere/", "Strømslugere i hjemmet"],
         ["/standby/", "Standby-forbrug"],
         ["/gennemsnitligt/", "Gennemsnitligt strømforbrug"],
@@ -39,7 +39,7 @@ const COLS: Record<NavLang, Column[]> = {
       title: "Priser og værktøjer",
       links: [
         ["/beregner/", "Strømberegner"],
-        ["/elpriser/", "Elpriser time for time", "2026-10-12"],
+        ["/elpriser/", "Elpriser time for time", "2026-10-11"],
         ["/hvad-koster-en-kwh/", "Hvad koster en kWh?"],
         ["/hvad-koster-det-at-lade-en-elbil/", "Hvad koster det at lade en elbil?"],
       ],
@@ -48,7 +48,7 @@ const COLS: Record<NavLang, Column[]> = {
       title: "Om",
       links: [
         ["/om-os/", "Om Strømforbrug.dk"],
-        ["/metode/", "Sådan regner vi", "2026-10-12"],
+        ["/metode/", "Sådan regner vi", "2026-10-11"],
         ["/kontakt/", "Kontakt"],
         ["/privatlivspolitik/", "Privatlivspolitik"],
         ["/sitemap.xml", "Sitemap"],

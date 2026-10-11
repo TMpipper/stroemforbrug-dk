@@ -1,0 +1,53 @@
+# Daglig udgivelse og deploy ved push — kun via Vercel CLI (git-deploy er slået fra i vercel.json).
+# Hver morgen efter el-feeds natlige job: audits bygger med dagens priser, og dato-gatede sider (publishDate) går live.
+# Kræver repo-hemmeligheden VERCEL_TOKEN (Vercel → Account → Tokens, scope mondomedia). Uden den springes deployet over.
+name: Audit og deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+env:
+  VERCEL_ORG_ID: team_Au1eyarKL6RSFVSFhZnfbmU1
+  VERCEL_PROJECT_ID: prj_2hpALAsXKz2TnlAWui33KANLaJCv
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  EL_FEED_URL: https://el-feed.vercel.app
+  SITE_DOMAIN: stroemforbrug.dk
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Mangler VERCEL_TOKEN?
+        if: env.VERCEL_TOKEN == ''
+        run: echo "::warning::VERCEL_TOKEN er ikke sat som repo-hemmelighed — bygger og auditerer, men deployer ikke."
+      - name: Vercel pull (produktionsmiljø)
+        if: env.VERCEL_TOKEN != ''
+        run: npx vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+      - name: Byg (prebuild + next build + postbuild-audits)
+        run: |
+          if [ -n "$VERCEL_TOKEN" ]; then npx vercel build --prod --token="$VERCEL_TOKEN"; else npm run build; fi
+      - name: Playwright til audit-mobile
+        run: npx playwright install --with-deps chromium
+      - name: Audits (lint, feed, priser, SEO, påstande, unikhed, widget, mobil)
+        run: npm run audit
+      - name: Deploy til produktion
+        if: env.VERCEL_TOKEN != ''
+        run: npx vercel deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN" --scope mondomedia
+      - name: Efter deploy (IndexNow)
+        if: env.VERCEL_TOKEN != ''
+        run: npm run post-deploy

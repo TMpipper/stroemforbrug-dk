@@ -4,109 +4,68 @@
 
 ## Project
 
-**Strømforbrug.dk** — Danish electricity consumption information site. Exact-match domain authority on "strømforbrug" keywords. Fully static (no database). All content in TypeScript. Deployed to Vercel under `mondomedia` scope.
+**Strømforbrug.dk** — et site af **Elpriser.dk** (ejerens beslutning 2026-10-11): apparaternes strømforbrug, hvad det koster, og hvornår på
+dagen det er billigst at bruge dem. Next.js 16 (App Router) + React 19 + TypeScript (strict) + Tailwind v4, ISR 300 s. Ingen database:
+forbrugstallene er TypeScript, **hver pris kommer fra el-feed** (Elpriser.dk's feed) ved visningen. Vercel-projekt `stroemforbrug-dk`, scope
+`mondomedia`, GitHub `TMpipper/stroemforbrug-dk`.
 
 ## Commands
 
 ```bash
-npm run dev          # Dev server (Turbopack)
-npm run build        # Production build
-npm run lint         # ESLint
+npm run dev            # Dev server (Turbopack); .env.local skal have EL_FEED_URL
+npm run build          # prebuild (audit-upstream, audit-feed, prices-updated) → next build → postbuild (alle HTML-audits)
+npm run audit          # lint + alle audits inkl. audit-mobile (Playwright mod next start)
+npm run deploy         # rm .next → vercel pull → vercel build --prod → npm run audit → vercel deploy --prebuilt --prod
+npm run post-deploy    # indexnow
+npm run feed-sync      # henter kontrakt/klient/regelsæt/marginalpris/widget fra ../el-feed (EL_FEED_DIR); UPSTREAM.json låser dem
+npm run prices         # udskriver byggets priser fra feedet
 ```
 
-Deploy to Vercel:
-```bash
-vercel deploy --prod --yes --scope mondomedia
-```
+**Deploy sker kun via CLI** (`vercel.json` har git-deploy slået fra) — lokalt med `npm run deploy` eller fra GitHub Actions
+(`.github/workflows/deploy.yml`: ved push til main og hver morgen 05:30 UTC; kræver repo-hemmeligheden `VERCEL_TOKEN`).
 
-## Architecture
+## Familien (undtagelsen fra "sites linker aldrig til hinanden")
 
-**Next.js 16** (App Router) + **React 19** + **TypeScript** (strict) + **Tailwind v4** (CSS-based theming via `@theme inline` in `globals.css`). **Vercel Analytics** enabled.
+- Links til **elpriser.dk er tilladt og dofollow** — bomærke + »En del af Elpriser.dk« i header og footer (`brand/Logo.tsx`,
+  `data-family-link`), `parentOrganization` i Organization-schemaet, Elpriser.dk's kort som iframe (`components/widget/ElpriserWidget`).
+- Links til ALLE andre egne domæner (elselskab.dk, elselskaber.dk, billigste-elselskab.nu, tjekelregning.dk, elleverandoer.dk,
+  elselskabdanmark.dk) er forbudt; `audit-claims` fejler på dem.
+- Vinklen er forskellig fra Elpriser.dk's 36 apparatsider: her **forbrug + tidspunkt** ("Strømforbrug for en X: kWh, pris pr. gang og
+  billigste tidspunkt"), dér pris pr. time og husstandens regning. H1'er må ikke spejle Elpriser.dk's "Hvor meget strøm bruger en X?".
 
-### Data Layer (all static — no DB)
+## Data layer
 
 | File | Purpose |
 |------|---------|
-| `src/lib/pricing.ts` | **Canonical price engine.** MARKET inputs, marginal elpris, formatters, `assertPriceModel()` |
-| `src/lib/offers.ts` | The 7 elaftaler + campaign engine, `bestOfferFor(kwh)`, `assertOffers()` |
-| `src/lib/config.ts` | SITE_CONFIG; re-exports the price constants from `pricing.ts` |
-| `src/lib/types.ts` | ApplianceData, CalculatorConfig, FAQ, etc. |
-| `src/lib/appliances.ts` | Barrel file — exports APPLIANCES, getAppliance(), getAllSlugs() |
-| `src/lib/appliances-core.ts` | First 5 appliances: varmepumpe, opvaskemaskine, tv, koeleskab, toerretumbler |
-| `src/lib/appliances-extra.ts` | Additional appliances (airfryer, kummefryser, etc.) |
-| `src/lib/appliance-insights.ts` | Computed depth per appliance: region, season, replacement, standby, ranking |
-| `src/lib/schema.ts` | JSON-LD generators: breadcrumb, FAQ, article, howTo |
+| `src/lib/feed/{types,client,compare,marginal,site-adapter}.ts` | **Kopier fra el-feed** (`npm run feed-sync`, sha256 i `UPSTREAM.json`, `audit-upstream` i prebuild). Rettes ALDRIG her — ret i el-feed, deploy, sync. |
+| `src/lib/prices.ts` | **Sitets prismotor.** `getPrices()` = marginalpris DK1/DK2 (fælles regel `marginalFromFeed`), billigste rene varige aftale + typisk aftale pr. landsdel med `scopeText`, `savingPerKwh` (marginal mod marginal — den eneste krydsning). `tokenPrices()`, `calculatorPrices()`, `calculatorDeal()`. |
+| `src/lib/hourly-today.ts` | `getToday(region)`: dagens timepriser fra feedets `timepris` → billigste/dyreste 3-timers vindue, gennemsnit, i morgen. |
+| `src/lib/tokens.ts` | `{{pris_kwh}}`, `{{kr 2000}}`, `{{kr 4000 /md}}`, `{{oere 0,1}}` … `renderWith(t, html)`; `wrapTables()`; ukendte tokens bliver stående, så audit-prices ser dem. |
+| `src/lib/cost.ts`, `src/lib/format.ts` | kWh × pris med **prisen som påkrævet argument**; dansk formatering (`formatKr`, `formatPrice`, `kr`, `krPerKwh`, `danishDate`, `withCurrentYear`). |
+| `src/lib/pages.ts` | `pageMeta(path)`: udgivet/gennemgået pr. side (`RELAUNCH` = 2026-10-11). `src/lib/prices-updated.ts` (genereret i prebuild) = feedets dataalder, vises kun i grundlagssætningen. |
+| `src/lib/partners.ts` | de 7 selskaber med `/go/`-aftale. Aldrig grundlaget for "billigst". |
+| `src/lib/appliances*.ts`, `appliance-insights.ts`, `home-insights.ts`, `sources.ts` | forbrugstal, afledte sektioner (pris som argument), husstande, verificerede kilder. |
+| `src/lib/heavy-run.ts` | de apparater, der får Elpriser.dk's kort under tidspunkt-blokken. |
 
-### Page Structure
+## Pages & components
 
-- **Homepage** (`/`) — Pillar page with appliance ranking table, editorial content
-- **Calculator** (`/beregner/`) — Central interactive strømberegner
-- **Gennemsnitligt** (`/gennemsnitligt/`) — Average consumption hub
-- **Husstand** (`/husstand/`) — Household consumption overview
-- **Varmepumpe** (`/varmepumpe/`) — Dedicated hub (reserved slug, own page)
-- **Appliance pages** (`/[apparat]/`) — Dynamic, from appliances data
-- **Affiliate redirect** (`/go/[slug]`) — Tracking URL redirect
-- **EEAT pages**: `/om-os/`, `/kontakt/`, `/privatlivspolitik/`
+- Kromme: `layout/{Header,MobileNav,DisclaimerBar,Footer,nav}`, `brand/Logo` — Elpriser.dk's, tilpasset. Én annonceoplysning (bjælken + dialog).
+- Byggesten: `marketing/{PageHero,FaqBand,FaqList,WhoHowWhy,AuthorBox,Breadcrumb,Wave,EditorByline,SectionHeading}`, `ui/{Table,Callout,Chip,Badge,CheckList}`, `visuals/*` (kodetegnede motiver, `lib/visuals/defaults.ts`).
+- Apparatside `[apparat]/page.tsx`: PageHero → QuickAnswer → nøgletal → `ForbrugBeregner` (priser som props, DK1/DK2) → `PriceBasis` →
+  **`BestTimeToday`** (+ `ElpriserWidget` på de tunge) → prosa (`renderWith` + `wrapTables`) → `ApplianceInsights` → `SwitchCta` → tabeller
+  → relaterede → `FaqBand` → `WhoHowWhy` (den ENE kildeliste) → `AuthorBox`.
+- Nye sider 2026-10-11: `/elpriser/` (to kort + "hvad koster én gang i dag"), `/apparater/` (indeks), `/metode/`.
+- `PriceBasis` står én gang på hver prisside: grundlagssætningen + `data-dk1/dk2/dk/...`, som `audit-prices` læser i den byggede HTML.
 
-### Components
+## Rules (fejler bygget)
 
-| Component | Purpose |
-|-----------|---------|
-| `ForbrugBeregner` | Interactive calculator (client component) |
-| `QuickAnswer` | AEO-optimized answer box |
-| `ApplianceInsights` | The 5 computed sections that differentiate the page from the SERP |
-| `AffiliateCta` | Contextual energy provider CTA |
-| `RelatedAppliances` | Internal link grid |
-| `Breadcrumb` | With BreadcrumbList data |
-| `Header` / `Footer` | Site chrome |
+- **Computed, never typed**: ingen "x,xx kr./kWh" eller kr.-beløb ved siden af et kWh-tal i kilden; tokens eller udtryk. OG-kort bærer ingen pris.
+- Marginal (apparat) og all-in (regning) blandes aldrig; superlativer står med omfang i samme sætning; ingen "grøn strøm"; ingen "Kilde:"-linje i designet.
+- Titler ≤ 60 tegn uden sitenavn og uden pris; beskrivelser 120–158. Danske køn: `articleFor()`/`possessiveFor()` (fem intetkønsord har `article: "et"`).
+- Datoer: aldrig `new Date()` som dato; `pageMeta()` flyttes kun ved indholdsændring.
+- Eksterne links `target="_blank" rel="noopener noreferrer nofollow"`; affiliate kun via `/go/[slug]`.
+- Env-værdier sættes med `printf '%s'`, aldrig `echo`. `git fetch` før build.
 
-### Reserved Slugs
+## Company
 
-These slugs are handled by their own routes (NOT the `[apparat]` dynamic route):
-beregner, gennemsnitligt, husstand, varmepumpe, sparetips, om-os, kontakt, privatlivspolitik, go
-
-### Adding a New Appliance
-
-1. Add ApplianceData object to `appliances-extra.ts` (or a `phase*` file)
-2. Page auto-generates via `[apparat]/page.tsx`
-3. Auto-added to sitemap via `getAllSlugs()`
-4. Content should be 2,000+ words with tables, FAQ, calculator config
-5. Always research competitor content and factual kWh data first
-
-## Conventions
-
-- **Danish language** — all UI and content
-- **Trailing slashes** enabled in `next.config.ts`
-- **Fonts** — Inter (body) + Space Grotesk (headings)
-- **Colors** — Blue brand (#1e40af), Yellow accent (#eab308), CTA blue (#1d4ed8)
-- **Import paths** — `@/` maps to `src/`
-- **Next.js 16 async params** — `params: Promise<{ slug: string }>` — always `await params`
-- **AEO format** — start every H2 with a 40-60 word direct answer paragraph
-- **SEO titles** — `Main keyword (YEAR) → supporting text`. No brand suffix: `layout.tsx`
-  sets `template: "%s"` deliberately. Write the year as a literal `(2026)` in the data
-  and wrap the title in `withCurrentYear()` so it never goes stale.
-- **Depth comes from computation, not prose.** `appliance-insights.ts` derives the
-  region/season/replacement/standby/ranking sections from data the appliance already
-  carries, so all 43 pages stay correct when MARKET changes. Sections hide themselves
-  when the data does not support them. Two rules learned the hard way:
-  never present a replacement saving as a discount off `typicalKwh` (the energy labels
-  describe heavier use, so it can exceed the appliance's own cost — show both endpoints
-  with their own kr./år instead), and check `usesEnergyClasses` before calling a label
-  an "energimærke" — 17 appliances use descriptive labels like "Gaming/avanceret"
-- **Electricity price** — import from `pricing.ts`, never type a price or a cost into prose.
-  `EL_PRICE_KR_PER_KWH` (marginal, currently 1,86) is what appliances cost to run;
-  `TYPICAL_ALL_IN_KR_PER_KWH` (1,95) includes abonnement and is the baseline for savings;
-  `CHEAPEST_MARGINAL_KR_PER_KWH` (1,76) is the cheapest aftale before abonnement.
-  Never compare a marginal price against an all-in one — that overstates savings.
-  Petrol, diesel, public charging, gas and fjernvarme prices are NOT tied to the elpris.
-- **Run `npm run audit-prices`** after touching any figure. Drift fails; a hardcoded
-  but still-correct number warns. It also catches expired campaigns.
-- **External links** — always `target="_blank" rel="noopener noreferrer nofollow"`
-- **Affiliate links** — route through `/go/[slug]`, never expose raw tracking URLs
-
-## Company Details
-
-- **Company:** Elpriser.dk ApS (never "Mondo Media ApS" in user-facing text)
-- **CVR:** 43489984
-- **Address:** Hestehave 15, 6400 Sønderborg, Danmark
-- **Email:** mail@elpriser.dk (the one contact address on the energy sites since 2026-09-25; hej@stroemforbrug.dk has no mailbox — the domain has no MX)
+Elpriser.dk ApS (aldrig "Mondo Media ApS" i brugerfladen), CVR 43489984, Hestehave 15, 6400 Sønderborg, mail@elpriser.dk.

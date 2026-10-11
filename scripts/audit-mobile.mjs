@@ -195,7 +195,10 @@ async function check(width, path) {
   const ctx = await browser.newContext({ viewport: { width, height: 844 }, deviceScaleFactor: 2, locale: "da-DK", isMobile: width < 768, hasTouch: width < 1280 });
   const page = await ctx.newPage();
   try {
-    const res = await page.goto(`${BASE}${path}`, { waitUntil: "networkidle", timeout: 60_000 });
+    // Elpriser.dk's kort (iframe) hentes fra nettet og poller — det må ikke afgøre, om SITETS layout holder.
+    await page.route(/https:\/\/elpriser\.dk\//, (route) => route.abort());
+    const res = await page.goto(`${BASE}${path}`, { waitUntil: "load", timeout: 60_000 });
+    await page.waitForTimeout(400);
     if (!res || res.status() !== 200) {
       failures.push(`${tag}: status ${res?.status()}`);
       return;

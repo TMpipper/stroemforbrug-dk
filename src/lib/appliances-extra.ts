@@ -7,7 +7,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Airfryer strømforbrug (2026) → Se kWh og pris vs. ovn",
     description:
       "Hvor meget strøm bruger en airfryer? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
-    heading: "Hvor meget strøm bruger en airfryer?",
+    heading: "Strømforbrug for en airfryer: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En typisk airfryer bruger mellem 800 og 2.000 watt og forbruger 50–150 kWh om året ved daglig brug. Det svarer til en årlig elregning på {{kr 50}}–{{kr 150}} kr. ved en gennemsnitspris på {{pris_kwh_tal}} kr./kWh. Airfryeren er markant billigere i drift end en traditionel ovn.",
     kwhRange: [50, 150],
@@ -129,7 +129,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Kummefryser strømforbrug (2026) → kWh pr. liter og år",
     description:
       "Hvad bruger en kummefryser i strøm? Se typisk elforbrug i kWh pr. år, sammenlign energimærker og beregn din årlige udgift. Opdateret 2026-data.",
-    heading: "Hvor meget strøm bruger en kummefryser?",
+    heading: "Strømforbrug for en kummefryser: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En kummefryser bruger typisk 150–350 kWh om året afhængigt af størrelse og energiklasse. Det svarer til {{kr 150}}–{{kr 350}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Moderne A-mærkede modeller kan nøjes med under 150 kWh, mens ældre frysere nemt bruger over 400 kWh.",
     kwhRange: [150, 400],
@@ -275,7 +275,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Ovn strømforbrug (2026) → kWh pr. tilberedning og år",
     description:
       "Hvor meget strøm bruger en ovn? Se det typiske elforbrug i kWh for konventionel og varmluftovn, sammenlign modeller og beregn din udgift.",
-    heading: "Hvor meget strøm bruger en ovn?",
+    heading: "Strømforbrug for en ovn: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En elektrisk ovn bruger typisk 150–300 kWh om året ved normal brug. Det svarer til {{kr 150}}–{{kr 300}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Hver tilberedning koster 1,12–2,98 kr. afhængigt af temperatur, tid og om du bruger varmluft eller over-/undervarme.",
     kwhRange: [150, 350],
@@ -415,7 +415,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Elbil strømforbrug (2026) → kWh pr. 100 km og ladepris",
     description:
       "Hvor meget strøm bruger en elbil? Se typisk forbrug i kWh pr. km og pr. år, sammenlign modeller og beregn din ladeudgift. Opdateret 2026.",
-    heading: "Hvor meget strøm bruger en elbil?",
+    heading: "Strømforbrug for en elbil: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En typisk elbil bruger 15–22 kWh pr. 100 km og forbruger 2.500–4.500 kWh om året ved 15.000 km kørsel. Det svarer til en årlig strømudgift på {{kr 2500}}–{{kr 4500}} kr. ved {{pris_kwh_tal}} kr./kWh hjemmeladning – markant billigere end benzin.",
     kwhRange: [2500, 5000],
@@ -552,7 +552,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Router strømforbrug (2026) → Watt i døgndrift og pris",
     description:
       "Hvor meget strøm bruger en WiFi-router? Se det typiske elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026.",
-    heading: "Hvor meget strøm bruger en router?",
+    heading: "Strømforbrug for en router: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En typisk WiFi-router bruger 5–15 watt og forbruger 40–130 kWh om året, da den kører 24/7. Det svarer til en årlig elregning på {{kr 40}}–{{kr 130}} kr. ved {{pris_kwh_tal}} kr./kWh. Mesh-systemer med flere enheder bruger samlet 20–40 watt.",
     kwhRange: [40, 130],
@@ -682,7 +682,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Computer strømforbrug (2026) → Stationær vs. bærbar i kWh",
     description:
       "Hvor meget strøm bruger en computer? Se typisk elforbrug for stationær og bærbar i kWh, sammenlign og beregn din årlige elregning. 2026-data.",
-    heading: "Hvor meget strøm bruger en computer?",
+    heading: "Strømforbrug for en computer: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En stationær computer bruger typisk 100–500 watt under brug og forbruger 150–800 kWh om året. En bærbar bruger kun 30–65 watt og koster 50–150 kWh årligt. Det svarer til {{kr 150}}–{{kr 800}} kr. for stationær og {{kr 50}}–{{kr 150}} kr. for bærbar ved {{pris_kwh_tal}} kr./kWh.",
     kwhRange: [50, 800],
@@ -821,7 +821,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Elradiator strømforbrug (2026) → kWh, pris og alternativer",
     description:
       "Hvor meget strøm bruger en elradiator? Se typisk elforbrug i kWh, sammenlign typer og beregn din årlige varmeudgift. Opdateret med 2026-priser.",
-    heading: "Hvor meget strøm bruger en elradiator?",
+    heading: "Strømforbrug for en elradiator: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En elradiator på 1.000–2.000 watt bruger typisk 1.500–4.000 kWh om året som primær varmekilde. Det svarer til {{kr 1500}}–{{kr 4000}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Elvarme er den dyreste opvarmningsform og 3–4 gange dyrere end en varmepumpe.",
     kwhRange: [500, 4000],
@@ -954,7 +954,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Fryser strømforbrug (2026) → Se kWh, rim og årlig pris",
     description:
       "Hvor meget strøm bruger en skabsfryser? Se typisk elforbrug i kWh, sammenlign energiklasser og modeller, og beregn din årlige udgift. 2026-data.",
-    heading: "Hvor meget strøm bruger en fryser?",
+    heading: "Strømforbrug for en fryser: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En skabsfryser bruger typisk 170–400 kWh om året afhængigt af størrelse og energiklasse. Det svarer til {{kr 170}}–{{kr 400}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Moderne A-mærkede frysere bruger under 170 kWh, mens ældre modeller let overstiger 350 kWh.",
     kwhRange: [150, 420],
@@ -1089,7 +1089,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Quooker strømforbrug (2026) → Standby, kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en Quooker? Se det typiske elforbrug i kWh for kogende vandhane, sammenlign med elkedel og beregn din årlige udgift.",
-    heading: "Hvor meget strøm bruger en Quooker?",
+    heading: "Strømforbrug for en Quooker: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En Quooker kogende vandhane bruger typisk 50–100 kWh om året. Det svarer til {{kr 50}}–{{kr 100}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Standbyforbruget er ca. 10 watt for at holde vandet på 110°C i tanken, hvilket udgør størstedelen af det årlige forbrug.",
     kwhRange: [50, 110],
@@ -1219,7 +1219,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     title: "Vaskemaskine strømforbrug (2026) → kWh pr. vask og år",
     description:
       "Hvor meget strøm bruger en vaskemaskine? Se typisk elforbrug i kWh pr. vask og pr. år, sammenlign modeller og beregn din udgift. 2026-data.",
-    heading: "Hvor meget strøm bruger en vaskemaskine?",
+    heading: "Strømforbrug for en vaskemaskine: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En vaskemaskine bruger typisk 100–250 kWh om året ved 4–5 vaske ugentligt. Det svarer til {{kr 100}}–{{kr 250}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. En 60°C-vask bruger ca. 1,0–1,5 kWh, mens en 40°C-vask kun bruger 0,5–0,8 kWh. Opvarmning af vand udgør 80 % af energiforbruget.",
     kwhRange: [80, 280],

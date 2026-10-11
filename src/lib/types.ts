@@ -39,6 +39,8 @@ export interface CalculatorConfig {
 export interface ApplianceData {
   slug: string;
   name: string;
+  /** "en" eller "et". Sættes eksplicit for intetkønsordene; ellers læses det af den oprindelige overskrift. */
+  article?: "en" | "et";
   title: string;
   description: string;
   heading: string;

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/config";
-import Breadcrumb from "@/components/layout/Breadcrumb";
+
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
 import PageHero from "@/components/marketing/PageHero";

@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
-import Breadcrumb from "@/components/layout/Breadcrumb";
+
 import QuickAnswer from "@/components/content/QuickAnswer";
 import SwitchCta from "@/components/marketing/SwitchCta";
 import { withCurrentYear, formatKr, formatPrice } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
-import { danishDate } from "@/lib/format";
-import { getPrices, tokenPrices, calculatorPrices, calculatorDeal, savingPerKwh, type SitePrices } from "@/lib/prices";
+
+import { getPrices, tokenPrices, savingPerKwh, type SitePrices } from "@/lib/prices";
 import PriceBasis from "@/components/content/PriceBasis";
 import type { TokenPrices } from "@/lib/tokens";
 import PageHero from "@/components/marketing/PageHero";

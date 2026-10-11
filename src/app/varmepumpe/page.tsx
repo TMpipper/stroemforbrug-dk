@@ -4,9 +4,12 @@ import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
 import { renderWith, wrapTables } from "@/lib/tokens";
 import PriceBasis from "@/components/content/PriceBasis";
+import BestTimeToday from "@/components/appliance/BestTimeToday";
+import ElpriserWidget from "@/components/widget/ElpriserWidget";
+import { getBothToday } from "@/lib/hourly-today";
 import { getAppliance } from "@/lib/appliances";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
-import Breadcrumb from "@/components/layout/Breadcrumb";
+
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import SwitchCta from "@/components/marketing/SwitchCta";
@@ -14,7 +17,7 @@ import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import { Zap, Calendar, BarChart3 } from "lucide-react";
 import { withCurrentYear } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
-import { danishDate } from "@/lib/format";
+
 import PageHero from "@/components/marketing/PageHero";
 import { motifForPath } from "@/lib/visuals/defaults";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
 
 export default async function VarmepumpePage() {
   const data = getAppliance("varmepumpe")!;
-  const prices = await getPrices();
+  const [prices, today] = await Promise.all([getPrices(), getBothToday()]);
   const t = tokenPrices(prices);
   const faqs = data.faqs.map((f) => ({ ...f, answer: renderWith(t, f.answer) }));
   const url = `${SITE_CONFIG.url}/varmepumpe/`;
@@ -119,6 +122,8 @@ export default async function VarmepumpePage() {
           deal={calculatorDeal(prices)}
         />
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
+        <BestTimeToday data={data} today={today} />
+        <ElpriserWidget sted="dk1" kompakt className="my-8" />
 
         <div className="prose-content" dangerouslySetInnerHTML={{ __html: wrapTables(renderWith(t, data.content)) }} />
 

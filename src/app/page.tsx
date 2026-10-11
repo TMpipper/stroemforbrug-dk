@@ -3,6 +3,8 @@ import { Zap, Calculator, Home, BarChart3 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
 import { formatKr, formatPrice } from "@/lib/format";
 import { getPrices, tokenPrices } from "@/lib/prices";
+import { getBothToday, hourSpan } from "@/lib/hourly-today";
+import ElpriserWidget from "@/components/widget/ElpriserWidget";
 import { getPublishedAppliances } from "@/lib/appliances";
 import { homeFaqs, topEverydayAppliances } from "@/lib/home-insights";
 import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
@@ -13,12 +15,12 @@ import {
   Methodology,
 } from "@/components/home/HomePillar";
 import { pageMeta } from "@/lib/pages";
-import PriceBasis from "@/components/content/PriceBasis";
+
 import PageHero from "@/components/marketing/PageHero";
 import { motifForPath } from "@/lib/visuals/defaults";
 
 export default async function HomePage() {
-  const prices = await getPrices();
+  const [prices, today] = await Promise.all([getPrices(), getBothToday()]);
   const t = tokenPrices(prices);
   // Sort by typical kWh descending for the ranking
   const sorted = [...getPublishedAppliances()].sort((a, b) => b.typicalKwh - a.typicalKwh);
@@ -88,6 +90,35 @@ export default async function HomePage() {
       </PageHero>
 
       <DirectAnswer prices={prices} />
+
+      {/* Elprisen i dag — Elpriser.dk's kort og dagens billigste timer, regnet på samme feed */}
+      <section className="py-16 border-b border-border" aria-labelledby="elprisen-i-dag" data-home-hourly>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">Elpriser time for time · fra Elpriser.dk</p>
+              <h2 id="elprisen-i-dag" className="mt-2 font-heading text-2xl sm:text-3xl font-semibold text-ink">
+                Hvornår er strømmen billigst i dag?
+              </h2>
+              <p className="mt-4 text-ink-body">
+                I Vestdanmark er de tre billigste timer <strong>{hourSpan(today.DK1.cheapest)}</strong> ({formatPrice(today.DK1.cheapest.krPerKwh)} kr./kWh)
+                og de dyreste <strong>{hourSpan(today.DK1.dearest)}</strong> ({formatPrice(today.DK1.dearest.krPerKwh)} kr./kWh). I Østdanmark er det{" "}
+                {hourSpan(today.DK2.cheapest)} mod {hourSpan(today.DK2.dearest)}. Vask, opvask, tørring og opladning er det forbrug, der er lettest
+                at flytte — hver apparatside viser, hvad én gang koster i den billige og den dyre time.
+              </p>
+              <p className="mt-4">
+                <Link href="/elpriser/" className="btn-cta">
+                  Se timepriserne og dine apparater
+                </Link>
+              </p>
+              <p className="mt-3 text-xs text-ink-muted">
+                Spotpris, nettarif, Energinets tariffer og elafgift pr. time, inkl. moms, uden abonnement og tillæg. Dit eget postnummer kan slås op på Elpriser.dk.
+              </p>
+            </div>
+            <ElpriserWidget sted="dk1" />
+          </div>
+        </div>
+      </section>
       <HouseholdProfiles price={t.dk} />
       <WhatDominates price={t.dk} />
 

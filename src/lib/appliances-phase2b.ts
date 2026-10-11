@@ -7,7 +7,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     title: "Laptop strømforbrug (2026) → Watt, kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en laptop? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med danske 2026-priser.",
-    heading: "Hvor meget strøm bruger en laptop?",
+    heading: "Strømforbrug for en laptop: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En typisk laptop bruger mellem 15 og 80 kWh om året afhængigt af model og brug. Det svarer til en årlig elregning på {{kr 15}}–{{kr 80}} kr. ved {{pris_kwh_tal}} kr./kWh. Laptops er langt mere energieffektive end stationære computere og bruger typisk 30–65 watt under normal brug.",
     kwhRange: [15, 80],
@@ -150,7 +150,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     title: "PlayStation strømforbrug (2026) → Watt i spil og standby",
     description:
       "Hvor meget strøm bruger en PlayStation? Se elforbrug for PS5 og PS4 i kWh, sammenlign tilstande og beregn din årlige udgift. Opdateret 2026-data.",
-    heading: "Hvor meget strøm bruger en PlayStation?",
+    heading: "Strømforbrug for en PlayStation: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En PlayStation 5 bruger typisk 100–200 kWh om året ved 3–4 timers daglig brug. Det svarer til {{kr 100}}–{{kr 200}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Under gaming trækker en PS5 ca. 100–200 watt, mens standbyforbruget er 1–3 watt afhængigt af indstillinger.",
     kwhRange: [60, 200],
@@ -278,7 +278,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     title: "Robotstøvsuger strømforbrug (2026) → Se kWh og pris",
     description:
       "Hvor meget strøm bruger en robotstøvsuger? Se elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-elpriser.",
-    heading: "Hvor meget strøm bruger en robotstøvsuger?",
+    heading: "Strømforbrug for en robotstøvsuger: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En robotstøvsuger bruger typisk 20–50 kWh om året ved daglig kørsel. Det svarer til en årlig udgift på kun {{kr 20}}–{{kr 50}} kr. ved {{pris_kwh_tal}} kr./kWh. Robotstøvsugere er markant mere energieffektive end traditionelle støvsugere med et effektforbrug på 25–70 watt under rengøring.",
     kwhRange: [15, 50],
@@ -412,7 +412,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     title: "Elkedel strømforbrug (2026) → Pris pr. liter kogt vand",
     description:
       "Hvor meget strøm bruger en elkedel? Se elforbrug pr. kogning i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026-priser.",
-    heading: "Hvor meget strøm bruger en elkedel?",
+    heading: "Strømforbrug for en elkedel: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En typisk elkedel bruger 2.000–3.000 watt og forbruger 0,10–0,15 kWh pr. kogning af 1 liter vand. Ved 3–4 daglige kogninger svarer det til 110–220 kWh om året og en årlig udgift på {{kr 110}}–{{kr 220}} kr. ved {{pris_kwh_tal}} kr./kWh. Elkedlen er det mest energieffektive redskab til at koge vand.",
     kwhRange: [70, 220],
@@ -550,7 +550,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     title: "Varmtvandsbeholder strømforbrug (2026) → kWh og årlig pris",
     description:
       "Hvor meget strøm bruger en varmtvandsbeholder? Se elforbrug i kWh for 60–300 liter, beregn din udgift og find besparelsestips. Opdateret 2026.",
-    heading: "Hvor meget strøm bruger en varmtvandsbeholder?",
+    heading: "Strømforbrug for en varmtvandsbeholder: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En elektrisk varmtvandsbeholder bruger typisk 1.500–4.000 kWh om året afhængigt af størrelse og forbrug. Det svarer til {{kr 1500}}–{{kr 4000}} kr. årligt ved {{pris_kwh_tal}} kr./kWh og er ofte den største enkeltpost på elregningen. En 120-liters beholder til en gennemsnitlig familie bruger ca. 2.500 kWh.",
     kwhRange: [1500, 4000],
@@ -683,7 +683,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     title: "Varmeblæser strømforbrug (2026) → kWh pr. time og pris",
     description:
       "Hvor meget strøm bruger en varmeblæser? Se elforbrug i kWh, sammenlign med elradiatorer og beregn din udgift. Opdateret med 2026-priser.",
-    heading: "Hvor meget strøm bruger en varmeblæser?",
+    heading: "Strømforbrug for en varmeblæser: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En varmeblæser bruger typisk 1.000–3.000 watt og forbruger 200–1.500 kWh om året afhængigt af brug. Det svarer til {{kr 200}}–{{kr 1500}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Varmeblæsere er effektive til hurtig opvarmning, men dyre i drift ved langvarig brug sammenlignet med varmepumper.",
     kwhRange: [200, 1500],
@@ -818,7 +818,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     title: "Lyskæde strømforbrug (2026) → LED vs. glødepærer i kWh",
     description:
       "Hvor meget strøm bruger en lyskæde? Se elforbrug for LED og glødepærer i kWh, beregn din udgift for hele julen. Opdateret med 2026-data.",
-    heading: "Hvor meget strøm bruger en lyskæde?",
+    heading: "Strømforbrug for en lyskæde: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En LED-lyskæde bruger typisk 2–10 watt og koster kun 5–25 kr. for en hel julemåned. Ældre glødepærelyskæder bruger 20–100 watt og koster 50–250 kr. for samme periode. Over et helt år bruger en LED-lyskæde blot 3–15 kWh hvis den bruges til udendørs dekoration året rundt.",
     kwhRange: [1, 50],
@@ -941,11 +941,12 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
   },
   {
     slug: "akvarium",
+    article: "et",
     name: "Akvarium",
     title: "Akvarium strømforbrug (2026) → Varme, lys og filter i kWh",
     description:
       "Hvor meget strøm bruger et akvarium? Se elforbrug for filter, varme og lys i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
-    heading: "Hvor meget strøm bruger et akvarium?",
+    heading: "Strømforbrug for et akvarium: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "Et typisk ferskvandsakvarium på 100–200 liter bruger 200–500 kWh om året, svarende til {{kr 200}}–{{kr 500}} kr. ved {{pris_kwh_tal}} kr./kWh. De tre største strømforbrugere er varmelegemet (60 %), belysningen (25 %) og filterpumpen (15 %). Saltvandsakvarier bruger typisk 50–100 % mere.",
     kwhRange: [150, 800],
@@ -1072,7 +1073,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     title: "Pool strømforbrug (2026) → Varmepumpe, pumpe og årlig pris",
     description:
       "Hvor meget strøm bruger en pool? Se elforbrug for pumpe, opvarmning og rensning i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
-    heading: "Hvor meget strøm bruger en pool?",
+    heading: "Strømforbrug for en pool: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En typisk villahavepool bruger 3.000–8.000 kWh om året for pumpe, opvarmning og rensning. Det svarer til {{kr 3000}}–{{kr 8000}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Poolopvarmning med varmepumpe udgør den største post, mens filterpumpen kører 8–12 timer dagligt i sæsonen.",
     kwhRange: [2000, 10000],
@@ -1209,7 +1210,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
     title: "Sauna strømforbrug (2026) → kWh pr. opvarmning og år",
     description:
       "Hvor meget strøm bruger en sauna? Se elforbrug pr. session og årligt i kWh, sammenlign ovntyper og beregn din udgift. Opdateret 2026-data.",
-    heading: "Hvor meget strøm bruger en sauna?",
+    heading: "Strømforbrug for en sauna: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
       "En typisk hjemmesauna med en 6–9 kW ovn bruger 6–12 kWh pr. session (inkl. opvarmning). Ved 2–3 ugentlige sessioner svarer det til 600–1.800 kWh om året og en udgift på {{kr 600}}–{{kr 1800}} kr. ved {{pris_kwh_tal}} kr./kWh. Opvarmningstiden er 30–60 minutter og udgør halvdelen af energiforbruget.",
     kwhRange: [300, 2000],

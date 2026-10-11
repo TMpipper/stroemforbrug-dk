@@ -4,7 +4,7 @@ import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
 import { renderWith, wrapTables } from "@/lib/tokens";
 import { pageMeta } from "@/lib/pages";
-import { danishDate } from "@/lib/format";
+
 import PriceBasis from "@/components/content/PriceBasis";
 import { getAppliance, getAllSlugs } from "@/lib/appliances";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
@@ -21,6 +21,10 @@ import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
 import { applianceMotif } from "@/lib/visuals/defaults";
+import BestTimeToday from "@/components/appliance/BestTimeToday";
+import ElpriserWidget from "@/components/widget/ElpriserWidget";
+import { getBothToday } from "@/lib/hourly-today";
+import { HEAVY_RUN } from "@/lib/heavy-run";
 import { withCurrentYear } from "@/lib/format";
 
 // Reserved slugs that should NOT be handled by this dynamic route
@@ -39,6 +43,9 @@ const RESERVED_SLUGS = [
   "kontakt",
   "privatlivspolitik",
   "go",
+  "elpriser",
+  "apparater",
+  "metode",
 ];
 
 export const dynamicParams = false;
@@ -85,7 +92,7 @@ export default async function AppliancePage({
   }
 
   const url = `${SITE_CONFIG.url}/${data.slug}/`;
-  const prices = await getPrices();
+  const [prices, today] = await Promise.all([getPrices(), getBothToday()]);
   const t = tokenPrices(prices);
   const meta = pageMeta(`/${data.slug}/`);
   const updated = data.updated && data.updated > meta.updated ? data.updated : meta.updated;
@@ -193,6 +200,10 @@ export default async function AppliancePage({
           deal={calculatorDeal(prices)}
         />
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
+
+        {/* Sidens differentiator: hvornår på dagen apparatet er billigst — dagens timepriser fra Elpriser.dk */}
+        <BestTimeToday data={data} today={today} />
+        {HEAVY_RUN.has(data.slug) && <ElpriserWidget sted="dk1" kompakt className="my-8" />}
 
         {/* Main content */}
         <div

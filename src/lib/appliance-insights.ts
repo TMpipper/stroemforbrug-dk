@@ -256,7 +256,7 @@ export function insightsFor(a: ApplianceData, p: TokenPrices): ApplianceInsights
  * hand. Five of the 43 are neuter (tv, køleskab, strygejern, akvarium, komfur).
  */
 export function articleFor(a: ApplianceData): "en" | "et" {
-  return /\bbruger et\b/i.test(a.heading) ? "et" : "en";
+  return a.article ?? (/\bbruger et\b/i.test(a.heading) ? "et" : "en");
 }
 
 /**
