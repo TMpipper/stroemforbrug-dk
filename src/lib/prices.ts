@@ -105,6 +105,17 @@ export interface SitePrices {
 
 const roundOre = (kr: number) => Math.round(kr * 100) / 100;
 
+/**
+ * Feedets logo-URL → vores egen /api/logo/… (samme fil, samme hash). Browseren henter så billedet fra
+ * samme oprindelse; Chromium (ORB) blokerede det ellers direkte fra el-feed. Kilden er stadig kun feedet.
+ */
+export function localLogoUrl(url: string | null | undefined): string | null {
+  if (!url) return null;
+  const m = url.match(/\/api\/v1\/logo\/([a-z0-9-]+\.[a-z]+)(?:\?v=([a-f0-9]+))?/i);
+  if (!m) return null;
+  return `/api/logo/${m[1]}${m[2] ? `?v=${m[2]}` : ""}`;
+}
+
 function dealMarketFrom(region: Region, kwh: number, res: FeedEstimateResponse, marginal: MarginalPrice): DealMarket {
   const items = res.items;
   if (!items.length) throw new Error(`el-feed: ingen aftaler for ${region} ved ${kwh} kWh`);
@@ -154,7 +165,7 @@ function cheapestFrom(p: FeedEstimateProduct, kwh: number, m: MarginalPrice): Ch
     id: p.slug,
     supplierSlug: p.supplier.slug,
     supplierName: p.supplier.name,
-    logoUrl: p.supplier.logoUrl ?? null,
+    logoUrl: localLogoUrl(p.supplier.logoUrl),
     productName: p.name,
     goSlug: goSlugFor(p.supplier.slug),
     spotBased,
