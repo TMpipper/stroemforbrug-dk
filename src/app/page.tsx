@@ -63,7 +63,6 @@ export default async function HomePage() {
       />
       <PageHero
         crumbs={[]}
-        eyebrow="Et site af Elpriser.dk"
         title="Strømforbrug i Danmark"
         lede={`Se hvor meget strøm dine apparater bruger, hvad det koster ved månedens elpris — ${formatPrice(t.dk1)} kr./kWh i vest og ${formatPrice(t.dk2)} kr./kWh i øst — og hvornår på dagen det er billigst at bruge dem.`}
         lastUpdated={pageMeta("/").updated}
