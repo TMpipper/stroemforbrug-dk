@@ -9,6 +9,11 @@ import PriceBasis from "@/components/content/PriceBasis";
 import { withCurrentYear, formatKr, formatPrice, formatKrExact, danishDate, danishMonth } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
 import { getPrices, tokenPrices, savingPerKwh, type SitePrices } from "@/lib/prices";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import FaqBand from "@/components/marketing/FaqBand";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
 
 const PATH = "/hvad-koster-det-at-lade-en-elbil/";
 
@@ -104,16 +109,9 @@ export default async function ElbilLadningPage() {
         }}
       />
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb items={[{ name: "Hvad koster det at lade en elbil" }]} />
+      <PageHero crumbs={[{ name: "Hvad koster det at lade en elbil" }]} eyebrow="Elbil" title="Hvad koster det at lade en elbil?" lastUpdated={pageMeta("/hvad-koster-det-at-lade-en-elbil/").updated} motif={motifForPath("/hvad-koster-det-at-lade-en-elbil/")} />
 
-        <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret {danishDate(pageMeta(PATH).updated)}
-        </p>
-
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          Hvad koster det at lade en elbil?
-        </h1>
+      <article className="container-text py-10 md:py-14">
 
         <QuickAnswer>
           <p>
@@ -126,7 +124,7 @@ export default async function ElbilLadningPage() {
         </QuickAnswer>
         <PriceBasis prices={prices} className="mb-8" />
 
-        <div className="prose-editorial">
+        <div className="prose-content">
           <h2>Opladningspris for 5 populære elbiler</h2>
           <p>
             Prisen for at lade afhænger af batteriets størrelse, ladetabet og kWh-prisen. Tabellen viser en fuld opladning derhjemme
@@ -286,19 +284,10 @@ export default async function ElbilLadningPage() {
         </div>
 
         <SwitchCta kwh={7000} household="en husstand med elbil" />
-
-        <div className="my-10">
-          <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <details key={i} className="group border border-ink-200 rounded-card">
-                <summary className="cursor-pointer px-5 py-4 font-medium text-ink-900 hover:bg-surface-alt transition-colors rounded-card">{faq.question}</summary>
-                <div className="px-5 pb-4 text-sm text-ink-600 leading-relaxed">{faq.answer}</div>
-              </details>
-            ))}
-          </div>
-        </div>
       </article>
+      <FaqBand faqs={faqs} />
+      <WhoHowWhy path="/hvad-koster-det-at-lade-en-elbil/" prices={prices} />
+      <AuthorBox />
     </>
   );
 }

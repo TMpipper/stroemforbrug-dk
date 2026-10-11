@@ -14,6 +14,8 @@ import {
 } from "@/components/home/HomePillar";
 import { pageMeta } from "@/lib/pages";
 import PriceBasis from "@/components/content/PriceBasis";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
 
 export default async function HomePage() {
   const prices = await getPrices();
@@ -57,82 +59,33 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      {/* Hero */}
-      <section className="bg-brand-800 text-white py-16 sm:py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Zap className="w-8 h-8 text-accent-400" />
-          </div>
-          <h1 className="font-heading text-3xl sm:text-5xl font-medium mb-4 leading-tight">
-            Strømforbrug i Danmark
-          </h1>
-          <p className="text-lg sm:text-xl text-brand-200 max-w-2xl mx-auto mb-8">
-            Se hvor meget strøm dine apparater bruger, beregn din årlige udgift
-            og få konkrete tips til at spare på elregningen.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/beregner/"
-              className="btn-cta bg-accent-500 hover:bg-accent-600 text-ink-900"
-            >
-              <span className="flex items-center gap-2">
-                <Calculator className="w-4 h-4" />
-                Beregn dit strømforbrug
-              </span>
-            </Link>
-            <Link
-              href="/gennemsnitligt/"
-              className="inline-flex items-center gap-2 text-sm font-medium text-brand-200 hover:text-white transition-colors underline underline-offset-4"
-            >
-              Se gennemsnitligt forbrug
-            </Link>
-          </div>
+      <PageHero
+        crumbs={[]}
+        eyebrow="Et site af Elpriser.dk"
+        title="Strømforbrug i Danmark"
+        lede={`Se hvor meget strøm dine apparater bruger, hvad det koster ved månedens elpris — ${formatPrice(t.dk1)} kr./kWh i vest og ${formatPrice(t.dk2)} kr./kWh i øst — og hvornår på dagen det er billigst at bruge dem.`}
+        lastUpdated={pageMeta("/").updated}
+        motif={motifForPath("/")}
+      >
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <Link href="/beregner/" className="btn-cta">
+            <Calculator className="h-4 w-4" aria-hidden />
+            Beregn dit strømforbrug
+          </Link>
+          <Link href="/gennemsnitligt/" className="inline-flex items-center gap-2 rounded-pill border border-border bg-surface px-5 py-3 text-sm font-medium text-ink-body transition-colors hover:border-brand-500 hover:text-ink">
+            <BarChart3 className="h-4 w-4" aria-hidden />
+            Gennemsnitligt forbrug
+          </Link>
+          <Link href="/husstand/" className="inline-flex items-center gap-2 rounded-pill border border-border bg-surface px-5 py-3 text-sm font-medium text-ink-body transition-colors hover:border-brand-500 hover:text-ink">
+            <Home className="h-4 w-4" aria-hidden />
+            Din husstand
+          </Link>
+          <Link href="/varmepumpe/" className="inline-flex items-center gap-2 rounded-pill border border-border bg-surface px-5 py-3 text-sm font-medium text-ink-body transition-colors hover:border-brand-500 hover:text-ink">
+            <Zap className="h-4 w-4" aria-hidden />
+            Varmepumpe
+          </Link>
         </div>
-      </section>
-
-      {/* Quick links */}
-      <section className="py-12 bg-surface-alt border-b border-ink-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <Link
-              href="/beregner/"
-              className="flex flex-col items-center gap-2 p-4 rounded-card hover:bg-white hover:shadow-sm transition-all text-center"
-            >
-              <Calculator className="w-6 h-6 text-brand-600" />
-              <span className="text-sm font-medium text-ink-800">
-                Strømberegner
-              </span>
-            </Link>
-            <Link
-              href="/gennemsnitligt/"
-              className="flex flex-col items-center gap-2 p-4 rounded-card hover:bg-white hover:shadow-sm transition-all text-center"
-            >
-              <BarChart3 className="w-6 h-6 text-brand-600" />
-              <span className="text-sm font-medium text-ink-800">
-                Gennemsnitligt forbrug
-              </span>
-            </Link>
-            <Link
-              href="/varmepumpe/"
-              className="flex flex-col items-center gap-2 p-4 rounded-card hover:bg-white hover:shadow-sm transition-all text-center"
-            >
-              <Zap className="w-6 h-6 text-brand-600" />
-              <span className="text-sm font-medium text-ink-800">
-                Varmepumpe
-              </span>
-            </Link>
-            <Link
-              href="/husstand/"
-              className="flex flex-col items-center gap-2 p-4 rounded-card hover:bg-white hover:shadow-sm transition-all text-center"
-            >
-              <Home className="w-6 h-6 text-brand-600" />
-              <span className="text-sm font-medium text-ink-800">
-                Husstand
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      </PageHero>
 
       <DirectAnswer prices={prices} />
       <HouseholdProfiles price={t.dk} />

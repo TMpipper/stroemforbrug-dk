@@ -12,6 +12,11 @@ import { danishDate } from "@/lib/format";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
 import PriceBasis from "@/components/content/PriceBasis";
 import type { TokenPrices } from "@/lib/tokens";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import FaqBand from "@/components/marketing/FaqBand";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Luft-til-vand varmepumpe strømforbrug (2026) → Pris og kWh"),
@@ -58,17 +63,9 @@ export default async function LuftTilVandPage() {
         }}
       />
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb items={[{ name: "Varmepumpe", href: "/varmepumpe/" }, { name: "Luft-til-vand" }]} />
+      <PageHero crumbs={[{ name: "Varmepumpe", href: "/varmepumpe/" }, { name: "Luft-til-vand" }]} eyebrow="Varmepumpe" title="Luft-til-vand varmepumpe — strømforbrug og pris" lastUpdated={pageMeta("/varmepumpe/luft-til-vand/").updated} motif={motifForPath("/varmepumpe/luft-til-vand/")} />
 
-        <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {danishDate(pageMeta("/varmepumpe/luft-til-vand/").updated)}
-        </p>
-
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          Luft-til-vand varmepumpe — strømforbrug og pris
-        </h1>
+      <article className="container-text py-10 md:py-14">
 
         <QuickAnswer>
           <p>
@@ -98,7 +95,7 @@ export default async function LuftTilVandPage() {
           deal={calculatorDeal(prices)}
         />
 
-        <div className="prose-editorial">
+        <div className="prose-content">
           <h2>Strømforbrug pr. boligstørrelse</h2>
           <p>
             En luft-til-vand varmepumpe dimensioneres efter boligens varmebehov. Jo større
@@ -217,19 +214,10 @@ export default async function LuftTilVandPage() {
         <PriceBasis prices={prices} className="my-4" />
 
         <SwitchCta kwh={9000} household="et hus med luft-til-vand varmepumpe" />
-
-        <div className="my-10">
-          <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <details key={i} className="group border border-ink-200 rounded-card">
-                <summary className="cursor-pointer px-5 py-4 font-medium text-ink-900 hover:bg-surface-alt transition-colors rounded-card">{faq.question}</summary>
-                <div className="px-5 pb-4 text-sm text-ink-600 leading-relaxed">{faq.answer}</div>
-              </details>
-            ))}
-          </div>
-        </div>
       </article>
+      <FaqBand faqs={faqs} />
+      <WhoHowWhy path="/varmepumpe/luft-til-vand/" prices={prices} />
+      <AuthorBox />
     </>
   );
 }

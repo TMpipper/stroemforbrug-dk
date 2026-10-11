@@ -68,21 +68,21 @@ export default function ForbrugBeregner({
       : Math.round(n).toLocaleString("da-DK");
 
   return (
-    <div className="my-10 rounded-card overflow-hidden border-2 border-brand-500 shadow-sm">
+    <div className="my-10 rounded-card overflow-hidden bg-surface shadow-card" data-calculator>
       {/* Header */}
-      <div className="bg-brand-800 px-6 py-5 text-center">
+      <div className="bg-ink px-6 py-5 text-center">
         <div className="flex items-center justify-center gap-2 mb-1">
-          <Zap className="w-5 h-5 text-accent-400" />
-          <h2 className="font-heading text-xl sm:text-2xl font-medium text-white">
+          <Zap className="w-5 h-5 text-white/80" />
+          <h2 className="font-heading text-xl sm:text-2xl font-semibold text-white">
             {title}
           </h2>
         </div>
-        <p className="text-brand-200 text-sm">
+        <p className="text-white/70 text-sm">
           Beregn dit strømforbrug og se hvad det koster
         </p>
       </div>
 
-      <div className="bg-white px-6 py-6 space-y-6">
+      <div className="bg-surface px-6 py-6 space-y-6">
         {/* Appliance selector */}
         <div>
           <p className="font-heading font-medium text-sm text-ink-900 mb-3">
@@ -95,8 +95,8 @@ export default function ForbrugBeregner({
                 onClick={() => setSelectedIndex(i)}
                 className={`w-full text-left px-4 py-3 rounded-card border-2 transition-colors text-sm ${
                   i === selectedIndex
-                    ? "border-brand-500 bg-brand-50 text-ink-900 font-medium"
-                    : "border-ink-200 bg-white text-ink-600 hover:border-ink-300"
+                    ? "border-accent bg-accent-soft text-ink font-medium"
+                    : "border-border bg-surface text-ink-body hover:border-brand-500"
                 }`}
               >
                 {opt.label} ({opt.kwhPerUse.toFixed(1)} kWh)
@@ -116,7 +116,7 @@ export default function ForbrugBeregner({
                 aria-pressed={region === r}
                 onClick={() => setRegion(r)}
                 className={`px-4 py-3 rounded-card border-2 transition-colors text-sm ${
-                  region === r ? "border-brand-500 bg-brand-50 text-ink-900 font-medium" : "border-ink-200 bg-white text-ink-600 hover:border-ink-300"
+                  region === r ? "border-accent bg-accent-soft text-ink font-medium" : "border-border bg-surface text-ink-body hover:border-brand-500"
                 }`}
               >
                 {r === "DK1" ? "Vest for Storebælt" : "Øst for Storebælt"}
@@ -132,7 +132,7 @@ export default function ForbrugBeregner({
             <label htmlFor={sliderId} className="font-heading font-medium text-sm text-ink-900">
               {usageLabel}:
             </label>
-            <span className="text-lg font-bold text-brand-700">
+            <span className="text-lg font-bold text-ink tabular">
               {usage} {usageUnit}
             </span>
           </div>
@@ -145,7 +145,7 @@ export default function ForbrugBeregner({
             step={usageStep}
             value={usage}
             onChange={(e) => setUsage(Number(e.target.value))}
-            className="w-full h-2 bg-ink-200 rounded-full appearance-none cursor-pointer accent-brand-600"
+            className="w-full h-2 bg-border rounded-full appearance-none cursor-pointer accent-accent"
           />
           <div className="flex justify-between text-xs text-ink-600 mt-1">
             <span>
@@ -179,9 +179,9 @@ export default function ForbrugBeregner({
               </p>
               <p className="text-xs text-ink-400">{fmt(kwhPerMonth)} kWh</p>
             </div>
-            <div className="bg-brand-50 rounded-card px-4 py-3 text-center border border-brand-200">
-              <p className="text-xs text-brand-700 font-medium">Pr. år</p>
-              <p className="text-2xl font-bold text-brand-800">
+            <div className="bg-accent-soft rounded-card px-4 py-3 text-center">
+              <p className="text-xs text-success-ink font-medium">Pr. år</p>
+              <p className="text-2xl font-bold text-ink tabular">
                 {fmt(costPerYear)} kr.
               </p>
               <p className="text-xs text-ink-400">{fmt(kwhPerYear)} kWh</p>
@@ -198,7 +198,7 @@ export default function ForbrugBeregner({
 
         {/* Savings highlight */}
         {best && savings > 10 && (
-          <div className="bg-success-50 border border-success-500/20 rounded-card px-4 py-4">
+          <div className="bg-bg-blue rounded-card px-4 py-4">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="flex items-start gap-2">
                 <TrendingDown className="w-5 h-5 text-success-600 shrink-0 mt-0.5" />

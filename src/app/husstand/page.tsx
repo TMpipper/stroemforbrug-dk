@@ -9,6 +9,11 @@ import { withCurrentYear, formatKr, formatPrice } from "@/lib/format";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
 import PriceBasis from "@/components/content/PriceBasis";
 import type { TokenPrices } from "@/lib/tokens";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import { pageMeta } from "@/lib/pages";
 
 
 const faqsFor = (t: TokenPrices) => [
@@ -65,12 +70,9 @@ export default async function HusstandPage() {
         }}
       />
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb items={[{ name: "Strømforbrug husstand" }]} />
+      <PageHero crumbs={[{ name: "Strømforbrug husstand" }]} eyebrow="Husstand" title="Strømforbrug pr. husstand i Danmark" lastUpdated={pageMeta("/husstand/").updated} motif={motifForPath("/husstand/")} />
 
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          Strømforbrug pr. husstand i Danmark
-        </h1>
+      <article className="container-text py-10 md:py-14">
 
         <QuickAnswer>
           <p>
@@ -101,7 +103,7 @@ export default async function HusstandPage() {
           </Link>
         </div>
 
-        <div className="prose-editorial">
+        <div className="prose-content">
           <h2>Normalt strømforbrug — hvornår bruger du for meget?</h2>
           <p>
             Det normale strømforbrug afhænger af tre faktorer: antal personer,
@@ -281,6 +283,8 @@ export default async function HusstandPage() {
 
         <SwitchCta />
       </article>
+      <WhoHowWhy path="/husstand/" prices={prices} />
+      <AuthorBox />
     </>
   );
 }

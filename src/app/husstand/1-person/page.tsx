@@ -11,6 +11,11 @@ import { danishDate } from "@/lib/format";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal, savingPerKwh, type SitePrices } from "@/lib/prices";
 import PriceBasis from "@/components/content/PriceBasis";
 import type { TokenPrices } from "@/lib/tokens";
+import FaqBand from "@/components/marketing/FaqBand";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Strømforbrug 1 person (2026) → Se normalt forbrug og pris"),
@@ -67,22 +72,9 @@ export default async function EnPersonPage() {
         }}
       />
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb
-          items={[
-            { name: "Husstand", href: "/husstand/" },
-            { name: "1 person" },
-          ]}
-        />
+      <PageHero crumbs={[ { name: "Husstand", href: "/husstand/" }, { name: "1 person" }, ]} eyebrow="Husstand" title="Strømforbrug for 1 person — hvad er normalt?" lastUpdated={pageMeta("/husstand/1-person/").updated} motif={motifForPath("/husstand/1-person/")} />
 
-        <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {danishDate(pageMeta("/husstand/1-person/").updated)}
-        </p>
-
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          Strømforbrug for 1 person — hvad er normalt?
-        </h1>
+      <article className="container-text py-10 md:py-14">
 
         <QuickAnswer>
           <p>
@@ -93,7 +85,7 @@ export default async function EnPersonPage() {
           </p>
         </QuickAnswer>
 
-        <div className="prose-editorial">
+        <div className="prose-content">
           <h2>Normalt strømforbrug for 1 person — oversigt</h2>
           <p>
             Dit strømforbrug som enlig afhænger primært af din boligtype,
@@ -246,24 +238,10 @@ export default async function EnPersonPage() {
         <SwitchCta kwh={2500} household="en enlig i lejlighed" />
 
         {/* FAQ */}
-        <div className="my-10">
-          <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">
-            Ofte stillede spørgsmål
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <details key={i} className="group border border-ink-200 rounded-card">
-                <summary className="cursor-pointer px-5 py-4 font-medium text-ink-900 hover:bg-surface-alt transition-colors rounded-card">
-                  {faq.question}
-                </summary>
-                <div className="px-5 pb-4 text-sm text-ink-600 leading-relaxed">
-                  {faq.answer}
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
       </article>
+      <FaqBand faqs={faqs} />
+      <WhoHowWhy path="/husstand/1-person/" prices={prices} />
+      <AuthorBox />
     </>
   );
 }

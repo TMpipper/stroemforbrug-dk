@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/config";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import { pageMeta } from "@/lib/pages";
 
 export const metadata: Metadata = {
   title: "Om Strømforbrug.dk — Hvem vi er",
@@ -10,14 +15,12 @@ export const metadata: Metadata = {
 
 export default function OmOsPage() {
   return (
-    <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <Breadcrumb items={[{ name: "Om os" }]} />
+    <>
+    <PageHero crumbs={[{ name: "Om os" }]} eyebrow="Om os" title="Om Strømforbrug.dk" lastUpdated={pageMeta("/om-os/").updated} motif={motifForPath("/om-os/")} />
 
-      <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6">
-        Om Strømforbrug.dk
-      </h1>
+      <article className="container-text py-10 md:py-14">
 
-      <div className="prose-editorial">
+      <div className="prose-content">
         <p>
           <strong>Strømforbrug.dk</strong> er Danmarks dedikerede guide til
           strømforbrug i husholdningen. Vi hjælper dig med at forstå, beregne
@@ -61,5 +64,8 @@ export default function OmOsPage() {
         </p>
       </div>
     </article>
+      <WhoHowWhy path="/om-os/" />
+      <AuthorBox />
+    </>
   );
 }

@@ -13,6 +13,11 @@ import SwitchCta from "@/components/marketing/SwitchCta";
 import { withCurrentYear } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
 import { danishDate } from "@/lib/format";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
+import FaqBand from "@/components/marketing/FaqBand";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Gennemsnitligt strømforbrug (2026) → Se forbrug pr. husstand"),
@@ -50,16 +55,9 @@ export default async function GennemsnitligtPage() {
         }}
       />
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb items={[{ name: "Gennemsnitligt strømforbrug" }]} />
+      <PageHero crumbs={[{ name: "Gennemsnitligt strømforbrug" }]} eyebrow="Guide" title="Gennemsnitligt strømforbrug i Danmark 2026" lastUpdated={pageMeta("/gennemsnitligt/").updated} motif={motifForPath("/gennemsnitligt/")} />
 
-        <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret {danishDate(pageMeta("/gennemsnitligt/").updated)}
-        </p>
-
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          Gennemsnitligt strømforbrug i Danmark 2026
-        </h1>
+      <article className="container-text py-10 md:py-14">
 
         <QuickAnswer>
           <p>
@@ -70,7 +68,7 @@ export default async function GennemsnitligtPage() {
           </p>
         </QuickAnswer>
 
-        <div className="prose-editorial">
+        <div className="prose-content">
           <h2>Gennemsnitligt strømforbrug pr. husstandstype</h2>
           <p>
             Strømforbruget varierer markant afhængigt af husstandens størrelse,
@@ -173,24 +171,7 @@ export default async function GennemsnitligtPage() {
 
         <PriceBasis prices={prices} className="my-4" />
         <SwitchCta />
-
-        {/* FAQ */}
-        <div className="my-10">
-          <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">
-            Ofte stillede spørgsmål
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <details key={i} className="group border border-ink-200 rounded-card">
-                <summary className="cursor-pointer px-5 py-4 font-medium text-ink-900 hover:bg-surface-alt transition-colors rounded-card">
-                  {faq.question}
-                </summary>
-                <div className="px-5 pb-4 text-sm text-ink-600 leading-relaxed">
-                  {faq.answer}
-                </div>
-              </details>
-            ))}
-          </div>
+        <div className="prose-content my-10">
 
           <h2>Gennemsnit er et dårligt mål for en enkelt husstand</h2>
           <p>
@@ -259,6 +240,9 @@ export default async function GennemsnitligtPage() {
 
         </div>
       </article>
+      <FaqBand faqs={faqs} />
+      <WhoHowWhy path="/gennemsnitligt/" prices={prices} />
+      <AuthorBox />
     </>
   );
 }

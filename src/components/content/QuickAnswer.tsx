@@ -1,7 +1,6 @@
-export default function QuickAnswer({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="quick-answer">
-      {children}
-    </div>
-  );
+import type { ReactNode } from "react";
+
+/** Det direkte svar øverst på siden — familiens tip-box (mint, afrundet, ingen kant). */
+export default function QuickAnswer({ children }: { children: ReactNode }) {
+  return <div className="tip-box text-[1.0625rem] leading-relaxed [&_p]:m-0">{children}</div>;
 }

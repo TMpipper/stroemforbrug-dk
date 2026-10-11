@@ -1,229 +1,348 @@
 @import "tailwindcss";
 
+/* ============================================================
+   STRØMFORBRUG.DK — designsystem (Elpriser.dk-familiens system, overtaget ordret 11. okt. 2026)
+
+   Elpriser.dk's system (tjekelregning.dk → billigste-elselskab.nu → elselskab.dk → elpriser.dk), overtaget
+   ordret — Strømforbrug.dk er et site af Elpriser.dk og deler dets farver: ÉN grøn handlingsfarve
+   (#0B8457, 4,7:1 mod hvid tekst) og mintgrønne bånd (#EEF7F2) hvor søstrene har lyseblå.
+   Dyb navy som blæk, råhvid side, varm creme til FAQ-båndet, pilleknapper, kantløse kort
+   med en navy-tonet skygge. Amber er stadig forbeholdt "Billigst" og "Opdateret".
+
+   JS-spejl til OG-billede, manifest og theme-color: src/lib/theme.ts — hold i sync.
+
+   De gamle skalaer (ink-50…900, brand-200/300/400/800/900, cta, surface-alt) er ALIASER
+   for de samme ni farver, så de eksisterende klasser bliver ved med at virke, mens siden
+   skiftes over komponent for komponent.
+   Ny kode bruger tjekelregning-navnene.
+   ============================================================ */
+@theme {
+  /* flader */
+  --color-bg:            #F7F9FC;
+  --color-bg-warm:       #FFF8F1;
+  --color-bg-blue:       #EEF7F2;   /* mint — rollen hedder stadig bg-blue, så de fælles komponenter virker uændret */
+  --color-surface:       #FFFFFF;
+  --color-surface-alt:   #EEF7F2;
+  --color-border:        #E3E8F0;
+
+  /* tekst */
+  --color-ink:           #0B2A4A;
+  --color-ink-body:      #334155;
+  --color-ink-muted:     #5B6B80;
+
+  /* brand = navy / blå */
+  --color-brand:         #0B2A4A;
+  --color-brand-soft:    #EEF7F2;
+  --color-brand-50:      #EEF7F2;
+  --color-brand-100:     #D5EEDF;
+  --color-brand-500:     #3B6FD1;
+  --color-brand-600:     #1E4F8F;
+  --color-brand-700:     #0B2A4A;
+
+  /* accent = den ene grønne handlingsfarve */
+  --color-accent:        #0B8457;
+  --color-accent-hover:  #096B46;
+  --color-accent-soft:   #DFF5EA;
+  --color-on-accent:     #FFFFFF;
+
+  /* status */
+  --color-success:       #0B8457;
+  --color-success-soft:  #DFF5EA;
+  --color-success-ink:   #0F5A33;
+  --color-warning:       #9A5B00;
+  --color-warning-soft:  #FFF1DC;
+  --color-warning-ink:   #6E4300;
+  --color-danger:        #C7423E;
+  --color-danger-soft:   #FCE8E7;
+  --color-danger-ink:    #7F1D1D;
+
+  /* dekorativt (badges, illustrationer). Amber er den ENESTE farve, der trækker øjet —
+     brug den sparsomt: "Billigst" og "Opdateret", ikke mere. */
+  --color-amber:         #E9A23B;
+  --color-coral:         #C7423E;
+  --color-plum:          #7A3E6B;
+  --color-peach:         #FBDCC9;
+
+  /* diagrammer — prisniveauer (billig ≤ 33. percentil, dyr ≥ 67.), bløde nuancer; "nu" er navy.
+     Søjlerne bærer aldrig tekst: niveauet står også som ord i forklaring, tabel og tooltip.
+     Spejlet i src/lib/theme.ts (priceCheap/priceMid/priceExpensive/priceNow). Ejerens valg 5. okt. 2026. */
+  --color-price-cheap:     #6FCF97;
+  --color-price-mid:       #DCE3EC;
+  --color-price-expensive: #F28B82;
+  --color-price-now:       #0B2A4A;
+
+  /* ---- aliaser for de gamle klasser (kun dette site — brug dem ikke i ny kode) ---- */
+  --color-ink-50:        #F7F9FC;   /* = bg */
+  --color-ink-100:       #E3E8F0;   /* = border */
+  --color-ink-200:       #E3E8F0;   /* = border */
+  --color-ink-300:       #C5CFDD;   /* skillelinjer; aldrig tekst */
+  --color-ink-400:       #5B6B80;   /* = ink-muted */
+  --color-ink-500:       #5B6B80;   /* = ink-muted */
+  --color-ink-600:       #334155;   /* = ink-body */
+  --color-ink-700:       #334155;   /* = ink-body */
+  --color-ink-800:       #0B2A4A;   /* = ink */
+  --color-ink-900:       #0B2A4A;   /* = ink */
+  --color-brand-200:     #D5EEDF;   /* = brand-100 */
+  --color-brand-300:     #3B6FD1;   /* = brand-500 */
+  --color-brand-400:     #3B6FD1;   /* = brand-500 */
+  --color-brand-800:     #0B2A4A;   /* = brand */
+  --color-brand-900:     #0B2A4A;   /* = brand */
+  --color-cta:           #0B8457;   /* = accent */
+  --color-cta-hover:     #096B46;   /* = accent-hover */
+
+  /* form og dybde (navy-tonet) */
+  --radius-card:         12px;
+  --radius-btn:          9999px;
+  --radius-input:        9999px;
+  --radius-pill:         9999px;
+  --radius-img:          16px;
+  --shadow-sm:           0 1px 2px rgba(11, 42, 74, 0.06);
+  --shadow-md:           0 8px 16px rgba(11, 42, 74, 0.10);
+  --shadow-lg:           0 16px 32px rgba(11, 42, 74, 0.14);
+  --shadow-card:         0 8px 16px rgba(11, 42, 74, 0.10);
+  --shadow-card-hover:   0 12px 24px rgba(11, 42, 74, 0.14);
+  --shadow-lift:         0 16px 32px rgba(11, 42, 74, 0.14);
+}
+
+/* ============================================================
+   ALIASER FRA ELSELSKAB.DK's komponenter — hver linje slettes, når dens grep i src/ rammer 0.
+   `mark` var dette sites navn for amber; danger/warning/success-trinnene stammer fra
+   feed-migrationen den 25. september 2026. To bevidste afvigelser fra søsterens
+   aliastabel: ink-800 var BRØDTEKST her (72 steder), og brand-300 var LYS tekst på navy
+   (#3B6FD1 på navy giver 2,6:1). Ret dem ikke "tilbage".
+   ============================================================ */
+@theme {
+  --color-mark:        #E9A23B;   /* = amber       → bg-amber text-ink / ring-amber */
+  --color-mark-ink:    #0B2A4A;   /* = ink */
+  --color-danger-600:  #C7423E;   /* = danger */
+  --color-danger-700:  #7F1D1D;   /* = danger-ink */
+  --color-danger-50:   #FCE8E7;   /* = danger-soft */
+  --color-warning-600: #9A5B00;   /* = warning */
+  --color-warning-50:  #FFF1DC;   /* = warning-soft */
+  --color-warning-700: #6E4300;   /* = warning-ink */
+  --color-success-50:  #DFF5EA;   /* = success-soft */
+  --color-success-700: #0F5A33;   /* = success-ink */
+  --color-ink-800:     #334155;   /* = ink-body (bevidst) */
+  --color-brand-300:   #D5EEDF;   /* = brand-100 (bevidst) */
+}
+
+
+/* ============================================================
+   ALIASER FOR STRØMFORBRUG.DK's GAMLE NAVNE (det blå/gule system fra juli 2026) — hver linje
+   slettes, når dens grep i src/ rammer 0. Rollerne er oversat, ikke farverne: det gamle
+   brand-800 (#1e40af) var overskrifter og diagrammer → navy `ink`; accent-* (amber) var
+   fremhævning og lynet i logoet → amber kun hvor det markerer "Billigst"/spidsmåned, ellers
+   den grønne handlingsfarve; success-* → success-tokens; surface-alt/-muted → bg-blue/bg.
+   ink-400 var mørkere end ink-500 (en kontrastrettelse) — begge er ink-muted nu.
+   ============================================================ */
+@theme {
+  --color-accent-50:     #DFF5EA;   /* = accent-soft (var amber-50; fremhævede flader) */
+  --color-accent-100:    #DFF5EA;   /* = accent-soft */
+  --color-accent-200:    #D5EEDF;   /* = brand-100 (kanter på fremhævede flader) */
+  --color-accent-300:    #E9A23B;   /* = amber */
+  --color-accent-400:    #E9A23B;   /* = amber (lynet i det gamle logo) */
+  --color-accent-500:    #E9A23B;   /* = amber — kun "Billigst"/spidsmåned */
+  --color-accent-600:    #9A5B00;   /* = warning */
+  --color-accent-700:    #6E4300;   /* = warning-ink */
+  --color-success-100:   #DFF5EA;   /* = success-soft */
+  --color-success-500:   #0B8457;   /* = success */
+  --color-success-600:   #0B8457;   /* = success */
+  --color-surface-muted: #F7F9FC;   /* = bg (tabelhoveder) */
+  --spacing-section:     5rem;
+  --spacing-section-sm:  3rem;
+}
+
+/* next/font sætter --font-outfit på <html>; `inline` gør, at utilities læser variablen
+   på elementet i stedet for ved build. Selve skrifttypen sættes af body/h-reglerne
+   nedenfor — aldrig ved at gendeklarere tokenet under en scope-klasse (v4 bager den
+   ind i utilities). */
 @theme inline {
-  /* Brand blues — trust, data, authority */
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
-
-  /* Accent — electric yellow/amber for energy */
-  --color-accent-50: #fffbeb;
-  --color-accent-100: #fef3c7;
-  --color-accent-200: #fde68a;
-  --color-accent-300: #fcd34d;
-  --color-accent-400: #fbbf24;
-  --color-accent-500: #f59e0b;
-  --color-accent-600: #d97706;
-  --color-accent-700: #b45309;
-
-  /* Success green — savings, efficiency */
-  --color-success-50: #f0fdf4;
-  --color-success-100: #dcfce7;
-  --color-success-500: #22c55e;
-  --color-success-600: #16a34a;
-  --color-success-700: #15803d;
-
-  /* CTA — primary action color */
-  --color-cta: #1d4ed8;
-  --color-cta-hover: #1e40af;
-
-  /* Ink (warm neutrals) */
-  --color-ink-50: #fafaf9;
-  --color-ink-100: #f5f5f4;
-  --color-ink-200: #e7e5e4;
-  --color-ink-300: #d6d3d1;
-  --color-ink-400: #736b65;
-  --color-ink-500: #78716c;
-  --color-ink-600: #57534e;
-  --color-ink-700: #44403c;
-  --color-ink-800: #292524;
-  --color-ink-900: #1c1917;
-
-  /* Surface */
-  --color-surface: #ffffff;
-  --color-surface-alt: #f8fafc;
-  --color-surface-muted: #f1f5f9;
-
-  /* Fonts */
-  --font-body: var(--font-inter);
-  --font-heading: var(--font-space-grotesk);
-
-  /* Spacing */
-  --spacing-section: 5rem;
-  --spacing-section-sm: 3rem;
-
-  /* Radius */
-  --radius-card: 0.75rem;
-  --radius-btn: 0.5rem;
+  --font-body:    var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 
-body {
-  font-family: var(--font-body), system-ui, sans-serif;
-  color: var(--color-ink-800);
-  background: var(--color-surface);
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink-body);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+  :where(a, button, input, select, textarea, summary, [role="button"], [tabindex]):focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+  ::selection { background: var(--color-accent-soft); }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), system-ui, sans-serif;
+@utility container-site { margin-inline: auto; width: 100%; max-width: 1200px; padding-inline: 1.25rem; }
+@utility container-text { margin-inline: auto; width: 100%; max-width: 760px; padding-inline: 1.25rem; }
+@utility tabular { font-variant-numeric: tabular-nums; }
+/* En bred tabel i en container-text-spalte: 720 → 920 px på desktop. */
+@utility breakout { @media (width >= 64rem) { margin-inline: -6.25rem; } }
+
+/* Artikeltypografi.
+   Klassenavnet .prose-content beholdes (70 monteringssteder + Prose.tsx); reglerne er
+   tjekelregnings .prose-simple. EFTERKOMMER-selektorer med vilje: Prose.tsx splitter på
+   <!--FEED:tabel--> og pakker hvert fragment i sin egen <div>, så `.prose-content > h2`
+   ville ramme forbi hver eneste overskrift på de sider.
+   I @layer components, så utilities (et senere lag) vinder inde i .not-prose-blokke —
+   ellers taber `text-right` på en tabelcelle til reglen herunder. */
+@layer components {
+  .prose-content { color: var(--color-ink-body); }
+  .prose-content p { margin: 0 0 1.1rem; line-height: 1.7; }
+  .prose-content h2 { font-size: 1.75rem; line-height: 1.2; margin: 3rem 0 1rem; }
+  .prose-content h3 { font-size: 1.25rem; line-height: 1.3; margin: 2rem 0 0.6rem; }
+  .prose-content ul { list-style: disc; padding-left: 1.4rem; margin: 0 0 1.1rem; }
+  .prose-content ol { list-style: decimal; padding-left: 1.4rem; margin: 0 0 1.1rem; }
+  .prose-content li { margin: 0.35rem 0; line-height: 1.6; }
+  .prose-content li::marker { color: var(--color-brand-500); }
+  .prose-content table {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    margin: 1.25rem 0 1.75rem; font-size: 0.95rem;
+    border-radius: var(--radius-card); overflow: hidden;
+    box-shadow: var(--shadow-card); background: var(--color-surface);
+  }
+  .prose-content th, .prose-content td {
+    border-bottom: 1px solid var(--color-border); padding: 0.7rem 0.85rem;
+    text-align: left; vertical-align: top;
+  }
+  .prose-content th { font-weight: 600; background: var(--color-bg-blue); color: var(--color-ink); }
+  .prose-content tr:last-child td { border-bottom: 0; }
+  /* Rullevindue om tabeller fra HTML-strenge (Prose.tsx pakker dem ind). Kortet sidder på vinduet, ikke tabellen. */
+  .prose-content .table-scroll {
+    overflow-x: auto; margin: 1.25rem 0 1.75rem;
+    border-radius: var(--radius-card); box-shadow: var(--shadow-card); background: var(--color-surface);
+  }
+  .prose-content .table-scroll table { margin: 0; box-shadow: none; border-radius: 0; min-width: 100%; width: max-content; max-width: none; }
+  .prose-content .table-scroll td, .prose-content .table-scroll th { white-space: nowrap; }
+  @media (width >= 40rem) { .prose-content .table-scroll table { width: 100%; } .prose-content .table-scroll td, .prose-content .table-scroll th { white-space: normal; } }
+  .prose-content a:not(.btn-cta) {
+    color: var(--color-brand-600); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+    overflow-wrap: anywhere; /* rå URL'er som linktekst i WordPress-prosaen må ikke give vandret rulning */
+  }
+  .prose-content a:not(.btn-cta):hover { color: var(--color-brand); }
+  .prose-content strong { font-weight: 600; color: var(--color-ink); }
+  .prose-content blockquote {
+    margin: 1.5rem 0; padding: 1rem 1.25rem;
+    border-left: 4px solid var(--color-accent); background: var(--color-bg-warm);
+    border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  }
+  .prose-content .not-prose a { text-decoration: none; color: inherit; }
+  .prose-content .not-prose p { margin: 0; line-height: 1.4; }
+  .prose-content .not-prose :is(ul, ol) { list-style: none; padding: 0; margin: 0; }
+  .prose-content .not-prose li { margin: 0; }
+  .prose-content .not-prose table { margin: 0; box-shadow: none; border-radius: 0; font-size: inherit; }
+  .prose-content .not-prose :is(th, td) { border-bottom: 0; padding: 0; background: transparent; }
+
+  /* Link i indholdsstrenge (377 steder) — samme som prosalinks */
+  .content-link {
+    color: var(--color-brand-600); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+  }
+  .content-link:hover { color: var(--color-brand); }
+
+  /* CTA i indholdsstrenge: accent-pillen. Versaler og spærring er væk — tjekelregning har ingen. */
+  .btn-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background: var(--color-accent); color: var(--color-on-accent);
+    font-weight: 600; font-size: 1rem; line-height: 1.25;
+    border-radius: var(--radius-btn); box-shadow: var(--shadow-md);
+    text-decoration: none; white-space: nowrap;
+    transition: background-color 150ms ease-out, box-shadow 150ms ease-out;
+  }
+  .btn-cta:hover { background: var(--color-accent-hover); box-shadow: var(--shadow-lg); }
+
+  /* Navy CTA-blok inde i prosa — afløser den inline-stylede mørkegrønne kasse (24 indlæg + 12 beregnere) */
+  .cta-box {
+    margin: 2rem 0; padding: 2rem 1.5rem; border-radius: var(--radius-card);
+    background: var(--color-ink); color: rgba(255, 255, 255, 0.75);
+    text-align: center; box-shadow: var(--shadow-lift);
+  }
+  .cta-box p { margin: 0 0 1rem; line-height: 1.5; }
+  .cta-box__title { font-family: var(--font-heading); font-size: 1.375rem; font-weight: 600; margin: 0 0 0.5rem; }
+  .cta-box strong { color: #fff; }
+
+  /* Hvidt anbefalingskort inde i prosa — afløser den inline-stylede CHEAPEST_CTA (38 guider × 2) */
+  .cta-card {
+    margin: 2rem 0; padding: 1.5rem; border-radius: var(--radius-card);
+    background: var(--color-surface); box-shadow: var(--shadow-card);
+  }
+  .cta-card__row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .cta-card__body { flex: 1; min-width: 200px; }
+  .cta-card p { margin: 0 0 0.25rem; font-weight: 600; color: var(--color-ink); }
+  .cta-card ul { margin: 0; padding: 0; list-style: none; font-size: 0.875rem; color: var(--color-ink-muted); }
+  .cta-card li { margin: 0; }
+
+  .tip-box, .highlight-box { border-radius: var(--radius-card); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+  .tip-box { background: var(--color-accent-soft); color: var(--color-success-ink); }
+  .highlight-box { background: var(--color-bg-blue); color: var(--color-ink); }
+  .tip-box > :last-child, .highlight-box > :last-child { margin-bottom: 0; }
 }
 
-/* Skip link */
+/* Spring-til-indhold (layout.tsx) */
 .skip-link {
-  position: absolute;
-  top: -100%;
-  left: 1rem;
-  z-index: 100;
-  padding: 0.5rem 1rem;
-  background: var(--color-brand-800);
-  color: white;
-  border-radius: var(--radius-btn);
-  text-decoration: none;
-  font-weight: 600;
+  position: absolute; top: -100%; left: 1rem; z-index: 100;
+  padding: 0.5rem 1rem; background: var(--color-brand); color: #fff;
+  border-radius: var(--radius-btn); text-decoration: none; font-weight: 600;
+}
+.skip-link:focus { top: 0.5rem; }
+
+@keyframes shimmer { 0% { background-position: -400px 0 } 100% { background-position: 400px 0 } }
+.skeleton {
+  background: linear-gradient(90deg, var(--color-brand-50) 25%, var(--color-surface) 50%, var(--color-brand-50) 75%);
+  background-size: 800px 100%; animation: shimmer 1.4s infinite linear;
 }
 
-.skip-link:focus {
-  top: 0.5rem;
+/* ------------------------------------------------------------
+   Sitets egne gamle klasser, mappet på de nye tokens, indtil siderne er fejet
+   (prose-editorial → prose-content, quick-answer → tip-box, key-fact → Stats).
+   ------------------------------------------------------------ */
+@layer components {
+  .prose-editorial { color: var(--color-ink-body); line-height: 1.7; overflow-wrap: break-word; }
+  .prose-editorial p { margin: 0 0 1.1rem; line-height: 1.7; }
+  .prose-editorial h2 { font-size: 1.75rem; line-height: 1.2; margin: 3rem 0 1rem; font-family: var(--font-heading); color: var(--color-ink); font-weight: 600; letter-spacing: -0.01em; }
+  .prose-editorial h3 { font-size: 1.25rem; line-height: 1.3; margin: 2rem 0 0.6rem; font-family: var(--font-heading); color: var(--color-ink); font-weight: 600; }
+  .prose-editorial ul { list-style: disc; padding-left: 1.4rem; margin: 0 0 1.1rem; }
+  .prose-editorial ol { list-style: decimal; padding-left: 1.4rem; margin: 0 0 1.1rem; }
+  .prose-editorial li { margin: 0.35rem 0; line-height: 1.6; }
+  .prose-editorial li::marker { color: var(--color-brand-500); }
+  .prose-editorial table {
+    display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%;
+    border-collapse: separate; border-spacing: 0; margin: 1.25rem 0 1.75rem; font-size: 0.95rem;
+    border-radius: var(--radius-card); box-shadow: var(--shadow-card); background: var(--color-surface);
+  }
+  .prose-editorial th, .prose-editorial td { border-bottom: 1px solid var(--color-border); padding: 0.7rem 0.85rem; text-align: left; vertical-align: top; }
+  .prose-editorial th { font-weight: 600; background: var(--color-bg-blue); color: var(--color-ink); }
+  .prose-editorial tr:last-child td { border-bottom: 0; }
+  .prose-editorial strong { font-weight: 600; color: var(--color-ink); }
+  .prose-editorial a:not(.btn-cta) { color: var(--color-brand-600); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; overflow-wrap: anywhere; }
+  .prose-editorial a:not(.btn-cta):hover { color: var(--color-brand); }
+  .quick-answer { background: var(--color-accent-soft); color: var(--color-success-ink); border-radius: var(--radius-card); padding: 1.25rem 1.5rem; margin-bottom: 2rem; font-size: 1.0625rem; line-height: 1.7; }
+  .quick-answer p { margin: 0; }
+  .key-fact { background: var(--color-surface); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.25rem; text-align: center; }
+  .key-fact .number { font-size: 2rem; font-weight: 600; color: var(--color-ink); font-family: var(--font-heading); font-variant-numeric: tabular-nums; }
+  /* Energimærkets bogstaver: kontrast ≥ 4,5:1 på hvid; farverne følger diagrammernes prisniveauer (grøn → rød). */
+  .energy-a { color: var(--color-success-ink); }
+  .energy-b { color: #4d7c0f; }
+  .energy-c { color: #a16207; }
+  .energy-d { color: #c2410c; }
+  .energy-e, .energy-f { color: #b91c1c; }
+  .energy-g { color: #7f1d1d; }
 }
 
-/* Prose editorial content */
-.prose-editorial {
-  line-height: 1.75;
-  color: var(--color-ink-700);
-  overflow-wrap: break-word;
-  word-break: break-word;
+/* Tabeller skrevet direkte i JSX inde i .prose-content (uden .table-scroll): på telefoner ruller de selv i
+   stedet for at skubbe siden ud over kanten; fra sm beholder de kortet med fuld bredde. */
+@media (width < 40rem) {
+  .prose-content > table, .prose-content > div > table:not(.table-scroll table) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
-
-.prose-editorial h2 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--color-ink-900);
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.prose-editorial h3 {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--color-ink-900);
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-}
-
-.prose-editorial p {
-  margin-bottom: 1.25rem;
-}
-
-.prose-editorial ul, .prose-editorial ol {
-  margin-bottom: 1.25rem;
-  padding-left: 1.5rem;
-}
-
-.prose-editorial li {
-  margin-bottom: 0.5rem;
-}
-
-.prose-editorial table {
-  display: block;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 0.875rem;
-}
-
-.prose-editorial th {
-  background: var(--color-surface-muted);
-  font-weight: 600;
-  text-align: left;
-  padding: 0.75rem 1rem;
-  border-bottom: 2px solid var(--color-ink-200);
-}
-
-.prose-editorial td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--color-ink-200);
-}
-
-.prose-editorial tr:hover td {
-  background: var(--color-surface-alt);
-}
-
-.prose-editorial strong {
-  color: var(--color-ink-900);
-}
-
-.prose-editorial a {
-  color: var(--color-brand-700);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.prose-editorial a:hover {
-  color: var(--color-brand-900);
-}
-
-/* Quick answer box */
-.quick-answer {
-  background: var(--color-brand-50);
-  border-left: 4px solid var(--color-brand-600);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 2rem;
-  border-radius: 0 var(--radius-card) var(--radius-card) 0;
-  font-size: 1.0625rem;
-  line-height: 1.7;
-}
-
-/* CTA button */
-.btn-cta {
-  display: inline-block;
-  background: var(--color-cta);
-  color: white;
-  font-weight: 700;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-btn);
-  text-decoration: none;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: background 0.2s;
-}
-
-.btn-cta:hover {
-  background: var(--color-cta-hover);
-}
-
-/* Key fact box */
-.key-fact {
-  background: var(--color-accent-50);
-  border: 1px solid var(--color-accent-200);
-  border-radius: var(--radius-card);
-  padding: 1.25rem;
-  text-align: center;
-}
-
-.key-fact .number {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-brand-800);
-  font-family: var(--font-heading);
-}
-
-/* Energy label colors */
-/* Darkened to clear WCAG AA (4.5:1) on white. The previous values scored
-   2.94-3.30:1, so the energy-class labels were failing contrast on every
-   appliance page. Hue is preserved; only lightness changed. */
-.energy-a { color: #15803d; } /* 5.02:1 */
-.energy-b { color: #4d7c0f; } /* 4.99:1 */
-.energy-c { color: #a16207; } /* 4.92:1 */
-.energy-d { color: #c2410c; } /* 5.18:1 */
-.energy-e { color: #b91c1c; } /* 6.47:1 */
-.energy-f { color: #b91c1c; }
-.energy-g { color: #7f1d1d; }

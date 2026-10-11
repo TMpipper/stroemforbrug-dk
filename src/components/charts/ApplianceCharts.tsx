@@ -1,6 +1,7 @@
 import type { ApplianceData } from "@/lib/types";
 import { seasonalCost, replacementSaving, applianceRank, articleFor } from "@/lib/appliance-insights";
 import { formatKr, formatPrice } from "@/lib/format";
+import { color } from "@/lib/theme";
 
 /**
  * Inline SVG charts for the appliance pages.
@@ -14,11 +15,13 @@ import { formatKr, formatPrice } from "@/lib/format";
  * charts move with the price the page passes in and can never disagree with the tables beside them.
  */
 
-const BRAND = "#1e40af";
-const BRAND_LIGHT = "#93c5fd";
-const ACCENT = "#f59e0b";
-const INK = "#57534e";
-const GRID = "#e7e5e4";
+/* Farverne er temaets (src/lib/theme.ts): navy som den bærende, prisniveauernes grønne/røde til bedst/værst,
+   amber kun til spidsmåneden — den eneste farve, der må trække øjet. */
+const BRAND = color.ink;
+const BRAND_LIGHT = color.priceMid;
+const ACCENT = color.amber;
+const INK = color.inkMuted;
+const GRID = color.border;
 
 /* ---------- seasonal profile ---------- */
 
@@ -157,7 +160,7 @@ export function EnergyLabelChart({ data, price }: { data: ApplianceData; price: 
                 width={Math.max(2, w)}
                 height={rowH - 14}
                 rx="2"
-                fill={best ? "#16a34a" : worst ? ACCENT : BRAND_LIGHT}
+                fill={best ? color.priceCheap : worst ? color.priceExpensive : BRAND_LIGHT}
               />
               <text x={padL + w + 8} y={y + rowH / 2 + 4} fontSize="12" fill={INK}>
                 {formatKr(row.kwhPerYear)} kWh

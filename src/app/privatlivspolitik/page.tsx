@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/config";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import { pageMeta } from "@/lib/pages";
 
 export const metadata: Metadata = {
   title: "Privatlivspolitik",
@@ -11,14 +16,12 @@ export const metadata: Metadata = {
 
 export default function PrivatlivspolitikPage() {
   return (
-    <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <Breadcrumb items={[{ name: "Privatlivspolitik" }]} />
+    <>
+    <PageHero crumbs={[{ name: "Privatlivspolitik" }]} eyebrow="Privatliv" title="Privatlivspolitik" lastUpdated={pageMeta("/privatlivspolitik/").updated} motif={motifForPath("/privatlivspolitik/")} />
 
-      <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6">
-        Privatlivspolitik
-      </h1>
+      <article className="container-text py-10 md:py-14">
 
-      <div className="prose-editorial">
+      <div className="prose-content">
         <p><em>Senest opdateret: 29. juli 2026</em></p>
 
         <h2>Dataansvarlig</h2>
@@ -66,5 +69,8 @@ export default function PrivatlivspolitikPage() {
         </p>
       </div>
     </article>
+      <WhoHowWhy path="/privatlivspolitik/" />
+      <AuthorBox />
+    </>
   );
 }

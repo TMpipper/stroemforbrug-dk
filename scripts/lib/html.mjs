@@ -31,6 +31,10 @@ export function bodyText(html) {
     .replace(/<header[\s\S]*?<\/header>/gi, " ")
     .replace(/<nav[\s\S]*?<\/nav>/gi, " ")
     .replace(/<footer[\s\S]*?<\/footer>/gi, " ")
+    // Et blokelement slutter en sætning: en tabelcelle, en overskrift eller et <summary> må
+    // ikke løbe sammen med den næste, så en påstand kan låne omfang eller kilde derfra —
+    // eller omvendt blive dømt på en nabocelles ord.
+    .replace(/<\/(?:p|li|td|th|tr|h[1-6]|summary|article|section|div|dt|dd|caption|figcaption|blockquote|details)\s*>/gi, " . ")
     .replace(/<[^>]+>/g, " ")
     .replace(/&nbsp;|&#160;/g, " ")
     .replace(/&amp;/g, "&")
@@ -86,15 +90,42 @@ export function elementsWith(html, attr) {
   return out;
 }
 
+/**
+ * HTML'en uden elementerne med en given attribut — yderste først.
+ *
+ * `replace(el.html, " ")` element for element i dokumentrækkefølge gik galt, når et indre element
+ * (OBS-pillen i en anmærknings header) var byte-identisk med et andet steds på siden: den indre
+ * blev erstattet først — i det andet element — og så matchede det ydre ikke længere og blev stående.
+ * Derfor springes elementer, der ligger inde i et andet fundet element, over.
+ */
+export function stripElements(html, attr) {
+  const els = elementsWith(html, attr);
+  const outer = els.filter((e) => !els.some((o) => o !== e && o.html.length > e.html.length && o.html.includes(e.html)));
+  let out = html;
+  for (const el of outer) out = out.replace(el.html, " ");
+  return out;
+}
+
 /** Sætningen omkring et sted i teksten. Grænser: punktum, spørgsmålstegn, udråbstegn. */
 export function sentenceAt(body, at) {
-  const start = Math.max(body.lastIndexOf(". ", at), body.lastIndexOf("? ", at), body.lastIndexOf("! ", at));
-  const rest = body.slice(at);
-  const endRel = Math.min(
-    ...[". ", "? ", "! "].map((p) => {
-      const i = rest.indexOf(p);
-      return i === -1 ? rest.length : i + 1;
-    }),
-  );
-  return body.slice(start === -1 ? 0 : start + 1, at + endRel);
+  let start = -1;
+  let end = body.length;
+  for (const m of body.matchAll(/[.?!](?= )/g)) {
+    if (m[0] === "." && isAbbreviation(body, m.index)) continue;
+    if (m.index < at) start = m.index;
+    else { end = m.index + 1; break; }
+  }
+  return body.slice(start === -1 ? 0 : start + 1, end);
+}
+
+/**
+ * "nr. 1", "kr. 500", "ca. 4.000", "bl.a. abonnement" er ikke sætningsgrænser. Et punktum
+ * efter en forkortelse tæller kun som grænse, når næste ord starter med stort ("574 kr. Det
+ * er …" er to sætninger).
+ */
+const ABBREVIATION = /(?:^|[\s(/])(?:nr|kr|ca|mio|mia|md|pr|inkl|ekskl|evt|jf|kl|vs|st|tlf|dvs|osv|pkt|ift|hhv|bl\.a|f\.eks|m\.fl|o\.l|t\.o\.m|jan|feb|mar|apr|jun|jul|aug|sep|sept|okt|nov|dec)$/i;
+function isAbbreviation(body, dot) {
+  if (!ABBREVIATION.test(body.slice(Math.max(0, dot - 8), dot))) return false;
+  const next = body.slice(dot + 1).match(/\S/);
+  return !next || !/[A-ZÆØÅ]/.test(next[0]);
 }

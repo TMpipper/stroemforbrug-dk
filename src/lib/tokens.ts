@@ -79,3 +79,16 @@ export function invalidTokens(text: string): string[] {
   const valid = new Set([...text.matchAll(TOKEN_RE)].map((m) => m[0]));
   return [...text.matchAll(ANY_TOKEN_RE)].map((m) => m[0]).filter((t) => !valid.has(t));
 }
+
+/** Dansk typografi: et beløb, der slutter en sætning, får ikke to punktummer ("104 kr.." → "104 kr."). */
+export function collapseAbbreviationPeriods(text: string): string {
+  return text.replace(/\b(kr|md|pr|ca|fx|inkl|ekskl|t|nr)\.\.(?=\s|$|<)/g, "$1.");
+}
+
+/**
+ * Tabeller i HTML-strenge får et rullevindue (`.table-scroll`, som Elpriser.dk's Prose.tsx): kortet sidder på
+ * vinduet, og en bred tabel ruller sideværts i stedet for at skubbe siden ud over 390 px.
+ */
+export function wrapTables(html: string): string {
+  return html.replace(/<table\b[\s\S]*?<\/table>/g, (t) => `<div class="table-scroll">${t}</div>`);
+}

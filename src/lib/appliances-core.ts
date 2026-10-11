@@ -85,11 +85,11 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 <table>
 <thead><tr><th>Opvarmning</th><th>Årlig pris (2026)</th><th>CO₂-udledning</th></tr></thead>
 <tbody>
-<tr><td>Luft-til-vand varmepumpe</td><td>10.000-14.000 kr.</td><td>Lav (grøn strøm)</td></tr>
-<tr><td>Jordvarme</td><td>8.000-12.000 kr.</td><td>Lav (grøn strøm)</td></tr>
+<tr><td>Luft-til-vand varmepumpe</td><td>10.000-14.000 kr.</td><td>Lav (el)</td></tr>
+<tr><td>Jordvarme</td><td>8.000-12.000 kr.</td><td>Lav (el)</td></tr>
 <tr><td>Gasfyr</td><td>18.000-24.000 kr.</td><td>Høj (fossil)</td></tr>
 <tr><td>Oliefyr</td><td>22.000-30.000 kr.</td><td>Meget høj (fossil)</td></tr>
-<tr><td><a href="/elradiator/">Elradiatorer</a></td><td>25.000-40.000 kr.</td><td>Lav (grøn strøm)</td></tr>
+<tr><td><a href="/elradiator/">Elradiatorer</a></td><td>25.000-40.000 kr.</td><td>Lav (el)</td></tr>
 <tr><td>Fjernvarme</td><td>12.000-18.000 kr.</td><td>Varierer</td></tr>
 </tbody>
 </table>

@@ -11,6 +11,11 @@ import { danishDate } from "@/lib/format";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal, savingPerKwh, type SitePrices } from "@/lib/prices";
 import PriceBasis from "@/components/content/PriceBasis";
 import type { TokenPrices } from "@/lib/tokens";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import FaqBand from "@/components/marketing/FaqBand";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Strømforbrug 2 personer (2026) → Se normalt forbrug for par"),
@@ -67,17 +72,9 @@ export default async function ToPersonerPage() {
         }}
       />
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb items={[{ name: "Husstand", href: "/husstand/" }, { name: "2 personer" }]} />
+      <PageHero crumbs={[{ name: "Husstand", href: "/husstand/" }, { name: "2 personer" }]} eyebrow="Husstand" title="Strømforbrug for 2 personer — hvad er normalt?" lastUpdated={pageMeta("/husstand/2-personer/").updated} motif={motifForPath("/husstand/2-personer/")} />
 
-        <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {danishDate(pageMeta("/husstand/2-personer/").updated)}
-        </p>
-
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          Strømforbrug for 2 personer — hvad er normalt?
-        </h1>
+      <article className="container-text py-10 md:py-14">
 
         <QuickAnswer>
           <p>
@@ -88,7 +85,7 @@ export default async function ToPersonerPage() {
           </p>
         </QuickAnswer>
 
-        <div className="prose-editorial">
+        <div className="prose-content">
           <h2>Normalt strømforbrug for 2 personer — oversigt</h2>
           <p>
             Et par bruger mere strøm end en single, men langt fra dobbelt. Det skyldes at
@@ -165,19 +162,10 @@ export default async function ToPersonerPage() {
         <PriceBasis prices={prices} className="my-4" />
 
         <SwitchCta kwh={3500} household="en husstand med to voksne" />
-
-        <div className="my-10">
-          <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <details key={i} className="group border border-ink-200 rounded-card">
-                <summary className="cursor-pointer px-5 py-4 font-medium text-ink-900 hover:bg-surface-alt transition-colors rounded-card">{faq.question}</summary>
-                <div className="px-5 pb-4 text-sm text-ink-600 leading-relaxed">{faq.answer}</div>
-              </details>
-            ))}
-          </div>
-        </div>
       </article>
+      <FaqBand faqs={faqs} />
+      <WhoHowWhy path="/husstand/2-personer/" prices={prices} />
+      <AuthorBox />
     </>
   );
 }

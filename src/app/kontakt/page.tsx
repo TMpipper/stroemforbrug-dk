@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/config";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import { pageMeta } from "@/lib/pages";
 
 export const metadata: Metadata = {
   title: "Kontakt Strømforbrug.dk",
@@ -10,14 +15,12 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   return (
-    <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <Breadcrumb items={[{ name: "Kontakt" }]} />
+    <>
+    <PageHero crumbs={[{ name: "Kontakt" }]} eyebrow="Kontakt" title="Kontakt os" lastUpdated={pageMeta("/kontakt/").updated} motif={motifForPath("/kontakt/")} />
 
-      <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6">
-        Kontakt os
-      </h1>
+      <article className="container-text py-10 md:py-14">
 
-      <div className="prose-editorial">
+      <div className="prose-content">
         <p>
           Har du spørgsmål til indholdet på Strømforbrug.dk, eller vil du
           samarbejde med os? Du er altid velkommen til at kontakte os.
@@ -54,5 +57,8 @@ export default function KontaktPage() {
         </ul>
       </div>
     </article>
+      <WhoHowWhy path="/kontakt/" />
+      <AuthorBox />
+    </>
   );
 }

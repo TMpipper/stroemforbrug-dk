@@ -2,21 +2,25 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
-import { renderWith } from "@/lib/tokens";
+import { renderWith, wrapTables } from "@/lib/tokens";
 import { pageMeta } from "@/lib/pages";
 import { danishDate } from "@/lib/format";
 import PriceBasis from "@/components/content/PriceBasis";
 import { getAppliance, getAllSlugs } from "@/lib/appliances";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
-import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import SwitchCta from "@/components/marketing/SwitchCta";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import ApplianceInsights from "@/components/content/ApplianceInsights";
 import { EnergyLabelChart } from "@/components/charts/ApplianceCharts";
-import { sourcesFor, SOURCES_VERIFIED_AT } from "@/lib/sources";
+import { sourcesFor } from "@/lib/sources";
 import { Zap, Calendar, BarChart3 } from "lucide-react";
+import PageHero from "@/components/marketing/PageHero";
+import FaqBand from "@/components/marketing/FaqBand";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
+import { applianceMotif } from "@/lib/visuals/defaults";
 import { withCurrentYear } from "@/lib/format";
 
 // Reserved slugs that should NOT be handled by this dynamic route
@@ -85,7 +89,7 @@ export default async function AppliancePage({
   const t = tokenPrices(prices);
   const meta = pageMeta(`/${data.slug}/`);
   const updated = data.updated && data.updated > meta.updated ? data.updated : meta.updated;
-  const content = renderWith(t, data.content);
+  const content = wrapTables(renderWith(t, data.content));
   const quickAnswer = renderWith(t, data.quickAnswer);
   const faqs = data.faqs.map((f) => ({ ...f, answer: renderWith(t, f.answer) }));
 
@@ -119,19 +123,15 @@ export default async function AppliancePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
       />
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb items={[{ name: data.name }]} />
+      <PageHero
+        crumbs={[{ name: data.name }]}
+        eyebrow="Strømforbrug"
+        title={data.heading}
+        lastUpdated={updated}
+        motif={applianceMotif(data.slug)}
+      />
 
-        {/* Byline */}
-        <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret {danishDate(updated)}
-        </p>
-
-        {/* H1 */}
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          {data.heading}
-        </h1>
-
+      <article className="container-text py-10 md:py-14">
         {/* Quick Answer */}
         <QuickAnswer>
           <p>{quickAnswer}</p>
@@ -141,7 +141,7 @@ export default async function AppliancePage({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
           <div className="key-fact">
             <div className="flex items-center justify-center gap-1 mb-1">
-              <Zap className="w-4 h-4 text-accent-500" />
+              <Zap className="w-4 h-4 text-accent" />
               <span className="text-xs text-ink-500">Typisk forbrug</span>
             </div>
             <p className="number">{data.typicalKwh.toLocaleString("da-DK")}</p>
@@ -149,10 +149,10 @@ export default async function AppliancePage({
           </div>
           <div className="key-fact">
             <div className="flex items-center justify-center gap-1 mb-1">
-              <BarChart3 className="w-4 h-4 text-accent-500" />
+              <BarChart3 className="w-4 h-4 text-accent" />
               <span className="text-xs text-ink-500">Spænd</span>
             </div>
-            <p className="text-sm font-bold text-brand-800">
+            <p className="text-sm font-bold text-ink tabular">
               {data.kwhRange[0].toLocaleString("da-DK")}-
               {data.kwhRange[1].toLocaleString("da-DK")}
             </p>
@@ -160,7 +160,7 @@ export default async function AppliancePage({
           </div>
           <div className="key-fact">
             <div className="flex items-center justify-center gap-1 mb-1">
-              <Calendar className="w-4 h-4 text-accent-500" />
+              <Calendar className="w-4 h-4 text-accent" />
               <span className="text-xs text-ink-500">Årlig pris</span>
             </div>
             <p className="number">{costTypical.toLocaleString("da-DK")}</p>
@@ -170,7 +170,7 @@ export default async function AppliancePage({
             <div className="flex items-center justify-center gap-1 mb-1">
               <span className="text-xs text-ink-500">Standby</span>
             </div>
-            <p className="text-sm font-bold text-brand-800">
+            <p className="text-sm font-bold text-ink tabular">
               {data.standbyWatts} W
             </p>
             <p className="text-xs text-ink-500">
@@ -196,7 +196,7 @@ export default async function AppliancePage({
 
         {/* Main content */}
         <div
-          className="prose-editorial"
+          className="prose-content"
           dangerouslySetInnerHTML={{ __html: content }}
         />
 
@@ -210,20 +210,20 @@ export default async function AppliancePage({
         {data.energyLabels.length > 0 && (
           <div className="my-10">
             <EnergyLabelChart data={data} price={t.dk} />
-            <h2 className="font-heading text-xl font-medium text-ink-900 mb-4">
+            <h2 className="font-heading text-2xl font-semibold text-ink mb-4 mt-12">
               Energimærkning — {data.name}
             </h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
+            <div className="not-prose my-8 overflow-x-auto rounded-card bg-surface shadow-card">
+              <table className="w-full text-sm">
                 <thead>
                   <tr>
-                    <th className="text-left py-2 px-3 bg-surface-muted border-b-2 border-ink-200">
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-ink bg-bg-blue">
                       Energimærke
                     </th>
-                    <th className="text-left py-2 px-3 bg-surface-muted border-b-2 border-ink-200">
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-ink bg-bg-blue">
                       kWh/år
                     </th>
-                    <th className="text-left py-2 px-3 bg-surface-muted border-b-2 border-ink-200">
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-ink bg-bg-blue">
                       Pris/år
                     </th>
                   </tr>
@@ -231,17 +231,17 @@ export default async function AppliancePage({
                 <tbody>
                   {data.energyLabels.map((label) => (
                     <tr key={label.class} className="hover:bg-surface-alt">
-                      <td className="py-2 px-3 border-b border-ink-200 font-medium">
+                      <td className="px-4 py-3 border-t border-border text-ink-body font-medium">
                         <span
                           className={`energy-${label.class.toLowerCase().replace(/\+/g, "")}`}
                         >
                           {label.class}
                         </span>
                       </td>
-                      <td className="py-2 px-3 border-b border-ink-200">
+                      <td className="px-4 py-3 border-t border-border text-ink-body">
                         {label.kwhPerYear} kWh
                       </td>
-                      <td className="py-2 px-3 border-b border-ink-200">
+                      <td className="px-4 py-3 border-t border-border text-ink-body">
                         {Math.round(label.kwhPerYear * t.dk).toLocaleString("da-DK")}{" "}
                         kr.
                       </td>
@@ -256,23 +256,23 @@ export default async function AppliancePage({
         {/* Specific models */}
         {data.models.length > 0 && (
           <div className="my-10">
-            <h2 className="font-heading text-xl font-medium text-ink-900 mb-4">
+            <h2 className="font-heading text-2xl font-semibold text-ink mb-4 mt-12">
               Populære modeller — {data.name} strømforbrug
             </h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
+            <div className="not-prose my-8 overflow-x-auto rounded-card bg-surface shadow-card">
+              <table className="w-full text-sm">
                 <thead>
                   <tr>
-                    <th className="text-left py-2 px-3 bg-surface-muted border-b-2 border-ink-200">
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-ink bg-bg-blue">
                       Mærke
                     </th>
-                    <th className="text-left py-2 px-3 bg-surface-muted border-b-2 border-ink-200">
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-ink bg-bg-blue">
                       Model
                     </th>
-                    <th className="text-left py-2 px-3 bg-surface-muted border-b-2 border-ink-200">
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-ink bg-bg-blue">
                       kWh/år
                     </th>
-                    <th className="text-left py-2 px-3 bg-surface-muted border-b-2 border-ink-200">
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-ink bg-bg-blue">
                       Pris/år
                     </th>
                   </tr>
@@ -283,16 +283,16 @@ export default async function AppliancePage({
                       key={`${model.brand}-${model.model}`}
                       className="hover:bg-surface-alt"
                     >
-                      <td className="py-2 px-3 border-b border-ink-200 font-medium">
+                      <td className="px-4 py-3 border-t border-border text-ink-body font-medium">
                         {model.brand}
                       </td>
-                      <td className="py-2 px-3 border-b border-ink-200">
+                      <td className="px-4 py-3 border-t border-border text-ink-body">
                         {model.model}
                       </td>
-                      <td className="py-2 px-3 border-b border-ink-200">
+                      <td className="px-4 py-3 border-t border-border text-ink-body">
                         {model.kwh} kWh
                       </td>
-                      <td className="py-2 px-3 border-b border-ink-200">
+                      <td className="px-4 py-3 border-t border-border text-ink-body">
                         {Math.round(model.kwh * t.dk).toLocaleString("da-DK")}{" "}
                         kr.
                       </td>
@@ -304,64 +304,12 @@ export default async function AppliancePage({
           </div>
         )}
 
-        {/* FAQ section */}
-        <div className="my-10">
-          <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">
-            Ofte stillede spørgsmål om {data.name.toLowerCase()} strømforbrug
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <details
-                key={i}
-                className="group border border-ink-200 rounded-card"
-              >
-                <summary className="cursor-pointer px-5 py-4 font-medium text-ink-900 hover:bg-surface-alt transition-colors rounded-card">
-                  {faq.question}
-                </summary>
-                <div className="px-5 pb-4 text-sm text-ink-600 leading-relaxed">
-                  {faq.answer}
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-
         {/* Related appliances */}
         <RelatedAppliances slugs={data.relatedSlugs} />
-
-        {/* Sources — verified first-party links, plus the appliance's own named
-            references (EU regulations, manufacturer specs, test labs). The
-            generic homepage links that used to sit here were replaced: they
-            claimed to be specific pages and resolved to a front page. */}
-        {sources.length > 0 && (
-          <div className="mt-10 pt-6 border-t border-ink-200">
-            <p className="text-xs text-ink-400 mb-2 font-medium uppercase tracking-wide">
-              Kilder
-            </p>
-            <ul className="text-xs text-ink-500 space-y-1">
-              {sources.map((source, i) => (
-                <li key={i}>
-                  {source.url ? (
-                    <a
-                      href={source.url}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      className="hover:text-brand-700 underline"
-                    >
-                      {source.name}
-                    </a>
-                  ) : (
-                    source.name
-                  )}
-                </li>
-              ))}
-            </ul>
-            <p className="text-xs text-ink-400 mt-2">
-              Links kontrolleret {new Date(SOURCES_VERIFIED_AT).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}.
-            </p>
-          </div>
-        )}
       </article>
+      <FaqBand faqs={faqs} />
+      <WhoHowWhy path={`/${data.slug}/`} prices={prices} sources={sources} />
+      <AuthorBox />
     </>
   );
 }

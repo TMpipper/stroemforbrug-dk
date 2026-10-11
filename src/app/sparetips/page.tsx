@@ -11,6 +11,11 @@ import { danishDate } from "@/lib/format";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal, savingPerKwh, type SitePrices } from "@/lib/prices";
 import PriceBasis from "@/components/content/PriceBasis";
 import type { TokenPrices } from "@/lib/tokens";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import FaqBand from "@/components/marketing/FaqBand";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Spare strøm (2026) → 15 tips der sænker din elregning"),
@@ -60,17 +65,9 @@ export default async function SparetipsPage() {
         }}
       />
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb items={[{ name: "Sparetips" }]} />
+      <PageHero crumbs={[{ name: "Sparetips" }]} eyebrow="Guide" title="Spare strøm 2026 — 15 tips der sænker din elregning" lastUpdated={pageMeta("/sparetips/").updated} motif={motifForPath("/sparetips/")} />
 
-        <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {danishDate(pageMeta("/sparetips/").updated)}
-        </p>
-
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          Spare strøm 2026 — 15 tips der sænker din elregning
-        </h1>
+      <article className="container-text py-10 md:py-14">
 
         <QuickAnswer>
           <p>
@@ -82,7 +79,7 @@ export default async function SparetipsPage() {
           </p>
         </QuickAnswer>
 
-        <div className="prose-editorial">
+        <div className="prose-content">
           <h2>Oversigt: 15 sparetips rangeret efter besparelse</h2>
           <p>
             Ikke alle sparetips giver lige stor effekt. Vi har rangeret alle 15
@@ -318,19 +315,10 @@ export default async function SparetipsPage() {
         <PriceBasis prices={prices} className="my-4" />
 
         <SwitchCta />
-
-        <div className="my-10">
-          <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <details key={i} className="group border border-ink-200 rounded-card">
-                <summary className="cursor-pointer px-5 py-4 font-medium text-ink-900 hover:bg-surface-alt transition-colors rounded-card">{faq.question}</summary>
-                <div className="px-5 pb-4 text-sm text-ink-600 leading-relaxed">{faq.answer}</div>
-              </details>
-            ))}
-          </div>
-        </div>
       </article>
+      <FaqBand faqs={faqs} />
+      <WhoHowWhy path="/sparetips/" prices={prices} />
+      <AuthorBox />
     </>
   );
 }

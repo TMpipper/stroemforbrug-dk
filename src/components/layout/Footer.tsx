@@ -1,88 +1,133 @@
 import Link from "next/link";
+import Logo, { FamilyLine } from "@/components/brand/Logo";
+import Wave from "@/components/marketing/Wave";
 import { SITE_CONFIG } from "@/lib/config";
+import { getPublishedAppliances } from "@/lib/appliances";
+import { isLive } from "@/lib/publish";
+import type { NavLang } from "./nav";
 
-export default function Footer() {
+type Column = { title: string; links: Array<[href: string, label: string, publishDate?: string]> };
+
+const COLS: Record<NavLang, Column[]> = {
+  da: [
+    {
+      title: "Strømforbrug",
+      links: [
+        ["/", "Strømforbrug i Danmark"],
+        ["/apparater/", "Alle apparater", "2026-10-12"],
+        ["/stromslugere/", "Strømslugere i hjemmet"],
+        ["/standby/", "Standby-forbrug"],
+        ["/gennemsnitligt/", "Gennemsnitligt strømforbrug"],
+        ["/sparetips/", "Sparetips"],
+        ["/spare-paa-stroemmen/", "Spar på strømmen"],
+      ],
+    },
+    {
+      title: "Husstand og varme",
+      links: [
+        ["/husstand/", "Strømforbrug pr. husstand"],
+        ["/husstand/1-person/", "1 person"],
+        ["/husstand/2-personer/", "2 personer"],
+        ["/husstand/familie/", "Familie"],
+        ["/husstand/med-varmepumpe/", "Med varmepumpe"],
+        ["/varmepumpe/", "Varmepumpens strømforbrug"],
+        ["/varmepumpe/luft-til-luft/", "Luft-til-luft"],
+        ["/varmepumpe/luft-til-vand/", "Luft-til-vand"],
+      ],
+    },
+    {
+      title: "Priser og værktøjer",
+      links: [
+        ["/beregner/", "Strømberegner"],
+        ["/elpriser/", "Elpriser time for time", "2026-10-12"],
+        ["/hvad-koster-en-kwh/", "Hvad koster en kWh?"],
+        ["/hvad-koster-det-at-lade-en-elbil/", "Hvad koster det at lade en elbil?"],
+      ],
+    },
+    {
+      title: "Om",
+      links: [
+        ["/om-os/", "Om Strømforbrug.dk"],
+        ["/metode/", "Sådan regner vi", "2026-10-12"],
+        ["/kontakt/", "Kontakt"],
+        ["/privatlivspolitik/", "Privatlivspolitik"],
+        ["/sitemap.xml", "Sitemap"],
+      ],
+    },
+  ],
+};
+
+/** <footer> er semantisk med vilje: audit-claims fjerner den, før den leder efter påstande. */
+export default function Footer({ lang = "da" }: { lang?: NavLang }) {
+  const cols = COLS[lang];
+  const appliances = [...getPublishedAppliances()].sort((a, b) => a.name.localeCompare(b.name, "da"));
   return (
-    <footer className="bg-ink-900 text-ink-300 mt-20">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
-          {/* About */}
-          <div>
-            <h3 className="font-heading font-medium text-white mb-3">
-              Strømforbrug.dk
-            </h3>
-            <p className="text-sm leading-relaxed">
-              Danmarks guide til strømforbrug. Vi hjælper dig med at forstå,
-              beregne og reducere dit strømforbrug.
+    <footer className="mt-24 text-white">
+      <Wave fill="var(--color-ink)" />
+      <div className="bg-ink">
+        <div className="container-site grid gap-10 py-14 md:grid-cols-4 lg:grid-cols-6">
+          <div className="md:col-span-4 lg:col-span-2">
+            <Logo inverted lang={lang} family={false} />
+            <p className="mt-3">
+              <FamilyLine inverted className="text-xs" />
+            </p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
+              {SITE_CONFIG.name} drives af {SITE_CONFIG.company.legalName} — samme selskab, samme data og samme metode som{" "}
+              <a href={SITE_CONFIG.parent.url} className="underline hover:text-white" data-family-link>
+                {SITE_CONFIG.parent.name}
+              </a>
+              . Siden har reklamelinks: klikker du videre til et elselskab, vi har en aftale med, kan vi få provision.
+              Din pris er den samme, og apparaternes priser regnes med hele markedets marginalpris — aldrig en partners.
             </p>
           </div>
+          {cols.map((c) => (
+            <div key={c.title}>
+              <p className="text-sm font-semibold text-white">{c.title}</p>
+              <ul className="mt-3 space-y-2 text-sm text-white/70">
+                {c.links
+                  .filter(([, , publishDate]) => !publishDate || isLive(publishDate))
+                  .map(([href, label]) => (
+                    <li key={href}>
+                      {href.endsWith(".xml") ? (
+                        <a href={href} className="hover:text-white">{label}</a>
+                      ) : (
+                        <Link href={href} className="hover:text-white">{label}</Link>
+                      )}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))}
+        </div>
 
-          {/* Links */}
-          <div>
-            <h3 className="font-heading font-medium text-white mb-3">
-              Populære sider
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/beregner/" className="hover:text-white transition-colors">
-                  Strømberegner
+        <div className="border-t border-white/10">
+          <div className="container-site py-8">
+            <p className="text-sm font-semibold text-white">Apparaternes strømforbrug</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {appliances.map((a) => (
+                <Link
+                  key={a.slug}
+                  href={`/${a.slug}/`}
+                  className="rounded-pill bg-white/10 px-3 py-1 text-xs text-white/80 transition-colors hover:bg-white/20 hover:text-white"
+                >
+                  {a.name}
                 </Link>
-              </li>
-              <li>
-                <Link href="/varmepumpe/" className="hover:text-white transition-colors">
-                  Varmepumpe forbrug
-                </Link>
-              </li>
-              <li>
-                <Link href="/gennemsnitligt/" className="hover:text-white transition-colors">
-                  Gennemsnitligt forbrug
-                </Link>
-              </li>
-              <li>
-                <Link href="/husstand/" className="hover:text-white transition-colors">
-                  Husstand forbrug
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="font-heading font-medium text-white mb-3">
-              Om os
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/om-os/" className="hover:text-white transition-colors">
-                  Om Strømforbrug.dk
-                </Link>
-              </li>
-              <li>
-                <Link href="/kontakt/" className="hover:text-white transition-colors">
-                  Kontakt
-                </Link>
-              </li>
-              <li>
-                <Link href="/privatlivspolitik/" className="hover:text-white transition-colors">
-                  Privatlivspolitik
-                </Link>
-              </li>
-              <li>
-                <Link href="/sitemap.xml" className="hover:text-white transition-colors">
-                  Sitemap
-                </Link>
-              </li>
-            </ul>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-ink-700 pt-6 text-xs text-ink-300">
-          <p>
-            &copy; {new Date().getFullYear()} {SITE_CONFIG.company.legalName} &middot; CVR {SITE_CONFIG.company.cvr} &middot; {SITE_CONFIG.company.address}
-          </p>
-          <p className="mt-1">
-            Denne side indeholder reklamelinks. Vi modtager kommission fra vores partnere, hvilket ikke påvirker vores anbefalinger.
-          </p>
+        <div className="border-t border-white/10">
+          <div className="container-site py-6 text-xs text-white/70">
+            <p>
+              © {new Date().getFullYear()} · {SITE_CONFIG.company.legalName} · CVR{" "}
+              <a href={SITE_CONFIG.company.cvrUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
+                {SITE_CONFIG.company.cvr}
+              </a>{" "}
+              · {SITE_CONFIG.company.address} ·{" "}
+              <a href={`mailto:${SITE_CONFIG.company.email}`} className="hover:text-white">{SITE_CONFIG.company.email}</a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

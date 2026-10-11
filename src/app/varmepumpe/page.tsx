@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
-import { renderWith } from "@/lib/tokens";
+import { renderWith, wrapTables } from "@/lib/tokens";
 import PriceBasis from "@/components/content/PriceBasis";
 import { getAppliance } from "@/lib/appliances";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
@@ -15,6 +15,11 @@ import { Zap, Calendar, BarChart3 } from "lucide-react";
 import { withCurrentYear } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
 import { danishDate } from "@/lib/format";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
+import FaqBand from "@/components/marketing/FaqBand";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Varmepumpe strømforbrug (2026) → Se kWh og pris pr. type"),
@@ -52,15 +57,9 @@ export default async function VarmepumpePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
       />
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb items={[{ name: "Varmepumpe" }]} />
-        <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {danishDate(pageMeta("/varmepumpe/").updated)}
-        </p>
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          {data.heading}
-        </h1>
+      <PageHero crumbs={[{ name: "Varmepumpe" }]} eyebrow="Varmepumpe" title={data.heading} lastUpdated={pageMeta("/varmepumpe/").updated} motif={motifForPath("/varmepumpe/")} />
+
+      <article className="container-text py-10 md:py-14">
         <QuickAnswer><p>{renderWith(t, data.quickAnswer)}</p></QuickAnswer>
 
         {/* Sub-page links */}
@@ -121,28 +120,15 @@ export default async function VarmepumpePage() {
         />
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
 
-        <div className="prose-editorial" dangerouslySetInnerHTML={{ __html: renderWith(t, data.content) }} />
+        <div className="prose-content" dangerouslySetInnerHTML={{ __html: wrapTables(renderWith(t, data.content)) }} />
 
         <SwitchCta kwh={9000} household="et hus med varmepumpe" />
 
-        <div className="my-10">
-          <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">
-            Ofte stillede spørgsmål om varmepumpe strømforbrug
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <details key={i} className="group border border-ink-200 rounded-card">
-                <summary className="cursor-pointer px-5 py-4 font-medium text-ink-900 hover:bg-surface-alt transition-colors rounded-card">
-                  {faq.question}
-                </summary>
-                <div className="px-5 pb-4 text-sm text-ink-600 leading-relaxed">{faq.answer}</div>
-              </details>
-            ))}
-          </div>
-        </div>
-
         <RelatedAppliances slugs={data.relatedSlugs} />
       </article>
+      <FaqBand faqs={faqs} />
+      <WhoHowWhy path="/varmepumpe/" prices={prices} />
+      <AuthorBox />
     </>
   );
 }

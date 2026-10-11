@@ -3,7 +3,6 @@ import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { getPublishedAppliances } from "@/lib/appliances";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
-import Breadcrumb from "@/components/layout/Breadcrumb";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import { WattCostTable, QuickLookup } from "@/components/content/WattReference";
 import { formatKr, formatPrice, danishMonth } from "@/lib/format";
@@ -11,6 +10,12 @@ import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/
 import type { TokenPrices } from "@/lib/tokens";
 import PriceBasis from "@/components/content/PriceBasis";
 import { withCurrentYear } from "@/lib/format";
+import PageHero from "@/components/marketing/PageHero";
+import { motifForPath } from "@/lib/visuals/defaults";
+import { pageMeta } from "@/lib/pages";
+import FaqBand from "@/components/marketing/FaqBand";
+import WhoHowWhy from "@/components/marketing/WhoHowWhy";
+import AuthorBox from "@/components/marketing/AuthorBox";
 
 
 const faqsFor = (t: TokenPrices) => [
@@ -70,21 +75,16 @@ export default async function BeregnerPage() {
         }}
       />
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-        <Breadcrumb items={[{ name: "Strømberegner" }]} />
+      <PageHero
+        crumbs={[{ name: "Strømberegner" }]}
+        eyebrow="Beregner"
+        title="Strømberegner — beregn dit forbrug og pris"
+        lede={`Vælg et apparat eller en effekt, sæt brugen, og se hvad det koster ved månedens marginalpris — ${formatPrice(t.dk1)} kr./kWh i vest og ${formatPrice(t.dk2)} kr./kWh i øst, uden abonnement.`}
+        lastUpdated={pageMeta("/beregner/").updated}
+        motif={motifForPath("/beregner/")}
+      />
 
-        <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-4 leading-tight">
-          Strømberegner — beregn dit forbrug og pris
-        </h1>
-
-        <div className="quick-answer mb-8">
-          <p>
-            Brug vores strømberegner til at beregne præcist hvad dit
-            strømforbrug koster. Vælg et apparat nedenfor, eller brug de
-            individuelle beregnere på hvert apparats side for mere detaljerede
-            resultater.
-          </p>
-        </div>
+      <div className="container-text py-10 md:py-14">
 
         {/* General calculator */}
         <ForbrugBeregner
@@ -141,10 +141,10 @@ export default async function BeregnerPage() {
             <Link
               key={a.slug}
               href={`/${a.slug}/`}
-              className="flex items-center gap-2 p-3 rounded-card border border-ink-200 hover:border-brand-300 hover:bg-brand-50/50 transition-all text-sm"
+              className="flex min-w-0 items-center gap-2 rounded-card bg-surface p-3 text-sm shadow-sm transition-shadow hover:shadow-card"
             >
-              <span className="font-medium text-ink-800">{a.name}</span>
-              <span className="text-xs text-ink-400 ml-auto">
+              <span className="min-w-0 truncate font-medium text-ink">{a.name}</span>
+              <span className="ml-auto shrink-0 text-xs text-ink-muted">
                 {a.typicalKwh} kWh
               </span>
             </Link>
@@ -232,23 +232,10 @@ export default async function BeregnerPage() {
 
         <QuickLookup price={t.dk} />
 
-        <section className="my-10">
-          <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">
-            Ofte stillede spørgsmål om strømberegning
-          </h2>
-          <div className="space-y-6">
-            {faqs.map((faq) => (
-              <div key={faq.question}>
-                <h3 className="font-heading text-base font-medium text-ink-900 mb-2">
-                  {faq.question}
-                </h3>
-                <p className="text-ink-700 text-sm">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
       </div>
+      <FaqBand faqs={faqs} />
+      <WhoHowWhy path="/beregner/" prices={prices} />
+      <AuthorBox />
     </>
   );
 }
