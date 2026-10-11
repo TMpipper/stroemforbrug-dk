@@ -36,7 +36,7 @@ for (const f of files) {
   const html = readFileSync(f, "utf8");
   const path = pathOf(f);
   const frames = [...html.matchAll(IFRAME)];
-  const expected = path === "/" ? 1 : path === "/elpriser/" ? 2 : heavy.includes(path) ? 1 : path === "/varmepumpe/" ? 1 : 0;
+  const expected = path === "/" ? 1 : path === "/elpriser/" ? 1 : heavy.includes(path) ? 1 : path === "/varmepumpe/" ? 1 : 0;
   if (frames.length !== expected) fail(`${path}: ${frames.length} iframe(s) fra elpriser.dk, ventede ${expected}`);
   for (const m of frames) {
     if (!/title="[^"]+"/.test(m[0])) fail(`${path}: iframen mangler title`);

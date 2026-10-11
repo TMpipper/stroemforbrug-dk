@@ -73,22 +73,14 @@ export default async function ElpriserPage() {
         crumbs={[{ name: "Elpriser time for time" }]}
         eyebrow="Elpriser"
         title="Elpriser time for time — og hvad de betyder for dine apparater"
-        lede={`I dag er strømmen billigst ${hourSpan(d.cheapest)} og dyrest ${hourSpan(d.dearest)} i Vestdanmark — ${formatPrice(d.min)} mod ${formatPrice(d.max)} kr./kWh. Kortene herunder er Elpriser.dk&apos;s; tabellen regner, hvad én gang koster i hver ende af døgnet.`}
+        lede={`I dag er strømmen billigst ${hourSpan(d.cheapest)} og dyrest ${hourSpan(d.dearest)} i Vestdanmark — ${formatPrice(d.min)} mod ${formatPrice(d.max)} kr./kWh. Kortet herunder er Elpriser.dk&apos;s — skriv dit postnummer for din egen nettarif; tabellen regner, hvad én gang koster i hver ende af døgnet.`}
         lastUpdated={pageMeta(PATH).updated}
         motif={motifForPath(PATH)}
       />
 
       <div className="container-text py-10 md:py-14">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-6 breakout">
-          <div>
-            <h2 className="mb-3 font-heading text-xl font-semibold text-ink">Vestdanmark (DK1)</h2>
-            <ElpriserWidget sted="dk1" />
-          </div>
-          <div>
-            <h2 className="mb-3 font-heading text-xl font-semibold text-ink">Østdanmark (DK2)</h2>
-            <ElpriserWidget sted="dk2" />
-          </div>
-        </div>
+        {/* Ét kort: det har selv postnummerfeltet, så læseren skifter landsdel og netområde inde i kortet. */}
+        <ElpriserWidget sted="dk1" />
 
         <section className="mt-14" aria-labelledby="apparater-i-dag">
           <h2 id="apparater-i-dag" className="font-heading text-2xl font-semibold text-ink md:text-3xl">
@@ -152,7 +144,7 @@ export default async function ElpriserPage() {
           </p>
           <h2>Elpriser.dk&apos;s kort på dit eget website</h2>
           <p>
-            Kortene ovenfor er Elpriser.dk&apos;s elpris-widget — den samme, enhver kan sætte på sit website gratis. Vælg landsdel eller
+            Kortet ovenfor er Elpriser.dk&apos;s elpris-widget — den samme, enhver kan sætte på sit website gratis. Vælg landsdel eller
             postnummer, og priserne opdateres automatisk hver dag.
           </p>
         </div>
