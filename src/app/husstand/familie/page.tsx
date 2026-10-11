@@ -4,8 +4,13 @@ import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
-import { withCurrentYear } from "@/lib/pricing";
+import SwitchCta from "@/components/marketing/SwitchCta";
+import { withCurrentYear, formatKr, formatPrice } from "@/lib/format";
+import { pageMeta } from "@/lib/pages";
+import { danishDate } from "@/lib/format";
+import { getPrices, tokenPrices, calculatorPrices, calculatorDeal, savingPerKwh, type SitePrices } from "@/lib/prices";
+import PriceBasis from "@/components/content/PriceBasis";
+import type { TokenPrices } from "@/lib/tokens";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Strømforbrug familie (2026) → Normalt forbrug for 4 personer"),
@@ -14,18 +19,31 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}/husstand/familie/` },
 };
 
-const faqs = [
-  { question: "Hvor meget strøm bruger en familie på 4?", answer: "En familie på 4 i et parcelhus bruger typisk 4.000-5.500 kWh/år uden varmepumpe, svarende til 7.440-10.230 kr. Med varmepumpe stiger det til 7.000-11.000 kWh/år." },
+const faqsFor = (t: TokenPrices, prices: SitePrices) => {
+  const deal = prices.deals.DK1;
+  const cheapestMarginal = deal.cheapest?.marginalKrPerKwh ?? t.dk1;
+  const cheapestName = deal.cheapest?.supplierName ?? "den billigste aftale";
+  const saving = savingPerKwh(prices, "DK1");
+  return [
+  { question: "Hvor meget strøm bruger en familie på 4?", answer: `En familie på 4 i et parcelhus bruger typisk 4.000-5.500 kWh/år uden varmepumpe, svarende til ${formatKr(4000 * t.dk)}-${formatKr(5500 * t.dk)} kr. Med varmepumpe stiger det til 7.000-11.000 kWh/år.` },
   { question: "Hvad er normalt strømforbrug for en familie?", answer: "For en gennemsnitlig dansk familie (2 voksne + 2 børn) i et hus er 4.000-5.500 kWh/år normalt. Over 6.000 kWh (uden varmepumpe) er højt og tyder på besparelsespotentiale." },
-  { question: "Hvad koster strøm for en familie om måneden?", answer: "Ved 1,86 kr./kWh koster det ca. 618-856 kr./md. uden varmepumpe. Med varmepumpe stiger det til 1.086-1.704 kr./md. i gennemsnit (mere om vinteren, mindre om sommeren)." },
+  { question: "Hvad koster strøm for en familie om måneden?", answer: `Ved ${formatPrice(t.dk)} kr./kWh koster det ca. ${formatKr(4000 * t.dk / 12)}-${formatKr(5500 * t.dk / 12)} kr./md. uden varmepumpe. Med varmepumpe stiger det til ${formatKr(7000 * t.dk / 12)}-${formatKr(11000 * t.dk / 12)} kr./md. i gennemsnit (mere om vinteren, mindre om sommeren).` },
   { question: "Hvad bruger mest strøm i en familie?", answer: "De tre største poster er: 1) køl/frys (400-600 kWh), 2) tøjvask + tørring (400-750 kWh), 3) madlavning (300-500 kWh). Tørretumbleren er ofte den enkeltstående dyreste post." },
   { question: "Bruger familier med børn mere strøm?", answer: "Ja, ca. 500-1.000 kWh mere pr. barn (ekstra vask, tørring, belysning, elektronik). Teenagere med gaming-pc bruger mest — en gaming-pc kan alene tilføje 200-500 kWh/år." },
-  { question: "Hvor meget sparer en familie ved at skifte elselskab?", answer: "Med 5.000 kWh/år sparer I ca. 862 kr./år ved at skifte fra en gennemsnitlig elaftale (1,95 kr./kWh alt i alt) til den billigste (1,77 kr./kWh inkl. abonnement og introrabat)." },
+  { question: "Hvor meget sparer en familie ved at skifte elselskab?", answer: `Med 5.000 kWh/år sparer I ca. ${formatKr(5000 * saving)} kr./år ved at skifte fra markedets marginalpris (${formatPrice(t.dk1)} kr./kWh) til den billigste rene, varige aftale (${cheapestName}, ${formatPrice(cheapestMarginal)} kr./kWh) — begge uden abonnement, Vestdanmark. Velkomstrabatter og introtilbud er ikke regnet med.` },
   { question: "Er 7.000 kWh meget for en familie på 4?", answer: "Uden varmepumpe er 7.000 kWh højt og tyder på gammel tørretumbler, gammel fryser/køleskab eller elvarme. Med varmepumpe er 7.000 kWh normalt." },
-  { question: "Hvad er strømforbruget for en familie på 5?", answer: "En familie på 5 bruger typisk 4.500-6.000 kWh/år (8.370-11.160 kr.) uden varmepumpe. Den 5. person tilføjer ca. 500-800 kWh i ekstra vask, madlavning og elektronik." },
-];
+  { question: "Hvad er strømforbruget for en familie på 5?", answer: `En familie på 5 bruger typisk 4.500-6.000 kWh/år (${formatKr(4500 * t.dk)}-${formatKr(6000 * t.dk)} kr.) uden varmepumpe. Den 5. person tilføjer ca. 500-800 kWh i ekstra vask, madlavning og elektronik.` },
+  ];
+};
 
-export default function FamiliePage() {
+export default async function FamiliePage() {
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const deal = prices.deals.DK1;
+  const cheapestMarginal = deal.cheapest?.marginalKrPerKwh ?? t.dk1;
+  const cheapestName = deal.cheapest?.supplierName ?? "den billigste aftale";
+  const saving = savingPerKwh(prices, "DK1");
+  const faqs = faqsFor(t, prices);
   return (
     <>
       <script
@@ -43,7 +61,7 @@ export default function FamiliePage() {
               description: "En familie på 4 bruger 4.000-5.500 kWh strøm om året.",
               url: `${SITE_CONFIG.url}/husstand/familie/`,
               datePublished: "2026-07-29",
-              dateModified: SITE_CONFIG.lastUpdated,
+              dateModified: pageMeta("/husstand/familie/").updated,
             }),
           ]),
         }}
@@ -54,7 +72,7 @@ export default function FamiliePage() {
 
         <p className="text-xs text-ink-400 mb-4">
           Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {new Date(SITE_CONFIG.lastUpdated).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}
+          {danishDate(pageMeta("/husstand/familie/").updated)}
         </p>
 
         <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
@@ -64,7 +82,7 @@ export default function FamiliePage() {
         <QuickAnswer>
           <p>
             En dansk familie på 4 i et parcelhus bruger typisk 4.000-5.500 kWh
-            strøm om året uden varmepumpe, svarende til 7.440-10.230 kr. Med
+            strøm om året uden varmepumpe, svarende til {formatKr(4000 * t.dk)}-{formatKr(5500 * t.dk)} kr. Med
             varmepumpe stiger forbruget til 7.000-11.000 kWh/år. De største
             strømslugere er køl/frys, tørretumbler og madlavning.
           </p>
@@ -82,10 +100,10 @@ export default function FamiliePage() {
               <tr><th>Familiestørrelse</th><th>kWh/år (uden VP)</th><th>kWh/år (med VP)</th><th>Pris/år (uden VP)</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>2 voksne + 1 barn</strong></td><td>3.500-4.500</td><td>6.500-9.500</td><td>6.510-8.370 kr.</td></tr>
-              <tr><td><strong>2 voksne + 2 børn</strong></td><td>4.000-5.500</td><td>7.000-11.000</td><td>7.440-10.230 kr.</td></tr>
+              <tr><td><strong>2 voksne + 1 barn</strong></td><td>3.500-4.500</td><td>6.500-9.500</td><td>{formatKr(3500 * t.dk)}-{formatKr(4500 * t.dk)} kr.</td></tr>
+              <tr><td><strong>2 voksne + 2 børn</strong></td><td>4.000-5.500</td><td>7.000-11.000</td><td>{formatKr(4000 * t.dk)}-{formatKr(5500 * t.dk)} kr.</td></tr>
               <tr><td><strong>2 voksne + 3 børn</strong></td><td>4.500-6.000</td><td>7.500-12.000</td><td>11.250-11.160 kr.</td></tr>
-              <tr><td><strong>Storfamilie (6+)</strong></td><td>5.500-7.500</td><td>8.500-13.500</td><td>13.750-13.950 kr.</td></tr>
+              <tr><td><strong>Storfamilie (6+)</strong></td><td>5.500-7.500</td><td>8.500-13.500</td><td>{formatKr(7400 * t.dk)}-{formatKr(7500 * t.dk)} kr.</td></tr>
             </tbody>
           </table>
 
@@ -100,14 +118,14 @@ export default function FamiliePage() {
               <tr><th>Kategori</th><th>kWh/år</th><th>Andel</th><th>Pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong><Link href="/koeleskab/">Køl og frys</Link></strong></td><td>300-500 kWh</td><td>6-10%</td><td>558-930 kr.</td></tr>
-              <tr><td><strong><Link href="/toerretumbler/">Tørretumbler</Link></strong></td><td>300-700 kWh</td><td>6-15%</td><td>558-1.302 kr.</td></tr>
-              <tr><td><strong>Madlavning (<Link href="/ovn/">ovn</Link>, <Link href="/induktion/">komfur</Link>)</strong></td><td>300-500 kWh</td><td>6-10%</td><td>558-930 kr.</td></tr>
-              <tr><td><strong><Link href="/opvaskemaskine/">Opvaskemaskine</Link></strong></td><td>200-300 kWh</td><td>4-6%</td><td>372-558 kr.</td></tr>
-              <tr><td><strong><Link href="/vaskemaskine/">Vaskemaskine</Link></strong></td><td>150-250 kWh</td><td>3-5%</td><td>279-465 kr.</td></tr>
-              <tr><td><strong>Underholdning + IT</strong></td><td>300-600 kWh</td><td>6-13%</td><td>558-1.116 kr.</td></tr>
-              <tr><td><strong>Belysning</strong></td><td>200-350 kWh</td><td>4-7%</td><td>372-651 kr.</td></tr>
-              <tr><td><strong>Varmt vand + øvrige</strong></td><td>800-1.500 kWh</td><td>17-31%</td><td>1.488-2.790 kr.</td></tr>
+              <tr><td><strong><Link href="/koeleskab/">Køl og frys</Link></strong></td><td>300-500 kWh</td><td>6-10%</td><td>{formatKr(300 * t.dk)}-{formatKr(500 * t.dk)} kr.</td></tr>
+              <tr><td><strong><Link href="/toerretumbler/">Tørretumbler</Link></strong></td><td>300-700 kWh</td><td>6-15%</td><td>{formatKr(300 * t.dk)}-{formatKr(700 * t.dk)} kr.</td></tr>
+              <tr><td><strong>Madlavning (<Link href="/ovn/">ovn</Link>, <Link href="/induktion/">komfur</Link>)</strong></td><td>300-500 kWh</td><td>6-10%</td><td>{formatKr(300 * t.dk)}-{formatKr(500 * t.dk)} kr.</td></tr>
+              <tr><td><strong><Link href="/opvaskemaskine/">Opvaskemaskine</Link></strong></td><td>200-300 kWh</td><td>4-6%</td><td>{formatKr(200 * t.dk)}-{formatKr(300 * t.dk)} kr.</td></tr>
+              <tr><td><strong><Link href="/vaskemaskine/">Vaskemaskine</Link></strong></td><td>150-250 kWh</td><td>3-5%</td><td>{formatKr(150 * t.dk)}-{formatKr(250 * t.dk)} kr.</td></tr>
+              <tr><td><strong>Underholdning + IT</strong></td><td>300-600 kWh</td><td>6-13%</td><td>{formatKr(300 * t.dk)}-{formatKr(600 * t.dk)} kr.</td></tr>
+              <tr><td><strong>Belysning</strong></td><td>200-350 kWh</td><td>4-7%</td><td>{formatKr(200 * t.dk)}-{formatKr(350 * t.dk)} kr.</td></tr>
+              <tr><td><strong>Varmt vand + øvrige</strong></td><td>800-1.500 kWh</td><td>17-31%</td><td>{formatKr(800 * t.dk)}-{formatKr(1500 * t.dk)} kr.</td></tr>
             </tbody>
           </table>
 
@@ -132,7 +150,7 @@ export default function FamiliePage() {
           <h2>Familie med varmepumpe — samlet forbrug</h2>
           <p>
             Har I en <Link href="/varmepumpe/">varmepumpe</Link>, stiger det samlede elforbrug til
-            7.000-11.000 kWh/år (13.020-20.460 kr.). Det lyder af meget, men varmepumpen
+            7.000-11.000 kWh/år ({formatKr(7000 * t.dk)}-{formatKr(11000 * t.dk)} kr.). Det lyder af meget, men varmepumpen
             erstatter gasfyr (18.000-24.000 kr./år) eller oliefyr (22.000-30.000 kr./år) —
             så den samlede energiudgift falder typisk med 5.000-15.000 kr./år.
           </p>
@@ -156,7 +174,9 @@ export default function FamiliePage() {
           </ol>
         </div>
 
-        <AffiliateCta kwh={5500} household="en børnefamilie" />
+        <PriceBasis prices={prices} className="my-4" />
+
+        <SwitchCta kwh={5500} household="en børnefamilie" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>

@@ -1,14 +1,15 @@
 import { ImageResponse } from "next/og";
-import { allHouseholds, AVERAGE_PER_PERSON_KWH } from "@/lib/home-insights";
-import { EL_PRICE_KR_PER_KWH, formatKr, formatPrice, MARKET } from "@/lib/pricing";
+import { HOUSEHOLD_PROFILES, AVERAGE_PER_PERSON_KWH } from "@/lib/home-insights";
+import { getPublishedAppliances } from "@/lib/appliances";
+import { formatKr } from "@/lib/format";
 
 /**
  * Share card for the homepage.
  *
  * The site had no og:image at all, so every share on Facebook, LinkedIn, Slack
  * or WhatsApp rendered a blank card. Rather than a stock photo, the card is
- * generated from the same price engine as the pages — so it always shows the
- * current elpris and household figures, and goes stale only when the data does.
+ * generated from the appliance data. It carries NO price: the price moves with the
+ * feed every day and social caches keep a card for weeks, so the card shows kWh only.
  */
 
 export const alt = "Strømforbrug i Danmark — se hvad dine apparater bruger og koster";
@@ -19,9 +20,9 @@ const BRAND = "#1e40af";
 const ACCENT = "#eab308";
 
 export default async function Image() {
-  const households = allHouseholds();
-  const family = households[2];
-  const heatPump = households[3];
+  const family = HOUSEHOLD_PROFILES[2];
+  const heatPump = HOUSEHOLD_PROFILES[3];
+  const count = getPublishedAppliances().length;
 
   return new ImageResponse(
     (
@@ -47,14 +48,14 @@ export default async function Image() {
         </div>
 
         <div style={{ fontSize: 30, opacity: 0.85, marginTop: 20, display: "flex" }}>
-          43 apparater regnet igennem ved {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh — {MARKET.period}
+          {count} apparater regnet igennem — kWh, pris og billigste tidspunkt
         </div>
 
         <div style={{ display: "flex", gap: 24, marginTop: "auto" }}>
           {[
             { label: "Pr. dansker", value: `${formatKr(AVERAGE_PER_PERSON_KWH)} kWh` },
-            { label: "Familie på 4", value: `${formatKr(family.totalCost)} kr./år` },
-            { label: "Med varmepumpe", value: `${formatKr(heatPump.totalCost)} kr./år` },
+            { label: "Familie på 4", value: `${formatKr(family.totalKwh)} kWh` },
+            { label: "Med varmepumpe", value: `${formatKr(heatPump.totalKwh)} kWh` },
           ].map((s) => (
             <div
               key={s.label}

@@ -8,7 +8,7 @@ import Footer from "@/components/layout/Footer";
 import { SITE_CONFIG } from "@/lib/config";
 import Attribution from "@/components/Attribution";
 import GoogleTag from "@/components/GoogleTag";
-import { withCurrentYear } from "@/lib/pricing";
+import { withCurrentYear } from "@/lib/format";
 
 const inter = Inter({
   subsets: ["latin"],

@@ -3,11 +3,16 @@ import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { CONSUMPTION_BANDS, bandCostRange } from "@/lib/home-insights";
-import { EL_PRICE_KR_PER_KWH, formatKr, formatPrice } from "@/lib/pricing";
+import { formatKr, formatPrice, danishMonth } from "@/lib/format";
+import { getPrices, tokenPrices } from "@/lib/prices";
+import type { TokenPrices } from "@/lib/tokens";
+import PriceBasis from "@/components/content/PriceBasis";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
-import { withCurrentYear } from "@/lib/pricing";
+import SwitchCta from "@/components/marketing/SwitchCta";
+import { withCurrentYear } from "@/lib/format";
+import { pageMeta } from "@/lib/pages";
+import { danishDate } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Gennemsnitligt strømforbrug (2026) → Se forbrug pr. husstand"),
@@ -16,16 +21,20 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}/gennemsnitligt/` },
 };
 
-const faqs = [
-  { question: "Hvad er det gennemsnitlige strømforbrug i Danmark?", answer: "Det gennemsnitlige strømforbrug for en dansk husstand uden varmepumpe er ca. 3.000-4.500 kWh/år, svarende til 5.580-8.370 kr. Med varmepumpe stiger det til 6.000-10.000 kWh/år." },
-  { question: "Hvor meget strøm bruger en person om året?", answer: "En enkelt person bruger typisk 1.500-2.500 kWh/år (2.790-4.650 kr.). I en lejlighed er forbruget lavere (1.500-2.000 kWh), i et hus højere (2.000-2.500 kWh)." },
-  { question: "Hvor meget strøm bruger en familie på 4?", answer: "En familie på 4 bruger typisk 4.000-5.500 kWh/år uden varmepumpe (7.440-10.230 kr.). Med varmepumpe stiger det til 7.000-11.000 kWh/år." },
+const monthLabel = (t: TokenPrices) => danishMonth(t.month);
+const faqsFor = (t: TokenPrices) => [
+  { question: "Hvad er det gennemsnitlige strømforbrug i Danmark?", answer: `Det gennemsnitlige strømforbrug for en dansk husstand uden varmepumpe er ca. 3.000-4.500 kWh/år, svarende til ${formatKr(3000 * t.dk)}-${formatKr(4500 * t.dk)} kr. ved marginalprisen ${formatPrice(t.dk)} kr./kWh. Med varmepumpe stiger det til 6.000-10.000 kWh/år.` },
+  { question: "Hvor meget strøm bruger en person om året?", answer: `En enkelt person bruger typisk 1.500-2.500 kWh/år (${formatKr(1500 * t.dk)}-${formatKr(2500 * t.dk)} kr.). I en lejlighed er forbruget lavere (1.500-2.000 kWh), i et hus højere (2.000-2.500 kWh).` },
+  { question: "Hvor meget strøm bruger en familie på 4?", answer: `En familie på 4 bruger typisk 4.000-5.500 kWh/år uden varmepumpe (${formatKr(4000 * t.dk)}-${formatKr(5500 * t.dk)} kr.). Med varmepumpe stiger det til 7.000-11.000 kWh/år.` },
   { question: "Er mit strømforbrug normalt?", answer: "Se din seneste elregning og sammenlign med gennemsnittet for din husstandsstørrelse. Under gennemsnittet er godt, over 20% mere end gennemsnittet tyder på besparelsespotentiale." },
-  { question: "Hvad koster 1 kWh strøm i 2026?", answer: "Den gennemsnitlige elpris i Danmark er ca. 1,86 kr./kWh inkl. afgifter, transport og moms. Prisen varierer med spotprisen og dit elselskab — de billigste aftaler ligger ca. 10 øre under gennemsnittet på 1,76 kr./kWh før abonnement." },
+  { question: "Hvad koster 1 kWh strøm i 2026?", answer: `Marginalprisen — hvad én kWh mere koster — er ca. ${formatPrice(t.dk)} kr./kWh inkl. afgifter, transport og moms i ${monthLabel(t)}: ${formatPrice(t.dk1)} kr. vest for Storebælt og ${formatPrice(t.dk2)} kr. øst for. Prisen varierer med spotprisen time for time og med dit elselskabs tillæg; abonnementet kommer oveni.` },
   { question: "Hvordan kan jeg sænke mit strømforbrug?", answer: "De mest effektive tiltag er: 1) skift gamle hvidevarer til A-mærkede, 2) reducer standby-forbrug, 3) skift til LED-pærer, 4) vælg et billigere elselskab, 5) brug eco-programmer på vaskemaskine og opvaskemaskine." },
 ];
 
-export default function GennemsnitligtPage() {
+export default async function GennemsnitligtPage() {
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const faqs = faqsFor(t);
   return (
     <>
       <script
@@ -45,7 +54,7 @@ export default function GennemsnitligtPage() {
         <Breadcrumb items={[{ name: "Gennemsnitligt strømforbrug" }]} />
 
         <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret {new Date(SITE_CONFIG.lastUpdated).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}
+          Af {SITE_CONFIG.editorName} &middot; Opdateret {danishDate(pageMeta("/gennemsnitligt/").updated)}
         </p>
 
         <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
@@ -55,8 +64,8 @@ export default function GennemsnitligtPage() {
         <QuickAnswer>
           <p>
             Det gennemsnitlige strømforbrug for en dansk husstand uden varmepumpe
-            er 3.000-4.500 kWh om året, svarende til 5.580-8.370 kr. ved en
-            elpris på 1,86 kr./kWh. Med varmepumpe stiger det til 6.000-10.000
+            er 3.000-4.500 kWh om året, svarende til {formatKr(3000 * t.dk)}-{formatKr(4500 * t.dk)} kr. ved en
+            elpris på {formatPrice(t.dk)} kr./kWh. Med varmepumpe stiger det til 6.000-10.000
             kWh/år (15.000-25.000 kr.).
           </p>
         </QuickAnswer>
@@ -79,7 +88,7 @@ export default function GennemsnitligtPage() {
             </thead>
             <tbody>
               {CONSUMPTION_BANDS.map((b) => {
-                const [lo, hi] = bandCostRange(b);
+                const [lo, hi] = bandCostRange(b, t.dk);
                 return (
                   <tr key={b.label}>
                     <td>
@@ -106,7 +115,7 @@ export default function GennemsnitligtPage() {
           </table>
           <p>
             <em>
-              VP = varmepumpe. Priser beregnet med 1,86 kr./kWh. Husstande med
+              VP = varmepumpe. Priser beregnet med marginalprisen {formatPrice(t.dk)} kr./kWh, uden abonnement. Husstande med
               varmepumpe har markant højere elforbrug, men lavere samlet
               varmepris fordi varmepumpen erstatter gas/olie.
             </em>
@@ -162,7 +171,8 @@ export default function GennemsnitligtPage() {
           </p>
         </div>
 
-        <AffiliateCta />
+        <PriceBasis prices={prices} className="my-4" />
+        <SwitchCta />
 
         {/* FAQ */}
         <div className="my-10">
@@ -240,8 +250,8 @@ export default function GennemsnitligtPage() {
 
           <h2>Hvad betyder det for din elregning?</h2>
           <p>
-            Ved den aktuelle elpris på {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh koster
-            hver 1.000 kWh omkring {formatKr(1000 * EL_PRICE_KR_PER_KWH)} kr. om året.
+            Ved marginalprisen {formatPrice(t.dk)} kr./kWh koster
+            hver 1.000 kWh omkring {formatKr(1000 * t.dk)} kr. om året.
             Ligger du 1.000 kWh over gennemsnittet for din husstandstype, er det altså
             den regning, det handler om — og det er som regel én konkret årsag, ikke
             mange små.

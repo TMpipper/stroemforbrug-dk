@@ -4,28 +4,84 @@ import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
-import { withCurrentYear } from "@/lib/pricing";
+import SwitchCta from "@/components/marketing/SwitchCta";
+import PriceBasis from "@/components/content/PriceBasis";
+import { withCurrentYear, formatKr, formatPrice, formatKrExact, danishDate, danishMonth } from "@/lib/format";
+import { pageMeta } from "@/lib/pages";
+import { getPrices, tokenPrices, savingPerKwh, type SitePrices } from "@/lib/prices";
+
+const PATH = "/hvad-koster-det-at-lade-en-elbil/";
 
 export const metadata: Metadata = {
-  title: withCurrentYear("Hvad koster det at lade en elbil? (2026) → Se pris pr. kWh"),
+  title: withCurrentYear("Hvad koster det at lade en elbil? (2026) → Pris pr. km"),
   description:
-    "Det koster 56-130 kr. at lade en elbil fuldt op derhjemme (1,86 kr./kWh). Se pris pr. km, hjemmeladning vs. hurtigladning og din månedlige udgift.",
-  alternates: { canonical: `${SITE_CONFIG.url}/hvad-koster-det-at-lade-en-elbil/` },
+    "Hvad koster det at lade en elbil derhjemme? Se prisen for en fuld opladning og pr. kilometer ved månedens marginalpris, og forskellen til offentlig ladning.",
+  alternates: { canonical: `${SITE_CONFIG.url}${PATH}` },
 };
 
-const faqs = [
-  { question: "Hvad koster det at lade en elbil derhjemme?", answer: "Med en gennemsnitlig elpris på 1,86 kr./kWh koster det 56-130 kr. at lade en elbil fuldt op derhjemme, afhængigt af batteristørrelse (30-70 kWh). Med det billigste elselskab (1,76 kr./kWh) koster det 53-123 kr." },
-  { question: "Hvad koster det pr. km at køre elbil?", answer: "En elbil bruger typisk 15-20 kWh/100 km. Med en elpris på 1,86 kr./kWh koster det 0,28-0,37 kr./km — ca. 4 gange billigere end en benzinbil (1,20-1,60 kr./km)." },
-  { question: "Er det billigere at lade hjemme eller offentligt?", answer: "Hjemmeladning er altid billigst: 1,76-1,95 kr./kWh. Offentlig AC-ladning koster 3,50-5,00 kr./kWh, og hurtigladning (DC) koster 4,50-8,00 kr./kWh. Hjemmeladning sparer dig 50-75 % sammenlignet med hurtigladning." },
-  { question: "Hvor lang tid tager det at lade en elbil derhjemme?", answer: "Med en standard hjemmelader (7,4 kW / 1-faset 32A) tager en fuld opladning 5-10 timer. Med en 11 kW 3-faset lader tager det 3-6 timer. Med almindelig stikkontakt (2,3 kW) tager det 15-30 timer — det frarådes til daglig brug." },
-  { question: "Hvad koster en hjemmelader til elbil?", answer: "En hjemmelader (wallbox) koster 5.000-15.000 kr. inkl. installation. Det er en engangsinvestering der betaler sig hjem hurtigt, da hjemmeladning er markant billigere end offentlig ladning. Vælg en med smart styring for at lade om natten." },
-  { question: "Hvad koster det i strøm at køre 15.000 km om året?", answer: "Med et gennemsnitligt forbrug på 17 kWh/100 km og 15.000 km/år bruger du ca. 2.550 kWh. Med 1,86 kr./kWh koster det 4.743 kr./år — mod ca. 15.000-18.000 kr. for en benzinbil. Du sparer 10.000-13.000 kr./år." },
-  { question: "Stiger min elregning meget med en elbil?", answer: "Ja, en elbil øger dit årlige elforbrug med typisk 2.000-3.500 kWh (3.720-6.510 kr./år). Men det er stadig langt billigere end benzin/diesel. For at minimere udgiften, lad om natten med spotpris og vælg billigste elselskab." },
-  { question: "Kan man lade en elbil med solceller?", answer: "Ja, solceller og elbil er en perfekt kombination. Et typisk solcelleanlæg producerer 4.000-8.000 kWh/år — mere end nok til at dække elbilens forbrug. Med en smart lader kan du programmere bilen til at lade når solcellerne producerer mest." },
+/**
+ * Elbilens strøm regnes med marginalprisen (hvad én kWh MERE koster, uden abonnement) — bilen er
+ * et ekstra forbrug oven i husstanden. Benzin, diesel og offentlig ladning følger deres egne markeder
+ * og er typede tal med deres egen kilde; de flytter sig ikke med elprisen.
+ */
+const CARS = [
+  { name: "Tesla Model 3 LR", battery: 75, range: 580 },
+  { name: "VW ID.4 Pro", battery: 77, range: 520 },
+  { name: "Hyundai Kona Electric", battery: 64, range: 460 },
+  { name: "Skoda Enyaq iV 80", battery: 77, range: 510 },
+  { name: "Peugeot e-208", battery: 50, range: 360 },
 ];
+const KWH_PER_100KM = 17;
+const KM_PER_YEAR = 15000;
+const KWH_PER_YEAR = (KM_PER_YEAR / 100) * KWH_PER_100KM; // 2.550
+/** Ladetab mellem stik og batteri. */
+const CHARGE_LOSS = 0.12;
+/** Andre markeder — typede tal, ikke elpriser. Kilde: gennemsnit af udbydernes listepriser, efterår 2026. */
+const PUBLIC_AC_KR_PER_KWH: [number, number] = [3.5, 5.0];
+const DC_KR_PER_KWH: [number, number] = [4.5, 8.0];
+const PETROL_L_PER_100KM = 6.5;
+const PETROL_KR_PER_L = 13.5;
+const DIESEL_L_PER_100KM = 5.5;
+const DIESEL_KR_PER_L = 12.5;
 
-export default function ElbilLadningPage() {
+function figures(p: SitePrices) {
+  const t = tokenPrices(p);
+  const cheapest = p.deals.DK1.cheapest;
+  const cheapestMarginal = cheapest?.marginalKrPerKwh ?? t.dk1;
+  const cheapestName = cheapest?.supplierName ?? "den billigste aftale";
+  const saving = savingPerKwh(p, "DK1");
+  const perKm = (price: number) => (KWH_PER_100KM / 100) * price * (1 + CHARGE_LOSS);
+  const fullCharge = (kwh: number, price: number) => kwh * price * (1 + CHARGE_LOSS);
+  return { t, cheapest, cheapestMarginal, cheapestName, saving, perKm, fullCharge,
+    perYear: (price: number) => KWH_PER_YEAR * price * (1 + CHARGE_LOSS),
+    petrolPerKm: (PETROL_L_PER_100KM / 100) * PETROL_KR_PER_L,
+    dieselPerKm: (DIESEL_L_PER_100KM / 100) * DIESEL_KR_PER_L,
+  };
+}
+
+function faqsFor(p: SitePrices) {
+  const f = figures(p);
+  const { t } = f;
+  return [
+    { question: "Hvad koster det at lade en elbil derhjemme?", answer: `Med marginalprisen ${formatPrice(t.dk1)} kr./kWh (Vestdanmark, ${danishMonth(t.month)}) koster en fuld opladning ${formatKr(f.fullCharge(30, t.dk1))}-${formatKr(f.fullCharge(70, t.dk1))} kr. for et batteri på 30-70 kWh, inkl. et ladetab på ca. 12 %. På den billigste rene, varige aftale (${formatPrice(f.cheapestMarginal)} kr./kWh) er det ${formatKr(f.fullCharge(30, f.cheapestMarginal))}-${formatKr(f.fullCharge(70, f.cheapestMarginal))} kr.` },
+    { question: "Hvad koster det pr. km at køre elbil?", answer: `En elbil bruger typisk 15-20 kWh pr. 100 km. Ved ${formatPrice(t.dk1)} kr./kWh koster det ${formatKrExact(f.perKm(t.dk1) * 15 / 17)}-${formatKrExact(f.perKm(t.dk1) * 20 / 17)} kr. pr. km inkl. ladetab — mod ca. ${formatKrExact(f.petrolPerKm)} kr. pr. km for en benzinbil (${PETROL_L_PER_100KM.toString().replace(".", ",")} l/100 km ved ${formatKrExact(PETROL_KR_PER_L)} kr./l).` },
+    { question: "Er det billigere at lade hjemme eller offentligt?", answer: `Hjemmeladning er billigst: ${formatPrice(f.cheapestMarginal)}-${formatPrice(t.dk2)} kr./kWh afhængigt af aftale og landsdel. Offentlig AC-ladning koster typisk ${formatPrice(PUBLIC_AC_KR_PER_KWH[0])}-${formatPrice(PUBLIC_AC_KR_PER_KWH[1])} kr./kWh og hurtigladning (DC) ${formatPrice(DC_KR_PER_KWH[0])}-${formatPrice(DC_KR_PER_KWH[1])} kr./kWh — to til fem gange hjemmeprisen.` },
+    { question: "Hvor lang tid tager det at lade en elbil derhjemme?", answer: "Med en standard hjemmelader (7,4 kW, 1-faset 32 A) tager en fuld opladning 5-10 timer; med en 11 kW 3-faset lader 3-6 timer. En almindelig stikkontakt (2,3 kW) tager 15-30 timer og frarådes til daglig brug." },
+    { question: "Hvad koster en hjemmelader til elbil?", answer: "En hjemmelader (wallbox) koster typisk 5.000-15.000 kr. inkl. installation. Det er en engangsudgift, der tjener sig hjem, fordi hjemmeladning er markant billigere end offentlig ladning. Vælg en med smart styring, så den lader i de billige timer." },
+    { question: "Hvad koster det i strøm at køre 15.000 km om året?", answer: `Med ${KWH_PER_100KM} kWh pr. 100 km og 15.000 km om året bruger bilen ca. ${formatKr(KWH_PER_YEAR)} kWh. Ved ${formatPrice(t.dk1)} kr./kWh koster det ${formatKr(f.perYear(t.dk1))} kr. om året inkl. ladetab — mod ca. ${formatKr((KM_PER_YEAR / 100) * PETROL_L_PER_100KM * PETROL_KR_PER_L)} kr. i benzin for samme kørsel.` },
+    { question: "Stiger min elregning meget med en elbil?", answer: `Ja: en elbil lægger typisk 2.000-3.500 kWh til årsforbruget, altså ${formatKr(2000 * t.dk1)}-${formatKr(3500 * t.dk1)} kr. om året ved ${formatPrice(t.dk1)} kr./kWh. Det er stadig langt billigere end benzin og diesel. Lad om natten på en spotaftale, og vælg en aftale med lavt tillæg.` },
+    { question: "Kan man lade en elbil med solceller?", answer: "Ja. Et typisk solcelleanlæg producerer 4.000-8.000 kWh om året — mere end bilens forbrug. Med en smart lader kan bilen lade, når anlægget producerer mest, midt på dagen." },
+  ];
+}
+
+export default async function ElbilLadningPage() {
+  const prices = await getPrices();
+  const f = figures(prices);
+  const { t } = f;
+  const faqs = faqsFor(prices);
+  const month = danishMonth(t.month);
+  const url = `${SITE_CONFIG.url}${PATH}`;
+
   return (
     <>
       <script
@@ -34,15 +90,15 @@ export default function ElbilLadningPage() {
           __html: JSON.stringify([
             breadcrumbSchema([
               { name: "Forside", url: SITE_CONFIG.url },
-              { name: "Hvad koster det at lade en elbil", url: `${SITE_CONFIG.url}/hvad-koster-det-at-lade-en-elbil/` },
+              { name: "Hvad koster det at lade en elbil", url },
             ]),
             faqSchema(faqs),
             articleSchema({
-              title: "Hvad koster det at lade en elbil? 2026",
-              description: "Det koster 56-130 kr. at lade en elbil fuldt op derhjemme med en elpris på 1,86 kr./kWh.",
-              url: `${SITE_CONFIG.url}/hvad-koster-det-at-lade-en-elbil/`,
-              datePublished: "2026-07-29",
-              dateModified: SITE_CONFIG.lastUpdated,
+              title: "Hvad koster det at lade en elbil?",
+              description: "Prisen for en fuld opladning og pr. kilometer ved månedens marginalpris, og forskellen til offentlig ladning.",
+              url,
+              datePublished: pageMeta(PATH).published,
+              dateModified: pageMeta(PATH).updated,
             }),
           ]),
         }}
@@ -52,207 +108,184 @@ export default function ElbilLadningPage() {
         <Breadcrumb items={[{ name: "Hvad koster det at lade en elbil" }]} />
 
         <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {new Date(SITE_CONFIG.lastUpdated).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}
+          Af {SITE_CONFIG.editorName} &middot; Opdateret {danishDate(pageMeta(PATH).updated)}
         </p>
 
         <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
-          Hvad koster det at lade en elbil? 2026
+          Hvad koster det at lade en elbil?
         </h1>
 
         <QuickAnswer>
           <p>
-            Det koster 56-130 kr. at lade en elbil fuldt op derhjemme med en
-            gennemsnitlig elpris på 1,86 kr./kWh. Pr. kilometer koster det
-            0,38-0,50 kr. — ca. 3-4 gange billigere end benzin. Med det
-            billigste elselskab (Altid Energi, 1,76 kr./kWh) falder prisen til
-            53-123 kr. pr. fuld opladning.
+            En fuld opladning derhjemme koster <strong>{formatKr(f.fullCharge(30, t.dk1))}-{formatKr(f.fullCharge(70, t.dk1))} kr.</strong> for et
+            batteri på 30-70 kWh ved marginalprisen {formatPrice(t.dk1)} kr./kWh i Vestdanmark ({month}), inkl. et ladetab på ca. 12 %.
+            Pr. kilometer er det {formatKrExact(f.perKm(t.dk1))} kr. — omkring {Math.round(f.petrolPerKm / f.perKm(t.dk1))} gange billigere end benzin.
+            På den billigste rene, varige aftale ({f.cheapestName}, {formatPrice(f.cheapestMarginal)} kr./kWh) falder en fuld opladning til{" "}
+            {formatKr(f.fullCharge(30, f.cheapestMarginal))}-{formatKr(f.fullCharge(70, f.cheapestMarginal))} kr.
           </p>
         </QuickAnswer>
+        <PriceBasis prices={prices} className="mb-8" />
 
         <div className="prose-editorial">
           <h2>Opladningspris for 5 populære elbiler</h2>
           <p>
-            Prisen for at lade en elbil afhænger af batteristørrelse, forbrug og
-            kWh-pris. Nedenstående tabel viser hvad det koster at lade 5 af de
-            mest populære elbiler i Danmark fuldt op derhjemme — både med
-            gennemsnitspris (1,86 kr./kWh) og med Altid Energi (1,76 kr./kWh).
+            Prisen for at lade afhænger af batteriets størrelse, ladetabet og kWh-prisen. Tabellen viser en fuld opladning derhjemme
+            ved marginalprisen i Vest- og Østdanmark i {month}, og på den billigste rene, varige aftale i vest.
           </p>
           <table>
             <thead>
-              <tr><th>Elbil</th><th>Batteri (kWh)</th><th>Rækkevidde (km)</th><th>Pris fuld ladning</th><th>Pris m/ Altid Energi</th></tr>
+              <tr><th>Elbil</th><th>Batteri (kWh)</th><th>Rækkevidde (km)</th><th>Fuld ladning, vest</th><th>Fuld ladning, øst</th><th>Billigste aftale</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Tesla Model 3 LR</strong></td><td>75</td><td>~580</td><td>140 kr.</td><td>132 kr.</td></tr>
-              <tr><td><strong>VW ID.4 Pro</strong></td><td>77</td><td>~520</td><td>143 kr.</td><td>136 kr.</td></tr>
-              <tr><td><strong>Hyundai Kona Electric</strong></td><td>64</td><td>~460</td><td>119 kr.</td><td>113 kr.</td></tr>
-              <tr><td><strong>Skoda Enyaq iV 80</strong></td><td>77</td><td>~510</td><td>143 kr.</td><td>136 kr.</td></tr>
-              <tr><td><strong>Peugeot e-208</strong></td><td>50</td><td>~360</td><td>93 kr.</td><td>88 kr.</td></tr>
+              {CARS.map((c) => (
+                <tr key={c.name}>
+                  <td><strong>{c.name}</strong></td>
+                  <td>{c.battery}</td>
+                  <td>~{c.range}</td>
+                  <td>{formatKr(f.fullCharge(c.battery, t.dk1))} kr.</td>
+                  <td>{formatKr(f.fullCharge(c.battery, t.dk2))} kr.</td>
+                  <td>{formatKr(f.fullCharge(c.battery, f.cheapestMarginal))} kr.</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <p>
-            <em>Rækkevidde er WLTP-tal. I praksis er rækkevidden 10-20% lavere,
-            især om vinteren. Ladepris inkluderer et typisk ladetab på 10-15%.</em>
+            <em>Rækkevidde er WLTP-tal; i praksis er den 10-20 % lavere, især om vinteren. Ladeprisen inkluderer et ladetab på 12 %.</em>
           </p>
 
-          <h2>Hjemmeladning vs. offentlig ladning vs. hurtigladning</h2>
+          <h2>Hjemmeladning, offentlig ladning og hurtigladning</h2>
           <p>
-            Der er tre måder at lade en elbil på, og prisforskellen er markant.
-            Hjemmeladning er altid billigst, mens offentlig hurtigladning (DC)
-            kan koste 3-4 gange mere pr. kWh. For daglig pendling er en
-            hjemmelader den bedste investering du kan gøre.
+            Der er tre måder at lade på, og prisforskellen er stor. Hjemmeladning er billigst; offentlig hurtigladning kan koste tre
+            til fem gange mere pr. kWh. Til daglig pendling er en hjemmelader den bedste investering.
           </p>
           <table>
             <thead>
-              <tr><th>Ladetype</th><th>Effekt</th><th>Pris/kWh</th><th>Fuld ladning (75 kWh)</th><th>Tid</th></tr>
+              <tr><th>Ladetype</th><th>Effekt</th><th>Pris pr. kWh</th><th>Fuld ladning (75 kWh)</th><th>Tid</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Hjemme (wallbox)</strong></td><td>7,4-11 kW</td><td>2,00-3,00 kr.</td><td>150-225 kr.</td><td>5-10 timer</td></tr>
-              <tr><td><strong>Hjemme (stikkontakt)</strong></td><td>2,3 kW</td><td>2,00-3,00 kr.</td><td>150-225 kr.</td><td>20-32 timer</td></tr>
-              <tr><td><strong>Offentlig AC</strong></td><td>11-22 kW</td><td>3,50-5,00 kr.</td><td>263-375 kr.</td><td>3-7 timer</td></tr>
-              <tr><td><strong>Hurtigladning (DC)</strong></td><td>50-150 kW</td><td>4,50-8,00 kr.</td><td>338-600 kr.</td><td>25-60 min.</td></tr>
-              <tr><td><strong>Supercharger (Tesla)</strong></td><td>150-250 kW</td><td>3,50-5,50 kr.</td><td>263-413 kr.</td><td>15-40 min.</td></tr>
+              <tr><td><strong>Hjemme (wallbox)</strong></td><td>7,4-11 kW</td><td>{formatPrice(f.cheapestMarginal)}-{formatPrice(t.dk2)} kr.</td><td>{formatKr(f.fullCharge(75, f.cheapestMarginal))}-{formatKr(f.fullCharge(75, t.dk2))} kr.</td><td>5-10 timer</td></tr>
+              <tr><td><strong>Hjemme (stikkontakt)</strong></td><td>2,3 kW</td><td>{formatPrice(f.cheapestMarginal)}-{formatPrice(t.dk2)} kr.</td><td>{formatKr(f.fullCharge(75, f.cheapestMarginal))}-{formatKr(f.fullCharge(75, t.dk2))} kr.</td><td>20-32 timer</td></tr>
+              <tr><td><strong>Offentlig AC</strong></td><td>11-22 kW</td><td>{formatPrice(PUBLIC_AC_KR_PER_KWH[0])}-{formatPrice(PUBLIC_AC_KR_PER_KWH[1])} kr.</td><td>{formatKr(75 * PUBLIC_AC_KR_PER_KWH[0])}-{formatKr(75 * PUBLIC_AC_KR_PER_KWH[1])} kr.</td><td>3-7 timer</td></tr>
+              <tr><td><strong>Hurtigladning (DC)</strong></td><td>50-150 kW</td><td>{formatPrice(DC_KR_PER_KWH[0])}-{formatPrice(DC_KR_PER_KWH[1])} kr.</td><td>{formatKr(75 * DC_KR_PER_KWH[0])}-{formatKr(75 * DC_KR_PER_KWH[1])} kr.</td><td>25-60 min.</td></tr>
             </tbody>
           </table>
           <p>
-            <em>Hjemmeladning via stikkontakt (Schuko) frarådes til daglig brug
-            pga. risiko for overophedning. Investér i en dedikeret wallbox
-            (hjemmelader).</em>
+            <em>Offentlig ladning følger udbydernes egne priser og flytter sig ikke med elprisen. Hjemmeladning via almindelig stikkontakt
+            frarådes til daglig brug på grund af risiko for overophedning.</em>
           </p>
 
-          <h2>Pris pr. kilometer — elbil vs. benzin vs. diesel</h2>
+          <h2>Pris pr. kilometer — elbil mod benzin og diesel</h2>
           <p>
-            Den reelle besparelse ved at køre elbil fremgår tydeligt når du
-            sammenligner pris pr. kilometer. En elbil koster 0,38-0,50 kr./km
-            med hjemmeladning, mens en benzinbil koster 1,20-1,60 kr./km. Det
-            er en besparelse på 60-75% pr. kilometer.
+            Besparelsen ses tydeligst pr. kilometer. En elbil koster {formatKrExact(f.perKm(t.dk1))} kr. pr. km med hjemmeladning i vest,
+            en benzinbil ca. {formatKrExact(f.petrolPerKm)} kr. og en dieselbil ca. {formatKrExact(f.dieselPerKm)} kr. Brændstofpriserne er
+            typiske listepriser og følger deres eget marked.
           </p>
           <table>
             <thead>
-              <tr><th>Drivmiddel</th><th>Forbrug</th><th>Pris pr. enhed</th><th>Pris pr. km</th><th>15.000 km/år</th></tr>
+              <tr><th>Drivmiddel</th><th>Forbrug</th><th>Pris pr. enhed</th><th>Pris pr. km</th><th>{formatKr(KM_PER_YEAR)} km om året</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Elbil (hjemme)</strong></td><td>17 kWh/100 km</td><td>1,86 kr./kWh</td><td>0,32 kr.</td><td>4.743 kr.</td></tr>
-              <tr><td><strong>Elbil (billigste aftale)</strong></td><td>17 kWh/100 km</td><td>1,76 kr./kWh</td><td>0,30 kr.</td><td>4.488 kr.</td></tr>
-              <tr><td><strong>Elbil (hurtiglader)</strong></td><td>17 kWh/100 km</td><td>6,00 kr./kWh</td><td>1,02 kr.</td><td>15.300 kr.</td></tr>
-              <tr><td><strong>Benzinbil</strong></td><td>6,5 l/100 km</td><td>13,50 kr./l</td><td>0,88 kr.</td><td>13.163 kr.</td></tr>
-              <tr><td><strong>Dieselbil</strong></td><td>5,5 l/100 km</td><td>12,50 kr./l</td><td>0,69 kr.</td><td>10.313 kr.</td></tr>
+              <tr><td><strong>Elbil (hjemme, vest)</strong></td><td>{KWH_PER_100KM} kWh/100 km</td><td>{formatPrice(t.dk1)} kr./kWh</td><td>{formatKrExact(f.perKm(t.dk1))} kr.</td><td>{formatKr(f.perYear(t.dk1))} kr.</td></tr>
+              <tr><td><strong>Elbil (billigste aftale)</strong></td><td>{KWH_PER_100KM} kWh/100 km</td><td>{formatPrice(f.cheapestMarginal)} kr./kWh</td><td>{formatKrExact(f.perKm(f.cheapestMarginal))} kr.</td><td>{formatKr(f.perYear(f.cheapestMarginal))} kr.</td></tr>
+              <tr><td><strong>Elbil (hurtiglader)</strong></td><td>{KWH_PER_100KM} kWh/100 km</td><td>{formatPrice((DC_KR_PER_KWH[0] + DC_KR_PER_KWH[1]) / 2)} kr./kWh</td><td>{formatKrExact(f.perKm((DC_KR_PER_KWH[0] + DC_KR_PER_KWH[1]) / 2))} kr.</td><td>{formatKr(f.perYear((DC_KR_PER_KWH[0] + DC_KR_PER_KWH[1]) / 2))} kr.</td></tr>
+              <tr><td><strong>Benzinbil</strong></td><td>{PETROL_L_PER_100KM.toString().replace(".", ",")} l/100 km</td><td>{formatKrExact(PETROL_KR_PER_L)} kr./l</td><td>{formatKrExact(f.petrolPerKm)} kr.</td><td>{formatKr(f.petrolPerKm * KM_PER_YEAR)} kr.</td></tr>
+              <tr><td><strong>Dieselbil</strong></td><td>{DIESEL_L_PER_100KM.toString().replace(".", ",")} l/100 km</td><td>{formatKrExact(DIESEL_KR_PER_L)} kr./l</td><td>{formatKrExact(f.dieselPerKm)} kr.</td><td>{formatKr(f.dieselPerKm * KM_PER_YEAR)} kr.</td></tr>
             </tbody>
           </table>
           <p>
-            <em>Bemærk: Hvis du udelukkende hurtiglader, forsvinder besparelsen
-            næsten. Nøglen til billig elbilkørsel er hjemmeladning om natten.</em>
+            <em>Lader du udelukkende på hurtigladere, forsvinder det meste af besparelsen. Nøglen er hjemmeladning i de billige timer.</em>
           </p>
 
-          <h2>Månedlig ladeudgift — realistiske tal</h2>
+          <h2>Månedlig ladeudgift ved {formatKr(KM_PER_YEAR)} km om året</h2>
           <p>
-            De fleste danskere kører 10.000-20.000 km om året. Her er de
-            månedlige strømudgifter for en elbil der kører 15.000 km/år med
-            hjemmeladning ved forskellige elpriser.
+            De fleste kører 10.000-20.000 km om året. Tabellen viser strømmen til {formatKr(KM_PER_YEAR)} km med hjemmeladning ved
+            de priser, der gælder i {month} — og ved den billigste aftale.
           </p>
           <table>
             <thead>
-              <tr><th>Elpris</th><th>kWh/år</th><th>Pris/måned</th><th>Pris/år</th></tr>
+              <tr><th>Elpris</th><th>kWh om året</th><th>Pris pr. måned</th><th>Pris om året</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>1,45 kr./kWh (nat-ladning)</strong></td><td>2.550</td><td>308 kr.</td><td>3.698 kr.</td></tr>
-              <tr><td><strong>1,76 kr./kWh (billigste aftale)</strong></td><td>2.550</td><td>374 kr.</td><td>4.488 kr.</td></tr>
-              <tr><td><strong>1,86 kr./kWh (gennemsnit)</strong></td><td>2.550</td><td>395 kr.</td><td>4.743 kr.</td></tr>
-              <tr><td><strong>3,00 kr./kWh (dyr vinterperiode)</strong></td><td>2.550</td><td>638 kr.</td><td>7.650 kr.</td></tr>
+              {[
+                { label: `Billigste rene aftale, vest (${formatPrice(f.cheapestMarginal)} kr./kWh)`, price: f.cheapestMarginal },
+                { label: `Marginalpris, vest (${formatPrice(t.dk1)} kr./kWh)`, price: t.dk1 },
+                { label: `Marginalpris, øst (${formatPrice(t.dk2)} kr./kWh)`, price: t.dk2 },
+              ].map((r) => (
+                <tr key={r.label}>
+                  <td><strong>{r.label}</strong></td>
+                  <td>{formatKr(KWH_PER_YEAR)}</td>
+                  <td>{formatKr(f.perYear(r.price) / 12)} kr.</td>
+                  <td>{formatKr(f.perYear(r.price))} kr.</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <p>
-            Til sammenligning bruger en benzinbil ca. 975 l benzin om året ved
-            15.000 km (6,5 l/100 km), svarende til ca. 13.163 kr./år ved 13,50
-            kr./l. Besparelsen ved elbil er 5.500-9.200 kr./år afhængigt af
-            din elpris.
+            Til sammenligning bruger en benzinbil ca. {formatKr((KM_PER_YEAR / 100) * PETROL_L_PER_100KM)} liter om året ved{" "}
+            {formatKr(KM_PER_YEAR)} km, svarende til ca. {formatKr(f.petrolPerKm * KM_PER_YEAR)} kr. Besparelsen ved elbil er{" "}
+            {formatKr(f.petrolPerKm * KM_PER_YEAR - f.perYear(t.dk2))}-{formatKr(f.petrolPerKm * KM_PER_YEAR - f.perYear(f.cheapestMarginal))} kr. om året
+            afhængigt af din elpris.
           </p>
 
           <h2>Spar mest muligt på elbil-ladning</h2>
+          <h3>1. Vælg en aftale med lavt tillæg</h3>
           <p>
-            Med de rette valg kan du reducere dine ladeudgifter med op til 60%
-            sammenlignet med gennemsnittet. Her er de vigtigste tiltag for at
-            lade din elbil billigst muligt.
+            Forskellen mellem markedets marginalpris ({formatPrice(t.dk1)} kr./kWh) og den billigste rene, varige aftale
+            ({formatPrice(f.cheapestMarginal)} kr./kWh) er {Math.round(f.saving * 100)} øre pr. kWh — det er{" "}
+            {formatKr(KWH_PER_YEAR * f.saving)} kr. om året på elbilens strøm alene. Læs mere om{" "}
+            <Link href="/hvad-koster-en-kwh/">hvad en kWh koster</Link>.
           </p>
-
-          <h3>1. Vælg billigste elselskab</h3>
+          <h3>2. Lad om natten på en spotaftale</h3>
           <p>
-            Skift til et elselskab med 0 øre i spottillæg og lavt abonnement
-            (f.eks. Altid Energi, abonnement fra 18 kr./md.). Forskellen mellem
-            en gennemsnitlig aftale (1,86 kr./kWh) og den billigste (1,76
-            kr./kWh) er ca. 10 øre/kWh — det sparer dig ca. 255 kr./år på
-            elbil-ladning alene. Læs mere om <Link href="/hvad-koster-en-kwh/">hvad en kWh koster</Link>.
+            Med en spotaftale følger kWh-prisen timen. Om natten er spotprisen typisk markant lavere end i aftentimerne, og de fleste
+            hjemmeladere og biler har en timer, så ladningen starter ved 1-2-tiden og er færdig inden morgen.
           </p>
-
-          <h3>2. Lad om natten med spotpris</h3>
-          <p>
-            Med en spotprisaftale varierer kWh-prisen time for time. Om natten
-            (kl. 0-6) er spotprisen typisk 30-50% lavere end i spidstimerne.
-            De fleste hjemmeladere og elbiler har en timer-funktion, så du kan
-            indstille ladningen til at starte kl. 1-2 om natten og være færdig
-            inden morgen.
-          </p>
-
           <h3>3. Investér i en smart hjemmelader</h3>
           <p>
-            En smart hjemmelader (wallbox) med app-styring koster 5.000-15.000
-            kr. inkl. installation. Den kan automatisk lade når strømmen er
-            billigst og stoppe under spidstimerne. Over 10 år sparer en smart
-            lader dig 10.000-25.000 kr. sammenlignet med lad-når-som-helst.
+            En wallbox med app-styring koster typisk 5.000-15.000 kr. inkl. installation og lader automatisk, når strømmen er billigst.
           </p>
-
           <h3>4. Overvej solceller</h3>
           <p>
-            Et typisk solcelleanlæg (6-10 kWp) producerer 4.000-8.000 kWh/år —
-            mere end nok til at dække elbilens forbrug på ca. 2.550 kWh/år.
-            Med smart styring kan elbilen lade når solcellerne producerer mest
-            (midt på dagen), og du betaler 0 kr./kWh for den strøm. Overskydende
-            solstrøm sælges til nettet.
+            Et anlæg på 6-10 kWp producerer 4.000-8.000 kWh om året — mere end bilens ca. {formatKr(KWH_PER_YEAR)} kWh. Med smart styring
+            lader bilen midt på dagen, hvor anlægget producerer mest.
           </p>
 
           <h2>Elbilens effekt på din samlede elregning</h2>
           <p>
-            En elbil øger dit årlige elforbrug markant. For en husstand der i
-            forvejen bruger 4.000 kWh/år vil en elbil tilføje ca. 2.000-3.500
-            kWh — en stigning på 50-88%. Det er vigtigt at medregne denne
-            stigning når du vælger elselskab og planlægger dit budget.
+            For en husstand, der i forvejen bruger 4.000 kWh om året, lægger en elbil 2.000-3.500 kWh til — en stigning på 50-88 %.
+            Tabellen regner strømmen ved marginalprisen i vest og ved den billigste aftale.
           </p>
           <table>
             <thead>
-              <tr><th>Scenario</th><th>Forbrug/år</th><th>Pris/år (1,86 kr.)</th><th>Pris/år (1,76 kr.)</th></tr>
+              <tr><th>Scenario</th><th>Forbrug om året</th><th>Ved {formatPrice(t.dk1)} kr./kWh</th><th>Ved {formatPrice(f.cheapestMarginal)} kr./kWh</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Husstand uden elbil</strong></td><td>4.000 kWh</td><td>7.440 kr.</td><td>7.040 kr.</td></tr>
-              <tr><td><strong>Husstand + elbil (10.000 km)</strong></td><td>5.700 kWh</td><td>10.602 kr.</td><td>10.032 kr.</td></tr>
-              <tr><td><strong>Husstand + elbil (15.000 km)</strong></td><td>6.550 kWh</td><td>12.183 kr.</td><td>11.528 kr.</td></tr>
-              <tr><td><strong>Husstand + elbil (20.000 km)</strong></td><td>7.400 kWh</td><td>13.764 kr.</td><td>13.024 kr.</td></tr>
+              {[
+                { label: "Husstand uden elbil", kwh: 4000 },
+                { label: "Husstand + elbil (10.000 km)", kwh: 4000 + 1700 },
+                { label: "Husstand + elbil (15.000 km)", kwh: 4000 + 2550 },
+                { label: "Husstand + elbil (20.000 km)", kwh: 4000 + 3400 },
+              ].map((r) => (
+                <tr key={r.label}>
+                  <td><strong>{r.label}</strong></td>
+                  <td>{formatKr(r.kwh)} kWh</td>
+                  <td>{formatKr(r.kwh * t.dk1)} kr.</td>
+                  <td>{formatKr(r.kwh * f.cheapestMarginal)} kr.</td>
+                </tr>
+              ))}
             </tbody>
           </table>
-          <p>
-            Selvom elregningen stiger, sparer du stadig markant sammenlignet med
-            benzin. En benzinbil der kører 15.000 km koster ca. 13.163 kr./år i
-            brændstof — elbilen koster kun 6.375 kr. i strøm (eller 3.927 kr. med
-            Altid Energi). Nettobesparelsen er 7.000-9.200 kr./år.
-          </p>
 
           <h2>Hvad med varmepumpe og elbil?</h2>
           <p>
-            Mange husstande med <Link href="/varmepumpe/">varmepumpe</Link> og elbil
-            har et samlet elforbrug på 8.000-14.000 kWh/år. Det gør valg af
-            elselskab endnu vigtigere — forskellen mellem 1,86 kr./kWh og 1,76
-            kr./kWh er ca. 1.400 kr./år ved 14.000 kWh. Har du både
-            varmepumpe og elbil, er det den absolut vigtigste besparelse at
-            vælge det billigste elselskab.
-          </p>
-          <p>
-            Se mere om <Link href="/elbil/">elbilens strømforbrug</Link>,
-            <Link href="/varmepumpe/"> varmepumpens strømforbrug</Link> og
-            brug vores <Link href="/beregner/">strømberegner</Link> til at beregne
-            din samlede årlige udgift.
+            Husstande med <Link href="/varmepumpe/">varmepumpe</Link> og elbil bruger ofte 8.000-14.000 kWh om året. Her betyder aftalen
+            mest: forskellen på {Math.round(f.saving * 100)} øre pr. kWh bliver {formatKr(14000 * f.saving)} kr. om året ved 14.000 kWh.
+            Se <Link href="/elbil/">elbilens strømforbrug</Link>, <Link href="/varmepumpe/">varmepumpens strømforbrug</Link> og brug{" "}
+            <Link href="/beregner/">strømberegneren</Link> til din samlede udgift.
           </p>
         </div>
 
-        <AffiliateCta kwh={7000} household="en husstand med elbil" />
+        <SwitchCta kwh={7000} household="en husstand med elbil" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>

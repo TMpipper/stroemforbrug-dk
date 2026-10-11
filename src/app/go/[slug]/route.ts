@@ -3,6 +3,7 @@
 // site on the network link (source/aff_sub2 or epi2) and logs the click. This route
 // only validates the slug and forwards ad attribution from the URL or the `_att` / `tk_ref` cookies (no consent bar since 2026-09-15).
 import { NextRequest, NextResponse } from "next/server";
+import { PARTNER_GO_SLUGS } from "@/lib/partners";
 
 export const dynamic = "force-dynamic";
 
@@ -36,8 +37,7 @@ function decodeAtt(raw: string | undefined): Record<string, string> {
   }
 }
 
-const SLUGS = new Set(["altid-energi", "ok", "aura", "dcc-energi", "sef-energi", "ewii", "norlys"]);
-async function isKnownSlug(slug: string): Promise<boolean> { return SLUGS.has(slug); }
+async function isKnownSlug(slug: string): Promise<boolean> { return PARTNER_GO_SLUGS.has(slug); }
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

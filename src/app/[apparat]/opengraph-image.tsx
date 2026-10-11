@@ -1,16 +1,15 @@
 import { ImageResponse } from "next/og";
 import { getAppliance, getPublishedSlugs } from "@/lib/appliances";
 import { applianceRank, seasonalCost } from "@/lib/appliance-insights";
-import { EL_PRICE_KR_PER_KWH, formatKr, formatPrice, MARKET } from "@/lib/pricing";
+import { formatKr } from "@/lib/format";
 
 /**
  * A share card per appliance, built from that appliance's own figures.
  *
  * 43 distinct cards rather than one generic image: someone sharing the
- * tørretumbler page gets its kWh, its yearly cost and its rank among the 43,
- * which is both more useful and more clickable than a logo. Generated at build
- * time from the price engine, so the numbers on a shared card never contradict
- * the page it links to.
+ * tørretumbler page gets its kWh, its wattage and its rank among the 43. The card
+ * carries NO price: prices move with the feed every day and social caches keep a
+ * card for weeks, so only the physics is baked into the PNG.
  */
 
 export const alt = "Strømforbrug og årlig pris";
@@ -45,7 +44,7 @@ export function generateImageMetadata({ params }: { params: { apparat: string } 
       size,
       contentType,
       alt: data
-        ? `${data.name}: typisk strømforbrug i kWh og pris om året, fordelt over årets måneder`
+        ? `${data.name}: typisk strømforbrug i kWh, fordelt over årets måneder`
         : alt,
     },
   ];
@@ -66,9 +65,9 @@ export default async function Image({ params }: { params: Promise<{ apparat: str
     );
   }
 
-  const cost = data.typicalKwh * EL_PRICE_KR_PER_KWH;
   const rank = applianceRank(data);
-  const season = seasonalCost(data);
+  // Prisen 1 kr./kWh gør "cost" til kWh — kortet viser kun forbrugets form, aldrig kroner.
+  const season = seasonalCost(data, 1);
   const peak = Math.max(...season.months.map((m) => m.cost));
 
   return new ImageResponse(
@@ -102,11 +101,11 @@ export default async function Image({ params }: { params: Promise<{ apparat: str
             <div style={{ fontSize: 46, fontWeight: 700, marginTop: 6, display: "flex" }}>{formatKr(data.typicalKwh)} kWh</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", background: ACCENT, color: "#1c1917", borderRadius: 16, padding: "22px 26px", flex: 1 }}>
-            <div style={{ fontSize: 20, opacity: 0.75, display: "flex" }}>Pris om året</div>
-            <div style={{ fontSize: 46, fontWeight: 700, marginTop: 6, display: "flex" }}>{formatKr(cost)} kr.</div>
+            <div style={{ fontSize: 20, opacity: 0.75, display: "flex" }}>Spænd</div>
+            <div style={{ fontSize: 46, fontWeight: 700, marginTop: 6, display: "flex" }}>{formatKr(data.kwhRange[0])}-{formatKr(data.kwhRange[1])} kWh</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", background: "rgba(255,255,255,0.10)", borderRadius: 16, padding: "22px 26px", flex: 1 }}>
-            <div style={{ fontSize: 20, opacity: 0.8, display: "flex" }}>Blandt 43 apparater</div>
+            <div style={{ fontSize: 20, opacity: 0.8, display: "flex" }}>Blandt {rank.total} apparater</div>
             <div style={{ fontSize: 46, fontWeight: 700, marginTop: 6, display: "flex" }}>nr. {rank.rank}</div>
           </div>
         </div>
@@ -151,9 +150,9 @@ export default async function Image({ params }: { params: Promise<{ apparat: str
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: 19, opacity: 0.75, marginTop: 12 }}>
             <div style={{ display: "flex" }}>
-              Dyreste måned: {season.peak.month.toLowerCase()} — {formatKr(season.peak.cost)} kr.
+              Størst forbrug: {season.peak.month.toLowerCase()} — {formatKr(season.peak.kwh)} kWh
             </div>
-            <div style={{ display: "flex" }}>{formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh · {MARKET.period}</div>
+            <div style={{ display: "flex" }}>{formatKr(data.wattage)} W · typisk {formatKr(data.typicalKwh)} kWh om året</div>
           </div>
         </div>
       </div>

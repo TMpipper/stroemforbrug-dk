@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_CONFIG, ELECTRICITY_PRICE_KR_PER_KWH } from "@/lib/config";
+import { SITE_CONFIG } from "@/lib/config";
+import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
+import { renderWith } from "@/lib/tokens";
+import PriceBasis from "@/components/content/PriceBasis";
 import { getAppliance } from "@/lib/appliances";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
+import SwitchCta from "@/components/marketing/SwitchCta";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import { Zap, Calendar, BarChart3 } from "lucide-react";
-import { withCurrentYear } from "@/lib/pricing";
+import { withCurrentYear } from "@/lib/format";
+import { pageMeta } from "@/lib/pages";
+import { danishDate } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Varmepumpe strømforbrug (2026) → Se kWh og pris pr. type"),
@@ -18,23 +23,26 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}/varmepumpe/` },
 };
 
-export default function VarmepumpePage() {
+export default async function VarmepumpePage() {
   const data = getAppliance("varmepumpe")!;
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const faqs = data.faqs.map((f) => ({ ...f, answer: renderWith(t, f.answer) }));
   const url = `${SITE_CONFIG.url}/varmepumpe/`;
-  const costTypical = Math.round(data.typicalKwh * ELECTRICITY_PRICE_KR_PER_KWH);
+  const costTypical = Math.round(data.typicalKwh * t.dk);
 
   const schemas = [
     breadcrumbSchema([
       { name: "Forside", url: SITE_CONFIG.url },
       { name: "Varmepumpe", url },
     ]),
-    faqSchema(data.faqs),
+    faqSchema(faqs),
     articleSchema({
       title: data.heading,
       description: withCurrentYear(data.description),
       url,
       datePublished: "2026-07-29",
-      dateModified: SITE_CONFIG.lastUpdated,
+      dateModified: pageMeta("/varmepumpe/").updated,
     }),
   ];
 
@@ -48,12 +56,12 @@ export default function VarmepumpePage() {
         <Breadcrumb items={[{ name: "Varmepumpe" }]} />
         <p className="text-xs text-ink-400 mb-4">
           Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {new Date(SITE_CONFIG.lastUpdated).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}
+          {danishDate(pageMeta("/varmepumpe/").updated)}
         </p>
         <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
           {data.heading}
         </h1>
-        <QuickAnswer><p>{data.quickAnswer}</p></QuickAnswer>
+        <QuickAnswer><p>{renderWith(t, data.quickAnswer)}</p></QuickAnswer>
 
         {/* Sub-page links */}
         <div className="grid grid-cols-2 gap-3 mb-8">
@@ -108,18 +116,21 @@ export default function VarmepumpePage() {
           usageMax={data.calculatorConfig.usageMax}
           usageDefault={data.calculatorConfig.usageDefault}
           usageStep={data.calculatorConfig.usageStep}
+          prices={calculatorPrices(prices)}
+          deal={calculatorDeal(prices)}
         />
+        <PriceBasis prices={prices} className="-mt-6 mb-10" />
 
-        <div className="prose-editorial" dangerouslySetInnerHTML={{ __html: data.content }} />
+        <div className="prose-editorial" dangerouslySetInnerHTML={{ __html: renderWith(t, data.content) }} />
 
-        <AffiliateCta kwh={9000} household="et hus med varmepumpe" />
+        <SwitchCta kwh={9000} household="et hus med varmepumpe" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">
             Ofte stillede spørgsmål om varmepumpe strømforbrug
           </h2>
           <div className="space-y-4">
-            {data.faqs.map((faq, i) => (
+            {faqs.map((faq, i) => (
               <details key={i} className="group border border-ink-200 rounded-card">
                 <summary className="cursor-pointer px-5 py-4 font-medium text-ink-900 hover:bg-surface-alt transition-colors rounded-card">
                   {faq.question}

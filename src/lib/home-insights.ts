@@ -8,14 +8,19 @@
  * dominate a bill, what a household of a given size realistically uses, and how
  * that compares to the national average.
  *
- * Everything derives from the appliance data and the price engine. The one
+ * Everything derives from the appliance data and the marginal price the page passes in
+ * (from getPrices(), never a constant). The one
  * judgement call is which appliances sit in which household basket, and that is
  * stated openly in the methodology section rather than presented as measurement.
  */
 
 import { getPublishedAppliances } from "./appliances";
 import type { ApplianceData } from "./types";
-import { EL_PRICE_KR_PER_KWH, PRICE_DK1, PRICE_DK2, MARKET, formatKr, formatPrice } from "./pricing";
+import { formatKr, formatPrice } from "./format";
+import type { TokenPrices } from "./tokens";
+
+/** kr./kWh inkl. moms, uden abonnement — marginalprisen fra getPrices(). Aldrig en konstant. */
+export type KrPerKwh = number;
 import type { FAQ } from "./types";
 
 /* ---------- categories ---------- */
@@ -139,7 +144,7 @@ export interface HouseholdResult extends HouseholdProfile {
   missing: string[];
 }
 
-export function householdResult(p: HouseholdProfile): HouseholdResult {
+export function householdResult(p: HouseholdProfile, price: KrPerKwh): HouseholdResult {
   const all = getPublishedAppliances();
   const appliances = p.basket
     .map((s) => all.find((a) => a.slug === s))
@@ -166,15 +171,15 @@ export function householdResult(p: HouseholdProfile): HouseholdResult {
     trackedKwh,
     residualKwh,
     residualShare: residualKwh / p.totalKwh,
-    totalCost: p.totalKwh * EL_PRICE_KR_PER_KWH,
+    totalCost: p.totalKwh * price,
     top: [...appliances].sort((a, b) => b.typicalKwh - a.typicalKwh).slice(0, 3),
     categories,
     missing,
   };
 }
 
-export function allHouseholds(): HouseholdResult[] {
-  return HOUSEHOLD_PROFILES.map(householdResult);
+export function allHouseholds(price: KrPerKwh): HouseholdResult[] {
+  return HOUSEHOLD_PROFILES.map((p) => householdResult(p, price));
 }
 
 /* ---------- headline figures ---------- */
@@ -202,7 +207,7 @@ const OPTIONAL = new Set([
   "ladestander", "gulvvarme-el", "robotplaeneklipper", "lyskaede",
 ]);
 
-export function topAppliances(n = 10, opts: { includeOptional?: boolean } = {}): TopAppliance[] {
+export function topAppliances(price: KrPerKwh, n = 10, opts: { includeOptional?: boolean } = {}): TopAppliance[] {
   return [...getPublishedAppliances()]
     .filter((a) => (opts.includeOptional ? true : !OPTIONAL.has(a.slug)))
     .sort((a, b) => b.typicalKwh - a.typicalKwh)
@@ -210,13 +215,11 @@ export function topAppliances(n = 10, opts: { includeOptional?: boolean } = {}):
     .map((appliance) => ({
       appliance,
       kwh: appliance.typicalKwh,
-      cost: appliance.typicalKwh * EL_PRICE_KR_PER_KWH,
+      cost: appliance.typicalKwh * price,
       share: appliance.typicalKwh / REFERENCE_HOUSEHOLD_KWH,
       optional: OPTIONAL.has(appliance.slug),
     }));
 }
-
-export const MARKET_PERIOD = MARKET.period;
 
 /**
  * Build-time sanity check on the baskets: a profile that references an
@@ -225,7 +228,8 @@ export const MARKET_PERIOD = MARKET.period;
  * Called from `npm run audit-seo`.
  */
 export function assertHouseholds(): void {
-  for (const r of allHouseholds()) {
+  // Prisen er ligegyldig for kontrollen (kun kWh) — 1 kr./kWh gør tallene læsbare i fejlteksten.
+  for (const r of allHouseholds(1)) {
     if (r.missing.length) {
       throw new Error(`home-insights: profile "${r.slug}" references unknown appliances: ${r.missing.join(", ")}`);
     }
@@ -253,10 +257,10 @@ export function assertHouseholds(): void {
  * them. Written to be self-contained: each answers the question in the first
  * sentence, which is what both featured snippets and AI Overviews quote.
  */
-export function homeFaqs(): FAQ[] {
-  const h = allHouseholds();
+export function homeFaqs(prices: TokenPrices): FAQ[] {
+  const h = allHouseholds(prices.dk);
   const flat = h[0], pair = h[1], family = h[2], hp = h[3], ev = h[4];
-  const top = topAppliances(3);
+  const top = topAppliances(prices.dk, 3);
   return [
     {
       question: "Hvor meget strøm bruger en gennemsnitlig dansk husstand?",
@@ -264,7 +268,7 @@ export function homeFaqs(): FAQ[] {
     },
     {
       question: "Hvad koster 1 kWh strøm?",
-      answer: `En kWh koster ca. ${formatPrice(EL_PRICE_KR_PER_KWH)} kr. inkl. moms, afgifter og transport — ${formatPrice(PRICE_DK1)} kr. vest for Storebælt og ${formatPrice(PRICE_DK2)} kr. øst for. Oven i kommer et fast abonnement til elselskabet, som ikke afhænger af, hvor meget du bruger.`,
+      answer: `En kWh koster ca. ${formatPrice(prices.dk)} kr. inkl. moms, afgifter og transport — ${formatPrice(prices.dk1)} kr. vest for Storebælt og ${formatPrice(prices.dk2)} kr. øst for. Oven i kommer et fast abonnement til elselskabet, som ikke afhænger af, hvor meget du bruger.`,
     },
     {
       question: "Hvilke apparater bruger mest strøm?",
@@ -291,7 +295,7 @@ export function homeFaqs(): FAQ[] {
  * and are covered separately. This is the "what about the things everyone
  * actually has" cut, and it complements topAppliances() rather than repeating it.
  */
-export function topEverydayAppliances(n = 5): TopAppliance[] {
+export function topEverydayAppliances(price: KrPerKwh, n = 5): TopAppliance[] {
   const EVERYDAY: CategoryKey[] = ["koelFrys", "vaskToerring", "madlavning", "underholdning"];
   return [...getPublishedAppliances()]
     .filter((a) => EVERYDAY.includes(categoryOf(a.slug)) && !OPTIONAL.has(a.slug))
@@ -300,7 +304,7 @@ export function topEverydayAppliances(n = 5): TopAppliance[] {
     .map((appliance) => ({
       appliance,
       kwh: appliance.typicalKwh,
-      cost: appliance.typicalKwh * EL_PRICE_KR_PER_KWH,
+      cost: appliance.typicalKwh * price,
       share: appliance.typicalKwh / REFERENCE_HOUSEHOLD_KWH,
       optional: false,
     }));
@@ -334,10 +338,10 @@ export const CONSUMPTION_BANDS: ConsumptionBand[] = [
 ];
 
 /** Full annual cost span for a band, from its cheapest to its most expensive case. */
-export function bandCostRange(b: ConsumptionBand): [number, number] {
+export function bandCostRange(b: ConsumptionBand, price: KrPerKwh): [number, number] {
   const lo = b.withoutHeatPump[0];
   const hi = (b.withHeatPump ?? b.withoutHeatPump)[1];
-  return [lo * EL_PRICE_KR_PER_KWH, hi * EL_PRICE_KR_PER_KWH];
+  return [lo * price, hi * price];
 }
 
 /**

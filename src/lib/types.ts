@@ -60,7 +60,7 @@ export interface ApplianceData {
   /**
    * ISO date (YYYY-MM-DD) of the last SUBSTANTIVE change to this appliance's
    * content. Bump it only when the substance changed — not for a typo or a
-   * restyle. Falls back to SITE_CONFIG.lastUpdated when unset.
+   * restyle. Falls back to pageMeta().updated (RELAUNCH) when unset.
    *
    * Per-page rather than site-wide on purpose: a single site date silently
    * re-dates all 43 pages whenever one of them is edited, which is the faked

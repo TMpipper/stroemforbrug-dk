@@ -6,15 +6,18 @@ import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import { WattCostTable, QuickLookup } from "@/components/content/WattReference";
-import { EL_PRICE_KR_PER_KWH, formatKr, formatPrice, MARKET } from "@/lib/pricing";
-import { withCurrentYear } from "@/lib/pricing";
+import { formatKr, formatPrice, danishMonth } from "@/lib/format";
+import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
+import type { TokenPrices } from "@/lib/tokens";
+import PriceBasis from "@/components/content/PriceBasis";
+import { withCurrentYear } from "@/lib/format";
 
 
-const faqs = [
+const faqsFor = (t: TokenPrices) => [
   {
     question: "Hvordan beregner jeg mit strømforbrug?",
     answer:
-      `Gang apparatets effekt i watt med antal timer, og divider med 1.000 — så har du forbruget i kWh. Gang med elprisen på ${formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh for at få udgiften. Et apparat på 1.000 watt, der kører en time, bruger 1 kWh og koster altså ${formatPrice(EL_PRICE_KR_PER_KWH)} kr.`,
+      `Gang apparatets effekt i watt med antal timer, og divider med 1.000 — så har du forbruget i kWh. Gang med elprisen på ${formatPrice(t.dk)} kr./kWh for at få udgiften. Et apparat på 1.000 watt, der kører en time, bruger 1 kWh og koster altså ${formatPrice(t.dk)} kr.`,
   },
   {
     question: "Hvad er forskellen på watt og kWh?",
@@ -34,7 +37,7 @@ const faqs = [
   {
     question: "Hvorfor passer beregneren ikke med min elregning?",
     answer:
-      `Beregneren regner med en marginal elpris på ${formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh, altså spotpris, transport, afgift og moms. Din regning indeholder derudover et fast abonnement til elselskabet, og din spotpris svinger time for time. Bruger du strøm om natten, betaler du mindre end gennemsnittet.`,
+      `Beregneren regner med en marginal elpris på ${formatPrice(t.dk)} kr./kWh, altså spotpris, transport, afgift og moms. Din regning indeholder derudover et fast abonnement til elselskabet, og din spotpris svinger time for time. Bruger du strøm om natten, betaler du mindre end gennemsnittet.`,
   },
 ];
 
@@ -45,7 +48,10 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}/beregner/` },
 };
 
-export default function BeregnerPage() {
+export default async function BeregnerPage() {
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const faqs = faqsFor(t);
   // Use the first appliance's calculator as default
   const defaultAppliance = getPublishedAppliances()[0];
 
@@ -97,9 +103,12 @@ export default function BeregnerPage() {
           usageMax={24}
           usageDefault={4}
           usageStep={1}
+          prices={calculatorPrices(prices)}
+          deal={calculatorDeal(prices)}
         />
+        <PriceBasis prices={prices} className="-mt-6 mb-10" />
 
-        <WattCostTable />
+        <WattCostTable prices={t} />
 
         {/* How to calculate */}
         <div className="prose-editorial mt-10">
@@ -115,7 +124,7 @@ export default function BeregnerPage() {
           <p>
             <strong>Eksempel:</strong> Et tv på 85 watt der kører 4 timer om
             dagen: 85 &times; 4 &times; 365 &divide; 1.000 = 124 kWh/år. Med en
-            elpris på 1,86 kr./kWh koster det 231 kr. om året.
+            elpris på {formatPrice(t.dk)} kr./kWh koster det {formatKr(124 * t.dk)} kr. om året.
           </p>
 
           <h2>Beregn forbrug for specifikke apparater</h2>
@@ -192,7 +201,7 @@ export default function BeregnerPage() {
             <li>
               <strong>Tv på 85 watt, 4 timer om dagen:</strong> 85 × 4 ÷ 1.000 = 0,34 kWh
               om dagen. Over et år bliver det 124 kWh, altså omkring{" "}
-              {formatKr(EL_PRICE_KR_PER_KWH * 124)} kr.
+              {formatKr(t.dk * 124)} kr.
             </li>
             <li>
               <strong>Elkedel på 2.000 watt, 10 minutter om dagen:</strong> 2.000 ×
@@ -208,8 +217,8 @@ export default function BeregnerPage() {
           <h2>Hvorfor passer beregneren ikke præcist med din elregning?</h2>
           <p>
             Fordi de regner på to forskellige ting. Beregneren bruger en marginal elpris
-            på {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh — spotpris, nettarif, elafgift
-            og moms for {MARKET.period}. Din regning indeholder derudover et fast
+            på {formatPrice(t.dk)} kr./kWh — spotpris, nettarif, elafgift, et typisk tillæg
+            og moms for {danishMonth(t.month)}. Din regning indeholder derudover et fast
             abonnement til elselskabet, som du betaler uanset forbrug.
           </p>
           <p>
@@ -221,7 +230,7 @@ export default function BeregnerPage() {
           </p>
         </section>
 
-        <QuickLookup />
+        <QuickLookup price={t.dk} />
 
         <section className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">

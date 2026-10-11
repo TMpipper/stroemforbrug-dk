@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getPublishedAppliances } from "@/lib/appliances";
-import { EL_PRICE_KR_PER_KWH, formatKr, formatKrExact, formatPrice, MARKET } from "@/lib/pricing";
+import { formatKr, formatKrExact, formatPrice, danishMonth } from "@/lib/format";
+import type { TokenPrices } from "@/lib/tokens";
 
 /**
  * Reference tables for the calculator page.
@@ -23,7 +24,8 @@ const WATTAGES = [
 ];
 
 /** What a given effect costs per hour, per day and over a year of daily use. */
-export function WattCostTable() {
+export function WattCostTable({ prices }: { prices: TokenPrices }) {
+  const price = prices.dk;
   return (
     <section className="my-10">
       <h2 className="font-heading text-xl font-medium text-ink-900 mb-3">
@@ -32,7 +34,7 @@ export function WattCostTable() {
       <p className="text-ink-700 mb-4">
         Et apparats effekt i watt fortæller, hvor hurtigt det bruger strøm. Tabellen
         omregner de mest almindelige effekter til kroner ved{" "}
-        {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh, så du kan slå et tal op uden at
+        {formatPrice(price)} kr./kWh, så du kan slå et tal op uden at
         regne selv.
       </p>
       <div className="overflow-x-auto">
@@ -48,7 +50,7 @@ export function WattCostTable() {
           <tbody>
             {WATTAGES.map((row) => {
               const kwh = row.w / 1000;
-              const perHour = kwh * EL_PRICE_KR_PER_KWH;
+              const perHour = kwh * price;
               const perYear = perHour * 365;
               return (
                 <tr key={row.w} className="hover:bg-surface-alt">
@@ -65,8 +67,8 @@ export function WattCostTable() {
         </table>
       </div>
       <p className="text-xs text-ink-400 mt-2">
-        Beregnet ved {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh inkl. moms, afgifter og
-        transport ({MARKET.period}). Kolonnen længst til højre antager én times brug
+        Beregnet ved {formatPrice(price)} kr./kWh inkl. moms, afgifter og
+        transport ({danishMonth(prices.month)}), uden abonnement. Kolonnen længst til højre antager én times brug
         hver dag året rundt.
       </p>
     </section>
@@ -74,7 +76,7 @@ export function WattCostTable() {
 }
 
 /** The ten heaviest appliances, as a jumping-off point from the calculator. */
-export function QuickLookup() {
+export function QuickLookup({ price }: { price: number }) {
   const rows = [...getPublishedAppliances()]
     .sort((a, b) => b.typicalKwh - a.typicalKwh)
     .slice(0, 10);
@@ -105,7 +107,7 @@ export function QuickLookup() {
                 </td>
                 <td className="py-2 px-3 border-b border-ink-200 text-right tabular-nums">{formatKr(a.typicalKwh)}</td>
                 <td className="py-2 px-3 border-b border-ink-200 text-right tabular-nums font-semibold">
-                  {formatKr(a.typicalKwh * EL_PRICE_KR_PER_KWH)} kr.
+                  {formatKr(a.typicalKwh * price)} kr.
                 </td>
               </tr>
             ))}

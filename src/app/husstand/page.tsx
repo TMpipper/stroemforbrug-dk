@@ -4,11 +4,14 @@ import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
-import { withCurrentYear } from "@/lib/pricing";
+import SwitchCta from "@/components/marketing/SwitchCta";
+import { withCurrentYear, formatKr, formatPrice } from "@/lib/format";
+import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
+import PriceBasis from "@/components/content/PriceBasis";
+import type { TokenPrices } from "@/lib/tokens";
 
 
-const faqs = [
+const faqsFor = (t: TokenPrices) => [
   {
     question: "Hvad er et normalt strømforbrug for en husstand?",
     answer:
@@ -43,7 +46,10 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}/husstand/` },
 };
 
-export default function HusstandPage() {
+export default async function HusstandPage() {
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const faqs = faqsFor(t);
   return (
     <>
       <script
@@ -69,7 +75,7 @@ export default function HusstandPage() {
         <QuickAnswer>
           <p>
             En gennemsnitlig dansk husstand bruger 3.000-4.500 kWh strøm om
-            året uden varmepumpe. Det svarer til 5.580-8.370 kr. ved 1,86
+            året uden varmepumpe. Det svarer til {formatKr(3000 * t.dk)}-{formatKr(4500 * t.dk)} kr. ved {formatPrice(t.dk)}
             kr./kWh. En enlig person bruger ca. 1.500-2.500 kWh, mens en
             familie på 4 bruger 4.000-5.500 kWh.
           </p>
@@ -145,7 +151,7 @@ export default function HusstandPage() {
           <h2>Strømforbrug familie på 4</h2>
           <p>
             En typisk dansk familie på 4 i et parcelhus bruger 4.000-5.500 kWh strøm om året
-            (uden varmepumpe), svarende til 7.440-10.230 kr. De største poster er{" "}
+            (uden varmepumpe), svarende til {formatKr(4000 * t.dk)}-{formatKr(5500 * t.dk)} kr. De største poster er{" "}
             <Link href="/koeleskab/">køleskab/fryser</Link> (24/7),{" "}
             <Link href="/toerretumbler/">tørretumbler</Link> og{" "}
             <Link href="/opvaskemaskine/">opvaskemaskine</Link>.
@@ -154,7 +160,7 @@ export default function HusstandPage() {
           <h2>Strømforbrug 1 person</h2>
           <p>
             Bor du alene i en lejlighed, er et normalt strømforbrug 1.500-2.000 kWh/år
-            (2.790-3.720 kr.). I et hus stiger det til 2.000-2.500 kWh/år fordi der er
+            ({formatKr(1500 * t.dk)}-{formatKr(2000 * t.dk)} kr.). I et hus stiger det til 2.000-2.500 kWh/år fordi der er
             flere apparater og større arealer at belyse.
           </p>
 
@@ -271,7 +277,9 @@ export default function HusstandPage() {
 
         </div>
 
-        <AffiliateCta />
+        <PriceBasis prices={prices} className="my-4" />
+
+        <SwitchCta />
       </article>
     </>
   );

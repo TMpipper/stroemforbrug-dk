@@ -9,13 +9,17 @@
  * is it just sitting there.
  *
  * All of it is computed from data the appliance already carries (kwhRange,
- * typicalKwh, seasonalProfile, energyLabels, standbyWatts) and the verified
- * price engine, so it stays correct across all 43 pages and cannot drift.
+ * typicalKwh, seasonalProfile, energyLabels, standbyWatts) and the marginal price
+ * the page receives from getPrices() — never a constant — so all 43 pages stay correct.
  */
 
 import type { ApplianceData } from "./types";
 import { APPLIANCES } from "./appliances";
-import { EL_PRICE_KR_PER_KWH, PRICE_DK1, PRICE_DK2, MARKET } from "./pricing";
+import type { TokenPrices } from "./tokens";
+import { danishMonth } from "./format";
+
+/** kr./kWh inkl. moms, uden abonnement — marginalprisen fra getPrices(). Aldrig en konstant. */
+export type KrPerKwh = number;
 
 export const MONTHS = [
   "Januar", "Februar", "Marts", "April", "Maj", "Juni",
@@ -37,9 +41,9 @@ export interface RegionalCost {
  * The same appliance costs more east of Storebælt, because DK2 carries both a
  * higher spot price and a higher nettarif. Nobody on this SERP splits it.
  */
-export function regionalCost(a: ApplianceData): RegionalCost {
-  const dk1 = a.typicalKwh * PRICE_DK1;
-  const dk2 = a.typicalKwh * PRICE_DK2;
+export function regionalCost(a: ApplianceData, p: TokenPrices): RegionalCost {
+  const dk1 = a.typicalKwh * p.dk1;
+  const dk2 = a.typicalKwh * p.dk2;
   return {
     dk1,
     dk2,
@@ -75,7 +79,7 @@ export interface SeasonalCost {
  * actual annual consumption — otherwise a profile averaging 1,05 would quietly
  * inflate the year by 5 %.
  */
-export function seasonalCost(a: ApplianceData, price = EL_PRICE_KR_PER_KWH): SeasonalCost {
+export function seasonalCost(a: ApplianceData, price: KrPerKwh): SeasonalCost {
   const profile = a.seasonalProfile?.length === 12 ? a.seasonalProfile : new Array(12).fill(1);
   const total = profile.reduce((n, v) => n + v, 0);
 
@@ -128,10 +132,7 @@ export interface ReplacementSaving {
 /** A, A+, A++, A+++, B-G — the EU scale, as opposed to a descriptive label */
 const ENERGY_CLASS_RE = /^(A\+{0,3}|[B-G])$/;
 
-export function replacementSaving(
-  a: ApplianceData,
-  price = EL_PRICE_KR_PER_KWH,
-): ReplacementSaving | null {
+export function replacementSaving(a: ApplianceData, price: KrPerKwh): ReplacementSaving | null {
   if (a.energyLabels.length < 2) return null;
   const sorted = [...a.energyLabels].sort((x, y) => x.kwhPerYear - y.kwhPerYear);
   const best = sorted[0];
@@ -174,7 +175,7 @@ export interface StandbyShare {
 
 const HOURS_PER_YEAR = 8760;
 
-export function standbyShare(a: ApplianceData, price = EL_PRICE_KR_PER_KWH): StandbyShare | null {
+export function standbyShare(a: ApplianceData, price: KrPerKwh): StandbyShare | null {
   if (!a.standbyWatts || a.standbyWatts <= 0) return null;
   const kwhPerYear = (a.standbyWatts * HOURS_PER_YEAR) / 1000;
   const raw = a.typicalKwh > 0 ? kwhPerYear / a.typicalKwh : 0;
@@ -233,15 +234,15 @@ export interface ApplianceInsights {
   period: string;
 }
 
-export function insightsFor(a: ApplianceData, price = EL_PRICE_KR_PER_KWH): ApplianceInsights {
+export function insightsFor(a: ApplianceData, p: TokenPrices): ApplianceInsights {
   return {
-    regional: regionalCost(a),
-    seasonal: seasonalCost(a, price),
-    replacement: replacementSaving(a, price),
-    standby: standbyShare(a, price),
+    regional: regionalCost(a, p),
+    seasonal: seasonalCost(a, p.dk),
+    replacement: replacementSaving(a, p.dk),
+    standby: standbyShare(a, p.dk),
     rank: applianceRank(a),
-    yearlyCost: a.typicalKwh * price,
-    period: MARKET.period,
+    yearlyCost: a.typicalKwh * p.dk,
+    period: danishMonth(p.month),
   };
 }
 

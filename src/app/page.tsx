@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Zap, Calculator, Home, BarChart3 } from "lucide-react";
-import { SITE_CONFIG, ELECTRICITY_PRICE_KR_PER_KWH } from "@/lib/config";
-import { formatKr } from "@/lib/pricing";
+import { SITE_CONFIG } from "@/lib/config";
+import { formatKr, formatPrice } from "@/lib/format";
+import { getPrices, tokenPrices } from "@/lib/prices";
 import { getPublishedAppliances } from "@/lib/appliances";
 import { homeFaqs, topEverydayAppliances } from "@/lib/home-insights";
 import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
@@ -11,12 +12,16 @@ import {
   WhatDominates,
   Methodology,
 } from "@/components/home/HomePillar";
+import { pageMeta } from "@/lib/pages";
+import PriceBasis from "@/components/content/PriceBasis";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
   // Sort by typical kWh descending for the ranking
   const sorted = [...getPublishedAppliances()].sort((a, b) => b.typicalKwh - a.typicalKwh);
-  const faqs = homeFaqs();
-  const everyday = topEverydayAppliances(5);
+  const faqs = homeFaqs(t);
+  const everyday = topEverydayAppliances(t.dk, 5);
 
   // The pillar page previously carried no page-level schema at all — every
   // appliance page it links to was better marked up than the page itself.
@@ -27,7 +32,7 @@ export default function HomePage() {
       description: SITE_CONFIG.description,
       url: `${SITE_CONFIG.url}/`,
       datePublished: "2026-07-29",
-      dateModified: SITE_CONFIG.lastUpdated,
+      dateModified: pageMeta("/").updated,
       image: `${SITE_CONFIG.url}/opengraph-image/`,
     }),
     faqSchema(faqs),
@@ -129,9 +134,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <DirectAnswer />
-      <HouseholdProfiles />
-      <WhatDominates />
+      <DirectAnswer prices={prices} />
+      <HouseholdProfiles price={t.dk} />
+      <WhatDominates price={t.dk} />
 
       {/* Appliance ranking */}
       <section className="py-16">
@@ -180,7 +185,7 @@ export default function HomePage() {
                     </td>
                     <td className="py-3 px-4 border-b border-ink-200">
                       {Math.round(
-                        appliance.typicalKwh * ELECTRICITY_PRICE_KR_PER_KWH
+                        appliance.typicalKwh * t.dk
                       ).toLocaleString("da-DK")}{" "}
                       kr.
                     </td>
@@ -208,8 +213,8 @@ export default function HomePage() {
           <p>
             Den gennemsnitlige danske husstand bruger{" "}
             <Link href="/gennemsnitligt/">3.000-4.500 kWh strøm om året</Link>,
-            svarende til 5.580-8.370 kr. ved den aktuelle gennemsnitspris på
-            1,86 kr./kWh. Inkluderer husstanden en{" "}
+            svarende til {formatKr(3000 * t.dk)}-{formatKr(4500 * t.dk)} kr. ved den aktuelle gennemsnitspris på
+            {formatPrice(t.dk)} kr./kWh. Inkluderer husstanden en{" "}
             <Link href="/varmepumpe/">varmepumpe</Link>, stiger forbruget typisk
             til 6.000-10.000 kWh/år.
           </p>
@@ -245,7 +250,7 @@ export default function HomePage() {
             Formlen er enkel: <strong>Watt × timer × dage ÷ 1.000 = kWh</strong>
             . Eksempel: et <Link href="/tv/">55&quot; tv</Link> på 85W der kører 4
             timer dagligt bruger 85 × 4 × 365 ÷ 1.000 = 124 kWh/år, svarende
-            til 231 kr.
+            til {formatKr(124 * t.dk)} kr.
           </p>
           <p>
             Brug vores{" "}
@@ -267,7 +272,7 @@ export default function HomePage() {
           </p>
         </div>
       </section>
-      <Methodology />
+      <Methodology prices={prices} />
 
       {/* FAQ — answers computed from the same data as the tables above */}
       <section className="py-16 bg-surface-alt">

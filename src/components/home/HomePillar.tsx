@@ -5,15 +5,10 @@ import {
   AVERAGE_PER_PERSON_KWH,
   REFERENCE_HOUSEHOLD_KWH,
 } from "@/lib/home-insights";
-import {
-  EL_PRICE_KR_PER_KWH,
-  PRICE_DK1,
-  PRICE_DK2,
-  MARKET,
-  formatKr,
-  formatPrice,
-} from "@/lib/pricing";
-import { SOURCES, SOURCES_VERIFIED_AT } from "@/lib/sources";
+import { formatKr, formatPrice, danishMonth } from "@/lib/format";
+import type { SitePrices } from "@/lib/prices";
+import { tokenPrices } from "@/lib/prices";
+import PriceBasis from "@/components/content/PriceBasis";
 
 /**
  * The pillar sections. The homepage used to be the thinnest content page on the
@@ -23,8 +18,8 @@ import { SOURCES, SOURCES_VERIFIED_AT } from "@/lib/sources";
  */
 
 /** Answer-first block: the core question resolved inside the first 100 words. */
-export function DirectAnswer() {
-  const households = allHouseholds();
+export function DirectAnswer({ prices }: { prices: SitePrices }) {
+  const households = allHouseholds(prices.marginal.dk);
   const flat = households[0];
   const family = households[2];
   return (
@@ -43,8 +38,8 @@ export function DirectAnswer() {
           eller elbil, fordobles det let.
         </p>
         <p className="text-ink-600 mt-4">
-          Beregnet med en elpris på {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh inkl.
-          moms, afgifter og transport for {MARKET.period}. Nedenfor kan du se, hvad
+          Beregnet med en marginal elpris på {formatPrice(prices.marginal.dk)} kr./kWh inkl.
+          moms, afgifter og transport for {danishMonth(prices.marginal.month)}, uden abonnement. Nedenfor kan du se, hvad
           hvert enkelt apparat koster, og hvilke poster der reelt fylder på regningen.
         </p>
       </div>
@@ -53,8 +48,8 @@ export function DirectAnswer() {
 }
 
 /** What a household of a given size actually uses, and what makes it up. */
-export function HouseholdProfiles() {
-  const households = allHouseholds();
+export function HouseholdProfiles({ price }: { price: number }) {
+  const households = allHouseholds(price);
   return (
     <section className="py-16 border-b border-ink-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
@@ -109,8 +104,8 @@ export function HouseholdProfiles() {
 }
 
 /** The honest answer to "what uses most" — and it is not the television. */
-export function WhatDominates() {
-  const top = topAppliances(8);
+export function WhatDominates({ price }: { price: number }) {
+  const top = topAppliances(price, 8);
   const heaviest = top[0];
   return (
     <section className="py-16 bg-surface-alt border-b border-ink-200">
@@ -167,7 +162,8 @@ export function WhatDominates() {
 }
 
 /** How every figure on the site is produced. */
-export function Methodology() {
+export function Methodology({ prices }: { prices: SitePrices }) {
+  const t = tokenPrices(prices);
   return (
     <section id="metode" className="py-16 border-b border-ink-200 scroll-mt-24">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 prose-editorial">
@@ -180,11 +176,13 @@ export function Methodology() {
         <h3>Elprisen</h3>
         <p>
           Vi regner med en marginal elpris på{" "}
-          <strong>{formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh</strong> inkl. moms —{" "}
-          {formatPrice(PRICE_DK1)} kr. vest for Storebælt og {formatPrice(PRICE_DK2)} kr.
-          øst for. Prisen dækker spotpris, nettarif, Energinet-tarif og elafgift for{" "}
-          {MARKET.period}.
+          <strong>{formatPrice(t.dk)} kr./kWh</strong> inkl. moms —{" "}
+          {formatPrice(t.dk1)} kr. vest for Storebælt og {formatPrice(t.dk2)} kr.
+          øst for. Prisen dækker spotpris, nettarif, Energinet-tarif, elafgift og et typisk tillæg for{" "}
+          {danishMonth(t.month)}, og den kommer fra den fælles prisdatabase el-feed, som læser
+          Forsyningstilsynets elpris.dk og Energi Data Service hver nat.
         </p>
+        <PriceBasis prices={prices} />
         <p>
           Abonnement indgår <em>ikke</em> i kWh-prisen. Det er en fast månedlig udgift,
           der ikke ændrer sig, når et apparat kører en time længere, og alle tal på
@@ -194,10 +192,11 @@ export function Methodology() {
         </p>
         <h3>Hvorfor ikke vores egne partneres priser</h3>
         <p>
-          Gennemsnitsprisen er afledt af Forsyningstilsynets opgørelse for de 30 mest
-          solgte elaftaler og ikke af de selskaber, vi linker til. De ligger blandt
-          markedets billigste, så deres gennemsnit ville undervurdere, hvad en almindelig
-          husstand betaler — og dermed få besparelserne på siden til at se større ud.
+          Tillægget i prisen er medianen af alle rene, varige spotaftaler i markedet — ikke
+          de selskaber, vi linker til. De ligger blandt markedets billigste, så deres tillæg
+          ville undervurdere, hvad en almindelig husstand betaler, og få besparelserne på siden
+          til at se større ud. &quot;Billigste aftale&quot; regnes på samme måde over hele markedet
+          og står altid med sit omfang.
         </p>
         <h3>Forbrugstallene</h3>
         <p>
@@ -214,14 +213,6 @@ export function Methodology() {
           <li>Vi sammenligner ikke en marginalpris med en alt-i-alt-pris — det ville overdrive besparelsen.</li>
           <li>Vi omregner ikke priser på benzin, diesel, gas eller fjernvarme efter elprisen. De følger deres egne markeder.</li>
         </ul>
-        <p className="text-sm text-ink-500">
-          Kilder:{" "}
-          <a href={SOURCES.energimaerke.url} target="_blank" rel="noopener noreferrer nofollow" className="underline">{SOURCES.energimaerke.name}</a>,{" "}
-          <a href={SOURCES.indkoeb.url} target="_blank" rel="noopener noreferrer nofollow" className="underline">{SOURCES.indkoeb.name}</a>,{" "}
-          <a href={MARKET.sources.spot} target="_blank" rel="noopener noreferrer nofollow" className="underline">Energi Data Service</a> og{" "}
-          <a href={MARKET.sources.transport} target="_blank" rel="noopener noreferrer nofollow" className="underline">Forsyningstilsynet</a>.
-          Links kontrolleret {new Date(SOURCES_VERIFIED_AT).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}.
-        </p>
       </div>
     </section>
   );

@@ -4,7 +4,6 @@ export const SITE_CONFIG = {
   locale: "da_DK",
   description:
     "Alt om strømforbrug i Danmark. Se hvor meget strøm dine apparater bruger, beregn din årlige udgift og få tips til at spare på strømmen.",
-  lastUpdated: "2026-10-10",
   editorName: "Mathias Clausen",
   editorRole: "Redaktør & Energirådgiver",
   editorCredential:
@@ -20,14 +19,3 @@ export const SITE_CONFIG = {
   },
 };
 
-// Single source of truth for electricity price used in all calculations.
-// Computed from market data in pricing.ts — never type a price here.
-export {
-  EL_PRICE_KR_PER_KWH as ELECTRICITY_PRICE_KR_PER_KWH,
-  TYPICAL_ALL_IN_KR_PER_KWH,
-  PRICE_LABEL,
-  PRICE_DEFINITION,
-  MARKET,
-} from "./pricing";
-
-export const CHEAP_PROVIDER_NAME = "Altid Energi";

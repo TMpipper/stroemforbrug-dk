@@ -4,8 +4,13 @@ import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
-import { withCurrentYear } from "@/lib/pricing";
+import SwitchCta from "@/components/marketing/SwitchCta";
+import { withCurrentYear, formatKr, formatPrice } from "@/lib/format";
+import { pageMeta } from "@/lib/pages";
+import { danishDate } from "@/lib/format";
+import { getPrices, tokenPrices, calculatorPrices, calculatorDeal, savingPerKwh, type SitePrices } from "@/lib/prices";
+import PriceBasis from "@/components/content/PriceBasis";
+import type { TokenPrices } from "@/lib/tokens";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Spar på strømmen (2026) → Komplet guide til lavere elregning"),
@@ -14,18 +19,25 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}/spare-paa-stroemmen/` },
 };
 
-const faqs = [
+const faqsFor = (t: TokenPrices) => [
   { question: "Hvordan kan man spare på strømmen?", answer: "Start med at tjekke dit forbrug på Eloverblik.dk. Skift derefter til billigste elselskab (sparer op til 4.000 kr./år), reducer standby-forbrug, skift til LED-pærer, og brug eco-programmer på hvidevarer. Samlet kan du spare 3.000-6.000 kr./år." },
   { question: "Hvad koster det at spare på strømmen?", answer: "De fleste sparetiltag er gratis (ændre vaner, eco-programmer, slukke standby). LED-pærer koster 15-30 kr./stk. og er tjent hjem på få måneder. Udskiftning af gamle hvidevarer kræver investering men betaler sig inden for 3-5 år." },
   { question: "Hvor tjekker jeg mit strømforbrug?", answer: "Log ind på Eloverblik.dk med MitID. Her kan du se dit forbrug time for time, dag for dag og måned for måned. Du kan også se din gennemsnitlige kWh-pris og sammenligne med landsgennemsnittet." },
   { question: "Hvad bruger mest strøm i køkkenet?", answer: "Køleskabet er den største strømsluger i køkkenet fordi det kører 24/7 (200-500 kWh/år). Derefter kommer ovnen (150-300 kWh/år) og opvaskemaskinen (200-300 kWh/år). Brug eco-program og undgå at åbne køleskabet unødvendigt." },
   { question: "Kan man spare strøm i badeværelset?", answer: "Ja, de største besparelser i badeværelset er: kortere brusebade (sparer varmt vand og evt. el til varmtvandsbeholder), sluk lys når du forlader rummet, og brug en hårtørrer på lav effekt. En varmtvandsbeholder kan bruge 1.500-3.000 kWh/år." },
-  { question: "Sparer det at slukke for computeren om natten?", answer: "Ja, en stationær computer i standby bruger 2-10 W (17-88 kWh/år, op til 163 kr.). Sluk den helt om natten og i weekender. Endnu bedre: brug dvale-tilstand der bruger under 1 W og starter op på sekunder." },
-  { question: "Er det dyrt at oplade telefonen?", answer: "Nej, det koster ca. 2-4 kr./år at oplade en smartphone dagligt. En opladning bruger ca. 0,01 kWh. Selv med 2 telefoner og en tablet er den samlede udgift under 11 kr./år." },
+  { question: "Sparer det at slukke for computeren om natten?", answer: `Ja, en stationær computer i standby bruger 2-10 W (17-88 kWh/år, op til ${formatKr(88 * t.dk)} kr.). Sluk den helt om natten og i weekender. Endnu bedre: brug dvale-tilstand der bruger under 1 W og starter op på sekunder.` },
+  { question: "Er det dyrt at oplade telefonen?", answer: `Nej, det koster ca. ${formatKr(390 * t.dk / 365)}-${formatKr(780 * t.dk / 365)} kr./år at oplade en smartphone dagligt. En opladning bruger ca. 0,01 kWh. Selv med 2 telefoner og en tablet er den samlede udgift under ${formatKr(2200 * t.dk / 365)} kr./år.` },
   { question: "Hvad er den største enkeltbesparelse?", answer: "De største besparelser kommer fra forbruget selv — varmepumpe, tørretumbler og elbil. Et skifte til den billigste elaftale giver ca. 10 øre/kWh, svarende til ca. 544 kr./år for en familie med 4.000 kWh/år." },
 ];
 
-export default function SparePaaStroemmenPage() {
+export default async function SparePaaStroemmenPage() {
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const deal = prices.deals.DK1;
+  const cheapestMarginal = deal.cheapest?.marginalKrPerKwh ?? t.dk1;
+  const cheapestName = deal.cheapest?.supplierName ?? "den billigste aftale";
+  const saving = savingPerKwh(prices, "DK1");
+  const faqs = faqsFor(t);
   return (
     <>
       <script
@@ -42,7 +54,7 @@ export default function SparePaaStroemmenPage() {
               description: "Komplet guide til at spare på strømmen rum for rum. Spar 3.000-6.000 kr./år.",
               url: `${SITE_CONFIG.url}/spare-paa-stroemmen/`,
               datePublished: "2026-07-29",
-              dateModified: SITE_CONFIG.lastUpdated,
+              dateModified: pageMeta("/spare-paa-stroemmen/").updated,
             }),
           ]),
         }}
@@ -53,7 +65,7 @@ export default function SparePaaStroemmenPage() {
 
         <p className="text-xs text-ink-400 mb-4">
           Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {new Date(SITE_CONFIG.lastUpdated).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}
+          {danishDate(pageMeta("/spare-paa-stroemmen/").updated)}
         </p>
 
         <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
@@ -174,13 +186,13 @@ export default function SparePaaStroemmenPage() {
             Vask og tørring af tøj er overraskende dyrt i strøm. En
             <Link href="/vaskemaskine/"> vaskemaskine</Link> og
             <Link href="/toerretumbler/"> tørretumbler</Link> bruger tilsammen
-            450-750 kWh/år (837-1.395 kr.). Her er de vigtigste besparelser.
+            450-750 kWh/år ({formatKr(450 * t.dk)}-{formatKr(750 * t.dk)} kr.). Her er de vigtigste besparelser.
           </p>
           <ul>
             <li><strong>Vask ved 30°C</strong> — sparer 60% strøm sammenlignet med 60°C. Moderne vaskemidler virker fint ved 30°C.</li>
             <li><strong>Brug eco-program</strong> — tager længere tid men bruger markant mindre strøm og vand.</li>
             <li><strong>Fyld maskinen helt</strong> — en halvfyldt maskine bruger næsten lige så meget som en fuld.</li>
-            <li><strong>Drop tørretumbleren</strong> — brug tørrestativ og spar 300-500 kWh/år (558-930 kr.).</li>
+            <li><strong>Drop tørretumbleren</strong> — brug tørrestativ og spar 300-500 kWh/år ({formatKr(300 * t.dk)}-{formatKr(500 * t.dk)} kr.).</li>
             <li><strong>Centrifuger først</strong> — jo højere centrifugehastighed, jo mindre energi bruger tørretumbleren.</li>
             <li><strong>Kør om natten</strong> — billigere strøm med spotprisaftale (30-50% besparelse kl. 0-6).</li>
           </ul>
@@ -191,7 +203,7 @@ export default function SparePaaStroemmenPage() {
             Et typisk stue-setup med <Link href="/tv/">tv</Link>, soundbar,
             <Link href="/playstation/"> spillekonsol</Link>, streaming-boks og
             subwoofer bruger tilsammen 10-40 W i standby — det er 88-350 kWh/år
-            (163-652 kr.) i ren spild.
+            ({formatKr(88 * t.dk)}-{formatKr(350 * t.dk)} kr.) i ren spild.
           </p>
           <p>
             Tilslut alle stue-apparater til en stikdåse med afbryder, og sluk
@@ -215,7 +227,7 @@ export default function SparePaaStroemmenPage() {
             standby bruger 2-10 W.
           </p>
           <ul>
-            <li><strong>Brug laptop fremfor stationær</strong> — sparer 200-300 kWh/år (372-558 kr.).</li>
+            <li><strong>Brug laptop fremfor stationær</strong> — sparer 200-300 kWh/år ({formatKr(200 * t.dk)}-{formatKr(300 * t.dk)} kr.).</li>
             <li><strong>Reducér skærmens lysstyrke</strong> — spar 10-20% på skærmens strømforbrug.</li>
             <li><strong>Sluk printer og skærm</strong> — brug stikdåse med afbryder til alt kontorudstyr.</li>
             <li><strong>Aktivér dvaletilstand</strong> — computeren sover efter 5-10 min. uden brug.</li>
@@ -225,7 +237,7 @@ export default function SparePaaStroemmenPage() {
           <p>
             Badeværelset bruger typisk ikke meget strøm direkte, men hvis du har
             en elektrisk <Link href="/varmtvandsbeholder/">varmtvandsbeholder</Link>,
-            kan den bruge 1.500-3.000 kWh/år (2.790-5.580 kr.) — det er en af
+            kan den bruge 1.500-3.000 kWh/år ({formatKr(1500 * t.dk)}-{formatKr(3000 * t.dk)} kr.) — det er en af
             hjemmets absolut største strømslugere.
           </p>
           <ul>
@@ -274,13 +286,15 @@ export default function SparePaaStroemmenPage() {
             </tbody>
           </table>
           <p>
-            <em>Alle besparelser beregnet med 1,86 kr./kWh. Med den billigste
-            elaftale (ca. 1,76 kr./kWh før abonnement) er de absolutte tal lidt
+            <em>Alle besparelser beregnet med {formatPrice(t.dk)} kr./kWh. Med den billigste
+            rene, varige elaftale ({formatPrice(cheapestMarginal)} kr./kWh uden abonnement) er de absolutte tal lidt
             lavere, men rangordenen er den samme.</em>
           </p>
         </div>
 
-        <AffiliateCta />
+        <PriceBasis prices={prices} className="my-4" />
+
+        <SwitchCta />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>

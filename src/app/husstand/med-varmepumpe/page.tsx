@@ -4,8 +4,13 @@ import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
-import { withCurrentYear } from "@/lib/pricing";
+import SwitchCta from "@/components/marketing/SwitchCta";
+import { withCurrentYear, formatKr, formatPrice } from "@/lib/format";
+import { pageMeta } from "@/lib/pages";
+import { danishDate } from "@/lib/format";
+import { getPrices, tokenPrices, calculatorPrices, calculatorDeal, savingPerKwh, type SitePrices } from "@/lib/prices";
+import PriceBasis from "@/components/content/PriceBasis";
+import type { TokenPrices } from "@/lib/tokens";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Strømforbrug med varmepumpe (2026) → Se samlet forbrug"),
@@ -14,18 +19,31 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}/husstand/med-varmepumpe/` },
 };
 
-const faqs = [
+const faqsFor = (t: TokenPrices, prices: SitePrices) => {
+  const deal = prices.deals.DK1;
+  const cheapestMarginal = deal.cheapest?.marginalKrPerKwh ?? t.dk1;
+  const cheapestName = deal.cheapest?.supplierName ?? "den billigste aftale";
+  const saving = savingPerKwh(prices, "DK1");
+  return [
   { question: "Hvor meget strøm bruger en familie med varmepumpe?", answer: "En typisk familie på 4 i et 130 m² hus med luft-til-vand varmepumpe bruger 7.000-11.000 kWh/år totalt — heraf 4.000-6.000 kWh til varmepumpen og 3.500-5.000 kWh til husholdning." },
   { question: "Er det dyrt at have varmepumpe?", answer: "Nej, det er billigere end gas/oliefyr. Selvom elforbruget stiger til 13.000-20.500 kr./år, sparer du 18.000-30.000 kr./år i gas/olie. Nettobesparelsen er typisk 5.000-9.500 kr./år." },
   { question: "Hvor meget ekstra strøm bruger en varmepumpe?", answer: "En luft-til-luft tilføjer 2.000-4.000 kWh/år, luft-til-vand 4.000-6.000 kWh/år og jordvarme 3.500-5.500 kWh/år. Det afhænger af boligens størrelse og isolering." },
   { question: "Hvad er det samlede elforbrug med jordvarme?", answer: "Med jordvarme bruger en gennemsnitlig husstand 7.000-10.500 kWh/år totalt (husholdning + varme). Jordvarme har højere COP end luft-til-vand og bruger derfor lidt mindre strøm." },
-  { question: "Stiger elregningen meget med varmepumpe?", answer: "Ja, elforbruget fordobles typisk. Men den samlede energiudgift falder — du betaler mere i strøm men slipper for gas/olie. Netto sparer de fleste 3.720-11.160 kr./år." },
+  { question: "Stiger elregningen meget med varmepumpe?", answer: `Ja, elforbruget fordobles typisk. Men den samlede energiudgift falder — du betaler mere i strøm men slipper for gas/olie. Netto sparer de fleste ${formatKr(2000 * t.dk)}-${formatKr(6000 * t.dk)} kr./år.` },
   { question: "Hvad koster opvarmning med varmepumpe om måneden?", answer: "Varmepumpen koster gennemsnitligt 830-1.250 kr./md. i strøm. Om vinteren er det 1.500-3.000 kr./md., mens det om sommeren kun er 75-375 kr./md." },
-  { question: "Bør jeg skifte elselskab med varmepumpe?", answer: "Ja. Med 9.000 kWh/år er forskellen mellem en gennemsnitlig elaftale (1,95 kr./kWh alt i alt) og den billigste (1,83 kr./kWh inkl. abonnement) ca. 1.014 kr./år." },
+  { question: "Bør jeg skifte elselskab med varmepumpe?", answer: `Ja. Med 9.000 kWh/år er forskellen mellem markedets marginalpris (${formatPrice(t.dk1)} kr./kWh) og den billigste rene, varige aftale (${cheapestName}, ${formatPrice(cheapestMarginal)} kr./kWh) ca. ${formatKr(9000 * saving)} kr./år — uden abonnement og uden introtilbud.` },
   { question: "Hvornår på døgnet bruger varmepumpen mest?", answer: "Varmepumpen arbejder hårdest om morgenen (6-9) og aftenen (17-21). Med fleksibel elpris kan du programmere den til at forvarme om natten når strømmen er billigst." },
-];
+  ];
+};
 
-export default function MedVarmepumpePage() {
+export default async function MedVarmepumpePage() {
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const deal = prices.deals.DK1;
+  const cheapestMarginal = deal.cheapest?.marginalKrPerKwh ?? t.dk1;
+  const cheapestName = deal.cheapest?.supplierName ?? "den billigste aftale";
+  const saving = savingPerKwh(prices, "DK1");
+  const faqs = faqsFor(t, prices);
   return (
     <>
       <script
@@ -43,7 +61,7 @@ export default function MedVarmepumpePage() {
               description: "En familie med varmepumpe bruger 7.000-11.000 kWh strøm om året.",
               url: `${SITE_CONFIG.url}/husstand/med-varmepumpe/`,
               datePublished: "2026-07-29",
-              dateModified: SITE_CONFIG.lastUpdated,
+              dateModified: pageMeta("/husstand/med-varmepumpe/").updated,
             }),
           ]),
         }}
@@ -54,7 +72,7 @@ export default function MedVarmepumpePage() {
 
         <p className="text-xs text-ink-400 mb-4">
           Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {new Date(SITE_CONFIG.lastUpdated).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}
+          {danishDate(pageMeta("/husstand/med-varmepumpe/").updated)}
         </p>
 
         <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
@@ -84,14 +102,14 @@ export default function MedVarmepumpePage() {
               <tr><th>Husstand + VP-type</th><th>Husholdning</th><th>Varmepumpe</th><th>Total kWh/år</th><th>Total pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>1 person + luft-til-luft</strong></td><td>2.000</td><td>2.500</td><td>4.500</td><td>8.370 kr.</td></tr>
-              <tr><td><strong>Par + luft-til-vand</strong></td><td>3.000</td><td>4.500</td><td>7.500</td><td>13.950 kr.</td></tr>
-              <tr><td><strong>Familie (4) + luft-til-vand</strong></td><td>4.500</td><td>5.000</td><td>9.500</td><td>17.670 kr.</td></tr>
-              <tr><td><strong>Familie (4) + jordvarme</strong></td><td>4.500</td><td>4.000</td><td>8.500</td><td>15.810 kr.</td></tr>
+              <tr><td><strong>1 person + luft-til-luft</strong></td><td>2.000</td><td>2.500</td><td>4.500</td><td>{formatKr(4500 * t.dk)} kr.</td></tr>
+              <tr><td><strong>Par + luft-til-vand</strong></td><td>3.000</td><td>4.500</td><td>7.500</td><td>{formatKr(7500 * t.dk)} kr.</td></tr>
+              <tr><td><strong>Familie (4) + luft-til-vand</strong></td><td>4.500</td><td>5.000</td><td>9.500</td><td>{formatKr(9500 * t.dk)} kr.</td></tr>
+              <tr><td><strong>Familie (4) + jordvarme</strong></td><td>4.500</td><td>4.000</td><td>8.500</td><td>{formatKr(8500 * t.dk)} kr.</td></tr>
               <tr><td><strong>Stor familie (5+) + l-t-v</strong></td><td>5.500</td><td>5.500</td><td>11.000</td><td>20.460 kr.</td></tr>
             </tbody>
           </table>
-          <p><em>Priser beregnet med 1,86 kr./kWh inkl. afgifter og transport.</em></p>
+          <p><em>Priser beregnet med {formatPrice(t.dk)} kr./kWh inkl. afgifter og transport.</em></p>
 
           <h2>Varmepumpe vs. gasfyr — den samlede besparelse</h2>
           <p>
@@ -129,7 +147,7 @@ export default function MedVarmepumpePage() {
             <tbody>
               <tr><td><strong>Vinter (dec-feb)</strong></td><td>350-450</td><td>800-1.200</td><td>2.875-4.125 kr.</td></tr>
               <tr><td><strong>Forår/efterår</strong></td><td>350-450</td><td>300-600</td><td>1.625-2.625 kr.</td></tr>
-              <tr><td><strong>Sommer (jun-aug)</strong></td><td>300-400</td><td>50-150</td><td>875-1.375 kr.</td></tr>
+              <tr><td><strong>Sommer (jun-aug)</strong></td><td>300-400</td><td>50-150</td><td>{formatKr(470 * t.dk)}-{formatKr(740 * t.dk)} kr.</td></tr>
             </tbody>
           </table>
 
@@ -151,15 +169,17 @@ export default function MedVarmepumpePage() {
           <h2>Vigtigheden af elselskabsvalg med varmepumpe</h2>
           <p>
             Med et elforbrug på 9.000 kWh/år betyder valget af elselskab mere end for
-            de fleste. Et skifte fra en gennemsnitlig elaftale (1,95 kr./kWh alt i alt)
-            til den billigste (1,83 kr./kWh inkl. abonnement) giver en besparelse på{" "}
-            <strong>ca. 1.014 kr./år</strong> — nok til at dække familiens{" "}
+            de fleste. Et skifte fra markedets marginalpris ({formatPrice(t.dk1)} kr./kWh)
+            til den billigste rene, varige aftale ({cheapestName}, {formatPrice(cheapestMarginal)} kr./kWh uden abonnement) giver en besparelse på{" "}
+            <strong>ca. {formatKr(9000 * saving)} kr./år</strong> — nok til at dække familiens{" "}
             <Link href="/opvaskemaskine/">opvaskemaskine</Link> og{" "}
             <Link href="/vaskemaskine/">vaskemaskine</Link> året rundt.
           </p>
         </div>
 
-        <AffiliateCta kwh={9000} household="et hus med varmepumpe" />
+        <PriceBasis prices={prices} className="my-4" />
+
+        <SwitchCta kwh={9000} household="et hus med varmepumpe" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>

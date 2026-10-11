@@ -2,19 +2,20 @@ import Link from "next/link";
 import type { ApplianceData } from "@/lib/types";
 import { articleFor, possessiveFor, insightsFor } from "@/lib/appliance-insights";
 import { SeasonalChart, HouseholdShareChart } from "@/components/charts/ApplianceCharts";
-import { formatKr, formatPrice, EL_PRICE_KR_PER_KWH, PRICE_DK1, PRICE_DK2 } from "@/lib/pricing";
+import { formatKr, formatPrice } from "@/lib/format";
+import type { TokenPrices } from "@/lib/tokens";
 
 /**
  * The sections that separate this page from the rest of the SERP.
  *
  * Every figure is computed from the appliance's own data and the price engine —
- * nothing here is typed, so all 43 pages stay correct when MARKET is updated.
+ * nothing here is typed — the price comes in as a prop from getPrices().
  * Sections hide themselves when the underlying data does not support them
  * (a router has no meaningful season, a kettle has no standby), so no page
  * carries a block that says nothing.
  */
-export default function ApplianceInsights({ data }: { data: ApplianceData }) {
-  const i = insightsFor(data);
+export default function ApplianceInsights({ data, prices }: { data: ApplianceData; prices: TokenPrices }) {
+  const i = insightsFor(data, prices);
   const name = data.name.toLowerCase();
   const art = articleFor(data);
   const poss = possessiveFor(data);
@@ -65,13 +66,13 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
             <tbody>
               <tr className="border-b border-ink-100">
                 <td className="py-2 pr-3 text-ink-800">DK1 — vest for Storebælt</td>
-                <td className="py-2 px-3 text-right text-ink-600">{formatPrice(PRICE_DK1)} kr./kWh</td>
+                <td className="py-2 px-3 text-right text-ink-600">{formatPrice(prices.dk1)} kr./kWh</td>
                 <td className="py-2 px-3 text-right font-semibold text-ink-900">{formatKr(i.regional.dk1)} kr.</td>
                 <td className="py-2 pl-3 text-right text-ink-600">{formatKr(i.regional.dk1 / 12)} kr.</td>
               </tr>
               <tr>
                 <td className="py-2 pr-3 text-ink-800">DK2 — øst for Storebælt</td>
-                <td className="py-2 px-3 text-right text-ink-600">{formatPrice(PRICE_DK2)} kr./kWh</td>
+                <td className="py-2 px-3 text-right text-ink-600">{formatPrice(prices.dk2)} kr./kWh</td>
                 <td className="py-2 px-3 text-right font-semibold text-ink-900">{formatKr(i.regional.dk2)} kr.</td>
                 <td className="py-2 pl-3 text-right text-ink-600">{formatKr(i.regional.dk2 / 12)} kr.</td>
               </tr>
@@ -101,7 +102,7 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
             {i.seasonal.ratio.toFixed(1).replace(".", ",")} gange. Det er værd at
             vide, hvis din elregning pludselig stiger om vinteren.
           </p>
-          <SeasonalChart data={data} />
+          <SeasonalChart data={data} price={prices.dk} />
         </section>
       )}
 
@@ -143,7 +144,7 @@ export default function ApplianceInsights({ data }: { data: ApplianceData }) {
             <p className="text-xs text-ink-600 mt-2">
               Vi kender ikke prisen på netop den model, du kigger på, så vi vender
               regnestykket om: det her er det beløb, købet må koste, før besparelsen er
-              spist op. Beregnet ved {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh og
+              spist op. Beregnet ved {formatPrice(prices.dk)} kr./kWh og
               uændret brug.
             </p>
           </div>

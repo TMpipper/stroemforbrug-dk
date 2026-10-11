@@ -1,6 +1,6 @@
 import type { ApplianceData } from "@/lib/types";
 import { seasonalCost, replacementSaving, applianceRank, articleFor } from "@/lib/appliance-insights";
-import { EL_PRICE_KR_PER_KWH, formatKr, formatPrice } from "@/lib/pricing";
+import { formatKr, formatPrice } from "@/lib/format";
 
 /**
  * Inline SVG charts for the appliance pages.
@@ -11,7 +11,7 @@ import { EL_PRICE_KR_PER_KWH, formatKr, formatPrice } from "@/lib/pricing";
  * gets the same answer a sighted reader does rather than "graphic".
  *
  * Everything derives from the appliance's own data and the price engine, so the
- * charts move with MARKET and can never disagree with the tables beside them.
+ * charts move with the price the page passes in and can never disagree with the tables beside them.
  */
 
 const BRAND = "#1e40af";
@@ -22,8 +22,8 @@ const GRID = "#e7e5e4";
 
 /* ---------- seasonal profile ---------- */
 
-export function SeasonalChart({ data }: { data: ApplianceData }) {
-  const season = seasonalCost(data);
+export function SeasonalChart({ data, price }: { data: ApplianceData; price: number }) {
+  const season = seasonalCost(data, price);
   if (!season.isSeasonal) return null;
 
   const W = 640, H = 240;
@@ -104,7 +104,7 @@ export function SeasonalChart({ data }: { data: ApplianceData }) {
         <text x={padL - 8} y={padT - 4} textAnchor="end" fontSize="10" fill={INK}>kr.</text>
       </svg>
       <figcaption className="text-xs text-ink-500 mt-2">
-        Månedlig udgift ved {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh.{" "}
+        Månedlig udgift ved {formatPrice(price)} kr./kWh.{" "}
         {season.peak.month} er dyrest ({formatKr(season.peak.cost)} kr.),{" "}
         {season.low.month.toLowerCase()} billigst ({formatKr(season.low.cost)} kr.).
         De tolv måneder summer til årsforbruget på {formatKr(data.typicalKwh)} kWh.
@@ -115,8 +115,8 @@ export function SeasonalChart({ data }: { data: ApplianceData }) {
 
 /* ---------- energy label ladder ---------- */
 
-export function EnergyLabelChart({ data }: { data: ApplianceData }) {
-  const r = replacementSaving(data);
+export function EnergyLabelChart({ data, price }: { data: ApplianceData; price: number }) {
+  const r = replacementSaving(data, price);
   if (!r || data.energyLabels.length < 2) return null;
 
   const rows = [...data.energyLabels].sort((a, b) => a.kwhPerYear - b.kwhPerYear);
@@ -169,7 +169,7 @@ export function EnergyLabelChart({ data }: { data: ApplianceData }) {
       <figcaption className="text-xs text-ink-500 mt-2">
         Forskellen mellem {r.worstClass.toLowerCase()} og {r.bestClass.toLowerCase()} er{" "}
         <strong>{formatKr(r.yearlySaving)} kr. om året</strong> ved{" "}
-        {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh — {formatKr(r.worstCost)} kr. mod{" "}
+        {formatPrice(price)} kr./kWh — {formatKr(r.worstCost)} kr. mod{" "}
         {formatKr(r.bestCost)} kr.
       </figcaption>
     </figure>

@@ -1,42 +1,14 @@
 import type { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/lib/config";
 import { getPublishedSlugs, getAppliance } from "@/lib/appliances";
+import { pageMeta } from "@/lib/pages";
 
 /**
- * Every URL previously carried `new Date()` as its lastModified, so each deploy
- * told Google that all 62 pages had just changed — including the ones nobody had
- * touched. Google's helpful-content guidance treats that kind of manufactured
- * freshness as a negative trust signal, and it also wastes crawl budget on
- * pages that are genuinely unchanged.
- *
- * Dates below are stored, not generated. Bump `CONTENT_UPDATED` for a static
- * page when its substance changes, and an appliance's own `updated` field when
- * that appliance's content changes.
+ * Datoerne er gemt, ikke genereret: `lastModified` kommer fra pageMeta() (sidste
+ * indholdsmæssige ændring) — aldrig fra `new Date()`, som ville fortælle Google, at alle
+ * sider ændrede sig ved hvert deploy. Prisernes friskhed står i grundlagssætningen på siden,
+ * ikke her.
  */
-
-/** Real dates of the last substantive edit per static page. */
-const CONTENT_UPDATED: Record<string, string> = {
-  "": "2026-09-15",
-  "beregner": "2026-09-15",
-  "gennemsnitligt": "2026-09-15",
-  "husstand": "2026-09-15",
-  "husstand/1-person": "2026-09-15",
-  "husstand/2-personer": "2026-09-15",
-  "husstand/familie": "2026-09-15",
-  "husstand/med-varmepumpe": "2026-09-15",
-  "varmepumpe": "2026-09-15",
-  "varmepumpe/luft-til-luft": "2026-09-15",
-  "varmepumpe/luft-til-vand": "2026-09-15",
-  "hvad-koster-en-kwh": "2026-09-15",
-  "sparetips": "2026-09-15",
-  "standby": "2026-09-15",
-  "stromslugere": "2026-09-15",
-  "spare-paa-stroemmen": "2026-09-15",
-  "hvad-koster-det-at-lade-en-elbil": "2026-09-15",
-  "om-os": "2026-09-15",
-  "kontakt": "2026-07-29",
-  "privatlivspolitik": "2026-07-29",
-};
 
 interface StaticEntry {
   path: string;
@@ -77,19 +49,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages: MetadataRoute.Sitemap = STATIC_PAGES.map((p) => ({
     url: p.path ? `${base}/${p.path}/` : `${base}/`,
-    lastModified: CONTENT_UPDATED[p.path] ?? SITE_CONFIG.lastUpdated,
+    lastModified: pageMeta(p.path ? `/${p.path}/` : "/").updated,
     changeFrequency: p.changeFrequency,
     priority: p.priority,
   }));
 
   const appliancePages: MetadataRoute.Sitemap = getPublishedSlugs()
     .filter((slug) => !RESERVED_SLUGS.includes(slug))
-    .map((slug) => ({
-      url: `${base}/${slug}/`,
-      lastModified: getAppliance(slug)?.updated ?? SITE_CONFIG.lastUpdated,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
+    .map((slug) => {
+      const own = getAppliance(slug)?.updated;
+      const meta = pageMeta(`/${slug}/`).updated;
+      return {
+        url: `${base}/${slug}/`,
+        lastModified: own && own > meta ? own : meta,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      };
+    });
 
   return [...staticPages, ...appliancePages];
 }

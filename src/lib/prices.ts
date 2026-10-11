@@ -15,7 +15,7 @@
  */
 import { cache } from "react";
 import { elFeed, type Place } from "./feed/client";
-import { basisSentence, marginalFromFeed, type MarginalPrice } from "./feed/marginal";
+import { VAT_FACTOR, basisSentence, marginalFromFeed, type MarginalPrice } from "./feed/marginal";
 import { cheapestBadgeId, fromFeed, isClean, isLastingDeal, marketReference, scopeText } from "./feed/compare";
 import type { FeedEstimateProduct, FeedEstimateResponse } from "./feed/types";
 import { goSlugFor } from "./partners";
@@ -114,7 +114,7 @@ function cheapestFrom(p: FeedEstimateProduct, kwh: number, m: MarginalPrice): Ch
   const energyOreInclVat = p.prices.energyOreInclVat;
   // Spotaftale: markedets grundlag (spot + net + afgifter) + tillægget.
   // Fastprisaftale: net + afgifter (uden spot) + den faste energipris.
-  const netAndChargesKr = ((m.parts.gridOre + m.parts.chargesOre) * 1.25) / 100;
+  const netAndChargesKr = ((m.parts.gridOre + m.parts.chargesOre) * VAT_FACTOR) / 100;
   const marginalKrPerKwh = spotBased ? m.baseKrPerKwh + energyOreInclVat / 100 : netAndChargesKr + energyOreInclVat / 100;
   return {
     id: p.slug,
@@ -136,9 +136,22 @@ const estimateFor = cache(async (region: Region, kwh: number) =>
 );
 const marketFor = cache(async (region: Region) => elFeed.market({ region }));
 
+/**
+ * Kun til ækvivalenskontrollen af kodemod'en (scripts/equivalence-check.mjs): bygger sitet med en
+ * fastlåst marginalpris, så den nye HTML kan sammenlignes med den gamle. Virker aldrig på Vercel.
+ */
+const DEV_OVERRIDE: Partial<Record<Region, number>> | null = (() => {
+  if (process.env.VERCEL || !process.env.PRICE_OVERRIDE_DEV) return null;
+  const [a, b] = process.env.PRICE_OVERRIDE_DEV.split(",").map(Number);
+  return a ? { DK1: a, DK2: b || a } : null;
+})();
+
 const marginalFor = cache(async (region: Region): Promise<MarginalPrice> => {
   const [m, est] = await Promise.all([marketFor(region), estimateFor(region, REFERENCE_KWH)]);
-  return marginalFromFeed(region, m.thisMonth, est.items);
+  const real = marginalFromFeed(region, m.thisMonth, est.items);
+  const o = DEV_OVERRIDE?.[region];
+  if (o) return { ...real, krPerKwh: o, baseKrPerKwh: o - 0.1 };
+  return real;
 });
 
 /** Alle sitets priser for dette build/request — ét kald pr. render, delt af alle komponenter. */
@@ -166,6 +179,20 @@ export const getDealMarket = cache(async (region: Region, kwh: number): Promise<
 
 /** Feedets ni boligtyper (forbrugsvælgeren) — hentes, skrives aldrig af. */
 export const getPresets = cache(async () => (await elFeed.presets()).items);
+
+/** Det, beregneren (klient) må kende: de to marginalpriser og måneden. */
+export function calculatorPrices(p: SitePrices) {
+  return { dk1: p.marginal.dk1.krPerKwh, dk2: p.marginal.dk2.krPerKwh, month: p.marginal.month };
+}
+
+/** Den billigste rene, varige aftale pr. landsdel til beregnerens "spar"-boks. */
+export function calculatorDeal(p: SitePrices) {
+  const one = (r: Region) => {
+    const c = p.deals[r].cheapest;
+    return c ? { supplierName: c.supplierName, goSlug: c.goSlug, savingPerKwh: savingPerKwh(p, r) } : null;
+  };
+  return { DK1: one("DK1"), DK2: one("DK2") };
+}
 
 /** Den tokenbare del af priserne — det, prosaen må regne med. */
 export function tokenPrices(p: SitePrices) {

@@ -32,7 +32,7 @@ export const TOKEN_RE = new RegExp(
   "g",
 );
 /** Alt, der ligner et token, også de ugyldige — til audit. */
-export const ANY_TOKEN_RE = /\{\{[^}]*\}\}/g;
+export const ANY_TOKEN_RE = /\{\{[a-zæøå][^}"':]*\}\}/g;
 
 const DIVISOR: Record<string, number> = { md: 12, dag: 365, uge: 52 };
 

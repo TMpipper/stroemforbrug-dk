@@ -5,8 +5,13 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
-import { withCurrentYear } from "@/lib/pricing";
+import SwitchCta from "@/components/marketing/SwitchCta";
+import { withCurrentYear, formatKr, formatPrice } from "@/lib/format";
+import { pageMeta } from "@/lib/pages";
+import { danishDate } from "@/lib/format";
+import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
+import PriceBasis from "@/components/content/PriceBasis";
+import type { TokenPrices } from "@/lib/tokens";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Luft-til-luft varmepumpe strømforbrug (2026) → Pris og kWh"),
@@ -15,18 +20,21 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}/varmepumpe/luft-til-luft/` },
 };
 
-const faqs = [
-  { question: "Hvor meget strøm bruger en luft-til-luft varmepumpe?", answer: "En luft-til-luft varmepumpe bruger typisk 2.000-4.000 kWh/år, svarende til 3.720-7.440 kr. ved 1,86 kr./kWh. Det afhænger af boligens størrelse og isolering." },
-  { question: "Hvad koster en luft-til-luft varmepumpe i strøm pr. måned?", answer: "Gennemsnitligt ca. 309-618 kr./md. Om vinteren er det 558-1.116 kr./md., mens det om sommeren kun er 19-74 kr./md." },
+const faqsFor = (t: TokenPrices) => [
+  { question: "Hvor meget strøm bruger en luft-til-luft varmepumpe?", answer: `En luft-til-luft varmepumpe bruger typisk 2.000-4.000 kWh/år, svarende til ${formatKr(2000 * t.dk)}-${formatKr(4000 * t.dk)} kr. ved ${formatPrice(t.dk)} kr./kWh. Det afhænger af boligens størrelse og isolering.` },
+  { question: "Hvad koster en luft-til-luft varmepumpe i strøm pr. måned?", answer: `Gennemsnitligt ca. ${formatKr(2000 * t.dk / 12)}-${formatKr(4000 * t.dk / 12)} kr./md. Om vinteren er det ${formatKr(3600 * t.dk / 12)}-${formatKr(7200 * t.dk / 12)} kr./md., mens det om sommeren kun er ${formatKr(120 * t.dk / 12)}-${formatKr(480 * t.dk / 12)} kr./md.` },
   { question: "Kan en luft-til-luft opvarme hele huset?", answer: "En luft-til-luft opvarmer primært det rum den står i + tilstødende rum. Den er ideel som supplement til fjernvarme/radiatorer, men kan sjældent opvarme et helt hus alene (medmindre det er en åben planløsning)." },
   { question: "Hvad er COP på luft-til-luft?", answer: "COP er typisk 3,0-4,0. Ved 7°C ude er COP ca. 4,0 (du får 4 kWh varme pr. 1 kWh strøm). Ved -7°C falder COP til ca. 2,5-3,0." },
   { question: "Er luft-til-luft billigere end luft-til-vand?", answer: "Ja, både i indkøb (15.000-35.000 vs. 80.000-140.000 kr.) og drift (2.000-4.000 vs. 4.000-6.000 kWh/år). Men luft-til-vand erstatter hele dit varmesystem." },
-  { question: "Kan luft-til-luft også køle om sommeren?", answer: "Ja, de fleste luft-til-luft modeller kan køle. Køling bruger typisk 1-3 kWh/dag (1,86-5,58 kr./dag) og er langt billigere end en mobil aircondition." },
+  { question: "Kan luft-til-luft også køle om sommeren?", answer: `Ja, de fleste luft-til-luft modeller kan køle. Køling bruger typisk 1-3 kWh/dag (${formatKr(1 * t.dk)}-${formatKr(3 * t.dk)} kr./dag) og er langt billigere end en mobil aircondition.` },
   { question: "Hvad koster det at installere en luft-til-luft?", answer: "En luft-til-luft koster 15.000-35.000 kr. inkl. installation. Med en besparelse på 3.000-8.000 kr./år er tilbagebetalingstiden 2-5 år." },
   { question: "Støjer en luft-til-luft varmepumpe?", answer: "Udedelen støjer typisk 40-55 dB (som en stille samtale). Indedelen er næsten lydløs på laveste hastighed (20-25 dB). Nye modeller er markant mere støjsvage end ældre." },
 ];
 
-export default function LuftTilLuftPage() {
+export default async function LuftTilLuftPage() {
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const faqs = faqsFor(t);
   return (
     <>
       <script
@@ -44,7 +52,7 @@ export default function LuftTilLuftPage() {
               description: "En luft-til-luft varmepumpe bruger 2.000-4.000 kWh strøm om året.",
               url: `${SITE_CONFIG.url}/varmepumpe/luft-til-luft/`,
               datePublished: "2026-07-29",
-              dateModified: SITE_CONFIG.lastUpdated,
+              dateModified: pageMeta("/varmepumpe/luft-til-luft/").updated,
             }),
           ]),
         }}
@@ -55,7 +63,7 @@ export default function LuftTilLuftPage() {
 
         <p className="text-xs text-ink-400 mb-4">
           Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {new Date(SITE_CONFIG.lastUpdated).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}
+          {danishDate(pageMeta("/varmepumpe/luft-til-luft/").updated)}
         </p>
 
         <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
@@ -65,7 +73,7 @@ export default function LuftTilLuftPage() {
         <QuickAnswer>
           <p>
             En luft-til-luft varmepumpe bruger typisk 2.000-4.000 kWh strøm om
-            året, svarende til 3.720-7.440 kr. ved 1,86 kr./kWh. Den er den
+            året, svarende til {formatKr(2000 * t.dk)}-{formatKr(4000 * t.dk)} kr. ved {formatPrice(t.dk)} kr./kWh. Den er den
             billigste varmepumpetype både i indkøb og drift, og bruges primært
             som supplement til eksisterende opvarmning. COP er 3,0-4,0.
           </p>
@@ -85,6 +93,8 @@ export default function LuftTilLuftPage() {
           usageMax={24}
           usageDefault={8}
           usageStep={1}
+          prices={calculatorPrices(prices)}
+          deal={calculatorDeal(prices)}
         />
 
         <div className="prose-editorial">
@@ -99,10 +109,10 @@ export default function LuftTilLuftPage() {
               <tr><th>Boligstørrelse</th><th>kWh/år</th><th>Pris/år</th><th>Anbefalet kapacitet</th></tr>
             </thead>
             <tbody>
-              <tr><td>40-60 m² (lejlighed)</td><td>1.200-2.000 kWh</td><td>2.232-3.720 kr.</td><td>2,5-3,5 kW</td></tr>
-              <tr><td>60-90 m² (lejlighed/rækkehus)</td><td>1.800-3.000 kWh</td><td>3.348-5.580 kr.</td><td>3,5-5,0 kW</td></tr>
-              <tr><td>90-130 m² (hus)</td><td>2.500-3.500 kWh</td><td>4.650-6.510 kr.</td><td>5,0-7,0 kW</td></tr>
-              <tr><td>130-180 m² (stort hus)</td><td>3.000-4.500 kWh</td><td>5.580-8.370 kr.</td><td>7,0+ kW (evt. 2 enheder)</td></tr>
+              <tr><td>40-60 m² (lejlighed)</td><td>1.200-2.000 kWh</td><td>{formatKr(1200 * t.dk)}-{formatKr(2000 * t.dk)} kr.</td><td>2,5-3,5 kW</td></tr>
+              <tr><td>60-90 m² (lejlighed/rækkehus)</td><td>1.800-3.000 kWh</td><td>{formatKr(1800 * t.dk)}-{formatKr(3000 * t.dk)} kr.</td><td>3,5-5,0 kW</td></tr>
+              <tr><td>90-130 m² (hus)</td><td>2.500-3.500 kWh</td><td>{formatKr(2500 * t.dk)}-{formatKr(3500 * t.dk)} kr.</td><td>5,0-7,0 kW</td></tr>
+              <tr><td>130-180 m² (stort hus)</td><td>3.000-4.500 kWh</td><td>{formatKr(3000 * t.dk)}-{formatKr(4500 * t.dk)} kr.</td><td>7,0+ kW (evt. 2 enheder)</td></tr>
             </tbody>
           </table>
 
@@ -136,12 +146,12 @@ export default function LuftTilLuftPage() {
               <tr><th>Måned</th><th>kWh</th><th>Pris</th><th>Note</th></tr>
             </thead>
             <tbody>
-              <tr><td>Jan-Feb</td><td>400-700</td><td>744-1.302 kr.</td><td>Fuld drift, lavt COP</td></tr>
-              <tr><td>Mar-Apr</td><td>200-400</td><td>372-744 kr.</td><td>Moderat drift</td></tr>
-              <tr><td>Maj</td><td>50-150</td><td>93-279 kr.</td><td>Minimal drift</td></tr>
-              <tr><td>Jun-Aug</td><td>30-90</td><td>56-167 kr.</td><td>Evt. køling</td></tr>
-              <tr><td>Sep-Okt</td><td>100-300</td><td>186-558 kr.</td><td>Moderat drift</td></tr>
-              <tr><td>Nov-Dec</td><td>350-650</td><td>651-1.209 kr.</td><td>Fuld drift</td></tr>
+              <tr><td>Jan-Feb</td><td>400-700</td><td>{formatKr(400 * t.dk)}-{formatKr(700 * t.dk)} kr.</td><td>Fuld drift, lavt COP</td></tr>
+              <tr><td>Mar-Apr</td><td>200-400</td><td>{formatKr(200 * t.dk)}-{formatKr(400 * t.dk)} kr.</td><td>Moderat drift</td></tr>
+              <tr><td>Maj</td><td>50-150</td><td>{formatKr(50 * t.dk)}-{formatKr(150 * t.dk)} kr.</td><td>Minimal drift</td></tr>
+              <tr><td>Jun-Aug</td><td>30-90</td><td>{formatKr(30 * t.dk)}-{formatKr(90 * t.dk)} kr.</td><td>Evt. køling</td></tr>
+              <tr><td>Sep-Okt</td><td>100-300</td><td>{formatKr(100 * t.dk)}-{formatKr(300 * t.dk)} kr.</td><td>Moderat drift</td></tr>
+              <tr><td>Nov-Dec</td><td>350-650</td><td>{formatKr(350 * t.dk)}-{formatKr(650 * t.dk)} kr.</td><td>Fuld drift</td></tr>
             </tbody>
           </table>
 
@@ -188,14 +198,16 @@ export default function LuftTilLuftPage() {
               <tr><th>Model</th><th>Kapacitet</th><th>SCOP</th><th>kWh/år (est.)</th><th>Pris/år</th></tr>
             </thead>
             <tbody>
-              <tr><td>Mitsubishi MSZ-AY35VGK</td><td>3,5 kW</td><td>4,6</td><td>2.200 kWh</td><td>4.092 kr.</td></tr>
-              <tr><td>Daikin Stylish FTXA35</td><td>3,5 kW</td><td>4,6</td><td>2.300 kWh</td><td>4.278 kr.</td></tr>
-              <tr><td>Panasonic Etherea CS-Z35</td><td>3,5 kW</td><td>4,5</td><td>2.400 kWh</td><td>4.464 kr.</td></tr>
+              <tr><td>Mitsubishi MSZ-AY35VGK</td><td>3,5 kW</td><td>4,6</td><td>2.200 kWh</td><td>{formatKr(2200 * t.dk)} kr.</td></tr>
+              <tr><td>Daikin Stylish FTXA35</td><td>3,5 kW</td><td>4,6</td><td>2.300 kWh</td><td>{formatKr(2300 * t.dk)} kr.</td></tr>
+              <tr><td>Panasonic Etherea CS-Z35</td><td>3,5 kW</td><td>4,5</td><td>2.400 kWh</td><td>{formatKr(2400 * t.dk)} kr.</td></tr>
             </tbody>
           </table>
         </div>
 
-        <AffiliateCta kwh={7000} household="et hus med luft-til-luft varmepumpe" />
+        <PriceBasis prices={prices} className="my-4" />
+
+        <SwitchCta kwh={7000} household="et hus med luft-til-luft varmepumpe" />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>

@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SITE_CONFIG, ELECTRICITY_PRICE_KR_PER_KWH } from "@/lib/config";
+import { SITE_CONFIG } from "@/lib/config";
+import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
+import { renderWith } from "@/lib/tokens";
+import { pageMeta } from "@/lib/pages";
+import { danishDate } from "@/lib/format";
+import PriceBasis from "@/components/content/PriceBasis";
 import { getAppliance, getAllSlugs } from "@/lib/appliances";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
+import SwitchCta from "@/components/marketing/SwitchCta";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import ApplianceInsights from "@/components/content/ApplianceInsights";
 import { EnergyLabelChart } from "@/components/charts/ApplianceCharts";
 import { sourcesFor, SOURCES_VERIFIED_AT } from "@/lib/sources";
 import { Zap, Calendar, BarChart3 } from "lucide-react";
-import { withCurrentYear } from "@/lib/pricing";
+import { withCurrentYear } from "@/lib/format";
 
 // Reserved slugs that should NOT be handled by this dynamic route
 const RESERVED_SLUGS = [
@@ -31,6 +36,8 @@ const RESERVED_SLUGS = [
   "privatlivspolitik",
   "go",
 ];
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return getAllSlugs()
@@ -74,28 +81,33 @@ export default async function AppliancePage({
   }
 
   const url = `${SITE_CONFIG.url}/${data.slug}/`;
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const meta = pageMeta(`/${data.slug}/`);
+  const updated = data.updated && data.updated > meta.updated ? data.updated : meta.updated;
+  const content = renderWith(t, data.content);
+  const quickAnswer = renderWith(t, data.quickAnswer);
+  const faqs = data.faqs.map((f) => ({ ...f, answer: renderWith(t, f.answer) }));
 
   // Verified source links for this appliance, plus any named reference the data
   // already carried that is not one of the old generic homepage links.
   const GENERIC_HOSTS = ["https://ens.dk", "https://sparenergi.dk", "https://www.bolius.dk", "https://bolius.dk"];
   const ownReferences = data.sources.filter((s) => !s.url || !GENERIC_HOSTS.includes(s.url));
   const sources = [...sourcesFor(data.slug), ...ownReferences];
-  const costMin = Math.round(data.kwhRange[0] * ELECTRICITY_PRICE_KR_PER_KWH);
-  const costMax = Math.round(data.kwhRange[1] * ELECTRICITY_PRICE_KR_PER_KWH);
-  const costTypical = Math.round(data.typicalKwh * ELECTRICITY_PRICE_KR_PER_KWH);
+  const costTypical = Math.round(data.typicalKwh * t.dk);
 
   const schemas = [
     breadcrumbSchema([
       { name: "Forside", url: SITE_CONFIG.url },
       { name: data.name, url },
     ]),
-    faqSchema(data.faqs),
+    faqSchema(faqs),
     articleSchema({
       title: data.heading,
       description: withCurrentYear(data.description),
       url,
-      datePublished: "2026-07-29",
-      dateModified: data.updated ?? SITE_CONFIG.lastUpdated,
+      datePublished: meta.published,
+      dateModified: updated,
       image: `${url}opengraph-image/og/`,
     }),
   ];
@@ -112,12 +124,7 @@ export default async function AppliancePage({
 
         {/* Byline */}
         <p className="text-xs text-ink-400 mb-4">
-          Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {new Date(SITE_CONFIG.lastUpdated).toLocaleDateString("da-DK", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
+          Af {SITE_CONFIG.editorName} &middot; Opdateret {danishDate(updated)}
         </p>
 
         {/* H1 */}
@@ -127,7 +134,7 @@ export default async function AppliancePage({
 
         {/* Quick Answer */}
         <QuickAnswer>
-          <p>{data.quickAnswer}</p>
+          <p>{quickAnswer}</p>
         </QuickAnswer>
 
         {/* Key facts grid */}
@@ -182,24 +189,27 @@ export default async function AppliancePage({
           usageMax={data.calculatorConfig.usageMax}
           usageDefault={data.calculatorConfig.usageDefault}
           usageStep={data.calculatorConfig.usageStep}
+          prices={calculatorPrices(prices)}
+          deal={calculatorDeal(prices)}
         />
+        <PriceBasis prices={prices} className="-mt-6 mb-10" />
 
         {/* Main content */}
         <div
           className="prose-editorial"
-          dangerouslySetInnerHTML={{ __html: data.content }}
+          dangerouslySetInnerHTML={{ __html: content }}
         />
 
         {/* Computed depth: region, season, replacement, standby, ranking */}
-        <ApplianceInsights data={data} />
+        <ApplianceInsights data={data} prices={t} />
 
         {/* Second CTA */}
-        <AffiliateCta />
+        <SwitchCta />
 
         {/* Energy labels table */}
         {data.energyLabels.length > 0 && (
           <div className="my-10">
-            <EnergyLabelChart data={data} />
+            <EnergyLabelChart data={data} price={t.dk} />
             <h2 className="font-heading text-xl font-medium text-ink-900 mb-4">
               Energimærkning — {data.name}
             </h2>
@@ -232,7 +242,7 @@ export default async function AppliancePage({
                         {label.kwhPerYear} kWh
                       </td>
                       <td className="py-2 px-3 border-b border-ink-200">
-                        {Math.round(label.kwhPerYear * ELECTRICITY_PRICE_KR_PER_KWH).toLocaleString("da-DK")}{" "}
+                        {Math.round(label.kwhPerYear * t.dk).toLocaleString("da-DK")}{" "}
                         kr.
                       </td>
                     </tr>
@@ -283,7 +293,7 @@ export default async function AppliancePage({
                         {model.kwh} kWh
                       </td>
                       <td className="py-2 px-3 border-b border-ink-200">
-                        {Math.round(model.kwh * ELECTRICITY_PRICE_KR_PER_KWH).toLocaleString("da-DK")}{" "}
+                        {Math.round(model.kwh * t.dk).toLocaleString("da-DK")}{" "}
                         kr.
                       </td>
                     </tr>
@@ -300,7 +310,7 @@ export default async function AppliancePage({
             Ofte stillede spørgsmål om {data.name.toLowerCase()} strømforbrug
           </h2>
           <div className="space-y-4">
-            {data.faqs.map((faq, i) => (
+            {faqs.map((faq, i) => (
               <details
                 key={i}
                 className="group border border-ink-200 rounded-card"

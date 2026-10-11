@@ -2,19 +2,27 @@
 
 import { useId, useState } from "react";
 import { Zap, TrendingDown } from "lucide-react";
-import { bestOfferFor } from "@/lib/offers";
-import { REFERENCE_KWH } from "@/lib/pricing";
-import {
-  EL_PRICE_KR_PER_KWH,
-  applianceSaving,
-  formatPrice,
-  MARKET,
-} from "@/lib/pricing";
+import { formatPrice, danishMonth } from "@/lib/format";
 import type { CalculatorOption } from "@/lib/types";
+
+/** Priserne kommer fra serveren (getPrices()) — klienten kender ingen konstant. */
+export interface CalculatorPrices {
+  dk1: number;
+  dk2: number;
+  /** "2026-10" */
+  month: string;
+}
+/** Den billigste rene, varige aftale pr. landsdel og hvad én kWh er billigere på den. */
+export interface CalculatorDeal {
+  DK1: { supplierName: string; goSlug: string | null; savingPerKwh: number } | null;
+  DK2: { supplierName: string; goSlug: string | null; savingPerKwh: number } | null;
+}
 
 interface ForbrugBeregnerProps {
   title: string;
   options: CalculatorOption[];
+  prices: CalculatorPrices;
+  deal: CalculatorDeal;
   usageLabel?: string;
   usageUnit?: string;
   usageMin?: number;
@@ -26,6 +34,8 @@ interface ForbrugBeregnerProps {
 export default function ForbrugBeregner({
   title,
   options,
+  prices,
+  deal,
   usageLabel = "Antal gange pr. uge",
   usageUnit = "pr. uge",
   usageMin = 1,
@@ -37,21 +47,20 @@ export default function ForbrugBeregner({
   const sliderId = useId();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [usage, setUsage] = useState(usageDefault);
+  const [region, setRegion] = useState<"DK1" | "DK2">("DK1");
+  const price = region === "DK1" ? prices.dk1 : prices.dk2;
+  const best = deal[region];
 
   const selected = options[selectedIndex];
   const kwhPerWeek = selected.kwhPerUse * usage;
   const kwhPerYear = kwhPerWeek * 52;
   const kwhPerMonth = kwhPerYear / 12;
 
-  const costPerYear = kwhPerYear * EL_PRICE_KR_PER_KWH;
-  const costPerMonth = kwhPerMonth * EL_PRICE_KR_PER_KWH;
+  const costPerYear = kwhPerYear * price;
+  const costPerMonth = kwhPerMonth * price;
   // The saving comes from the household's aftale, not from this appliance alone,
-  // so it scales with the per-kWh differential — never (elpris − udbyderpris).
-  const savings = applianceSaving(kwhPerYear);
-  // Cheapest aftale over the first year for a typical household. This calculator
-  // measures one appliance, so the household reference consumption is the honest
-  // basis for the switch recommendation.
-  const best = bestOfferFor(REFERENCE_KWH);
+  // so it scales with the per-kWh differential (marginal mod marginal) — never (elpris − all-in).
+  const savings = best ? Math.max(0, kwhPerYear * best.savingPerKwh) : 0;
 
   const fmt = (n: number) =>
     n < 10
@@ -91,6 +100,27 @@ export default function ForbrugBeregner({
                 }`}
               >
                 {opt.label} ({opt.kwhPerUse.toFixed(1)} kWh)
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Region */}
+        <div>
+          <p className="font-heading font-medium text-sm text-ink-900 mb-3">Landsdel:</p>
+          <div className="grid grid-cols-2 gap-2" role="group" aria-label="Landsdel">
+            {(["DK1", "DK2"] as const).map((r) => (
+              <button
+                key={r}
+                type="button"
+                aria-pressed={region === r}
+                onClick={() => setRegion(r)}
+                className={`px-4 py-3 rounded-card border-2 transition-colors text-sm ${
+                  region === r ? "border-brand-500 bg-brand-50 text-ink-900 font-medium" : "border-ink-200 bg-white text-ink-600 hover:border-ink-300"
+                }`}
+              >
+                {r === "DK1" ? "Vest for Storebælt" : "Øst for Storebælt"}
+                <span className="block text-xs text-ink-500">{formatPrice(r === "DK1" ? prices.dk1 : prices.dk2)} kr./kWh</span>
               </button>
             ))}
           </div>
@@ -136,7 +166,7 @@ export default function ForbrugBeregner({
             <div className="bg-surface-alt rounded-card px-4 py-3 text-center">
               <p className="text-xs text-ink-500">Pr. gang</p>
               <p className="text-lg font-bold text-ink-900">
-                {fmt(selected.kwhPerUse * EL_PRICE_KR_PER_KWH)} kr.
+                {fmt(selected.kwhPerUse * price)} kr.
               </p>
               <p className="text-xs text-ink-400">
                 {selected.kwhPerUse.toFixed(1)} kWh
@@ -167,7 +197,7 @@ export default function ForbrugBeregner({
         </div>
 
         {/* Savings highlight */}
-        {savings > 10 && (
+        {best && savings > 10 && (
           <div className="bg-success-50 border border-success-500/20 rounded-card px-4 py-4">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="flex items-start gap-2">
@@ -176,29 +206,30 @@ export default function ForbrugBeregner({
                   <strong className="text-ink-900">
                     Spar {fmt(savings)} kr./år
                   </strong>{" "}
-                  på dette apparat ved at skifte til {best.offer.name}. Skiftet
+                  på dette apparat ved at skifte til {best.supplierName}. Skiftet
                   gælder hele husstandens forbrug, så den samlede besparelse er
                   typisk en del større.
                 </p>
               </div>
-              <a
-                href={`/go/${best.offer.slug}`}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="shrink-0 btn-cta whitespace-nowrap"
-              >
-                Se {best.offer.name}
-              </a>
+              {best.goSlug ? (
+                <a
+                  href={`/go/${best.goSlug}`}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="shrink-0 btn-cta whitespace-nowrap"
+                >
+                  Se {best.supplierName}
+                </a>
+              ) : null}
             </div>
           </div>
         )}
 
         <p className="text-xs text-ink-400 text-center">
-          Beregnet med en gennemsnitlig elpris på{" "}
-          {formatPrice(EL_PRICE_KR_PER_KWH)} kr./kWh inkl. moms, afgifter og
-          transport ({MARKET.period}). Abonnement er ikke medregnet, da det er en
-          fast udgift uanset forbrug. Faktisk pris afhænger af dit elselskab,
-          landsdel og spotprisen.
+          Beregnet med marginalprisen {formatPrice(price)} kr./kWh inkl. moms, afgifter og
+          transport i {region === "DK1" ? "Vestdanmark" : "Østdanmark"} ({danishMonth(prices.month)}).
+          Abonnement er ikke medregnet, da det er en fast udgift uanset forbrug. Faktisk pris
+          afhænger af dit elselskab, dit netområde og spotprisen time for time.
         </p>
       </div>
     </div>

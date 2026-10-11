@@ -4,8 +4,13 @@ import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import QuickAnswer from "@/components/content/QuickAnswer";
-import AffiliateCta from "@/components/marketing/AffiliateCta";
-import { withCurrentYear } from "@/lib/pricing";
+import SwitchCta from "@/components/marketing/SwitchCta";
+import { withCurrentYear, formatKr, formatPrice } from "@/lib/format";
+import { pageMeta } from "@/lib/pages";
+import { danishDate } from "@/lib/format";
+import { getPrices, tokenPrices, calculatorPrices, calculatorDeal, savingPerKwh, type SitePrices } from "@/lib/prices";
+import PriceBasis from "@/components/content/PriceBasis";
+import type { TokenPrices } from "@/lib/tokens";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Spare strøm (2026) → 15 tips der sænker din elregning"),
@@ -14,18 +19,25 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}/sparetips/` },
 };
 
-const faqs = [
+const faqsFor = (t: TokenPrices) => [
   { question: "Hvad er det nemmeste tip til at spare strøm?", answer: "Det nemmeste tip er at slukke for standby-forbrug. Ved at slukke tv, computer og andre apparater helt (ikke bare standby) kan du spare 400-800 kr./år uden at ændre dine vaner." },
   { question: "Hvor meget kan man spare ved at skifte til LED-pærer?", answer: "Ved at skifte alle pærer i hjemmet til LED kan du spare 500-1.200 kr./år. En LED-pære bruger ca. 80% mindre strøm end en glødepære og holder 15-25 gange længere." },
-  { question: "Er det billigere at vaske tøj om natten?", answer: "Ja, med spotpris-aftale er strøm typisk 30-50% billigere om natten (kl. 0-6). En vask der koster 2,60 kr. om aftenen kan koste under 1,50 kr. om natten. Over et år giver det 200-400 kr. i besparelse." },
-  { question: "Hvor meget sparer man ved at sænke vasketemperaturen?", answer: "Ved at vaske på 30°C i stedet for 60°C bruger vaskemaskinen ca. 60% mindre strøm pr. vask. For en familie med 5 ugentlige vaske giver det ca. 300-500 kr. i besparelse om året." },
+  { question: "Er det billigere at vaske tøj om natten?", answer: `Ja, med spotpris-aftale er strøm typisk 30-50% billigere om natten (kl. 0-6). En vask der koster ${formatKr(1.4 * t.dk)} kr. om aftenen kan koste under 1,50 kr. om natten. Over et år giver det 200-400 kr. i besparelse.` },
+  { question: "Hvor meget sparer man ved at sænke vasketemperaturen?", answer: `Ved at vaske på 30°C i stedet for 60°C bruger vaskemaskinen ca. 60% mindre strøm pr. vask. For en familie med 5 ugentlige vaske giver det ca. ${formatKr(8400 * t.dk / 52)}-${formatKr(14000 * t.dk / 52)} kr. i besparelse om året.` },
   { question: "Kan man spare strøm ved at skifte elselskab?", answer: "Ja. Forskellen mellem en gennemsnitlig og den billigste elaftale er ca. 10 øre/kWh. For en husstand med 4.000 kWh/år svarer det til ca. 544 kr./år — et af de nemmeste enkelt-tiltag, men langt fra det største." },
-  { question: "Hvor meget strøm bruger en gammel kummefryser?", answer: "En gammel kummefryser (15+ år) bruger typisk 400-600 kWh/år (744-1.116 kr.). En ny A-mærket model bruger kun 150-200 kWh/år. Udskiftning sparer dig 372-744 kr./år." },
-  { question: "Hvad koster det at have opladeren i stikkontakten?", answer: "En mobiloplader i stikkontakten uden telefon bruger ca. 0,5 W, hvilket koster under 7 kr./år. Det er altså ikke en stor strømsluger, men alle småforbrug lægges sammen." },
+  { question: "Hvor meget strøm bruger en gammel kummefryser?", answer: `En gammel kummefryser (15+ år) bruger typisk 400-600 kWh/år (${formatKr(400 * t.dk)}-${formatKr(600 * t.dk)} kr.). En ny A-mærket model bruger kun 150-200 kWh/år. Udskiftning sparer dig ${formatKr(200 * t.dk)}-${formatKr(400 * t.dk)} kr./år.` },
+  { question: "Hvad koster det at have opladeren i stikkontakten?", answer: `En mobiloplader i stikkontakten uden telefon bruger ca. 0,5 W, hvilket koster under ${formatKr(3.8 * t.dk)} kr./år. Det er altså ikke en stor strømsluger, men alle småforbrug lægges sammen.` },
   { question: "Hvor meget kan jeg samlet spare på min elregning?", answer: "Ved at kombinere alle 15 tips kan en gennemsnitlig familie spare 3.000-6.000 kr./år. De tre vigtigste tiltag er: skift elselskab (op til 4.000 kr.), reducer standby (400-800 kr.) og skift til LED (500-1.200 kr.)." },
 ];
 
-export default function SparetipsPage() {
+export default async function SparetipsPage() {
+  const prices = await getPrices();
+  const t = tokenPrices(prices);
+  const deal = prices.deals.DK1;
+  const cheapestMarginal = deal.cheapest?.marginalKrPerKwh ?? t.dk1;
+  const cheapestName = deal.cheapest?.supplierName ?? "den billigste aftale";
+  const saving = savingPerKwh(prices, "DK1");
+  const faqs = faqsFor(t);
   return (
     <>
       <script
@@ -42,7 +54,7 @@ export default function SparetipsPage() {
               description: "15 konkrete sparetips der kan sænke din elregning med 2.000-5.000 kr./år.",
               url: `${SITE_CONFIG.url}/sparetips/`,
               datePublished: "2026-07-29",
-              dateModified: SITE_CONFIG.lastUpdated,
+              dateModified: pageMeta("/sparetips/").updated,
             }),
           ]),
         }}
@@ -53,7 +65,7 @@ export default function SparetipsPage() {
 
         <p className="text-xs text-ink-400 mb-4">
           Af {SITE_CONFIG.editorName} &middot; Opdateret{" "}
-          {new Date(SITE_CONFIG.lastUpdated).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}
+          {danishDate(pageMeta("/sparetips/").updated)}
         </p>
 
         <h1 className="font-heading text-3xl sm:text-4xl font-medium text-ink-900 mb-6 leading-tight">
@@ -75,7 +87,7 @@ export default function SparetipsPage() {
           <p>
             Ikke alle sparetips giver lige stor effekt. Vi har rangeret alle 15
             tips efter den typiske årlige besparelse for en gennemsnitlig dansk
-            husstand med et forbrug på ca. 4.000 kWh/år og en elpris på 1,86
+            husstand med et forbrug på ca. 4.000 kWh/år og en elpris på {formatPrice(t.dk)}
             kr./kWh. Start med de øverste for størst gevinst.
           </p>
           <table>
@@ -101,8 +113,8 @@ export default function SparetipsPage() {
             </tbody>
           </table>
           <p>
-            <em>Besparelserne er beregnet med en gennemsnitspris på 1,86 kr./kWh. Med
-            den billigste elaftale (ca. 1,76 kr./kWh før abonnement) er de
+            <em>Besparelserne er beregnet med en gennemsnitspris på {formatPrice(t.dk)} kr./kWh. Med
+            den billigste rene, varige aftale ({formatPrice(cheapestMarginal)} kr./kWh uden abonnement) er de
             absolutte besparelser lidt lavere, men den procentvise effekt er den samme.</em>
           </p>
 
@@ -136,9 +148,9 @@ export default function SparetipsPage() {
           <h3>Tip 4: Udskift gammel kummefryser eller fryser</h3>
           <p>
             En <Link href="/kummefryser/">kummefryser</Link> eller <Link href="/fryser/">fryser</Link> der
-            er 15+ år gammel bruger typisk 400-600 kWh/år (744-1.116 kr.). En ny
+            er 15+ år gammel bruger typisk 400-600 kWh/år ({formatKr(400 * t.dk)}-{formatKr(600 * t.dk)} kr.). En ny
             A-mærket model bruger kun 150-200 kWh/år. Udskiftningen betaler sig
-            selv inden for 3-4 år — og derefter sparer du 372-744 kr. hvert år.
+            selv inden for 3-4 år — og derefter sparer du {formatKr(200 * t.dk)}-{formatKr(400 * t.dk)} kr. hvert år.
           </p>
 
           <h3>Tip 8: Fyld maskinen helt</h3>
@@ -171,8 +183,8 @@ export default function SparetipsPage() {
             En <Link href="/led-paere/">LED-pære</Link> bruger ca. 6-10 W mod
             en glødepæres 40-60 W — det er en reduktion på 80%. En husstand med
             20 pærer der brænder 4 timer/dag sparer ca. 700-1.000 kWh/år ved at
-            skifte til LED. Det svarer til 1.302-1.860 kr./år med en elpris på
-            1,86 kr./kWh. LED-pærer koster fra 15-30 kr. og holder 15.000-25.000
+            skifte til LED. Det svarer til {formatKr(700 * t.dk)}-{formatKr(1000 * t.dk)} kr./år med en elpris på
+            {formatPrice(t.dk)} kr./kWh. LED-pærer koster fra 15-30 kr. og holder 15.000-25.000
             timer.
           </p>
 
@@ -239,7 +251,7 @@ export default function SparetipsPage() {
             En <Link href="/elkedel/">elkedel</Link> koger vand hurtigere og mere
             effektivt end en gryde på komfuret. En elkedel bruger ca. 0,1 kWh pr.
             liter vand, mens en gryde bruger 0,15-0,20 kWh. Koger du 3 liter vand
-            om dagen, sparer du 50-100 kr./år. Bonus-tip: Kog kun den mængde vand
+            om dagen, sparer du {formatKr(9800 * t.dk / 365)}-{formatKr(19500 * t.dk / 365)} kr./år. Bonus-tip: Kog kun den mængde vand
             du har brug for.
           </p>
 
@@ -262,8 +274,8 @@ export default function SparetipsPage() {
           <h2>Skift elselskab — den største enkeltbesparelse</h2>
           <p>
             At skifte elaftale er det nemmeste enkelt-tiltag, men ikke det største.
-            Forskellen mellem en gennemsnitlig aftale (1,86 kr./kWh) og den
-            billigste (ca. 1,76 kr./kWh) er ca. 10 øre/kWh — omkring 544 kr./år
+            Forskellen mellem en gennemsnitlig aftale ({formatPrice(t.dk)} kr./kWh) og den
+            billigste rene, varige ({cheapestName}, {formatPrice(cheapestMarginal)} kr./kWh) er {Math.round(saving * 100)} øre/kWh — omkring {formatKr(4000 * saving)} kr./år
             for en familie der bruger 4.000 kWh. De store besparelser ligger i
             selve forbruget: varmepumpe, tørretumbler og elbil.
           </p>
@@ -303,7 +315,9 @@ export default function SparetipsPage() {
           </p>
         </div>
 
-        <AffiliateCta />
+        <PriceBasis prices={prices} className="my-4" />
+
+        <SwitchCta />
 
         <div className="my-10">
           <h2 className="font-heading text-xl font-medium text-ink-900 mb-6">Ofte stillede spørgsmål</h2>
