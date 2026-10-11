@@ -221,11 +221,28 @@ export function calculatorPrices(p: SitePrices) {
   return { dk1: p.marginal.dk1.krPerKwh, dk2: p.marginal.dk2.krPerKwh, month: p.marginal.month };
 }
 
-/** Den billigste rene, varige aftale pr. landsdel til beregnerens "spar"-boks. */
+/**
+ * Beregnerens aftale: den billigste rene, varige aftale blandt PARTNERNE (den har en knap) — markedets
+ * billigste som reserve, hvis ingen partner er med. Besparelsen er marginal mod marginal.
+ */
 export function calculatorDeal(p: SitePrices) {
   const one = (r: Region) => {
-    const c = p.deals[r].cheapest;
-    return c ? { supplierName: c.supplierName, goSlug: c.goSlug, savingPerKwh: savingPerKwh(p, r) } : null;
+    const m = p.deals[r];
+    const c = m.cheapestPartner ?? m.cheapest;
+    if (!c) return null;
+    const marginal = p.marginal[r === "DK1" ? "dk1" : "dk2"].krPerKwh;
+    return {
+      supplierName: c.supplierName,
+      productName: c.productName,
+      goSlug: c.goSlug,
+      savingPerKwh: Math.max(0, roundOre(marginal - c.marginalKrPerKwh)),
+      subscriptionKrMonth: c.subscriptionKrMonth,
+      markupOre: Math.round(c.energyOreInclVat),
+      feesKrYear: c.feesKrYear,
+      bindingMonths: c.bindingMonths,
+      /** Omfanget, der skal stå sammen med "billigst" — partnerskopet, når aftalen er en partners. */
+      scope: "partnerScope" in c ? (c as CheapestPartner).partnerScope : m.scope,
+    };
   };
   return { DK1: one("DK1"), DK2: one("DK2") };
 }

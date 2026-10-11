@@ -13,9 +13,20 @@ export interface CalculatorPrices {
   month: string;
 }
 /** Den billigste rene, varige aftale pr. landsdel og hvad én kWh er billigere på den. */
+export interface CalculatorDealRegion {
+  supplierName: string;
+  productName: string;
+  goSlug: string | null;
+  savingPerKwh: number;
+  subscriptionKrMonth: number;
+  markupOre: number;
+  feesKrYear: number;
+  bindingMonths: number;
+  scope: string;
+}
 export interface CalculatorDeal {
-  DK1: { supplierName: string; goSlug: string | null; savingPerKwh: number } | null;
-  DK2: { supplierName: string; goSlug: string | null; savingPerKwh: number } | null;
+  DK1: CalculatorDealRegion | null;
+  DK2: CalculatorDealRegion | null;
 }
 
 interface ForbrugBeregnerProps {
@@ -197,29 +208,34 @@ export default function ForbrugBeregner({
         </div>
 
         {/* Savings highlight */}
-        {best && savings > 10 && (
-          <div className="bg-bg-blue rounded-card px-4 py-4">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+        {best && (
+          <div className="bg-bg-blue rounded-card px-4 py-4" data-calculator-deal={best.goSlug ?? "none"}>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-start gap-2">
-                <TrendingDown className="w-5 h-5 text-success-600 shrink-0 mt-0.5" />
-                <p className="text-sm text-ink-700">
-                  <strong className="text-ink-900">
-                    Spar {fmt(savings)} kr./år
-                  </strong>{" "}
-                  på dette apparat ved at skifte til {best.supplierName}. Skiftet
-                  gælder hele husstandens forbrug, så den samlede besparelse er
-                  typisk en del større.
-                </p>
+                <TrendingDown className="w-5 h-5 text-success-ink shrink-0 mt-0.5" />
+                <div className="text-sm text-ink-body">
+                  <p>
+                    {savings > 10 ? (
+                      <>
+                        <strong className="text-ink">Spar {fmt(savings)} kr./år</strong> på dette apparat ved at skifte til {best.supplierName} —{" "}
+                      </>
+                    ) : (
+                      <>Billigste elaftale {best.scope}: <strong className="text-ink">{best.supplierName}</strong> — </>
+                    )}
+                    elselskabet får kun <strong className="text-ink">{best.subscriptionKrMonth} kr. om måneden</strong>
+                    {best.markupOre === 0 ? " og 0 øre i spottillæg" : ` og ${best.markupOre} øre pr. kWh i tillæg`}
+                    {best.feesKrYear === 0 ? ", ingen gebyrer" : ""}
+                    {best.bindingMonths === 0 ? " og ingen binding" : ""}. Skiftet gælder hele husstandens forbrug, så den samlede besparelse er typisk en del større.
+                  </p>
+                </div>
               </div>
               {best.goSlug ? (
-                <a
-                  href={`/go/${best.goSlug}`}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="shrink-0 btn-cta whitespace-nowrap"
-                >
-                  Se {best.supplierName}
-                </a>
+                <div className="flex flex-col items-start gap-1 sm:items-end">
+                  <a href={`/go/${best.goSlug}`} target="_blank" rel="noopener noreferrer nofollow" className="shrink-0 btn-cta whitespace-nowrap">
+                    Se {best.supplierName}
+                  </a>
+                  <span className="text-[11px] text-ink-muted">Annoncelink</span>
+                </div>
               ) : null}
             </div>
           </div>
