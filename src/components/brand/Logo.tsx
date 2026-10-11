@@ -35,9 +35,12 @@ export function FamilyLine({ inverted = false, className = "" }: { inverted?: bo
       data-family-link
       className={`inline-flex items-center gap-1 whitespace-nowrap text-[11px] font-medium leading-none tracking-wide ${inverted ? "text-white/60 hover:text-white" : "text-ink-muted hover:text-ink"} ${className}`}
     >
-      En del af <span className={inverted ? "text-white" : "text-accent"}>el</span>
-      <span className={inverted ? "text-white" : "text-ink"}>priser</span>
-      <span className={inverted ? "text-white/60" : "text-brand-500"}>.dk</span>
+      En del af{" "}
+      <span className="font-bold">
+        <span className={inverted ? "text-white" : "text-accent"}>el</span>
+        <span className={inverted ? "text-white" : "text-ink"}>priser</span>
+        <span className={inverted ? "text-white/60" : "text-brand-500"}>.dk</span>
+      </span>
     </a>
   );
 }

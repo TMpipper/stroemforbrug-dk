@@ -73,7 +73,7 @@ export default async function ElpriserPage() {
         crumbs={[{ name: "Elpriser time for time" }]}
         eyebrow="Elpriser"
         title="Elpriser time for time — og hvad de betyder for dine apparater"
-        lede={`I dag er strømmen billigst ${hourSpan(d.cheapest)} og dyrest ${hourSpan(d.dearest)} i Vestdanmark — ${formatPrice(d.min)} mod ${formatPrice(d.max)} kr./kWh. Kortet herunder er Elpriser.dk&apos;s — skriv dit postnummer for din egen nettarif; tabellen regner, hvad én gang koster i hver ende af døgnet.`}
+        lede={`I dag er strømmen billigst ${hourSpan(d.cheapest)} og dyrest ${hourSpan(d.dearest)} i Vestdanmark — ${formatPrice(d.min)} mod ${formatPrice(d.max)} kr./kWh. Kortet herunder er Elpriser.dk's — skriv dit postnummer for din egen nettarif; tabellen regner, hvad én gang koster i hver ende af døgnet.`}
         lastUpdated={pageMeta(PATH).updated}
         motif={motifForPath(PATH)}
       />
