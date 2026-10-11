@@ -107,7 +107,7 @@ export default async function HomePage() {
                 at flytte — hver apparatside viser, hvad én gang koster i den billige og den dyre time.
               </p>
               <p className="mt-4">
-                <Link href="/elpriser/" className="btn-cta">
+                <Link href="/elpriser/" className="btn-cta !whitespace-normal text-center">
                   Se timepriserne og dine apparater
                 </Link>
               </p>

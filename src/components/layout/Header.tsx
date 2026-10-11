@@ -21,12 +21,12 @@ export default function Header({ lang = "da" }: { lang?: NavLang }) {
     <header className="sticky top-0 z-40 bg-bg md:bg-bg/85 md:backdrop-blur-md">
       <div className="container-site flex h-20 items-center justify-between gap-2 sm:gap-4">
         <Logo lang={lang} />
-        <nav aria-label={t.mainMenu} className="hidden items-center rounded-pill border border-border bg-surface px-2 py-1 shadow-sm xl:flex">
+        <nav aria-label={t.mainMenu} className="hidden items-center rounded-pill border border-border bg-surface px-2 py-1 shadow-sm min-[1360px]:flex">
           {items.map((n) => (
             <Link
               key={n.href}
               href={n.href}
-              className="whitespace-nowrap rounded-pill px-3 py-2 text-[15px] font-medium text-ink-body transition-colors hover:bg-brand-50 hover:text-ink"
+              className="whitespace-nowrap rounded-pill px-2.5 py-2 text-[14px] font-medium text-ink-body transition-colors hover:bg-brand-50 hover:text-ink"
             >
               {n.label}
             </Link>

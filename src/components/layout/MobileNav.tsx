@@ -36,7 +36,7 @@ export default function MobileNav({ lang = "da", items, secondary: secondaryItem
         aria-label={t.openMenu}
         aria-haspopup="dialog"
         aria-controls="mobile-nav"
-        className="inline-flex h-11 w-11 items-center justify-center rounded-pill text-ink hover:bg-brand-50 xl:hidden"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-pill text-ink hover:bg-brand-50 min-[1360px]:hidden"
       >
         <Menu className="h-6 w-6" />
       </button>
