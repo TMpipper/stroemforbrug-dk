@@ -59,8 +59,20 @@ export interface CheapestDeal {
   validTo: string | null;
 }
 
+/** Den billigste rene, varige aftale blandt de selskaber, vi har en aftale med — det, den store knap peger på. */
+export interface CheapestPartner extends CheapestDeal {
+  goSlug: string;
+  /** Placering blandt alle rene, varige aftaler i markedet (1 = markedets billigste). */
+  rankInMarket: number;
+  /** Samme årspris som markedets billigste aftale (fx Altid Energi = Enkel Energi 2026-10-11). */
+  tiedWithCheapest: boolean;
+  /** "af de N elselskaber uden anmærkning, vi har en aftale med, ved 4.000 kWh om året i …" */
+  partnerScope: string;
+}
+
 export interface DealMarket {
   region: Region;
+  cheapestPartner: CheapestPartner | null;
   kwh: number;
   areaLabel: string;
   regionRepresentative: boolean;
@@ -94,8 +106,21 @@ function dealMarketFrom(region: Region, kwh: number, res: FeedEstimateResponse, 
   const ref = marketReference(rows);
   const bestId = cheapestBadgeId(rows);
   const best = bestId ? items.find((p) => p.slug === bestId) ?? null : null;
+  // Partnerne: rene, varige aftaler fra selskaber med /go/-aftale, billigste først (rows er allerede sorteret efter pris).
+  const partnerRows = clean.filter((r) => goSlugFor(r.supplierSlug));
+  const partnerBest = partnerRows[0] ? items.find((p) => p.slug === partnerRows[0].id) ?? null : null;
+  const cheapestPartner: CheapestPartner | null = partnerBest
+    ? {
+        ...cheapestFrom(partnerBest, kwh, marginal),
+        goSlug: goSlugFor(partnerBest.supplier.slug)!,
+        rankInMarket: clean.findIndex((r) => r.id === partnerBest.slug) + 1,
+        tiedWithCheapest: !!best && Math.round(best.estimate.totalInclVat) === Math.round(partnerBest.estimate.totalInclVat),
+        partnerScope: `af de ${new Set(partnerRows.map((r) => r.supplierSlug)).size} elselskaber uden anmærkning, vi har en aftale med, ved ${kwh.toLocaleString("da-DK")} kWh om året i ${areaLabel}`,
+      }
+    : null;
   return {
     region,
+    cheapestPartner,
     kwh,
     areaLabel,
     regionRepresentative: res.meta.area.regionRepresentative,

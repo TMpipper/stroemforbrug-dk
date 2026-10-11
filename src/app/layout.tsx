@@ -6,6 +6,7 @@ import "./globals.css";
 import DisclaimerBar from "@/components/layout/DisclaimerBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PartnerCta from "@/components/marketing/PartnerCta";
 import { SITE_CONFIG } from "@/lib/config";
 import { color } from "@/lib/theme";
 import Attribution from "@/components/Attribution";
@@ -121,6 +122,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         <main id="main" className="flex-1">
           {children}
+          {/* Den store elaftale-knap på hver side (ejerens ønske 2026-10-11) */}
+          <PartnerCta />
         </main>
         <Footer />
         <Analytics />
