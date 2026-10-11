@@ -142,11 +142,6 @@ export default async function ElpriserPage() {
             Strømforbrug.dk regner årsudgifter med. Timepriserne her er samme grundlag, bare time for time. Har du en fastprisaftale,
             betaler du den samme pris hele døgnet, og så er det kun forbruget, der kan flyttes på.
           </p>
-          <h2>Elpriser.dk&apos;s kort på dit eget website</h2>
-          <p>
-            Kortet ovenfor er Elpriser.dk&apos;s elpris-widget — den samme, enhver kan sætte på sit website gratis. Vælg landsdel eller
-            postnummer, og priserne opdateres automatisk hver dag.
-          </p>
         </div>
         <PriceBasis prices={prices} className="mt-8" />
       </div>
