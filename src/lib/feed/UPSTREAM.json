@@ -1,14 +1,14 @@
 {
   "repo": "TMpipper/el-feed",
   "path": "examples/site",
-  "commit": "a571dfadd9bcf19c13fe893c3d179fdf0bd58523",
+  "commit": "666e349854ceb2bd10fd3d7c4bddea120331be4c",
   "files": {
     "src/lib/feed/types.ts": "736bd6604cfe60132a16d79fc47e3d703424ccfb22f90496be1ecf21c5a69e6c",
     "src/lib/feed/compare.ts": "00ee5327a98cd03c05e69e851c699931ba8b23cb5fa84fc7df00eb73544dd077",
     "src/lib/feed/client.ts": "05c22c6cf7c0f18af6f326db6442384213b13ce54b050d9af55cbf2942777103",
     "src/lib/feed/site-adapter.ts": "0d13352155b09087b17eae8ad56570076dd40e78996fe8912115568527748170",
     "src/lib/feed/marginal.ts": "0153ed6cc181dab6acb9080b136a21d68692b5d0a34f0dfa43efe07cfcf49af3",
-    "src/lib/feed/app-promo.ts": "d4d1bf46cfff74ed6bacb45b69bb7607a404d1620b6ab5869271dfe18ba35270",
+    "src/lib/feed/app-promo.ts": "94b8db3068ac5143ac42cf248b04e3c310881379b5eae069578d14e1d2a67839",
     "scripts/audit-app-promo.mjs": "81c102c503c2f1ebeeea6eccd52a2e43132d87f058d2e90d34fc32119c941d8d",
     "src/components/widget/ElpriserWidget.tsx": "962b2eaf3d5727d2d8be136babb796440076c44dbdccd29b03d858366f538c55",
     "src/components/widget/ElpriserWidgetResize.tsx": "b13b1e747a2c9531aea821ff0888bf6b5fac827ca3559a9446c56bf0ee5c1482",

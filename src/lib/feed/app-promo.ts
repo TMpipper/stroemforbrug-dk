@@ -28,10 +28,10 @@ export const ANDROID_LIVE = false;
 /** Gasskærmen er i den udgave, alle kan hente (app 1.2). Indtil da falder konteksten `gas` tilbage til `generic`. */
 export const GAS_LIVE = false;
 /**
- * App Store Connect → Analytics → Campaigns → provider-token. Ikke hemmeligt (det står i hvert
+ * App Store Connect → Analytics → Campaigns → provider-token (ejeren, 19. okt. 2026). Ikke hemmeligt (det står i hvert
  * offentligt kampagnelink). null = butikslinket uden kampagne (virker, men tælles ikke pr. site).
  */
-export const APP_STORE_PROVIDER_TOKEN: string | null = null;
+export const APP_STORE_PROVIDER_TOKEN: string | null = "129537019";
 
 export const APP_PAGE_URL = "https://elpriser.dk/app/";
 /** Appens side i den danske App Store (ejerens link, 19. okt. 2026). Butikslinks åbner altid i et nyt vindue. */
@@ -65,7 +65,8 @@ export function campaignToken(site: AppPromoSiteKey): string {
 /** Butikkens produktside med sitets kampagnetoken, når provider-tokenet findes; ellers det rene link. */
 export function storeUrl(site: AppPromoSiteKey, providerToken: string | null = APP_STORE_PROVIDER_TOKEN): string {
   if (!providerToken) return APP_STORE_URL;
-  return `https://apps.apple.com/app/apple-store/id${APP_STORE_ID}?pt=${encodeURIComponent(providerToken)}&ct=${campaignToken(site)}&mt=8`;
+  // Ejerens link med kampagnen som parametre — App Store Connect tæller pt/ct på enhver apps.apple.com-adresse.
+  return `${APP_STORE_URL}?pt=${encodeURIComponent(providerToken)}&ct=${campaignToken(site)}&mt=8`;
 }
 
 /** Det korte link bag QR-koden: elpriser.dk tæller scanningen og sender videre til butikken med sitets token. */
