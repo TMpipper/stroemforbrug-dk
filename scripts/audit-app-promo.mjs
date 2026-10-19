@@ -6,7 +6,7 @@
  *   - en side har mere end én stribe, ét bånd eller ét kort, eller to promoer med samme id;
  *   - en promo mangler `data-shared` eller `data-family-app`;
  *   - der står et /go/- eller /gaa/-link inde i en promo (appens knapper er aldrig partnerklik);
- *   - et apps.apple.com-link mangler `data-app-cta`, eller der er mere end ét App Store-badge
+ *   - et butikslink (App Store, Google Play) mangler `target="_blank"`, eller et apps.apple.com-link mangler `data-app-cta`, eller der er mere end ét App Store-badge
  *     (`data-store="ios"`) uden for <footer>;
  *   - et link til elpriser.dk står i et app-træ (`data-family-app`) og ikke går til /app/, eller et
  *     link til elpriser.dk/app/ står UDEN for et app-træ (ejerens undtagelse gælder kun appen);
@@ -138,6 +138,8 @@ for (const file of walk(HTML_DIR)) {
     const inApp = t.family || !!t.promo;
     if (t.promo && /^(?:https?:\/\/[^/]+)?\/(go|gaa)\//.test(href)) fail(`partnerlink ${href} inde i appens promo`);
     if (/^https?:\/\/apps\.apple\.com\//.test(href) && !/\sdata-app-cta="/.test(t.attrs)) fail(`App Store-link uden data-app-cta: ${href}`);
+    // Butikslinks åbner i et nyt vindue (ejeren 19. okt. 2026).
+    if (/^https?:\/\/(apps\.apple\.com|play\.google\.com)\//.test(href) && !/\starget="_blank"/.test(t.attrs)) fail(`butikslink uden target="_blank": ${href}`);
     if (/\sdata-store="ios"/.test(t.attrs) && !t.footer) iosBadges++;
     const ep = /^https?:\/\/(?:www\.)?elpriser\.dk(\/[^"]*)?$/.exec(href);
     if (ep) {
@@ -152,7 +154,7 @@ for (const file of walk(HTML_DIR)) {
 
   for (const t of texts) {
     if (!t.promo || t.live || t.svg) continue;
-    const text = t.text.replace(/&[a-z]+;|&#\d+;/gi, " ");
+    const text = t.text.replace(/&[a-z]+;|&#\d+;|&#x[0-9a-f]+;/gi, " "); // React writes ' as &#x27;
     if (/\d/.test(text)) fail(`ciffer i promoens tekst: "${text.trim().slice(0, 80)}"`);
   }
 

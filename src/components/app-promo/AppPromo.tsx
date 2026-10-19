@@ -38,7 +38,7 @@ interface Props {
   screens?: readonly [ScreenKey, ScreenKey];
   /**
    * Kun båndet: prisen lige nu som spejl af sidens egne tal — FORMATERET af sitet (fx
-   * `{ label: "kl. 16:45–17:00", regions: [{ name: "Vestdanmark", value: "2,68 kr./kWh" }] }`).
+   * `{ label, regions: [{ name: "Vestdanmark", value }] }` med sitets egne formaterede tal).
    * Står i `data-live-hours`, som pris-audits allerede undtager.
    */
   live?: { label: string; regions: { name: string; value: string }[] } | null;
@@ -59,7 +59,7 @@ function PromoCta({ placement }: { placement: string }) {
   const store = storeUrl(APP_PROMO_SITE.key);
   return (
     <>
-      <a href={store} data-app-cta={`${placement}:store`} className={`${PILL} md:hidden`}>
+      <a href={store} target="_blank" rel="noopener" data-app-cta={`${placement}:store`} className={`${PILL} md:hidden`}>
         <Smartphone className="h-4 w-4" aria-hidden />
         {PROMO_BUTTON}
       </a>
@@ -73,7 +73,7 @@ function PromoCta({ placement }: { placement: string }) {
           <p className="mt-3 font-semibold text-(--ap-ink)">{PROMO_QR_TITLE}</p>
           <p className="mt-1 text-sm text-(--ap-muted)">{PROMO_QR_TEXT}</p>
           <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
-            <a href={store} data-app-cta={`${placement}:store`} className={LINK}>
+            <a href={store} target="_blank" rel="noopener" data-app-cta={`${placement}:store`} className={LINK}>
               Åbn App Store
             </a>
             <AppPageLink placement={placement} />

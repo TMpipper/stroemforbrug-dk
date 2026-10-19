@@ -34,7 +34,8 @@ export const GAS_LIVE = false;
 export const APP_STORE_PROVIDER_TOKEN: string | null = null;
 
 export const APP_PAGE_URL = "https://elpriser.dk/app/";
-export const APP_STORE_URL = `https://apps.apple.com/dk/app/id${APP_STORE_ID}`;
+/** Appens side i den danske App Store (ejerens link, 19. okt. 2026). Butikslinks åbner altid i et nyt vindue. */
+export const APP_STORE_URL = `https://apps.apple.com/dk/app/elpriser-dk/id${APP_STORE_ID}`;
 export const PLAY_STORE_URL = `https://play.google.com/store/apps/details?id=${ANDROID_PACKAGE}`;
 /** Appens universal link — det, smart-banneret åbner i appen. */
 const APP_LINK_URL = "https://elpriser.dk/app";

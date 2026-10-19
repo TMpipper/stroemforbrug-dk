@@ -14,6 +14,8 @@ export default function AppStoreBadges({ placement, className = "" }: { placemen
       {IOS_LIVE && (
         <a
           href={storeUrl(APP_PROMO_SITE.key)}
+          target="_blank"
+          rel="noopener"
           data-store="ios"
           data-app-cta={`${placement}:store`}
           aria-label="Hent Elpriser.dk-appen i App Store"
@@ -26,6 +28,8 @@ export default function AppStoreBadges({ placement, className = "" }: { placemen
       {ANDROID_LIVE && (
         <a
           href={PLAY_STORE_URL}
+          target="_blank"
+          rel="noopener"
           data-store="android"
           data-app-cta={`${placement}:play`}
           aria-label="Hent Elpriser.dk-appen i Google Play"
