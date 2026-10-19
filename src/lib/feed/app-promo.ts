@@ -62,11 +62,34 @@ export function campaignToken(site: AppPromoSiteKey): string {
   return `web-${site}`;
 }
 
-/** Butikkens produktside med sitets kampagnetoken, når provider-tokenet findes; ellers det rene link. */
-export function storeUrl(site: AppPromoSiteKey, providerToken: string | null = APP_STORE_PROVIDER_TOKEN): string {
-  if (!providerToken) return APP_STORE_URL;
+/**
+ * App Store Connect → Custom Product Pages (19. okt. 2026): én side pr. site, navngivet `web-<nøgle>`, med sitets egne
+ * første skærmbilleder og promotekst. Linket får `ppid=<id>`. En side, Apple endnu ikke har godkendt (eller senere
+ * fjerner), falder tilbage til den almindelige produktside — så linket er sikkert før godkendelsen.
+ * Elpriser.dk's /hent-app/ (elpriser-dk src/components/app/campaign.ts) har de samme id'er.
+ */
+export const CUSTOM_PRODUCT_PAGES: Partial<Record<AppPromoSiteKey, string>> = {
+  elselskaber: "4e80f8da-a70d-47d4-9895-ebb121488f50",
+  elselskab: "5b3935a1-0d97-49c8-960a-74091383ab95",
+  billigste: "581e193f-f3c3-4f57-952a-6595805768af",
+  stroemforbrug: "5862c901-d0d7-4f4b-bfa8-5ad8a0220261",
+  elselskabdk: "d0a90092-7b3d-4385-89e2-142ca3f556e1",
+  elleverandoer: "cf4e3db4-d49c-4359-a936-f9d61f512ed5",
+  tjekelregning: "7a8b9e45-3b49-49da-9818-c39801893cd6",
+};
+
+/** Butikkens produktside med sitets kampagnetoken (når provider-tokenet findes) og sitets Custom Product Page (når den findes). */
+export function storeUrl(
+  site: AppPromoSiteKey,
+  providerToken: string | null = APP_STORE_PROVIDER_TOKEN,
+  pages: Partial<Record<AppPromoSiteKey, string>> = CUSTOM_PRODUCT_PAGES,
+): string {
+  const params: string[] = [];
   // Ejerens link med kampagnen som parametre — App Store Connect tæller pt/ct på enhver apps.apple.com-adresse.
-  return `${APP_STORE_URL}?pt=${encodeURIComponent(providerToken)}&ct=${campaignToken(site)}&mt=8`;
+  if (providerToken) params.push(`pt=${encodeURIComponent(providerToken)}`, `ct=${campaignToken(site)}`, "mt=8");
+  const ppid = pages[site];
+  if (ppid) params.push(`ppid=${encodeURIComponent(ppid)}`);
+  return params.length ? `${APP_STORE_URL}?${params.join("&")}` : APP_STORE_URL;
 }
 
 /** Det korte link bag QR-koden: elpriser.dk tæller scanningen og sender videre til butikken med sitets token. */
