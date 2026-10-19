@@ -16,7 +16,9 @@
  *     Safaris smart-banner OVER sammenligningen —
  *     promoen skal stå efter det sidste træf på `comparisonMarker`, og banneret må slet ikke stå der;
  *   - en side i `noPromo` (juridiske sider) har en promo;
- *   - en side i `requirePromo` (fx sitets app-side) mangler en.
+ *   - en side i `requirePromo` (fx sitets app-side) mangler en;
+ *   - bundbjælken (`data-app-promo="bar"`) står alene uden en stribe/et bånd/et kort på siden, står på en
+ *     app-side (`data-app-page`), ikke sendes lukket (`data-state="closed"`) eller ikke er fast placeret.
  *
  * Konfigurationen er sitets egen: scripts/app-promo.config.json
  *   { "money": ["/", "/billigste"], "comparisonMarker": "data-feed-list", "noPromo": ["/privatlivspolitik"],
@@ -130,6 +132,13 @@ for (const file of walk(HTML_DIR)) {
     if (!/\sdata-family-app(=|\s|$)/.test(r.attrs)) fail(`promo #${id} mangler data-family-app`);
   }
   for (const [variant, n] of Object.entries(counts)) if (n > 1) fail(`${n} promoer af typen "${variant}" — højst én pr. side`);
+  const bar = roots.find((r) => r.self.promo.variant === "bar");
+  if (bar) {
+    if (roots.length < 2) fail("bundbjælken står alene — den hører til sidens stribe, bånd eller kort");
+    if (tags.some((t) => /\sdata-app-page(=|\s|$)/.test(t.attrs))) fail("bundbjælken på app-siden");
+    if (!/\sdata-state="closed"/.test(bar.attrs)) fail("bundbjælken skal sendes lukket (data-state=\"closed\")");
+    if (!/\sclass="[^"]*\bfixed\b/.test(bar.attrs)) fail("bundbjælken er ikke fast placeret (fixed)");
+  }
 
   let iosBadges = 0;
   for (const t of tags) {

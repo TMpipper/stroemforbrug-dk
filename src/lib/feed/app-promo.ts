@@ -123,6 +123,16 @@ export const PROMO_ANDROID = "Android-udgaven er på vej.";
 export const PROMO_QR_TITLE = "Scan med din telefon";
 export const PROMO_QR_TEXT = "Koden åbner App Store på telefonen.";
 export const PROMO_LIVE_LABEL = "Lige nu i appen";
+/** Bundbjælken på iPhone (AppPromoBar, 19. okt. 2026) — samme ord som Elpriser.dk's bjælke. */
+export const PROMO_BAR_TITLE = "Elprisen på din telefon";
+export const PROMO_BAR_LINE = "Hent Elpriser.dk-appen – gratis og uden reklamer.";
+export const PROMO_BAR_BUTTON = "Hent";
+export const PROMO_BAR_CLOSE = "Luk appens bjælke";
+/** Placeringen i `app_click` (samme navn som på Elpriser.dk). */
+export const APP_BAR_PLACEMENT = "sticky-bar";
+/** Lukningen huskes her i to uger (kun tidspunktet). */
+export const APP_BAR_STORAGE_KEY = "elpriser-app:bar:v1";
+export const APP_BAR_DISMISS_DAYS = 14;
 
 const PLACE = "{placePhrase}";
 

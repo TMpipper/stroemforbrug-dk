@@ -7,6 +7,7 @@ import {
   promoCopy, qrUrl, storeUrl, type AppPromoContext, type ScreenKey,
 } from "@/lib/feed/app-promo";
 import { APP_PROMO_SITE } from "@/lib/app-promo-site";
+import AppPromoBar from "./AppPromoBar";
 import AppQr from "./AppQr";
 import AppSmartBanner from "./AppSmartBanner";
 import AppStoreBadges from "./AppStoreBadges";
@@ -44,6 +45,11 @@ interface Props {
   live?: { label: string; regions: { name: string; value: string }[] } | null;
   /** Kun striben: Safaris smart-banner (standard: ja). */
   smartBanner?: boolean;
+  /**
+   * Bundbjælken på iPhone (AppPromoBar). Standard: ja på striben (indholdssiderne), nej på bånd og kort.
+   * Højst én pr. side (audit-app-promo); sæt `bar` på båndet kun på en side uden stribe.
+   */
+  bar?: boolean;
   className?: string;
 }
 
@@ -121,7 +127,8 @@ function Screens({ keys, big }: { keys: readonly ScreenKey[]; big: boolean }) {
   );
 }
 
-export default function AppPromo({ variant, placement, context = "generic", vars, screens, live = null, smartBanner = true, className = "" }: Props) {
+export default function AppPromo({ variant, placement, context = "generic", vars, screens, live = null, smartBanner = true, bar, className = "" }: Props) {
+  const withBar = bar ?? variant === "strip";
   const ctx = effectiveContext(context);
   const copy = promoCopy(ctx, vars);
   const keys = screens ?? PROMO_SCREENS[ctx];
@@ -146,6 +153,7 @@ export default function AppPromo({ variant, placement, context = "generic", vars
 
   if (variant === "strip") {
     return (
+      <>
       <aside {...root} className={`not-prose ${className}`}>
         {smartBanner && <AppSmartBanner />}
         <div className="flex flex-wrap items-center gap-3 rounded-(--ap-radius) bg-(--ap-surface) px-4 py-3 shadow-(--ap-shadow) sm:flex-nowrap sm:gap-4 sm:px-5">
@@ -163,11 +171,14 @@ export default function AppPromo({ variant, placement, context = "generic", vars
           </div>
         </div>
       </aside>
+      {withBar && <AppPromoBar />}
+      </>
     );
   }
 
   if (variant === "card") {
     return (
+      <>
       <aside {...root} className={`not-prose rounded-(--ap-radius) bg-(--ap-tint) p-5 sm:p-6 md:grid md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-6 ${className}`}>
         <div className="min-w-0">
           <p className="m-0 inline-flex rounded-(--ap-pill) bg-(--ap-surface) px-3 py-1 text-xs font-medium text-(--ap-link) shadow-sm">{PROMO_EYEBROW}</p>
@@ -186,10 +197,13 @@ export default function AppPromo({ variant, placement, context = "generic", vars
           <Screens keys={[keys[0]]} big={false} />
         </div>
       </aside>
+      {withBar && <AppPromoBar />}
+      </>
     );
   }
 
   return (
+    <>
     <section {...root} className={`not-prose ${className}`}>
       <div className="grid overflow-hidden rounded-(--ap-radius) bg-(--ap-surface) shadow-(--ap-shadow) md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]">
         <div className="p-6 md:p-10">
@@ -229,6 +243,8 @@ export default function AppPromo({ variant, placement, context = "generic", vars
         </div>
       </div>
     </section>
+    {withBar && <AppPromoBar />}
+    </>
   );
 }
 
