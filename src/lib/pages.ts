@@ -19,6 +19,8 @@ export const FIRST_PUBLISHED = "2026-07-29";
 const OVERRIDES: Record<string, { updated?: string; published?: string }> = {
   kontakt: { updated: RELAUNCH },
   privatlivspolitik: { updated: RELAUNCH },
+  // Elpriser.dk-appens side (ejerens app-undtagelse 19. okt. 2026).
+  app: { published: "2026-10-19", updated: "2026-10-19" },
 };
 
 export interface PageMeta {

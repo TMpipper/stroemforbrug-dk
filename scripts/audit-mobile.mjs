@@ -3,9 +3,9 @@
  * audit-mobile — siderne i en rigtig browser mod en kørende server.
  *
  * Portet fra Elpriser.dk 11. oktober 2026 uden dets produktregler (timeliste, diagram, »Flere
- * valg«). Fem sider — én pr. sidetype — i 320, 360, 390, 430 og 768 px, og 1280 px som kontrol
+ * valg«). Seks sider — én pr. sidetype — i 320, 360, 390, 430 og 768 px, og 1280 px som kontrol
  * af, at telefonlaget ikke når skrivebordet:
- *   /  /vaskemaskine/  /beregner/  /husstand/familie/  /hvad-koster-en-kwh/
+ *   /  /vaskemaskine/  /beregner/  /husstand/familie/  /hvad-koster-en-kwh/  /app/ (Elpriser.dk-appens side, 19. okt. 2026)
  *
  * Regler (alle bredder): ingen vandret rulning; præcis én h1; hver berøringsflade mindst
  * 24 × 24 px (WCAG 2.5.8, AA — bredden tæller også); under 768 px har felter mindst 16 px skrift
@@ -26,7 +26,7 @@ import { createServer } from "node:net";
 import { join, resolve } from "node:path";
 
 const ROOT = resolve(import.meta.dirname, "..");
-const PATHS = ["/", "/vaskemaskine/", "/beregner/", "/husstand/familie/", "/hvad-koster-en-kwh/"];
+const PATHS = ["/", "/vaskemaskine/", "/beregner/", "/husstand/familie/", "/hvad-koster-en-kwh/", "/app/"];
 const WIDTHS = [320, 360, 390, 430, 768, 1280];
 const CTA_PATH = "/hvad-koster-en-kwh/";
 const CTA_SELECTOR = "[data-switch-cta] a.btn-cta";

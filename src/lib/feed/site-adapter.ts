@@ -40,4 +40,16 @@ export interface SiteAdapter {
       hideRestricted?: boolean;
     };
   };
+  /**
+   * Naturgas — kun sites med gassammenligningen (components/gas-comparison/). Udeladt = ingen
+   * knapper. `goHref` får feedets `trackingSlug` (feedets slug + "-gas") og svarer med sitets
+   * /go/-link, når sitet har en aftale med selskabet — ellers null. Et selskab, vi fraråder,
+   * får aldrig en knap, uanset hvad den svarer. Hold funktionen let: adapteren ender også i
+   * klientkomponenter (links til selskabssider gives som prop til InteractiveGasFeed).
+   */
+  gas?: {
+    goHref(trackingSlug: string): string | null;
+    /** Metodens afsnit om naturgas, med anker. Udeladt = `routes.method`. */
+    method?: string;
+  };
 }

@@ -37,6 +37,7 @@ const STATIC_PAGES: StaticEntry[] = [
   { path: "stromslugere", changeFrequency: "monthly", priority: 0.7 },
   { path: "spare-paa-stroemmen", changeFrequency: "monthly", priority: 0.7 },
   { path: "hvad-koster-det-at-lade-en-elbil", changeFrequency: "monthly", priority: 0.7 },
+  { path: "app", changeFrequency: "monthly", priority: 0.6 },
   { path: "om-os", changeFrequency: "yearly", priority: 0.3 },
   { path: "kontakt", changeFrequency: "yearly", priority: 0.3 },
   { path: "privatlivspolitik", changeFrequency: "yearly", priority: 0.1 },
@@ -44,7 +45,7 @@ const STATIC_PAGES: StaticEntry[] = [
 
 const RESERVED_SLUGS = [
   "beregner", "gennemsnitligt", "husstand", "varmepumpe",
-  "sparetips", "om-os", "kontakt", "privatlivspolitik", "go", "elpriser", "apparater", "metode",
+  "sparetips", "om-os", "kontakt", "privatlivspolitik", "go", "elpriser", "apparater", "metode", "app",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -80,6 +80,7 @@ export const ROUTE_MOTIF: Record<string, MotifKey> = {
   "/hvad-koster-en-kwh/": "regning",
   "/hvad-koster-det-at-lade-en-elbil/": "elbil",
   "/elpriser/": "doegn",
+  "/app/": "doegn",
   "/sparetips/": "moenter",
   "/spare-paa-stroemmen/": "moenter",
   "/standby/": "nat",

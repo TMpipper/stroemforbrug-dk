@@ -28,6 +28,8 @@
  *    elselskaber.dk, billigste-elselskab.nu, tjekelregning.dk, elleverandoer.dk,
  *    elselskabdanmark.dk). Elpriser.dk ER tilladt her (ejerens valg 11. oktober 2026,
  *    familiens brand), og elpris.dk er Forsyningstilsynet — ikke vores.
+ *    Elpriser.dk-appens links (https://elpriser.dk/app/, ejerens app-undtagelse 19. okt. 2026) må kun stå
+ *    i et `data-family-app`-træ — det vogter audit-app-promo (el-feed), som kører lige efter.
  *
  * Scriptet læser den **byggede** HTML, ikke kilden: route-filer har indhold, som
  * indholdslaget aldrig ser.

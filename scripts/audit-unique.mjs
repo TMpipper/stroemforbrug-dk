@@ -44,7 +44,7 @@ const SHARED_ATTRS = ["data-shared", "data-switch-cta", "data-price-basis", "dat
 const RESERVED = new Set([
   "/", "/beregner/", "/gennemsnitligt/", "/husstand/", "/varmepumpe/", "/hvad-koster-en-kwh/",
   "/hvad-koster-det-at-lade-en-elbil/", "/sparetips/", "/standby/", "/stromslugere/",
-  "/spare-paa-stroemmen/", "/om-os/", "/kontakt/", "/privatlivspolitik/",
+  "/spare-paa-stroemmen/", "/om-os/", "/kontakt/", "/privatlivspolitik/", "/app/",
 ]);
 
 const files = walkHtml(BUILD).filter((f) => !/_global-error|_not-found/.test(f));

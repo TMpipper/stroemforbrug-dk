@@ -161,6 +161,24 @@
   --font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Elpriser.dk-appens promo (el-feed components/app-promo) i sitets tokens — ejerens beslutning 19. okt. 2026.
+   Sitet ER Elpriser.dk's system, så værdierne er de samme som promoens egne; aliaserne holder dem i sync, hvis et token flytter. */
+:root {
+  --app-promo-ink: var(--color-ink);
+  --app-promo-body: var(--color-ink-body);
+  --app-promo-muted: var(--color-ink-muted);
+  --app-promo-surface: var(--color-surface);
+  --app-promo-tint: var(--color-bg-blue);
+  --app-promo-accent: var(--color-accent);
+  --app-promo-accent-hover: var(--color-accent-hover);
+  --app-promo-on-accent: var(--color-on-accent);
+  --app-promo-link: var(--color-brand-600);
+  --app-promo-radius: var(--radius-card);
+  --app-promo-pill: var(--radius-pill);
+  --app-promo-shadow: var(--shadow-card);
+  --app-promo-font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
+
 @layer base {
   html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
   body {

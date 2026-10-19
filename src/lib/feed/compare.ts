@@ -45,6 +45,12 @@ export interface CompareRow {
   /** Prisen efter introperioden. Er den null, kender vi ikke aftalens rigtige pris. */
   nextProduct: { slug: string; name: string } | null;
   firstTimeDiscountKr: number;
+  /**
+   * Feedets `offerKind`: "rebate" er en kontant rabat på en aftale med samme pris før og
+   * efter — den er ikke et introtilbud, selv om kilden flager den sådan. Udeladt = ældre feed;
+   * så gælder `isIntro`.
+   */
+  offerKind?: OfferKind | null;
   restricted: boolean;
   /** Gennemsigtighedsscoren følger stadig med fra feedet, men indgår ikke i sortering eller visning. */
   transparency: { score: number } | null;
@@ -74,6 +80,7 @@ export function fromFeed(p: FeedEstimateProduct): CompareRow {
     isIntro: p.introOffer,
     nextProduct: p.nextProduct,
     firstTimeDiscountKr: p.firstTimeDiscountKr,
+    offerKind: p.offerKind,
     restricted: p.restricted,
     transparency: p.supplier.transparency,
     advisory: p.supplier.advisory
@@ -132,6 +139,12 @@ export function partitionAdvised<T extends CompareRow>(rows: T[]): { listed: T[]
 export type PriceTypeFilter = "fast" | "variabel";
 export type SettlementFilter = "faktisk" | "aconto";
 export type OfferFilter = "introtilbud" | "velkomstrabat";
+export type OfferKind = "intro" | "rebate" | "intro_rebate";
+
+/** Er aftalens pris en anden i en periode? En ren velkomstrabat er det ikke, selv om kilden flager den som intro. */
+export function hasIntroPrice(p: Pick<CompareRow, "isIntro" | "offerKind">): boolean {
+  return p.isIntro && (p.offerKind ?? "intro") !== "rebate";
+}
 
 export interface CompareFilters {
   priceTypes: PriceTypeFilter[];
@@ -174,9 +187,9 @@ export function settlementOf(paymentType: string | null): SettlementFilter[] {
 }
 
 /** Har aftalen et tilbud, og i så fald hvilken slags? */
-export function offersOf(p: Pick<CompareRow, "isIntro" | "firstTimeDiscountKr">): OfferFilter[] {
+export function offersOf(p: Pick<CompareRow, "isIntro" | "firstTimeDiscountKr" | "offerKind">): OfferFilter[] {
   const out: OfferFilter[] = [];
-  if (p.isIntro) out.push("introtilbud");
+  if (hasIntroPrice(p)) out.push("introtilbud");
   /*
    * "Rabataftaler" er andre portalers eget begreb, og kilden har ikke noget
    * tilsvarende. Det nærmeste ærlige er en kontant velkomstrabat — en anden slags ting
@@ -440,7 +453,7 @@ export function danishDate(iso: string | null | undefined): string {
  * kendt pris bagefter, kontant rabat, betingelse. Null, hvis aftalen faktisk kan bære badget.
  */
 export function whyNotCheapest(
-  row: Pick<CompareRow, "supplierName" | "advisory" | "isIntro" | "nextProduct" | "firstTimeDiscountKr" | "restricted" | "eligibility">,
+  row: Pick<CompareRow, "supplierName" | "advisory" | "isIntro" | "nextProduct" | "firstTimeDiscountKr" | "restricted" | "eligibility" | "offerKind">,
 ): string | null {
   if (row.advisory) {
     const level = row.advisory.level === "fraraades" ? "et selskab, vi fraråder" : "et selskab med en OBS-anmærkning";
@@ -448,7 +461,7 @@ export function whyNotCheapest(
     const source = src ? ` (kilde: ${src.name}, ${danishDate(src.date)})` : "";
     return `Fordi ${row.supplierName} er ${level}${source}, og et selskab med en anmærkning kan ikke bære "billigst".`;
   }
-  if (row.isIntro) {
+  if (hasIntroPrice(row)) {
     return row.nextProduct
       ? "Fordi den er et introtilbud: introprisen gælder kun en del af perioden, og \"billigst\" gives kun til aftaler uden tilbud."
       : "Fordi den er et introtilbud, og prisen efter introperioden fremgår ikke af selskabets indberetning.";

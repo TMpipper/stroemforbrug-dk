@@ -1,0 +1,14 @@
+{
+  "money": [],
+  "comparisonMarker": "data-comparison",
+  "noPromo": [
+    "/privatlivspolitik",
+    "/kontakt",
+    "/om-os",
+    "/metode"
+  ],
+  "requirePromo": [
+    "/app"
+  ],
+  "htmlDir": ".next/server/app"
+}

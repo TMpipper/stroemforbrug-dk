@@ -11,6 +11,7 @@ import { SITE_CONFIG } from "@/lib/config";
 import { color } from "@/lib/theme";
 import Attribution from "@/components/Attribution";
 import GoogleTag from "@/components/GoogleTag";
+import AppClickTracker from "@/components/app-promo/AppClickTracker";
 import { withCurrentYear } from "@/lib/format";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "optional", adjustFontFallback: true });
@@ -127,6 +128,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </main>
         <Footer />
         <Analytics />
+        {/* Elpriser.dk-appens klik (app_click) — én pr. side, el-feed components/app-promo */}
+        <AppClickTracker />
         <SpeedInsights />
         <Attribution />
         <GoogleTag />

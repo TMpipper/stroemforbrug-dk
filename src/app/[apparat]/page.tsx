@@ -21,7 +21,8 @@ import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
 import { applianceMotif } from "@/lib/visuals/defaults";
-import BestTimeToday from "@/components/appliance/BestTimeToday";
+import BestTimeToday, { isAlwaysOn } from "@/components/appliance/BestTimeToday";
+import AppPromo from "@/components/app-promo/AppPromo";
 import ElpriserWidget from "@/components/widget/ElpriserWidget";
 import { getBothToday } from "@/lib/hourly-today";
 import { HEAVY_RUN } from "@/lib/heavy-run";
@@ -46,6 +47,7 @@ const RESERVED_SLUGS = [
   "elpriser",
   "apparater",
   "metode",
+  "app",
 ];
 
 export const dynamicParams = false;
@@ -106,6 +108,8 @@ export default async function AppliancePage({
   const ownReferences = data.sources.filter((s) => !s.url || !GENERIC_HOSTS.includes(s.url));
   const sources = [...sourcesFor(data.slug), ...ownReferences];
   const costTypical = Math.round(data.typicalKwh * t.dk);
+  // Et apparat, der kører hele døgnet, har ingen billige timer at flytte til — dér den generelle tekst.
+  const appContext = isAlwaysOn(data) ? "generic" : "cheapest-hours";
 
   const schemas = [
     breadcrumbSchema([
@@ -203,6 +207,8 @@ export default async function AppliancePage({
 
         {/* Sidens differentiator: hvornår på dagen apparatet er billigst — dagens timepriser fra Elpriser.dk */}
         <BestTimeToday data={data} today={today} />
+        {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): striben ved tidspunkt-blokken — påmindelsen før de billige timer. */}
+        <AppPromo variant="strip" placement="apparat-top" context={appContext} className="-mt-4 mb-10" />
         {HEAVY_RUN.has(data.slug) && <div className="breakout my-8"><ElpriserWidget sted="dk1" kompakt /></div>}
 
         {/* Main content */}
@@ -318,6 +324,12 @@ export default async function AppliancePage({
         {/* Related appliances */}
         <RelatedAppliances slugs={data.relatedSlugs} />
       </article>
+      {/* De tunge apparater: appens bånd efter skifte-CTA'en og før FAQ'en — aldrig over en sammenligning. */}
+      {HEAVY_RUN.has(data.slug) && (
+        <div className="container-site pb-16 md:pb-24">
+          <AppPromo variant="band" placement="apparat-tail" context={appContext} />
+        </div>
+      )}
       <FaqBand faqs={faqs} />
       <WhoHowWhy path={`/${data.slug}/`} prices={prices} sources={sources} />
       <AuthorBox />

@@ -39,16 +39,23 @@ const LIB = [
   ["lib/el-feed.ts", "src/lib/feed/client.ts"],
   ["lib/site-adapter.ts", "src/lib/feed/site-adapter.ts"],
   ["lib/el-feed-marginal.ts", "src/lib/feed/marginal.ts"],
+  // Elpriser.dk-appens promo (19. okt. 2026): tekster, links og konfiguration.
+  ["lib/app-promo.ts", "src/lib/feed/app-promo.ts"],
 ];
 const DIRS = [
   // Elpris-widgetten fra Elpriser.dk som iframe på søstersiterne (elpriser-dk selv ejer kortet og synkroniserer den ikke).
   ["components/widget", "src/components/widget"],
+  // Elpriser.dk-appens stribe, bånd, kort, footer-kolonne og klikmåling (19. okt. 2026).
+  ["components/app-promo", "src/components/app-promo"],
 ];
+// Billeder (kopieres byte for byte) og fælles scripts, der hører til komponenterne.
+const ASSET_DIRS = [["public/app-promo", "public/app-promo"]];
+const SCRIPTS = [["scripts/audit-app-promo.mjs", "scripts/audit-app-promo.mjs"]];
 
 const git = (...args) => execFileSync("git", ["-C", FEED_DIR, ...args], { encoding: "utf8" });
 const commit = git("rev-parse", REF).trim();
 
-const files = [...LIB];
+const files = [...LIB, ...SCRIPTS];
 for (const [src, dst] of DIRS) {
   const names = git("ls-tree", "-r", "--name-only", commit, `${UPSTREAM}/${src}`).split("\n").filter(Boolean);
   for (const p of names) {
@@ -67,6 +74,18 @@ for (const [src, dst] of files) {
   writeFileSync(out, text);
   hashes[dst] = createHash("sha256").update(text).digest("hex");
   console.log(`feed-sync: ${src} → ${dst}`);
+}
+for (const [src, dst] of ASSET_DIRS) {
+  const names = git("ls-tree", "-r", "--name-only", commit, `${UPSTREAM}/${src}`).split("\n").filter(Boolean);
+  for (const p of names) {
+    const rel = `${dst}/${p.slice(`${UPSTREAM}/${src}/`.length)}`;
+    const buf = execFileSync("git", ["-C", FEED_DIR, "show", `${commit}:${p}`]);
+    const out = join(ROOT, rel);
+    mkdirSync(dirname(out), { recursive: true });
+    writeFileSync(out, buf);
+    hashes[rel] = createHash("sha256").update(buf).digest("hex");
+    console.log(`feed-sync: ${p.slice(UPSTREAM.length + 1)} → ${rel}`);
+  }
 }
 writeFileSync(
   join(ROOT, "src/lib/feed/UPSTREAM.json"),

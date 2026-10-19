@@ -9,6 +9,11 @@
  *  3. Ingen side linker til en anden af vores domæner end elpriser.dk (audit-claims vogter listen;
  *     her kontrolleres, at familielinket findes i header og footer på hver side).
  *  4. next.config.ts sender frame-src for elpriser.dk.
+ *  5. Elpriser.dk-appens promo (ejerens app-undtagelse 19. okt. 2026, el-feed components/app-promo) står, hvor
+ *     den skal: én stribe på hver apparatside og på /varmepumpe/, /beregner/, /elpriser/ og elbil-guiden; et bånd
+ *     på de tunge apparater; ingen promo over beregnerens elaftale (data-calculator-deal), intet bånd/kort over
+ *     skifte-CTA'en (data-switch-cta) og ingen promo under eller inde i PartnerCta (data-partner-cta); Safaris
+ *     smart-banner kun på sider med striben og på /app/. (audit-app-promo vogter resten: antal, links, cifre.)
  *
  * Kører efter `next build` (postbuild / npm run audit).
  */
@@ -26,12 +31,14 @@ if (!files.length) { console.log("audit-widget: ingen bygget HTML — kør efter
 const pathOf = (f) => { const p = f.slice(BUILD.length).replace(/\.html$/, ""); return p === "/index" ? "/" : `${p}/`; };
 
 const urls = JSON.parse(readFileSync(join(ROOT, "content/urls.json"), "utf8")).map((u) => u.path);
-const RESERVED = new Set(["/", "/beregner/", "/gennemsnitligt/", "/husstand/", "/varmepumpe/", "/hvad-koster-en-kwh/", "/hvad-koster-det-at-lade-en-elbil/", "/sparetips/", "/standby/", "/stromslugere/", "/spare-paa-stroemmen/", "/om-os/", "/kontakt/", "/privatlivspolitik/", "/elpriser/", "/metode/", "/apparater/"]);
+const RESERVED = new Set(["/", "/beregner/", "/gennemsnitligt/", "/husstand/", "/varmepumpe/", "/hvad-koster-en-kwh/", "/hvad-koster-det-at-lade-en-elbil/", "/sparetips/", "/standby/", "/stromslugere/", "/spare-paa-stroemmen/", "/om-os/", "/kontakt/", "/privatlivspolitik/", "/elpriser/", "/metode/", "/apparater/", "/app/"]);
 const appliancePaths = new Set(urls.filter((p) => !RESERVED.has(p) && !p.startsWith("/husstand/") && !p.startsWith("/varmepumpe/")));
 const heavy = [...readFileSync(join(ROOT, "src/lib/heavy-run.ts"), "utf8").matchAll(/"([a-z0-9-]+)"/g)].map((m) => `/${m[1]}/`);
 
 const IFRAME = /<iframe\b[^>]*src="https:\/\/elpriser\.dk\/embed\/elpriser\/[^"]+"[^>]*>/g;
-let appliances = 0, iframes = 0;
+let appliances = 0, iframes = 0, strips = 0, bands = 0;
+const STRIP_PAGES = new Set(["/varmepumpe/", "/beregner/", "/elpriser/", "/hvad-koster-det-at-lade-en-elbil/"]);
+const lastIndex = (text, re) => { let i = -1; for (const m of text.matchAll(re)) i = m.index; return i; };
 for (const f of files) {
   const html = readFileSync(f, "utf8");
   const path = pathOf(f);
@@ -53,6 +60,27 @@ for (const f of files) {
     if (!/kl\. \d{2}–\d{2}/.test(block)) fail(`${path}: tidspunkt-blokken nævner intet tidsrum`);
     if (!/data-family-link/.test(block)) fail(`${path}: tidspunkt-blokken henviser ikke til Elpriser.dk`);
   }
+  /* 5. Appens promo. Positioner måles uden <script> (Next's flight-payload gentager hver attribut til sidst). */
+  const body = html.replace(/<script\b[\s\S]*?<\/script>/gi, "").replace(/<!--[\s\S]*?-->/g, "");
+  const promos = [...body.matchAll(/\sdata-app-promo="(strip|band|card)"/g)].map((m) => ({ v: m[1], i: m.index }));
+  const hasStrip = promos.some((p) => p.v === "strip");
+  const hasBand = promos.some((p) => p.v === "band");
+  strips += hasStrip ? 1 : 0;
+  bands += hasBand ? 1 : 0;
+  if ((appliancePaths.has(path) || STRIP_PAGES.has(path)) && !hasStrip) fail(`${path}: appens stribe mangler`);
+  if (heavy.includes(path) && !hasBand) fail(`${path}: appens bånd mangler på et tungt apparat`);
+  const partnerCta = body.search(/\sdata-partner-cta=/);
+  const lastCalcDeal = lastIndex(body, /\sdata-calculator-deal=/g);
+  const lastSwitch = lastIndex(body, /\sdata-switch-cta(?=[\s=>])/g);
+  for (const p of promos) {
+    if (partnerCta >= 0 && p.i > partnerCta) fail(`${path}: appens ${p.v} står under eller inde i PartnerCta — den skal stå før`);
+    if (lastCalcDeal >= 0 && p.i < lastCalcDeal) fail(`${path}: appens ${p.v} står over beregnerens elaftale`);
+    if (p.v !== "strip" && lastSwitch >= 0 && p.i < lastSwitch) fail(`${path}: appens ${p.v} står over skifte-CTA'en`);
+  }
+  const banner = /<meta[^>]+name="apple-itunes-app"/.test(html);
+  if (banner && !hasStrip && path !== "/app/") fail(`${path}: Safaris smart-banner uden appens stribe`);
+  if (path === "/app/" && !banner) fail("/app/: Safaris smart-banner mangler på app-siden");
+
   const familyLinks = (html.match(/data-family-link/g) ?? []).length;
   if (familyLinks < 2) fail(`${path}: familielinket til Elpriser.dk mangler i header/footer (${familyLinks})`);
 }
@@ -63,4 +91,4 @@ if (!/frame-src https:\/\/elpriser\.dk/.test(cfg)) fail("next.config.ts: frame-s
 if (!existsSync(join(ROOT, "src/components/widget/ElpriserWidget.tsx"))) fail("src/components/widget/ElpriserWidget.tsx mangler (feed-sync)");
 
 if (errors.length) { console.error(`audit-widget: ${errors.length} fejl`); for (const e of errors.slice(0, 40)) console.error(`  ✗ ${e}`); process.exit(1); }
-console.log(`audit-widget: ok — ${appliances} apparatsider med tidspunkt-blok, ${iframes} Elpriser.dk-kort, familielink på alle sider.`);
+console.log(`audit-widget: ok — ${appliances} apparatsider med tidspunkt-blok, ${iframes} Elpriser.dk-kort, familielink på alle sider; appens stribe på ${strips} sider, bånd på ${bands}.`);

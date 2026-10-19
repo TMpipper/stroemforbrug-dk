@@ -5,6 +5,7 @@ import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/
 import { renderWith, wrapTables } from "@/lib/tokens";
 import PriceBasis from "@/components/content/PriceBasis";
 import BestTimeToday from "@/components/appliance/BestTimeToday";
+import AppPromo from "@/components/app-promo/AppPromo";
 import ElpriserWidget from "@/components/widget/ElpriserWidget";
 import { getBothToday } from "@/lib/hourly-today";
 import { getAppliance } from "@/lib/appliances";
@@ -123,6 +124,8 @@ export default async function VarmepumpePage() {
         />
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
         <BestTimeToday data={data} today={today} />
+        {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026). Varmepumpen kører hele døgnet — den generelle tekst. */}
+        <AppPromo variant="strip" placement="varmepumpe-top" context="generic" className="-mt-4 mb-10" />
         <div className="breakout my-8"><ElpriserWidget sted="dk1" kompakt /></div>
 
         <div className="prose-content" dangerouslySetInnerHTML={{ __html: wrapTables(renderWith(t, data.content)) }} />
@@ -131,6 +134,9 @@ export default async function VarmepumpePage() {
 
         <RelatedAppliances slugs={data.relatedSlugs} />
       </article>
+      <div className="container-site pb-16 md:pb-24">
+        <AppPromo variant="band" placement="varmepumpe-tail" context="generic" />
+      </div>
       <FaqBand faqs={faqs} />
       <WhoHowWhy path="/varmepumpe/" prices={prices} />
       <AuthorBox />

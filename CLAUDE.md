@@ -33,6 +33,25 @@ npm run prices         # udskriver byggets priser fra feedet
 - Vinklen er forskellig fra Elpriser.dk's 36 apparatsider: her **forbrug + tidspunkt** ("Strømforbrug for en X: kWh, pris pr. gang og
   billigste tidspunkt"), dér pris pr. time og husstandens regning. H1'er må ikke spejle Elpriser.dk's "Hvor meget strøm bruger en X?".
 
+## Elpriser.dk-appen — app-only exception (owner, 19 Oct 2026)
+
+- Kittet kommer fra el-feed (`npm run feed-sync`): `src/lib/feed/app-promo.ts`, `src/components/app-promo/*`, `public/app-promo/*`,
+  `scripts/audit-app-promo.mjs` — rettes ALDRIG her. Sitets egne filer: `src/lib/app-promo-site.ts` (nøgle `stroemforbrug`, app-side `/app/`),
+  `:root`-aliasblokken `--app-promo-*` i `globals.css`, `scripts/app-promo.config.json`.
+- Links til `https://elpriser.dk/app/` (brandede ankre, followed) må KUN stå i et `data-family-app`-træ (promoerne, footerens
+  `AppFooterLinks`, app-siden). Ingen links til søstersitene — stadig forbudt (`audit-claims`).
+- Placeringer: **stribe** (`cheapest-hours`; `generic` på apparater, der kører hele døgnet) lige under `BestTimeToday` på alle apparatsider og
+  `/varmepumpe/`, under beregneren på `/beregner/`, under `PriceBasis` på `/hvad-koster-det-at-lade-en-elbil/`, under kortet på `/elpriser/`;
+  **bånd** før `FaqBand` på de tunge apparater (`HEAVY_RUN` + `/varmepumpe/`); **kort** nær slutningen af `/app/`. Striben bærer Safaris
+  smart-banner. `AppClickTracker` i root-layoutet (`app_click` via Vercel Analytics).
+- Aldrig en promo over beregnerens elaftale (`data-calculator-deal`), intet bånd/kort over `SwitchCta` (`data-switch-cta`), og ingen promo
+  under/inde i `PartnerCta` (`data-partner-cta`). Sitet har ingen pengesider; en fremtidig sammenligningsside skal bære `data-comparison`
+  (config `comparisonMarker`) og stå i config `money`.
+- `/app/` (»App til strømforbrug«): hvornår vask, opvask og elbil skal køre. Ingen tal i teksten, aldrig appens forbrugsskærm, ingen påstand om,
+  at appen måler læserens eget forbrug.
+- Audits: `audit-app-promo` (postbuild + `npm run audit`), `audit-widget` §5 (placeringerne ovenfor + banner kun på stribesider og `/app/`),
+  `/app/` er hub (ikke apparat) i `audit-widget`/`audit-unique`/`audit-seo`, og med i `audit-mobile`.
+
 ## Data layer
 
 | File | Purpose |

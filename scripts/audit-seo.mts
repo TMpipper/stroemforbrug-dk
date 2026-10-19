@@ -98,7 +98,7 @@ const slugs = new Set(getAllSlugs());
 const RESERVED = new Set([
   "beregner", "gennemsnitligt", "husstand", "varmepumpe", "sparetips", "om-os",
   "kontakt", "privatlivspolitik", "stromslugere", "standby", "spare-paa-stroemmen",
-  "hvad-koster-en-kwh", "hvad-koster-det-at-lade-en-elbil",
+  "hvad-koster-en-kwh", "hvad-koster-det-at-lade-en-elbil", "app",
 ]);
 
 let broken = 0;

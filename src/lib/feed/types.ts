@@ -195,7 +195,19 @@ export interface FeedSupplierCost {
    */
   comparableAnnualInclVat: number;
   comparableIsEstimate: boolean;
+  /**
+   * Selskabets årspris, når tilbuddet er brugt op: efterfølgerens pris for et introtilbud
+   * med kæde, ellers aftalens egen årspris uden velkomstrabat. Det, kunden betaler år to.
+   */
+  lastingAnnualInclVat: number;
 }
+
+/**
+ * "intro": en anden pris i en periode. "rebate": en kontant velkomstrabat på en aftale, hvis
+ * pris er den samme før og efter (elpris.dk kalder også den et introtilbud med efterfølger —
+ * AURA's "Rabat 500 kr."). "intro_rebate": begge dele.
+ */
+export type FeedOfferKind = "intro" | "rebate" | "intro_rebate";
 
 export interface FeedProduct {
   rank: number;
@@ -219,9 +231,16 @@ export interface FeedProduct {
   /**
    * Hvad et introtilbud går over i. Er den sat, er `estimate` regnet med prisen
    * bagefter; er den null, gælder introprisen hele perioden i estimatet, og aftalen
-   * kan ikke sammenlignes ærligt med en varig.
+   * kan ikke sammenlignes ærligt med en varig. `prices` er efterfølgerens egne tal ved
+   * dette forbrug — til "derefter"-linjen på kortet.
    */
-  nextProduct: { slug: string; name: string } | null;
+  nextProduct: {
+    slug: string;
+    name: string;
+    prices?: { energyOreInclVat: number; spotBased: boolean; subscriptionKrMonthInclVat: number; paymentFeesKrYearInclVat: number; annualInclVat: number };
+  } | null;
+  /** Hvilken slags tilbud aftalen er — se `FeedOfferKind`. Null: en varig aftale. */
+  offerKind: FeedOfferKind | null;
   /** Hvor ofte en variabel pris justeres: "Hvert kvartal", "Hver måned", … */
   priceUpdateInterval: string | null;
   /** Opsigelsesvarsel, selskabets egen tekst. */
@@ -315,6 +334,12 @@ export interface FeedEstimateProduct extends FeedProduct {
   estimate: {
     /** Udeladt når kaldet er `compact=1`. Totalerne er der altid. */
     months?: FeedMonthEstimate[];
+    /**
+     * Selskabets del over perioden, inkl. moms: summen af månedernes `supplierKr`, så et
+     * introtilbud tæller prisen efter perioden med, og velkomstrabatten er trukket fra.
+     * Brug den — aldrig `supplierCost.annualInclVat` skaleret til perioden.
+     */
+    supplierKrInclVat: number;
     totalInclVat: number;
     averageMonthlyInclVat: number;
   };
@@ -1393,4 +1418,871 @@ export interface FeedReportResponse {
   market: { asOf: string; kwh: number; areas: FeedReportMarketArea[] };
   sources: { name: string; url: string }[];
   method: string;
+}
+
+/* ------------------------------------------------------------------ */
+/* Naturgas — /api/v1/gas/*                                            */
+/* ------------------------------------------------------------------ */
+
+export type FeedGasSegment = "privat" | "erhverv";
+export type FeedGasPriceType = "variabel" | "fast" | "intro";
+export interface FeedGasExIncl { ex: number; incl: number }
+
+/**
+ * Satserne oven på gasprisen, opløst for én dato: afgifter, Evidas tarif og Energinets
+ * nødforsyningstarif ekskl. og inkl. moms (momsen er feedets daterede sats), hver med kilde.
+ * Det er det `GasRateSet`, el-feed-gas.ts regner med — send det med til motoren, aldrig egne tal.
+ */
+export interface FeedGasRateSet {
+  /** YYYY-MM-DD, den dag satserne gælder for */
+  date: string;
+  /** Momsfaktoren for datoen */
+  moms: number;
+  vat: FeedVatRate | null;
+  referenceM3: number;
+  kwhPerM3: number;
+  afgifter: {
+    year: number;
+    naturgasKrM3: FeedGasExIncl;
+    co2KrM3: FeedGasExIncl;
+    noxKrM3: FeedGasExIncl;
+    totalKrM3: FeedGasExIncl;
+    nextYear: number | null;
+    source: string;
+    verifiedAt: string;
+    reviewBy: string | null;
+    provenance: FeedRateProvenance[];
+  };
+  evidaTariff: {
+    validFrom: string;
+    volumenKrM3: FeedGasExIncl;
+    fixedKrYear: FeedGasExIncl;
+    partsInclKrYear: { grundpris: number; maaler: number; kapacitet: number };
+    source: string;
+    verifiedAt: string;
+    reviewBy: string | null;
+    provenance: FeedRateProvenance[];
+  };
+  noedforsyning: {
+    validFrom: string;
+    gasYear: string;
+    beskyttedeKrM3: FeedGasExIncl;
+    /** Sidste gasårs sats — portalen kan halte nogle uger efter 1. oktober */
+    previous: { validFrom: string; gasYear: string; beskyttedeKrM3: FeedGasExIncl } | null;
+    source: string;
+    verifiedAt: string;
+    reviewBy: string | null;
+    provenance: FeedRateProvenance[];
+  };
+  /** kr./m³ inkl. moms oven på enhver gaspris: afgifter + Evida volumen + nødforsyning */
+  stateAndGridKrM3: number;
+  /** Evidas faste betaling (grundpris + måler + kapacitet), kr./år inkl. moms */
+  evidaFixedKrYear: number;
+  typicalConsumption: {
+    presets: { m3: number; label: string; description: string }[];
+    slider: { min: number; max: number; step: number };
+    source: string;
+    verifiedAt: string;
+  };
+  /** Koder, hvis review_by er passeret på `date` — skal være tom */
+  dueReview: string[];
+  /** Første dag, afgiftssatsen ikke længere gælder (null = åben) */
+  validTo: string | null;
+}
+
+export type FeedGasOrigin = "portal" | "partner";
+
+export interface FeedGasSupplierRef {
+  slug: string;
+  name: string;
+  website: string;
+  /** Slug i el-feedets `suppliers`, når gasselskabet også er elselskab og koblingen er sikker */
+  feedSupplierSlug: string | null;
+  /** Logo fra el-feedets spejl, når koblingen findes */
+  logoUrl: string | null;
+  initials: string;
+  status: "active" | "bankrupt";
+  /** Sitesnes sporingsslug (/go/<slug>/): feedets slug + "-gas" */
+  trackingSlug: string;
+  /** Anmærkning fra gasregistret, ellers det koblede elselskabs (et selskab er ét selskab), ellers null. Rækker med en anmærkning står nederst uanset pris og kan aldrig være "billigst". */
+  advisory: FeedAdvisory | null;
+  /** Det koblede elselskabs Trustpilot-aflæsning — profilen dækker som regel hele selskabet, se `trustpilotNote` på /gas/suppliers */
+  trustpilot: FeedTrustpilot | null;
+}
+
+export interface FeedGasProductRow {
+  /** `${supplierSlug}:${slug(produkt)}` — stabilt siden oktober 2026 */
+  id: string;
+  supplier: FeedGasSupplierRef;
+  /** Produktnavnet ordret, som selskabet indberettede det */
+  product: string;
+  segment: FeedGasSegment;
+  priceType: FeedGasPriceType;
+  bindingMonths: number;
+  /** Selskabets egen pris, kr./m³ inkl. moms */
+  gasPriceKrM3: number;
+  subscriptionKrYear: number;
+  mandatoryFeeKrMonth: number;
+  /** Portalens egen "samlet pris pr. m³" — for et partnertilbud portalens eget tillæg lagt på tilbuddets gaspris */
+  portalTotalKrM3: number;
+  /** Selskabets side, som portalen linker til */
+  sourceUrl: string;
+  /** gaspris + afgifter + Evida volumen + nødforsyning, kr./m³ inkl. moms */
+  allInKrM3: number;
+  /** Alt ved svarets m³, kr./år inkl. moms — rangeringsnøglen */
+  annualCostKr: number;
+  effectiveKrM3: number;
+  /** annualCostKr / kWh (12,157 kWh pr. m³) */
+  krPerKwh: number;
+  /** gaspris × m³ + abonnement + gebyrer — selskabets del af regningen */
+  supplierShareKrYear: number;
+  /** gaspris minus Energinets neutrale gaspris for seneste hele måned, begge inkl. moms */
+  marginOverWholesaleKrM3: number | null;
+  /** 1 = billigst ved dette m³ i segmentet */
+  /** Placering i svaret: selskaber med en anmærkning efter dem uden, derefter efter årspris */
+  rank: number;
+  /** Prisen varer (variabel): de eneste rækker, der kan kaldes "billigst" */
+  lasting: boolean;
+  badge: "billigst" | null;
+  /** Portalens dato, da de nuværende vilkår først blev set */
+  reportedAt: string;
+  firstSeenAt: string | Date;
+  changedAt: string | Date;
+  warning: string | null;
+  /** portal = indberettet til gasprisguiden.dk · partner = et tilbud via sitene (aldrig i winners eller scope) */
+  origin: FeedGasOrigin;
+  /** Tilbudssiden for et partnertilbud; null for portalens rækker (brug sourceUrl) */
+  offerUrl: string | null;
+  /** Krydstjek mod selskabets egen side */
+  verification: { status: VerificationStatus; lastVerifiedAt: string | Date | null };
+  /** intro | rebate for et partnertilbud; null for portalens rækker */
+  offerKind: "intro" | "rebate" | null;
+  /** Vilkårene ordret fra selskabets tilbudsside (partnertilbud); null for portalens rækker */
+  terms: string | null;
+  /** Datoen, tilbudssiden blev læst (partnertilbud) */
+  checkedAt: string | null;
+  validFrom: string | null;
+  validTo: string | null;
+  /** Kontant velkomstrabat i kr. det første år (bruttobeløb) — allerede trukket fra annualCostKr; 0 for alle andre */
+  firstTimeDiscountKr: number;
+  /** Introperiodens sidste dag for et partnerintro — annualCostKr er da blandet med prisen bagefter over de næste 365 dage */
+  introEnds: string | null;
+  /** Prisen bagefter for et introtilbud */
+  nextOffer: { id: string; product: string; gasPriceKrM3: number; subscriptionKrYear: number; mandatoryFeeKrMonth: number } | null;
+  /** Årsprisen, når tilbuddet er brugt op (prisen bagefter, uden rabat) — lig annualCostKr for portalens rækker */
+  lastingAnnualCostKr: number;
+  /** Gives kun via sitesnes link — navnet siger "via os" */
+  exclusive: boolean;
+}
+
+export interface FeedGasProductGroup {
+  rank: number;
+  primary: FeedGasProductRow;
+  /** Samme selskab, identisk gaspris/abonnement/gebyrer/binding/pristype — tilvalgsvarianter */
+  variants: FeedGasProductRow[];
+  badge: "billigst" | null;
+}
+
+export interface FeedGasScope { products: number; suppliers: number; lasting: number; fixed: number; intro: number; groups: number }
+
+export interface FeedGasExcludedSupplier { slug: string; name: string; bankruptAt: string; sourceUrl: string | null; rows: number }
+
+export interface FeedGasChange {
+  reportedAt: string;
+  changedAt: string | Date;
+  kind: "added" | "price" | "removed" | "returned";
+  offer: { id: string; supplierSlug: string; supplierName: string; product: string };
+  from: Record<string, unknown> | null;
+  to: Record<string, unknown> | null;
+}
+
+export interface FeedGasProductsResponse {
+  meta: {
+    m3: number;
+    segment: FeedGasSegment;
+    /** Portalens dato — den dato, hver pris skal undertekstes med */
+    reportedAt: string;
+    fetchedAt: string | Date;
+    source: string;
+    municipalitiesChecked: number[];
+    generatedAt: string;
+    scope: FeedGasScope;
+    /** "af de N variable gasprodukter til private fra M gasselskaber, som … viste den D" — i samme sætning som ethvert superlativ */
+    scopeSentence: { variabel: string; alle: string; fast: string };
+    /** Måneden, selskaberne prisede efter */
+    wholesale: { month: string; neutralDkkKwh: number; krM3Incl: number } | null;
+    addOn: { stateAndGridKrM3: number; evidaFixedKrYear: number; portalAddOnKrM3: number; portalRecipe: string; portalDelta: number };
+    attribution: string;
+    note: string;
+  };
+  rates: FeedGasRateSet;
+  rows: FeedGasProductRow[];
+  groups: FeedGasProductGroup[];
+  /** Varige rækker fra selskaber uden anmærkning inden for 1 kr. af den billigste ved m³ — de eneste, der kan kaldes "billigst" */
+  winners: { ids: string[]; supplierNames: string; annualCostKr: number | null; gasPriceKrM3: number | null };
+  spread: { cheapestId: string; dearestId: string; diffKrYear: number } | null;
+  excluded: FeedGasExcludedSupplier[];
+  /** Nyeste først, højst ti */
+  changes: FeedGasChange[];
+}
+
+export interface FeedGasDailyPoint {
+  /** YYYY-MM-DD gasdag (06:00–06:00) */
+  gasDay: string;
+  eexEurMwh: number;
+  withinDayEurMwh: number | null;
+  /** Energinets neutrale gaspris, DKK/kWh ekskl. moms */
+  neutralDkkKwh: number;
+  theDkkKwh: number | null;
+  fxDkkPer100Eur: number | null;
+}
+export interface FeedGasMonthlyPoint { month: string; neutralDkkKwh: number }
+/** Forsyningstilsynets månedsstatistik for 1.650 m³: delene ekskl. moms, momsen for sig, totalen inkl. */
+export interface FeedGasFtPoint {
+  month: string;
+  gasKrM3ExVat: number;
+  distributionKrM3ExVat: number;
+  afgifterKrM3ExVat: number;
+  noedforsyningKrM3ExVat: number;
+  vatKrM3: number;
+  totalKrM3InclVat: number;
+}
+export type FeedGasDstGroup = "small" | "mid" | "large";
+/** Danmarks Statistik ENERGI3 pr. halvår og forbrugsgruppe: niveau 0–2 ekskl. moms, 3 inkl. */
+export interface FeedGasDstPoint { period: string; group: FeedGasDstGroup; bandLabel: string; level0: number; level1: number; level2: number; level3: number }
+export interface FeedGasReportPoint {
+  reportedAt: string;
+  fetchedAt: string | Date;
+  products: { id: string; gasPriceKrM3: number; subscriptionKrYear: number; priceType: FeedGasPriceType }[];
+}
+
+export interface FeedGasSeriesStats {
+  min: number; max: number; avg: number; first: number; last: number;
+  minDay: string; maxDay: string; firstDay: string; lastDay: string;
+  changePct: number; changeAbs: number;
+}
+
+export interface FeedGasMarketResponse {
+  meta: { today: string; generatedAt: string; attribution: string; note: string };
+  daily: {
+    fetchedAt: string | Date;
+    from: string;
+    to: string;
+    latest: FeedGasDailyPoint;
+    last45: FeedGasDailyPoint[];
+    /** Seneste neutrale gaspris som kr./m³ inkl. moms */
+    latestKrM3Incl: number;
+    provisionalUntil: string;
+    isProvisional: boolean;
+    /** Over de seneste 31 gasdage, kr./m³ inkl. moms */
+    stats30: FeedGasSeriesStats;
+    trend: { text: string; pct: number; direction: "op" | "ned" | "uændret"; days: number };
+    dkVsDe: { days: number; dkCheaperDays: number; avgSpreadDkkKwh: number; maxSpreadDay: FeedGasDailyPoint; minSpreadDay: FeedGasDailyPoint } | null;
+  };
+  monthly: {
+    fetchedAt: string | Date;
+    latest: FeedGasMonthlyPoint;
+    last13: FeedGasMonthlyPoint[];
+    latestKrM3Incl: number;
+    years: { year: number; avg: number; min: number; max: number; months: number; changePct: number | null }[];
+  };
+  ft: {
+    fetchedAt: string | Date;
+    source: string;
+    fileUrl: string;
+    vintage: string;
+    consumptionM3: number;
+    latest: FeedGasFtPoint;
+    last13: FeedGasFtPoint[];
+    extremes: { max: FeedGasFtPoint; min: FeedGasFtPoint };
+    years: { year: number; avgTotal: number; minTotal: number; maxTotal: number; avgGas: number; months: number; changePct: number | null }[];
+  };
+  dst: {
+    updated: string | Date;
+    groups: Record<FeedGasDstGroup, string>;
+    period: string;
+    latest: Record<FeedGasDstGroup, FeedGasDstPoint>;
+    /** Lagene i gruppen 457–4.569 m³ */
+    stack: { energiselskab: number; transport: number; afgifter: number; moms: number };
+  } | null;
+  season: {
+    years: number[];
+    /** Jan..dec, summer til 1 */
+    shares: number[];
+    method: string;
+    source: string;
+    summary: { peakMonth: number; troughMonth: number; peakShare: number; troughShare: number; winterShare: number; summerShare: number; peakToTrough: number };
+  } | null;
+  /** Eurostats seneste halvår for Danmark, nabolandene og EU27 (bånd D2); Danmarks placering fra billigst (1) blandt landene uden EU27 */
+  europe: {
+    period: string;
+    updated: string | Date;
+    band: string;
+    bandLabel: string;
+    unit: string;
+    source: string;
+    rows: FeedGasEurostatPoint[];
+    dkRank: number | null;
+    of: number;
+  } | null;
+  rates: FeedGasRateSet;
+}
+
+/** Eurostat nrg_pc_202, husholdninger, forbrugsbånd D2 (20–199 GJ om året): EUR pr. kWh pr. halvår, tre afgiftsniveauer */
+export interface FeedGasEurostatPoint {
+  /** Eurostats geokode: DK, DE, SE, NL, …, EU27_2020 */
+  geo: string;
+  geoName: string;
+  /** "2025-S1" */
+  period: string;
+  band: string;
+  eurKwhInclTax: number | null;
+  eurKwhExVat: number | null;
+  eurKwhExTax: number | null;
+  /** (alle afgifter inkl. − ekskl. alle afgifter) / inkl. — skatter og afgifters andel af prisen; negativ, når afgifterne samlet var et tilskud (krisetiltagene 2022–23) */
+  taxShare: number | null;
+}
+
+export type FeedGasHistorySeries = "eds-daily" | "eds-monthly" | "ft-monthly" | "dst" | "products" | "eurostat";
+export interface FeedGasHistoryRowTypes {
+  "eds-daily": FeedGasDailyPoint;
+  "eds-monthly": FeedGasMonthlyPoint;
+  "ft-monthly": FeedGasFtPoint;
+  dst: FeedGasDstPoint;
+  products: FeedGasReportPoint;
+  eurostat: FeedGasEurostatPoint;
+}
+export interface FeedGasHistoryResponse<S extends FeedGasHistorySeries = FeedGasHistorySeries> {
+  meta: {
+    series: S;
+    label: string;
+    publisher: string;
+    source: string;
+    unit: string;
+    fetchedAt: string | Date | null;
+    from: string | null;
+    to: string | null;
+    totalRows: number;
+    generatedAt: string;
+    attribution: string;
+  };
+  rows: FeedGasHistoryRowTypes[S][];
+}
+
+export interface FeedGasHealthResponse {
+  ok: boolean;
+  generatedAt: string;
+  today: string;
+  reportedAt: string | null;
+  fetchedAt: { portal: string | Date | null; daily: string | Date | null; monthly: string | Date | null; ft: string | Date | null; dst: string | Date | null; season: string | Date | null };
+  products: number;
+  householdProducts: number;
+  suppliers: number;
+  dailyTo: string | null;
+  monthlyTo: string | null;
+  ftTo: string | null;
+  dstTo: string | null;
+  dstUpdated: string | Date | null;
+  seasonYears: number[];
+  /** Satskoder, hvis review_by er passeret, eller som ingen gældende række har */
+  ratesDueReview: string[];
+  excludedRows: number;
+  bankrupt: { slug: string; name: string; bankruptAt: string }[];
+  portalRecipe: string | null;
+  portalDelta: number | null;
+  /** Portalens systemtarif stemmer med Evidas faste betaling i gas_rates */
+  evidaFixedMatchesPortal: boolean | null;
+  /** Kilder, der er ældre end de bør være — tom, når alt er friskt */
+  stale: string[];
+  /** Aktive gasselskaber uden kobling til et elselskab (ingen logo, Trustpilot eller selskabsfakta derfra) */
+  suppliersUnlinked: string[];
+  facts: { rows: number; stale: number; unknownBiogas: number };
+  /** Anmærkninger: aktive i gasregistret, poster hvis review-dato er passeret, og selskaber med en arvet el-anmærkning */
+  advisories: { active: number; dueReview: string[]; inheritedFromEl: string[] };
+  presets: number;
+  verification: { verified: number; mismatch: number; unverified: number };
+  /** Partnertilbud (origin = partner): aktive, skjulte efter-priser, tilbud, der udløber inden 30 dage, og introtilbud uden efter-pris (vises ikke; gør ok falsk) */
+  partnerOffers: { active: number; hidden: number; expiring: { id: string; validTo: string }[]; withoutAfter: string[] };
+  /** De fremhævede gaspladser: aktive pladser og hvor mange der løses til et tilbud ved referenceforbruget */
+  featured: { slots: number; resolved: number; skipped: string[] };
+  /** Seneste frosne månedsrapport for gas */
+  lastReport: string | null;
+  eurostat: { rows: number; latestPeriod: string | null; updated: string | Date | null };
+  /** Logoer spejlet fra portalen for aktive gasselskaber, og hvem der mangler både portal- og el-logo */
+  logos: { mirrored: number; missing: string[] };
+  /** Trustpilot for gasselskaber uden kobling til el: rækker, og hvem der er uden frisk aflæsning */
+  trustpilotGasOnly: { rows: number; stale: string[] };
+}
+
+/* ---------- selskabslaget for gas (18. oktober 2026) ---------- */
+
+/** Gasselskabsfakta — hver påstand med kilde og læsedato, eller null/unknown. Aldrig et tal, feedet selv regner. */
+export interface FeedGasSupplierFacts {
+  biogas: {
+    status: FeedOriginGuaranteeStatus;
+    /** included: tilbuddet selv · addon: den grønne variant (tilbuds-id) */
+    offerKey: string | null;
+    /** addon: den almindelige variant, tilvalget måles imod (tilbuds-id) */
+    baseOfferKey: string | null;
+    /** kr./m³ inkl. moms — KUN når tilvalget ikke er et selvstændigt tilbud i feedet */
+    addonKrM3InclVat: number | null;
+    note: string | null;
+    sourceUrl: string | null;
+    verifiedAt: string | null;
+  };
+  /** Står Evidas betaling på selskabets regning (én regning)? null = ukendt */
+  combinedEvidaBill: { value: boolean | null; note: string | null; sourceUrl: string | null; verifiedAt: string | null };
+  /** Tilbyder selskabet en serviceaftale til gasfyret? null = ukendt */
+  serviceAgreement: { value: boolean | null; name: string | null; note: string | null; sourceUrl: string | null; verifiedAt: string | null };
+  terms: {
+    /** Betalingsmåder med gebyr pr. regning inkl. moms (0 = gratis); null = ikke læst */
+    paymentMethods: { name: string; feeKrInclVat: number }[] | null;
+    termination: string | null;
+    priceUpdateCadence: string | null;
+    app: boolean | null;
+    note: string | null;
+    sourceUrl: string | null;
+    verifiedAt: string | null;
+  };
+  /** Kun for selskaber uden kobling til et elselskab; ellers står ejerskabet i `elSupplier.facts` */
+  ownership: { customerOwned: boolean | null; form: string | null; note: string | null; sourceUrl: string | null; verifiedAt: string | null };
+  foundedYear: number | null;
+  customers: { count: number; asOf: string; sourceUrl: string } | null;
+  updatedAt: string | Date;
+}
+
+export interface FeedGasSupplier extends FeedGasSupplierRef {
+  /** Fra gasrækken, ellers det koblede elselskab */
+  cvr: string | null;
+  homepageUrl: string | null;
+  offerCount: { privat: number; erhverv: number };
+  /** Hvad Trustpilot-profilen dækker ud over gas, uden tal */
+  trustpilotNote: string | null;
+  /** true når anmærkningen er elregistrets, læst gennem koblingen */
+  advisoryInheritedFromEl: boolean;
+  facts: FeedGasSupplierFacts | null;
+  /** Det koblede elselskab med dets fakta — EPSI måler elmarkedet, aldrig gas */
+  elSupplier: { slug: string; name: string; facts: FeedSupplierFacts | null } | null;
+  verification: { verified: number; mismatch: number; unverified: number };
+}
+
+export interface FeedGasSuppliersResponse {
+  meta: { count: number; generatedAt: string; attribution: string; note: string };
+  items: FeedGasSupplier[];
+}
+
+export type FeedGasStackWho = "leverandør" | "staten" | "evida" | "energinet";
+export interface FeedGasStackLine {
+  key: "gas" | "abonnement" | "gebyrer" | "rabat" | "naturgasafgift" | "co2afgift" | "noxafgift" | "evidaVolumen" | "noedforsyning" | "evidaGrundpris" | "evidaMaaler" | "evidaKapacitet";
+  label: string;
+  who: FeedGasStackWho;
+  /** Pr. m³, hvor linjen følger forbruget */
+  krM3?: number;
+  krYear: number;
+  source: string;
+}
+/** Årsprisen delt op (motorens priceStack); linjerne summer til annualCostKr */
+export interface FeedGasPriceStack {
+  m3: number;
+  lines: FeedGasStackLine[];
+  totalKrYear: number;
+  totalKrM3: number;
+  herafMomsKrYear: number;
+  supplierShareKrYear: number;
+  stateShareKrYear: number;
+  gridShareKrYear: number;
+}
+
+export interface FeedGasOfferHistoryPoint { reportedAt: string; gasPriceKrM3: number; subscriptionKrYear: number; priceType: FeedGasPriceType }
+
+/** Et af selskabets tilbud med dets placering i hele markedet ved svarets m³ */
+export interface FeedGasSupplierOffer extends FeedGasProductRow {
+  /** Placering blandt de varige (variable) produkter i segmentet — null for intro og fast */
+  rankAmongLasting: number | null;
+  ofLasting: number;
+  /** Prisniveau (identiske årspriser tæller som ét) og antal niveauer blandt alle produkter */
+  level: number;
+  ofLevels: number;
+  isWinner: boolean;
+  /** Kr./år over det billigste varige produkt uden anmærkning (0 for vinderen) */
+  diffToCheapestKrYear: number;
+  /** Kr./år under det dyreste produkt i segmentet */
+  diffToDearestKrYear: number;
+  medianLastingKrYear: number | null;
+  /** Tillægget over Energinets månedspris: placering blandt de varige (1 = lavest), spændet og måneden */
+  margin: { rank: number | null; of: number; lowestKrM3: number | null; highestKrM3: number | null; month: string | null } | null;
+  stack: FeedGasPriceStack;
+  /** Prisen pr. portaldato, ældste først (højst 400 dage) */
+  history: FeedGasOfferHistoryPoint[];
+}
+
+export interface FeedGasSupplierResponse {
+  meta: {
+    m3: number;
+    segment: FeedGasSegment;
+    reportedAt: string;
+    fetchedAt: string | Date;
+    scope: FeedGasScope;
+    scopeSentence: { variabel: string; alle: string; fast: string };
+    /** Selskabets billigste varige tilbud ved hver boligtype: `rank` er placeringen blandt de varige variable produkter ved boligtypens m³
+     *  (feedets rangering — selskaber med en anmærkning nederst), af `ofLasting` — samme mål som tilbuddenes `rankAmongLasting`. */
+    presets: { key: string; label: string; m3: number; offerId: string | null; rank: number | null; ofLasting: number; annualCostKr: number | null }[];
+    generatedAt: string;
+    attribution: string;
+    note: string;
+  };
+  rates: FeedGasRateSet;
+  supplier: FeedGasSupplier;
+  offers: FeedGasSupplierOffer[];
+}
+
+/** Boligtyperne i gasforbrugsvælgeren — samme liste på alle sider; hentes, skrives ikke af. */
+export interface FeedGasPreset { key: string; label: string; description: string; m3: number; sourceUrl: string; verifiedAt: string }
+export interface FeedGasPresetsResponse { meta: { count: number; generatedAt: string }; items: FeedGasPreset[] }
+
+export type FeedGasChangeKind =
+  | "offer-added" | "offer-price" | "offer-removed" | "offer-returned"
+  | "rate-changed" | "supplier-added" | "supplier-bankrupt" | "advisory-set" | "advisory-lifted";
+
+export interface FeedGasChangeBase {
+  id: string;
+  kind: FeedGasChangeKind;
+  at: string | Date;
+  /** Dansk dato */
+  day: string;
+  supplier: { slug: string; name: string } | null;
+  source: { name: string; url: string | null };
+}
+export interface FeedGasOfferChange extends FeedGasChangeBase {
+  kind: "offer-added" | "offer-price" | "offer-removed" | "offer-returned";
+  offer: { id: string; product: string; segment: FeedGasSegment; priceType: FeedGasPriceType };
+  /** Portalens dato for de nye vilkår */
+  reportedAt: string;
+  from: Record<string, unknown> | null;
+  to: Record<string, unknown> | null;
+  gasPriceDeltaKrM3: number | null;
+  subscriptionDeltaKrYear: number | null;
+}
+export interface FeedGasRateChange extends FeedGasChangeBase {
+  kind: "rate-changed";
+  code: string;
+  unit: "kr_m3" | "kr_year";
+  validFrom: string | Date;
+  validTo: string | Date | null;
+  fromExVat: number | null;
+  toExVat: number;
+  fromInclVat: number | null;
+  toInclVat: number;
+}
+export interface FeedGasSupplierChange extends FeedGasChangeBase {
+  kind: "supplier-added" | "supplier-bankrupt";
+  bankruptAt: string | null;
+}
+export interface FeedGasAdvisoryChange extends FeedGasChangeBase {
+  kind: "advisory-set" | "advisory-lifted";
+  level: FeedAdvisoryLevel;
+  summary: string;
+  since: string;
+  reasons: FeedAdvisoryReason[];
+  /** true når posten er elregistrets, læst gennem koblingen til elselskabet */
+  inheritedFromEl: boolean;
+}
+export type FeedGasChangeItem = FeedGasOfferChange | FeedGasRateChange | FeedGasSupplierChange | FeedGasAdvisoryChange;
+export interface FeedGasChangesResponse {
+  meta: { since: string; until: string; count: number; truncated: boolean; kinds: FeedGasChangeKind[]; generatedAt: string; note: string };
+  items: FeedGasChangeItem[];
+}
+
+/* ---------- det kommercielle lag for gas (sprint B, 18. oktober 2026) ---------- */
+
+/** En fremhævet gasplads — altid annonce; samme kort på alle sites */
+export interface FeedGasFeaturedItem {
+  position: number;
+  sponsored: true;
+  headline: string | null;
+  badge: string | null;
+  bullets: string[];
+  ctaLabel: string;
+  campaignTerms: string | null;
+  accentColor: string | null;
+  /** Affiliate-URL med sitets sporingsparameter; ellers tilbudssiden/selskabets side */
+  ctaUrl: string | null;
+  /** Det tilbud, pladsen løses til ved svarets m³ (en selskabsplads: selskabets billigste varige tilbud) */
+  offer: FeedGasProductRow;
+}
+export interface FeedGasFeaturedResponse {
+  meta: { m3: number; segment: FeedGasSegment; reportedAt: string; generatedAt: string; note: string };
+  disclosure: string;
+  items: FeedGasFeaturedItem[];
+}
+
+/** Markedsbilledet i en månedsrapport: portalens sidste liste i måneden ved referenceforbruget med månedens satser */
+export interface FeedGasReportMarket {
+  m3: number;
+  reportedAt: string;
+  /** Dagen, satserne er slået op for (sidste portaldato i måneden) */
+  ratesDate: string;
+  products: number;
+  householdProducts: number;
+  suppliers: number;
+  /** Varige produkter til private fra selskaber uden anmærkning */
+  cleanLastingCount: number;
+  cheapestLasting: { supplier: { slug: string; name: string }; offer: { id: string; product: string }; gasPriceKrM3: number; annualCostKr: number } | null;
+  medianAnnualCostKr: number | null;
+  spreadKrYear: number | null;
+  /** Selskaber, der bar en anmærkning ved genereringen (gasregistret eller arvet) */
+  advisedSuppliers: string[];
+}
+export interface FeedGasReportWholesale {
+  gasDays: number;
+  from: string;
+  to: string;
+  avgKrM3Incl: number;
+  minKrM3Incl: number;
+  maxKrM3Incl: number;
+  minDay: string;
+  maxDay: string;
+  firstKrM3Incl: number;
+  lastKrM3Incl: number;
+  changePct: number;
+  /** Energinets månedspris for måneden — det, selskaberne priser efter */
+  monthlyNeutralDkkKwh: number | null;
+  monthlyKrM3Incl: number | null;
+  previousMonthKrM3Incl: number | null;
+  sameMonthLastYearKrM3Incl: number | null;
+  /** Energinet godkender balanceprisen den 25. i måneden efter */
+  provisional: boolean;
+}
+export interface FeedGasReportResponse {
+  month: string;
+  period: { from: string; to: string };
+  generatedAt: string;
+  feedSince: string | null;
+  portal: { dates: string[]; last: { reportedAt: string; products: number; householdProducts: number; suppliers: number; excludedRows: number } | null };
+  market: FeedGasReportMarket | null;
+  offers: {
+    added: FeedGasOfferChange[];
+    removed: FeedGasOfferChange[];
+    returned: FeedGasOfferChange[];
+    priceChanges: { count: number; up: number; down: number; medianGasPriceDeltaKrM3: number | null; largest: FeedGasOfferChange[]; bySupplier: { slug: string; name: string; count: number; up: number; down: number }[] };
+  };
+  wholesale: FeedGasReportWholesale | null;
+  /** Forsyningstilsynets række for måneden, når den er udgivet */
+  ft: FeedGasFtPoint | null;
+  rates: { inForce: FeedGasRateSet | null; changes: FeedGasRateChange[] };
+  suppliers: { active: number; bankrupt: FeedGasSupplierChange[] };
+  advisories: FeedGasAdvisoryChange[];
+  sources: { name: string; url: string }[];
+  method: string;
+}
+
+/* ---------------------------------- Elpris-prognose ---------------------------------- */
+
+export type FeedForecastKind = "known" | "forecast" | "typical";
+
+/** Et bånd: 10 %-, 50 %- og 90 %-fraktilen. */
+export interface FeedForecastBand {
+  p10: number;
+  p50: number;
+  p90: number;
+}
+
+export interface FeedForecastHour {
+  /** Timens start, dansk lokaltid med offset. */
+  start: string;
+  hour: number;
+  /** Spot ekskl. moms, øre/kWh — den kendte pris (known) eller prognosens p50 (forecast). */
+  spotOreExVat: number;
+  /** Husstandens pris inkl. moms i netområdet: spot + nettarif i timen + Energinets led + elafgift, × moms. */
+  allInOreInclVat: number;
+  /** Prognosens bånd om husstandens pris (kun forecast). */
+  p10OreInclVat?: number;
+  p90OreInclVat?: number;
+}
+
+export interface FeedForecastOutlookPart {
+  /** lav/middel/høj = laveste/midterste/højeste tredjedel af de seneste 90 døgns realiserede produktion i prisområdet. */
+  level: "lav" | "middel" | "høj";
+  /** Døgnmiddel af den prognosticerede produktion, MWh pr. time. */
+  mwh: number;
+  /** Andel af de seneste 90 realiserede døgn, der lå lavere (0–100). */
+  percentile: number;
+}
+
+/** Ugens udsigt for vind og sol bag en dag — modellen på ECMWF's vejrprognose, offentlig uanset udgivne prishorisonter. */
+export interface FeedForecastOutlook {
+  wind: FeedForecastOutlookPart;
+  solar: FeedForecastOutlookPart;
+  /** Energinets egen day-ahead-prognose for dagen (døgnmiddel, MWh pr. time), når den er udgivet — normalt kun for i morgen. */
+  reference: { energinetWindMwh: number; energinetSolarMwh: number } | null;
+  basis: string;
+}
+
+export interface FeedForecastGates {
+  day2: { rmaeMax: number; rpinballMax: number; coverage80: [number, number]; minScoredDays: number };
+  days3to7: { rmaeMax: number; rankCorrMin: number; cheap2HitRateMin: number; coverage80: [number, number]; minScoredDays: number };
+}
+
+export interface FeedForecastDay {
+  /** "YYYY-MM-DD", dansk dag. */
+  day: string;
+  /** 1 = mandag … 7 = søndag. */
+  weekday: number;
+  /** Dage efter kørslens sidst kendte day-ahead-dag; null for typical uden kørsel og for kendte dage. */
+  horizonDay: number | null;
+  /** known = offentliggjorte priser; forecast = en udgivet horisont; typical = samme ugedag og måned de seneste tre år. */
+  kind: FeedForecastKind;
+  /** Husstandens pris inkl. moms, øre/kWh: known → dagens gennemsnit/laveste/højeste time; ellers bånd om døgnmidlet. */
+  allIn: { avg: number; min: number; max: number } | FeedForecastBand;
+  /** Spot ekskl. moms på samme måde. */
+  spot: { avg: number; min: number; max: number } | FeedForecastBand;
+  /** Timerne for dagen: kendte dage med prisen, prognosedage med p50 og bånd pr. time, typiske dage med fraktiler pr. time; null kun når en time mangler grundlag. */
+  hours: FeedForecastHour[] | null;
+  /** typical: grundlaget, fx "13 tirsdage i oktober 2023–2025". */
+  basis: string | null;
+  /** Det, der lægges oveni spot i døgnmidlet (øre/kWh ekskl. moms) og momsfaktoren — så et site kan vise, hvor lidt af prisen der er usikker. */
+  partsOreExVat: { grid: number; energinet: number; tax: number; vatFactor: number } | null;
+  /** Vind- og soludsigten bag dagen; null for dage uden en prognosekørsel (og i udgaver før 13. oktober 2026). */
+  outlook: FeedForecastOutlook | null;
+  /** Udgaven bag dagen (horisonten, prognosen og udsigten): kørslens id og udstedelse. Fra 17. oktober 2026 kan ugen komme fra to udgaver — den nyeste (en 06z/18z-vejrkørsel dækker dag 1–4) lagt oven på den nyeste hele (dag 5–7); meta.runs viser dem. null uden kørsel. */
+  runId: number | null;
+  issuedAt: string | null;
+}
+
+export interface FeedForecastSeparation {
+  /** Den billigere dag (efter p50). */
+  a: string;
+  b: string;
+  /** klar = a's p90 ligger under b's p10; ellers usikker. */
+  status: "klar" | "usikker";
+}
+
+export interface FeedForecastAccuracyRow {
+  /** Døgnmidlets fejl, øre/kWh (spot ekskl. moms). */
+  mae: number;
+  /** Fejlen delt med den naive prognoses — under 1 er bedre end naiv. */
+  rmae: number;
+  /** Andel dage, der faldt inden for p10–p90 (mål 0,80). */
+  coverage80: number;
+  pinball: number;
+  n: number;
+  naive: string;
+  /** Ugemålene over k = 2…7 pr. udstedelse: Spearman-rangkorrelation (median), andel af de to billigste forudsagte dage, der faktisk var blandt de to billigste, og andel »klare« adskillelser, der holdt. null før de findes. */
+  rankCorr: number | null;
+  cheap2HitRate: number | null;
+  separationHonesty: number | null;
+  /** Portens status (meta.gates): null, før horisonten har nok scorede dage; ellers om kravene er bestået — »under indkøring« eller »bestået«. */
+  gatePassed: boolean | null;
+  /** Ejerens mål (17. oktober 2026) i procent af det realiserede døgnmiddel: middel af |niveaufejlen| (p50 mod døgnmidlet), timefejlen som andel af døgnmidlet (mål ≤ 0,10), andelen af dage inden for ±5 % — og hvor mange dage der bar procenttal (dage med et døgnmiddel under 10 øre tæller ikke). null før oraklet har målt dem. */
+  levelMape: number | null;
+  nmae: number | null;
+  within5Rate: number | null;
+  nPct: number | null;
+}
+
+/** Én scoret dag i slægtslinjen for dag 1: den udgave, der var live før auktionen kl. 12 dagen før, mod de offentliggjorte priser. Spot ekskl. moms, øre/kWh. */
+export interface FeedForecastRecentDay {
+  day: string;
+  realisedOre: number;
+  p10Ore: number;
+  p50Ore: number;
+  p90Ore: number;
+  /** (p50 − facit)/|facit|; null for dage med et døgnmiddel under 10 øre. */
+  levelErrPct: number | null;
+  within5: boolean | null;
+  runId: number;
+  issuedAt: string;
+}
+
+/** Slægtslinjens række: den udgave, der var live før auktionen for hver dag, på tværs af modelskift — samme mål som modellens egen række, men uden portstatus: slægtslinjen vises, den udgiver aldrig en horisont. */
+export interface FeedForecastLineageRow {
+  mae: number;
+  rmae: number;
+  coverage80: number;
+  n: number;
+  levelMape: number | null;
+  nmae: number | null;
+  within5Rate: number | null;
+  nPct: number | null;
+}
+
+export interface FeedForecastResponse {
+  meta: {
+    area: FeedArea;
+    priceArea: PriceArea;
+    unit: "øre/kWh inkl. moms";
+    /** Seneste kendte spot-time. */
+    asOf: string | null;
+    /** Kørslens udstedelse — null, når ingen kørsel er udgivet. */
+    issuedAt: string | null;
+    modelId: string | null;
+    weatherRun: { model: string; runAt: string } | null;
+    /** Kørslens dækning i danske dage. */
+    horizon: { from: string; to: string } | null;
+    /** Udgaverne bag ugen i læserækkefølge: den nyeste først, så den nyeste hele, hvis den nyeste er afkortet (06z/18z); `days` er de prognosedage i svaret, der kom fra udgaven. Tom uden kørsel. */
+    runs: { runId: number; issuedAt: string; modelId: string; horizon: { from: string; to: string }; truncated: boolean; days: string[] }[];
+    /** Horisonter (dage efter den sidst kendte dag), ejeren har udgivet; tom = alt vises som typical. */
+    enabledHorizons: number[];
+    /** Sandt når ingen kørsel er under 30 timer gammel. */
+    stale: boolean;
+    /** Dage, der er udeladt, fordi netområdets satser ikke findes strengt for dagen. */
+    missing: { day: string; reason: string }[];
+    method: string;
+    attribution: string;
+    attributions: { name: string; url: string; licence: string; text: string }[];
+    caveat: string;
+    note: string;
+    /** Portene, en horisont skal bestå, før ejeren udgiver den (så et site kan vise mål og status uden egne tal). */
+    gates: FeedForecastGates;
+    generatedAt: string;
+  };
+  /** I morgen og de seks dage efter, i rækkefølge. */
+  days: FeedForecastDay[];
+  /** Kun over dage med kind = forecast; null uden udgivne horisonter. */
+  ranking: { cheapest: string[]; dearest: string[]; separation: FeedForecastSeparation[]; basis: string } | null;
+  /** Målt træfsikkerhed fra oraklet — null kun uden en kørsel; `window` null og tom `byHorizon`, til de første dage er scoret. `lineage` er slægtslinjen (oraklets model_id `__production__`): den udgave, der var live før auktionen kl. 12 dagen før, for hver dag siden den første udgave 13. oktober 2026 — på tværs af modelskift og kun til visning. */
+  accuracy: {
+    window: "30d" | "90d" | "all" | null; since: string | null; scoredDays: number; byHorizon: Record<string, FeedForecastAccuracyRow>;
+    lineage: { window: "30d" | "90d" | "all"; byHorizon: Record<string, FeedForecastLineageRow> } | null;
+    /** De seneste 14 scorede dage for dag 1 i slægtslinjen, ældste først — så et site kan tegne prognose mod facit dag for dag. Tom, til den første dag er scoret. */
+    recent: FeedForecastRecentDay[];
+  } | null;
+}
+
+
+/* ---------------------------------- Frostvagtens temperatur ---------------------------------- */
+
+/** Én time i en ECMWF-kørsel: den koldeste 2 m-temperatur blandt prisområdets punkter. */
+export interface FeedTemperatureHour {
+  /** Timen, prognosen gælder (kørslens starttid + trinet), som ISO med dansk offset. */
+  at: string;
+  /** °C rundet ned til 0,1 — aldrig varmere end arkivet; null, hvor et af områdets punkter mangler timen. */
+  tempC: number | null;
+  /** Det koldeste punkt (`points[].siteId`) — ved lige tal det første; null sammen med tempC. */
+  siteId: string | null;
+}
+
+/** Ét prisområde: den nyeste hele kørsel, der har alle områdets punkter, og dens timer. */
+export interface FeedTemperatureArea {
+  /** `runAt` er kørslens starttid (00z, 06z, 12z eller 18z, UTC); `fetchedAt`, da arkivet hentede den. */
+  run: { model: string; runAt: string; fetchedAt: string | null };
+  /** Områdets temperaturpunkter: celler i ECMWF's 0,25°-net, ikke husstandens adresse. */
+  points: { siteId: string; name: string; lat: number; lon: number }[];
+  /** Kørslens timer i rækkefølge: hver tredje time til 144 timer, derefter hver sjette (00z og 12z til 240). */
+  hours: FeedTemperatureHour[];
+}
+
+export interface FeedTemperatureResponse {
+  meta: {
+    unit: "°C";
+    /** Prisområderne i `areas`. */
+    priceAreas: string[];
+    generatedAt: string;
+    method: string;
+    note: string;
+    attribution: string;
+    attributions: { name: string; url: string; licence: string; text: string }[];
+  };
+  /** Nøglet på prisområde (DK1, DK2; NO1–NO5 og SE1–SE4 kan komme til); null, når ingen af de seneste hele kørsler har alle områdets punkter. */
+  areas: Record<string, FeedTemperatureArea | null>;
 }

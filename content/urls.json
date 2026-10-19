@@ -24,6 +24,12 @@
     "noindex": false
   },
   {
+    "path": "/app/",
+    "title": "App til strømforbrug (2026) → Hvornår er strømmen billigst?",
+    "description": "Hvornår skal vaskemaskinen, opvaskeren og elbilen køre? Elpriser.dk-appen viser døgnets billige timer for dit postnummer og minder dig om dem. Gratis.",
+    "noindex": false
+  },
+  {
     "path": "/apparater/",
     "title": "Apparaters strømforbrug (2026) → Alle apparater, kWh og pris",
     "description": "Alle apparater på Strømforbrug.dk sorteret efter forbrug: typisk kWh om året, pris ved månedens marginalpris og om apparatet kan flyttes til døgnets billige timer.",

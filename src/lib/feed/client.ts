@@ -17,36 +17,49 @@
  */
 import type {
   FeedAdvisoriesResponse,
+  FeedAfgifterResponse,
   FeedChangeKind,
   FeedChangesResponse,
+  FeedCo2Response,
+  FeedForecastResponse,
+  FeedDailyPricesResponse,
+  FeedDstHistoryResponse,
   FeedEstimateResponse,
   FeedFeaturedResponse,
+  FeedGasHealthResponse,
+  FeedGasHistoryResponse,
+  FeedGasHistorySeries,
+  FeedGasMarketResponse,
+  FeedGasProductsResponse,
+  FeedGasSegment,
   FeedGridAreaDetailResponse,
   FeedGridAreaResponse,
   FeedGridAreasResponse,
   FeedHealthResponse,
+  FeedHouseholdHistoryResponse,
   FeedMarketResponse,
+  FeedMonthlyBasis,
+  FeedMonthlyPricesResponse,
   FeedPresetsResponse,
   FeedProductsResponse,
   FeedReportResponse,
   FeedScoreRubricResponse,
+  FeedSpotHistoryResponse,
   FeedSpotResolution,
   FeedSpotResponse,
   FeedSupplierPricesResponse,
   FeedSupplierResponse,
   FeedSuppliersResponse,
+  FeedTarifferResponse,
   FeedTimeprisResponse,
   FeedVerificationsResponse,
-  FeedDstHistoryResponse,
-  FeedHouseholdHistoryResponse,
-  FeedSpotHistoryResponse,
+  FeedGasChangesResponse,
+  FeedGasFeaturedResponse,
+  FeedGasPresetsResponse,
+  FeedGasReportResponse,
+  FeedGasSupplierResponse,
+  FeedGasSuppliersResponse,
   HistoryArea,
-  FeedAfgifterResponse,
-  FeedMonthlyBasis,
-  FeedCo2Response,
-  FeedDailyPricesResponse,
-  FeedMonthlyPricesResponse,
-  FeedTarifferResponse,
 } from "./types";
 
 const BASE = process.env.EL_FEED_URL;
@@ -63,7 +76,13 @@ export const FEED_TAGS = {
   history: "el-feed:history",
   rates: "el-feed:rates",
   co2: "el-feed:co2",
+  forecast: "el-feed:forecast",
+  gas: "el-feed:gas",
+  gasHistory: "el-feed:gas-history",
+  gasFeatured: "el-feed:gas-featured",
+  gasReports: "el-feed:gas-reports",
   supplier: (slug: string) => `el-feed:supplier:${slug}`,
+  gasSupplier: (slug: string) => `el-feed:gas-supplier:${slug}`,
 } as const;
 
 type Params = object;
@@ -233,6 +252,9 @@ export const elFeed = {
    */
   co2: (p: Pick<Place, "region" | "area" | "zip"> = {}) =>
     get<FeedCo2Response>("/api/v1/co2", p, [FEED_TAGS.co2]),
+  /** Elpris-prognosen: i morgen og de seks dage efter som husstandens pris i netområdet — kendte priser, udgivne prognosehorisonter med bånd, ellers det typiske niveau. */
+  forecast: (p: Pick<Place, "region" | "area" | "zip"> = {}) =>
+    get<FeedForecastResponse>("/api/v1/forecast", p, [FEED_TAGS.forecast, FEED_TAGS.market, FEED_TAGS.rates]),
 
   /**
    * Spotpriser bagud i tid for DK1/DK2: kvarter (op til 7 dage, fra 1. oktober 2025), time
@@ -281,4 +303,40 @@ export const elFeed = {
 
   /** Danmarks Statistiks ENERGI1 pr. halvår for ét forbrugsbånd (standard 3 = 2,5–4,9 MWh), kr./kWh. */
   historyDst: (p: { band?: string } = {}) => get<FeedDstHistoryResponse>("/api/v1/history/dst", p, [FEED_TAGS.history]),
+
+  /* ---------- naturgas ---------- */
+
+  /** Alle gasprodukter på gasprisguiden.dk, rangeret efter årsprisen ved m³ (standard 1.700) med dagens satser. */
+  gasProducts: (p: { m3?: number; segment?: FeedGasSegment } = {}) => get<FeedGasProductsResponse>("/api/v1/gas/products", p, [FEED_TAGS.gas]),
+
+  /** Engrosprisen pr. gasdag og måned, Forsyningstilsynets og DST's statistik, sæsonen — og `rates`, som el-feed-gas.ts regner med. */
+  gasMarket: () => get<FeedGasMarketResponse>("/api/v1/gas/market", {}, [FEED_TAGS.gas, FEED_TAGS.gasHistory]),
+
+  /** Én serie i et vindue (nøgleformat som serien). */
+  gasHistory: <S extends FeedGasHistorySeries>(series: S, r: { from?: string; to?: string } = {}) =>
+    get<FeedGasHistoryResponse<S>>("/api/v1/gas/history", { series, ...r }, [FEED_TAGS.gas, FEED_TAGS.gasHistory]),
+
+  /** Friskhed og antal for gasdataene — det, en audit spørger om. */
+  gasHealth: () => get<FeedGasHealthResponse>("/api/v1/gas/health", {}, []),
+
+  /** Alle aktive gasselskaber: logo, CVR, Trustpilot, anmærkning (også arvet fra elselskabet), selskabsfakta, antal tilbud, sporingsslug. */
+  gasSuppliers: () => get<FeedGasSuppliersResponse>("/api/v1/gas/suppliers", {}, [FEED_TAGS.gas, FEED_TAGS.trustpilot, FEED_TAGS.advisories]),
+
+  /** Ét gasselskab med hvert tilbuds placering i hele markedet ved m³, prisens dele, historik pr. portaldato og boligtyperne. */
+  gasSupplier: (slug: string, p: { m3?: number; segment?: FeedGasSegment } = {}) =>
+    get<FeedGasSupplierResponse>(`/api/v1/gas/suppliers/${slug}`, p, [FEED_TAGS.gas, FEED_TAGS.gasSupplier(slug), FEED_TAGS.trustpilot, FEED_TAGS.advisories]),
+
+  /** Boligtyperne i gasforbrugsvælgeren (m³ om året) — hentes, skrives ikke af. */
+  gasPresets: () => get<FeedGasPresetsResponse>("/api/v1/gas/presets", {}, [FEED_TAGS.gas]),
+
+  /** Gasmarkedets ændringer, nyeste først: tilbud, satser, selskaber, anmærkninger. since/until som danske dage. */
+  gasChanges: (p: { since?: string; until?: string; kind?: string; supplier?: string; limit?: number } = {}) =>
+    get<FeedGasChangesResponse>("/api/v1/gas/changes", p, [FEED_TAGS.gas, FEED_TAGS.advisories]),
+
+  /** De fremhævede gaspladser (annonce, én liste for alle sites), løst til et tilbud ved m³; `site` giver sporingsparameteren. */
+  gasFeatured: (p: { m3?: number; segment?: FeedGasSegment; site?: string } = {}) =>
+    get<FeedGasFeaturedResponse>("/api/v1/gas/featured", p, [FEED_TAGS.gas, FEED_TAGS.gasFeatured, FEED_TAGS.advisories]),
+
+  /** Månedsrapporten for gas for en afsluttet måned (YYYY-MM) — frosset ved første kald. */
+  gasReport: (month: string) => get<FeedGasReportResponse>(`/api/v1/gas/reports/${month}`, {}, [FEED_TAGS.gasReports]),
 };

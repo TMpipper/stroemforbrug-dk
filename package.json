@@ -9,8 +9,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "prebuild": "node scripts/audit-upstream.mjs && node scripts/audit-feed.mjs && node scripts/prices-updated.mjs",
-    "postbuild": "node scripts/snapshot-urls.mjs && tsx scripts/audit-prices.mts && tsx scripts/audit-seo.mts && node scripts/audit-claims.mjs && node scripts/audit-unique.mjs && node scripts/audit-widget.mjs",
-    "audit": "eslint src scripts && node scripts/audit-upstream.mjs && node scripts/audit-feed.mjs && node scripts/snapshot-urls.mjs && tsx scripts/audit-prices.mts && tsx scripts/audit-seo.mts && node scripts/audit-claims.mjs && node scripts/audit-unique.mjs && node scripts/audit-widget.mjs && node scripts/audit-sister-titles.mjs && node scripts/audit-mobile.mjs",
+    "postbuild": "node scripts/snapshot-urls.mjs && tsx scripts/audit-prices.mts && tsx scripts/audit-seo.mts && node scripts/audit-claims.mjs && node scripts/audit-unique.mjs && node scripts/audit-widget.mjs && node scripts/audit-app-promo.mjs",
+    "audit": "eslint src scripts && node scripts/audit-upstream.mjs && node scripts/audit-feed.mjs && node scripts/snapshot-urls.mjs && tsx scripts/audit-prices.mts && tsx scripts/audit-seo.mts && node scripts/audit-claims.mjs && node scripts/audit-unique.mjs && node scripts/audit-widget.mjs && node scripts/audit-app-promo.mjs && node scripts/audit-sister-titles.mjs && node scripts/audit-mobile.mjs",
     "audit-upstream": "node scripts/audit-upstream.mjs",
     "audit-feed": "node scripts/audit-feed.mjs",
     "audit-prices": "tsx scripts/audit-prices.mts",
@@ -26,7 +26,8 @@
     "indexnow": "node scripts/indexnow.mjs",
     "prices": "tsx scripts/print-prices.mts",
     "audit-widget": "node scripts/audit-widget.mjs",
-    "audit-sister-titles": "node scripts/audit-sister-titles.mjs"
+    "audit-sister-titles": "node scripts/audit-sister-titles.mjs",
+    "audit-app-promo": "node scripts/audit-app-promo.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
