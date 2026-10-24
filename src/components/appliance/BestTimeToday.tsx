@@ -2,7 +2,7 @@ import { SITE_CONFIG } from "@/lib/config";
 import type { ApplianceData } from "@/lib/types";
 import { articleFor, possessiveFor } from "@/lib/appliance-insights";
 import { formatKrExact, formatPrice, danishDate } from "@/lib/format";
-import { hourSpan, type TodayPrices } from "@/lib/hourly-today";
+import { hourSpan, hourlyBasisAttrs, type TodayPrices } from "@/lib/hourly-today";
 
 /**
  * »Billigst at bruge X i dag« — sidens differentiator: hvornår på dagen apparatet er billigst at bruge,
@@ -36,7 +36,7 @@ export default function BestTimeToday({ data, today }: { data: ApplianceData; to
   const kr = (kwh: number, price: number) => formatKrExact(kwh * price);
 
   return (
-    <section data-best-time={alwaysOn ? "always-on" : "window"} data-region="DK1" aria-labelledby="bedste-tidspunkt" className="my-10 rounded-card bg-bg-blue p-5 sm:p-6">
+    <section data-best-time={alwaysOn ? "always-on" : "window"} data-region="DK1" {...hourlyBasisAttrs(today)} aria-labelledby="bedste-tidspunkt" className="my-10 rounded-card bg-bg-blue p-5 sm:p-6">
       <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">Timepriser i dag · {danishDate(d.day)}</p>
       <h2 id="bedste-tidspunkt" className="mt-1 font-heading text-2xl font-semibold text-ink">
         {alwaysOn ? `Hvad koster ${poss} ${name} i dag?` : `Hvornår er det billigst at bruge ${poss} ${name} i dag?`}

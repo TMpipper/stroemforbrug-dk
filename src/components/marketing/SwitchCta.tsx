@@ -24,7 +24,13 @@ export default async function SwitchCta({ kwh = 4000, household }: Props) {
   if (!dk1.cheapest && !dk2.cheapest) return null;
 
   return (
-    <div className="my-8 rounded-card bg-bg-blue p-6" data-switch-cta data-kwh={kwh}>
+    <div
+      className="my-8 rounded-card bg-bg-blue p-6"
+      data-switch-cta
+      data-kwh={kwh}
+      data-deal-allin-dk1={dk1.cheapest?.allInKrPerKwh.toFixed(2)}
+      data-deal-allin-dk2={dk2.cheapest?.allInKrPerKwh.toFixed(2)}
+    >
       <p className="font-heading text-lg font-semibold text-ink">
         Billigste elaftale ved {formatKr(kwh)} kWh om året{household ? ` — ${household}` : ""}
       </p>

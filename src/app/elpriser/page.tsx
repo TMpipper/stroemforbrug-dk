@@ -10,7 +10,7 @@ import PriceBasis from "@/components/content/PriceBasis";
 import AppPromo from "@/components/app-promo/AppPromo";
 import ElpriserWidget from "@/components/widget/ElpriserWidget";
 import { getPrices, tokenPrices } from "@/lib/prices";
-import { getBothToday, hourSpan } from "@/lib/hourly-today";
+import { getBothToday, hourSpan, hourlyBasisAttrs } from "@/lib/hourly-today";
 import { getAppliance } from "@/lib/appliances";
 import { formatKrExact, formatPrice, withCurrentYear } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
@@ -88,7 +88,7 @@ export default async function ElpriserPage() {
         {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): de billige timer i lommen, under kortet. */}
         <AppPromo variant="strip" placement="elpriser-top" context="cheapest-hours" className="mt-8" />
 
-        <section className="mt-14" aria-labelledby="apparater-i-dag">
+        <section className="mt-14" aria-labelledby="apparater-i-dag" {...hourlyBasisAttrs(today)}>
           <h2 id="apparater-i-dag" className="font-heading text-2xl font-semibold text-ink md:text-3xl">
             Hvad koster én gang i dag — i den billige og den dyre time?
           </h2>

@@ -11,88 +11,12 @@
  */
 import { cache } from "react";
 import { elFeed } from "./feed/client";
-import type { FeedTimeprisDay, FeedTimeprisHour } from "./feed/types";
+import { summariseTimepris, type HourWindow, type TodayPrices } from "./hourly-summary";
 import type { Region } from "./prices";
 
-export interface HourWindow {
-  /** Første time i vinduet, 0–23. */
-  start: number;
-  /** Timen efter den sidste, fx 3 for kl. 00–03. */
-  end: number;
-  /** Gennemsnit i vinduet, kr./kWh inkl. moms. */
-  krPerKwh: number;
-}
+export type { HourWindow, TodayPrices } from "./hourly-summary";
 
-export interface TodayPrices {
-  region: Region;
-  /** Netområdets navn (repræsentativt for landsdelen). */
-  areaLabel: string;
-  regionRepresentative: boolean;
-  /** YYYY-MM-DD i dansk tid. */
-  day: string;
-  hours: { hour: number; krPerKwh: number }[];
-  avg: number;
-  min: number;
-  max: number;
-  cheapest: HourWindow;
-  dearest: HourWindow;
-  /** Timeprisen i den time, feedet kalder "nu" (serverens klokkeslæt ved generering). */
-  nowHour: number;
-  now: number;
-  tomorrowAvailable: boolean;
-  tomorrowCheapest: HourWindow | null;
-  generatedAt: string;
-}
-
-const WINDOW_HOURS = 3;
-
-function window(hours: { hour: number; krPerKwh: number }[], pick: "min" | "max"): HourWindow {
-  if (hours.length < WINDOW_HOURS) throw new Error(`timepris: kun ${hours.length} timer`);
-  let best: HourWindow | null = null;
-  for (let i = 0; i + WINDOW_HOURS <= hours.length; i++) {
-    const slice = hours.slice(i, i + WINDOW_HOURS);
-    const avg = slice.reduce((n, h) => n + h.krPerKwh, 0) / WINDOW_HOURS;
-    if (!best || (pick === "min" ? avg < best.krPerKwh : avg > best.krPerKwh)) {
-      best = { start: slice[0].hour, end: slice[slice.length - 1].hour + 1, krPerKwh: Math.round(avg * 100) / 100 };
-    }
-  }
-  return best!;
-}
-
-const toHours = (day: FeedTimeprisDay): { hour: number; krPerKwh: number }[] =>
-  day.hours
-    .filter((h: FeedTimeprisHour) => typeof h.totalOre === "number")
-    .map((h) => ({ hour: h.hour, krPerKwh: Math.round(h.totalOre) / 100 }));
-
-export const getToday = cache(async (region: Region): Promise<TodayPrices> => {
-  const res = await elFeed.timepris({ region });
-  const today = res.market.today;
-  const hours = toHours(today);
-  if (hours.length < 23) throw new Error(`timepris ${region}: dagens priser har kun ${hours.length} timer`);
-  const tomorrow = res.meta.tomorrowAvailable && res.market.tomorrow ? toHours(res.market.tomorrow) : [];
-  const cheapest = window(hours, "min");
-  const dearest = window(hours, "max");
-  const nowSlot = res.market.now as FeedTimeprisHour | null | undefined;
-  const nowHour = nowSlot?.hour ?? Number(String(res.meta.nowHour).slice(11, 13)) ?? hours[0].hour;
-  const now = hours.find((h) => h.hour === nowHour)?.krPerKwh ?? hours[0].krPerKwh;
-  return {
-    region,
-    areaLabel: res.meta.area.gridCompany ?? res.meta.area.gridArea,
-    regionRepresentative: res.meta.area.regionRepresentative,
-    day: hours.length ? String(today.hours[0].start).slice(0, 10) : "",
-    hours,
-    avg: Math.round(today.avgOre) / 100,
-    min: Math.round(today.minOre) / 100,
-    max: Math.round(today.maxOre) / 100,
-    cheapest,
-    dearest,
-    nowHour,
-    now,
-    tomorrowAvailable: tomorrow.length >= 23,
-    tomorrowCheapest: tomorrow.length >= 23 ? window(tomorrow, "min") : null,
-    generatedAt: res.meta.generatedAt,
-  };
-});
+export const getToday = cache(async (region: Region): Promise<TodayPrices> => summariseTimepris(region, await elFeed.timepris({ region })));
 
 export const getBothToday = cache(async () => {
   const [DK1, DK2] = await Promise.all([getToday("DK1"), getToday("DK2")]);
@@ -101,3 +25,21 @@ export const getBothToday = cache(async () => {
 
 /** "kl. 02–05" */
 export const hourSpan = (w: HourWindow) => `kl. ${String(w.start).padStart(2, "0")}–${String(w.end).padStart(2, "0")}`;
+
+/**
+ * Dagens timetal som data-attributter (`data-hourly-basis`) på hver blok, der skriver dem. audit-prices
+ * godtager en timepris i den byggede HTML, når den er et af disse tal, og regner dem om mod feedets
+ * `timepris` med den samme `summariseTimepris` — så tallet er bevist beregnet, ikke skrevet.
+ */
+export function hourlyBasisAttrs(today: { DK1: TodayPrices; DK2: TodayPrices }): Record<string, string> {
+  const attrs: Record<string, string> = { "data-hourly-basis": "", "data-hourly-day": today.DK1.day };
+  for (const [key, t] of [["dk1", today.DK1], ["dk2", today.DK2]] as const) {
+    attrs[`data-hourly-min-${key}`] = t.min.toFixed(2);
+    attrs[`data-hourly-max-${key}`] = t.max.toFixed(2);
+    attrs[`data-hourly-avg-${key}`] = t.avg.toFixed(2);
+    attrs[`data-hourly-cheapest-${key}`] = t.cheapest.krPerKwh.toFixed(2);
+    attrs[`data-hourly-dearest-${key}`] = t.dearest.krPerKwh.toFixed(2);
+    if (t.tomorrowCheapest) attrs[`data-hourly-tomorrow-cheapest-${key}`] = t.tomorrowCheapest.krPerKwh.toFixed(2);
+  }
+  return attrs;
+}

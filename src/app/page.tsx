@@ -3,7 +3,7 @@ import { Zap, Calculator, Home, BarChart3 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
 import { formatKr, formatPrice } from "@/lib/format";
 import { getPrices, tokenPrices } from "@/lib/prices";
-import { getBothToday, hourSpan } from "@/lib/hourly-today";
+import { getBothToday, hourSpan, hourlyBasisAttrs } from "@/lib/hourly-today";
 import ElpriserWidget from "@/components/widget/ElpriserWidget";
 import { getPublishedAppliances } from "@/lib/appliances";
 import { homeFaqs, topEverydayAppliances } from "@/lib/home-insights";
@@ -91,7 +91,7 @@ export default async function HomePage() {
       <DirectAnswer prices={prices} />
 
       {/* Elprisen i dag — Elpriser.dk's kort og dagens billigste timer, regnet på samme feed */}
-      <section className="py-16 border-b border-border" aria-labelledby="elprisen-i-dag" data-home-hourly>
+      <section className="py-16 border-b border-border" aria-labelledby="elprisen-i-dag" data-home-hourly {...hourlyBasisAttrs(today)}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid gap-8">
             <div className="max-w-3xl">

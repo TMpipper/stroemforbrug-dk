@@ -6,9 +6,13 @@
  *   sætning som et kWh-tal i indholdsfilerne (det skal være et {{kr}}-token), ingen ukendte tokens,
  *   intet "kr" i et OG-kort, ingen `new Date()` som dato i sitemap/dateModified.
  * Pass 2 (den byggede HTML, .next/server/app): ingen "{{" (urenderet token); én data-price-basis pr.
- *   prisside; hvert "x,xx kr./kWh" på siden er et af grundlagets tal (±0,005) eller et spænd eller
- *   ≥ 3,00 (offentlig ladning); alle sider deler samme dk1/dk2/måned (ellers har bygget krydset en
- *   feedopdatering — byg igen); grundlaget regnes om mod feedet live og skal ramme inden for 0,01.
+ *   prisside; hvert "x,xx kr./kWh" på siden — også når React har sat en <!-- -->-separator mellem tal og
+ *   enhed — er et af grundlagets tal (±0,005), et af sidens timetal (data-hourly-basis: dagens min/max/
+ *   gennemsnit/billigste og dyreste 3-timers vindue fra feedets timepris), SwitchCta'ens all-in ved sidens
+ *   husstandsforbrug (data-deal-allin-dk1/dk2), et spænd eller ≥ 3,00
+ *   (offentlig ladning); alle sider deler samme dk1/dk2/måned og samme timetal (ellers har bygget krydset
+ *   en feedopdatering — byg igen); grundlaget regnes om mod feedet live og skal ramme inden for 0,01, og
+ *   timetallene regnes om med sitets egen summariseTimepris mod feedets timepris for samme dag (±0,005).
  *
  * Kører i postbuild og i `npm run audit`. Fejler = ingen deploy.
  */
@@ -16,6 +20,7 @@ import "./lib/env.mjs";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { ANY_TOKEN_RE, TOKEN_RE } from "../src/lib/tokens.ts";
+import { summariseTimepris } from "../src/lib/hourly-summary.ts";
 
 const ROOT = process.cwd();
 const SRC = join(ROOT, "src");
@@ -126,8 +131,12 @@ if (!existsSync(APP)) {
 } else {
   const pages = walk(APP, [".html"]).filter((p) => !/_not-found|_global-error|not-found\.html$/.test(p));
   const basisSeen = new Map<string, string[]>();
+  /** Timetallene pr. bygget side: nøgle = alle data-hourly-* (sorteret), værdi = siderne. */
+  const hourlySeen = new Map<string, string[]>();
   for (const file of pages) {
-    const html = readFileSync(file, "utf8");
+    // React sætter <!-- --> mellem et {udtryk} og nabo-teksten ("1,52<!-- --> kr./kWh"); uden at fjerne dem
+    // så auditten kun priser skrevet i én skabelonstreng.
+    const html = readFileSync(file, "utf8").replace(/<!-- -->/g, "");
     const name = rel(file).replace(/^\.next\/server\/app\//, "");
     if (html.includes("{{")) fail(`${name}: urenderet token "{{" i HTML`);
     const basis = html.match(/<p[^>]*data-price-basis[^>]*>/g) ?? [];
@@ -140,6 +149,20 @@ if (!existsSync(APP)) {
       .map((k) => attr(b, k)).filter((v): v is string => !!v).map(Number);
     const key = `${attr(b, "data-dk1")}|${attr(b, "data-dk2")}|${attr(b, "data-month")}`;
     basisSeen.set(key, [...(basisSeen.get(key) ?? []), name]);
+    // Timetallene: hver blok, der skriver dagens timepriser, bærer dem som data-hourly-* (hourlyBasisAttrs).
+    const hourlyKeys = new Set<string>();
+    for (const el of html.match(/<[a-z]+\b[^>]*\bdata-hourly-basis\b[^>]*>/g) ?? []) {
+      const vals = [...el.matchAll(/data-hourly-([a-z0-9-]+?)="([^"]*)"/g)].map((m) => [m[1], m[2]] as const);
+      const k = vals.map(([n, v]) => `${n}=${v}`).sort().join("|");
+      hourlyKeys.add(k);
+      for (const [n, v] of vals) if (n !== "day" && n !== "basis") declared.push(Number(v));
+    }
+    // SwitchCta ved en anden husstandsstørrelse end 4.000 kWh: aftalens all-in ved netop det forbrug (getDealMarket).
+    for (const el of html.match(/<[a-z]+\b[^>]*\bdata-switch-cta\b[^>]*>/g) ?? []) {
+      for (const m of el.matchAll(/data-deal-allin-dk[12]="([^"]+)"/g)) declared.push(Number(m[1]));
+    }
+    if (hourlyKeys.size > 1) fail(`${name}: blokkene på siden har forskellige timetal — byg igen`);
+    for (const k of hourlyKeys) hourlySeen.set(k, [...(hourlySeen.get(k) ?? []), name]);
     const body = html.replace(/<script[\s\S]*?<\/script>/g, "");
     for (const m of body.matchAll(/(\d{1,3}(?:\.\d{3})*,\d{2})\s*kr\.\/kWh/g)) {
       const v = parseDa(m[1]);
@@ -149,6 +172,7 @@ if (!existsSync(APP)) {
       if (!declared.some((d) => near(d, v, 0.005))) fail(`${name}: "${m[0]}" er ikke et af byggets grundlagstal (${declared.join(", ")})`);
     }
   }
+  if (hourlySeen.size > 1) fail(`bygget krydsede en opdatering af timepriserne — forskellige timetal: ${[...hourlySeen.entries()].map(([k, v]) => `${k} (${v.length} sider, fx ${v[0]})`).join("; ")} — byg igen`);
   if (basisSeen.size > 1) fail(`bygget krydsede en feedopdatering — forskellige grundlag: ${[...basisSeen.entries()].map(([k, v]) => `${k} (${v.length} sider, fx ${v[0]})`).join("; ")} — byg igen`);
 
   // Grundlaget mod feedet lige nu (fanger en ødelagt motor, ikke feedets egen drift).
@@ -168,6 +192,37 @@ if (!existsSync(APP)) {
       }
     } catch (e) {
       warnings.push(`kunne ikke efterregne grundlaget mod feedet: ${(e as Error).message}`);
+    }
+  }
+
+  // Timetallene mod feedets timepris, regnet med sitets egen summariseTimepris. Samme dag = skal ramme
+  // (±0,005): ellers står der et timetal på siden, som feedet ikke giver. Ny dag siden bygget = advarsel.
+  if (hourlySeen.size === 1 && process.env.EL_FEED_URL) {
+    const [key] = [...hourlySeen.keys()];
+    const built = Object.fromEntries(key.split("|").map((kv) => kv.split("=") as [string, string]));
+    try {
+      const base = process.env.EL_FEED_URL.trim().replace(/\/$/, "");
+      for (const region of ["DK1", "DK2"] as const) {
+        const res = await fetch(`${base}/api/v1/timepris?region=${region}`, { signal: AbortSignal.timeout(20_000) });
+        if (!res.ok) throw new Error(`timepris ${region}: HTTP ${res.status}`);
+        const live = summariseTimepris(region, await res.json());
+        if (live.day !== built.day) {
+          warnings.push(`timetallene er bygget for ${built.day}, feedet er på ${live.day} — ikke efterregnet (byg igen for dagens tal)`);
+          break;
+        }
+        const r = region.toLowerCase();
+        const checks: [string, number | undefined][] = [
+          [`min-${r}`, live.min], [`max-${r}`, live.max], [`avg-${r}`, live.avg],
+          [`cheapest-${r}`, live.cheapest.krPerKwh], [`dearest-${r}`, live.dearest.krPerKwh],
+          [`tomorrow-cheapest-${r}`, built[`tomorrow-cheapest-${r}`] !== undefined ? live.tomorrowCheapest?.krPerKwh : undefined],
+        ];
+        for (const [n, v] of checks) {
+          if (built[n] === undefined || v === undefined) continue;
+          if (!near(Number(built[n]), v, 0.005)) fail(`timetal ${n}: bygget ${built[n]}, feedets timepris for ${live.day} giver ${v.toFixed(2)} — byg igen (eller motoren regner forkert)`);
+        }
+      }
+    } catch (e) {
+      warnings.push(`kunne ikke efterregne timetallene mod feedet: ${(e as Error).message}`);
     }
   }
 }
