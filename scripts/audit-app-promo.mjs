@@ -17,13 +17,17 @@
  *     promoen skal stå efter det sidste træf på `comparisonMarker`, og banneret må slet ikke stå der;
  *   - en side i `noPromo` (juridiske sider) har en promo;
  *   - en side i `requirePromo` (fx sitets app-side) mangler en;
+ *   - ANDROID_LIVE er sand (læst i kittets src/lib/feed/app-promo.ts), og en side har et App Store-badge
+ *     (`data-store="ios"`) uden et Google Play-badge (`data-store="android"`), et Google Play-link mangler sitets
+ *     install referrer (`referrer=utm_source%3Dweb-…`), eller der står »Android-udgaven er på vej« på siden;
  *   - bundbjælken (`data-app-promo="bar"`) står alene uden en stribe/et bånd/et kort på siden, står på en
  *     app-side (`data-app-page`), ikke sendes lukket (`data-state="closed"`) eller ikke er fast placeret.
  *
  * Konfigurationen er sitets egen: scripts/app-promo.config.json
  *   { "money": ["/", "/billigste"], "comparisonMarker": "data-feed-list", "noPromo": ["/privatlivspolitik"],
  *     "requirePromo": ["/elpris-app"] }
- * Stierne skrives uden afsluttende skråstreg. DENNE FIL ER EN KOPI — ret den i el-feed.
+ * Stierne skrives uden afsluttende skråstreg. `appPromoLib` (valgfri) peger på kittets app-promo.ts, hvis den ikke
+ * ligger i src/lib/feed/ eller lib/feed/. DENNE FIL ER EN KOPI — ret den i el-feed.
  */
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
@@ -37,6 +41,9 @@ const MONEY = new Set((config.money ?? []).map(norm));
 const NO_PROMO = new Set((config.noPromo ?? []).map(norm));
 const REQUIRE = new Set((config.requirePromo ?? []).map(norm));
 const MARKER = config.comparisonMarker ? new RegExp(config.comparisonMarker, "g") : null;
+// Google Play (24. okt. 2026): kittets ANDROID_LIVE afgør, om hver side med App Store-badget også skal have Google Play-badget.
+const LIB_PATH = [config.appPromoLib, "src/lib/feed/app-promo.ts", "lib/feed/app-promo.ts"].filter(Boolean).map((p) => join(ROOT, p)).find((p) => existsSync(p));
+const ANDROID_LIVE = LIB_PATH ? /export const ANDROID_LIVE = true;/.test(readFileSync(LIB_PATH, "utf8")) : false;
 
 if (!existsSync(HTML_DIR)) {
   console.error(`audit-app-promo: ${relative(ROOT, HTML_DIR)} findes ikke — kør next build først`);
@@ -141,6 +148,8 @@ for (const file of walk(HTML_DIR)) {
   }
 
   let iosBadges = 0;
+  let iosAnyBadges = 0;
+  let playBadges = 0;
   for (const t of tags) {
     if (t.name !== "a") continue;
     const href = /\shref="([^"]*)"/.exec(t.attrs)?.[1] ?? "";
@@ -150,6 +159,11 @@ for (const file of walk(HTML_DIR)) {
     // Butikslinks åbner i et nyt vindue (ejeren 19. okt. 2026).
     if (/^https?:\/\/(apps\.apple\.com|play\.google\.com)\//.test(href) && !/\starget="_blank"/.test(t.attrs)) fail(`butikslink uden target="_blank": ${href}`);
     if (/\sdata-store="ios"/.test(t.attrs) && !t.footer) iosBadges++;
+    if (/\sdata-store="ios"/.test(t.attrs)) iosAnyBadges++;
+    if (/\sdata-store="android"/.test(t.attrs) && /^https:\/\/play\.google\.com\//.test(href)) playBadges++;
+    if (/^https?:\/\/play\.google\.com\//.test(href) && !/[?&](amp;)?referrer=utm_source%3Dweb-[a-z]+%26utm_medium%3Dweb(&|$)/.test(href)) {
+      fail(`Google Play-link uden sitets install referrer (referrer=utm_source%3Dweb-<site>…): ${href}`);
+    }
     const ep = /^https?:\/\/(?:www\.)?elpriser\.dk(\/[^"]*)?$/.exec(href);
     if (ep) {
       const path = ep[1] ?? "/";
@@ -160,6 +174,10 @@ for (const file of walk(HTML_DIR)) {
     }
   }
   if (iosBadges > 1) fail(`${iosBadges} App Store-badges uden for footeren — højst ét pr. side`);
+  if (ANDROID_LIVE) {
+    if (iosAnyBadges > playBadges) fail(`${iosAnyBadges} App Store-badges, men ${playBadges} Google Play-badges — ANDROID_LIVE er sand`);
+    if (/Android-udgaven er på vej/.test(body)) fail("»Android-udgaven er på vej« står på siden — ANDROID_LIVE er sand");
+  }
 
   for (const t of texts) {
     if (!t.promo || t.live || t.svg) continue;

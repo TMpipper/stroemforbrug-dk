@@ -80,7 +80,7 @@ export default function Footer({ lang = "da" }: { lang?: NavLang }) {
               . Siden har reklamelinks: klikker du videre til et elselskab, vi har en aftale med, kan vi få provision.
               Din pris er den samme, og apparaternes priser regnes med hele markedets marginalpris — aldrig en partners.
             </p>
-            {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): sitets app-side, »Om appen« og App Store-badget. */}
+            {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): sitets app-side, »Om appen« og butiks-badges (App Store, Google Play). */}
             <div className="mt-8">
               <AppFooterLinks headingClassName="text-sm font-semibold text-white" linkClassName="text-sm text-white/70 hover:text-white" />
             </div>

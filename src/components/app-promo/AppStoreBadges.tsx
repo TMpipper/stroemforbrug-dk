@@ -1,11 +1,11 @@
 // Fælles komponent fra el-feed (examples/site/components/app-promo/) — ret den dér, ikke her.
-import { ANDROID_LIVE, ASSET_BASE, IOS_LIVE, PLAY_STORE_URL, storeUrl } from "@/lib/feed/app-promo";
+import { ANDROID_LIVE, ASSET_BASE, IOS_LIVE, playStoreUrl, storeUrl } from "@/lib/feed/app-promo";
 import { APP_PROMO_SITE } from "@/lib/app-promo-site";
 
 /**
- * Apples og Googles officielle badges (må ikke tegnes om). Kun når butikssiden findes: indtil
- * ANDROID_LIVE står Google Play-badget ikke (promoerne siger »på vej« i tekst). Højst ét App
- * Store-badge pr. side (audit-app-promo) — derfor har striben og kortet intet.
+ * Apples og Googles officielle badges (må ikke tegnes om). Kun når butikssiden findes: Google
+ * Play-badget står, når ANDROID_LIVE er sand (fra 24. okt. 2026), med sitets `web-<site>` i Googles
+ * install referrer. Højst ét App Store-badge pr. side (audit-app-promo) — derfor har striben og kortet intet.
  */
 export default function AppStoreBadges({ placement, className = "" }: { placement: string; className?: string }) {
   if (!IOS_LIVE && !ANDROID_LIVE) return null;
@@ -27,7 +27,7 @@ export default function AppStoreBadges({ placement, className = "" }: { placemen
       )}
       {ANDROID_LIVE && (
         <a
-          href={PLAY_STORE_URL}
+          href={playStoreUrl(APP_PROMO_SITE.key)}
           target="_blank"
           rel="noopener"
           data-store="android"

@@ -23,8 +23,8 @@ export const APP_STORE_ID = "6819040731";
 export const ANDROID_PACKAGE = "dk.elpriser.app";
 /** iOS er i butikken (siden 5. okt. 2026). */
 export const IOS_LIVE = true;
-/** Google Play: sæt til true, når ejeren har trykket Udgiv — så viser alle sites Google Play-badget. */
-export const ANDROID_LIVE = false;
+/** Google Play: udgivet 24. okt. 2026 (ejeren trykkede Udgiv) — alle sites viser Google Play-badget. */
+export const ANDROID_LIVE = true;
 /** Gasskærmen er i den udgave, alle kan hente (app 1.2). Indtil da falder konteksten `gas` tilbage til `generic`. */
 export const GAS_LIVE = false;
 /**
@@ -92,6 +92,15 @@ export function storeUrl(
   return params.length ? `${APP_STORE_URL}?${params.join("&")}` : APP_STORE_URL;
 }
 
+/**
+ * Google Play-siden med sitets kampagne i Googles install referrer (`referrer=utm_source=web-<site>&utm_medium=web`,
+ * URL-kodet) — Play Console → Statistik → Brugeranskaffelse viser installationerne pr. utm_source, og appen kan læse
+ * den via Install Referrer API. Samme `web-<site>`-token som App Store-linkets `ct`.
+ */
+export function playStoreUrl(site: AppPromoSiteKey): string {
+  return `${PLAY_STORE_URL}&referrer=${encodeURIComponent(`utm_source=${campaignToken(site)}&utm_medium=web`)}`;
+}
+
 /** Det korte link bag QR-koden: elpriser.dk tæller scanningen og sender videre til butikken med sitets token. */
 export function qrUrl(site: AppPromoSiteKey): string {
   return `${SHORT_LINK}?p=${site}`;
@@ -144,9 +153,9 @@ export const PROMO_SECONDARY = "Om appen";
 export const PROMO_TRUST = "Gratis, uden reklamer og uden konto.";
 export const PROMO_ANDROID = "Android-udgaven er på vej.";
 export const PROMO_QR_TITLE = "Scan med din telefon";
-export const PROMO_QR_TEXT = "Koden åbner App Store på telefonen.";
+export const PROMO_QR_TEXT = "Koden åbner App Store eller Google Play på telefonen.";
 export const PROMO_LIVE_LABEL = "Lige nu i appen";
-/** Bundbjælken på iPhone (AppPromoBar, 19. okt. 2026) — samme ord som Elpriser.dk's bjælke. */
+/** Bundbjælken på iPhone og Android (AppPromoBar, 19. okt. 2026) — samme ord som Elpriser.dk's bjælke. */
 export const PROMO_BAR_TITLE = "Elprisen på din telefon";
 export const PROMO_BAR_LINE = "Hent Elpriser.dk-appen – gratis og uden reklamer.";
 export const PROMO_BAR_BUTTON = "Hent";

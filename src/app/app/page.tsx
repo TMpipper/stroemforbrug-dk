@@ -12,7 +12,7 @@ import AppPromo, { AppPageLink, PromoCta, Screens } from "@/components/app-promo
 import AppSmartBanner from "@/components/app-promo/AppSmartBanner";
 import AppStoreBadges from "@/components/app-promo/AppStoreBadges";
 import { PROMO_VARS } from "@/components/app-promo/style";
-import { ANDROID_NOTE, APP_STORE_URL, PROMO_TRUST } from "@/lib/feed/app-promo";
+import { ANDROID_LIVE, ANDROID_NOTE, APP_STORE_URL, PROMO_TRUST } from "@/lib/feed/app-promo";
 
 /**
  * Strømforbrug.dk's app-side (ejerens app-undtagelse 19. okt. 2026). Vinklen: »app til strømforbrug og
@@ -91,7 +91,7 @@ export default function AppPage() {
               "@type": "MobileApplication",
               "@id": `${url}#app`,
               name: "Elpriser.dk",
-              operatingSystem: "iOS",
+              operatingSystem: ANDROID_LIVE ? "iOS, Android" : "iOS",
               applicationCategory: "UtilitiesApplication",
               inLanguage: "da",
               downloadUrl: APP_STORE_URL,
@@ -182,7 +182,7 @@ export default function AppPage() {
             <h2 id="saadan">Sådan planlægger du vask og opladning med appen</h2>
             <ol>
               <li>
-                <strong>Hent appen</strong> i App Store — på telefonen med knappen øverst på siden, på computeren med QR-koden.
+                <strong>Hent appen</strong> i App Store eller Google Play — på telefonen med knappen øverst på siden, på computeren med QR-koden.
               </li>
               <li>
                 <strong>Skriv dit postnummer.</strong> Så regner appen med dit eget prisområde og dit netselskabs tarif.

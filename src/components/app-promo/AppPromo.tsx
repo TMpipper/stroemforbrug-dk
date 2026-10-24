@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { ArrowRight, Check, QrCode, Smartphone } from "lucide-react";
 import {
-  ANDROID_NOTE, ASSET_BASE, PROMO_BUTTON, PROMO_EYEBROW, PROMO_LIVE_LABEL, PROMO_QR_TEXT, PROMO_QR_TITLE, PROMO_SCREENS,
+  ANDROID_LIVE, ANDROID_NOTE, ASSET_BASE, PROMO_BUTTON, PROMO_EYEBROW, PROMO_LIVE_LABEL, PROMO_QR_TEXT, PROMO_QR_TITLE, PROMO_SCREENS,
   PROMO_SECONDARY, PROMO_SUBHEADING, PROMO_TRUST, SCREEN_HEIGHT, SCREEN_WIDTH, SCREENS, appPageUrl, effectiveContext,
-  promoCopy, qrUrl, storeUrl, type AppPromoContext, type ScreenKey,
+  playStoreUrl, promoCopy, qrUrl, storeUrl, type AppPromoContext, type ScreenKey,
 } from "@/lib/feed/app-promo";
 import { APP_PROMO_SITE } from "@/lib/app-promo-site";
 import AppPromoBar from "./AppPromoBar";
@@ -21,7 +21,8 @@ import { LINK, PILL, PROMO_VARS } from "./style";
  * Safaris smart-banner. `band`: det fulde panel med »Med appen kan du«, knappen, App Store-badget og
  * to skærmbilleder. `card`: det kompakte kort i brødteksten, uden badge.
  *
- * Knappen: på telefon et link til butikken med sitets kampagnetoken; fra md en QR-kode bag knappen
+ * Knappen: på telefon et link til butikken med sitets kampagnetoken (App Store i HTML'en; på en Android-telefon
+ * skifter AppClickTracker til `data-android-href`, Google Play, ved klikket); fra md en QR-kode bag knappen
  * (native <details>, intet JavaScript), som peger på elpriser.dk/hent-app/?p=<site>. »Om appen« går
  * til https://elpriser.dk/app/ (ejerens undtagelse 19. okt. 2026) i et nyt vindue. Alt bærer
  * `data-app-cta` (AppClickTracker → app_click), roden `data-app-promo`, `data-shared` (audit-unique
@@ -65,7 +66,14 @@ function PromoCta({ placement }: { placement: string }) {
   const store = storeUrl(APP_PROMO_SITE.key);
   return (
     <>
-      <a href={store} target="_blank" rel="noopener" data-app-cta={`${placement}:store`} className={`${PILL} md:hidden`}>
+      <a
+        href={store}
+        target="_blank"
+        rel="noopener"
+        data-app-cta={`${placement}:store`}
+        data-android-href={ANDROID_LIVE ? playStoreUrl(APP_PROMO_SITE.key) : undefined}
+        className={`${PILL} md:hidden`}
+      >
         <Smartphone className="h-4 w-4" aria-hidden />
         {PROMO_BUTTON}
       </a>
