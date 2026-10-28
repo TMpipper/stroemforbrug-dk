@@ -34,7 +34,7 @@ export const SITE_CONFIG = {
   /** Sitets egne profiler — ingen endnu; Elpriser.dk's står på Elpriser.dk. */
   social: [] as { name: string; url: string }[],
   /** Opdateres dagligt af deploy-agenten for at sikre drip-publiserede sider vises. */
-  lastUpdated: "2026-10-27",
+  lastUpdated: "2026-10-28",
 };
 
 // Det fælles OG-billede. Sat af buildMetadata() på hver side (Next fletter ikke fra layoutet).
