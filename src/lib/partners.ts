@@ -14,6 +14,7 @@ export const PARTNERS: Record<string, string> = {
   "dcc-energi": "dcc-energi",
   norlys: "norlys",
   goenergi: "goenergi", // aftale 12. oktober 2026 (Trackwise offer 33)
+  ebbefos: "ebbefos-energihandel", // aftale 30. oktober 2026 (ACE Conversions offer 41)
 };
 
 export const PARTNER_GO_SLUGS = new Set(Object.keys(PARTNERS));
