@@ -1,21 +1,21 @@
 {
   "repo": "TMpipper/el-feed",
   "path": "examples/site",
-  "commit": "7e9aae8804c8feb4bf404072529a633858ab5ee5",
+  "commit": "5c272aa3ea6da688071bd49436c10f9a598547b2",
   "files": {
-    "src/lib/feed/types.ts": "736bd6604cfe60132a16d79fc47e3d703424ccfb22f90496be1ecf21c5a69e6c",
+    "src/lib/feed/types.ts": "1eead2945795a4378662fc9472474785d7b54bd5fb340506cb119a4e66b7de09",
     "src/lib/feed/compare.ts": "00ee5327a98cd03c05e69e851c699931ba8b23cb5fa84fc7df00eb73544dd077",
     "src/lib/feed/client.ts": "05c22c6cf7c0f18af6f326db6442384213b13ce54b050d9af55cbf2942777103",
     "src/lib/feed/site-adapter.ts": "0d13352155b09087b17eae8ad56570076dd40e78996fe8912115568527748170",
     "src/lib/feed/marginal.ts": "0153ed6cc181dab6acb9080b136a21d68692b5d0a34f0dfa43efe07cfcf49af3",
-    "src/lib/feed/app-promo.ts": "f406bd9e2ec0f72c5609c2ea8af0d15cf3ee71c7466a5a5000544d5fc6888a1b",
+    "src/lib/feed/app-promo.ts": "a1393ebb949d333299f84fc7920fdd13c6217121c7ffd3f662d5540d1a00dd6c",
     "scripts/audit-app-promo.mjs": "532f03c72ad632b4a5c23037e07fa1f88dc3f730dc2d734e98320e5a162825cd",
     "src/components/widget/ElpriserWidget.tsx": "962b2eaf3d5727d2d8be136babb796440076c44dbdccd29b03d858366f538c55",
     "src/components/widget/ElpriserWidgetResize.tsx": "b13b1e747a2c9531aea821ff0888bf6b5fac827ca3559a9446c56bf0ee5c1482",
     "src/components/app-promo/AppClickTracker.tsx": "0775a83cc65284ad88328ef6a17620b3708ad7a8f4f1b7e2d21507014f40b511",
     "src/components/app-promo/AppFooterLinks.tsx": "3f3d4afaaa248ea639e4df697943483bfdbe59923482c033f40dddbeaaf91c0b",
-    "src/components/app-promo/AppPromo.tsx": "e708dc104a641e138323b585630885619c7df6d143f8e70cb86e94b02ac10e9c",
-    "src/components/app-promo/AppPromoBar.tsx": "fe9f22bb5c4565efeddf9dcbab1ee1cbebf757a00949136813fa4c9936ed876f",
+    "src/components/app-promo/AppPromo.tsx": "2b44287bca439eafca0df8d8a1ad436c370ecbc945e64bfe52ef26cbc4be08e5",
+    "src/components/app-promo/AppPromoBar.tsx": "458d71468cca4934fd57c83741059f5a3c3014b6a524a3f073f69ea2701dce72",
     "src/components/app-promo/AppPromoBarClient.tsx": "f041e081ecd72fbe20aebd20f8da686cd6d8fe218b9e2a19fca1ea2f9a9b7f63",
     "src/components/app-promo/AppQr.tsx": "77e65af64df37fcb02f3bc564a536abebde316a1f579b322197daa81d5321f07",
     "src/components/app-promo/AppSmartBanner.tsx": "fbc0953678ca48f64e68f3f559cd3166dbee5e43a5d92f07e76670ffbd90c627",
@@ -25,10 +25,9 @@
     "public/app-promo/badges/app-store-da.svg": "c8e421bfb125a5b63ad44b8cfe64c36e6faa738a60320ee53ae47f94565b92a1",
     "public/app-promo/badges/google-play-da.png": "698c640d7e3865e224cab87455c0a93e757ed52d33def0d293be2016fc54b993",
     "public/app-promo/icon.svg": "d9bda588eaccccb17d09e71b3a20057ab4a236a235035c07863636377e40598a",
-    "public/app-promo/screens/01-onboarding.png": "1725e5588eef7ce71cf1432a7cdf8a68f9998cf5cab95e3b2d5c37cc7f3c9fba",
-    "public/app-promo/screens/02-i-dag.png": "8946ee463080c13b43427dce3ede199e089716d1fe0ec2d9eef09ecb851540c2",
-    "public/app-promo/screens/03-kvarter.png": "32a569e8a4e8eaafc491cafd4cf4e6f80899d9461962c9e0a490f9977f7dacc8",
-    "public/app-promo/screens/05-sammenlign.png": "a7756262ff6d279bc4b39cf0f0e75ed441d57faa37ab828142046f48c96d13d7",
-    "public/app-promo/screens/06-alarmer.png": "af6e290c91728df1ae712c315faa11b3fb48505dd7e152fc18ed680c0ba6683a"
+    "public/app-promo/screens/01-i-dag.png": "42d6788a80d07667276cac4a802a2aeb5a32f65842abda79554a4681ef491287",
+    "public/app-promo/screens/05-prisens-dele.png": "4dcc93c561ba5e020281cbca6dcb70e668b1bf25f597e41f0fe04a46d1ab83cf",
+    "public/app-promo/screens/07-sammenlign.png": "1722e1f7cf85c4cad5889cfd619938e8f9694e98aa154b57e1574e0e596be9ef",
+    "public/app-promo/screens/08-regler.png": "14948d7a8827e9faa607f7371a5a251fc8626bd4ccbde3f624438d2ad793c28e"
   }
 }

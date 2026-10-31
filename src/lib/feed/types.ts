@@ -291,6 +291,15 @@ export interface FeedArea {
   gridCompany: string | null;
   /** Området er landsdelens repræsentative, ikke læserens eget. Skal skrives på siden. */
   regionRepresentative: boolean;
+  /**
+   * Hvor sikkert området er kendt (25. okt. 2026). `address`: adressen afgjorde det. `postcode`: kun
+   * postnummeret — med `ambiguous` er `candidates` mulighederne, og `gridArea` må ikke vises som læserens.
+   * `area`: kalderen gav selv området. `region`: landsdelens repræsentative. Valgfri, så en ældre kopi
+   * af kontrakten stadig passer.
+   */
+  precision?: "address" | "postcode" | "area" | "region";
+  /** Adressen som Danmarks Adresseregister skriver den, når `address=` blev fundet; ellers null. */
+  addressLabel?: string | null;
 }
 
 export interface FeedListMeta {
@@ -434,6 +443,35 @@ export interface FeedHealthResponse {
   generatedAt: string;
   counts: { suppliers: number; products: number; verified: number };
   dataAsOf: { products: string | null; spot: string | null; trustpilot: string | null; tariffs: string | null; allinMonthly: string | null };
+  /**
+   * Netområder, hvis nettarif for en C-kunde i dag er nul i alle timer eller i gennemsnit under 3 øre/kWh
+   * ekskl. moms uden en tilladelse med kilde (el-feedets data/grid-tariff-codes.ts). Valgfri: ældre feeds har den ikke.
+   */
+  tariffs?: {
+    ok: boolean;
+    implausible: { area: string; avgOreExVat: number | null; allZero: boolean; codes: string[] }[];
+    /** C-tarif forskellig på hverdage og i weekenden uden kilde (ugen før) — typisk en B-lav- eller kollektiv kode */
+    weekendProfile?: { area: string; codes: string[]; weekdayAvgOre: number; weekendAvgOre: number }[];
+    /**
+     * Tarifjobbets seneste tjek mod DataHubs noter og satser på netselskabets GLN (null: ingen kørsel endnu): koder i
+     * stakken, hvis note ikke er en C-forbrugers (tarif/abonnement), og C-led på GLN'et, der mangler i stakken.
+     */
+    sourceChecks?: {
+      checkedAt: string | null;
+      nonCTariffCodes: { area: string; code: string; note: string }[];
+      nonCSubscriptionCodes: { area: string; code: string; note: string }[];
+      uncoveredCharges: { area: string; code: string; chargeType: "D01" | "D03"; note: string; kind: "surcharge" | "rebate" | "timeOfUseC" }[];
+    } | null;
+  };
+  /**
+   * Green Power Denmarks adresseopslag (andet led i `address=`), tre adresser med kendt svar, højst ét tjek i
+   * timen. En advarsel: `ok` øverst påvirkes ikke, for uden GPD svarer `address=` med postnummerets kandidater.
+   */
+  addressLookup?: {
+    ok: boolean;
+    checkedAt: string;
+    checks: { label: string; expected: string; got: string | null; area: string | null; ok: boolean; error?: string }[];
+  };
 }
 
 export interface FeedError {

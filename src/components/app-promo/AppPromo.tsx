@@ -179,7 +179,7 @@ export default function AppPromo({ variant, placement, context = "generic", vars
           </div>
         </div>
       </aside>
-      {withBar && <AppPromoBar />}
+      {withBar && <AppPromoBar context={ctx} />}
       </>
     );
   }
@@ -205,7 +205,7 @@ export default function AppPromo({ variant, placement, context = "generic", vars
           <Screens keys={[keys[0]]} big={false} />
         </div>
       </aside>
-      {withBar && <AppPromoBar />}
+      {withBar && <AppPromoBar context={ctx} />}
       </>
     );
   }
@@ -251,7 +251,7 @@ export default function AppPromo({ variant, placement, context = "generic", vars
         </div>
       </div>
     </section>
-    {withBar && <AppPromoBar />}
+    {withBar && <AppPromoBar context={ctx} />}
     </>
   );
 }

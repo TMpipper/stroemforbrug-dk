@@ -25,8 +25,11 @@ export const ANDROID_PACKAGE = "dk.elpriser.app";
 export const IOS_LIVE = true;
 /** Google Play: udgivet 24. okt. 2026 (ejeren trykkede Udgiv) — alle sites viser Google Play-badget. */
 export const ANDROID_LIVE = true;
-/** Gasskærmen er i den udgave, alle kan hente (app 1.2). Indtil da falder konteksten `gas` tilbage til `generic`. */
-export const GAS_LIVE = false;
+/**
+ * Gaskortet og Gasalarm er i den udgave, alle kan hente (1.3 i App Store og 1.1 på Google Play; vises for husstande,
+ * der varmer op med naturgas). Slået til 30. okt. 2026 (ejeren: gasteksten på gassiderne). Falsk = `gas` bliver `generic`.
+ */
+export const GAS_LIVE = true;
 /**
  * App Store Connect → Analytics → Campaigns → provider-token (ejeren, 19. okt. 2026). Ikke hemmeligt (det står i hvert
  * offentligt kampagnelink). null = butikslinket uden kampagne (virker, men tælles ikke pr. site).
@@ -44,7 +47,7 @@ const SHORT_LINK = "https://elpriser.dk/hent-app/";
 export const ASSET_BASE = "/app-promo";
 
 /** Sitets nøgle — samme navn som elpriser-dk's QR_PLACEMENTS-nøgle og `web-<nøgle>`-tokenet. */
-export type AppPromoSiteKey = "elselskaber" | "elselskab" | "billigste" | "stroemforbrug" | "elselskabdk" | "elleverandoer" | "tjekelregning";
+export type AppPromoSiteKey = "elselskaber" | "elselskab" | "billigste" | "stroemforbrug" | "elselskabdk" | "elleverandoer" | "tjekelregning" | "timepriser";
 
 /** Sitets egen lille fil `src/lib/app-promo-site.ts` eksporterer `APP_PROMO_SITE` af denne type. */
 export interface AppPromoSite {
@@ -55,7 +58,7 @@ export interface AppPromoSite {
   appPage?: string;
 }
 
-export const SITE_KEYS: readonly AppPromoSiteKey[] = ["elselskaber", "elselskab", "billigste", "stroemforbrug", "elselskabdk", "elleverandoer", "tjekelregning"];
+export const SITE_KEYS: readonly AppPromoSiteKey[] = ["elselskaber", "elselskab", "billigste", "stroemforbrug", "elselskabdk", "elleverandoer", "tjekelregning", "timepriser"];
 
 /** Kampagnetokenet i App Store Connect (≤ 30 tegn): ét pr. site. */
 export function campaignToken(site: AppPromoSiteKey): string {
@@ -157,6 +160,13 @@ export const PROMO_QR_TEXT = "Koden åbner App Store eller Google Play på telef
 export const PROMO_LIVE_LABEL = "Lige nu i appen";
 /** Bundbjælken på iPhone og Android (AppPromoBar, 19. okt. 2026) — samme ord som Elpriser.dk's bjælke. */
 export const PROMO_BAR_TITLE = "Elprisen på din telefon";
+/** Bjælkens titel på en side med gasteksten (konteksten `gas`, 30. okt. 2026). Linjen og knappen er de samme. */
+export const PROMO_BAR_TITLE_GAS = "Gasprisen på din telefon";
+
+/** Bjælkens titel for en kontekst: gas siger gas, alt andet siger el. */
+export function promoBarTitle(ctx: AppPromoContext): string {
+  return effectiveContext(ctx) === "gas" ? PROMO_BAR_TITLE_GAS : PROMO_BAR_TITLE;
+}
 export const PROMO_BAR_LINE = "Hent Elpriser.dk-appen – gratis og uden reklamer.";
 export const PROMO_BAR_BUTTON = "Hent";
 export const PROMO_BAR_CLOSE = "Luk appens bjælke";
@@ -254,13 +264,19 @@ export const PROMO: Record<AppPromoContext, PromoCopy> = {
 
 export type ScreenKey = "postnummer" | "pris-nu" | "kvarter" | "sammenlign" | "alarmer";
 
-/** Skærmbillederne (1080 × 2341) — aldrig »forbrug« (ejerens markedsføringsport). */
+/**
+ * Skærmbillederne (1080 × 2341) — appens 1.3-udgave: butikkens v4-sæt (elpriser-app apps/mobile/store/screenshots-v4/ios,
+ * nedskaleret fra 1290 × 2796, samme forhold; 31. okt. 2026). Overskriften står i billedet. Aldrig »forbrug« (ejerens
+ * markedsføringsport) og aldrig ladeplanen (smart styring er pilot). Nøglerne er de gamle, så sitenes app-sider
+ * (`<Screens keys={…}>`) virker uændret: »kvarter« er nu »Prisens dele« (kvarter for kvarter), »alarmer« er fanen Regler,
+ * og »postnummer« viser I dag (postnummeret står øverst på skærmen) — den gamle postnummerskærm findes ikke i 1.3.
+ */
 export const SCREENS: Record<ScreenKey, { src: string; alt: string }> = {
-  postnummer: { src: `${ASSET_BASE}/screens/01-onboarding.png`, alt: "Skærmbillede af appens første skærm, hvor postnummeret indtastes" },
-  "pris-nu": { src: `${ASSET_BASE}/screens/02-i-dag.png`, alt: "Skærmbillede af appens I dag-skærm med prisen lige nu og døgnets graf" },
-  kvarter: { src: `${ASSET_BASE}/screens/03-kvarter.png`, alt: "Skærmbillede af døgnets graf i kvartersopløsning" },
-  sammenlign: { src: `${ASSET_BASE}/screens/05-sammenlign.png`, alt: "Skærmbillede af appens Sammenlign-skærm med elaftaler sorteret efter pris" },
-  alarmer: { src: `${ASSET_BASE}/screens/06-alarmer.png`, alt: "Skærmbillede af appens Alarmer-skærm med beskedvalg og prisgrænse" },
+  postnummer: { src: `${ASSET_BASE}/screens/01-i-dag.png`, alt: "Skærmbillede af appens I dag med postnummeret øverst og prisen lige nu" },
+  "pris-nu": { src: `${ASSET_BASE}/screens/01-i-dag.png`, alt: "Skærmbillede af appens I dag med prisen lige nu og priserne fra nu og til i morgen" },
+  kvarter: { src: `${ASSET_BASE}/screens/05-prisens-dele.png`, alt: "Skærmbillede af Prisens dele med spotpris, nettarif, afgifter og moms kvarter for kvarter" },
+  sammenlign: { src: `${ASSET_BASE}/screens/07-sammenlign.png`, alt: "Skærmbillede af appens Sammenlign med elaftaler sorteret efter din pris" },
+  alarmer: { src: `${ASSET_BASE}/screens/08-regler.png`, alt: "Skærmbillede af appens Regler med beskeder om de billige timer" },
 };
 export const SCREEN_WIDTH = 1080;
 export const SCREEN_HEIGHT = 2341;
@@ -272,7 +288,7 @@ export const PROMO_SCREENS: Record<AppPromoContext, readonly [ScreenKey, ScreenK
   "cheapest-hours": ["pris-nu", "alarmer"],
   compare: ["sammenlign", "pris-nu"],
   alarm: ["alarmer", "pris-nu"],
-  city: ["postnummer", "pris-nu"],
+  city: ["pris-nu", "kvarter"],
   gas: ["pris-nu", "alarmer"],
 };
 

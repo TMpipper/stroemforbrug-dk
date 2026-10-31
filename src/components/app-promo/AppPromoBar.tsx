@@ -7,9 +7,10 @@ import {
   PROMO_BAR_BUTTON,
   PROMO_BAR_CLOSE,
   PROMO_BAR_LINE,
-  PROMO_BAR_TITLE,
   playStoreUrl,
+  promoBarTitle,
   storeUrl,
+  type AppPromoContext,
 } from "@/lib/feed/app-promo";
 import { APP_PROMO_SITE } from "@/lib/app-promo-site";
 import AppPromoBarClient from "./AppPromoBarClient";
@@ -21,7 +22,7 @@ import { PROMO_VARS } from "./style";
  * indholdssiderne, så den følger stribens regler af sig selv: aldrig på pengesider, anmeldelser, app-siden
  * eller de juridiske sider. Butikslinkene (med sitets kampagnetoken) regnes her på serveren.
  */
-export default function AppPromoBar() {
+export default function AppPromoBar({ context = "generic" }: { context?: AppPromoContext }) {
   if (!IOS_LIVE && !ANDROID_LIVE) return null;
   return (
     <AppPromoBarClient
@@ -29,7 +30,7 @@ export default function AppPromoBar() {
       androidHref={ANDROID_LIVE ? playStoreUrl(APP_PROMO_SITE.key) : null}
       placement={APP_BAR_PLACEMENT}
       icon={`${ASSET_BASE}/icon.svg`}
-      title={PROMO_BAR_TITLE}
+      title={promoBarTitle(context)}
       line={PROMO_BAR_LINE}
       button={PROMO_BAR_BUTTON}
       closeLabel={PROMO_BAR_CLOSE}
