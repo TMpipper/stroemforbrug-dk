@@ -60,6 +60,8 @@ import type {
   FeedGasSupplierResponse,
   FeedGasSuppliersResponse,
   HistoryArea,
+  FeedLadeboksChange, FeedLadeboksContext, FeedLadeboksEstimateResponse, FeedLadeboksFact, FeedLadeboksHealthResponse,
+  FeedLadeboksModel, FeedLadeboksOffer, FeedLadeboksOffersResponse, FeedLadeboksOfferType, FeedLadeboksSeller, FeedArea,
 } from "./types";
 
 const BASE = process.env.EL_FEED_URL;
@@ -81,6 +83,7 @@ export const FEED_TAGS = {
   gasHistory: "el-feed:gas-history",
   gasFeatured: "el-feed:gas-featured",
   gasReports: "el-feed:gas-reports",
+  ladeboks: "el-feed:ladeboks",
   supplier: (slug: string) => `el-feed:supplier:${slug}`,
   gasSupplier: (slug: string) => `el-feed:gas-supplier:${slug}`,
 } as const;
@@ -339,4 +342,30 @@ export const elFeed = {
 
   /** Månedsrapporten for gas for en afsluttet måned (YYYY-MM) — frosset ved første kald. */
   gasReport: (month: string) => get<FeedGasReportResponse>(`/api/v1/gas/reports/${month}`, {}, [FEED_TAGS.gasReports]),
+
+  /* ---------- ladebokse ---------- */
+
+  /**
+   * Alle synlige ladeboks-tilbud regnet til en totalpris over 1, 3 eller 5 år i læserens netområde.
+   * `context` + `offers` kan regnes om i browseren med lib/el-feed-ladeboks.ts (LadeboksComparison gør det).
+   */
+  ladeboksEstimate: (p: Pick<Place, "address" | "region" | "area" | "zip"> & { km?: number; kwh100?: number; home?: number; kw?: number; household?: number; mode?: "smart" | "straks"; years?: 1 | 3 | 5; type?: FeedLadeboksOfferType; hasBox?: 1; hasInstallation?: 1; sellers?: "all" | "energy" } = {}) =>
+    get<FeedLadeboksEstimateResponse>("/api/v1/ladeboks/estimate", p, [FEED_TAGS.ladeboks, FEED_TAGS.rates, FEED_TAGS.products]),
+
+  /** Tilbuddene uden netområde: gebyrer, binding, friskhed og kilde — ingen totalpris. */
+  ladeboksOffers: (p: { type?: FeedLadeboksOfferType; seller?: string } = {}) => get<FeedLadeboksOffersResponse>("/api/v1/ladeboks/offers", p, [FEED_TAGS.ladeboks]),
+
+  ladeboksOffer: (id: string) => get<FeedLadeboksOffer>(`/api/v1/ladeboks/offers/${id}`, {}, [FEED_TAGS.ladeboks]),
+  ladeboksSellers: () => get<{ items: FeedLadeboksSeller[] }>("/api/v1/ladeboks/sellers", {}, [FEED_TAGS.ladeboks]),
+  ladeboksModels: () => get<{ items: FeedLadeboksModel[] }>("/api/v1/ladeboks/models", {}, [FEED_TAGS.ladeboks]),
+  ladeboksFacts: () => get<{ items: FeedLadeboksFact[] }>("/api/v1/ladeboks/facts", {}, [FEED_TAGS.ladeboks]),
+
+  /** Prisloggen pr. tilbud — grundlaget for en offentlig ændringsside. */
+  ladeboksChanges: (p: { days?: number; offer?: string } = {}) => get<{ items: FeedLadeboksChange[] }>("/api/v1/ladeboks/changes", p, [FEED_TAGS.ladeboks]),
+
+  /** Ladeprofil, referenceaftale og antagelser for et område — til lommeregnere uden tilbud. */
+  ladeboksProfile: (p: Pick<Place, "region" | "area" | "zip"> & { km?: number; kwh100?: number; home?: number; household?: number } = {}) =>
+    get<FeedLadeboksContext & { area: FeedArea }>("/api/v1/ladeboks/profile", p, [FEED_TAGS.ladeboks, FEED_TAGS.rates, FEED_TAGS.products]),
+
+  ladeboksHealth: () => get<FeedLadeboksHealthResponse>("/api/v1/ladeboks/health", {}, []),
 };

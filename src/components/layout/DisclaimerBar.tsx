@@ -92,8 +92,8 @@ export default function DisclaimerBar({ lang = "da" }: { lang?: NavLang }) {
               samme, uanset om du tilmelder dig gennem os eller direkte hos selskabet.
             </p>
             <p>
-              &quot;Billigst&quot; regnes over hele det marked, Forsyningstilsynets elpris.dk kender — ikke kun vores
-              partnere — og apparaternes priser regnes med markedets marginalpris, aldrig en partners. Læs mere{" "}
+              &quot;Billigst&quot; regnes i hele markedet — over alle elselskaber i Danmark og de priser, de har indberettet
+              til Forsyningstilsynet, ikke kun vores partnere — og apparaternes priser regnes med markedets marginalpris, aldrig en partners. Læs mere{" "}
               <Link href="/om-os/" onClick={closeModal} className={LINK}>
                 om os
               </Link>{" "}

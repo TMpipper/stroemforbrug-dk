@@ -52,4 +52,38 @@ export interface SiteAdapter {
     /** Metodens afsnit om naturgas, med anker. Udeladt = `routes.method`. */
     method?: string;
   };
+  /**
+   * Ladebokse — kun sites med ladeboks-sammenligningen (components/ladeboks-comparison/).
+   * `goHref` får sælgerens `trackingSlug` ("<sælger>-ladeboks") og rækkens tilbud
+   * (`LadeboksGoOffer`) og svarer med sitets /go/-link, når sitet har en aftale — ellers null,
+   * og rækken står uden knap. Knappen flytter aldrig rækkefølgen: den er regnet af totalprisen
+   * alene.
+   *
+   * Har sitet ét link til køb og et andet til leje (OK siden 2. nov. 2026: `ok-ladeboks` og
+   * `ok-ladeboks-leje`), vælger det efter `offer.rented`. Et site med ét link pr. sælger kan
+   * ignorere andet argument. `offer` er udeladt, når kalderen ikke viser ét bestemt tilbud
+   * (fx en knap pr. sælger) — så gælder køb-linket.
+   */
+  ladeboks?: {
+    goHref(trackingSlug: string, offer?: LadeboksGoOffer): string | null;
+    /** Metodens afsnit om ladebokse, med anker. Udeladt = `routes.method`. */
+    method?: string;
+    /** Elpriser.dk-appens side (smart opladning). Udeladt = ingen app-linje under listen. */
+    appHref?: string;
+  };
+}
+
+/**
+ * Rækkens tilbud, som `ladeboks.goHref` får det. Skrevet ud her, så kontrakten ikke importerer
+ * noget; de fælles komponenter laver det med `goOfferOf()` i ladeboks-compare.ts.
+ */
+export interface LadeboksGoOffer {
+  /** Feedets tilbuds-id ("ok-ladepakke-leje"). Kun til logning — vælg aldrig link efter id'et. */
+  id: string;
+  type: "eje" | "leje" | "udskift" | "abonnement";
+  /**
+   * true = lejet boks: `leje`, eller `udskift` uden engangskøb af boksen men med fast månedlig
+   * leje (`isRentedOffer`). false = købt boks eller ladeabonnement uden boks.
+   */
+  rented: boolean;
 }

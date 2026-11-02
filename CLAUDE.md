@@ -80,6 +80,12 @@ npm run prices         # udskriver byggets priser fra feedet
 
 - **Computed, never typed**: ingen "x,xx kr./kWh" eller kr.-beløb ved siden af et kWh-tal i kilden; tokens eller udtryk. OG-kort bærer ingen pris.
 - Marginal (apparat) og all-in (regning) blandes aldrig; superlativer står med omfang i samme sætning; ingen "grøn strøm"; ingen "Kilde:"-linje i designet.
+- **»elpris.dk« kun som kilde (ejeren, 2. nov. 2026).** Navnet står aldrig i synlig tekst, overskrifter, linktekst, tabelceller,
+  title/alt/aria, meta, OG/JSON-LD eller FAQ — sig »alle elselskaber i Danmark«, »selskabets egne priser« eller »de priser, selskabet
+  har indberettet til Forsyningstilsynet«. Kun i Kilder-listen (`WhoHowWhy`, `<details id="kilder" data-sources>`) og som ren
+  https-adresse. Feedets felter, der nævner det (`products[].source.name`, rate-kildeetiketter, `meta.note`, verifikationsnoter),
+  gengives aldrig ordret uden for Kilder. `scripts/audit-source-name.mjs` (postbuild + `npm run audit`) fejler bygget;
+  `BASE=https://stroemforbrug.dk node scripts/audit-source-name.mjs` tjekker produktion.
 - Titler ≤ 60 tegn uden sitenavn og uden pris; beskrivelser 120–158. Danske køn: `articleFor()`/`possessiveFor()` (fem intetkønsord har `article: "et"`).
 - Datoer: aldrig `new Date()` som dato; `pageMeta()` flyttes kun ved indholdsændring.
 - Eksterne links `target="_blank" rel="noopener noreferrer nofollow"`; affiliate kun via `/go/[slug]`.

@@ -182,7 +182,17 @@ export interface FeedPrices {
   cheapestPaymentMethod: string | null;
   paymentFeesKrYearInclVat: number;
   validFrom: string;
+  /**
+   * Prisens slutdato hos kilden — og den dato, sitene skriver som fristen for at tegne et tilbud.
+   * Har selskabets egen side en senere frist (feedets data/offer-overrides.ts), står den her, og
+   * `signupOverride` er sat.
+   */
   validTo: string | null;
+  /**
+   * Sat, når `validTo` er selskabets egen, forlængede frist og ikke kildens: kildens dato, siden
+   * fristen er læst på og læsedatoen. Valgfri, så en ældre kopi af kontrakten stadig passer.
+   */
+  signupOverride?: { sourceValidTo: string; sourceUrl: string; readAt: string };
 }
 
 export interface FeedSupplierCost {
@@ -570,6 +580,12 @@ export interface FeedSupplierPriceProduct {
   areaPriceGroups: FeedAreaPriceGroup[];
   /** Prisændringer i feedets historik (`meta.historyDays`), nyeste først. */
   history: FeedPriceHistoryItem[];
+  /**
+   * Sat, når selskabets egen side har en senere tilbudsfrist end kilden (data/offer-overrides.ts):
+   * `areaPrices[].validTo` og historikkens datoer står da med selskabets frist — som
+   * `prices.validTo`/`prices.signupOverride` i /products.
+   */
+  signupOverride?: { sourceValidTo: string; sourceUrl: string; readAt: string };
 }
 
 export interface FeedSupplierPricesResponse {
@@ -2323,4 +2339,279 @@ export interface FeedTemperatureResponse {
   };
   /** Nøglet på prisområde (DK1, DK2; NO1–NO5 og SE1–SE4 kan komme til); null, når ingen af de seneste hele kørsler har alle områdets punkter. */
   areas: Record<string, FeedTemperatureArea | null>;
+}
+
+/* ===================================================================================== */
+/* Ladeboks (31. oktober 2026) — hjemmeladere til elbil: /api/v1/ladeboks/*.              */
+/* Hver pris er læst på sælgerens egen side, og jobbet ladeboks-verify finder den igen     */
+/* hver dag. Sitesnes beregner bruger feedets motor ordret (examples/site/lib/            */
+/* el-feed-ladeboks.ts): et FeedLadeboksOffer og et FeedLadeboksContext kan gives direkte */
+/* til motorens totalCost/rankByTotalCost.                                                */
+/* ===================================================================================== */
+
+export type FeedLadeboksOfferType = "eje" | "leje" | "udskift" | "abonnement";
+export type FeedLadeboksFeeKind = "box" | "installation" | "creation" | "subscription" | "service" | "payment" | "exit";
+/**
+ * ranked: kontrolleret inden for 30 dage — med i ranglister og mærker.
+ * listed: 31–45 dage, eller prisen afventer kontrol — vises med datoen, men rangeres ikke og må aldrig kaldes billigst.
+ * hidden: kommer aldrig i svaret (udløbet, afvigelse ved kontrol, eller over 45 dage).
+ */
+export type FeedLadeboksTier = "ranked" | "listed" | "hidden";
+
+export interface FeedLadeboksSeller {
+  slug: string;
+  name: string;
+  cvr: string | null;
+  /** elselskab | operator | retail | installer | maker */
+  kind: string;
+  website: string;
+  /** /go/<trackingSlug>/ på sitet — om der er et partnerlink bag, er sitets egen beslutning. */
+  trackingSlug: string;
+  /** Selskabets slug i feedets elselskaber, når det også sælger el. */
+  feedSupplierSlug: string | null;
+  trustpilotDomain: string | null;
+  /** Elselskabets spejlede logo (absolut URL), når sælgeren også sælger el; ellers null — sitet viser initialerne. */
+  logoUrl: string | null;
+  initials: string;
+  /** Elselskabets Trustpilot med samme friskhedsregel som el; null for en sælger uden kobling. */
+  trustpilot: FeedTrustpilot | null;
+  /** Elselskabets anmærkning (obs/frarådes). En sælger med anmærkning kan ikke kåres billigst og står efter dem uden. */
+  advisory: FeedAdvisory | null;
+}
+
+export interface FeedLadeboksModel {
+  slug: string;
+  brand: string;
+  model: string;
+  maxKw: number;
+  /** 1 | 3 | 13 (1- og 3-faset) */
+  phases: number;
+  /** 1.6J | 2.0.1 | 1.6J+2.0.1 | cloud (kun gennem producentens sky) | none | unknown */
+  ocpp: string;
+  mid: boolean | null;
+  /** Indbygget 6 mA DC-fejlstrømsdetektering (så rækker en type A-fejlstrømsafbryder). */
+  rdcDd: boolean | null;
+  connectivity: string[];
+  cable: string;
+  warrantyYears: number | null;
+  loadBalancing: boolean | null;
+  solar: boolean | null;
+  /** Kapslingsklasse fra producentens datablad ("IP54"); null = ikke oplyst. */
+  ipRating: string | null;
+  /** Slagfasthed fra producentens datablad ("IK10"); null = ikke oplyst. */
+  ikRating: string | null;
+  /** Standbyforbrug i watt, kun producentens eget tal; null = ikke oplyst. */
+  standbyW: number | null;
+  /** on-sale | phased-out | unknown */
+  status: string;
+  successorSlug: string | null;
+  /** Hvor kapsling, slagfasthed og standby er læst (ellers datasheetUrl). */
+  specsUrl: string | null;
+  datasheetUrl: string;
+  verifiedAt: string;
+  /**
+   * Om Elpriser.dk-appen kan styre boksen. Kun status "live" og "pilot" må vises som en egenskab;
+   * "planned" er en plan, ikke et løfte. Null: mærket står ikke i appens katalog.
+   */
+  appSupport: { status: "live" | "pilot" | "planned" | "none"; route: string | null; checkedAt: string } | null;
+}
+
+export interface FeedLadeboksFee {
+  kind: FeedLadeboksFeeKind;
+  /** Sælgerens eget ord for gebyret. */
+  label: string;
+  kr: number;
+  per: "once" | "month";
+  optional?: boolean;
+  basis?: "inkluderet" | "standard" | "fra" | "ikke-oplyst";
+}
+
+/** En elaftale som tal: tillæg pr. kWh og de faste betalinger pr. år, inkl. moms. */
+export interface FeedLadeboksElTerms {
+  tillaegOre: number;
+  fixedKrYear: number;
+}
+
+export interface FeedLadeboksOffer {
+  id: string;
+  seller: FeedLadeboksSeller;
+  /** Den første er den viste. Tom for et abonnement uden ladeboks. */
+  models: FeedLadeboksModel[];
+  productName: string;
+  type: FeedLadeboksOfferType;
+  /**
+   * Elaftalen, tilbuddet kræver; null = frit valg. `terms` er prissat med feedets eget produkt
+   * (`termsOrigin: "feed"`) eller med tallene på sælgerens tilbudsside ("seller"); null = kan ikke
+   * prissættes, og rækken kan ikke vinde.
+   */
+  requiredEl: {
+    supplierSlug: string;
+    supplierName: string | null;
+    product: string;
+    terms: FeedLadeboksElTerms | null;
+    termsOrigin: "feed" | "seller" | null;
+    feedProductSlug: string | null;
+    sourceUrl: string;
+    verifiedAt: string;
+  } | null;
+  fees: FeedLadeboksFee[];
+  bindingMonths: number;
+  noticeNote: string | null;
+  exit: { buyoutKr: number | null; note?: string } | null;
+  warrantyYears: number | null;
+  maxKw: number;
+  package: { includedKwhMonth: number; overageKrKwh: number | null } | null;
+  flatFee: { includesHomeElectricity: boolean; includesPublic: boolean } | null;
+  energitillaeg: { thresholdKrKwh: number; note: string } | null;
+  publicDiscount: { pct?: number; oreKwh?: number; note: string } | null;
+  elafgiftRefund: boolean;
+  campaign: { label: string; validFrom?: string; validTo: string; afterOfferId?: string } | null;
+  sourceUrl: string;
+  termsUrl: string | null;
+  /** Dagen, tallene sidst stod på `sourceUrl` — "Pris tjekket {dato} hos {sælger}". */
+  verifiedAt: string;
+  /** agent | owner | auto (feedets daglige kontrol) */
+  verifiedBy: string;
+  freshness: { tier: Exclude<FeedLadeboksTier, "hidden">; ageDays: number; reason: string | null };
+  /**
+   * Må rækken bære et superlativ? Kun når den er `ranked`, elaftalen er prissat og prisen ikke
+   * bygger på feedets skøn over installationen. `notComparableReason` siger hvorfor ikke.
+   */
+  comparable: boolean;
+  notComparableReason: string | null;
+  unverifiedNote: string | null;
+  note: string | null;
+  lastCheck: { at: string; result: string } | null;
+}
+
+/** Prisen på at lade i et netområde — se motorens ChargeProfile. */
+export interface FeedLadeboksProfile {
+  gridArea: string;
+  priceArea: PriceArea;
+  from: string;
+  to: string;
+  days: number;
+  sessionHours: number[];
+  straksOre: number[];
+  smartOre: number[];
+  hourMeanOre: number[];
+  spotMeanKrKwhInclVat: number;
+  elafgiftOreExVat: number;
+  refundFloorOreExVat: number;
+  vatFactor: number;
+  computedAt: string;
+}
+
+/** Det, motoren skal bruge ud over tilbuddet. Kan gives direkte til motorens funktioner. */
+export interface FeedLadeboksContext {
+  profile: FeedLadeboksProfile;
+  /** Referenceaftalen: områdets billigste varige variable elaftale uden betingelser og uden anmærkning. */
+  reference: FeedLadeboksElTerms & { product: { slug: string; name: string; supplierSlug: string; supplierName: string } | null };
+  publicKrKwh: number;
+  chargingLoss: number;
+  installReferenceKr: number;
+  /** Kilderne bag de tre antagelser ovenfor (charger_facts). */
+  assumptions: { key: string; text: string; sourceName: string; sourceUrl: string; verifiedAt: string }[];
+}
+
+export interface FeedLadeboksCost {
+  id: string;
+  years: number;
+  boxKr: number;
+  installationKr: number;
+  installationEstimated: boolean;
+  creationKr: number;
+  subscriptionKr: number;
+  serviceKr: number;
+  paymentKr: number;
+  elDeltaKr: number;
+  elDeltaUnknown: boolean;
+  electricityKr: number;
+  packageOverageKr: number;
+  energitillaegKr: number;
+  publicKr: number;
+  refundKr: number;
+  totalKr: number;
+  perYearKr: number;
+  perMonthKr: number;
+  exitKr: number | null;
+  homeKwhYear: number;
+  homeKwhPriceOre: number;
+}
+
+export interface FeedLadeboksEv {
+  kmYear: number;
+  kwh100: number;
+  homeShare: number;
+  chargeKw: number;
+  householdKwh: number;
+  mode: "straks" | "smart";
+}
+
+export interface FeedLadeboksOffersResponse {
+  meta: { count: number; ranked: number; listed: number; sellers: number; generatedAt: string; today: string; note: string };
+  offers: FeedLadeboksOffer[];
+}
+
+export interface FeedLadeboksEstimateResponse {
+  meta: {
+    area: FeedArea;
+    ev: FeedLadeboksEv;
+    years: number;
+    type: FeedLadeboksOfferType | null;
+    count: number;
+    generatedAt: string;
+    /** Metodesætningen — skal stå, hvor rangeringen står. */
+    note: string;
+    /** Omfanget, et superlativ er regnet over — skal stå i samme sætning som superlativet. */
+    scopeSentence: string;
+  };
+  context: FeedLadeboksContext;
+  offers: FeedLadeboksOffer[];
+  /** Rangeret billigst først. Rækker, der ikke er `comparable`, er med, men kan ikke være vindere. */
+  rows: { rank: number; offerId: string; comparable: boolean; cost: FeedLadeboksCost }[];
+  /** offerId'er inden for 1 kr. af den billigste sammenlignelige række. */
+  winners: string[];
+  smartSaving: { straksOre: number; smartOre: number; oreKwh: number; krYear: number; pct: number };
+  refund: { oreKwhExVat: number; krYear: number };
+}
+
+export interface FeedLadeboksChange {
+  offerId: string;
+  sellerSlug: string;
+  kind: "added" | "price" | "ended" | "returned" | "drift" | "resolved";
+  origin: string;
+  /** Felterne, der ændrede sig, før og efter (beløb inkl. moms). */
+  diff: { field: string; old: unknown; new: unknown }[];
+  note: string | null;
+  changedAt: string;
+}
+
+export interface FeedLadeboksFact {
+  key: string;
+  value: number | null;
+  unit: string | null;
+  text: string;
+  sourceName: string;
+  sourceUrl: string;
+  verifiedAt: string;
+  reviewBy: string | null;
+}
+
+export interface FeedLadeboksHealthResponse {
+  generatedAt: string;
+  today: string;
+  offers: { active: number; drift: number; ended: number; ranked: number; listed: number; hidden: number; sellers: number };
+  /** Tilbud, hvis kampagne slutter inden for 14 dage — prisen bagefter skal være læst. */
+  campaignsEnding: { id: string; validTo: string; afterOfferId: string | null }[];
+  /** Tilbud, et menneske skal læse igen (reviewAt passeret), og tilbud i drift. */
+  reviewDue: string[];
+  drift: string[];
+  oldestVerified: { id: string; verifiedAt: string; ageDays: number } | null;
+  lastVerifyRun: string | null;
+  discoveriesOpen: { sellerSlug: string; kind: string; url: string; detectedAt: string }[];
+  profiles: { areas: number; oldestComputedAt: string | null };
+  factsDueReview: string[];
+  /** Tomt, når alt er friskt. Hver tekst siger, hvad der mangler. */
+  stale: string[];
 }

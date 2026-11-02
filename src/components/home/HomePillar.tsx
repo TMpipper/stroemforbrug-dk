@@ -179,8 +179,8 @@ export function Methodology({ prices }: { prices: SitePrices }) {
           <strong>{formatPrice(t.dk)} kr./kWh</strong> inkl. moms —{" "}
           {formatPrice(t.dk1)} kr. vest for Storebælt og {formatPrice(t.dk2)} kr.
           øst for. Prisen dækker spotpris, nettarif, Energinet-tarif, elafgift og et typisk tillæg for{" "}
-          {danishMonth(t.month)}, og den kommer fra den fælles prisdatabase el-feed, som læser
-          Forsyningstilsynets elpris.dk og Energi Data Service hver nat.
+          {danishMonth(t.month)}, og den kommer fra den fælles prisdatabase el-feed, som hver nat
+          læser alle elselskabers priser, som de er indberettet til Forsyningstilsynet, og Energi Data Service.
         </p>
         <PriceBasis prices={prices} />
         <p>

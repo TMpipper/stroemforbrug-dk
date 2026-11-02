@@ -69,7 +69,7 @@ export default async function SwitchCta({ kwh = 4000, household }: Props) {
       </div>
       <p className="mt-3 text-xs text-ink-muted" data-prices-generated={prices.generatedAt}>
         Hele regningen over 12 måneder inkl. abonnement, nettarif, afgifter og moms; velkomstrabatter og introtilbud er ikke med i
-        &quot;billigst&quot;. Priser fra elpris.dk via el-feed.
+        &quot;billigst&quot;. Priserne er selskabernes egne, som de har indberettet til Forsyningstilsynet.
       </p>
     </div>
   );

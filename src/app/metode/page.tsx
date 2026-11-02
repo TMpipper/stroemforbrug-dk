@@ -87,7 +87,7 @@ export default async function MetodePage() {
               <tr><td>Spotpris, forventet niveau for måneden</td><td>{formatPrice(vat(m.dk1.parts.spotOre))} kr.</td><td>{formatPrice(vat(m.dk2.parts.spotOre))} kr.</td><td>Energi Data Service (Nord Pool day-ahead)</td></tr>
               <tr><td>Nettarif, repræsentativt netområde</td><td>{formatPrice(vat(m.dk1.parts.gridOre))} kr.</td><td>{formatPrice(vat(m.dk2.parts.gridOre))} kr.</td><td>DataHub (Energi Data Service)</td></tr>
               <tr><td>Energinets tariffer og elafgift</td><td>{formatPrice(vat(m.dk1.parts.chargesOre))} kr.</td><td>{formatPrice(vat(m.dk2.parts.chargesOre))} kr.</td><td>DataHub, Skattestyrelsen</td></tr>
-              <tr><td>Tillæg, median af {m.dk1.markupOffers} rene, varige spotaftaler</td><td>{formatPrice(vat(m.dk1.parts.markupOre))} kr.</td><td>{formatPrice(vat(m.dk2.parts.markupOre))} kr.</td><td>elpris.dk (Forsyningstilsynet)</td></tr>
+              <tr><td>Tillæg, median af {m.dk1.markupOffers} rene, varige spotaftaler</td><td>{formatPrice(vat(m.dk1.parts.markupOre))} kr.</td><td>{formatPrice(vat(m.dk2.parts.markupOre))} kr.</td><td>Selskabernes indberetninger til Forsyningstilsynet</td></tr>
               <tr><td><strong>Marginalpris pr. kWh</strong></td><td><strong>{formatPrice(m.dk1.krPerKwh)} kr.</strong></td><td><strong>{formatPrice(m.dk2.krPerKwh)} kr.</strong></td><td></td></tr>
             </tbody>
           </table>
@@ -100,8 +100,8 @@ export default async function MetodePage() {
 
           <h2 id="billigste-aftale">Billigste aftale og typisk aftale</h2>
           <p>
-            Når vi skriver »billigste elaftale«, er det regnet over <strong>hele det marked, Forsyningstilsynets elpris.dk kender</strong> — ikke
-            kun de {partnerCount} selskaber, vi har en aftale med. Grundlaget er hele regningen over 12 måneder ved {formatKr(REFERENCE_KWH)} kWh
+            Når vi skriver »billigste elaftale«, er det regnet over <strong>alle elselskaber i Danmark</strong> — de priser, selskaberne har indberettet
+            til Forsyningstilsynet, ikke kun de {partnerCount} selskaber, vi har en aftale med. Grundlaget er hele regningen over 12 måneder ved {formatKr(REFERENCE_KWH)} kWh
             (eller sidens forbrug) inkl. abonnementer, nettarif, afgifter og moms; velkomstrabatter og introtilbud tæller ikke med, og en aftale
             med anmærkning kan ikke være billigst. Omfanget står altid i samme sætning som påstanden, fx »{prices.deals.DK1.scope}«.
           </p>

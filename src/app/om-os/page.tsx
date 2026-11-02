@@ -31,8 +31,8 @@ export default function OmOsPage() {
         <h2>Sådan hænger siderne sammen</h2>
         <p>
           Hver pris på Strømforbrug.dk kommer fra det feed, Elpriser.dk har bygget over hele det danske elmarked: spotpriserne fra Energi
-          Data Service, nettarifferne fra DataHub, elafgiften og alle elselskabernes aftaler, som de er indberettet til Forsyningstilsynets
-          elpris.dk. Apparaternes priser regnes med markedets marginalpris; dagens billigste tidspunkt regnes på timepriserne; den billigste
+          Data Service, nettarifferne fra DataHub, elafgiften og alle elselskabernes aftaler, som de er indberettet til
+          Forsyningstilsynet. Apparaternes priser regnes med markedets marginalpris; dagens billigste tidspunkt regnes på timepriserne; den billigste
           elaftale findes i hele markedet. Reglerne står på <Link href="/metode/">metodesiden</Link>, og de samme regler gælder på Elpriser.dk.
         </p>
 
