@@ -14,6 +14,7 @@ import AuthorBox from "@/components/marketing/AuthorBox";
 import PageHero from "@/components/marketing/PageHero";
 import { motifForPath } from "@/lib/visuals/defaults";
 import { pageMeta } from "@/lib/pages";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 
 const faqsFor = (t: TokenPrices) => [
@@ -82,6 +83,9 @@ export default async function HusstandPage() {
             familie på 4 bruger 4.000-5.500 kWh.
           </p>
         </QuickAnswer>
+
+        {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
+        <AppStrip placement="husstand-top" context="generic" className="mb-10" />
 
         {/* Sub-page links */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">

@@ -16,6 +16,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Strømforbrug familie (2026) → Normalt forbrug for 4 personer"),
@@ -84,6 +85,9 @@ export default async function FamiliePage() {
             strømslugere er køl/frys, tørretumbler og madlavning.
           </p>
         </QuickAnswer>
+
+        {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
+        <AppStrip placement="husstand-top" context="cheapest-hours" className="mb-10" />
 
         <div className="prose-content">
           <h2>Gennemsnitligt strømforbrug for danske familier</h2>

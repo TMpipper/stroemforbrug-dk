@@ -24,6 +24,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
 import FaqBand from "@/components/marketing/FaqBand";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Varmepumpe strømforbrug (2026) → Se kWh og pris pr. type"),
@@ -125,7 +126,7 @@ export default async function VarmepumpePage() {
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
         <BestTimeToday data={data} today={today} />
         {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026). Varmepumpen kører hele døgnet — den generelle tekst. */}
-        <AppPromo variant="strip" placement="varmepumpe-top" context="generic" className="-mt-4 mb-10" />
+        <AppStrip placement="varmepumpe-top" context="generic" className="-mt-4 mb-10" />
         <div className="breakout my-8"><ElpriserWidget sted="dk1" kompakt /></div>
 
         <div className="prose-content" dangerouslySetInnerHTML={{ __html: wrapTables(renderWith(t, data.content)) }} />

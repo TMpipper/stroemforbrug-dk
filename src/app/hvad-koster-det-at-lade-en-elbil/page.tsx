@@ -6,7 +6,6 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import SwitchCta from "@/components/marketing/SwitchCta";
 import PriceBasis from "@/components/content/PriceBasis";
-import AppPromo from "@/components/app-promo/AppPromo";
 import { withCurrentYear, formatKr, formatPrice, formatKrExact, danishMonth } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
 import { getPrices, tokenPrices, savingPerKwh, type SitePrices } from "@/lib/prices";
@@ -15,6 +14,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 const PATH = "/hvad-koster-det-at-lade-en-elbil/";
 
@@ -125,7 +125,7 @@ export default async function ElbilLadningPage() {
         </QuickAnswer>
         <PriceBasis prices={prices} className="mb-8" />
         {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): opladningen er det forbrug, der lettest flyttes til de billige timer. */}
-        <AppPromo variant="strip" placement="elbil-guide-top" context="cheapest-hours" className="mb-10" />
+        <AppStrip placement="elbil-guide-top" context="cheapest-hours" className="mb-10" />
 
         <div className="prose-content">
           <h2>Opladningspris for 5 populære elbiler</h2>

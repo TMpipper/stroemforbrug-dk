@@ -18,6 +18,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
 import FaqBand from "@/components/marketing/FaqBand";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Gennemsnitligt strømforbrug (2026) → Se forbrug pr. husstand"),
@@ -67,6 +68,9 @@ export default async function GennemsnitligtPage() {
             kWh/år (15.000-25.000 kr.).
           </p>
         </QuickAnswer>
+
+        {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
+        <AppStrip placement="guide-top" context="generic" className="mb-10" />
 
         <div className="prose-content">
           <h2>Gennemsnitligt strømforbrug pr. husstandstype</h2>

@@ -16,6 +16,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Spar på strømmen (2026) → Komplet guide til lavere elregning"),
@@ -80,6 +81,9 @@ export default async function SparePaaStroemmenPage() {
             3.000-6.000 kr. om året.
           </p>
         </QuickAnswer>
+
+        {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
+        <AppStrip placement="guide-top" context="cheapest-hours" className="mb-10" />
 
         <div className="prose-content">
           <h2>Trin 1: Kortlæg dit nuværende forbrug</h2>

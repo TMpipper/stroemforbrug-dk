@@ -17,6 +17,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Luft-til-luft varmepumpe strømforbrug (2026) → Pris og kWh"),
@@ -93,6 +94,8 @@ export default async function LuftTilLuftPage() {
           prices={calculatorPrices(prices)}
           deal={calculatorDeal(prices)}
         />
+        {/* Elpriser.dk-appen (ejeren 3. nov. 2026): under beregnerens elaftale, aldrig over den. */}
+        <AppStrip placement="varmepumpe-type-top" context="cheapest-hours" className="-mt-4 mb-10" />
 
         <div className="prose-content">
           <h2>Strømforbrug pr. boligstørrelse</h2>

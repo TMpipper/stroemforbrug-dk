@@ -18,6 +18,7 @@ import { pageMeta } from "@/lib/pages";
 
 import PageHero from "@/components/marketing/PageHero";
 import { motifForPath } from "@/lib/visuals/defaults";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 export default async function HomePage() {
   const [prices, today] = await Promise.all([getPrices(), getBothToday()]);
@@ -114,6 +115,8 @@ export default async function HomePage() {
                 Spotpris, nettarif, Energinets tariffer og elafgift pr. time, inkl. moms, uden abonnement og tillæg. Dit eget postnummer kan slås op på Elpriser.dk.
               </p>
             </div>
+            {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben ved dagens billigste timer. */}
+            <AppStrip placement="home-top" context="cheapest-hours" className="max-w-3xl" />
             {/* Fuld bredde (≈ 1000 px): kortet viser diagrammet fra 48 rem og timelisten under. */}
             <ElpriserWidget sted="dk1" />
           </div>

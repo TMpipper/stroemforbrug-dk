@@ -15,6 +15,7 @@ import { formatKr, formatPrice, withCurrentYear } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
 import { applianceMotif, motifForPath } from "@/lib/visuals/defaults";
 import { isAlwaysOn } from "@/components/appliance/BestTimeToday";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 const PATH = "/apparater/";
 
@@ -63,6 +64,7 @@ export default async function ApparaterPage() {
           ingen husstand har.
         </p>
         <PriceBasis prices={prices} className="mt-4" />
+        <AppStrip placement="apparater-top" context="cheapest-hours" className="mt-8" />
 
         {groups.map((g) => (
           <section key={g.key} className="mt-12" aria-labelledby={`kat-${g.key}`}>

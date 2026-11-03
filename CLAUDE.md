@@ -44,6 +44,12 @@ npm run prices         # udskriver byggets priser fra feedet
   `/varmepumpe/`, under beregneren på `/beregner/`, under `PriceBasis` på `/hvad-koster-det-at-lade-en-elbil/`, under kortet på `/elpriser/`;
   **bånd** før `FaqBand` på de tunge apparater (`HEAVY_RUN` + `/varmepumpe/`); **kort** nær slutningen af `/app/`. Striben bærer Safaris
   smart-banner. `AppClickTracker` i root-layoutet (`app_click` via Vercel Analytics).
+- 3. nov. 2026 (ejeren: »push the app even more … with the popup as well«): striben står via `src/components/app-popup/AppStrip.tsx`
+  (kittets stribe + sitets **laptop-popup** `AppPopup`, porteret fra Elselskaber.dk f1941ae; lg + mus, 8 s eller én skærms rul, × / Esc
+  huskes 14 dage i `elpriser-app:popup:v1`, Vercel-event `app_popup`). Nye striber lige under `QuickAnswer` på husstand (5), guiderne
+  (`/stromslugere/`, `/gennemsnitligt/`, `/standby/`, `/sparetips/`, `/spare-paa-stroemmen/`, `/hvad-koster-en-kwh/`), under beregneren på
+  varmepumpetyperne, under `PriceBasis` på `/apparater/` og ved dagens timer på forsiden. `audit-widget` kræver striben på dem alle og
+  præcis én popup pr. stribe. Apparatsidernes stribe bliver under beregnerens elaftale (~3,8 telefonskærme nede) pga. reglen nedenfor.
 - Aldrig en promo over beregnerens elaftale (`data-calculator-deal`), intet bånd/kort over `SwitchCta` (`data-switch-cta`), og ingen promo
   under/inde i `PartnerCta` (`data-partner-cta`). Sitet har ingen pengesider; en fremtidig sammenligningsside skal bære `data-comparison`
   (config `comparisonMarker`) og stå i config `money`.

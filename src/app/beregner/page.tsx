@@ -9,7 +9,6 @@ import { formatKr, formatPrice, danishMonth } from "@/lib/format";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
 import type { TokenPrices } from "@/lib/tokens";
 import PriceBasis from "@/components/content/PriceBasis";
-import AppPromo from "@/components/app-promo/AppPromo";
 import { withCurrentYear } from "@/lib/format";
 import PageHero from "@/components/marketing/PageHero";
 import { motifForPath } from "@/lib/visuals/defaults";
@@ -17,6 +16,7 @@ import { pageMeta } from "@/lib/pages";
 import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 
 const faqsFor = (t: TokenPrices) => [
@@ -109,7 +109,7 @@ export default async function BeregnerPage() {
         />
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
         {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): under beregneren, aldrig over den. */}
-        <AppPromo variant="strip" placement="beregner-top" context="cheapest-hours" className="mb-10" />
+        <AppStrip placement="beregner-top" context="cheapest-hours" className="mb-10" />
 
         <WattCostTable prices={t} />
 

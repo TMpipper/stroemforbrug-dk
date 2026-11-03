@@ -16,6 +16,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 const PATH = "/hvad-koster-en-kwh/";
 
@@ -129,6 +130,9 @@ export default async function HvadKosterEnKwhPage() {
             kl. 17–21.
           </p>
         </QuickAnswer>
+
+        {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
+        <AppStrip placement="kwh-top" context="price-now" className="mb-10" />
         <PriceBasis prices={prices} className="mb-8" />
 
         <div className="prose-content">

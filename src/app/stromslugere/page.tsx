@@ -16,6 +16,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Strømslugere i hjemmet (2026) → Top 10 over de værste"),
@@ -75,6 +76,9 @@ export default async function StromslugerePage() {
             apparater 70-80% af dit elforbrug.
           </p>
         </QuickAnswer>
+
+        {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
+        <AppStrip placement="guide-top" context="cheapest-hours" className="mb-10" />
 
         <div className="prose-content">
           <h2>Top 10 strømslugere — rangeret efter kWh/år</h2>

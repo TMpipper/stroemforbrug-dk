@@ -27,6 +27,7 @@ import ElpriserWidget from "@/components/widget/ElpriserWidget";
 import { getBothToday } from "@/lib/hourly-today";
 import { HEAVY_RUN } from "@/lib/heavy-run";
 import { withCurrentYear } from "@/lib/format";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 // Reserved slugs that should NOT be handled by this dynamic route
 const RESERVED_SLUGS = [
@@ -208,7 +209,7 @@ export default async function AppliancePage({
         {/* Sidens differentiator: hvornår på dagen apparatet er billigst — dagens timepriser fra Elpriser.dk */}
         <BestTimeToday data={data} today={today} />
         {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): striben ved tidspunkt-blokken — påmindelsen før de billige timer. */}
-        <AppPromo variant="strip" placement="apparat-top" context={appContext} className="-mt-4 mb-10" />
+        <AppStrip placement="apparat-top" context={appContext} className="-mt-4 mb-10" />
         {HEAVY_RUN.has(data.slug) && <div className="breakout my-8"><ElpriserWidget sted="dk1" kompakt /></div>}
 
         {/* Main content */}

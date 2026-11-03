@@ -37,7 +37,10 @@ const heavy = [...readFileSync(join(ROOT, "src/lib/heavy-run.ts"), "utf8").match
 
 const IFRAME = /<iframe\b[^>]*src="https:\/\/elpriser\.dk\/embed\/elpriser\/[^"]+"[^>]*>/g;
 let appliances = 0, iframes = 0, strips = 0, bands = 0;
-const STRIP_PAGES = new Set(["/varmepumpe/", "/beregner/", "/elpriser/", "/hvad-koster-det-at-lade-en-elbil/"]);
+// 3. nov. 2026 (ejeren): også forsiden, guiderne, husstandssiderne, varmepumpetyperne og /apparater/ — og hver stribe har laptop-popup'en.
+const STRIP_PAGES = new Set(["/", "/varmepumpe/", "/varmepumpe/luft-til-vand/", "/varmepumpe/luft-til-luft/", "/beregner/", "/elpriser/", "/hvad-koster-det-at-lade-en-elbil/",
+  "/husstand/", "/husstand/1-person/", "/husstand/2-personer/", "/husstand/familie/", "/husstand/med-varmepumpe/", "/stromslugere/", "/gennemsnitligt/",
+  "/standby/", "/sparetips/", "/spare-paa-stroemmen/", "/hvad-koster-en-kwh/", "/apparater/"]);
 const lastIndex = (text, re) => { let i = -1; for (const m of text.matchAll(re)) i = m.index; return i; };
 for (const f of files) {
   const html = readFileSync(f, "utf8");
@@ -77,6 +80,9 @@ for (const f of files) {
     if (lastCalcDeal >= 0 && p.i < lastCalcDeal) fail(`${path}: appens ${p.v} står over beregnerens elaftale`);
     if (p.v !== "strip" && lastSwitch >= 0 && p.i < lastSwitch) fail(`${path}: appens ${p.v} står over skifte-CTA'en`);
   }
+  const popups = (body.match(/\sdata-app-promo="popup"/g) ?? []).length;
+  if (hasStrip && popups !== 1) fail(`${path}: ${popups} laptop-popup(s) ved appens stribe, ventede 1`);
+  if (!hasStrip && popups) fail(`${path}: laptop-popup uden appens stribe`);
   const banner = /<meta[^>]+name="apple-itunes-app"/.test(html);
   if (banner && !hasStrip && path !== "/app/") fail(`${path}: Safaris smart-banner uden appens stribe`);
   if (path === "/app/" && !banner) fail("/app/: Safaris smart-banner mangler på app-siden");

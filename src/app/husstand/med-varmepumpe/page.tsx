@@ -16,6 +16,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Strømforbrug med varmepumpe (2026) → Se samlet forbrug"),
@@ -85,6 +86,9 @@ export default async function MedVarmepumpePage() {
             kr./år sammenlignet med gasfyr.
           </p>
         </QuickAnswer>
+
+        {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
+        <AppStrip placement="husstand-top" context="generic" className="mb-10" />
 
         <div className="prose-content">
           <h2>Samlet strømforbrug med varmepumpe — oversigt</h2>

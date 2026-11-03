@@ -16,6 +16,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 export const metadata: Metadata = {
   title: withCurrentYear("Strømforbrug 2 personer (2026) → Se normalt forbrug for par"),
@@ -84,6 +85,9 @@ export default async function ToPersonerPage() {
             personer bruger kun 50-70% mere end én — ikke dobbelt.
           </p>
         </QuickAnswer>
+
+        {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
+        <AppStrip placement="husstand-top" context="generic" className="mb-10" />
 
         <div className="prose-content">
           <h2>Normalt strømforbrug for 2 personer — oversigt</h2>

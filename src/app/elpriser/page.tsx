@@ -7,7 +7,6 @@ import FaqBand from "@/components/marketing/FaqBand";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
 import PriceBasis from "@/components/content/PriceBasis";
-import AppPromo from "@/components/app-promo/AppPromo";
 import ElpriserWidget from "@/components/widget/ElpriserWidget";
 import { getPrices, tokenPrices } from "@/lib/prices";
 import { getBothToday, hourSpan, hourlyBasisAttrs } from "@/lib/hourly-today";
@@ -15,6 +14,7 @@ import { getAppliance } from "@/lib/appliances";
 import { formatKrExact, formatPrice, withCurrentYear } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
 import { motifForPath } from "@/lib/visuals/defaults";
+import AppStrip from "@/components/app-popup/AppStrip";
 
 const PATH = "/elpriser/";
 
@@ -86,7 +86,7 @@ export default async function ElpriserPage() {
           <ElpriserWidget sted="dk1" />
         </div>
         {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): de billige timer i lommen, under kortet. */}
-        <AppPromo variant="strip" placement="elpriser-top" context="cheapest-hours" className="mt-8" />
+        <AppStrip placement="elpriser-top" context="cheapest-hours" className="mt-8" />
 
         <section className="mt-14" aria-labelledby="apparater-i-dag" {...hourlyBasisAttrs(today)}>
           <h2 id="apparater-i-dag" className="font-heading text-2xl font-semibold text-ink md:text-3xl">
