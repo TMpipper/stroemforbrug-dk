@@ -1,6 +1,7 @@
 "use client";
 // Fælles komponent fra el-feed (examples/site/components/app-promo/) — ret den dér, ikke her.
 import { useEffect, useState, type CSSProperties } from "react";
+import { takeoverOn } from "./takeover";
 import { X } from "lucide-react";
 import {
   APP_BAR_DISMISS_DAYS,
@@ -70,7 +71,8 @@ export default function AppPromoBarClient({
       frame = requestAnimationFrame(() => {
         frame = 0;
         setHref(target);
-        setPast(window.scrollY > window.innerHeight * 0.9);
+        // The takeover (takeover.ts): open at once, not after the first screen.
+        setPast(takeoverOn() || window.scrollY > window.innerHeight * 0.9);
       });
     };
     onScroll();
@@ -86,7 +88,10 @@ export default function AppPromoBarClient({
     });
     document
       .querySelectorAll(
-        '[data-app-promo]:not([data-app-promo="bar"]), [data-app-page], footer',
+        // During the takeover the bar yields only to the footer, not to the page's own app surfaces.
+        takeoverOn()
+          ? "footer"
+          : '[data-app-promo]:not([data-app-promo="bar"]), [data-app-page], footer',
       )
       .forEach((el) => io.observe(el));
 

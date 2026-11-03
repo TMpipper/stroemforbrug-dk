@@ -1,12 +1,15 @@
 "use client";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { track } from "@vercel/analytics";
+import { takeoverOn } from "@/components/app-promo/takeover";
 
 /** Lukningen huskes i to uger (kun tidspunktet), som appens bundbjælke. */
 const STORAGE_KEY = "elpriser-app:popup:v1";
 const DISMISS_MS = 14 * 24 * 60 * 60 * 1000;
 /** Kortet kommer efter så mange sekunder — eller når læseren er rullet én skærm ned, hvis det sker først. */
 const DELAY_MS = 8000;
+/** Takeoveren (app-promo/takeover.ts): tre sekunder indtil 5. nov. 2026. */
+const TAKEOVER_DELAY_MS = 3000;
 
 function dismissedRecently(): boolean {
   try {
@@ -41,7 +44,7 @@ export default function AppPopupClient({ children, closeLabel, closeIcon }: { ch
     // Uden for laptop/desktop starter hverken timer eller rullelytter, så `ready` forbliver falsk.
     if (!mq.matches || /iPhone|iPad|iPod|Android/.test(navigator.userAgent) || dismissedRecently()) return;
 
-    const timer = window.setTimeout(() => setReady(true), DELAY_MS);
+    const timer = window.setTimeout(() => setReady(true), takeoverOn() ? TAKEOVER_DELAY_MS : DELAY_MS);
     const onScroll = () => {
       if (window.scrollY > window.innerHeight) setReady(true);
     };

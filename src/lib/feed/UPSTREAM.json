@@ -1,7 +1,7 @@
 {
   "repo": "TMpipper/el-feed",
   "path": "examples/site",
-  "commit": "8802f334cd401508d2ebc23df400e94bec7d5bd9",
+  "commit": "500907c6bcdcf91158ee5840fb81b2510afcf45a",
   "files": {
     "src/lib/feed/types.ts": "dffc31c7d3dfcdf413e5c14e3c815d3ea75cd00a64a64b05ad652a9b7fe4466d",
     "src/lib/feed/compare.ts": "00ee5327a98cd03c05e69e851c699931ba8b23cb5fa84fc7df00eb73544dd077",
@@ -16,12 +16,13 @@
     "src/components/app-promo/AppFooterLinks.tsx": "3f3d4afaaa248ea639e4df697943483bfdbe59923482c033f40dddbeaaf91c0b",
     "src/components/app-promo/AppPromo.tsx": "2b44287bca439eafca0df8d8a1ad436c370ecbc945e64bfe52ef26cbc4be08e5",
     "src/components/app-promo/AppPromoBar.tsx": "458d71468cca4934fd57c83741059f5a3c3014b6a524a3f073f69ea2701dce72",
-    "src/components/app-promo/AppPromoBarClient.tsx": "f041e081ecd72fbe20aebd20f8da686cd6d8fe218b9e2a19fca1ea2f9a9b7f63",
+    "src/components/app-promo/AppPromoBarClient.tsx": "72ef4d9ab8ead7675a001e5184fb7b2ad41b15d90569b8a6cfe7db344c78404e",
     "src/components/app-promo/AppQr.tsx": "77e65af64df37fcb02f3bc564a536abebde316a1f579b322197daa81d5321f07",
     "src/components/app-promo/AppSmartBanner.tsx": "fbc0953678ca48f64e68f3f559cd3166dbee5e43a5d92f07e76670ffbd90c627",
     "src/components/app-promo/AppStoreBadges.tsx": "b3ea33411f1a1f2c8e40f25e9dabfc672976e2a6fcc48c7817ad8dd4bbf527f3",
     "src/components/app-promo/qr.ts": "93028f93b0a9fc42e04064a885e1b3dab669015d148f4f3c8df43f056f05ce9d",
     "src/components/app-promo/style.ts": "eee704c4908542e887d25af9cd5c07e7ed78466b9154ba560dfe59f4a76b19cf",
+    "src/components/app-promo/takeover.ts": "f9ba860c8200e2d4891841f70e0b11a20739b09e7bd1a42040c793c6214ba3a8",
     "public/app-promo/badges/app-store-da.svg": "c8e421bfb125a5b63ad44b8cfe64c36e6faa738a60320ee53ae47f94565b92a1",
     "public/app-promo/badges/google-play-da.png": "698c640d7e3865e224cab87455c0a93e757ed52d33def0d293be2016fc54b993",
     "public/app-promo/icon.svg": "d9bda588eaccccb17d09e71b3a20057ab4a236a235035c07863636377e40598a",
