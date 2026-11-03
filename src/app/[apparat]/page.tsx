@@ -191,6 +191,9 @@ export default async function AppliancePage({
           </div>
         </div>
 
+        {/* Elpriser.dk-appen: striben over beregneren (ejeren 3. nov. 2026 — appen før partnerens elaftale; før stod den under tidspunkt-blokken, ~3,8 telefonskærme nede). */}
+        <AppStrip placement="apparat-top" context={appContext} className="mb-10" />
+
         {/* Calculator */}
         <ForbrugBeregner
           title={data.calculatorConfig.title}
@@ -208,8 +211,6 @@ export default async function AppliancePage({
 
         {/* Sidens differentiator: hvornår på dagen apparatet er billigst — dagens timepriser fra Elpriser.dk */}
         <BestTimeToday data={data} today={today} />
-        {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): striben ved tidspunkt-blokken — påmindelsen før de billige timer. */}
-        <AppStrip placement="apparat-top" context={appContext} className="-mt-4 mb-10" />
         {HEAVY_RUN.has(data.slug) && <div className="breakout my-8"><ElpriserWidget sted="dk1" kompakt /></div>}
 
         {/* Main content */}

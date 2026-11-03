@@ -40,7 +40,7 @@ npm run prices         # udskriver byggets priser fra feedet
   `:root`-aliasblokken `--app-promo-*` i `globals.css`, `scripts/app-promo.config.json`.
 - Links til `https://elpriser.dk/app/` (brandede ankre, followed) må KUN stå i et `data-family-app`-træ (promoerne, footerens
   `AppFooterLinks`, app-siden). Ingen links til søstersitene — stadig forbudt (`audit-claims`).
-- Placeringer: **stribe** (`cheapest-hours`; `generic` på apparater, der kører hele døgnet) lige under `BestTimeToday` på alle apparatsider og
+- Placeringer: **stribe** (`cheapest-hours`; `generic` på apparater, der kører hele døgnet) over beregneren på alle apparatsider (fra 3. nov. 2026), under `BestTimeToday` på
   `/varmepumpe/`, under beregneren på `/beregner/`, under `PriceBasis` på `/hvad-koster-det-at-lade-en-elbil/`, under kortet på `/elpriser/`;
   **bånd** før `FaqBand` på de tunge apparater (`HEAVY_RUN` + `/varmepumpe/`); **kort** nær slutningen af `/app/`. Striben bærer Safaris
   smart-banner. `AppClickTracker` i root-layoutet (`app_click` via Vercel Analytics).
@@ -49,7 +49,7 @@ npm run prices         # udskriver byggets priser fra feedet
   huskes 14 dage i `elpriser-app:popup:v1`, Vercel-event `app_popup`). Nye striber lige under `QuickAnswer` på husstand (5), guiderne
   (`/stromslugere/`, `/gennemsnitligt/`, `/standby/`, `/sparetips/`, `/spare-paa-stroemmen/`, `/hvad-koster-en-kwh/`), under beregneren på
   varmepumpetyperne, under `PriceBasis` på `/apparater/` og ved dagens timer på forsiden. `audit-widget` kræver striben på dem alle og
-  præcis én popup pr. stribe. Apparatsidernes stribe bliver under beregnerens elaftale (~3,8 telefonskærme nede) pga. reglen nedenfor.
+  præcis én popup pr. stribe. Samme dag (ejeren): apparatsidernes stribe flyttet OVER beregneren (`apparat-top`, ~1–2 skærme nede i stedet for ~3,8) — eneste undtagelse fra reglen nedenfor.
 - Aldrig en promo over beregnerens elaftale (`data-calculator-deal`), intet bånd/kort over `SwitchCta` (`data-switch-cta`), og ingen promo
   under/inde i `PartnerCta` (`data-partner-cta`). Sitet har ingen pengesider; en fremtidig sammenligningsside skal bære `data-comparison`
   (config `comparisonMarker`) og stå i config `money`.

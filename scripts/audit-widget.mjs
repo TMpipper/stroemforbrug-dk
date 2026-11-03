@@ -77,7 +77,8 @@ for (const f of files) {
   const lastSwitch = lastIndex(body, /\sdata-switch-cta(?=[\s=>])/g);
   for (const p of promos) {
     if (partnerCta >= 0 && p.i > partnerCta) fail(`${path}: appens ${p.v} står under eller inde i PartnerCta — den skal stå før`);
-    if (lastCalcDeal >= 0 && p.i < lastCalcDeal) fail(`${path}: appens ${p.v} står over beregnerens elaftale`);
+    // Undtagelse (ejeren 3. nov. 2026): apparatsidernes stribe står over beregneren; bånd/kort og andre siders striber stadig under elaftalen.
+    if (lastCalcDeal >= 0 && p.i < lastCalcDeal && !(p.v === "strip" && appliancePaths.has(path))) fail(`${path}: appens ${p.v} står over beregnerens elaftale`);
     if (p.v !== "strip" && lastSwitch >= 0 && p.i < lastSwitch) fail(`${path}: appens ${p.v} står over skifte-CTA'en`);
   }
   const popups = (body.match(/\sdata-app-promo="popup"/g) ?? []).length;
