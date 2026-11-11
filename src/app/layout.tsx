@@ -18,9 +18,10 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: 
 
 /**
  * Hele sitet er ISR: priserne kommer fra el-feed, og den laveste revalidate i layout/side gælder
- * ruten. 300 s matcher feedets CDN og klientens fetch-cache; feedets webhook rammer /api/revalidate/.
+ * ruten. Siden 11. nov. 2026 et døgn (før 300 s): feedets webhook rammer /api/revalidate/, når data ændrer sig,
+ * og ved dansk midnat; døgnet er kun sikkerhedsnet. Sitet skriver ingen pris »lige nu« i serverens HTML.
  */
-export const revalidate = 300;
+export const revalidate = 86400;
 
 const DEFAULT_TITLE = withCurrentYear("Strømforbrug (2026) → Se hvad dine apparater bruger i strøm");
 

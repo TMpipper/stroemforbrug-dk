@@ -1,11 +1,11 @@
 {
   "repo": "TMpipper/el-feed",
   "path": "examples/site",
-  "commit": "500907c6bcdcf91158ee5840fb81b2510afcf45a",
+  "commit": "d8b53d813c437726303d2112bc1164cf1b1c3671",
   "files": {
     "src/lib/feed/types.ts": "dffc31c7d3dfcdf413e5c14e3c815d3ea75cd00a64a64b05ad652a9b7fe4466d",
     "src/lib/feed/compare.ts": "00ee5327a98cd03c05e69e851c699931ba8b23cb5fa84fc7df00eb73544dd077",
-    "src/lib/feed/client.ts": "e5bb183c3d6702d3b8901487163ebd22cd4764d8cfb449ccce4ff57d3ffe1f68",
+    "src/lib/feed/client.ts": "c85e7b25256d0b8209eba50e7b60684d968bcf048b7e0487406fa058d9b03ac6",
     "src/lib/feed/site-adapter.ts": "96521b48cb0c26000b0078658f432701c6dc67c57cbdd632fda0d6b618ff8d0c",
     "src/lib/feed/marginal.ts": "0153ed6cc181dab6acb9080b136a21d68692b5d0a34f0dfa43efe07cfcf49af3",
     "src/lib/feed/app-promo.ts": "a1393ebb949d333299f84fc7920fdd13c6217121c7ffd3f662d5540d1a00dd6c",

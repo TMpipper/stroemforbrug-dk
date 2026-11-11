@@ -4,4 +4,4 @@
  * elpris.dk's seneste prisopdatering, som el-feed importerede den (dansk kalenderdag).
  * Den er sitets ene kilde til "Opdateret {dato}", dateModified og sitemappets lastmod.
  */
-export const PRICES_UPDATED = "2026-10-30";
+export const PRICES_UPDATED = "2026-11-03";

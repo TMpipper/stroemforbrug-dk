@@ -10,10 +10,24 @@
  *   SITE_DOMAIN=billigste-elselskab.nu
  *
  * Cachestrategi: svaret gemmes under cache-tags, og feedet kalder sitets
- * `/api/revalidate/` med de tags, der er blevet forældede. `revalidate: 300` er et
- * sikkerhedsnet, hvis et webhook-kald går tabt — ikke den normale vej til friske tal. Det
- * matcher feedets CDN-cache, så en forældet kopi, der slipper igennem, højst lever fem
- * minutter på sitet (med 3600 levede den en time).
+ * `/api/revalidate/` med de tags, der er blevet forældede — det er den normale vej til friske
+ * tal. Ved dansk midnat sender feedet tagget `el-feed`, så alt bygges én gang med den nye dato.
+ * Timeren (`FEED_REVALIDATE`, et døgn) er kun et sikkerhedsnet, hvis et webhook-kald går tabt.
+ *
+ * Hvorfor ikke fem minutter (som før 11. nov. 2026): Next bruger den laveste timer på en side,
+ * så 300 sekunder fik hver side med feed-tal til at genbygges døgnet rundt. På Elpriser.dk var
+ * det 1,4 mio. ISR-skriveenheder om dagen og det meste af Vercel-regningen. Tal, der skifter
+ * inden for døgnet uden at data ændrer sig (prisen »lige nu«, CO₂ lige nu), regnes i browseren.
+ *
+ * Prisen »lige nu« i serverens HTML: `timepris` regner `now` (markedets og hver aftales) om efter
+ * serverens klokke ved hvert kald, ud fra svarets egne timer — et svar fra cachen viser aldrig en
+ * time, der er gået. En side, der skriver prisen lige nu i sin tekst, kalder desuden
+ * `feedLiveTick(sekunder)`, så netop den side bygges om så ofte; resten af sitet står på døgnet.
+ *
+ * Et site uden `/api/revalidate/` (fx ElselskabDanmark.dk) sætter `EL_FEED_REVALIDATE=3600`.
+ * Route handlers, der kaldes pr. besøgende med vilkårlige parametre (postnummer, kWh …),
+ * skal have `export const fetchCache = "force-no-store"`, så hver kombination ikke bliver en
+ * ny skrivning i Vercels datacache; feedets egen CDN-cache klarer gentagelserne.
  */
 import type {
   FeedAdvisoriesResponse,
@@ -97,6 +111,9 @@ export class FeedError extends Error {
   }
 }
 
+/** Sikkerhedsnettet i sekunder: et døgn, eller `EL_FEED_REVALIDATE` på et site uden revalidate-route. */
+export const FEED_REVALIDATE = Number(process.env.EL_FEED_REVALIDATE) > 0 ? Number(process.env.EL_FEED_REVALIDATE) : 86_400;
+
 async function get<T>(path: string, params: Params, tags: string[]): Promise<T> {
   if (!BASE) throw new Error("EL_FEED_URL mangler");
   const qs = new URLSearchParams(
@@ -105,10 +122,41 @@ async function get<T>(path: string, params: Params, tags: string[]): Promise<T> 
       .map(([k, v]) => [k, String(v)]),
   );
   const res = await fetch(`${BASE}${path}${qs.size ? `?${qs}` : ""}`, {
-    next: { tags: [FEED_TAGS.all, ...tags], revalidate: 300 },
+    next: { tags: [FEED_TAGS.all, ...tags], revalidate: FEED_REVALIDATE },
   });
   if (!res.ok) throw new FeedError(path, res.status, (await res.text()).slice(0, 300));
   return (await res.json()) as T;
+}
+
+/**
+ * `now` regnet efter klokken ved kaldet, ikke ved feedets svar: svaret kan ligge i cachen et døgn, og
+ * feedets `now` er timen (kvarteret), da det blev lavet. Samme regel som feedet: det tidsrum i dag, klokken
+ * ligger i, ellers i morgen (lige efter midnat, før midnatsbeskeden har bygget siden om).
+ */
+export function withLiveNow(r: FeedTimeprisResponse, at: number = Date.now()): FeedTimeprisResponse {
+  const slotMs = r.meta.resolution === "quarter" ? 900_000 : 3_600_000;
+  const inDay = (d: FeedTimeprisResponse["market"]["today"] | null) =>
+    d?.hours.find((h) => { const s = Date.parse(h.start); return s <= at && at < s + slotMs; }) ?? null;
+  const pick = (x: { today: FeedTimeprisResponse["market"]["today"]; tomorrow: FeedTimeprisResponse["market"]["today"] | null }) => inDay(x.today) ?? inDay(x.tomorrow);
+  const now = pick(r.market);
+  return {
+    ...r,
+    meta: { ...r.meta, nowHour: now?.start ?? r.meta.nowHour },
+    market: { ...r.market, now },
+    items: r.items.map((i) => ({ ...i, now: pick(i) })),
+  };
+}
+
+/**
+ * Giver siden, der kalder, en ISR-timer på `seconds` (Next bruger den laveste timer blandt sidens
+ * fetch-kald). Til sider, der skriver prisen eller CO₂ »lige nu« i serverens HTML. Kaldet er feedets
+ * lille, CDN-cachede /presets; fejler det, sker der intet (siden står så på døgnet).
+ */
+export async function feedLiveTick(seconds: number): Promise<void> {
+  if (!BASE) return;
+  await fetch(`${BASE}/api/v1/presets`, { next: { tags: [FEED_TAGS.all], revalidate: seconds } })
+    .then((r) => r.text())
+    .catch(() => undefined);
 }
 
 /** Stedet, priserne gælder for. Præcis ét af felterne bør sættes. */
@@ -215,7 +263,7 @@ export const elFeed = {
    * historik er svaret 404 med `historyFrom`.
    */
   timepris: (p: Place & { product?: string; kwh?: number; resolution?: "hour" | "quarter"; vat?: 0 | 1; day?: string } = {}) =>
-    get<FeedTimeprisResponse>("/api/v1/timepris", p, [FEED_TAGS.market, FEED_TAGS.products, FEED_TAGS.rates]),
+    get<FeedTimeprisResponse>("/api/v1/timepris", p, [FEED_TAGS.market, FEED_TAGS.products, FEED_TAGS.rates]).then((r) => withLiveNow(r)),
 
   /**
    * Satserne, der gjaldt i netområdet en dag (standard i dag): nettarif pr. time, netabonnement,
