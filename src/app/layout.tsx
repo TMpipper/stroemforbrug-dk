@@ -96,7 +96,7 @@ const siteSchema = {
       url: `${SITE_CONFIG.url}/om-os/`,
       image: `${SITE_CONFIG.url}${SITE_CONFIG.editorImage}`,
       worksFor: { "@id": `${SITE_CONFIG.url}/#organization` },
-      sameAs: ["https://www.linkedin.com/in/mathias-c-ba041b125/", "https://mathiasclausen.dk/"],
+      sameAs: ["https://www.linkedin.com/in/mathiasclausendk/", "https://mathiasclausen.dk/"],
     },
     {
       "@type": "WebSite",

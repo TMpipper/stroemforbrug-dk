@@ -30,7 +30,7 @@ export default function AuthorBox() {
               {SITE_CONFIG.company.email}
             </a>
             <a
-              href="https://www.linkedin.com/in/mathias-c-ba041b125/"
+              href="https://www.linkedin.com/in/mathiasclausendk/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 transition-colors hover:text-brand-600"
