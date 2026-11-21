@@ -41,6 +41,9 @@ const LIB = [
   ["lib/el-feed-marginal.ts", "src/lib/feed/marginal.ts"],
   // Elpriser.dk-appens promo (19. okt. 2026): tekster, links og konfiguration.
   ["lib/app-promo.ts", "src/lib/feed/app-promo.ts"],
+  // Kampagnebjælken (21. nov. 2026) — kun den, ikke de øvrige fremhævede kort, som sitet ikke har.
+  ["components/featured/CampaignBar.tsx", "src/components/featured/CampaignBar.tsx"],
+  ["components/featured/campaign-bar.ts", "src/components/featured/campaign-bar.ts"],
 ];
 const DIRS = [
   // Elpris-widgetten fra Elpriser.dk som iframe på søstersiterne (elpriser-dk selv ejer kortet og synkroniserer den ikke).

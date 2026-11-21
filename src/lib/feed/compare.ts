@@ -468,7 +468,7 @@ export function whyNotCheapest(
   }
   if (row.firstTimeDiscountKr > 0) {
     const kr = Math.round(row.firstTimeDiscountKr).toLocaleString("da-DK");
-    return `Fordi prisen indeholder en kontant velkomstrabat på ${kr} kr., som ikke findes år to.`;
+    return `Fordi prisen indeholder en velkomstrabat på ${kr} kr., som ikke findes år to.`;
   }
   if (row.restricted) {
     return `Fordi aftalen har en betingelse, de fleste læsere ikke opfylder${row.eligibility ? `: ${row.eligibility}` : ""}.`;

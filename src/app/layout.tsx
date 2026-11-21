@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+import CampaignBar from "@/components/featured/CampaignBar";
 import DisclaimerBar from "@/components/layout/DisclaimerBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -120,6 +121,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a href="#main" className="skip-link">
           Spring til indhold
         </a>
+        {/* Kampagnebjælken (el-feed components/featured/): tegnes kun, mens feedets OK-plads har en aktiv kampagne. */}
+        <CampaignBar goPath="/go/ok/" />
         <DisclaimerBar />
         <Header />
         <main id="main" className="flex-1">

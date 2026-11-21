@@ -408,6 +408,22 @@ export interface FeedFeaturedItem {
   accentColor: string | null;
   ctaUrl: string | null;
   product: FeedProduct;
+  /**
+   * En tidsboks på pladsen (fx »Black Week«): sat KUN på de danske datoer, kampagnen gælder, og
+   * kun når pladsens aftale har et tilbud. Mens den er sat, er `badge` og `campaignTerms`
+   * kampagnens. Beløb og frist står på `product` (`firstTimeDiscountKr`, `prices.validTo`) —
+   * aldrig her. Valgfri, så en ældre kopi af kontrakten stadig passer (fra 21. nov. 2026).
+   */
+  campaign?: FeedFeaturedCampaign | null;
+}
+
+export interface FeedFeaturedCampaign {
+  label: string;
+  /** Vilkårslinjen uden beløb; slutdatoen er regnet af `endsOn`. */
+  terms: string | null;
+  /** Første og sidste danske dag (inklusiv), ÅÅÅÅ-MM-DD. */
+  startsOn: string;
+  endsOn: string;
 }
 
 export interface FeedFeaturedResponse {

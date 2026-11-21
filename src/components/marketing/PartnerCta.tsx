@@ -3,6 +3,8 @@ import { getPrices, REFERENCE_KWH } from "@/lib/prices";
 import { formatKr } from "@/lib/format";
 import { CircleCheck } from "lucide-react";
 import CompanyLogo from "@/components/ui/CompanyLogo";
+import { campaignBarData, campaignBarText, danishToday } from "@/components/featured/campaign-bar";
+import { elFeed } from "@/lib/feed/client";
 
 /**
  * Den store knap på hver side (ejerens ønske 2026-10-11): den billigste elaftale ved 4.000 kWh blandt de
@@ -14,6 +16,9 @@ import CompanyLogo from "@/components/ui/CompanyLogo";
  * så båndet kan stå på sider uden grundlagssætning.
  */
 export default async function PartnerCta() {
+  // Mens feedets OK-plads har en aktiv kampagne (OK Black Week, 23.–29. nov. 2026), bærer båndet den — ellers som altid.
+  const campaign = await campaignCta();
+  if (campaign) return campaign;
   const prices = await getPrices();
   const dk1 = prices.deals.DK1.cheapestPartner;
   const dk2 = prices.deals.DK2.cheapestPartner;
@@ -80,6 +85,64 @@ export default async function PartnerCta() {
               data-partner-cta-button
             >
               Se {dk1.supplierName}
+            </a>
+            <span className="text-xs text-white/50">Annoncelink</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Kampagneudgaven af båndet: kun når feedets fremhævede OK-plads har en aktiv kampagne (`item.campaign`, sendt
+ * på kampagnens danske datoer) og rækken en velkomstrabat med åben frist — samme regel som kampagnebjælken
+ * (el-feed components/featured/campaign-bar.ts). Beløb, frist, produktnavn og vilkår er feedets; her står
+ * ingen tal og intet superlativ. Kan feedet ikke nås, falder båndet tilbage til den almindelige udgave.
+ */
+async function campaignCta() {
+  const featured = await elFeed.featured({ area: "791" }).catch(() => null);
+  const data = campaignBarData(featured, "ok", danishToday());
+  const item = featured?.items.find((i) => i.product.supplier.slug === "ok");
+  if (!data || !item) return null;
+  const p = item.product;
+  return (
+    <section data-shared data-partner-cta="ok" data-partner-cta-campaign="" aria-labelledby="partner-cta-titel" className="container-site mt-20">
+      <div className="rounded-card bg-ink px-6 py-10 text-white shadow-lift sm:px-10 md:py-12">
+        <p className="text-xs font-semibold uppercase tracking-wide text-white/60">Annonce · {data.label}</p>
+        <div className="mt-3 grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-4">
+              <CompanyLogo name={data.supplierName} logoUrl={p.supplier.logoUrl} size="lg" shape="wide" className="bg-white" />
+              <h2 id="partner-cta-titel" className="font-heading text-2xl font-semibold text-white md:text-3xl">
+                {data.amount} i velkomstrabat hos {data.supplierName}
+              </h2>
+            </div>
+            <p className="mt-3 text-base leading-relaxed text-white/80">{campaignBarText(data)}.</p>
+            <ul className="mt-4 space-y-1.5 text-base text-white/90" aria-label="Tilbuddet">
+              <li className="flex items-start gap-2">
+                <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-price-cheap" aria-hidden />
+                <span>{p.name}</span>
+              </li>
+              {p.bindingMonths === 0 && (
+                <li className="flex items-start gap-2">
+                  <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-price-cheap" aria-hidden />
+                  <span>Ingen binding — skift frit, når du vil</span>
+                </li>
+              )}
+            </ul>
+            {item.campaignTerms && <p className="mt-3 text-sm text-white/70">{item.campaignTerms}</p>}
+            <p className="mt-2 text-sm text-white/60">Din pris er den samme, uanset om du tegner aftalen gennem os.</p>
+          </div>
+          <div className="flex flex-col items-start gap-2 md:items-end">
+            <a
+              href="/go/ok/?pl=partner-cta"
+              target="_blank"
+              rel="noopener noreferrer sponsored nofollow"
+              className="btn-cta !px-9 !py-4 !text-lg"
+              data-partner-cta-button
+            >
+              Se tilbuddet hos {data.supplierName}
             </a>
             <span className="text-xs text-white/50">Annoncelink</span>
           </div>
