@@ -68,6 +68,20 @@ import volvoEx40 from "./volvo-ex40";
 import lenovoIdeapadSlim3 from "./lenovo-ideapad-slim-3";
 import kiaEv3 from "./kia-ev3";
 import mercedesCla from "./mercedes-cla";
+import siemensIq300Opvaskemaskine from "./siemens-iq300-opvaskemaskine";
+import aeg9000Toerretumbler from "./aeg-9000-toerretumbler";
+import boschKsv36 from "./bosch-ksv36";
+import boschSerie4Opvaskemaskine from "./bosch-serie-4-opvaskemaskine";
+import aeg8000Toerretumbler from "./aeg-8000-toerretumbler";
+import aeg8000Vaskemaskine from "./aeg-8000-vaskemaskine";
+import boschSerie8Opvaskemaskine from "./bosch-serie-8-opvaskemaskine";
+import siemensIq500Toerretumbler from "./siemens-iq500-toerretumbler";
+import gorenjeFn619 from "./gorenje-fn619";
+import mieleG5000 from "./miele-g-5000";
+import mieleTq1000 from "./miele-tq-1000";
+import boschKir81 from "./bosch-kir81";
+import boschSerie2Opvaskemaskine from "./bosch-serie-2-opvaskemaskine";
+import lgDualInverterToerretumbler from "./lg-dual-inverter-toerretumbler";
 
 /**
  * Modelsiderne (ejeren 22. nov. 2026): én fil pr. modelfamilie (`export default`), side på /<parent>/<slug>/.
@@ -143,4 +157,18 @@ export const MODELS_ALL: ModelData[] = [
   lenovoIdeapadSlim3,
   kiaEv3,
   mercedesCla,
+  siemensIq300Opvaskemaskine,
+  aeg9000Toerretumbler,
+  boschKsv36,
+  boschSerie4Opvaskemaskine,
+  aeg8000Toerretumbler,
+  aeg8000Vaskemaskine,
+  boschSerie8Opvaskemaskine,
+  siemensIq500Toerretumbler,
+  gorenjeFn619,
+  mieleG5000,
+  mieleTq1000,
+  boschKir81,
+  boschSerie2Opvaskemaskine,
+  lgDualInverterToerretumbler,
 ];

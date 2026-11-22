@@ -55,20 +55,20 @@
   },
   {
     "path": "/apparater/koekken/",
-    "title": "Strømforbrug i køkkenet (2026) → 10 apparater, kWh og pris",
-    "description": "Se strømforbruget for 10 apparater i kategorien køkken og madlavning: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
+    "title": "Strømforbrug i køkkenet (2026) → 11 apparater, kWh og pris",
+    "description": "Se strømforbruget for 11 apparater i kategorien køkken og madlavning: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
     "noindex": false
   },
   {
     "path": "/apparater/koel-og-frys/",
     "title": "Strømforbrug for køl og frys (2026) → kWh og pris pr. år",
-    "description": "Se strømforbruget for 3 apparater i kategorien køl og frys: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
+    "description": "Se strømforbruget for 4 apparater i kategorien køl og frys: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
     "noindex": false
   },
   {
     "path": "/apparater/opvarmning/",
     "title": "Strømforbrug til opvarmning (2026) → kWh og pris pr. år",
-    "description": "Se strømforbruget for 6 apparater i kategorien opvarmning: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
+    "description": "Se strømforbruget for 7 apparater i kategorien opvarmning: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
     "noindex": false
   },
   {
@@ -99,6 +99,12 @@
     "path": "/broedrister/",
     "title": "Brødrister strømforbrug (2026) → Watt, kWh og pris pr. brug",
     "description": "Hvor meget strøm bruger en brødrister? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift med danske 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/campingvogn/",
+    "title": "Campingvogn strømforbrug (2026) → kWh i døgnet på pladsen",
+    "description": "Se hvor meget strøm en campingvogn bruger i døgnet på campingpladsen: køleskab, el-varme fra Truma, lys og opladning, og hvad 6, 10 og 16 A kan klare.",
     "noindex": false
   },
   {
@@ -156,9 +162,21 @@
     "noindex": false
   },
   {
+    "path": "/dykpumpe/",
+    "title": "Dykpumpe strømforbrug (2026) → watt, kælder og regnvand",
+    "description": "Se hvor meget strøm en dykpumpe bruger i timen og pr. m³ vand: drænpumpe i kælder og pumpebrønd, regnvandspumpe og spildevandspumpe på 280-750 W.",
+    "noindex": false
+  },
+  {
     "path": "/el-loebehjul/",
     "title": "El-løbehjul strømforbrug (2026) → kWh pr. km og opladning",
     "description": "Et el-løbehjul bruger ca. 0,3-0,8 kWh på en fuld opladning og 10-17 Wh pr. km. Se prisen pr. opladning, pr. 100 km og om året, og hvornår du skal lade.",
+    "noindex": false
+  },
+  {
+    "path": "/el-scooter/",
+    "title": "El-scooter strømforbrug (2026) → kWh pr. 100 km og knallert",
+    "description": "Se hvor meget strøm en el-scooter eller el-knallert bruger pr. km og pr. opladning: 1,5-2,8 kWh batterier, 25-35 Wh pr. km og hvad et år på knallert koster.",
     "noindex": false
   },
   {
@@ -294,6 +312,12 @@
     "noindex": false
   },
   {
+    "path": "/elplaeneklipper/",
+    "title": "Elplæneklipper strømforbrug (2026) → ledning og batteri",
+    "description": "Se hvor meget strøm en elplæneklipper bruger pr. klipning og pr. sæson: ledningsklipper på 1.200-1.800 W mod batteriklipper på 36 V, og hvad det koster.",
+    "noindex": false
+  },
+  {
     "path": "/elpriser/",
     "title": "Elpriser time for time (2026) → Billigste timer i dag",
     "description": "Elpriser time for time for Vest- og Østdanmark i dag og i morgen, og hvad én vask, én opvask eller én opladning koster i den billige og den dyre time.",
@@ -342,6 +366,12 @@
     "noindex": true
   },
   {
+    "path": "/fryser/gorenje-fn619/",
+    "title": "Gorenje FN619 fryseskab strømforbrug (2026) → kWh og pris",
+    "description": "Gorenje FN619 fryseskab på 280 liter med NoFrost: energimærkets kWh om året i klasse D, E og F, pris om året og døgnet, og hvad forskellen koster.",
+    "noindex": true
+  },
+  {
     "path": "/gaming-pc/",
     "title": "Gaming-PC strømforbrug (2026) → Watt under belastning og kWh",
     "description": "Hvor meget strøm bruger en gaming-PC? Se typisk elforbrug i kWh for gaming-computere, sammenlign opsætninger og beregn din årlige udgift i 2026.",
@@ -375,6 +405,18 @@
     "path": "/gulvvarme/",
     "title": "Gulvvarme strømforbrug (2026) → Vand vs. el i kWh og pris",
     "description": "Hvor meget strøm bruger el-gulvvarme? Se typisk elforbrug i kWh for badeværelse, køkken og hele huset. Beregn din årlige udgift med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/haekkeklipper/",
+    "title": "Hækkeklipper strømforbrug (2026) → watt og kWh pr. hæk",
+    "description": "Se hvor meget strøm en hækkeklipper bruger i timen og pr. opladning: ledningsmodeller på 420-500 W mod batterimodeller på 18 V, og hvad en sæson koster.",
+    "noindex": false
+  },
+  {
+    "path": "/hoejtryksrenser/",
+    "title": "Højtryksrenser strømforbrug (2026) → kWh pr. time og m²",
+    "description": "Se hvor meget strøm en højtryksrenser bruger i timen og pr. m² terrasse: fra 1,4 kW i de små klasser til 3 kW i de store, og hvad en forårsrengøring koster.",
     "noindex": false
   },
   {
@@ -504,6 +546,12 @@
     "noindex": false
   },
   {
+    "path": "/kaedesav/",
+    "title": "Kædesav strømforbrug (2026) → el og batteri i timen",
+    "description": "Se hvor meget strøm en elkædesav bruger i timen og pr. opladning: ledningssave på 1.800-2.200 W mod batterisave på 36 V, og hvad en vinter med brænde koster.",
+    "noindex": false
+  },
+  {
     "path": "/kaffemaskine/",
     "title": "Kaffemaskine strømforbrug (2026) → kWh pr. kop og år",
     "description": "Hvor meget strøm bruger en kaffemaskine? Se elforbrug i kWh for filterkaffe, kapsel og fuldautomatisk. Beregn din årlige udgift med 2026-priser.",
@@ -534,6 +582,18 @@
     "noindex": true
   },
   {
+    "path": "/koeleskab/bosch-kir81/",
+    "title": "Bosch KIR81 køleskab strømforbrug (2026) → kWh og klasse",
+    "description": "Bosch KIR81 integrerbart køleskab på 310 liter: energimærkets kWh om året i klasse C, D og E, pris om året og døgnet, og hvad nichen betyder for forbruget.",
+    "noindex": true
+  },
+  {
+    "path": "/koeleskab/bosch-ksv36/",
+    "title": "Bosch KSV36 køleskab strømforbrug (2026) → kWh og pris",
+    "description": "Bosch KSV36 køleskab på 346 liter i Serie 4 og 6: energimærkets kWh om året i klasse D og E, pris om året og døgnet, og forbruget med en fryser ved siden af.",
+    "noindex": true
+  },
+  {
     "path": "/koeleskab/gram-ks-771254/",
     "title": "Gram KS 771254 køleskab strømforbrug (2026) → kWh og pris",
     "description": "Gram KS 771254 og søskende fra 158 til 308 liter: energimærkets kWh om året, pris om året og døgnet, og hvorfor dobbelt så stor kun bruger lidt mere.",
@@ -555,6 +615,12 @@
     "path": "/komfur/",
     "title": "Komfur strømforbrug (2026) → Kogeplader, ovn og årlig pris",
     "description": "Hvor meget strøm bruger et komfur? Se typisk elforbrug i kWh for el-komfur, induktion og gas. Sammenlign modeller og beregn din årlige udgift i 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/kompressor/",
+    "title": "Kompressor strømforbrug (2026) → kWh pr. værkstedstime",
+    "description": "Se hvor meget strøm en luftkompressor bruger pr. tankfyldning og pr. time i værkstedet: 1,1-1,8 kW, 24 eller 50 liter, og hvad intermittens S1 og S3 betyder.",
     "noindex": false
   },
   {
@@ -609,7 +675,7 @@
     "path": "/laptop/macbook-air-m5/",
     "title": "MacBook Air M5 strømforbrug (2026) → watt og opladning",
     "description": "MacBook Air M5 i 13 og 15 tommer: Apples målte watt ved 230 V, kWh om året, prisen for én fuld opladning, og hvorfor opladeren ikke følger med.",
-    "noindex": true
+    "noindex": false
   },
   {
     "path": "/laptop/macbook-neo/",
@@ -627,7 +693,7 @@
     "path": "/laptop/macbook-pro-m5/",
     "title": "MacBook Pro M5 strømforbrug (2026) → 14 og 16 tommer",
     "description": "MacBook Pro M5, M5 Pro og M5 Max i 14 og 16 tommer: Apples watt ved 230 V, kWh om året, pris pr. opladning og hvad tung last koster i timen.",
-    "noindex": true
+    "noindex": false
   },
   {
     "path": "/laptop/macbook-pro-m6/",
@@ -645,6 +711,12 @@
     "path": "/led-paere/",
     "title": "LED-pære strømforbrug (2026) → Watt, kWh og besparelse",
     "description": "Hvor meget strøm bruger en LED-pære? Se elforbrug i kWh, sammenlign med halogener og sparepærer, og beregn din årlige udgift. 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/loevblaeser/",
+    "title": "Løvblæser strømforbrug (2026) → watt i timen og løvsuger",
+    "description": "Se hvor meget strøm en løvblæser eller løvsuger bruger i timen: ledning på op til 3.000 W mod batteri på 18 og 36 V, og hvad et efterår koster.",
     "noindex": false
   },
   {
@@ -708,6 +780,12 @@
     "noindex": false
   },
   {
+    "path": "/motorvarmer/",
+    "title": "Motorvarmer strømforbrug (2026) → kWh pr. morgen og timer",
+    "description": "Se hvor meget strøm en motorvarmer og en kabinevarmer bruger pr. morgen: 550-750 W i 1-3 timer efter frosten, og hvorfor den aldrig skal stå på hele natten.",
+    "noindex": false
+  },
+  {
     "path": "/multikoger/",
     "title": "Multikoger strømforbrug (2026) → trykkogning, kWh pr. ret",
     "description": "Se hvor meget strøm en multikoger som Instant Pot bruger pr. ret ved trykkogning, slow cook og varmhold – og hvor meget den sparer mod gryde og ovn.",
@@ -750,9 +828,39 @@
     "noindex": false
   },
   {
+    "path": "/opvaskemaskine/bosch-serie-2-opvaskemaskine/",
+    "title": "Bosch Serie 2 opvaskemaskine strømforbrug (2026) → kWh",
+    "description": "Bosch Serie 2 opvaskemaskine fritstående, til underbygning og integrerbar: energimærkets kWh pr. opvask, pris om året mod Serie 4 og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
+    "path": "/opvaskemaskine/bosch-serie-4-opvaskemaskine/",
+    "title": "Bosch Serie 4 opvaskemaskine strømforbrug (2026) → kWh",
+    "description": "Bosch Serie 4 opvaskemaskine i 60 og 45 cm: energimærkets kWh pr. opvask fra klasse A til D, pris om året, EfficientDry og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
     "path": "/opvaskemaskine/bosch-serie-6-opvaskemaskine/",
     "title": "Bosch Serie 6 opvaskemaskine strømforbrug (2026) → kWh",
     "description": "Bosch Serie 6 opvaskemaskine i 60 og 45 cm: energimærkets kWh pr. opvask på eco-programmet, pris om året, PerfectDry mod klasse A og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
+    "path": "/opvaskemaskine/bosch-serie-8-opvaskemaskine/",
+    "title": "Bosch Serie 8 opvaskemaskine strømforbrug (2026) → klasse A",
+    "description": "Bosch Serie 8 opvaskemaskine med Zeolith og PerfectDry: energimærkets kWh pr. opvask, pris om året, ældre klasse C til sammenligning og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
+    "path": "/opvaskemaskine/miele-g-5000/",
+    "title": "Miele G 5000 opvaskemaskine strømforbrug (2026) → kWh",
+    "description": "Miele G 5000 opvaskemaskine i 60 og 45 cm: energimærkets kWh pr. opvask på eco-programmet, pris om året, vand, ventetid og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
+    "path": "/opvaskemaskine/siemens-iq300-opvaskemaskine/",
+    "title": "Siemens iQ300 opvaskemaskine strømforbrug (2026) → A til E",
+    "description": "Siemens iQ300 opvaskemaskiner med energiklasse A, C og E: kWh pr. opvask på eco-programmet, pris om året, forskellen i kroner og billigste tidspunkt.",
     "noindex": true
   },
   {
@@ -984,6 +1092,12 @@
     "noindex": false
   },
   {
+    "path": "/svejser/",
+    "title": "Svejser strømforbrug (2026) → kVA, intermittens og kWh",
+    "description": "Se hvor meget strøm et svejseapparat bruger: inverter og MIG/MAG på 230 V, kVA og intermittens forklaret, og hvad en time ved svejsebordet koster i strøm.",
+    "noindex": false
+  },
+  {
     "path": "/terrassevarmer/",
     "title": "Terrassevarmer strømforbrug (2026) → watt og kWh pr. aften",
     "description": "Se hvor meget strøm en el-terrassevarmer bruger i timen, pr. aften og over en sæson – infrarød, halogen og carbon – og hvordan den klarer sig mod gas.",
@@ -1122,6 +1236,18 @@
     "noindex": true
   },
   {
+    "path": "/varmepumpe-toerretumbler/aeg-8000-toerretumbler/",
+    "title": "AEG 8000 tørretumbler strømforbrug (2026) → kWh og pris",
+    "description": "AEG 8000 AbsoluteCare varmepumpetørretumbler på 8 og 9 kg: energimærkets kWh pr. tørring, pris om året, programtid og hvorfor 9 kg bruger mindre.",
+    "noindex": true
+  },
+  {
+    "path": "/varmepumpe-toerretumbler/aeg-9000-toerretumbler/",
+    "title": "AEG 9000 tørretumbler strømforbrug (2026) → kWh og tid",
+    "description": "AEG 9000 varmepumpetørretumbler på 9 og 10 kg: energimærkets kWh pr. tørring fra klasse C til A, pris om året, programtid og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
     "path": "/varmepumpe-toerretumbler/bosch-serie-6-toerretumbler/",
     "title": "Bosch Serie 6 tørretumbler strømforbrug (2026) → kWh og pris",
     "description": "Bosch Serie 6 varmepumpetørretumblere i 8 og 9 kg: energimærkets kWh pr. tørring, pris om året, og hvad selvrensende kondensator og klasse C betyder.",
@@ -1134,15 +1260,33 @@
     "noindex": true
   },
   {
+    "path": "/varmepumpe-toerretumbler/lg-dual-inverter-toerretumbler/",
+    "title": "LG DUAL Inverter tørretumbler strømforbrug (2026) → kWh",
+    "description": "LG DUAL Inverter varmepumpetørretumblere på 8 og 9 kg: energimærkets kWh pr. tørring fra klasse D til B, pris om året, programtid og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
     "path": "/varmepumpe-toerretumbler/miele-t1/",
     "title": "Miele T1 tørretumbler strømforbrug (2026) → kWh pr. tørring",
     "description": "Miele T1 varmepumpetørretumblere i 8 og 9 kg: energimærkets kWh pr. tørring, pris om året, programtid og hvorfor 9 kg ikke bruger mere pr. kg tøj.",
     "noindex": true
   },
   {
+    "path": "/varmepumpe-toerretumbler/miele-tq-1000/",
+    "title": "Miele TQ 1000 WP strømforbrug (2026) → kWh pr. tørring",
+    "description": "Miele TQ 1000 WP Nova Edition varmepumpetørretumbler på 9 kg: energimærkets kWh pr. tørring i klasse B, pris om året, programtid og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
     "path": "/varmepumpe-toerretumbler/samsung-dv90dg/",
     "title": "Samsung DV90DG strømforbrug (2026) → tørretumbler i kWh",
     "description": "Samsung DV90DG varmepumpetørretumblere på 9 kg: energimærkets kWh pr. tørring i klasse A og C, pris om året, og hvad den langsomme A-model sparer.",
+    "noindex": true
+  },
+  {
+    "path": "/varmepumpe-toerretumbler/siemens-iq500-toerretumbler/",
+    "title": "Siemens iQ500 tørretumbler strømforbrug (2026) → kWh og tid",
+    "description": "Siemens iQ500 varmepumpetørretumbler på 9 kg: energimærkets kWh pr. tørring fra klasse D til B, pris om året, programtid og billigste tidspunkt.",
     "noindex": true
   },
   {
@@ -1200,6 +1344,12 @@
     "noindex": true
   },
   {
+    "path": "/vaskemaskine/aeg-8000-vaskemaskine/",
+    "title": "AEG 8000 vaskemaskine strømforbrug (2026) → kWh pr. vask",
+    "description": "AEG 8000 PowerCare vaskemaskine på 9 og 10,5 kg: energimærkets kWh pr. vask på eco 40-60, pris om året, AutoDose og wifi og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
     "path": "/vaskemaskine/bosch-serie-6/",
     "title": "Bosch Serie 6 vaskemaskine strømforbrug (2026) → kWh og pris",
     "description": "Bosch Serie 6 vaskemaskine i 9, 10 og 11 kg: energimærkets kWh pr. vask på eco 40-60, kWh og pris om året, og hvornår på døgnet vasken er billigst.",
@@ -1233,6 +1383,12 @@
     "path": "/vildmarksbad/",
     "title": "Vildmarksbad strømforbrug (2026) → kWh pr. opvarmning",
     "description": "Et elopvarmet vildmarksbad på 1.000 liter skal bruge ca. 27 kWh varme fra 15 til 38 grader. Se tiden med 2 og 3 kW og prisen pr. opvarmning.",
+    "noindex": false
+  },
+  {
+    "path": "/vinkelsliber/",
+    "title": "Vinkelsliber strømforbrug (2026) → watt og værktøjsbatterier",
+    "description": "Se hvor meget strøm en vinkelsliber bruger i timen, og hvad det koster at lade batterierne til dit elværktøj: 18 V på 2-5 Ah, ladetider og opladerens effekt.",
     "noindex": false
   },
   {

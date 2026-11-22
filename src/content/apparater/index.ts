@@ -68,6 +68,18 @@ import overvaagningskamera from "./overvaagningskamera";
 import videodoerklokke from "./videodoerklokke";
 import smartwatch from "./smartwatch";
 import traadloesOplader from "./traadloes-oplader";
+import elplaeneklipper from "./elplaeneklipper";
+import haekkeklipper from "./haekkeklipper";
+import loevblaeser from "./loevblaeser";
+import hoejtryksrenser from "./hoejtryksrenser";
+import dykpumpe from "./dykpumpe";
+import kaedesav from "./kaedesav";
+import kompressor from "./kompressor";
+import svejser from "./svejser";
+import vinkelsliber from "./vinkelsliber";
+import motorvarmer from "./motorvarmer";
+import campingvogn from "./campingvogn";
+import elScooter from "./el-scooter";
 
 /**
  * Nye apparater fra 22. nov. 2026: én fil pr. apparat (src/content/apparater/<slug>.ts, `export default`),
@@ -145,4 +157,16 @@ export const APPLIANCES_NEW: ApplianceData[] = [
   videodoerklokke,
   smartwatch,
   traadloesOplader,
+  elplaeneklipper,
+  haekkeklipper,
+  loevblaeser,
+  hoejtryksrenser,
+  dykpumpe,
+  kaedesav,
+  kompressor,
+  svejser,
+  vinkelsliber,
+  motorvarmer,
+  campingvogn,
+  elScooter,
 ];
