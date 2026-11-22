@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/lib/config";
 import { getPublishedSlugs, getAppliance } from "@/lib/appliances";
 import { pageMeta } from "@/lib/pages";
+import { liveHubs } from "@/lib/catalogue";
+import { isReserved } from "@/lib/routes";
 
 /**
  * Datoerne er gemt, ikke genereret: `lastModified` kommer fra pageMeta() (sidste
@@ -43,10 +45,6 @@ const STATIC_PAGES: StaticEntry[] = [
   { path: "privatlivspolitik", changeFrequency: "yearly", priority: 0.1 },
 ];
 
-const RESERVED_SLUGS = [
-  "beregner", "gennemsnitligt", "husstand", "varmepumpe",
-  "sparetips", "om-os", "kontakt", "privatlivspolitik", "go", "elpriser", "apparater", "metode", "app",
-];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE_CONFIG.url;
@@ -59,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const appliancePages: MetadataRoute.Sitemap = getPublishedSlugs()
-    .filter((slug) => !RESERVED_SLUGS.includes(slug))
+    .filter((slug) => !isReserved(slug))
     .map((slug) => {
       const own = getAppliance(slug)?.updated;
       const meta = pageMeta(`/${slug}/`).updated;
@@ -71,5 +69,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
-  return [...staticPages, ...appliancePages];
+  // Kategorihubberne (22. nov. 2026) — følger liveHubs(), så en ny hub kommer med, når den har 3 apparater.
+  const hubPages: MetadataRoute.Sitemap = liveHubs().map((c) => ({
+    url: `${base}/apparater/${c.slug}/`,
+    lastModified: pageMeta(`/apparater/${c.slug}/`).updated,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...hubPages, ...appliancePages];
 }

@@ -75,6 +75,7 @@ npm run prices         # udskriver byggets priser fra feedet
 | `src/lib/partners.ts` | de 7 selskaber med `/go/`-aftale. Aldrig grundlaget for "billigst". |
 | `src/lib/appliances*.ts`, `appliance-insights.ts`, `home-insights.ts`, `sources.ts` | forbrugstal, afledte sektioner (pris som argument), husstande, verificerede kilder. |
 | `src/lib/catalogue.ts` | **Kataloget** (22. nov. 2026): 16 kategorier (`CATEGORIES`, hubs fra 3 apparater: `/apparater/<slug>/`), én post pr. apparat (`metaOf`: kategori, `usage`, `hasEuLabel`, synonymer, motiv, `shiftable`), `calcModel()` (beregnerens kWh/år — `perYear` er påkrævet; de 43 gamle får `LEGACY_CALC`), `headingFor()` (H1 efter brug), `POPULAR_SLUGS`. Nye apparater bærer `meta` + `calculatorConfig.per/perYear` selv. |
+| `content/routes.json` + `src/lib/routes.ts` | **Den ene liste** over topniveau-ruter, der ikke er apparater (`reserved`), og permanente `redirects` (next.config.ts). [apparat], sitemap, OG og audit-seo/-unique/-widget læser den; audit-seo fejler, hvis en mappe i `src/app` mangler. snapshot-urls tillader, at en omdirigeret URL forlader registret. |
 | `src/lib/search.ts`, `search-index.ts` | Søgningen: ren scorer (normalisering æ/ø/å, stemmer, tastefejl) + indekset (apparater, hubs, guider) på `/api/soeg/`; `SearchBox` (header, skuffe, forside, hubs), `/soeg/` (noindex, virker uden JS). Ingen hit → Vercel-event `search_no_result`. |
 
 ## Pages & components
@@ -85,7 +86,8 @@ npm run prices         # udskriver byggets priser fra feedet
   `ForbrugBeregner` (`calcModel`, priser som props, DK1/DK2) → `PriceBasis` → **`BestTimeToday`** (window / always-on / use-time) → prosa
   (`renderWith` + `wrapTables`) → `ApplianceInsights` → energimærker (kun `hasEuLabel`) → modeller → »Flere i <kategori>« → `AppPromo band`
   → `FaqBand` → `WhoHowWhy` (den ENE kildeliste) → `AuthorBox`.
-- Kategorihubs `/apparater/[kategori]/` (fra 3 udgivne apparater), finderen `/apparater/` (filter + kategoriankre), søgning `/soeg/`.
+- Kategorihubs `/apparater/[kategori]/` (fra 3 udgivne apparater; i sitemap og i headerens »Apparater«-menu), finderen `/apparater/` (filter + kategoriankre), søgning `/soeg/`. Apparatsiden har »På denne side« (`PageToc`) med ankrene `beregner`, `bedste-tidspunkt`, `forbrug`, `energimaerker`, `modeller`, `relaterede`, `spoergsmaal`.
+- `isPublished()` = `isLive()` (dansk dag) siden 22. nov. 2026.
 - Nye sider 2026-10-11: `/elpriser/` (to kort + "hvad koster én gang i dag"), `/apparater/` (indeks), `/metode/`.
 - `PriceBasis` står én gang på hver prisside: grundlagssætningen + `data-dk1/dk2/dk/...`, som `audit-prices` læser i den byggede HTML.
 

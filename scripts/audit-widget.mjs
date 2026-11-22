@@ -31,7 +31,7 @@ if (!files.length) { console.log("audit-widget: ingen bygget HTML — kør efter
 const pathOf = (f) => { const p = f.slice(BUILD.length).replace(/\.html$/, ""); return p === "/index" ? "/" : `${p}/`; };
 
 const urls = JSON.parse(readFileSync(join(ROOT, "content/urls.json"), "utf8")).map((u) => u.path);
-const RESERVED = new Set(["/", "/beregner/", "/gennemsnitligt/", "/husstand/", "/varmepumpe/", "/hvad-koster-en-kwh/", "/hvad-koster-det-at-lade-en-elbil/", "/sparetips/", "/standby/", "/stromslugere/", "/spare-paa-stroemmen/", "/om-os/", "/kontakt/", "/privatlivspolitik/", "/elpriser/", "/metode/", "/apparater/", "/app/"]);
+const RESERVED = new Set(["/", ...JSON.parse(readFileSync(join(ROOT, "content/routes.json"), "utf8")).reserved.map((r) => `/${r}/`)]);
 const appliancePaths = new Set(urls.filter((p) => !RESERVED.has(p) && !p.startsWith("/husstand/") && !p.startsWith("/varmepumpe/") && !p.startsWith("/apparater/")));
 
 const IFRAME = /<iframe\b[^>]*src="https:\/\/elpriser\.dk\/embed\/elpriser\/[^"]+"[^>]*>/g;

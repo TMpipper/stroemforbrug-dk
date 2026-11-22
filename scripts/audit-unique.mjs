@@ -41,11 +41,7 @@ const WORST_SHOWN = 5;
 const SHARED_ATTRS = ["data-shared", "data-switch-cta", "data-price-basis", "data-best-time"];
 
 /** Hub-stier, der ikke er apparatsider. Alt andet i registret på formen /<slug>/ er et apparat. */
-const RESERVED = new Set([
-  "/", "/beregner/", "/gennemsnitligt/", "/husstand/", "/varmepumpe/", "/hvad-koster-en-kwh/",
-  "/hvad-koster-det-at-lade-en-elbil/", "/sparetips/", "/standby/", "/stromslugere/",
-  "/spare-paa-stroemmen/", "/om-os/", "/kontakt/", "/privatlivspolitik/", "/app/",
-]);
+const RESERVED = new Set(["/", ...JSON.parse(readFileSync(join(ROOT, "content/routes.json"), "utf8")).reserved.map((r) => `/${r}/`)]);
 
 const files = walkHtml(BUILD).filter((f) => !/_global-error|_not-found/.test(f));
 if (!files.length) {

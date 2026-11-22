@@ -1,3 +1,4 @@
+import { isReserved } from "@/lib/routes";
 import { ImageResponse } from "next/og";
 import { getAppliance, getPublishedSlugs } from "@/lib/appliances";
 import { applianceRank, seasonalCost } from "@/lib/appliance-insights";
@@ -21,14 +22,10 @@ export const contentType = "image/png";
 const BRAND = "#1e40af";
 const ACCENT = "#eab308";
 
-const RESERVED = new Set([
-  "beregner", "gennemsnitligt", "husstand", "varmepumpe",
-  "sparetips", "om-os", "kontakt", "privatlivspolitik", "go",
-]);
 
 export function generateStaticParams() {
   return getPublishedSlugs()
-    .filter((slug) => !RESERVED.has(slug))
+    .filter((slug) => !isReserved(slug))
     .map((apparat) => ({ apparat }));
 }
 

@@ -1,4 +1,5 @@
 import type { ApplianceData } from "./types";
+import { isLive } from "./publish";
 import { APPLIANCES_CORE } from "./appliances-core";
 import { APPLIANCES_EXTRA } from "./appliances-extra";
 import { APPLIANCES_PHASE2A } from "./appliances-phase2a";
@@ -20,10 +21,13 @@ export const APPLIANCES: ApplianceData[] = [
   ...phase3,
 ];
 
-/** Check if an appliance is published (no publishDate = always published) */
+/**
+ * Er apparatet udgivet? (ingen publishDate = altid). Samme regel som resten af sitet (`isLive`, dansk dag):
+ * før 22. nov. 2026 sammenlignede den `new Date("2026-12-01")` (UTC-midnat) med nu, så en side gik live
+ * kl. 01 dansk tid — og et byg mellem 00 og 01 viste den ikke, selv om menuen (isLive) gjorde.
+ */
 export function isPublished(a: ApplianceData): boolean {
-  if (!a.publishDate) return true;
-  return new Date(a.publishDate) <= new Date();
+  return !a.publishDate || isLive(a.publishDate);
 }
 
 /** All appliances that are currently published — for sitemap, homepage, listings */

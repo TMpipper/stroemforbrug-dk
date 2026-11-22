@@ -1,0 +1,26 @@
+{
+  "_comment": "Den ene liste over topniveau-ruter, der IKKE er apparatsider (22. nov. 2026; før kopieret seks steder, og kopierne var uenige). Læses af [apparat], sitemap, OG-billedet og audit-seo/-unique/-widget. audit-seo fejler, hvis en mappe i src/app mangler her. `redirects`: permanente 301 i next.config.ts; snapshot-urls accepterer, at de forsvinder fra URL-registret. Dubletterne /gulvvarme-el/ → /gulvvarme/ og /spare-paa-stroemmen/ → /sparetips/ venter på Search Console-data (hvilken URL Google foretrækker), før indholdet lægges sammen.",
+  "reserved": [
+    "api",
+    "app",
+    "apparater",
+    "beregner",
+    "elpriser",
+    "gennemsnitligt",
+    "go",
+    "husstand",
+    "hvad-koster-det-at-lade-en-elbil",
+    "hvad-koster-en-kwh",
+    "kontakt",
+    "metode",
+    "om-os",
+    "privatlivspolitik",
+    "soeg",
+    "spare-paa-stroemmen",
+    "sparetips",
+    "standby",
+    "stromslugere",
+    "varmepumpe"
+  ],
+  "redirects": {}
+}

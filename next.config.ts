@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import routes from "./content/routes.json";
 
 /**
  * Sikkerhedsheadere som på Elpriser.dk. `frame-src` tillader Elpriser.dk's elpris-widget (iframe) —
@@ -16,6 +17,10 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
     formats: ["image/avif", "image/webp"],
+  },
+  // Sammenlagte dubletter (22. nov. 2026), fra content/routes.json.
+  async redirects() {
+    return Object.entries(routes.redirects as Record<string, string>).map(([source, destination]) => ({ source, destination, permanent: true }));
   },
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];

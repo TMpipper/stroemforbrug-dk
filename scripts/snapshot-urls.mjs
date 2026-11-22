@@ -29,7 +29,11 @@ const entries = walk(APP).map((file) => {
 const prev = (() => { try { return JSON.parse(readFileSync(OUT, "utf8")); } catch { return null; } })();
 if (prev && !process.argv.includes("--write")) {
   const have = new Set(entries.map((e) => e.path));
-  const missing = prev.filter((e) => !have.has(e.path)).map((e) => e.path);
+  // Sammenlagte dubletter med 301 (content/routes.json) må forsvinde; alt andet er et brud.
+  const redirects = JSON.parse(readFileSync(join(ROOT, "content", "routes.json"), "utf8")).redirects;
+  const gone = prev.filter((e) => !have.has(e.path));
+  for (const e of gone.filter((e) => redirects[e.path])) console.log(`URL-register: ${e.path} → ${redirects[e.path]} (301)`);
+  const missing = gone.filter((e) => !redirects[e.path]).map((e) => e.path);
   if (missing.length) { console.error(`URL-registret mangler ${missing.length} sider i dette build:\n  ${missing.join("\n  ")}`); process.exit(1); }
   console.log(`URL-register: ${prev.length} frosne sider findes alle (${entries.length} bygget).`);
 } else {

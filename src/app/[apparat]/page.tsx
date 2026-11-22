@@ -12,6 +12,8 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import { appliancesIn, calcModel, category as categoryInfo, headingFor, hubFor, metaOf } from "@/lib/catalogue";
+import { isReserved } from "@/lib/routes";
+import PageToc from "@/components/appliance/PageToc";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import ApplianceInsights from "@/components/content/ApplianceInsights";
 import { EnergyLabelChart } from "@/components/charts/ApplianceCharts";
@@ -27,33 +29,12 @@ import AppPromo from "@/components/app-promo/AppPromo";
 import { getBothToday } from "@/lib/hourly-today";
 import { withCurrentYear } from "@/lib/format";
 
-// Reserved slugs that should NOT be handled by this dynamic route
-const RESERVED_SLUGS = [
-  "beregner",
-  "gennemsnitligt",
-  "husstand",
-  "varmepumpe",
-  "sparetips",
-  "standby",
-  "stromslugere",
-  "spare-paa-stroemmen",
-  "hvad-koster-en-kwh",
-  "hvad-koster-det-at-lade-en-elbil",
-  "om-os",
-  "kontakt",
-  "privatlivspolitik",
-  "go",
-  "elpriser",
-  "apparater",
-  "metode",
-  "app",
-];
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return getAllSlugs()
-    .filter((slug) => !RESERVED_SLUGS.includes(slug))
+    .filter((slug) => !isReserved(slug))
     .map((slug) => ({ apparat: slug }));
 }
 
@@ -88,7 +69,7 @@ export default async function AppliancePage({
   const { apparat } = await params;
   const data = getAppliance(apparat);
 
-  if (!data || RESERVED_SLUGS.includes(apparat)) {
+  if (!data || isReserved(apparat)) {
     notFound();
   }
 
@@ -201,8 +182,21 @@ export default async function AppliancePage({
         </div>
 
 
+        <PageToc
+          items={[
+            ...(calc ? [{ id: "beregner", label: "Beregner" }] : []),
+            { id: "bedste-tidspunkt", label: "Billigste tidspunkt" },
+            { id: "forbrug", label: "Forbrug og tips" },
+            ...(meta_.hasEuLabel && data.energyLabels.length > 0 ? [{ id: "energimaerker", label: "Energimærker" }] : []),
+            ...(data.models.length > 0 ? [{ id: "modeller", label: "Modeller" }] : []),
+            { id: "relaterede", label: "Lignende apparater" },
+            ...(faqs.length ? [{ id: "spoergsmaal", label: "Spørgsmål" }] : []),
+          ]}
+        />
+
         {/* Calculator */}
         {calc && (
+        <div id="beregner">
         <ForbrugBeregner
           title={data.calculatorConfig.title}
           options={calc.options}
@@ -218,6 +212,7 @@ export default async function AppliancePage({
           prices={calculatorPrices(prices)}
           deal={calculatorDeal(prices)}
         />
+        </div>
         )}
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
 
@@ -226,6 +221,7 @@ export default async function AppliancePage({
 
         {/* Main content */}
         <div
+          id="forbrug"
           className="prose-content"
           dangerouslySetInnerHTML={{ __html: content }}
         />
@@ -237,7 +233,7 @@ export default async function AppliancePage({
         {/* Energy labels table */}
         {/* Kun produktgrupper med et gældende EU-energimærke — før stod der opfundne A–D-tabeller på airfryer, router, laptop … */}
         {meta_.hasEuLabel && data.energyLabels.length > 0 && (
-          <div className="my-10">
+          <div id="energimaerker" className="my-10">
             <EnergyLabelChart data={data} price={t.dk} />
             <h2 className="font-heading text-2xl font-semibold text-ink mb-4 mt-12">
               Energimærkning — {data.name}
@@ -284,7 +280,7 @@ export default async function AppliancePage({
 
         {/* Specific models */}
         {data.models.length > 0 && (
-          <div className="my-10">
+          <div id="modeller" className="my-10">
             <h2 className="font-heading text-2xl font-semibold text-ink mb-4 mt-12">
               Populære modeller — {data.name} strømforbrug
             </h2>

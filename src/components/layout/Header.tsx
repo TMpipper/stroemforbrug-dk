@@ -3,7 +3,8 @@ import Logo from "@/components/brand/Logo";
 import { Search } from "lucide-react";
 import MobileNav from "./MobileNav";
 import SearchBox from "@/components/search/SearchBox";
-import { liveHubs } from "@/lib/catalogue";
+import { appliancesIn, liveHubs } from "@/lib/catalogue";
+import { getPublishedAppliances } from "@/lib/appliances";
 import { CHROME, CTA, liveNav, liveSecondary, type NavLang } from "./nav";
 
 /**
@@ -20,7 +21,9 @@ export default function Header({ lang = "da" }: { lang?: NavLang }) {
   const cta = CTA[lang];
   const items = liveNav(lang);
   const secondary = liveSecondary(lang);
-  const categories = liveHubs().map((c) => ({ href: `/apparater/${c.slug}/`, label: c.label }));
+  const hubs = liveHubs();
+  const categories = hubs.map((c) => ({ href: `/apparater/${c.slug}/`, label: c.label }));
+  const total = getPublishedAppliances().length;
   return (
     <header className="sticky top-0 z-40 bg-bg md:bg-bg/85 md:backdrop-blur-md">
       <div className="container-site flex h-20 items-center justify-between gap-2 sm:gap-4">
@@ -31,15 +34,52 @@ export default function Header({ lang = "da" }: { lang?: NavLang }) {
         </div>
         <nav aria-label={t.mainMenu} className="hidden items-center rounded-pill border border-border bg-surface px-2 py-1 shadow-sm min-[1360px]:flex">
           {/* Logoet er forsiden; pillen giver pladsen til søgefeltet (22. nov. 2026). Skuffen har stadig punktet. */}
-          {items.filter((n) => n.href !== "/").map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              className="whitespace-nowrap rounded-pill px-2.5 py-2 text-[14px] font-medium text-ink-body transition-colors hover:bg-brand-50 hover:text-ink"
-            >
-              {n.label}
-            </Link>
-          ))}
+          {items.filter((n) => n.href !== "/").map((n) =>
+            n.href === "/apparater/" && hubs.length ? (
+              // »Apparater«-menuen: kategorierne med deres tre største strømslugere. Ren CSS (hover + focus-within),
+              // så den virker med tastatur og uden JavaScript; selve punktet linker stadig til finderen.
+              <div key={n.href} className="group relative">
+                <Link
+                  href={n.href}
+                  className="inline-flex whitespace-nowrap rounded-pill px-2.5 py-2 text-[14px] font-medium text-ink-body transition-colors hover:bg-brand-50 hover:text-ink"
+                >
+                  {n.label} <span aria-hidden className="ml-1 text-ink-muted">▾</span>
+                </Link>
+                <div className="invisible absolute left-1/2 top-full z-50 w-[40rem] -translate-x-1/2 pt-3 opacity-0 transition-opacity duration-150 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                  <div className="rounded-card border border-border bg-surface p-5 shadow-lg">
+                    <ul className="grid grid-cols-3 gap-x-6 gap-y-5">
+                      {hubs.map((c) => (
+                        <li key={c.key}>
+                          <Link href={`/apparater/${c.slug}/`} className="text-sm font-semibold text-ink hover:text-accent">
+                            {c.label}
+                          </Link>
+                          <ul className="mt-1.5 space-y-1">
+                            {appliancesIn(c.key).slice(0, 3).map((a) => (
+                              <li key={a.slug}>
+                                <Link href={`/${a.slug}/`} className="text-sm text-ink-body hover:text-accent">{a.name}</Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
+                      <Link href="/apparater/" className="text-sm font-semibold text-accent hover:underline">Alle {total} apparater →</Link>
+                      <Link href="/beregner/" className="text-sm text-ink-body hover:text-accent">Ikke på listen? Beregn ud fra watt</Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={n.href}
+                href={n.href}
+                className="whitespace-nowrap rounded-pill px-2.5 py-2 text-[14px] font-medium text-ink-body transition-colors hover:bg-brand-50 hover:text-ink"
+              >
+                {n.label}
+              </Link>
+            ),
+          )}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <Link

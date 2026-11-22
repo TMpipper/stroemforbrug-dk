@@ -95,11 +95,14 @@ if (thin.length) {
 /* ---------- 5. internal links ---------- */
 
 const slugs = new Set(getAllSlugs());
-const RESERVED = new Set([
-  "beregner", "gennemsnitligt", "husstand", "varmepumpe", "sparetips", "om-os",
-  "kontakt", "privatlivspolitik", "stromslugere", "standby", "spare-paa-stroemmen",
-  "hvad-koster-en-kwh", "hvad-koster-det-at-lade-en-elbil", "app",
-]);
+const ROUTES = JSON.parse(readFileSync("content/routes.json", "utf8")) as { reserved: string[]; redirects: Record<string, string> };
+const RESERVED = new Set(ROUTES.reserved);
+// Hver topniveau-mappe i src/app (undtagen [apparat]) skal stå på den ene liste — ellers tælles den som apparat.
+for (const d of readdirSync("src/app")) {
+  if (statSync(join("src/app", d)).isDirectory() && !d.startsWith("[") && !RESERVED.has(d)) fail(`src/app/${d}/ is not in content/routes.json "reserved"`);
+}
+// Ingen tekst må linke til en omdirigeret adresse.
+for (const a of APPLIANCES) for (const from of Object.keys(ROUTES.redirects)) if (a.content.includes(`href="${from}"`)) fail(`${a.slug}: links to redirected ${from}`);
 
 let broken = 0;
 let overLinked = 0;

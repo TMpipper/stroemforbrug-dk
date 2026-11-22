@@ -22,7 +22,7 @@ export default function FaqBand({ faqs, groups, title = "Ofte stillede spørgsm�
           (mint under appbåndet, side-farven ellers) og den creme form smelter sammen med båndet. Den flippede
           udgave tegnede en creme stribe og en grå kile under den — på hver eneste side. */}
       <Wave fill="var(--color-bg-warm)" className="-mt-10 md:-mt-16" />
-      <div className="bg-bg-warm">
+      <div id="spoergsmaal" className="bg-bg-warm">
         {groups ? (
           <section className="container-text py-14 md:py-20">
             <h2 className="font-heading text-3xl font-semibold text-ink">{title}</h2>
