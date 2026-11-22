@@ -9,13 +9,13 @@ import AuthorBox from "@/components/marketing/AuthorBox";
 import PriceBasis from "@/components/content/PriceBasis";
 import MotifChip from "@/components/visuals/MotifChip";
 import { getPublishedAppliances } from "@/lib/appliances";
-import { categoryOf, CATEGORY_LABELS, type CategoryKey } from "@/lib/home-insights";
+import { CATEGORIES, metaOf } from "@/lib/catalogue";
 import { getPrices, tokenPrices } from "@/lib/prices";
 import { getBothToday, hourSpan } from "@/lib/hourly-today";
 import { formatKr, formatPrice, withCurrentYear } from "@/lib/format";
 import { pageMeta } from "@/lib/pages";
 import { applianceMotif, motifForPath } from "@/lib/visuals/defaults";
-import { isAlwaysOn } from "@/components/appliance/BestTimeToday";
+import { bestTimeMode } from "@/components/appliance/BestTimeToday";
 import AppStrip from "@/components/app-popup/AppStrip";
 
 const PATH = "/apparater/";
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_CONFIG.url}${PATH}` },
 };
 
-const ORDER: CategoryKey[] = ["varme", "transport", "vaskToerring", "koelFrys", "madlavning", "underholdning", "oevrigt"];
+const MODE_LABEL = { window: "kan flyttes til billige timer", "always-on": "kører hele døgnet", "use-time": "bruges, når du har brug for det" } as const;
 
 export default async function ApparaterPage() {
   const [prices, today] = await Promise.all([getPrices(), getBothToday()]);
   const t = tokenPrices(prices);
   const all = [...getPublishedAppliances()].sort((a, b) => b.typicalKwh - a.typicalKwh);
-  const groups = ORDER.map((key) => ({ key, label: CATEGORY_LABELS[key], items: all.filter((a) => categoryOf(a.slug) === key) })).filter((g) => g.items.length);
+  const groups = CATEGORIES.map((c) => ({ key: c.key, label: c.label, items: all.filter((a) => metaOf(a).category === c.key) })).filter((g) => g.items.length);
   const url = `${SITE_CONFIG.url}${PATH}`;
   const total = all.reduce((n, a) => n + a.typicalKwh, 0);
 
@@ -79,7 +79,7 @@ export default async function ApparaterPage() {
                     <span className="min-w-0 flex-1">
                       <span className="block font-semibold text-ink group-hover:text-accent">{a.name}</span>
                       <span className="block text-xs text-ink-muted tabular">
-                        {formatKr(a.typicalKwh)} kWh · {formatKr(a.typicalKwh * t.dk)} kr. om året · {isAlwaysOn(a) ? "kører hele døgnet" : "kan flyttes til billige timer"}
+                        {formatKr(a.typicalKwh)} kWh · {formatKr(a.typicalKwh * t.dk)} kr. om året · {MODE_LABEL[bestTimeMode(a)]}
                       </span>
                     </span>
                   </Link>

@@ -82,14 +82,16 @@ export default async function LuftTilVandPage() {
         <ForbrugBeregner
           title="Luft-til-vand forbrugsberegner"
           options={[
-            { label: "100 m² hus (god isolering)", kwhPerUse: 10.0 },
-            { label: "130 m² hus (normal isolering)", kwhPerUse: 13.7 },
-            { label: "150 m² hus (normal isolering)", kwhPerUse: 16.0 },
-            { label: "200 m² hus (normal isolering)", kwhPerUse: 20.0 },
-            { label: "130 m² hus (dårlig isolering)", kwhPerUse: 18.0 },
+            { label: "100 m² hus (god isolering)", kwhPerUse: 0.83 },
+            { label: "130 m² hus (normal isolering)", kwhPerUse: 1.14 },
+            { label: "150 m² hus (normal isolering)", kwhPerUse: 1.33 },
+            { label: "200 m² hus (normal isolering)", kwhPerUse: 1.67 },
+            { label: "130 m² hus (dårlig isolering)", kwhPerUse: 1.5 },
           ]}
           usageLabel="Timer i drift pr. dag (gennemsnit)"
           usageUnit="timer/dag"
+          perYear={365}
+          per="time"
           usageMin={4}
           usageMax={24}
           usageDefault={12}

@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { getAppliance, getPublishedSlugs } from "@/lib/appliances";
 import { applianceRank, seasonalCost } from "@/lib/appliance-insights";
 import { formatKr } from "@/lib/format";
+import { headingFor } from "@/lib/catalogue";
 
 /**
  * A share card per appliance, built from that appliance's own figures.
@@ -92,7 +93,7 @@ export default async function Image({ params }: { params: Promise<{ apparat: str
         {/* data.heading already carries the right Danish article per appliance
             — "et køleskab" vs "en tørretumbler" — so never build this sentence here. */}
         <div style={{ fontSize: 54, fontWeight: 700, lineHeight: 1.1, marginTop: 20, display: "flex" }}>
-          {data.heading}
+          {headingFor(data)}
         </div>
 
         <div style={{ display: "flex", gap: 22, marginTop: 28 }}>

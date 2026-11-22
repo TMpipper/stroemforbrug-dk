@@ -42,6 +42,17 @@ interface ForbrugBeregnerProps {
   usageMax?: number;
   usageDefault?: number;
   usageStep?: number;
+  /** kWh/år = kwhPerUse × forbrug × perYear (52 for »pr. uge«, 365 for »pr. dag«). Påkrævet — før regnede alle 52. */
+  perYear: number;
+  /** Enheden for én `kwhPerUse` i ental efter »pr.«: "gang", "time", "døgn", "km" … */
+  per?: string;
+  defaultIndex?: number;
+}
+
+/** kWh med dansk komma og nok decimaler til, at et lille tal ikke bliver 0,0. */
+function kwhText(n: number): string {
+  const digits = n >= 10 ? 0 : n >= 1 ? 1 : n >= 0.1 ? 2 : 3;
+  return n.toLocaleString("da-DK", { minimumFractionDigits: 0, maximumFractionDigits: digits });
 }
 
 export default function ForbrugBeregner({
@@ -55,18 +66,20 @@ export default function ForbrugBeregner({
   usageMax = 14,
   usageDefault = 3,
   usageStep = 1,
+  perYear,
+  per = "gang",
+  defaultIndex = 0,
 }: ForbrugBeregnerProps) {
   // useId keeps the label/input pair unique when several calculators share a page
   const sliderId = useId();
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
   const [usage, setUsage] = useState(usageDefault);
   const [region, setRegion] = useState<"DK1" | "DK2">("DK1");
   const price = region === "DK1" ? prices.dk1 : prices.dk2;
   const best = deal[region];
 
   const selected = options[selectedIndex];
-  const kwhPerWeek = selected.kwhPerUse * usage;
-  const kwhPerYear = kwhPerWeek * 52;
+  const kwhPerYear = selected.kwhPerUse * usage * perYear;
   const kwhPerMonth = kwhPerYear / 12;
 
   const costPerYear = kwhPerYear * price;
@@ -112,7 +125,7 @@ export default function ForbrugBeregner({
                     : "border-border bg-surface text-ink-body hover:border-brand-500"
                 }`}
               >
-                {opt.label} ({opt.kwhPerUse.toFixed(1)} kWh)
+                {opt.label} ({kwhText(opt.kwhPerUse)} kWh pr. {per})
               </button>
             ))}
           </div>
@@ -146,13 +159,13 @@ export default function ForbrugBeregner({
               {usageLabel}:
             </label>
             <span className="text-lg font-bold text-ink tabular">
-              {usage} {usageUnit}
+              {usage.toLocaleString("da-DK")} {usageUnit}
             </span>
           </div>
           <input
             id={sliderId}
             type="range"
-            aria-valuetext={`${usage} ${usageUnit}`}
+            aria-valuetext={`${usage.toLocaleString("da-DK")} ${usageUnit}`}
             min={usageMin}
             max={usageMax}
             step={usageStep}
@@ -162,10 +175,10 @@ export default function ForbrugBeregner({
           />
           <div className="flex justify-between text-xs text-ink-600 mt-1">
             <span>
-              {usageMin} {usageUnit}
+              {usageMin.toLocaleString("da-DK")} {usageUnit}
             </span>
             <span>
-              {usageMax} {usageUnit}
+              {usageMax.toLocaleString("da-DK")} {usageUnit}
             </span>
           </div>
         </div>
@@ -177,12 +190,12 @@ export default function ForbrugBeregner({
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="bg-surface-alt rounded-card px-4 py-3 text-center">
-              <p className="text-xs text-ink-500">Pr. gang</p>
+              <p className="text-xs text-ink-500">Pr. {per}</p>
               <p className="text-lg font-bold text-ink-900">
                 {fmt(selected.kwhPerUse * price)} kr.
               </p>
               <p className="text-xs text-ink-400">
-                {selected.kwhPerUse.toFixed(1)} kWh
+                {kwhText(selected.kwhPerUse)} kWh
               </p>
             </div>
             <div className="bg-surface-alt rounded-card px-4 py-3 text-center">

@@ -139,6 +139,9 @@ if (!existsSync(APP)) {
     const html = readFileSync(file, "utf8").replace(/<!-- -->/g, "");
     const name = rel(file).replace(/^\.next\/server\/app\//, "");
     if (html.includes("{{")) fail(`${name}: urenderet token "{{" i HTML`);
+    // Dobbelt enhed (»549 kr. kr.«) — live på hver apparatside indtil 22. nov. 2026; renderWith/collapseUnits retter den.
+    const doubled = html.replace(/<script[\s\S]*?<\/script>/g, "").match(/\bkr\.(?:\s|&nbsp;)+kr\./g);
+    if (doubled) fail(`${name}: ${doubled.length}× dobbelt enhed »kr. kr.«`);
     const basis = html.match(/<p[^>]*data-price-basis[^>]*>/g) ?? [];
     const hasKwhPrice = /\d,\d{2}\s*kr\.\/kWh/.test(html);
     if (basis.length > 1) fail(`${name}: ${basis.length} grundlagssætninger — der må kun være én`);

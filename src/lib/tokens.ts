@@ -69,9 +69,20 @@ function expand(token: string, p: TokenPrices): string {
   return b ? `${krAmount(parseDa(a!), p.dk, divisor)}${dash}${krAmount(parseDa(b), p.dk, divisor)} kr.` : `${krAmount(parseDa(a!), p.dk, divisor)} kr.`;
 }
 
+/**
+ * Prosaen skrev ofte enheden efter tokenet, der selv bærer »kr.« (»{{kr 150}}–{{kr 300}} kr.«) — live som
+ * »275 kr.-549 kr. kr.« 14–44 gange pr. side indtil 22. nov. 2026. Et interval får én enhed, og en dobbelt
+ * enhed bliver til én. audit-prices fejler, hvis »kr. kr.« alligevel når den byggede HTML.
+ */
+export function collapseUnits(text: string): string {
+  return text
+    .replace(/(\d) kr\.(\s?[-–—]\s?)(\d[\d.,]*) kr\./g, "$1$2$3 kr.")
+    .replace(/ kr\.(?:\s|&nbsp;)+kr\./g, " kr.");
+}
+
 /** Erstatter alle kendte tokens; ukendte bliver stående, så de ses. */
 export function renderWith(p: TokenPrices, text: string): string {
-  return text.replace(TOKEN_RE, (_, token: string) => expand(token, p));
+  return collapseUnits(text.replace(TOKEN_RE, (_, token: string) => expand(token, p)));
 }
 
 /** Tokens, der ikke følger grammatikken (til audit og tests). */

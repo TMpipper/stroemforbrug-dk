@@ -3,6 +3,7 @@ import type { ApplianceData } from "@/lib/types";
 import { articleFor, possessiveFor } from "@/lib/appliance-insights";
 import { formatKrExact, formatPrice, danishDate } from "@/lib/format";
 import { hourSpan, hourlyBasisAttrs, type TodayPrices } from "@/lib/hourly-today";
+import { calcModel, isShiftable, metaOf } from "@/lib/catalogue";
 
 /**
  * »Billigst at bruge X i dag« — sidens differentiator: hvornår på dagen apparatet er billigst at bruge,
@@ -13,10 +14,20 @@ import { hourSpan, hourlyBasisAttrs, type TodayPrices } from "@/lib/hourly-today
  * Ingen »lige nu«-påstand: siden er ISR (op til 5 min gammel). Teksten siger kl. HH–HH og »i dag«;
  * Elpriser.dk's kort bærer det levende tal på de sider, der har det.
  */
-const ALWAYS_ON = new Set(["koeleskab", "fryser", "kummefryser", "router", "akvarium", "varmtvandsbeholder", "robotstoevsuger", "gulvvarme", "gulvvarme-el", "jordvarme", "varmepumpe", "solceller", "led-paere", "lyskaede"]);
-
+/** Kører apparatet hele døgnet (køleskab, router, varmepumpe …)? Så tæller døgnets gennemsnit, ikke timen. */
 export function isAlwaysOn(a: ApplianceData): boolean {
-  return ALWAYS_ON.has(a.slug);
+  const u = metaOf(a).usage;
+  return u === "always-on" || u === "heating" || u === "production";
+}
+
+/**
+ * Tre slags blok: »window« (kan flyttes: opvask, vask, elbil), »always-on« (kører hele døgnet) og »use-time«
+ * (bruges, når man har brug for det: tv, lys, elkedel — dér er det de dyre timer, man kan undgå, ikke et
+ * natligt vindue, man kan flytte til).
+ */
+export function bestTimeMode(a: ApplianceData): "window" | "always-on" | "use-time" {
+  if (isShiftable(a)) return "window";
+  return isAlwaysOn(a) ? "always-on" : "use-time";
 }
 
 export type BothToday = { DK1: TodayPrices; DK2: TodayPrices };
@@ -25,21 +36,28 @@ export default function BestTimeToday({ data, today }: { data: ApplianceData; to
   const name = data.name.toLowerCase();
   const poss = possessiveFor(data);
   const art = articleFor(data);
-  const perUse = data.calculatorConfig.options[0]?.kwhPerUse ?? null;
-  const unit = data.calculatorConfig.usageUnit.replace(/^pr\.\s*/, "");
+  const calc = calcModel(data);
+  const perUse = calc ? calc.options[calc.defaultIndex].kwhPerUse : null;
+  const unit = calc?.per ?? "gang";
+  const perUseText = perUse === null ? "" : perUse.toLocaleString("da-DK", { maximumFractionDigits: perUse >= 1 ? 1 : perUse >= 0.1 ? 2 : 3 });
   const regions = [
     { key: "DK1" as const, label: "Vestdanmark", t: today.DK1 },
     { key: "DK2" as const, label: "Østdanmark", t: today.DK2 },
   ];
   const d = today.DK1;
-  const alwaysOn = isAlwaysOn(data);
+  const mode = bestTimeMode(data);
+  const alwaysOn = mode === "always-on";
   const kr = (kwh: number, price: number) => formatKrExact(kwh * price);
 
   return (
-    <section data-best-time={alwaysOn ? "always-on" : "window"} data-region="DK1" {...hourlyBasisAttrs(today)} aria-labelledby="bedste-tidspunkt" className="my-10 rounded-card bg-bg-blue p-5 sm:p-6">
+    <section data-best-time={mode} data-region="DK1" {...hourlyBasisAttrs(today)} aria-labelledby="bedste-tidspunkt" className="my-10 rounded-card bg-bg-blue p-5 sm:p-6">
       <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">Timepriser i dag · {danishDate(d.day)}</p>
       <h2 id="bedste-tidspunkt" className="mt-1 font-heading text-2xl font-semibold text-ink">
-        {alwaysOn ? `Hvad koster ${poss} ${name} i dag?` : `Hvornår er det billigst at bruge ${poss} ${name} i dag?`}
+        {mode === "always-on"
+          ? `Hvad koster ${poss} ${name} i dag?`
+          : mode === "use-time"
+            ? `Hvad koster det at bruge ${poss} ${name} i dag — time for time?`
+            : `Hvornår er det billigst at bruge ${poss} ${name} i dag?`}
       </h2>
 
       {alwaysOn ? (
@@ -51,13 +69,20 @@ export default function BestTimeToday({ data, today }: { data: ApplianceData; to
         </p>
       ) : (
         <>
+          {mode === "use-time" ? (
+            <p className="mt-3 text-ink-body">
+              {art.charAt(0).toUpperCase() + art.slice(1)} {name} bruger man, når man har brug for det — så det, der kan spares, ligger i at
+              undgå de dyreste timer, ikke i at flytte brugen til natten. Døgnets gennemsnit i dag er{" "}
+              <strong className="tabular">{formatPrice(d.avg)} kr./kWh</strong> i Vestdanmark.
+            </p>
+          ) : null}
           <p className="mt-3 text-ink-body">
             Billigst <strong>{hourSpan(d.cheapest)}</strong>, dyrest <strong>{hourSpan(d.dearest)}</strong> i Vestdanmark
             {today.DK2.cheapest.start !== d.cheapest.start ? ` (i Østdanmark ${hourSpan(today.DK2.cheapest)})` : ""}.
             {perUse ? (
               <>
                 {" "}
-                Én gang ({perUse.toFixed(1).replace(".", ",")} kWh) koster <strong className="tabular">{kr(perUse, d.cheapest.krPerKwh)} kr.</strong> i
+                Pr. {unit} ({perUseText} kWh) koster <strong className="tabular">{kr(perUse, d.cheapest.krPerKwh)} kr.</strong> i
                 det billigste vindue mod <strong className="tabular">{kr(perUse, d.dearest.krPerKwh)} kr.</strong> i det dyreste — en forskel på{" "}
                 {Math.round(((d.dearest.krPerKwh - d.cheapest.krPerKwh) / d.dearest.krPerKwh) * 100)} %.
               </>

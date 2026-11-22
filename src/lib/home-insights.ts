@@ -25,36 +25,18 @@ import type { FAQ } from "./types";
 
 /* ---------- categories ---------- */
 
-export type CategoryKey =
-  | "koelFrys" | "vaskToerring" | "madlavning" | "underholdning" | "varme" | "transport" | "oevrigt";
-
-export const CATEGORY_LABELS: Record<CategoryKey, string> = {
-  koelFrys: "Køl og frys",
-  vaskToerring: "Vask og tørring",
-  madlavning: "Madlavning",
-  underholdning: "Underholdning og elektronik",
-  varme: "Varme og vand",
-  transport: "Transport",
-  oevrigt: "Øvrigt",
-};
-
-const CATEGORY_OF: Record<string, CategoryKey> = {
-  koeleskab: "koelFrys", fryser: "koelFrys", kummefryser: "koelFrys",
-  vaskemaskine: "vaskToerring", toerretumbler: "vaskToerring", strygejern: "vaskToerring",
-  opvaskemaskine: "madlavning", ovn: "madlavning", komfur: "madlavning", induktion: "madlavning",
-  mikroovn: "madlavning", airfryer: "madlavning", kaffemaskine: "madlavning",
-  elkedel: "madlavning", broedrister: "madlavning", quooker: "madlavning",
-  tv: "underholdning", computer: "underholdning", laptop: "underholdning",
-  playstation: "underholdning", "gaming-pc": "underholdning", router: "underholdning",
-  "mobil-opladning": "underholdning",
-  elbil: "transport", ladestander: "transport",
-  varmepumpe: "varme", jordvarme: "varme", elradiator: "varme", varmeblaeser: "varme",
-  gulvvarme: "varme", "gulvvarme-el": "varme", varmtvandsbeholder: "varme", sauna: "varme",
-};
+// Kategorierne bor i kataloget (src/lib/catalogue.ts) — én post pr. apparat.
+export type { CategoryKey } from "./types";
+import type { CategoryKey } from "./types";
+import { category as categoryInfo, metaOf } from "./catalogue";
+import { getAppliance } from "./appliances";
 
 export function categoryOf(slug: string): CategoryKey {
-  return CATEGORY_OF[slug] ?? "oevrigt";
+  const a = getAppliance(slug);
+  return a ? metaOf(a).category : "hobby";
 }
+
+export const categoryLabel = (key: CategoryKey) => categoryInfo(key).label;
 
 /**
  * Deliberately NOT exported as a site-wide "share of consumption" breakdown.
@@ -162,7 +144,7 @@ export function householdResult(p: HouseholdProfile, price: KrPerKwh): Household
     byCat.set(k, (byCat.get(k) ?? 0) + a.typicalKwh);
   }
   const categories = [...byCat.entries()]
-    .map(([key, kwh]) => ({ key, label: CATEGORY_LABELS[key], kwh, share: kwh / p.totalKwh }))
+    .map(([key, kwh]) => ({ key, label: categoryLabel(key), kwh, share: kwh / p.totalKwh }))
     .sort((a, b) => b.kwh - a.kwh);
 
   return {
@@ -296,7 +278,7 @@ export function homeFaqs(prices: TokenPrices): FAQ[] {
  * actually has" cut, and it complements topAppliances() rather than repeating it.
  */
 export function topEverydayAppliances(price: KrPerKwh, n = 5): TopAppliance[] {
-  const EVERYDAY: CategoryKey[] = ["koelFrys", "vaskToerring", "madlavning", "underholdning"];
+  const EVERYDAY: CategoryKey[] = ["koelFrys", "vask", "koekken", "underholdning", "it"];
   return [...getPublishedAppliances()]
     .filter((a) => EVERYDAY.includes(categoryOf(a.slug)) && !OPTIONAL.has(a.slug))
     .sort((a, b) => b.typicalKwh - a.typicalKwh)

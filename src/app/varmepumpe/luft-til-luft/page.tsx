@@ -89,6 +89,8 @@ export default async function LuftTilLuftPage() {
           ]}
           usageLabel="Timer i drift pr. dag"
           usageUnit="timer/dag"
+          perYear={365}
+          per="time"
           usageMin={2}
           usageMax={24}
           usageDefault={8}

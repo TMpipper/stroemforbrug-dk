@@ -14,6 +14,7 @@ import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
+import { calcModel, headingFor } from "@/lib/catalogue";
 import SwitchCta from "@/components/marketing/SwitchCta";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import { Zap, Calendar, BarChart3 } from "lucide-react";
@@ -41,6 +42,7 @@ export default async function VarmepumpePage() {
   const faqs = data.faqs.map((f) => ({ ...f, answer: renderWith(t, f.answer) }));
   const url = `${SITE_CONFIG.url}/varmepumpe/`;
   const costTypical = Math.round(data.typicalKwh * t.dk);
+  const calc = calcModel(data);
 
   const schemas = [
     breadcrumbSchema([
@@ -49,7 +51,7 @@ export default async function VarmepumpePage() {
     ]),
     faqSchema(faqs),
     articleSchema({
-      title: data.heading,
+      title: headingFor(data),
       description: withCurrentYear(data.description),
       url,
       datePublished: "2026-07-29",
@@ -63,7 +65,7 @@ export default async function VarmepumpePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
       />
-      <PageHero crumbs={[{ name: "Varmepumpe" }]} eyebrow="Varmepumpe" title={data.heading} lastUpdated={pageMeta("/varmepumpe/").updated} motif={motifForPath("/varmepumpe/")} />
+      <PageHero crumbs={[{ name: "Varmepumpe" }]} eyebrow="Varmepumpe" title={headingFor(data)} lastUpdated={pageMeta("/varmepumpe/").updated} motif={motifForPath("/varmepumpe/")} />
       <CampaignCard layout="column" />
 
       <article className="container-text py-10 md:py-14">
@@ -113,18 +115,23 @@ export default async function VarmepumpePage() {
           </div>
         </div>
 
+        {calc && (
         <ForbrugBeregner
           title={data.calculatorConfig.title}
-          options={data.calculatorConfig.options}
+          options={calc.options}
           usageLabel={data.calculatorConfig.usageLabel}
           usageUnit={data.calculatorConfig.usageUnit}
           usageMin={data.calculatorConfig.usageMin}
           usageMax={data.calculatorConfig.usageMax}
-          usageDefault={data.calculatorConfig.usageDefault}
+          usageDefault={calc.usageDefault}
           usageStep={data.calculatorConfig.usageStep}
+          perYear={calc.perYear}
+          per={calc.per}
+          defaultIndex={calc.defaultIndex}
           prices={calculatorPrices(prices)}
           deal={calculatorDeal(prices)}
         />
+        )}
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
         <BestTimeToday data={data} today={today} />
         {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026). Varmepumpen kører hele døgnet — den generelle tekst. */}

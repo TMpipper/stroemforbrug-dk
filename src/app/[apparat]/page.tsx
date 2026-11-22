@@ -11,6 +11,7 @@ import { getAppliance, getAllSlugs } from "@/lib/appliances";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
+import { calcModel, headingFor, metaOf } from "@/lib/catalogue";
 import SwitchCta from "@/components/marketing/SwitchCta";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import ApplianceInsights from "@/components/content/ApplianceInsights";
@@ -110,17 +111,21 @@ export default async function AppliancePage({
   const ownReferences = data.sources.filter((s) => !s.url || !GENERIC_HOSTS.includes(s.url));
   const sources = [...sourcesFor(data.slug), ...ownReferences];
   const costTypical = Math.round(data.typicalKwh * t.dk);
+  const calc = calcModel(data);
+  const meta_ = metaOf(data);
+  const heading = headingFor(data);
   // Et apparat, der kører hele døgnet, har ingen billige timer at flytte til — dér den generelle tekst.
   const appContext = isAlwaysOn(data) ? "generic" : "cheapest-hours";
 
   const schemas = [
     breadcrumbSchema([
       { name: "Forside", url: SITE_CONFIG.url },
+      { name: "Apparater", url: `${SITE_CONFIG.url}/apparater/` },
       { name: data.name, url },
     ]),
     faqSchema(faqs),
     articleSchema({
-      title: data.heading,
+      title: heading,
       description: withCurrentYear(data.description),
       url,
       datePublished: meta.published,
@@ -137,9 +142,9 @@ export default async function AppliancePage({
       />
 
       <PageHero
-        crumbs={[{ name: data.name }]}
+        crumbs={[{ name: "Apparater", href: "/apparater/" }, { name: data.name }]}
         eyebrow="Strømforbrug"
-        title={data.heading}
+        title={heading}
         lastUpdated={updated}
         motif={applianceMotif(data.slug)}
       />
@@ -197,18 +202,23 @@ export default async function AppliancePage({
         <AppStrip placement="apparat-top" context={appContext} className="mb-10" />
 
         {/* Calculator */}
+        {calc && (
         <ForbrugBeregner
           title={data.calculatorConfig.title}
-          options={data.calculatorConfig.options}
+          options={calc.options}
           usageLabel={data.calculatorConfig.usageLabel}
           usageUnit={data.calculatorConfig.usageUnit}
           usageMin={data.calculatorConfig.usageMin}
           usageMax={data.calculatorConfig.usageMax}
-          usageDefault={data.calculatorConfig.usageDefault}
+          usageDefault={calc.usageDefault}
           usageStep={data.calculatorConfig.usageStep}
+          perYear={calc.perYear}
+          per={calc.per}
+          defaultIndex={calc.defaultIndex}
           prices={calculatorPrices(prices)}
           deal={calculatorDeal(prices)}
         />
+        )}
         <PriceBasis prices={prices} className="-mt-6 mb-10" />
 
         {/* Sidens differentiator: hvornår på dagen apparatet er billigst — dagens timepriser fra Elpriser.dk */}
@@ -228,7 +238,8 @@ export default async function AppliancePage({
         <SwitchCta />
 
         {/* Energy labels table */}
-        {data.energyLabels.length > 0 && (
+        {/* Kun produktgrupper med et gældende EU-energimærke — før stod der opfundne A–D-tabeller på airfryer, router, laptop … */}
+        {meta_.hasEuLabel && data.energyLabels.length > 0 && (
           <div className="my-10">
             <EnergyLabelChart data={data} price={t.dk} />
             <h2 className="font-heading text-2xl font-semibold text-ink mb-4 mt-12">

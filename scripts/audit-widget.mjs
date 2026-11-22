@@ -55,7 +55,7 @@ for (const f of files) {
   iframes += frames.length;
   if (appliancePaths.has(path)) {
     appliances++;
-    const blocks = html.match(/data-best-time="(window|always-on)"/g) ?? [];
+    const blocks = html.match(/data-best-time="(window|always-on|use-time)"/g) ?? [];
     if (blocks.length !== 1) fail(`${path}: ${blocks.length} tidspunkt-blok(ke), ventede 1`);
     // React skiller tekstknuder med <!-- -->; fjern dem, før tal og enhed læses som én streng.
     const block = (html.match(/<section[^>]*data-best-time[\s\S]*?<\/section>/)?.[0] ?? "").replace(/<!--\s*-->/g, "");

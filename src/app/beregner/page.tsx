@@ -102,6 +102,8 @@ export default async function BeregnerPage() {
           ]}
           usageLabel="Timer i brug pr. dag"
           usageUnit="timer/dag"
+          perYear={365}
+          per="time"
           usageMin={1}
           usageMax={24}
           usageDefault={4}
