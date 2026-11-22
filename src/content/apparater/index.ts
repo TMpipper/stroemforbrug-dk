@@ -56,6 +56,18 @@ import poolpumpe from "./poolpumpe";
 import infraroedSauna from "./infraroed-sauna";
 import vildmarksbad from "./vildmarksbad";
 import husbatteri from "./husbatteri";
+import nintendoSwitch from "./nintendo-switch";
+import vrBriller from "./vr-briller";
+import nas from "./nas";
+import printer from "./printer";
+import treDprinter from "./3d-printer";
+import projektor from "./projektor";
+import soundbar from "./soundbar";
+import tvBoks from "./tv-boks";
+import overvaagningskamera from "./overvaagningskamera";
+import videodoerklokke from "./videodoerklokke";
+import smartwatch from "./smartwatch";
+import traadloesOplader from "./traadloes-oplader";
 
 /**
  * Nye apparater fra 22. nov. 2026: én fil pr. apparat (src/content/apparater/<slug>.ts, `export default`),
@@ -121,4 +133,16 @@ export const APPLIANCES_NEW: ApplianceData[] = [
   infraroedSauna,
   vildmarksbad,
   husbatteri,
+  nintendoSwitch,
+  vrBriller,
+  nas,
+  printer,
+  treDprinter,
+  projektor,
+  soundbar,
+  tvBoks,
+  overvaagningskamera,
+  videodoerklokke,
+  smartwatch,
+  traadloesOplader,
 ];

@@ -55,6 +55,19 @@ import ipadAirM4 from "./ipad-air-m4";
 import ipadProM5 from "./ipad-pro-m5";
 import ipadMini from "./ipad-mini";
 import samsungQn90f from "./samsung-qn90f";
+import citroenEC3 from "./citroen-e-c3";
+import tclC6k from "./tcl-c6k";
+import aocQ27g4 from "./aoc-q27g4";
+import bmwIx1 from "./bmw-ix1";
+import sonyBravia7Ii from "./sony-bravia-7-ii";
+import samsungOdysseyOledG6 from "./samsung-odyssey-oled-g6";
+import vwId7 from "./vw-id-7";
+import lgOledB6 from "./lg-oled-b6";
+import asusXg27aqdmg from "./asus-xg27aqdmg";
+import volvoEx40 from "./volvo-ex40";
+import lenovoIdeapadSlim3 from "./lenovo-ideapad-slim-3";
+import kiaEv3 from "./kia-ev3";
+import mercedesCla from "./mercedes-cla";
 
 /**
  * Modelsiderne (ejeren 22. nov. 2026): én fil pr. modelfamilie (`export default`), side på /<parent>/<slug>/.
@@ -117,4 +130,17 @@ export const MODELS_ALL: ModelData[] = [
   ipadProM5,
   ipadMini,
   samsungQn90f,
+  citroenEC3,
+  tclC6k,
+  aocQ27g4,
+  bmwIx1,
+  sonyBravia7Ii,
+  samsungOdysseyOledG6,
+  vwId7,
+  lgOledB6,
+  asusXg27aqdmg,
+  volvoEx40,
+  lenovoIdeapadSlim3,
+  kiaEv3,
+  mercedesCla,
 ];

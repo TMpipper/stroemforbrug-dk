@@ -111,6 +111,11 @@ export const PROFILES: Record<string, UsageProfile> = {
     short: "fem timers tv om dagen",
     text: "5 timer tændt om dagen i standardbilledet (SDR) og standby resten af døgnet, alle årets dage. HDR-indhold og høj lysstyrke trækker mere — energimærkets HDR-tal står længere nede på siden.",
   },
+  skaerm: {
+    hours: { on: 6, standby: 18 },
+    short: "seks timers brug om dagen",
+    text: "6 timer tændt om dagen i standardbilledet (SDR), som energimærket er målt i, og standby resten af døgnet, alle årets dage. Høj lysstyrke, HDR og høj opdateringshastighed trækker mere — HDR-tallene står længere nede på siden.",
+  },
   playstation: {
     hours: { on: 2, standby: 22 },
     short: "to timers spil om dagen",

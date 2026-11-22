@@ -6,6 +6,12 @@
     "noindex": false
   },
   {
+    "path": "/3d-printer/",
+    "title": "3D-printer strømforbrug (2026) → Bambu Lab, Prusa og standby",
+    "description": "En 3D-printer bruger 80-200 watt i gennemsnit under et print. Se tal for Bambu Lab og Prusa, pris pr. printtime, og hvad standby mellem printene koster.",
+    "noindex": false
+  },
+  {
     "path": "/affugter/",
     "title": "Affugter strømforbrug (2026) → Se kWh pr. døgn og år",
     "description": "Hvor meget strøm bruger en affugter? Se typisk elforbrug i kWh pr. år, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
@@ -168,6 +174,30 @@
     "noindex": true
   },
   {
+    "path": "/elbil/bmw-ix1/",
+    "title": "BMW iX1 strømforbrug (2026) → eDrive20 og xDrive30 i kWh",
+    "description": "BMW iX1 eDrive20 og xDrive30: BMWs officielle WLTP-forbrug fra 15,5 til 18,1 kWh pr. 100 km, kWh om året, pris pr. 100 km og en fuld opladning.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/citroen-e-c3/",
+    "title": "Citroën ë-C3 strømforbrug (2026) → kWh pr. 100 km og pris",
+    "description": "Citroën ë-C3 med 30 og 44 kWh batteri: Citroëns officielle WLTP-forbrug, kWh om året, pris pr. 100 km, en fuld opladning og rækkevidden om vinteren.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/kia-ev3/",
+    "title": "Kia EV3 strømforbrug (2026) → Standard og Long Range i kWh",
+    "description": "Kia EV3 med 58,3 og 81,4 kWh batteri: Kias officielle WLTP-forbrug for alle udstyrsvarianter, kWh om året, pris pr. 100 km og en fuld opladning.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/mercedes-cla/",
+    "title": "Mercedes CLA strømforbrug (2026) → elbilen i kWh pr. 100 km",
+    "description": "Den eldrevne Mercedes CLA 200, 250+ og 350 4MATIC: Mercedes' officielle WLTP-forbrug fra 12,6 kWh pr. 100 km, kWh om året, pris pr. 100 km og ladning.",
+    "noindex": true
+  },
+  {
     "path": "/elbil/renault-5/",
     "title": "Renault 5 strømforbrug (2026) → 40 og 52 kWh i kWh pr. km",
     "description": "Renault 5 E-Tech electric med 40 og 52 kWh: Renaults officielle WLTP-forbrug fra den danske prisliste, kWh om året, pris pr. 100 km og en fuld opladning.",
@@ -204,6 +234,12 @@
     "noindex": true
   },
   {
+    "path": "/elbil/volvo-ex40/",
+    "title": "Volvo EX40 strømforbrug (2026) → og EC40 i kWh pr. 100 km",
+    "description": "Volvo EX40 og EC40 med Single Motor, Extended Range og Twin Motor: Volvos officielle WLTP-forbrug, kWh om året, pris pr. 100 km og vinterrækkevidde.",
+    "noindex": true
+  },
+  {
     "path": "/elbil/vw-id-3/",
     "title": "VW ID.3 strømforbrug (2026) → ID.3 Neo i kWh pr. 100 km",
     "description": "VW ID.3 Neo med 170, 190 og 231 hk: Volkswagens officielle WLTP-forbrug fra den danske prisliste, kWh om året, pris pr. 100 km og hvad en opladning koster.",
@@ -213,6 +249,12 @@
     "path": "/elbil/vw-id-4/",
     "title": "VW ID.4 strømforbrug (2026) → Pure, Pro og GTX i kWh",
     "description": "VW ID.4 Pure, Pro, Pro 4MOTION og GTX: Volkswagens officielle WLTP-forbrug fra den danske prisliste, kWh om året, pris pr. 100 km og vinterrækkevidde.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/vw-id-7/",
+    "title": "VW ID.7 strømforbrug (2026) → sedan og Tourer i kWh pr. km",
+    "description": "VW ID.7 og ID.7 Tourer: Volkswagens officielle WLTP-forbrug for Pure, Life, Style, Style S og GTX, kWh om året, pris pr. 100 km og en fuld opladning.",
     "noindex": true
   },
   {
@@ -546,6 +588,12 @@
     "noindex": false
   },
   {
+    "path": "/laptop/lenovo-ideapad-slim-3/",
+    "title": "Lenovo IdeaPad Slim 3 strømforbrug (2026) → watt og kWh",
+    "description": "Lenovo IdeaPad Slim 3 med Snapdragon, Intel og AMD: watt i tomgang og dvale fra Lenovos ENERGY STAR-målinger, kWh om året og prisen for en opladning.",
+    "noindex": true
+  },
+  {
     "path": "/laptop/macbook-air-m3/",
     "title": "MacBook Air M3 strømforbrug (2026) → 13 og 15 tommer",
     "description": "MacBook Air M3 fra 2024 i 13 og 15 tommer: Apples målte watt ved 230 V, kWh om året, pris pr. opladning, og hvad et slidt batteri betyder.",
@@ -666,6 +714,18 @@
     "noindex": false
   },
   {
+    "path": "/nas/",
+    "title": "NAS strømforbrug (2026) → Synology 2- og 4-bay i kWh og watt",
+    "description": "Et NAS med to diske bruger 6-17 watt og kører hele døgnet, så det løber op til 50-150 kWh om året. Se Synologys tal, hvad dvale sparer, og prisen pr. år.",
+    "noindex": false
+  },
+  {
+    "path": "/nintendo-switch/",
+    "title": "Nintendo Switch strømforbrug (2026) → Switch 2, OLED og Lite",
+    "description": "En Switch 2 bruger 19 watt i spil via tv, den første Switch og OLED-modellen 6-7 watt. Se kWh om året, prisen pr. time og hvad dvale med kablet net koster.",
+    "noindex": false
+  },
+  {
     "path": "/oliefyr/",
     "title": "Oliefyr strømforbrug (2026) → Brænder, pumpe og styring",
     "description": "Et oliefyr bruger strøm til brænder, blæser og styring — efter vores beregning ca. 150-250 kWh om året. Se watt i drift, og hvad en gammel pumpe lægger oveni.",
@@ -700,6 +760,12 @@
     "title": "Siemens iQ500 opvaskemaskine strømforbrug (2026) → kWh",
     "description": "Siemens iQ500 opvaskemaskine med Zeolith: energimærkets kWh pr. opvask på eco-programmet, pris om året, iQ300 til sammenligning og billigste tidspunkt.",
     "noindex": true
+  },
+  {
+    "path": "/overvaagningskamera/",
+    "title": "Overvågningskamera strømforbrug (2026) → wifi, PoE og NVR",
+    "description": "Et wifi-kamera bruger 2-5 watt og kører hele døgnet, så det bliver 20-40 kWh om året pr. kamera. Se tal for Nest og Reolink, PoE-kameraer og optagere (NVR).",
+    "noindex": false
   },
   {
     "path": "/ovn/",
@@ -750,10 +816,22 @@
     "noindex": false
   },
   {
+    "path": "/printer/",
+    "title": "Printer strømforbrug (2026) → blæk, laser og dvale i kWh",
+    "description": "En printer bruger mest strøm på at vente: 1 watt i dvale hele døgnet bliver til 9 kWh om året. Se tal for blæk- og laserprintere, og hvad slukning sparer.",
+    "noindex": false
+  },
+  {
     "path": "/privatlivspolitik/",
     "title": "Privatlivspolitik",
     "description": "Privatlivspolitik for Strømforbrug.dk — sådan håndterer vi dine personoplysninger.",
     "noindex": true
+  },
+  {
+    "path": "/projektor/",
+    "title": "Projektor strømforbrug (2026) → lampe, laser og mini i watt",
+    "description": "En hjemmebiografprojektor bruger 200-320 watt, en lille LED-projektor under 50. Se pris pr. film, kWh om året og hvorfor ECO-tilstand sparer en tredjedel.",
+    "noindex": false
   },
   {
     "path": "/pyrolyseovn/",
@@ -810,6 +888,24 @@
     "noindex": false
   },
   {
+    "path": "/skaerm/aoc-q27g4/",
+    "title": "AOC Q27G4 strømforbrug (2026) → watt for IPS, VA og OLED",
+    "description": "AOC Q27G4X, XN, XF, ZR, ZD og ZDR: watt tændt og i standby fra EU's energimærke, kWh om året, HDR-forbrug og forskellen på IPS-, VA- og OLED-udgaverne.",
+    "noindex": true
+  },
+  {
+    "path": "/skaerm/asus-xg27aqdmg/",
+    "title": "ASUS XG27AQDMG strømforbrug (2026) → watt for OLED-skærmen",
+    "description": "ASUS ROG Strix OLED XG27AQDMG og XG27AQDMGR: watt tændt, i HDR og i standby fra EU's energimærke, kWh om året og sammenligning med andre OLED-skærme.",
+    "noindex": true
+  },
+  {
+    "path": "/skaerm/samsung-odyssey-oled-g6/",
+    "title": "Samsung Odyssey OLED G6 strømforbrug (2026) → watt og kWh",
+    "description": "Samsung Odyssey OLED G6 i 27 tommer med 360 og 500 Hz: watt tændt og i standby fra EU's energimærke, kWh om året, HDR og sammenligning med andre skærme.",
+    "noindex": true
+  },
+  {
     "path": "/slow-cooker/",
     "title": "Slow cooker strømforbrug (2026) → kWh pr. gang vs. ovn",
     "description": "Se hvor meget strøm en slow cooker bruger pr. gang på LOW og HIGH, hvad den koster mod ovn og gryde, og hvornår på døgnet det er billigst at lade den simre.",
@@ -822,9 +918,21 @@
     "noindex": false
   },
   {
+    "path": "/smartwatch/",
+    "title": "Smartwatch strømforbrug (2026) → Apple Watch, Pixel, Fitbit",
+    "description": "Et smartwatch bruger 1-2 kWh om året, og meget går til laderen, mens uret ligger fuldt opladet. Se Googles og Apples tal og prisen pr. opladning.",
+    "noindex": false
+  },
+  {
     "path": "/solceller/",
     "title": "Solceller (2026) → Produktion i kWh og eget forbrug",
     "description": "Hvor meget strøm producerer og bruger solceller? Se kWh-produktion, egetforbrug og besparelse. Beregn dit solcelleanlægs økonomi med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/soundbar/",
+    "title": "Soundbar strømforbrug (2026) → afspilning, sub og standby",
+    "description": "En soundbar bruger mere på at vente end på at spille: en Sonos Arc trækker 4,4 watt i hvile hele døgnet. Se watt for Sonos og Samsung, kWh om året og prisen.",
     "noindex": false
   },
   {
@@ -888,10 +996,28 @@
     "noindex": false
   },
   {
+    "path": "/traadloes-oplader/",
+    "title": "Trådløs oplader strømforbrug (2026) → tab, standby og kabel",
+    "description": "Trådløs opladning bruger en fjerdedel mere strøm end kabel og næsten det dobbelte, hvis telefonen ligger skævt. Se målte tal, standby og pris pr. opladning.",
+    "noindex": false
+  },
+  {
+    "path": "/tv-boks/",
+    "title": "Tv-boks strømforbrug (2026) → streaming, kabel og standby",
+    "description": "En Apple TV bruger 2-3 watt, mens en ældre operatørboks kan trække 15 watt døgnet rundt. Se kWh om året for streaming-, kabel- og IP-bokse og standby.",
+    "noindex": false
+  },
+  {
     "path": "/tv/",
     "title": "TV strømforbrug (2026) → Se hvad dit tv koster i strøm",
     "description": "Et tv bruger 50-200 kWh/år afhængigt af størrelse. Se strømforbrug for 43\", 55\" og 65\" tv — og hvad standby koster dig om året.",
     "noindex": false
+  },
+  {
+    "path": "/tv/lg-oled-b6/",
+    "title": "LG OLED B6 strømforbrug (2026) → watt fra 48 til 83 tommer",
+    "description": "LG OLED B6 fra 48 til 83 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året og hvorfor C6 bruger mindre end B6 i de store størrelser.",
+    "noindex": true
   },
   {
     "path": "/tv/lg-oled-c5/",
@@ -939,6 +1065,18 @@
     "path": "/tv/samsung-the-frame/",
     "title": "Samsung The Frame strømforbrug (2026) → watt og Art Mode",
     "description": "Samsung The Frame og Frame Pro 2026 fra 43 til 85 tommer: watt fra EU's energimærke, kWh og pris om året, og hvad kunsttilstanden betyder for regningen.",
+    "noindex": true
+  },
+  {
+    "path": "/tv/sony-bravia-7-ii/",
+    "title": "Sony Bravia 7 II strømforbrug (2026) → watt i SDR og HDR",
+    "description": "Sony Bravia 7 II fra 50 til 98 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året og hvorfor 65 tommer er blandt de mest sparsomme på siden.",
+    "noindex": true
+  },
+  {
+    "path": "/tv/tcl-c6k/",
+    "title": "TCL C6K strømforbrug (2026) → watt fra 50 til 98 tommer",
+    "description": "TCL C6K QD-Mini LED fra 50 til 98 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året, de nyere Pro-udgaver og sammenligning med TCL C8L.",
     "noindex": true
   },
   {
@@ -1086,6 +1224,12 @@
     "noindex": false
   },
   {
+    "path": "/videodoerklokke/",
+    "title": "Videodørklokke strømforbrug (2026) → kablet og batteri",
+    "description": "En kablet videodørklokke bruger omkring 2 watt døgnet rundt, 14-17 kWh om året. Se Googles målinger, batterimodellernes forbrug og transformerens tab.",
+    "noindex": false
+  },
+  {
     "path": "/vildmarksbad/",
     "title": "Vildmarksbad strømforbrug (2026) → kWh pr. opvarmning",
     "description": "Et elopvarmet vildmarksbad på 1.000 liter skal bruge ca. 27 kWh varme fra 15 til 38 grader. Se tiden med 2 og 3 kW og prisen pr. opvarmning.",
@@ -1095,6 +1239,12 @@
     "path": "/vinkoeleskab/",
     "title": "Vinkøleskab strømforbrug (2026) → kWh om året og pr. døgn",
     "description": "Se hvor meget strøm et vinkøleskab bruger i døgnet og om året, hvorfor næsten alle har energimærke G, og hvad placering og flasketal betyder for forbruget.",
+    "noindex": false
+  },
+  {
+    "path": "/vr-briller/",
+    "title": "VR-briller strømforbrug (2026) → Meta Quest og pc-VR i kWh",
+    "description": "Et Meta Quest 3 har et batteri på knap 20 Wh, så en fuld opladning koster en brøkdel af en krone. Se pris pr. opladning, kWh om året, og hvad pc-VR koster.",
     "noindex": false
   },
   {
