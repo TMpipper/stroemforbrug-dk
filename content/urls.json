@@ -84,6 +84,12 @@
     "noindex": false
   },
   {
+    "path": "/broedbagemaskine/",
+    "title": "Brødbagemaskine strømforbrug (2026) → kWh pr. brød vs. ovn",
+    "description": "Se hvor meget strøm en brødbagemaskine bruger pr. brød, hvad timeren og varmholdet betyder, og hvornår den slår ovnen – målt i kWh og pris pr. brød.",
+    "noindex": false
+  },
+  {
     "path": "/broedrister/",
     "title": "Brødrister strømforbrug (2026) → Watt, kWh og pris pr. brug",
     "description": "Hvor meget strøm bruger en brødrister? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift med danske 2026-priser.",
@@ -130,6 +136,12 @@
     "title": "Mac Studio strømforbrug (2026) → M5 Ultra, M4 Max og pris",
     "description": "Mac Studio med M5 Max eller M5 Ultra (2026) og M4 Max eller M3 Ultra (2026): Apples watt ved 230 V, kWh om året, dvale og hvad fuld last koster.",
     "noindex": true
+  },
+  {
+    "path": "/dampovn/",
+    "title": "Dampovn strømforbrug (2026) → kWh med damp og energimærke",
+    "description": "Se hvor meget strøm en dampovn bruger pr. gang med damp og varmluft, hvad energimærket måler og ikke måler, og hvordan den klarer sig mod gryden.",
+    "noindex": false
   },
   {
     "path": "/dehydrator/",
@@ -258,6 +270,12 @@
     "noindex": false
   },
   {
+    "path": "/fadoelsanlaeg/",
+    "title": "Fadølsanlæg strømforbrug (2026) → kWh i døgnet og pr. fad",
+    "description": "Se hvor meget strøm et fadølsanlæg som PerfectDraft bruger i døgnet og pr. fustage, hvad rummets temperatur betyder, og hvad en sommer med fadøl koster.",
+    "noindex": false
+  },
+  {
     "path": "/fryser/",
     "title": "Fryser strømforbrug (2026) → Se kWh, rim og årlig pris",
     "description": "Hvor meget strøm bruger en skabsfryser? Se typisk elforbrug i kWh, sammenlign energiklasser og modeller, og beregn din årlige udgift. 2026-data.",
@@ -354,6 +372,12 @@
     "noindex": false
   },
   {
+    "path": "/isterningmaskine/",
+    "title": "Isterningmaskine strømforbrug (2026) → watt og kWh i timen",
+    "description": "Se hvor meget strøm en isterningmaskine bruger i timen og pr. kilo is, hvad en sommer med fest og iskaffe koster, og hvorfor den bør slukkes efter brug.",
+    "noindex": false
+  },
+  {
     "path": "/jordvarme/",
     "title": "Jordvarme strømforbrug (2026) → kWh, COP og årlig pris",
     "description": "Hvor meget strøm bruger jordvarme? Se typisk elforbrug i kWh for jordvarmepumper, COP-værdier og beregn din årlige udgift med danske 2026-priser.",
@@ -387,6 +411,12 @@
     "path": "/koeleskab/",
     "title": "Køleskab strømforbrug (2026) → Se kWh og årlig pris",
     "description": "Et køleskab bruger 100-400 kWh/år og kører 24/7. Se forbrug for køle/fryseskab, amerikanerkøleskab og vinkøleskab — og hvornår det kan betale sig at skifte.",
+    "noindex": false
+  },
+  {
+    "path": "/kogeplade/",
+    "title": "Kogeplade strømforbrug (2026) → enkelt, dobbelt og induktion",
+    "description": "Se hvor meget strøm en bordkogeplade bruger pr. måltid – støbejern, glaskeramik og induktion, enkelt og dobbelt – og hvad gryden og låget betyder.",
     "noindex": false
   },
   {
@@ -498,6 +528,12 @@
     "noindex": false
   },
   {
+    "path": "/maelkeskummer/",
+    "title": "Mælkeskummer strømforbrug (2026) → kWh pr. kop og standby",
+    "description": "Se hvor meget strøm en elektrisk mælkeskummer bruger pr. kop, hvad varm mælk og koldt skum koster, og hvorfor standby kan veje tungere end selve skummet.",
+    "noindex": false
+  },
+  {
     "path": "/metode/",
     "title": "Sådan regner vi (2026) → Marginalpris og billigste aftale",
     "description": "Metoden bag hvert tal: marginalprisen fra Elpriser.dk's feed, hvorfor abonnementet ikke er med, og hvordan billigste aftale og tidspunkt findes.",
@@ -510,6 +546,12 @@
     "noindex": false
   },
   {
+    "path": "/miniovn/",
+    "title": "Miniovn strømforbrug (2026) → bordovn mod stor ovn i kWh",
+    "description": "Se hvor meget strøm en miniovn eller bordovn bruger pr. gang – pizza, pommes frites og bagning – og hvornår den slår den store ovn, målt i kWh og pris.",
+    "noindex": false
+  },
+  {
     "path": "/mobil-aircondition/",
     "title": "Mobil aircondition strømforbrug (2026) → kWh i timen",
     "description": "Se hvor meget strøm en mobil aircondition bruger i timen og pr. sommer, hvorfor den bruger mere end et split-anlæg, og hvordan du får mere kulde ud af den.",
@@ -519,6 +561,12 @@
     "path": "/mobil-opladning/",
     "title": "Mobil opladning strømforbrug (2026) → Se kWh og pris",
     "description": "Hvor meget strøm bruger det at oplade en mobil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign trådløs og kabel-opladning med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/multikoger/",
+    "title": "Multikoger strømforbrug (2026) → trykkogning, kWh pr. ret",
+    "description": "Se hvor meget strøm en multikoger som Instant Pot bruger pr. ret ved trykkogning, slow cook og varmhold – og hvor meget den sparer mod gryde og ovn.",
     "noindex": false
   },
   {
@@ -592,6 +640,12 @@
     "title": "Privatlivspolitik",
     "description": "Privatlivspolitik for Strømforbrug.dk — sådan håndterer vi dine personoplysninger.",
     "noindex": true
+  },
+  {
+    "path": "/pyrolyseovn/",
+    "title": "Pyrolyseovn strømforbrug (2026) → kWh pr. selvrensning",
+    "description": "Se hvor meget strøm pyrolyse-selvrensen bruger pr. gang, hvad Stiftung Warentest målte i 2026, og hvornår på døgnet rensningen er billigst at køre.",
+    "noindex": false
   },
   {
     "path": "/quooker/",
@@ -777,6 +831,12 @@
     "path": "/vaffeljern/",
     "title": "Vaffeljern strømforbrug (2026) → kWh pr. omgang vafler",
     "description": "Se hvor meget strøm et vaffeljern bruger på opvarmning og pr. omgang vafler – hjertevafler og belgiske vafler – og hvad det koster ved månedens elpris.",
+    "noindex": false
+  },
+  {
+    "path": "/vandkoeler/",
+    "title": "Vandkøler strømforbrug (2026) → kold og varmt vand i kWh",
+    "description": "Se hvor meget strøm en vandkøler eller vanddispenser bruger i døgnet – kun koldt vand eller både koldt og varmt – og hvad tanken med varmt vand koster.",
     "noindex": false
   },
   {

@@ -34,6 +34,16 @@ import elgrill from "./elgrill";
 import blender from "./blender";
 import koekkenmaskine from "./koekkenmaskine";
 import juicer from "./juicer";
+import broedbagemaskine from "./broedbagemaskine";
+import multikoger from "./multikoger";
+import maelkeskummer from "./maelkeskummer";
+import isterningmaskine from "./isterningmaskine";
+import miniovn from "./miniovn";
+import dampovn from "./dampovn";
+import pyrolyseovn from "./pyrolyseovn";
+import kogeplade from "./kogeplade";
+import fadoelsanlaeg from "./fadoelsanlaeg";
+import vandkoeler from "./vandkoeler";
 
 /**
  * Nye apparater fra 22. nov. 2026: én fil pr. apparat (src/content/apparater/<slug>.ts, `export default`),
@@ -77,4 +87,14 @@ export const APPLIANCES_NEW: ApplianceData[] = [
   blender,
   koekkenmaskine,
   juicer,
+  broedbagemaskine,
+  multikoger,
+  maelkeskummer,
+  isterningmaskine,
+  miniovn,
+  dampovn,
+  pyrolyseovn,
+  kogeplade,
+  fadoelsanlaeg,
+  vandkoeler,
 ];
