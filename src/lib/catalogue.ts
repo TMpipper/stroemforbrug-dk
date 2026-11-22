@@ -117,8 +117,8 @@ export const LEGACY_META: Record<string, CatalogueMeta> = {
 
   robotplaeneklipper: { category: "have", usage: "per-use", hasEuLabel: false, motif: "robotklipper", synonyms: ["robotplæneklipper", "robotklipper", "plæneklipper", "automower"] },
 
-  pool: { category: "poolSpa", usage: "heating", hasEuLabel: false, synonyms: ["pool", "swimmingpool", "poolpumpe", "poolvarme"] },
-  sauna: { category: "poolSpa", usage: "per-use", hasEuLabel: false, motif: "sauna", synonyms: ["sauna", "saunaovn", "infrarød sauna", "elsauna"] },
+  pool: { category: "poolSpa", usage: "heating", hasEuLabel: false, synonyms: ["pool", "swimmingpool", "poolvarme"] },
+  sauna: { category: "poolSpa", usage: "per-use", hasEuLabel: false, motif: "sauna", synonyms: ["sauna", "saunaovn", "elsauna"] },
 
   haartoerrere: { category: "pleje", usage: "per-use", shiftable: false, hasEuLabel: false, synonyms: ["hårtørrer", "haartoerrer", "føntørrer", "føn"] },
 

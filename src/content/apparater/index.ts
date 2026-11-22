@@ -44,6 +44,18 @@ import pyrolyseovn from "./pyrolyseovn";
 import kogeplade from "./kogeplade";
 import fadoelsanlaeg from "./fadoelsanlaeg";
 import vandkoeler from "./vandkoeler";
+import gennemstroemningsvandvarmer from "./gennemstroemningsvandvarmer";
+import elpatron from "./elpatron";
+import infraroedtVarmepanel from "./infraroedt-varmepanel";
+import varmekabel from "./varmekabel";
+import oliefyr from "./oliefyr";
+import gasfyr from "./gasfyr";
+import fjernvarmeunit from "./fjernvarmeunit";
+import poolvarmepumpe from "./poolvarmepumpe";
+import poolpumpe from "./poolpumpe";
+import infraroedSauna from "./infraroed-sauna";
+import vildmarksbad from "./vildmarksbad";
+import husbatteri from "./husbatteri";
 
 /**
  * Nye apparater fra 22. nov. 2026: én fil pr. apparat (src/content/apparater/<slug>.ts, `export default`),
@@ -97,4 +109,16 @@ export const APPLIANCES_NEW: ApplianceData[] = [
   kogeplade,
   fadoelsanlaeg,
   vandkoeler,
+  gennemstroemningsvandvarmer,
+  elpatron,
+  infraroedtVarmepanel,
+  varmekabel,
+  oliefyr,
+  gasfyr,
+  fjernvarmeunit,
+  poolvarmepumpe,
+  poolpumpe,
+  infraroedSauna,
+  vildmarksbad,
+  husbatteri,
 ];

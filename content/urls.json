@@ -246,6 +246,12 @@
     "noindex": false
   },
   {
+    "path": "/elpatron/",
+    "title": "Elpatron strømforbrug (2026) → kW, opvarmningstid og timer",
+    "description": "En elpatron på 3 kW bruger 3 kWh i timen og varmer en beholder på ca. 100 liter op på knap to timer. Se forbruget pr. dag og år, og hvornår du bør tænde den.",
+    "noindex": false
+  },
+  {
     "path": "/elpriser/",
     "title": "Elpriser time for time (2026) → Billigste timer i dag",
     "description": "Elpriser time for time for Vest- og Østdanmark i dag og i morgen, og hvad én vask, én opvask eller én opladning koster i den billige og den dyre time.",
@@ -276,6 +282,12 @@
     "noindex": false
   },
   {
+    "path": "/fjernvarmeunit/",
+    "title": "Fjernvarmeunit strømforbrug (2026) → Pumpe og styring",
+    "description": "En fjernvarmeunit bruger kun strøm til pumpen og styringen — fra ca. 120 kWh om året med en ny pumpe til omkring 500 kWh med en gammel. Se fordelingen.",
+    "noindex": false
+  },
+  {
     "path": "/fryser/",
     "title": "Fryser strømforbrug (2026) → Se kWh, rim og årlig pris",
     "description": "Hvor meget strøm bruger en skabsfryser? Se typisk elforbrug i kWh, sammenlign energiklasser og modeller, og beregn din årlige udgift. 2026-data.",
@@ -294,9 +306,21 @@
     "noindex": false
   },
   {
+    "path": "/gasfyr/",
+    "title": "Gasfyr strømforbrug (2026) → Blæser, pumpe og standby",
+    "description": "Et nyt kondenserende gasfyr bruger kun 15-20 W, mens det kører, og 4 W på standby. Se kWh om året, og hvorfor en gammel pumpe kan bruge fem gange så meget.",
+    "noindex": false
+  },
+  {
     "path": "/gennemsnitligt/",
     "title": "Gennemsnitligt strømforbrug (2026) → Se forbrug pr. husstand",
     "description": "Det gennemsnitlige strømforbrug i Danmark er 3.000-4.500 kWh/år for en husstand uden varmepumpe. Se forbrug pr. person, familie og boligtype.",
+    "noindex": false
+  },
+  {
+    "path": "/gennemstroemningsvandvarmer/",
+    "title": "Gennemstrømningsvandvarmer strømforbrug (2026) → kWh pr. bad",
+    "description": "Et brusebad på 6½ minut med sparebruser kræver ca. 1,7 kWh fra en gennemstrømningsvandvarmer. Se kW, flow, tilslutning og forbruget for hele husstanden.",
     "noindex": false
   },
   {
@@ -309,6 +333,12 @@
     "path": "/gulvvarme/",
     "title": "Gulvvarme strømforbrug (2026) → Vand vs. el i kWh og pris",
     "description": "Hvor meget strøm bruger el-gulvvarme? Se typisk elforbrug i kWh for badeværelse, køkken og hele huset. Beregn din årlige udgift med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/husbatteri/",
+    "title": "Husbatteri strømforbrug (2026) → Tab, tomgang og egetforbrug",
+    "description": "Et husbatteri bruger selv strøm: tab ved op- og afladning og tomgang i inverteren. Se hvor mange kWh der forsvinder om året, og hvad der bestemmer tallet.",
     "noindex": false
   },
   {
@@ -369,6 +399,18 @@
     "path": "/induktion/",
     "title": "Induktion strømforbrug (2026) → kWh vs. gas og keramisk",
     "description": "Hvor meget strøm bruger en induktionskogeplade? Se typisk elforbrug i kWh, sammenlign med keramisk og gas, og beregn din årlige udgift i 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/infraroed-sauna/",
+    "title": "Infrarød sauna strømforbrug (2026) → kWh pr. gang og watt",
+    "description": "En infrarød sauna til to har 1,8-2 kW varmeelementer og bruger efter vores skøn 1,5 kWh pr. gang. Se forbruget pr. uge og år, og hvad der skiller den ud.",
+    "noindex": false
+  },
+  {
+    "path": "/infraroedt-varmepanel/",
+    "title": "Infrarødt varmepanel strømforbrug (2026) → Watt, m² og kWh",
+    "description": "Et infrarødt varmepanel på 500 W varmer ca. 9-12 m² og bruger 0,5 kWh i timen, når det er tændt. Se forbruget for en vinter og sammenlignet med en elradiator.",
     "noindex": false
   },
   {
@@ -624,6 +666,12 @@
     "noindex": false
   },
   {
+    "path": "/oliefyr/",
+    "title": "Oliefyr strømforbrug (2026) → Brænder, pumpe og styring",
+    "description": "Et oliefyr bruger strøm til brænder, blæser og styring — efter vores beregning ca. 150-250 kWh om året. Se watt i drift, og hvad en gammel pumpe lægger oveni.",
+    "noindex": false
+  },
+  {
     "path": "/olieradiator/",
     "title": "Olieradiator strømforbrug (2026) → Watt, termostat og kWh",
     "description": "En olieradiator bruger 0,5-2,5 kWh i timen på fuld effekt. Se hvad termostaten gør ved forbruget, prisen pr. time og regnestykket for en hel vinter.",
@@ -687,6 +735,18 @@
     "path": "/pool/",
     "title": "Pool strømforbrug (2026) → Varmepumpe, pumpe og årlig pris",
     "description": "Hvor meget strøm bruger en pool? Se elforbrug for pumpe, opvarmning og rensning i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/poolpumpe/",
+    "title": "Poolpumpe strømforbrug (2026) → Watt, timer og filtrering",
+    "description": "En poolpumpe på 450 W bruger 0,45 kWh i timen og ca. 540 kWh på en sæson med 8 timer om dagen. Se hvordan timer, hastighed og timeprisen ændrer regningen.",
+    "noindex": false
+  },
+  {
+    "path": "/poolvarmepumpe/",
+    "title": "Poolvarmepumpe strømforbrug (2026) → COP, opstart og sæson",
+    "description": "En poolvarmepumpe henter 5-15 kWh varme ud af luften for hver kWh strøm. Se forbruget til opstart, pr. døgn og for en sæson, og hvorfor overdækning tæller.",
     "noindex": false
   },
   {
@@ -906,6 +966,12 @@
     "noindex": false
   },
   {
+    "path": "/varmekabel/",
+    "title": "Varmekabel strømforbrug (2026) → Frostsikring af rør og tag",
+    "description": "Et varmekabel bruger 6-33 W pr. meter på et vandrør og 20-30 W pr. meter i en tagrende. Se kWh pr. vinter, hvad termostaten sparer, og hvor strømmen går hen.",
+    "noindex": false
+  },
+  {
     "path": "/varmepumpe-toerretumbler/",
     "title": "Varmepumpetørretumbler strømforbrug (2026) → kWh pr. tørring",
     "description": "En tørretumbler med varmepumpe bruger ca. 0,8-1,7 kWh pr. tørring. Se det nye energimærke, kWh pr. 100 tørringer og besparelsen mod kondens og aftræk.",
@@ -1017,6 +1083,12 @@
     "path": "/ventilator/",
     "title": "Ventilator strømforbrug (2026) → watt og kWh pr. sommer",
     "description": "Se hvor meget strøm en ventilator bruger i timen og over en sommer: bord-, gulv-, tårn- og loftventilatorer, laveste og højeste hastighed, og standby.",
+    "noindex": false
+  },
+  {
+    "path": "/vildmarksbad/",
+    "title": "Vildmarksbad strømforbrug (2026) → kWh pr. opvarmning",
+    "description": "Et elopvarmet vildmarksbad på 1.000 liter skal bruge ca. 27 kWh varme fra 15 til 38 grader. Se tiden med 2 og 3 kW og prisen pr. opvarmning.",
     "noindex": false
   },
   {
