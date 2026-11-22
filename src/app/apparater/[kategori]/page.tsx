@@ -160,7 +160,7 @@ export default async function KategoriPage({ params }: { params: Promise<{ kateg
           {labelled.length ? `${list(labelled)} har et EU-energimærke, som viser forbruget pr. år eller pr. gang.` : ""}
         </p>
 
-        <div className="not-prose my-8 overflow-x-auto rounded-card bg-surface shadow-card">
+        <div className="scroll-hint not-prose my-8 overflow-x-auto rounded-card bg-surface shadow-card">
           <table className="w-full text-sm">
             <thead className="bg-bg-blue">
               <tr>

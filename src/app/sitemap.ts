@@ -4,6 +4,7 @@ import { getPublishedSlugs, getAppliance } from "@/lib/appliances";
 import { pageMeta } from "@/lib/pages";
 import { liveHubs } from "@/lib/catalogue";
 import { isReserved } from "@/lib/routes";
+import { modelPath, publishedModels } from "@/lib/models";
 
 /**
  * Datoerne er gemt, ikke genereret: `lastModified` kommer fra pageMeta() (sidste
@@ -77,5 +78,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...hubPages, ...appliancePages];
+  const modelPages: MetadataRoute.Sitemap = publishedModels().map((m) => ({
+    url: `${base}${modelPath(m)}`,
+    lastModified: m.updated,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...hubPages, ...appliancePages, ...modelPages];
 }

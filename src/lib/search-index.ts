@@ -4,6 +4,8 @@
  */
 import { getPublishedAppliances } from "./appliances";
 import { CATEGORIES, category, liveHubs, metaOf } from "./catalogue";
+import { annualKwh, modelPath, publishedModels } from "./models";
+import { getAppliance } from "./appliances";
 import { termsFor, type SearchEntry } from "./search";
 
 /** Sider uden for apparatkataloget, med de ord folk faktisk søger dem med. */
@@ -47,6 +49,15 @@ export function buildSearchIndex(): SearchEntry[] {
     w: termsFor([c.label, c.slug.replace(/-/g, " ")]),
   }));
   const all: SearchEntry = { t: "Alle apparater", u: "/apparater/", k: "kategori", d: `${appliances.length} apparater fra A til Å`, w: termsFor(["apparater", "alle apparater", "oversigt", "liste", ...CATEGORIES.map((c) => c.label)]) };
+  // Modelsiderne: »macbook air m4«, »mba m4« … — undertitlen er apparatet, tallet den første variants kWh/år.
+  const models: SearchEntry[] = publishedModels().map((m) => ({
+    t: m.name,
+    u: modelPath(m),
+    k: "model",
+    d: `${m.brand} · ${getAppliance(m.parent)?.name ?? m.parent}`,
+    w: termsFor([m.name, m.brand, m.slug.replace(/-/g, " "), ...m.synonyms]),
+    kwh: Math.round(annualKwh(m.variants[0], m.parent)),
+  }));
   const pages: SearchEntry[] = PAGES.map((p) => ({ ...p, w: termsFor([p.t, ...p.w]) }));
-  return [...appliances, ...hubs, all, ...pages];
+  return [...appliances, ...models, ...hubs, all, ...pages];
 }

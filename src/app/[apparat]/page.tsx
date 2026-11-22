@@ -14,6 +14,8 @@ import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
 import { appliancesIn, calcModel, category as categoryInfo, headingFor, hubFor, metaOf } from "@/lib/catalogue";
 import { isReserved } from "@/lib/routes";
 import PageToc from "@/components/appliance/PageToc";
+import ModelLinks from "@/components/appliance/ModelLinks";
+import { modelsFor } from "@/lib/models";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import ApplianceInsights from "@/components/content/ApplianceInsights";
 import { EnergyLabelChart } from "@/components/charts/ApplianceCharts";
@@ -188,7 +190,7 @@ export default async function AppliancePage({
             { id: "bedste-tidspunkt", label: "Billigste tidspunkt" },
             { id: "forbrug", label: "Forbrug og tips" },
             ...(meta_.hasEuLabel && data.energyLabels.length > 0 ? [{ id: "energimaerker", label: "Energimærker" }] : []),
-            ...(data.models.length > 0 ? [{ id: "modeller", label: "Modeller" }] : []),
+            ...(modelsFor(data.slug).length > 0 ? [{ id: "modelsider", label: "Modeller" }] : data.models.length > 0 ? [{ id: "modeller", label: "Modeller" }] : []),
             { id: "relaterede", label: "Lignende apparater" },
             ...(faqs.length ? [{ id: "spoergsmaal", label: "Spørgsmål" }] : []),
           ]}
@@ -238,7 +240,7 @@ export default async function AppliancePage({
             <h2 className="font-heading text-2xl font-semibold text-ink mb-4 mt-12">
               Energimærkning — {data.name}
             </h2>
-            <div className="not-prose my-8 overflow-x-auto rounded-card bg-surface shadow-card">
+            <div className="scroll-hint not-prose my-8 overflow-x-auto rounded-card bg-surface shadow-card">
               <table className="w-full text-sm">
                 <thead>
                   <tr>
@@ -278,13 +280,15 @@ export default async function AppliancePage({
           </div>
         )}
 
+        <ModelLinks parent={data.slug} name={data.name} />
+
         {/* Specific models */}
         {data.models.length > 0 && (
           <div id="modeller" className="my-10">
             <h2 className="font-heading text-2xl font-semibold text-ink mb-4 mt-12">
               Populære modeller — {data.name} strømforbrug
             </h2>
-            <div className="not-prose my-8 overflow-x-auto rounded-card bg-surface shadow-card">
+            <div className="scroll-hint not-prose my-8 overflow-x-auto rounded-card bg-surface shadow-card">
               <table className="w-full text-sm">
                 <thead>
                   <tr>

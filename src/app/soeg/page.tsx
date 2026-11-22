@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-const KIND_LABEL: Record<SearchEntry["k"], string> = { apparat: "Apparat", kategori: "Kategori", guide: "Guide", værktøj: "Værktøj", husstand: "Husstand" };
+const KIND_LABEL: Record<SearchEntry["k"], string> = { apparat: "Apparat", model: "Model", kategori: "Kategori", guide: "Guide", værktøj: "Værktøj", husstand: "Husstand" };
 
 export default async function SoegPage({ searchParams }: { searchParams: Promise<{ q?: string | string[] }> }) {
   const raw = (await searchParams).q;

@@ -32,7 +32,7 @@ const pathOf = (f) => { const p = f.slice(BUILD.length).replace(/\.html$/, ""); 
 
 const urls = JSON.parse(readFileSync(join(ROOT, "content/urls.json"), "utf8")).map((u) => u.path);
 const RESERVED = new Set(["/", ...JSON.parse(readFileSync(join(ROOT, "content/routes.json"), "utf8")).reserved.map((r) => `/${r}/`)]);
-const appliancePaths = new Set(urls.filter((p) => !RESERVED.has(p) && !p.startsWith("/husstand/") && !p.startsWith("/varmepumpe/") && !p.startsWith("/apparater/")));
+const appliancePaths = new Set(urls.filter((p) => !RESERVED.has(p) && !p.startsWith("/husstand/") && !p.startsWith("/varmepumpe/") && !p.startsWith("/apparater/") && /^\/[a-z0-9-]+\/$/.test(p)));
 
 const IFRAME = /<iframe\b[^>]*src="https:\/\/elpriser\.dk\/embed\/elpriser\/[^"]+"[^>]*>/g;
 let appliances = 0, iframes = 0, strips = 0, bands = 0;

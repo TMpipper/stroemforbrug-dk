@@ -24,7 +24,7 @@ function loadIndex(): Promise<SearchEntry[]> {
   return indexPromise;
 }
 
-const KIND_LABEL: Record<SearchEntry["k"], string> = { apparat: "Apparat", kategori: "Kategori", guide: "Guide", værktøj: "Værktøj", husstand: "Husstand" };
+const KIND_LABEL: Record<SearchEntry["k"], string> = { apparat: "Apparat", model: "Model", kategori: "Kategori", guide: "Guide", værktøj: "Værktøj", husstand: "Husstand" };
 
 type Variant = "hero" | "header" | "drawer" | "page";
 
@@ -178,7 +178,7 @@ export default function SearchBox({
                   <span className="min-w-0">
                     <span className="block truncate font-semibold text-ink">{r.t}</span>
                     <span className="block truncate text-xs text-ink-muted">
-                      {r.k === "apparat" ? r.d : `${KIND_LABEL[r.k]} · ${r.d}`}
+                      {r.k === "apparat" || r.k === "model" ? r.d : `${KIND_LABEL[r.k]} · ${r.d}`}
                     </span>
                   </span>
                   {r.kwh !== undefined && r.kwh > 0 ? (

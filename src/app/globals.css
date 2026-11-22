@@ -239,7 +239,20 @@
   /* Rullevindue om tabeller fra HTML-strenge (Prose.tsx pakker dem ind). Kortet sidder på vinduet, ikke tabellen. */
   .prose-content .table-scroll {
     overflow-x: auto; margin: 1.25rem 0 1.75rem;
-    border-radius: var(--radius-card); box-shadow: var(--shadow-card); background: var(--color-surface);
+    border-radius: var(--radius-card); box-shadow: var(--shadow-card); background-color: var(--color-surface);
+  }
+  /* Rulletip (22. nov. 2026): en skygge i kanten, kun når der er mere tabel at rulle til. De to dækflader ruller
+     med indholdet (local) og skjuler skyggerne (scroll) ved hver ende — ren CSS, intet JavaScript. */
+  .prose-content .table-scroll, .scroll-hint {
+    background-image:
+      linear-gradient(to right, var(--color-surface) 30%, transparent),
+      linear-gradient(to left, var(--color-surface) 30%, transparent),
+      radial-gradient(farthest-side at 0 50%, rgb(15 23 42 / 0.16), transparent),
+      radial-gradient(farthest-side at 100% 50%, rgb(15 23 42 / 0.16), transparent);
+    background-position: left center, right center, left center, right center;
+    background-size: 2.5rem 100%, 2.5rem 100%, 0.9rem 100%, 0.9rem 100%;
+    background-repeat: no-repeat;
+    background-attachment: local, local, scroll, scroll;
   }
   .prose-content .table-scroll table { margin: 0; box-shadow: none; border-radius: 0; min-width: 100%; width: max-content; max-width: none; }
   .prose-content .table-scroll td, .prose-content .table-scroll th { white-space: nowrap; }

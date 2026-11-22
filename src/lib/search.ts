@@ -7,7 +7,7 @@
  * enkelt tastefejl (»kummefryzer«) tilgives.
  */
 
-export type SearchKind = "apparat" | "kategori" | "guide" | "værktøj" | "husstand";
+export type SearchKind = "apparat" | "model" | "kategori" | "guide" | "værktøj" | "husstand";
 
 export interface SearchEntry {
   /** Visningsnavn */
@@ -110,7 +110,7 @@ function tokenScore(tok: string, words: string[]): number {
   return best;
 }
 
-const KIND_BOOST: Record<SearchKind, number> = { apparat: 1.0, kategori: 0.9, værktøj: 0.85, husstand: 0.85, guide: 0.8 };
+const KIND_BOOST: Record<SearchKind, number> = { apparat: 1.0, model: 0.95, kategori: 0.9, værktøj: 0.85, husstand: 0.85, guide: 0.8 };
 
 /** De bedste hits: alle søgeord skal ramme noget; navnet vejer tungest. */
 export function search(index: SearchEntry[], q: string, limit = 8): SearchEntry[] {

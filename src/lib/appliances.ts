@@ -4,6 +4,7 @@ import { APPLIANCES_CORE } from "./appliances-core";
 import { APPLIANCES_EXTRA } from "./appliances-extra";
 import { APPLIANCES_PHASE2A } from "./appliances-phase2a";
 import { APPLIANCES_PHASE2B } from "./appliances-phase2b";
+import { APPLIANCES_NEW } from "../content/apparater";
 
 // Phase 3 — drip-published via publishDate
 let phase3: ApplianceData[] = [];
@@ -19,6 +20,7 @@ export const APPLIANCES: ApplianceData[] = [
   ...APPLIANCES_PHASE2A,
   ...APPLIANCES_PHASE2B,
   ...phase3,
+  ...APPLIANCES_NEW,
 ];
 
 /**
