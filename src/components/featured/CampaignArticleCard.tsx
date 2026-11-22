@@ -42,7 +42,8 @@ interface Props {
 
 /**
  * Kampagnekortet i artiklerne: et sort annoncekort med selskabets logo, »Annonce«, kampagnen og
- * fristen, velkomstrabatten i stort, én hvid knap og vilkårene —
+ * fristen, velkomstrabatten i stort, feedets beregnede mærke (`highlight`: mærke + afgrænsende linje,
+ * kun når feedet sender det), én hvid knap og vilkårene —
  * KUN mens feedets fremhævede plads har en aktiv kampagne (samme data og regler som CampaignBar).
  * Ellers tegnes intet: ingen tom boks, intet layoutskift.
  *
@@ -139,6 +140,16 @@ export function CampaignArticleCardView({
           {data.amount}
         </p>
         <p style={{ ...P, marginTop: 6, color: "rgba(255,255,255,.88)", fontSize: 17, fontWeight: 600, lineHeight: 1.35 }}>{t.line}</p>
+        {data.highlight ? (
+          <div data-campaign-highlight="" style={{ marginTop: 12 }}>
+            <span
+              style={{ display: "inline-block", background: "#6FCF97", color: "#0A0A0A", fontSize: 12, fontWeight: 700, lineHeight: 1.25, padding: "4px 10px", borderRadius: 999 }}
+            >
+              {data.highlight.label}
+            </span>
+            <p style={{ ...P, marginTop: 6, color: "rgba(255,255,255,.72)", fontSize: 13, lineHeight: 1.45 }}>{data.highlight.detail}</p>
+          </div>
+        ) : null}
         <a
           href={href}
           rel="sponsored nofollow"

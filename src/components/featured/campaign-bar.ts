@@ -24,6 +24,11 @@ export interface CampaignBarData {
   terms: string | null;
   /** Selskabets logo fra feedet — eller null. */
   logoUrl: string | null;
+  /**
+   * Feedets beregnede mærke på kampagnen (`campaign.highlight`): kort mærke + den linje, der afgrænser
+   * det — eller null. Vises kun sammen (mærket står aldrig uden linjen).
+   */
+  highlight: { label: string; detail: string } | null;
 }
 
 /** I dag i dansk tid, ÅÅÅÅ-MM-DD. */
@@ -62,6 +67,7 @@ export function campaignBarData(
     validTo,
     terms: c.terms ?? null,
     logoUrl: p.supplier.logoUrl ?? null,
+    highlight: c.highlight?.label && c.highlight.detail ? { label: c.highlight.label, detail: c.highlight.detail } : null,
   };
 }
 

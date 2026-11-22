@@ -424,6 +424,12 @@ export interface FeedFeaturedCampaign {
   /** Første og sidste danske dag (inklusiv), ÅÅÅÅ-MM-DD. */
   startsOn: string;
   endsOn: string;
+  /**
+   * Et beregnet mærke på kampagnen (fx »Største rabat på én gang«) — samme regel og tekst som
+   * `highlight` på selskabets post i GET /api/v1/campaigns. Null/udeladt, når reglen ikke holder.
+   * Valgfri, så en ældre kopi af kontrakten stadig passer (fra 22. nov. 2026).
+   */
+  highlight?: FeedCampaignHighlight | null;
 }
 
 export interface FeedFeaturedResponse {
@@ -2641,6 +2647,29 @@ export type FeedCampaignKind = "oneOff" | "monthlyCredit" | "freeFees" | "gift" 
 export type FeedCampaignPayout = "på én gang" | "pr. måned" | "gavekort/gave" | "rabat på abonnement og tillæg" | "ved køb af pakke";
 /** `upcoming` (embargo) og `stale` (ikke bekræftet i 72 timer) sendes aldrig i et svar. */
 export type FeedCampaignStatus = "upcoming" | "active" | "stale" | "ended";
+/**
+ * Oversigtens gruppe, udledt af `kind`: `rebate` = rabat i kroner (oneOff, monthlyCredit, gift — har
+ * valueKr og rangeres efter den), `freeFees` = gratis abonnement og/eller tillæg i en periode (ingen
+ * kr.-værdi; se freeFeesDetail), `bundle` = ved køb af pakke (ingen værdi). Grupperne rangeres aldrig mod hinanden.
+ */
+export type FeedCampaignGroup = "rebate" | "freeFees" | "bundle";
+
+/** Kun freeFees: hvad er gratis, hvor længe, og referenceproduktets pris efter perioden (inkl. moms). */
+export interface FeedCampaignFreeFeesDetail {
+  /** Hele måneder med 0 kr. */
+  months: number;
+  /** »Løbende måned + N måneder«: resten af tilmeldingsmåneden er også gratis. */
+  plusCurrentMonth: boolean;
+  subscriptionFree: boolean;
+  markupFree: boolean;
+  /** Abonnement efter perioden, kr./md. inkl. moms; null uden referenceprodukt. */
+  afterSubscriptionKrPerMonth: number | null;
+  /** Tillæg til spotprisen efter perioden, øre/kWh inkl. moms; null uden referenceprodukt, eller hvis det ikke er spotbaseret. */
+  afterMarkupOrePerKwh: number | null;
+  /** Feedets produkt, prisen efter er regnet på, og netområdet, den er slået op i. */
+  referenceProductSlug: string | null;
+  gridArea: string | null;
+}
 
 export interface FeedCampaign {
   id: string;
@@ -2653,18 +2682,19 @@ export interface FeedCampaign {
   /** Uden cifre — beløb står i talfelterne. */
   title: string;
   kind: FeedCampaignKind;
+  group: FeedCampaignGroup;
   amountKr: number | null;
   perMonthKr: number | null;
   months: number | null;
   altPerMonthKr: number | null;
   altLabel: string | null;
   freeFees: { months: number; plusCurrentMonth: boolean; subscription: boolean; markup: boolean; referenceProductSlug: string | null } | null;
-  /** Beregnet værdi i kr. inkl. moms (oneOff/gift: beløbet; monthlyCredit: pr. md. × måneder; freeFees: se valueBasis; bundle: null). */
+  /** Beregnet værdi i kr. inkl. moms — kun en rabat i kroner (oneOff/gift: beløbet; monthlyCredit: pr. md. × måneder). freeFees og bundle: altid null. */
   valueKr: number | null;
   /** altPerMonthKr × months. */
   altValueKr: number | null;
-  /** Kun freeFees: forbruget og referenceproduktet, værdien er regnet på (et »mindst«: den løbende måned tæller ikke med). */
-  valueBasis: { kwh: number; referenceProductSlug: string; gridArea: string } | null;
+  /** Kun freeFees (ellers null): hvad er gratis, hvor længe, og prisen efter perioden. */
+  freeFeesDetail: FeedCampaignFreeFeesDetail | null;
   payout: FeedCampaignPayout;
   /** Selskabets egne ord om udbetalingen, uden cifre. */
   payoutWording: string;
@@ -2682,6 +2712,20 @@ export interface FeedCampaign {
   partner: boolean;
   goSlug: string | null;
   status: FeedCampaignStatus;
+  /**
+   * Et beregnet mærke — aldrig skrevet: kun på et aktivt tilbud, der gives på én gang (`kind` oneOff),
+   * og hvis beløb er strengt større end hvert andet aktivt engangstilbud i samme begivenhed og produkt
+   * (gratis perioder og pakker har ingen kr.-værdi og tæller aldrig). Ellers null.
+   */
+  highlight: FeedCampaignHighlight | null;
+}
+
+/** Et beregnet mærke på et kampagnetilbud: kort mærke og den linje, der afgrænser det. Mærket vises aldrig uden linjen. */
+export interface FeedCampaignHighlight {
+  /** »Største rabat på én gang« */
+  label: string;
+  /** »600 kr. på én gang – den største engangsrabat blandt de 7 rabatter i kroner, vi har tjekket« */
+  detail: string;
 }
 
 export interface FeedCampaignsResponse {
@@ -2691,7 +2735,7 @@ export interface FeedCampaignsResponse {
   product: "el" | "gas" | "ladeboks" | null;
   generatedAt: string;
   staleAfterHours: number;
-  /** Aktive tilbud, sorteret efter valueKr (højest først, null sidst). */
+  /** Aktive tilbud i grupper: rabat i kroner efter valueKr (højest først), så gratis perioder efter måneder (flest først), så pakker. */
   active: FeedCampaign[];
   /** Udløbne tilbud (arkivet), nyeste slutdato først. */
   ended: FeedCampaign[];

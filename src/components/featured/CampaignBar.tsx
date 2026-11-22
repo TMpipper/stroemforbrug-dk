@@ -70,6 +70,16 @@ export function CampaignBarView({ data, href, more }: { data: CampaignBarData; h
       </span>
       <span aria-hidden="true">·</span>
       <span>{campaignBarText(data)}</span>
+      {data.highlight ? (
+        // Kun fra sm: på en telefon er bjælken allerede to-tre linjer; mærket står dér på kortet og i oversigten.
+        // Mærket og linjen står altid sammen (aldrig mærket alene).
+        <span data-campaign-highlight="" className="hidden flex-wrap items-center justify-center gap-x-1.5 sm:inline-flex">
+          <span className="rounded-full px-2 py-px text-[11px] font-semibold" style={{ background: "var(--cb-tag-bg)" }}>
+            {data.highlight.label}
+          </span>
+          <span className="text-[12px] opacity-85">{data.highlight.detail}</span>
+        </span>
+      ) : null}
       <span aria-hidden="true">·</span>
       <span className="font-semibold underline underline-offset-2">
         Se tilbuddet <span aria-hidden="true">→</span>
