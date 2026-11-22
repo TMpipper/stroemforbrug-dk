@@ -29,8 +29,9 @@ export default async function PartnerCta() {
       <div className="rounded-card bg-ink px-6 py-10 text-white shadow-lift sm:px-10 md:py-12">
         <p className="text-xs font-semibold uppercase tracking-wide text-white/60">Annonce · elaftale</p>
         <div className="mt-3 grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-4">
+          <div className="min-w-0 max-w-2xl">
+            {/* flex-wrap: logo + overskrift må ikke tvinge kortet bredere end 320 px (OK-kampagnen 23. nov. 2026). */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
               <CompanyLogo name={dk1.supplierName} logoUrl={dk1.logoUrl} size="lg" shape="wide" className="bg-white" />
               <h2 id="partner-cta-titel" className="font-heading text-2xl font-semibold text-white md:text-3xl">
                 Billigste elaftale ved {formatKr(REFERENCE_KWH)} kWh: {dk1.supplierName}
@@ -111,8 +112,9 @@ async function campaignCta() {
       <div className="rounded-card bg-ink px-6 py-10 text-white shadow-lift sm:px-10 md:py-12">
         <p className="text-xs font-semibold uppercase tracking-wide text-white/60">Annonce · {data.label}</p>
         <div className="mt-3 grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-4">
+          <div className="min-w-0 max-w-2xl">
+            {/* flex-wrap: logo + overskrift må ikke tvinge kortet bredere end 320 px (OK-kampagnen 23. nov. 2026). */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
               <CompanyLogo name={data.supplierName} logoUrl={p.supplier.logoUrl} size="lg" shape="wide" className="bg-white" />
               <h2 id="partner-cta-titel" className="font-heading text-2xl font-semibold text-white md:text-3xl">
                 {data.amount} i velkomstrabat hos {data.supplierName}
