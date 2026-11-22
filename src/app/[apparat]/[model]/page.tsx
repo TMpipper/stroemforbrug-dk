@@ -3,11 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, tokenPrices } from "@/lib/prices";
-import { renderWith, wrapTables } from "@/lib/tokens";
+import { collapseAbbreviationPeriods, renderWith, wrapTables } from "@/lib/tokens";
 import { getAppliance } from "@/lib/appliances";
 import { hubFor } from "@/lib/catalogue";
 import {
-  allModels, annualKwh, chargeKwh, formatWatt, wattRange, getModel, isModelPublished, MODE_LABEL, modelPath, modelsFor, profileFor,
+  allModels, annualKwh, chargeKwh, formatWatt, wattRange, getModel, isModelPublished, keyFigure, MODE_LABEL, modelPath, modelsFor, possessive, profileFor, unitKwh,
   type ModeKey,
 } from "@/lib/models";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
@@ -66,31 +66,53 @@ export default async function ModelPage({ params }: { params: Params }) {
   const rows = m.variants.map((v) => {
     const year = annualKwh(v, m.parent);
     const charge = chargeKwh(v);
-    return { v, year, charge };
+    const unit = unitKwh(v, m.parent);
+    return { v, year, charge, unit };
   });
   const hasBattery = rows.some((r) => r.charge !== null);
+  const unitLabel = rows.find((r) => r.unit)?.unit?.label;
+  const isCar = m.variants.some((v) => v.whPerKm !== undefined);
+  const hasLabel = m.variants.some((v) => v.kwhPer100Cycles !== undefined);
+  const hasClass = m.variants.some((v) => v.energyClass);
   const modes = (["off", "sleep", "standby", "idle", "on"] as ModeKey[]).filter((k) => m.variants.some((v) => v.watts[k] !== undefined));
   const lo = rows.reduce((a, b) => (b.year < a.year ? b : a));
   const hi = rows.reduce((a, b) => (b.year > a.year ? b : a));
   const krYear = (kwh: number) => (kwh * t.dk < 10 ? formatKrExact(kwh * t.dk) : formatKr(kwh * t.dk));
   const oere = (kwh: number) => da(kwh * t.dk * 100, kwh * t.dk * 100 < 10 ? 1 : 0);
 
-  const heading = `${m.name} strømforbrug: watt, kWh om året og pris${hasBattery ? " pr. opladning" : ""}`;
+  const heading = isCar
+    ? `${m.name} strømforbrug: kWh pr. 100 km, pris pr. km og om året`
+    : hasLabel
+      ? `${m.name} strømforbrug: kWh pr. ${profile.cycleLabel ?? "program"} og pris om året`
+      : `${m.name} strømforbrug: watt, kWh om året og pris${hasBattery ? " pr. opladning" : ""}`;
   const idle = rows.map((r) => r.v.watts.idle ?? r.v.watts.on).filter((x) => x !== undefined) as number[];
+  const idleWord = m.variants.some((v) => v.watts.idle !== undefined) ? "tændt i tomgang" : "i brug";
+  const measuredBy = m.measuredBy ?? `ifølge ${possessive(m.brand)} egne målinger ved 230 V`;
+  const range = (xs: number[], d: number) => {
+    const a = Math.min(...xs), b = Math.max(...xs);
+    return a === b ? da(a, d) : `${da(a, d)}–${da(b, d)}`;
+  };
+  const units = rows.flatMap((r) => (r.unit ? [r.unit.kwh] : []));
+  const lead = isCar
+    ? `${m.name} bruger ${range(units, 1)} kWh pr. 100 km ${measuredBy}`
+    : hasLabel
+      ? `${m.name} bruger ${range(units, 2)} kWh pr. ${profile.cycleLabel ?? "program"} ${measuredBy}`
+      : `${m.name} bruger ${idle.length ? `${wattRange(idle)} ${idleWord}` : "meget lidt"} ${measuredBy}`;
   const answer =
-    `${m.name} bruger ${idle.length ? `${wattRange(idle)} tændt i tomgang` : "meget lidt"} ifølge ${m.brand}s egne målinger ved 230 V` +
-    ` og omkring ${da(lo.year)}${hi.year !== lo.year ? `–${da(hi.year)}` : ""} kWh om året med ${m.parent === "laptop" ? "seks timers brug om dagen" : "vores brugsprofil"}` +
+    `${lead} og omkring ${da(lo.year, lo.year >= 100 ? 0 : 1)}${hi.year !== lo.year ? `–${da(hi.year, hi.year >= 100 ? 0 : 1)}` : ""} kWh om året med ${profile.short}` +
     ` — ca. ${krYear(lo.year)}${hi.year !== lo.year ? `–${krYear(hi.year)}` : ""} kr. om året ved månedens elpris` +
-    (hasBattery ? `. En fuld opladning koster ${rows.filter((r) => r.charge).map((r) => `${oere(r.charge!)} øre (${r.v.name})`).join(" og ")}.` : ".");
+    (isCar ? `, eller ${range(units.map((k) => k * t.dk), 0)} kr. pr. 100 km.` : "") +
+    (hasBattery ? `. En fuld opladning koster ${rows.filter((r) => r.charge).map((r) => `${oere(r.charge!)} øre (${r.v.name})`).join(" og ")}.` : isCar ? "" : ".");
 
   // Sammenligningen: alle udgivne modeller under samme apparat, samme profil — så de kan stilles op mod hinanden.
   const family = modelsFor(m.parent)
     .flatMap((x) => x.variants.map((v) => ({ m: x, v, year: annualKwh(v, x.parent) })))
     .sort((a, b) => a.year - b.year);
 
-  const content = wrapTables(renderWith(t, m.content));
-  const intro = renderWith(t, m.intro);
-  const faqs = m.faqs.map((f) => ({ ...f, answer: renderWith(t, f.answer) }));
+  // »{{kr 77}}.« må ikke blive »kr..« — samme rettelse som FaqBand laver på svarene.
+  const content = collapseAbbreviationPeriods(wrapTables(renderWith(t, m.content)));
+  const intro = collapseAbbreviationPeriods(renderWith(t, m.intro));
+  const faqs = m.faqs.map((f) => ({ ...f, answer: collapseAbbreviationPeriods(renderWith(t, f.answer)) }));
   const crumbs = [
     { name: "Apparater", href: "/apparater/" },
     ...(hub ? [{ name: hub.label, href: `/apparater/${hub.slug}/` }] : []),
@@ -118,10 +140,10 @@ export default async function ModelPage({ params }: { params: Params }) {
 
         <section aria-labelledby="officielle-tal" className="mt-10" data-model-figures>
           <h2 id="officielle-tal" className="font-heading text-2xl font-semibold text-ink">
-            {m.brand}s egne tal for {m.name}
+            {possessive(m.brand)} egne tal for {m.name}
           </h2>
           <p className="mt-2 text-ink-body">
-            Målt af {m.brand} ved 230 V — samme spænding som en dansk stikkontakt. Kilderne står nederst på siden.
+            {m.figuresNote ?? `Målt af ${m.brand} ved 230 V — samme spænding som en dansk stikkontakt. Kilderne står nederst på siden.`}
           </p>
           <div className="scroll-hint not-prose my-6 overflow-x-auto rounded-card bg-surface shadow-card">
             <table className="w-full text-sm">
@@ -131,6 +153,9 @@ export default async function ModelPage({ params }: { params: Params }) {
                   {modes.map((k) => (
                     <th key={k} scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">{MODE_LABEL[k]}</th>
                   ))}
+                  {isCar && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">WLTP</th>}
+                  {hasLabel && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Pr. 100 programmer</th>}
+                  {hasClass && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Energiklasse</th>}
                   {hasBattery && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Batteri</th>}
                   {m.variants.some((v) => v.adapterW) && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Målt med oplader</th>}
                   {m.variants.some((v) => v.adapterNoLoadW !== undefined) && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Oplader uden last</th>}
@@ -143,7 +168,10 @@ export default async function ModelPage({ params }: { params: Params }) {
                     {modes.map((k) => (
                       <td key={k} className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.watts[k] !== undefined ? formatWatt(v.watts[k]!) : "–"}</td>
                     ))}
-                    {hasBattery && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.batteryWh ? `${da(v.batteryWh)} Wh` : "–"}</td>}
+                    {isCar && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.whPerKm !== undefined ? `${da(v.whPerKm / 10)} kWh/100 km` : "–"}</td>}
+                    {hasLabel && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.kwhPer100Cycles !== undefined ? `${da(v.kwhPer100Cycles)} kWh` : "–"}</td>}
+                    {hasClass && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.energyClass ?? "–"}</td>}
+                    {hasBattery && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.batteryWh ? (v.batteryWh >= 1000 ? `${da(v.batteryWh / 1000)} kWh` : `${da(v.batteryWh)} Wh`) : "–"}</td>}
                     {m.variants.some((x) => x.adapterW) && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.adapterW ? `${v.adapterW} W` : "–"}</td>}
                     {m.variants.some((x) => x.adapterNoLoadW !== undefined) && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.adapterNoLoadW !== undefined ? formatWatt(v.adapterNoLoadW) : "–"}</td>}
                   </tr>
@@ -165,18 +193,24 @@ export default async function ModelPage({ params }: { params: Params }) {
                   <th scope="col" className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-ink">Variant</th>
                   <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">kWh/år</th>
                   <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Pris/år</th>
+                  {unitLabel && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">{unitLabel}</th>}
                   {hasBattery && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Én fuld opladning</th>}
                 </tr>
               </thead>
               <tbody>
-                {rows.map(({ v, year, charge }) => (
+                {rows.map(({ v, year, charge, unit }) => (
                   <tr key={v.name} className="border-t border-border">
                     <th scope="row" className="whitespace-nowrap px-4 py-3 text-left font-semibold text-ink">{v.name}</th>
-                    <td className="px-4 py-3 text-right tabular text-ink-body">{da(year)}</td>
+                    <td className="px-4 py-3 text-right tabular text-ink-body">{da(year, year >= 100 ? 0 : 1)}</td>
                     <td className="whitespace-nowrap px-4 py-3 text-right tabular font-semibold text-ink">{krYear(year)} kr.</td>
+                    {unitLabel && (
+                      <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">
+                        {unit ? (unit.kwh * t.dk >= 10 ? `${formatKr(unit.kwh * t.dk)} kr.` : `${oere(unit.kwh)} øre`) : "–"}
+                      </td>
+                    )}
                     {hasBattery && (
                       <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">
-                        {charge ? `${da(charge, 3)} kWh · ${oere(charge)} øre` : "–"}
+                        {charge ? (charge * t.dk >= 10 ? `${da(charge, 1)} kWh · ${formatKr(charge * t.dk)} kr.` : `${da(charge, 3)} kWh · ${oere(charge)} øre`) : "–"}
                       </td>
                     )}
                   </tr>
@@ -198,7 +232,7 @@ export default async function ModelPage({ params }: { params: Params }) {
                 <thead className="bg-bg-blue">
                   <tr>
                     <th scope="col" className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-ink">Model</th>
-                    <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Tomgang</th>
+                    <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">{keyFigure(m.variants[0], m.parent)?.label ?? "Effekt"}</th>
                     <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">kWh/år</th>
                     <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Pris/år</th>
                   </tr>
@@ -213,8 +247,8 @@ export default async function ModelPage({ params }: { params: Params }) {
                           <Link href={modelPath(x)} className="text-accent underline decoration-accent/30 underline-offset-2 hover:decoration-accent">{x.name} {v.name}</Link>
                         )}
                       </th>
-                      <td className="px-4 py-3 text-right tabular text-ink-body">{v.watts.idle !== undefined ? formatWatt(v.watts.idle) : "–"}</td>
-                      <td className="px-4 py-3 text-right tabular text-ink-body">{da(year)}</td>
+                      <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{keyFigure(v, x.parent)?.text ?? "–"}</td>
+                      <td className="px-4 py-3 text-right tabular text-ink-body">{da(year, year >= 100 ? 0 : 1)}</td>
                       <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink">{krYear(year)} kr.</td>
                     </tr>
                   ))}

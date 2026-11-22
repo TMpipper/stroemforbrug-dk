@@ -3,7 +3,7 @@ import CampaignCard from "@/components/campaign/CampaignCard";
 import { notFound } from "next/navigation";
 import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
-import { renderWith, wrapTables } from "@/lib/tokens";
+import { renderWith, wrapTables, collapseAbbreviationPeriods } from "@/lib/tokens";
 import { pageMeta } from "@/lib/pages";
 
 import PriceBasis from "@/components/content/PriceBasis";
@@ -80,9 +80,10 @@ export default async function AppliancePage({
   const t = tokenPrices(prices);
   const meta = pageMeta(`/${data.slug}/`);
   const updated = data.updated && data.updated > meta.updated ? data.updated : meta.updated;
-  const content = wrapTables(renderWith(t, data.content));
-  const quickAnswer = renderWith(t, data.quickAnswer);
-  const faqs = data.faqs.map((f) => ({ ...f, answer: renderWith(t, f.answer) }));
+  // Et beløb sidst i en sætning: »458 kr..« → »458 kr.« (også i FAQ-schemaet nedenfor).
+  const content = collapseAbbreviationPeriods(wrapTables(renderWith(t, data.content)));
+  const quickAnswer = collapseAbbreviationPeriods(renderWith(t, data.quickAnswer));
+  const faqs = data.faqs.map((f) => ({ ...f, answer: collapseAbbreviationPeriods(renderWith(t, f.answer)) }));
 
   // Verified source links for this appliance, plus any named reference the data
   // already carried that is not one of the old generic homepage links.

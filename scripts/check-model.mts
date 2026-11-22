@@ -54,9 +54,12 @@ for (const slug of slugs) {
   if (m.synonyms.length < 2) e("mindst 2 synonymer (søgningen lever af dem)");
 
   if (!m.variants.length) e("ingen varianter");
+  // Standardteksten siger »målt af <brand> ved 230 V« — kun sand for producentens egne 230 V-rapporter (Apple PER).
+  const nonPer = m.brand !== "Apple" || m.variants.some((v: { whPerKm?: number; kwhPer100Cycles?: number }) => v.whPerKm !== undefined || v.kwhPer100Cycles !== undefined);
+  if (nonPer && (!m.measuredBy || !m.figuresNote)) e("measuredBy og figuresNote skal sige, hvor tallene kommer fra (EPREL, WLTP, producentens side) — standarden siger »målt ved 230 V«");
   for (const v of m.variants) {
     if (!m.sources[v.source]?.url?.startsWith("https://")) e(`${v.name}: source ${v.source} findes ikke eller har ingen https-url`);
-    if (!Object.keys(v.watts).length && v.annualKwh === undefined) e(`${v.name}: hverken watt-tal eller annualKwh`);
+    if (!Object.keys(v.watts).length && v.annualKwh === undefined && v.whPerKm === undefined && v.kwhPer100Cycles === undefined) e(`${v.name}: hverken watt-tal eller annualKwh`);
     if (v.adapterEfficiency !== undefined && (v.adapterEfficiency <= 0.5 || v.adapterEfficiency > 1)) e(`${v.name}: adapterEfficiency skal være 0,5–1 (fx 0.888)`);
     try {
       if (PROFILES[m.parent]) annualKwh(v, m.parent);

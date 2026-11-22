@@ -138,6 +138,42 @@
     "noindex": false
   },
   {
+    "path": "/elbil/skoda-elroq/",
+    "title": "Skoda Elroq strømforbrug (2026) → 60, 85, 85x og RS",
+    "description": "Skoda Elroq 60, 85, 85x og RS: Škodas officielle WLTP-forbrug fra den danske prisliste, kWh om året, pris pr. 100 km og hvad en fuld opladning koster.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/skoda-enyaq/",
+    "title": "Skoda Enyaq strømforbrug (2026) → kWh pr. 100 km og pris",
+    "description": "Den nye Skoda Enyaq og Enyaq Coupé: Škodas officielle WLTP-forbrug for 60, 85, 85x og RS, kWh om året, pris pr. 100 km og en fuld opladning.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/tesla-model-3/",
+    "title": "Tesla Model 3 strømforbrug (2026) → kWh pr. 100 km og pris",
+    "description": "Tesla Model 3 (Highland): Teslas officielle WLTP-forbrug for RWD, Long Range og Performance, kWh om året, pris pr. 100 km og rækkevidde om vinteren.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/tesla-model-y/",
+    "title": "Tesla Model Y strømforbrug (2026) → kWh pr. km og ladepris",
+    "description": "Tesla Model Y (Juniper): Teslas officielle WLTP-forbrug for Standard, Long Range og Performance, kWh om året, pris pr. 100 km og vinterforbrug.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/toyota-bz4x/",
+    "title": "Toyota bZ4X strømforbrug (2026) → kWh, pris og rækkevidde",
+    "description": "Den nye Toyota bZ4X: Toyotas officielle WLTP-forbrug for 57,7 og 73,1 kWh med for- og firehjulstræk, kWh om året, pris pr. 100 km og vinterrækkevidde.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/vw-id-4/",
+    "title": "VW ID.4 strømforbrug (2026) → Pure, Pro og GTX i kWh",
+    "description": "VW ID.4 Pure, Pro, Pro 4MOTION og GTX: Volkswagens officielle WLTP-forbrug fra den danske prisliste, kWh om året, pris pr. 100 km og vinterrækkevidde.",
+    "noindex": true
+  },
+  {
     "path": "/elcykel/",
     "title": "Elcykel strømforbrug (2026) → kWh pr. km og pr. opladning",
     "description": "En elcykel bruger ca. 0,3-0,9 kWh på en fuld opladning og under 2 kWh pr. 100 km. Se prisen pr. opladning, pr. km og om året, og hvornår du bør lade.",
@@ -342,6 +378,12 @@
     "noindex": true
   },
   {
+    "path": "/laptop/macbook-neo/",
+    "title": "MacBook Neo strømforbrug (2026) → watt, opladning og pris",
+    "description": "MacBook Neo med A18 Pro: Apples egne watt-tal ved 230 V, kWh om året, hvad en fuld opladning koster, og hvorfor den bruger mindre end MacBook Air.",
+    "noindex": true
+  },
+  {
     "path": "/laptop/macbook-pro-m4/",
     "title": "MacBook Pro M4 strømforbrug (2026) → M4, Pro og Max målt",
     "description": "MacBook Pro fra 2024 med M4, M4 Pro og M4 Max i 14 og 16 tommer: Apples watt ved 230 V, kWh om året og hvad en fuld opladning koster.",
@@ -438,6 +480,12 @@
     "noindex": false
   },
   {
+    "path": "/opvaskemaskine/siemens-iq500/",
+    "title": "Siemens iQ500 opvaskemaskine strømforbrug (2026) → kWh",
+    "description": "Siemens iQ500 opvaskemaskine med Zeolith: energimærkets kWh pr. opvask på eco-programmet, pris om året, iQ300 til sammenligning og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
     "path": "/ovn/",
     "title": "Ovn strømforbrug (2026) → kWh pr. tilberedning og år",
     "description": "Hvor meget strøm bruger en ovn? Se det typiske elforbrug i kWh for konventionel og varmluftovn, sammenlign modeller og beregn din udgift.",
@@ -454,6 +502,18 @@
     "title": "PlayStation strømforbrug (2026) → Watt i spil og standby",
     "description": "Hvor meget strøm bruger en PlayStation? Se elforbrug for PS5 og PS4 i kWh, sammenlign tilstande og beregn din årlige udgift. Opdateret 2026-data.",
     "noindex": false
+  },
+  {
+    "path": "/playstation/ps5-pro/",
+    "title": "PS5 Pro strømforbrug (2026) → watt, hvilemodus og pris",
+    "description": "PS5 Pro i den første udgave og den reviderede: Sonys watt under spil, i menuen, med 4K Blu-ray og i hvilemodus, og hvad den koster om året.",
+    "noindex": true
+  },
+  {
+    "path": "/playstation/ps5-slim/",
+    "title": "PS5 Slim strømforbrug (2026) → watt i spil og hvilemodus",
+    "description": "PS5 Slim med og uden diskdrev: Sonys watt under spil, i menuen og i hvilemodus, kWh og pris om året, og hvilke hvileindstillinger der koster.",
+    "noindex": true
   },
   {
     "path": "/pool/",
@@ -576,6 +636,24 @@
     "noindex": false
   },
   {
+    "path": "/tv/lg-oled-c5/",
+    "title": "LG OLED C5 strømforbrug (2026) → watt, kWh og HDR-forbrug",
+    "description": "LG OLED C5 i alle seks størrelser: energimærkets watt i SDR og HDR, kWh og pris om året, og hvor meget mere de store skærme bruger end C6.",
+    "noindex": true
+  },
+  {
+    "path": "/tv/lg-oled-c6/",
+    "title": "LG OLED C6 strømforbrug (2026) → watt og pris pr. størrelse",
+    "description": "LG OLED C6 fra 42 til 83 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året med fem timers tv om dagen, og hvad standby og HDR koster.",
+    "noindex": true
+  },
+  {
+    "path": "/tv/samsung-the-frame/",
+    "title": "Samsung The Frame strømforbrug (2026) → watt og Art Mode",
+    "description": "Samsung The Frame og Frame Pro 2026 fra 43 til 85 tommer: watt fra EU's energimærke, kWh og pris om året, og hvad kunsttilstanden betyder for regningen.",
+    "noindex": true
+  },
+  {
     "path": "/varmeblaeser/",
     "title": "Varmeblæser strømforbrug (2026) → kWh pr. time og pris",
     "description": "Hvor meget strøm bruger en varmeblæser? Se elforbrug i kWh, sammenlign med elradiatorer og beregn din udgift. Opdateret med 2026-priser.",
@@ -622,6 +700,18 @@
     "title": "Vaskemaskine strømforbrug (2026) → kWh pr. vask og år",
     "description": "Hvor meget strøm bruger en vaskemaskine? Se typisk elforbrug i kWh pr. vask og pr. år, sammenlign modeller og beregn din udgift. 2026-data.",
     "noindex": false
+  },
+  {
+    "path": "/vaskemaskine/bosch-serie-6/",
+    "title": "Bosch Serie 6 vaskemaskine strømforbrug (2026) → kWh og pris",
+    "description": "Bosch Serie 6 vaskemaskine i 9, 10 og 11 kg: energimærkets kWh pr. vask på eco 40-60, kWh og pris om året, og hvornår på døgnet vasken er billigst.",
+    "noindex": true
+  },
+  {
+    "path": "/vaskemaskine/miele-w1/",
+    "title": "Miele W1 vaskemaskine strømforbrug (2026) → kWh og pris",
+    "description": "Miele W1 vaskemaskiner fra WWA128 til WWE380: energimærkets kWh pr. vask på eco 40-60, pris om året, og hvorfor den mest sparsomme bruger en tredjedel mindre.",
+    "noindex": true
   },
   {
     "path": "/ventilationsanlaeg/",

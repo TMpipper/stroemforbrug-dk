@@ -11,6 +11,21 @@ import macbookProProledXdr from "./macbook-pro-proled-xdr";
 import macMiniM6 from "./mac-mini-m6";
 import imacM6 from "./imac-m6";
 import macStudio from "./mac-studio";
+import lgOledC6 from "./lg-oled-c6";
+import lgOledC5 from "./lg-oled-c5";
+import samsungTheFrame from "./samsung-the-frame";
+import ps5Slim from "./ps5-slim";
+import ps5Pro from "./ps5-pro";
+import macbookNeo from "./macbook-neo";
+import boschSerie6 from "./bosch-serie-6";
+import mieleW1 from "./miele-w1";
+import siemensIq500 from "./siemens-iq500";
+import teslaModelY from "./tesla-model-y";
+import skodaElroq from "./skoda-elroq";
+import toyotaBz4x from "./toyota-bz4x";
+import skodaEnyaq from "./skoda-enyaq";
+import vwId4 from "./vw-id-4";
+import teslaModel3 from "./tesla-model-3";
 
 /**
  * Modelsiderne (ejeren 22. nov. 2026): én fil pr. modelfamilie (`export default`), side på /<parent>/<slug>/.
@@ -29,4 +44,19 @@ export const MODELS_ALL: ModelData[] = [
   macMiniM6,
   imacM6,
   macStudio,
+  lgOledC6,
+  lgOledC5,
+  samsungTheFrame,
+  ps5Slim,
+  ps5Pro,
+  macbookNeo,
+  boschSerie6,
+  mieleW1,
+  siemensIq500,
+  teslaModelY,
+  skodaElroq,
+  toyotaBz4x,
+  skodaEnyaq,
+  vwId4,
+  teslaModel3,
 ];
