@@ -78,6 +78,12 @@
     "noindex": false
   },
   {
+    "path": "/blender/",
+    "title": "Blender strømforbrug (2026) → kWh pr. smoothie og suppe",
+    "description": "Se hvor meget strøm en blender bruger pr. smoothie, pr. suppe og om året – standblender, power blender, stavblender og suppeblender – og hvad watt betyder.",
+    "noindex": false
+  },
+  {
     "path": "/broedrister/",
     "title": "Brødrister strømforbrug (2026) → Watt, kWh og pris pr. brug",
     "description": "Hvor meget strøm bruger en brødrister? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift med danske 2026-priser.",
@@ -98,13 +104,13 @@
   {
     "path": "/computer/imac-m4/",
     "title": "iMac M4 strømforbrug (2026) → watt med skærm og pris",
-    "description": "iMac M4 fra 2024 med 24\" skærm: Apples watt-tal ved 230 V, kWh om året med skærmen regnet med, dvale og hvad den eksterne strømforsyning bruger.",
+    "description": "iMac M4 fra 2024 med 24-tommer skærm: Apples watt-tal ved 230 V, kWh om året med skærmen regnet med, dvale og hvad den eksterne strømforsyning bruger.",
     "noindex": true
   },
   {
     "path": "/computer/imac-m6/",
     "title": "iMac M6 strømforbrug (2026) → 24 tommer, watt og pris",
-    "description": "iMac M6 fra oktober 2026: Apples watt-tal ved 230 V med den indbyggede 24\" skærm, kWh om året, dvale, og hvor meget den sparer i forhold til M4.",
+    "description": "iMac M6 fra oktober 2026: Apples watt-tal ved 230 V med den indbyggede 24-tommer skærm, kWh om året, dvale, og hvor meget den sparer i forhold til M4.",
     "noindex": true
   },
   {
@@ -126,6 +132,12 @@
     "noindex": true
   },
   {
+    "path": "/dehydrator/",
+    "title": "Dehydrator strømforbrug (2026) → kWh pr. tørring vs. ovn",
+    "description": "Se hvor meget strøm en dehydrator eller madtørrer bruger i timen og pr. tørring, hvad frugt, svampe og jerky koster, og om ovnen kan gøre det billigere.",
+    "noindex": false
+  },
+  {
     "path": "/el-loebehjul/",
     "title": "El-løbehjul strømforbrug (2026) → kWh pr. km og opladning",
     "description": "Et el-løbehjul bruger ca. 0,3-0,8 kWh på en fuld opladning og 10-17 Wh pr. km. Se prisen pr. opladning, pr. 100 km og om året, og hvornår du skal lade.",
@@ -136,6 +148,18 @@
     "title": "Elbil strømforbrug (2026) → kWh pr. 100 km og ladepris",
     "description": "Hvor meget strøm bruger en elbil? Se typisk forbrug i kWh pr. km og pr. år, sammenlign modeller og beregn din ladeudgift. Opdateret 2026.",
     "noindex": false
+  },
+  {
+    "path": "/elbil/audi-q4-e-tron/",
+    "title": "Audi Q4 e-tron strømforbrug (2026) → SUV og Sportback",
+    "description": "Audi Q4 e-tron og Q4 Sportback: Audis officielle WLTP-forbrug for e-tron, performance og quattro, kWh om året, pris pr. 100 km og en fuld opladning.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/renault-5/",
+    "title": "Renault 5 strømforbrug (2026) → 40 og 52 kWh i kWh pr. km",
+    "description": "Renault 5 E-Tech electric med 40 og 52 kWh: Renaults officielle WLTP-forbrug fra den danske prisliste, kWh om året, pris pr. 100 km og en fuld opladning.",
+    "noindex": true
   },
   {
     "path": "/elbil/skoda-elroq/",
@@ -168,15 +192,39 @@
     "noindex": true
   },
   {
+    "path": "/elbil/vw-id-3/",
+    "title": "VW ID.3 strømforbrug (2026) → ID.3 Neo i kWh pr. 100 km",
+    "description": "VW ID.3 Neo med 170, 190 og 231 hk: Volkswagens officielle WLTP-forbrug fra den danske prisliste, kWh om året, pris pr. 100 km og hvad en opladning koster.",
+    "noindex": true
+  },
+  {
     "path": "/elbil/vw-id-4/",
     "title": "VW ID.4 strømforbrug (2026) → Pure, Pro og GTX i kWh",
     "description": "VW ID.4 Pure, Pro, Pro 4MOTION og GTX: Volkswagens officielle WLTP-forbrug fra den danske prisliste, kWh om året, pris pr. 100 km og vinterrækkevidde.",
     "noindex": true
   },
   {
+    "path": "/elbil/vw-id-buzz/",
+    "title": "VW ID. Buzz strømforbrug (2026) → kort, lang og GTX i kWh",
+    "description": "VW ID. Buzz med kort og lang akselafstand: Volkswagens officielle WLTP-forbrug for 190, 286 og 340 hk og GTX, kWh om året, pris pr. 100 km og vinterforbrug.",
+    "noindex": true
+  },
+  {
+    "path": "/elbil/xpeng-g6/",
+    "title": "Xpeng G6 strømforbrug (2026) → kWh, ladepris og rækkevidde",
+    "description": "Den nye Xpeng G6: Xpengs officielle WLTP-forbrug for Standard Range, Long Range og AWD Performance, kWh om året, pris pr. 100 km og hvad en opladning koster.",
+    "noindex": true
+  },
+  {
     "path": "/elcykel/",
     "title": "Elcykel strømforbrug (2026) → kWh pr. km og pr. opladning",
     "description": "En elcykel bruger ca. 0,3-0,9 kWh på en fuld opladning og under 2 kWh pr. 100 km. Se prisen pr. opladning, pr. km og om året, og hvornår du bør lade.",
+    "noindex": false
+  },
+  {
+    "path": "/elgrill/",
+    "title": "Elgrill og bordgrill strømforbrug (2026) → kWh pr. aften",
+    "description": "Se hvor meget strøm en elgrill eller bordgrill bruger pr. grillaften, hvad forvarmningen koster, og hvordan låget, vejret og grillens størrelse påvirker det.",
     "noindex": false
   },
   {
@@ -312,9 +360,21 @@
     "noindex": false
   },
   {
+    "path": "/juicer/",
+    "title": "Juicer strømforbrug (2026) → slow juicer vs. centrifugal",
+    "description": "Se hvor meget strøm en juicer bruger pr. glas og om året, hvorfor en slow juicer på 150 W bruger mindre end en centrifuge, og hvad saftudbyttet betyder.",
+    "noindex": false
+  },
+  {
     "path": "/kaffemaskine/",
     "title": "Kaffemaskine strømforbrug (2026) → kWh pr. kop og år",
     "description": "Hvor meget strøm bruger en kaffemaskine? Se elforbrug i kWh for filterkaffe, kapsel og fuldautomatisk. Beregn din årlige udgift med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/koekkenmaskine/",
+    "title": "Køkkenmaskine strømforbrug (2026) → kWh pr. dej og ret",
+    "description": "Se hvor meget strøm en køkkenmaskine bruger på at ælte dej, piske og røre – og hvor meget mere en køkkenmaskine med varme som Thermomix bruger pr. ret.",
     "noindex": false
   },
   {
@@ -398,7 +458,7 @@
   {
     "path": "/laptop/macbook-pro-m6/",
     "title": "MacBook Pro M6 strømforbrug (2026) → tomgang og ladning",
-    "description": "MacBook Pro 14\" med M6 fra oktober 2026: Apples watt ved 230 V, kWh om året, pris pr. opladning, og hvordan den står mod M5 og M4.",
+    "description": "MacBook Pro 14 tommer med M6 fra oktober 2026: Apples watt ved 230 V, kWh om året, pris pr. opladning, og hvordan den står mod M5 og M4.",
     "noindex": true
   },
   {
@@ -480,6 +540,12 @@
     "noindex": false
   },
   {
+    "path": "/opvaskemaskine/bosch-serie-6-opvaskemaskine/",
+    "title": "Bosch Serie 6 opvaskemaskine strømforbrug (2026) → kWh",
+    "description": "Bosch Serie 6 opvaskemaskine i 60 og 45 cm: energimærkets kWh pr. opvask på eco-programmet, pris om året, PerfectDry mod klasse A og billigste tidspunkt.",
+    "noindex": true
+  },
+  {
     "path": "/opvaskemaskine/siemens-iq500/",
     "title": "Siemens iQ500 opvaskemaskine strømforbrug (2026) → kWh",
     "description": "Siemens iQ500 opvaskemaskine med Zeolith: energimærkets kWh pr. opvask på eco-programmet, pris om året, iQ300 til sammenligning og billigste tidspunkt.",
@@ -534,6 +600,12 @@
     "noindex": false
   },
   {
+    "path": "/riskoger/",
+    "title": "Riskoger strømforbrug (2026) → kWh pr. kogning og varmhold",
+    "description": "Se hvor meget strøm en riskoger bruger pr. kogning og i varmhold, hvad 1 og 1,8 liter koster, og om det er billigere end at koge risene i en gryde.",
+    "noindex": false
+  },
+  {
     "path": "/robotplaeneklipper/",
     "title": "Robotplæneklipper strømforbrug (2026) → kWh og pris",
     "description": "Hvor meget strøm bruger en robotplæneklipper? Se elforbrug i kWh pr. sæson og pr. år, sammenlign modeller og beregn din udgift. 2026-priser.",
@@ -549,6 +621,12 @@
     "path": "/router/",
     "title": "Router strømforbrug (2026) → Watt i døgndrift og pris",
     "description": "Hvor meget strøm bruger en WiFi-router? Se det typiske elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/sandwichgrill/",
+    "title": "Sandwichgrill strømforbrug (2026) → kWh pr. toast og grill",
+    "description": "Se hvor meget strøm en sandwichgrill, et toastjern eller en kontaktgrill bruger pr. gang, hvad forvarmningen koster, og hvordan den klarer sig mod ovnen.",
     "noindex": false
   },
   {
@@ -570,9 +648,21 @@
     "noindex": false
   },
   {
+    "path": "/slush-ice-maskine/",
+    "title": "Slush ice-maskine strømforbrug (2026) → kWh pr. portion",
+    "description": "Se hvor meget strøm en slush ice-maskine bruger pr. portion og i holdetilstand, hvad en sommer med slush koster, og hvordan den klarer sig mod blenderen.",
+    "noindex": false
+  },
+  {
     "path": "/solceller/",
     "title": "Solceller (2026) → Produktion i kWh og eget forbrug",
     "description": "Hvor meget strøm producerer og bruger solceller? Se kWh-produktion, egetforbrug og besparelse. Beregn dit solcelleanlægs økonomi med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/sous-vide/",
+    "title": "Sous vide strømforbrug (2026) → kWh pr. time og 24 timer",
+    "description": "Se hvor meget strøm en sous vide-stav bruger den første time, pr. time bagefter og på 24 timer – og hvor meget låg og isolering sparer på langtidskogning.",
     "noindex": false
   },
   {
@@ -648,10 +738,46 @@
     "noindex": true
   },
   {
+    "path": "/tv/lg-oled-g6/",
+    "title": "LG OLED G6 strømforbrug (2026) → watt i SDR og HDR",
+    "description": "LG OLED G6 fra 55 til 97 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året med fem timers tv om dagen, og hvorfor G6 bruger mindre end C6.",
+    "noindex": true
+  },
+  {
+    "path": "/tv/samsung-s85f/",
+    "title": "Samsung S85F strømforbrug (2026) → watt, HDR og S85H",
+    "description": "Samsung S85F OLED fra 2025 i 55 til 83 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året, og hvor meget den nye S85H fra 2026 sparer.",
+    "noindex": true
+  },
+  {
+    "path": "/tv/samsung-s90h/",
+    "title": "Samsung S90H strømforbrug (2026) → watt fra 42 til 83 tommer",
+    "description": "Samsung S90H OLED i seks størrelser: watt i SDR og HDR fra EU's energimærke, kWh om året med fem timers tv om dagen, og springet til 77 tommer.",
+    "noindex": true
+  },
+  {
+    "path": "/tv/samsung-s95h/",
+    "title": "Samsung S95H strømforbrug (2026) → watt, HDR og kWh",
+    "description": "Samsung S95H OLED i 48, 55, 65 og 77 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året, og hvad topmodellen koster ekstra mod S90H.",
+    "noindex": true
+  },
+  {
     "path": "/tv/samsung-the-frame/",
     "title": "Samsung The Frame strømforbrug (2026) → watt og Art Mode",
     "description": "Samsung The Frame og Frame Pro 2026 fra 43 til 85 tommer: watt fra EU's energimærke, kWh og pris om året, og hvad kunsttilstanden betyder for regningen.",
     "noindex": true
+  },
+  {
+    "path": "/tv/tcl-c8l/",
+    "title": "TCL C8L strømforbrug (2026) → watt fra 55 til 98 tommer",
+    "description": "TCL C8L Mini LED fra 55 til 98 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året, og hvorfor HDR-tallet er fire-fem gange standardbilledets.",
+    "noindex": true
+  },
+  {
+    "path": "/vaffeljern/",
+    "title": "Vaffeljern strømforbrug (2026) → kWh pr. omgang vafler",
+    "description": "Se hvor meget strøm et vaffeljern bruger på opvarmning og pr. omgang vafler – hjertevafler og belgiske vafler – og hvad det koster ved månedens elpris.",
+    "noindex": false
   },
   {
     "path": "/varmeblaeser/",
@@ -664,6 +790,24 @@
     "title": "Varmepumpetørretumbler strømforbrug (2026) → kWh pr. tørring",
     "description": "En tørretumbler med varmepumpe bruger ca. 0,8-1,7 kWh pr. tørring. Se det nye energimærke, kWh pr. 100 tørringer og besparelsen mod kondens og aftræk.",
     "noindex": false
+  },
+  {
+    "path": "/varmepumpe-toerretumbler/aeg-7000-toerretumbler/",
+    "title": "AEG 7000 tørretumbler strømforbrug (2026) → kWh og pris",
+    "description": "AEG 7000 varmepumpetørretumblere i 8 og 9 kg: energimærkets kWh pr. tørring, pris om året, og hvorfor forbruget spænder fra klasse C til E i samme serie.",
+    "noindex": true
+  },
+  {
+    "path": "/varmepumpe-toerretumbler/bosch-serie-8-toerretumbler/",
+    "title": "Bosch Serie 8 tørretumbler strømforbrug (2026) → kWh og tid",
+    "description": "Bosch Serie 8 varmepumpetørretumbler på 9 kg: energimærkets kWh pr. tørring, pris om året, og hvorfor den lave energiklasse B koster en lang programtid.",
+    "noindex": true
+  },
+  {
+    "path": "/varmepumpe-toerretumbler/miele-t1/",
+    "title": "Miele T1 tørretumbler strømforbrug (2026) → kWh pr. tørring",
+    "description": "Miele T1 varmepumpetørretumblere i 8 og 9 kg: energimærkets kWh pr. tørring, pris om året, programtid og hvorfor 9 kg ikke bruger mere pr. kg tøj.",
+    "noindex": true
   },
   {
     "path": "/varmepumpe/",
@@ -694,6 +838,12 @@
     "title": "Vaske-tørremaskine strømforbrug (2026) → kWh og energimærke",
     "description": "En vaske-tørremaskine bruger ca. 1,7-4,6 kWh på en vask med tørring. Se energimærket, kWh pr. 100 cyklusser og om to maskiner bruger mindre end én.",
     "noindex": false
+  },
+  {
+    "path": "/vaskemaskine-med-toerretumbler/bosch-serie-8-vaske-toerre/",
+    "title": "Bosch Serie 8 vaske-tørremaskine strømforbrug (2026) → kWh",
+    "description": "Bosch Serie 8 vaske-tørremaskine (10,5/6 kg): energimærkets kWh for vask og tørring og for vask alene, pris om året, og hvad to maskiner sparer.",
+    "noindex": true
   },
   {
     "path": "/vaskemaskine/",

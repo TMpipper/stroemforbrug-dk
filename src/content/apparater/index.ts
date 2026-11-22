@@ -24,6 +24,16 @@ import lysstofroer from "./lysstofroer";
 import pillefyr from "./pillefyr";
 import ventilationsanlaeg from "./ventilationsanlaeg";
 import vaskemaskineMedToerretumbler from "./vaskemaskine-med-toerretumbler";
+import riskoger from "./riskoger";
+import sousVide from "./sous-vide";
+import slushIceMaskine from "./slush-ice-maskine";
+import dehydrator from "./dehydrator";
+import vaffeljern from "./vaffeljern";
+import sandwichgrill from "./sandwichgrill";
+import elgrill from "./elgrill";
+import blender from "./blender";
+import koekkenmaskine from "./koekkenmaskine";
+import juicer from "./juicer";
 
 /**
  * Nye apparater fra 22. nov. 2026: én fil pr. apparat (src/content/apparater/<slug>.ts, `export default`),
@@ -57,4 +67,14 @@ export const APPLIANCES_NEW: ApplianceData[] = [
   pillefyr,
   ventilationsanlaeg,
   vaskemaskineMedToerretumbler,
+  riskoger,
+  sousVide,
+  slushIceMaskine,
+  dehydrator,
+  vaffeljern,
+  sandwichgrill,
+  elgrill,
+  blender,
+  koekkenmaskine,
+  juicer,
 ];

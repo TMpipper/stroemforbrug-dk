@@ -26,6 +26,21 @@ import toyotaBz4x from "./toyota-bz4x";
 import skodaEnyaq from "./skoda-enyaq";
 import vwId4 from "./vw-id-4";
 import teslaModel3 from "./tesla-model-3";
+import audiQ4Etron from "./audi-q4-e-tron";
+import samsungS90h from "./samsung-s90h";
+import boschSerie6Opvaskemaskine from "./bosch-serie-6-opvaskemaskine";
+import vwId3 from "./vw-id-3";
+import lgOledG6 from "./lg-oled-g6";
+import aeg7000Toerretumbler from "./aeg-7000-toerretumbler";
+import vwIdBuzz from "./vw-id-buzz";
+import samsungS95h from "./samsung-s95h";
+import mieleT1 from "./miele-t1";
+import xpengG6 from "./xpeng-g6";
+import samsungS85f from "./samsung-s85f";
+import boschSerie8VaskeToerre from "./bosch-serie-8-vaske-toerre";
+import renault5 from "./renault-5";
+import tclC8l from "./tcl-c8l";
+import boschSerie8Toerretumbler from "./bosch-serie-8-toerretumbler";
 
 /**
  * Modelsiderne (ejeren 22. nov. 2026): én fil pr. modelfamilie (`export default`), side på /<parent>/<slug>/.
@@ -59,4 +74,19 @@ export const MODELS_ALL: ModelData[] = [
   skodaEnyaq,
   vwId4,
   teslaModel3,
+  audiQ4Etron,
+  samsungS90h,
+  boschSerie6Opvaskemaskine,
+  vwId3,
+  lgOledG6,
+  aeg7000Toerretumbler,
+  vwIdBuzz,
+  samsungS95h,
+  mieleT1,
+  xpengG6,
+  samsungS85f,
+  boschSerie8VaskeToerre,
+  renault5,
+  tclC8l,
+  boschSerie8Toerretumbler,
 ];

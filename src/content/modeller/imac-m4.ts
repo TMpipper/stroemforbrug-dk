@@ -9,7 +9,7 @@ const imacM4: ModelData = {
   synonyms: ["imac 2024", "imac 24 m4", "imac m4 watt", "imac 24 tommer", "imac m4 fire porte", "apple imac m4"],
   title: "iMac M4 strømforbrug (2026) → watt med skærm og pris",
   description:
-    "iMac M4 fra 2024 med 24\" skærm: Apples watt-tal ved 230 V, kWh om året med skærmen regnet med, dvale og hvad den eksterne strømforsyning bruger.",
+    "iMac M4 fra 2024 med 24-tommer skærm: Apples watt-tal ved 230 V, kWh om året med skærmen regnet med, dvale og hvad den eksterne strømforsyning bruger.",
   intro:
     "Tallet ser højt ud ved siden af en Mac mini, men her er skærmen med — og den står for langt det meste af forbruget.",
   content: `<h2>Hvor mange watt bruger en iMac M4?</h2>

@@ -9,7 +9,7 @@ const imacM6: ModelData = {
   synonyms: ["imac 2026", "imac 24 m6", "imac m6 watt", "ny imac", "imac m6 fire porte", "apple imac m6"],
   title: "iMac M6 strømforbrug (2026) → 24 tommer, watt og pris",
   description:
-    "iMac M6 fra oktober 2026: Apples watt-tal ved 230 V med den indbyggede 24\" skærm, kWh om året, dvale, og hvor meget den sparer i forhold til M4.",
+    "iMac M6 fra oktober 2026: Apples watt-tal ved 230 V med den indbyggede 24-tommer skærm, kWh om året, dvale, og hvor meget den sparer i forhold til M4.",
   intro:
     "Det meste af forbruget går stadig til den store skærm, men M6-generationen har fået tomgangen godt 1 W ned i forhold til iMac M4.",
   content: `<h2>Hvor mange watt bruger en iMac M6?</h2>

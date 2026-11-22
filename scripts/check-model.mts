@@ -50,6 +50,7 @@ for (const slug of slugs) {
   if (/strømforbrug\.dk|kr\./i.test(m.title)) e("titel må ikke have sitenavn eller pris");
   if (titles.has(m.title)) e(`titlen findes allerede (${titles.get(m.title)})`);
   titles.set(m.title, slug);
+  if (/"/.test(m.title + m.description)) e("ingen \" i titel/beskrivelse — det bliver &quot; (6 tegn) i HTML; skriv »tommer«");
   if (len(m.description) < 120 || len(m.description) > 158) e(`beskrivelse ${len(m.description)} tegn (120–158)`);
   if (m.synonyms.length < 2) e("mindst 2 synonymer (søgningen lever af dem)");
 

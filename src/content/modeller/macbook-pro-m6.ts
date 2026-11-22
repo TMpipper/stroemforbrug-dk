@@ -9,7 +9,7 @@ const macbookProM6: ModelData = {
   synonyms: ["macbook pro m6 14", "mbp m6", "macbook pro 14 2026", "macbook pro m6 oplader", "ny macbook pro m6", "macbook pro oktober 2026"],
   title: "MacBook Pro M6 strømforbrug (2026) → tomgang og ladning",
   description:
-    "MacBook Pro 14\" med M6 fra oktober 2026: Apples watt ved 230 V, kWh om året, pris pr. opladning, og hvordan den står mod M5 og M4.",
+    "MacBook Pro 14 tommer med M6 fra oktober 2026: Apples watt ved 230 V, kWh om året, pris pr. opladning, og hvordan den står mod M5 og M4.",
   intro:
     "Den nyeste chip gør ikke tomgangen billigere — M6 ligger på linje med M4 og M5 — men opladeren, Apple har målt med, bruger mindre, når den bare sidder i stikket.",
   content: `<h2>Hvor mange watt bruger en MacBook Pro M6?</h2>
