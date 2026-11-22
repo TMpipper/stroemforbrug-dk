@@ -12,6 +12,12 @@
     "noindex": false
   },
   {
+    "path": "/aircondition/",
+    "title": "Aircondition strømforbrug (2026) → kWh ved køling og SEER",
+    "description": "Se hvor meget strøm en fast aircondition bruger, når den køler om sommeren: kWh i timen, hvad energimærkets SEER betyder, og hvordan du køler for mindre.",
+    "noindex": false
+  },
+  {
     "path": "/airfryer/",
     "title": "Airfryer strømforbrug (2026) → Se kWh og pris vs. ovn",
     "description": "Hvor meget strøm bruger en airfryer? Se typisk elforbrug i kWh, sammenlign modeller og beregn din årlige udgift. Opdateret med 2026-priser.",
@@ -78,15 +84,33 @@
     "noindex": false
   },
   {
+    "path": "/cirkulationspumpe/",
+    "title": "Cirkulationspumpe strømforbrug (2026) → Gammel mod ny pumpe",
+    "description": "En gammel cirkulationspumpe bruger omkring 480 kWh om året, en ny ned til ca. 120 kWh. Se forbruget i døgnet, og hvornår en ny pumpe betaler sig.",
+    "noindex": false
+  },
+  {
     "path": "/computer/",
     "title": "Computer strømforbrug (2026) → Stationær vs. bærbar i kWh",
     "description": "Hvor meget strøm bruger en computer? Se typisk elforbrug for stationær og bærbar i kWh, sammenlign og beregn din årlige elregning. 2026-data.",
     "noindex": false
   },
   {
+    "path": "/el-loebehjul/",
+    "title": "El-løbehjul strømforbrug (2026) → kWh pr. km og opladning",
+    "description": "Et el-løbehjul bruger ca. 0,3-0,8 kWh på en fuld opladning og 10-17 Wh pr. km. Se prisen pr. opladning, pr. 100 km og om året, og hvornår du skal lade.",
+    "noindex": false
+  },
+  {
     "path": "/elbil/",
     "title": "Elbil strømforbrug (2026) → kWh pr. 100 km og ladepris",
     "description": "Hvor meget strøm bruger en elbil? Se typisk forbrug i kWh pr. km og pr. år, sammenlign modeller og beregn din ladeudgift. Opdateret 2026.",
+    "noindex": false
+  },
+  {
+    "path": "/elcykel/",
+    "title": "Elcykel strømforbrug (2026) → kWh pr. km og pr. opladning",
+    "description": "En elcykel bruger ca. 0,3-0,9 kWh på en fuld opladning og under 2 kWh pr. 100 km. Se prisen pr. opladning, pr. km og om året, og hvornår du bør lade.",
     "noindex": false
   },
   {
@@ -105,6 +129,18 @@
     "path": "/elradiator/",
     "title": "Elradiator strømforbrug (2026) → kWh, pris og alternativer",
     "description": "Hvor meget strøm bruger en elradiator? Se typisk elforbrug i kWh, sammenlign typer og beregn din årlige varmeudgift. Opdateret med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/emhaette/",
+    "title": "Emhætte strømforbrug (2026) → kWh pr. time, år og standby",
+    "description": "Se hvor meget strøm en emhætte bruger pr. times madlavning og om året, hvad energimærket A+++ til D betyder, og hvor længe den skal køre efter madlavningen.",
+    "noindex": false
+  },
+  {
+    "path": "/espressomaskine/",
+    "title": "Espressomaskine strømforbrug (2026) → opvarmning og standby",
+    "description": "Se hvor meget strøm en espressomaskine bruger pr. opvarmning, om året og på standby – fuldautomat, portafilter med termoblok, enkeltkedel og dobbeltkedel.",
     "noindex": false
   },
   {
@@ -180,6 +216,12 @@
     "noindex": false
   },
   {
+    "path": "/haandklaedetoerrer/",
+    "title": "Håndklædetørrer strømforbrug (2026) → Watt, timer og kWh/år",
+    "description": "En el-håndklædetørrer bruger 40-120 watt. Se hvad det giver om året, når den står tændt døgnet rundt, og hvor meget en timer sparer på badeværelset.",
+    "noindex": false
+  },
+  {
     "path": "/haartoerrere/",
     "title": "Hårtørrer strømforbrug (2026) → Watt, kWh og pris pr. brug",
     "description": "Hvor meget strøm bruger en hårtørrer? Se elforbrug i kWh pr. brug og pr. år, sammenlign modeller og beregn din udgift. Opdateret 2026-priser.",
@@ -192,6 +234,12 @@
     "noindex": false
   },
   {
+    "path": "/ipad/",
+    "title": "iPad og tablet strømforbrug (2026) → Wh, opladning og år",
+    "description": "En iPad bruger ca. 0,02-0,05 kWh på en fuld opladning. Se prisen pr. opladning for iPad, Air, Pro og mini, forbruget om året og hvad opladeren bruger.",
+    "noindex": false
+  },
+  {
     "path": "/jordvarme/",
     "title": "Jordvarme strømforbrug (2026) → kWh, COP og årlig pris",
     "description": "Hvor meget strøm bruger jordvarme? Se typisk elforbrug i kWh for jordvarmepumper, COP-værdier og beregn din årlige udgift med danske 2026-priser.",
@@ -201,6 +249,12 @@
     "path": "/kaffemaskine/",
     "title": "Kaffemaskine strømforbrug (2026) → kWh pr. kop og år",
     "description": "Hvor meget strøm bruger en kaffemaskine? Se elforbrug i kWh for filterkaffe, kapsel og fuldautomatisk. Beregn din årlige udgift med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/koeleboks/",
+    "title": "Køleboks strømforbrug (2026) → 12 V, kompressor og kWh",
+    "description": "Se hvor meget strøm en elektrisk køleboks bruger i døgnet: termoelektrisk mod kompressor, 12 V i bilen mod 230 V i stikket, og hvad en sommer koster.",
     "noindex": false
   },
   {
@@ -252,9 +306,27 @@
     "noindex": false
   },
   {
+    "path": "/luftfugter/",
+    "title": "Luftfugter strømforbrug (2026) → ultralyd, damp og watt",
+    "description": "Se hvor meget strøm en luftfugter bruger: ultralyd, fordampning og damp har vidt forskelligt forbrug. Se watt, kWh pr. liter vand og pris for en vinter.",
+    "noindex": false
+  },
+  {
+    "path": "/luftrenser/",
+    "title": "Luftrenser strømforbrug (2026) → watt, kWh og døgndrift",
+    "description": "Se hvor meget strøm en luftrenser bruger på laveste og højeste trin, hvad døgndrift koster om året, og hvorfor filtrene ofte koster mere end strømmen.",
+    "noindex": false
+  },
+  {
     "path": "/lyskaede/",
     "title": "Lyskæde strømforbrug (2026) → LED vs. glødepærer i kWh",
     "description": "Hvor meget strøm bruger en lyskæde? Se elforbrug for LED og glødepærer i kWh, beregn din udgift for hele julen. Opdateret med 2026-data.",
+    "noindex": false
+  },
+  {
+    "path": "/lysstofroer/",
+    "title": "Lysstofrør strømforbrug (2026) → LED-rør, watt og forbud",
+    "description": "Et 150 cm lysstofrør bruger ca. 58 watt, et LED-rør med samme lys 18-20 watt. Se kWh pr. 1.000 timer, energimærket og hvad forbuddet fra 2023 betyder.",
     "noindex": false
   },
   {
@@ -270,9 +342,21 @@
     "noindex": false
   },
   {
+    "path": "/mobil-aircondition/",
+    "title": "Mobil aircondition strømforbrug (2026) → kWh i timen",
+    "description": "Se hvor meget strøm en mobil aircondition bruger i timen og pr. sommer, hvorfor den bruger mere end et split-anlæg, og hvordan du får mere kulde ud af den.",
+    "noindex": false
+  },
+  {
     "path": "/mobil-opladning/",
     "title": "Mobil opladning strømforbrug (2026) → Se kWh og pris",
     "description": "Hvor meget strøm bruger det at oplade en mobil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign trådløs og kabel-opladning med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/olieradiator/",
+    "title": "Olieradiator strømforbrug (2026) → Watt, termostat og kWh",
+    "description": "En olieradiator bruger 0,5-2,5 kWh i timen på fuld effekt. Se hvad termostaten gør ved forbruget, prisen pr. time og regnestykket for en hel vinter.",
     "noindex": false
   },
   {
@@ -291,6 +375,12 @@
     "path": "/ovn/",
     "title": "Ovn strømforbrug (2026) → kWh pr. tilberedning og år",
     "description": "Hvor meget strøm bruger en ovn? Se det typiske elforbrug i kWh for konventionel og varmluftovn, sammenlign modeller og beregn din udgift.",
+    "noindex": false
+  },
+  {
+    "path": "/pillefyr/",
+    "title": "Pillefyr strømforbrug (2026) → Snegl, blæser og tænding",
+    "description": "Et moderne pillefyr bruger typisk 200-350 kWh strøm om året til snegl, blæser, tænding og styring. Se hvor strømmen går hen, og hvordan du får den ned.",
     "noindex": false
   },
   {
@@ -342,9 +432,27 @@
     "noindex": false
   },
   {
+    "path": "/skaerm/",
+    "title": "Computerskærm strømforbrug (2026) → Watt, mærke og standby",
+    "description": "En computerskærm bruger 10-30 watt i drift og under en halv watt på standby. Se energimærket, kWh om året for 24 og 27 tommer skærme og hvad en dag koster.",
+    "noindex": false
+  },
+  {
+    "path": "/slow-cooker/",
+    "title": "Slow cooker strømforbrug (2026) → kWh pr. gang vs. ovn",
+    "description": "Se hvor meget strøm en slow cooker bruger pr. gang på LOW og HIGH, hvad den koster mod ovn og gryde, og hvornår på døgnet det er billigst at lade den simre.",
+    "noindex": false
+  },
+  {
     "path": "/solceller/",
     "title": "Solceller (2026) → Produktion i kWh og eget forbrug",
     "description": "Hvor meget strøm producerer og bruger solceller? Se kWh-produktion, egetforbrug og besparelse. Beregn dit solcelleanlægs økonomi med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/spabad/",
+    "title": "Spabad strømforbrug (2026) → kWh i døgnet, låg og vinter",
+    "description": "Et udendørs spabad bruger typisk 2.500-7.500 kWh om året. Se forbruget i døgnet, hvad låget og en varmepumpe betyder, og hvornår opvarmningen bør køre.",
     "noindex": false
   },
   {
@@ -384,6 +492,12 @@
     "noindex": false
   },
   {
+    "path": "/terrassevarmer/",
+    "title": "Terrassevarmer strømforbrug (2026) → watt og kWh pr. aften",
+    "description": "Se hvor meget strøm en el-terrassevarmer bruger i timen, pr. aften og over en sæson – infrarød, halogen og carbon – og hvordan den klarer sig mod gas.",
+    "noindex": false
+  },
+  {
     "path": "/toerretumbler/",
     "title": "Tørretumbler strømforbrug (2026) → Se kWh pr. tørring",
     "description": "En tørretumbler bruger 1,5-5,0 kWh pr. tørring. Se forskel på varmepumpe, kondens og aftræk — og beregn din årlige strømudgift.",
@@ -399,6 +513,12 @@
     "path": "/varmeblaeser/",
     "title": "Varmeblæser strømforbrug (2026) → kWh pr. time og pris",
     "description": "Hvor meget strøm bruger en varmeblæser? Se elforbrug i kWh, sammenlign med elradiatorer og beregn din udgift. Opdateret med 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/varmepumpe-toerretumbler/",
+    "title": "Varmepumpetørretumbler strømforbrug (2026) → kWh pr. tørring",
+    "description": "En tørretumbler med varmepumpe bruger ca. 0,8-1,7 kWh pr. tørring. Se det nye energimærke, kWh pr. 100 tørringer og besparelsen mod kondens og aftræk.",
     "noindex": false
   },
   {
@@ -426,9 +546,39 @@
     "noindex": false
   },
   {
+    "path": "/vaskemaskine-med-toerretumbler/",
+    "title": "Vaske-tørremaskine strømforbrug (2026) → kWh og energimærke",
+    "description": "En vaske-tørremaskine bruger ca. 1,7-4,6 kWh på en vask med tørring. Se energimærket, kWh pr. 100 cyklusser og om to maskiner bruger mindre end én.",
+    "noindex": false
+  },
+  {
     "path": "/vaskemaskine/",
     "title": "Vaskemaskine strømforbrug (2026) → kWh pr. vask og år",
     "description": "Hvor meget strøm bruger en vaskemaskine? Se typisk elforbrug i kWh pr. vask og pr. år, sammenlign modeller og beregn din udgift. 2026-data.",
+    "noindex": false
+  },
+  {
+    "path": "/ventilationsanlaeg/",
+    "title": "Ventilationsanlæg strømforbrug (2026) → kWh om året",
+    "description": "Se hvor meget strøm et ventilationsanlæg med varmegenvinding bruger i døgnet og om året, hvad energimærket betyder, og hvorfor det skal køre om vinteren.",
+    "noindex": false
+  },
+  {
+    "path": "/ventilator/",
+    "title": "Ventilator strømforbrug (2026) → watt og kWh pr. sommer",
+    "description": "Se hvor meget strøm en ventilator bruger i timen og over en sommer: bord-, gulv-, tårn- og loftventilatorer, laveste og højeste hastighed, og standby.",
+    "noindex": false
+  },
+  {
+    "path": "/vinkoeleskab/",
+    "title": "Vinkøleskab strømforbrug (2026) → kWh om året og pr. døgn",
+    "description": "Se hvor meget strøm et vinkøleskab bruger i døgnet og om året, hvorfor næsten alle har energimærke G, og hvad placering og flasketal betyder for forbruget.",
+    "noindex": false
+  },
+  {
+    "path": "/xbox/",
+    "title": "Xbox strømforbrug (2026) → Series X/S, Sleep og Shutdown",
+    "description": "En Xbox Series X bruger op til ca. 150 watt i spil, en Series S omkring 75. Se kWh om året, hvad Sleep-tilstanden koster, og hvorfor Shutdown sparer mest.",
     "noindex": false
   }
 ]

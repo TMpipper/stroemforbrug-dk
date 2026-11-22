@@ -252,7 +252,8 @@ const neuter = APPLIANCES.filter((a) => articleFor(a) === "et").map((a) => a.nam
 if (existsSync(".next/server/app") && neuter.length) {
   // "en tv-boks" is correct — boks is common gender — so require a word boundary
   // that is not a hyphen continuing into a compound.
-  const pattern = new RegExp(`\\b(en|din) (${neuter.join("|")})(?![\\w-])`, "i");
+  // Lookahead på bogstaver (\p{L}), ikke \w: »en tværstrømsrulle« er ikke »en tv« (\w kender ikke æ/ø/å).
+  const pattern = new RegExp(`(?<![\\p{L}\\p{N}])(en|din) (${neuter.join("|")})(?![\\p{L}\\p{N}-])`, "iu");
   let genderErrors = 0;
   for (const a of APPLIANCES) {
     const f = `.next/server/app/${a.slug}.html`;
