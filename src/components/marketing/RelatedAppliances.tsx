@@ -1,38 +1,48 @@
 import Link from "next/link";
-import { Zap } from "lucide-react";
 import { getAppliance } from "@/lib/appliances";
+import MotifChip from "@/components/visuals/MotifChip";
+import { applianceMotif } from "@/lib/visuals/defaults";
+import { formatKr } from "@/lib/format";
 
-export default function RelatedAppliances({ slugs }: { slugs: string[] }) {
-  const appliances = slugs
-    .map((slug) => getAppliance(slug))
-    .filter((a) => a !== undefined);
-
+/**
+ * »Flere i kategorien«: apparaterne fra samme kategori (efter forbrug), fyldt op med datafilens
+ * relatedSlugs. Før var det tre håndvalgte kort med et generisk lyn-ikon og intet link til kategorien.
+ */
+export default function RelatedAppliances({
+  slugs,
+  title = "Relateret strømforbrug",
+  moreHref,
+  moreLabel,
+}: {
+  slugs: string[];
+  title?: string;
+  moreHref?: string;
+  moreLabel?: string;
+}) {
+  const appliances = slugs.map((slug) => getAppliance(slug)).filter((a) => a !== undefined);
   if (appliances.length === 0) return null;
 
   return (
-    <div className="my-10">
-      <h3 className="font-heading font-medium text-lg text-ink-900 mb-4">
-        Relateret strømforbrug
-      </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {appliances.map((appliance) => (
-          <Link
-            key={appliance.slug}
-            href={`/${appliance.slug}/`}
-            className="group flex items-start gap-3 p-4 rounded-card border border-ink-200 hover:border-brand-300 hover:bg-brand-50/50 transition-all"
-          >
-            <Zap className="w-5 h-5 text-accent-500 shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium text-sm text-ink-900 group-hover:text-brand-700 transition-colors">
-                {appliance.name}
-              </p>
-              <p className="text-xs text-ink-500 mt-0.5">
-                {appliance.typicalKwh} kWh/år
-              </p>
-            </div>
-          </Link>
-        ))}
+    <section className="my-10" aria-labelledby="relaterede">
+      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+        <h2 id="relaterede" className="font-heading text-xl font-semibold text-ink">{title}</h2>
+        {moreHref && moreLabel ? (
+          <Link href={moreHref} className="text-sm font-semibold text-accent hover:underline">{moreLabel} →</Link>
+        ) : null}
       </div>
-    </div>
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {appliances.map((a) => (
+          <li key={a.slug}>
+            <Link href={`/${a.slug}/`} className="group flex h-full items-center gap-3 rounded-card bg-surface p-3 shadow-sm transition-shadow hover:shadow-card">
+              <MotifChip motif={applianceMotif(a.slug)} />
+              <span className="min-w-0">
+                <span className="block font-semibold text-ink group-hover:text-accent">{a.name}</span>
+                <span className="block text-xs text-ink-muted tabular">{formatKr(a.typicalKwh)} kWh om året</span>
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

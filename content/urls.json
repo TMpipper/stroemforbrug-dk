@@ -32,7 +32,37 @@
   {
     "path": "/apparater/",
     "title": "Apparaters strømforbrug (2026) → Alle apparater, kWh og pris",
-    "description": "Alle apparater på Strømforbrug.dk sorteret efter forbrug: typisk kWh om året, pris ved månedens marginalpris og om apparatet kan flyttes til døgnets billige timer.",
+    "description": "Alle apparater sorteret efter forbrug: typisk kWh om året, pris ved månedens marginalpris og om apparatet kan flyttes til billige timer.",
+    "noindex": false
+  },
+  {
+    "path": "/apparater/computer-og-internet/",
+    "title": "Strømforbrug for computer og internet (2026) → kWh og pris",
+    "description": "Se strømforbruget for 5 apparater i kategorien computer, internet og mobil: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
+    "noindex": false
+  },
+  {
+    "path": "/apparater/koekken/",
+    "title": "Strømforbrug i køkkenet (2026) → 10 apparater, kWh og pris",
+    "description": "Se strømforbruget for 10 apparater i kategorien køkken og madlavning: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
+    "noindex": false
+  },
+  {
+    "path": "/apparater/koel-og-frys/",
+    "title": "Strømforbrug for køl og frys (2026) → kWh og pris pr. år",
+    "description": "Se strømforbruget for 3 apparater i kategorien køl og frys: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
+    "noindex": false
+  },
+  {
+    "path": "/apparater/opvarmning/",
+    "title": "Strømforbrug til opvarmning (2026) → kWh og pris pr. år",
+    "description": "Se strømforbruget for 6 apparater i kategorien opvarmning: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
+    "noindex": false
+  },
+  {
+    "path": "/apparater/vask-og-toerring/",
+    "title": "Strømforbrug til vask og tørring (2026) → kWh og pris pr. år",
+    "description": "Se strømforbruget for 5 apparater i kategorien vask, tørring og rengøring: typisk kWh om året, pris pr. år, og hvilke der kan flyttes til billige timer.",
     "noindex": false
   },
   {
@@ -223,8 +253,8 @@
   },
   {
     "path": "/metode/",
-    "title": "Sådan regner vi (2026) → Marginalpris, billigste aftale og tidspunkt",
-    "description": "Metoden bag hvert tal på Strømforbrug.dk: marginalprisen fra Elpriser.dk's feed, hvorfor abonnementet ikke er med, hvordan den billigste aftale findes i hele markedet, og hvad tidspunkt-blokken regner.",
+    "title": "Sådan regner vi (2026) → Marginalpris og billigste aftale",
+    "description": "Metoden bag hvert tal: marginalprisen fra Elpriser.dk's feed, hvorfor abonnementet ikke er med, og hvordan billigste aftale og tidspunkt findes.",
     "noindex": false
   },
   {

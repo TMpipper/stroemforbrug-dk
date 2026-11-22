@@ -4,7 +4,7 @@
  *
  *  1. Hver apparatside har præcis én tidspunkt-blok (data-best-time) med et beregnet kr.-tal og en
  *     henvisning til Elpriser.dk (data-family-link).
- *  2. De tunge apparater (src/lib/heavy-run.ts), /elpriser/ og forsiden har Elpriser.dk's iframe —
+ *  2. Forsiden, /elpriser/ og /varmepumpe/ har Elpriser.dk's iframe (apparatsiderne ikke længere, 22. nov. 2026) —
  *     præcis så mange som ventet, med title og loading="lazy" — og ingen anden side har en iframe.
  *  3. Ingen side linker til en anden af vores domæner end elpriser.dk (audit-claims vogter listen;
  *     her kontrolleres, at familielinket findes i header og footer på hver side).
@@ -32,8 +32,7 @@ const pathOf = (f) => { const p = f.slice(BUILD.length).replace(/\.html$/, ""); 
 
 const urls = JSON.parse(readFileSync(join(ROOT, "content/urls.json"), "utf8")).map((u) => u.path);
 const RESERVED = new Set(["/", "/beregner/", "/gennemsnitligt/", "/husstand/", "/varmepumpe/", "/hvad-koster-en-kwh/", "/hvad-koster-det-at-lade-en-elbil/", "/sparetips/", "/standby/", "/stromslugere/", "/spare-paa-stroemmen/", "/om-os/", "/kontakt/", "/privatlivspolitik/", "/elpriser/", "/metode/", "/apparater/", "/app/"]);
-const appliancePaths = new Set(urls.filter((p) => !RESERVED.has(p) && !p.startsWith("/husstand/") && !p.startsWith("/varmepumpe/")));
-const heavy = [...readFileSync(join(ROOT, "src/lib/heavy-run.ts"), "utf8").matchAll(/"([a-z0-9-]+)"/g)].map((m) => `/${m[1]}/`);
+const appliancePaths = new Set(urls.filter((p) => !RESERVED.has(p) && !p.startsWith("/husstand/") && !p.startsWith("/varmepumpe/") && !p.startsWith("/apparater/")));
 
 const IFRAME = /<iframe\b[^>]*src="https:\/\/elpriser\.dk\/embed\/elpriser\/[^"]+"[^>]*>/g;
 let appliances = 0, iframes = 0, strips = 0, bands = 0;
@@ -46,7 +45,8 @@ for (const f of files) {
   const html = readFileSync(f, "utf8");
   const path = pathOf(f);
   const frames = [...html.matchAll(IFRAME)];
-  const expected = path === "/" ? 1 : path === "/elpriser/" ? 1 : heavy.includes(path) ? 1 : path === "/varmepumpe/" ? 1 : 0;
+  // 22. nov. 2026 (ejeren: ~4 promoer pr. apparatside): kortet kun på forsiden, /elpriser/ og /varmepumpe/ — på apparatsiderne viser tidspunkt-blokken de samme timer.
+  const expected = path === "/" ? 1 : path === "/elpriser/" ? 1 : path === "/varmepumpe/" ? 1 : 0;
   if (frames.length !== expected) fail(`${path}: ${frames.length} iframe(s) fra elpriser.dk, ventede ${expected}`);
   for (const m of frames) {
     if (!/title="[^"]+"/.test(m[0])) fail(`${path}: iframen mangler title`);
@@ -70,15 +70,17 @@ for (const f of files) {
   const hasBand = promos.some((p) => p.v === "band");
   strips += hasStrip ? 1 : 0;
   bands += hasBand ? 1 : 0;
-  if ((appliancePaths.has(path) || STRIP_PAGES.has(path)) && !hasStrip) fail(`${path}: appens stribe mangler`);
-  if (heavy.includes(path) && !hasBand) fail(`${path}: appens bånd mangler på et tungt apparat`);
+  if (STRIP_PAGES.has(path) && !hasStrip) fail(`${path}: appens stribe mangler`);
+  // Apparatsiderne: ét bånd før FAQ'en og ingen stribe/popup (ejeren 22. nov. 2026).
+  if (appliancePaths.has(path) && !hasBand) fail(`${path}: appens bånd mangler på apparatsiden`);
+  if (appliancePaths.has(path) && hasStrip) fail(`${path}: appens stribe står stadig på apparatsiden — kun båndet (22. nov. 2026)`);
   const partnerCta = body.search(/\sdata-partner-cta=/);
   const lastCalcDeal = lastIndex(body, /\sdata-calculator-deal=/g);
   const lastSwitch = lastIndex(body, /\sdata-switch-cta(?=[\s=>])/g);
   for (const p of promos) {
     if (partnerCta >= 0 && p.i > partnerCta) fail(`${path}: appens ${p.v} står under eller inde i PartnerCta — den skal stå før`);
     // Undtagelse (ejeren 3. nov. 2026): apparatsidernes stribe står over beregneren; bånd/kort og andre siders striber stadig under elaftalen.
-    if (lastCalcDeal >= 0 && p.i < lastCalcDeal && !(p.v === "strip" && appliancePaths.has(path))) fail(`${path}: appens ${p.v} står over beregnerens elaftale`);
+    if (lastCalcDeal >= 0 && p.i < lastCalcDeal) fail(`${path}: appens ${p.v} står over beregnerens elaftale`);
     if (p.v !== "strip" && lastSwitch >= 0 && p.i < lastSwitch) fail(`${path}: appens ${p.v} står over skifte-CTA'en`);
   }
   const popups = (body.match(/\sdata-app-promo="popup"/g) ?? []).length;

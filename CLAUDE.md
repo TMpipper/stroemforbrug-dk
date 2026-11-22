@@ -50,6 +50,10 @@ npm run prices         # udskriver byggets priser fra feedet
   (`/stromslugere/`, `/gennemsnitligt/`, `/standby/`, `/sparetips/`, `/spare-paa-stroemmen/`, `/hvad-koster-en-kwh/`), under beregneren på
   varmepumpetyperne, under `PriceBasis` på `/apparater/` og ved dagens timer på forsiden. `audit-widget` kræver striben på dem alle og
   præcis én popup pr. stribe. Samme dag (ejeren): apparatsidernes stribe flyttet OVER beregneren (`apparat-top`, ~1–2 skærme nede i stedet for ~3,8) — eneste undtagelse fra reglen nedenfor.
+- **22. nov. 2026 (ejeren: ~4 promoer pr. apparatside)** — erstatter 3. nov.-reglen for APPARATSIDERNE: ingen stribe/popup, ingen
+  Elpriser.dk-iframe og ingen `SwitchCta` på `[apparat]`; i stedet ét `AppPromo band` (`apparat-tail`) før FAQ'en på ALLE apparatsider.
+  Tilbage: annoncebjælken, beregnerens elaftale (under resultatet), båndet og `PartnerCta`. Kortet (iframe) kun på `/`, `/elpriser/`,
+  `/varmepumpe/`. Kampagneenhederne (CampaignBar/CampaignCard) følger kampagnen. `audit-widget` håndhæver det.
 - Aldrig en promo over beregnerens elaftale (`data-calculator-deal`), intet bånd/kort over `SwitchCta` (`data-switch-cta`), og ingen promo
   under/inde i `PartnerCta` (`data-partner-cta`). Sitet har ingen pengesider; en fremtidig sammenligningsside skal bære `data-comparison`
   (config `comparisonMarker`) og stå i config `money`.
@@ -70,15 +74,18 @@ npm run prices         # udskriver byggets priser fra feedet
 | `src/lib/pages.ts` | `pageMeta(path)`: udgivet/gennemgået pr. side (`RELAUNCH` = 2026-10-11). `src/lib/prices-updated.ts` (genereret i prebuild) = feedets dataalder, vises kun i grundlagssætningen. |
 | `src/lib/partners.ts` | de 7 selskaber med `/go/`-aftale. Aldrig grundlaget for "billigst". |
 | `src/lib/appliances*.ts`, `appliance-insights.ts`, `home-insights.ts`, `sources.ts` | forbrugstal, afledte sektioner (pris som argument), husstande, verificerede kilder. |
-| `src/lib/heavy-run.ts` | de apparater, der får Elpriser.dk's kort under tidspunkt-blokken. |
+| `src/lib/catalogue.ts` | **Kataloget** (22. nov. 2026): 16 kategorier (`CATEGORIES`, hubs fra 3 apparater: `/apparater/<slug>/`), én post pr. apparat (`metaOf`: kategori, `usage`, `hasEuLabel`, synonymer, motiv, `shiftable`), `calcModel()` (beregnerens kWh/år — `perYear` er påkrævet; de 43 gamle får `LEGACY_CALC`), `headingFor()` (H1 efter brug), `POPULAR_SLUGS`. Nye apparater bærer `meta` + `calculatorConfig.per/perYear` selv. |
+| `src/lib/search.ts`, `search-index.ts` | Søgningen: ren scorer (normalisering æ/ø/å, stemmer, tastefejl) + indekset (apparater, hubs, guider) på `/api/soeg/`; `SearchBox` (header, skuffe, forside, hubs), `/soeg/` (noindex, virker uden JS). Ingen hit → Vercel-event `search_no_result`. |
 
 ## Pages & components
 
 - Kromme: `layout/{Header,MobileNav,DisclaimerBar,Footer,nav}`, `brand/Logo` — Elpriser.dk's, tilpasset. Én annonceoplysning (bjælken + dialog).
 - Byggesten: `marketing/{PageHero,FaqBand,FaqList,WhoHowWhy,AuthorBox,Breadcrumb,Wave,EditorByline,SectionHeading}`, `ui/{Table,Callout,Chip,Badge,CheckList}`, `visuals/*` (kodetegnede motiver, `lib/visuals/defaults.ts`).
-- Apparatside `[apparat]/page.tsx`: PageHero → QuickAnswer → nøgletal → `ForbrugBeregner` (priser som props, DK1/DK2) → `PriceBasis` →
-  **`BestTimeToday`** (+ `ElpriserWidget` på de tunge) → prosa (`renderWith` + `wrapTables`) → `ApplianceInsights` → `SwitchCta` → tabeller
-  → relaterede → `FaqBand` → `WhoHowWhy` (den ENE kildeliste) → `AuthorBox`.
+- Apparatside `[apparat]/page.tsx`: PageHero (Forside › Apparater › kategori › apparat, H1 fra `headingFor`) → QuickAnswer → nøgletal →
+  `ForbrugBeregner` (`calcModel`, priser som props, DK1/DK2) → `PriceBasis` → **`BestTimeToday`** (window / always-on / use-time) → prosa
+  (`renderWith` + `wrapTables`) → `ApplianceInsights` → energimærker (kun `hasEuLabel`) → modeller → »Flere i <kategori>« → `AppPromo band`
+  → `FaqBand` → `WhoHowWhy` (den ENE kildeliste) → `AuthorBox`.
+- Kategorihubs `/apparater/[kategori]/` (fra 3 udgivne apparater), finderen `/apparater/` (filter + kategoriankre), søgning `/soeg/`.
 - Nye sider 2026-10-11: `/elpriser/` (to kort + "hvad koster én gang i dag"), `/apparater/` (indeks), `/metode/`.
 - `PriceBasis` står én gang på hver prisside: grundlagssætningen + `data-dk1/dk2/dk/...`, som `audit-prices` læser i den byggede HTML.
 
@@ -92,6 +99,8 @@ npm run prices         # udskriver byggets priser fra feedet
   https-adresse. Feedets felter, der nævner det (`products[].source.name`, rate-kildeetiketter, `meta.note`, verifikationsnoter),
   gengives aldrig ordret uden for Kilder. `scripts/audit-source-name.mjs` (postbuild + `npm run audit`) fejler bygget;
   `BASE=https://stroemforbrug.dk node scripts/audit-source-name.mjs` tjekker produktion.
+- Beregneren: kWh/år = kwhPerUse × forbrug × `perYear` — aldrig »× 52« for alt (live indtil 22. nov. 2026: elbil 41.652 kr./år).
+  Energimærke-tabel kun når `hasEuLabel`. »kr. kr.« fejler bygget (audit-prices).
 - Titler ≤ 60 tegn uden sitenavn og uden pris; beskrivelser 120–158. Danske køn: `articleFor()`/`possessiveFor()` (fem intetkønsord har `article: "et"`).
 - Datoer: aldrig `new Date()` som dato; `pageMeta()` flyttes kun ved indholdsændring.
 - Eksterne links `target="_blank" rel="noopener noreferrer nofollow"`; affiliate kun via `/go/[slug]`.

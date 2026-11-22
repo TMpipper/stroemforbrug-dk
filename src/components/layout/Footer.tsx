@@ -3,7 +3,8 @@ import Logo, { FamilyLine } from "@/components/brand/Logo";
 import Wave from "@/components/marketing/Wave";
 import AppFooterLinks from "@/components/app-promo/AppFooterLinks";
 import { SITE_CONFIG } from "@/lib/config";
-import { getPublishedAppliances } from "@/lib/appliances";
+import { getAppliance } from "@/lib/appliances";
+import { liveHubs, POPULAR_SLUGS } from "@/lib/catalogue";
 import { isLive } from "@/lib/publish";
 import type { NavLang } from "./nav";
 
@@ -61,7 +62,8 @@ const COLS: Record<NavLang, Column[]> = {
 /** <footer> er semantisk med vilje: audit-claims fjerner den, før den leder efter påstande. */
 export default function Footer({ lang = "da" }: { lang?: NavLang }) {
   const cols = COLS[lang];
-  const appliances = [...getPublishedAppliances()].sort((a, b) => a.name.localeCompare(b.name, "da"));
+  const popular = POPULAR_SLUGS.map((slug) => getAppliance(slug)).filter((a) => a !== undefined);
+  const hubs = liveHubs();
   return (
     <footer className="mt-24 text-white">
       <Wave fill="var(--color-ink)" />
@@ -107,9 +109,24 @@ export default function Footer({ lang = "da" }: { lang?: NavLang }) {
 
         <div className="border-t border-white/10">
           <div className="container-site py-8">
-            <p className="text-sm font-semibold text-white">Apparaternes strømforbrug</p>
+            <p className="text-sm font-semibold text-white">Apparater efter kategori</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              {appliances.map((a) => (
+              {hubs.map((c) => (
+                <Link
+                  key={c.key}
+                  href={`/apparater/${c.slug}/`}
+                  className="rounded-pill bg-white/10 px-3 py-1 text-xs text-white/80 transition-colors hover:bg-white/20 hover:text-white"
+                >
+                  {c.label}
+                </Link>
+              ))}
+              <Link href="/apparater/" className="rounded-pill bg-white/10 px-3 py-1 text-xs font-semibold text-white transition-colors hover:bg-white/20">
+                Alle apparater
+              </Link>
+            </div>
+            <p className="mt-6 text-sm font-semibold text-white">Mest søgte</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {popular.map((a) => (
                 <Link
                   key={a.slug}
                   href={`/${a.slug}/`}

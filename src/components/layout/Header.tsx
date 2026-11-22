@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Logo from "@/components/brand/Logo";
+import { Search } from "lucide-react";
 import MobileNav from "./MobileNav";
+import SearchBox from "@/components/search/SearchBox";
+import { liveHubs } from "@/lib/catalogue";
 import { CHROME, CTA, liveNav, liveSecondary, type NavLang } from "./nav";
 
 /**
@@ -17,12 +20,18 @@ export default function Header({ lang = "da" }: { lang?: NavLang }) {
   const cta = CTA[lang];
   const items = liveNav(lang);
   const secondary = liveSecondary(lang);
+  const categories = liveHubs().map((c) => ({ href: `/apparater/${c.slug}/`, label: c.label }));
   return (
     <header className="sticky top-0 z-40 bg-bg md:bg-bg/85 md:backdrop-blur-md">
       <div className="container-site flex h-20 items-center justify-between gap-2 sm:gap-4">
         <Logo lang={lang} />
+        {/* Søgningen (22. nov. 2026): feltet fra md, et ikon til /soeg/ på telefonen — virker også uden JavaScript. */}
+        <div className="hidden flex-1 justify-center px-2 md:flex min-[1360px]:flex-none min-[1360px]:px-0">
+          <SearchBox variant="header" placeholder="Søg apparat …" />
+        </div>
         <nav aria-label={t.mainMenu} className="hidden items-center rounded-pill border border-border bg-surface px-2 py-1 shadow-sm min-[1360px]:flex">
-          {items.map((n) => (
+          {/* Logoet er forsiden; pillen giver pladsen til søgefeltet (22. nov. 2026). Skuffen har stadig punktet. */}
+          {items.filter((n) => n.href !== "/").map((n) => (
             <Link
               key={n.href}
               href={n.href}
@@ -39,7 +48,10 @@ export default function Header({ lang = "da" }: { lang?: NavLang }) {
           >
             {cta.label}
           </Link>
-          <MobileNav lang={lang} items={items} secondary={secondary} />
+          <Link href="/soeg/" aria-label="Søg" className="inline-flex h-11 w-11 items-center justify-center rounded-pill text-ink hover:bg-brand-50 md:hidden">
+            <Search className="h-5 w-5" aria-hidden />
+          </Link>
+          <MobileNav lang={lang} items={items} secondary={secondary} categories={categories} />
         </div>
       </div>
     </header>

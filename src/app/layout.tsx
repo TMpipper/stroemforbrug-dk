@@ -107,6 +107,11 @@ const siteSchema = {
       inLanguage: "da-DK",
       about: "Strømforbrug i danske husholdninger",
       publisher: { "@id": `${SITE_CONFIG.url}/#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: { "@type": "EntryPoint", urlTemplate: `${SITE_CONFIG.url}/soeg/?q={search_term_string}` },
+        "query-input": "required name=search_term_string",
+      },
     },
   ],
 };

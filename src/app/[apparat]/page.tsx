@@ -11,8 +11,7 @@ import { getAppliance, getAllSlugs } from "@/lib/appliances";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
 import QuickAnswer from "@/components/content/QuickAnswer";
 import ForbrugBeregner from "@/components/calculator/ForbrugBeregner";
-import { calcModel, headingFor, metaOf } from "@/lib/catalogue";
-import SwitchCta from "@/components/marketing/SwitchCta";
+import { appliancesIn, calcModel, category as categoryInfo, headingFor, hubFor, metaOf } from "@/lib/catalogue";
 import RelatedAppliances from "@/components/marketing/RelatedAppliances";
 import ApplianceInsights from "@/components/content/ApplianceInsights";
 import { EnergyLabelChart } from "@/components/charts/ApplianceCharts";
@@ -25,11 +24,8 @@ import AuthorBox from "@/components/marketing/AuthorBox";
 import { applianceMotif } from "@/lib/visuals/defaults";
 import BestTimeToday, { isAlwaysOn } from "@/components/appliance/BestTimeToday";
 import AppPromo from "@/components/app-promo/AppPromo";
-import ElpriserWidget from "@/components/widget/ElpriserWidget";
 import { getBothToday } from "@/lib/hourly-today";
-import { HEAVY_RUN } from "@/lib/heavy-run";
 import { withCurrentYear } from "@/lib/format";
-import AppStrip from "@/components/app-popup/AppStrip";
 
 // Reserved slugs that should NOT be handled by this dynamic route
 const RESERVED_SLUGS = [
@@ -114,6 +110,11 @@ export default async function AppliancePage({
   const calc = calcModel(data);
   const meta_ = metaOf(data);
   const heading = headingFor(data);
+  const hub = hubFor(data);
+  const cat = categoryInfo(meta_.category);
+  // Søskende i kategorien først (efter forbrug), så datafilens relatedSlugs — seks i alt.
+  const siblings = appliancesIn(meta_.category).map((a) => a.slug).filter((s) => s !== data.slug);
+  const related = [...new Set([...siblings, ...data.relatedSlugs])].filter((s) => s !== data.slug).slice(0, 6);
   // Et apparat, der kører hele døgnet, har ingen billige timer at flytte til — dér den generelle tekst.
   const appContext = isAlwaysOn(data) ? "generic" : "cheapest-hours";
 
@@ -121,6 +122,7 @@ export default async function AppliancePage({
     breadcrumbSchema([
       { name: "Forside", url: SITE_CONFIG.url },
       { name: "Apparater", url: `${SITE_CONFIG.url}/apparater/` },
+      ...(hub ? [{ name: hub.label, url: `${SITE_CONFIG.url}/apparater/${hub.slug}/` }] : []),
       { name: data.name, url },
     ]),
     faqSchema(faqs),
@@ -142,7 +144,7 @@ export default async function AppliancePage({
       />
 
       <PageHero
-        crumbs={[{ name: "Apparater", href: "/apparater/" }, { name: data.name }]}
+        crumbs={[{ name: "Apparater", href: "/apparater/" }, ...(hub ? [{ name: hub.label, href: `/apparater/${hub.slug}/` }] : []), { name: data.name }]}
         eyebrow="Strømforbrug"
         title={heading}
         lastUpdated={updated}
@@ -198,8 +200,6 @@ export default async function AppliancePage({
           </div>
         </div>
 
-        {/* Elpriser.dk-appen: striben over beregneren (ejeren 3. nov. 2026 — appen før partnerens elaftale; før stod den under tidspunkt-blokken, ~3,8 telefonskærme nede). */}
-        <AppStrip placement="apparat-top" context={appContext} className="mb-10" />
 
         {/* Calculator */}
         {calc && (
@@ -223,7 +223,6 @@ export default async function AppliancePage({
 
         {/* Sidens differentiator: hvornår på dagen apparatet er billigst — dagens timepriser fra Elpriser.dk */}
         <BestTimeToday data={data} today={today} />
-        {HEAVY_RUN.has(data.slug) && <div className="breakout my-8"><ElpriserWidget sted="dk1" kompakt /></div>}
 
         {/* Main content */}
         <div
@@ -234,8 +233,6 @@ export default async function AppliancePage({
         {/* Computed depth: region, season, replacement, standby, ranking */}
         <ApplianceInsights data={data} prices={t} />
 
-        {/* Second CTA */}
-        <SwitchCta />
 
         {/* Energy labels table */}
         {/* Kun produktgrupper med et gældende EU-energimærke — før stod der opfundne A–D-tabeller på airfryer, router, laptop … */}
@@ -337,14 +334,17 @@ export default async function AppliancePage({
         )}
 
         {/* Related appliances */}
-        <RelatedAppliances slugs={data.relatedSlugs} />
+        <RelatedAppliances
+          slugs={related}
+          title={siblings.length ? `Flere i ${cat.label.toLowerCase()}` : "Relateret strømforbrug"}
+          moreHref={hub ? `/apparater/${hub.slug}/` : "/apparater/"}
+          moreLabel={hub ? `Alle i ${cat.label.toLowerCase()}` : "Alle apparater"}
+        />
       </article>
-      {/* De tunge apparater: appens bånd efter skifte-CTA'en og før FAQ'en — aldrig over en sammenligning. */}
-      {HEAVY_RUN.has(data.slug) && (
-        <div className="container-site pb-16 md:pb-24">
-          <AppPromo variant="band" placement="apparat-tail" context={appContext} />
-        </div>
-      )}
+      {/* Appens ene enhed på apparatsiden (ejeren 22. nov. 2026: ~4 promoer pr. side): båndet før FAQ'en. */}
+      <div className="container-site pb-16 md:pb-24">
+        <AppPromo variant="band" placement="apparat-tail" context={appContext} />
+      </div>
       <FaqBand faqs={faqs} />
       <WhoHowWhy path={`/${data.slug}/`} prices={prices} sources={sources} />
       <AuthorBox />

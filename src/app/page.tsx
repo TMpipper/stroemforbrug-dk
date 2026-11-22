@@ -5,7 +5,7 @@ import { formatKr, formatPrice } from "@/lib/format";
 import { getPrices, tokenPrices } from "@/lib/prices";
 import { getBothToday, hourSpan, hourlyBasisAttrs } from "@/lib/hourly-today";
 import ElpriserWidget from "@/components/widget/ElpriserWidget";
-import { getPublishedAppliances } from "@/lib/appliances";
+import { getAppliance, getPublishedAppliances } from "@/lib/appliances";
 import { homeFaqs, topEverydayAppliances } from "@/lib/home-insights";
 import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import {
@@ -17,8 +17,13 @@ import {
 import { pageMeta } from "@/lib/pages";
 
 import PageHero from "@/components/marketing/PageHero";
+import SearchBox from "@/components/search/SearchBox";
+import { POPULAR_SLUGS } from "@/lib/catalogue";
 import { motifForPath } from "@/lib/visuals/defaults";
 import AppStrip from "@/components/app-popup/AppStrip";
+
+
+const POPULAR = POPULAR_SLUGS.slice(0, 8);
 
 export default async function HomePage() {
   const [prices, today] = await Promise.all([getPrices(), getBothToday()]);
@@ -69,6 +74,19 @@ export default async function HomePage() {
         lastUpdated={pageMeta("/").updated}
         motif={motifForPath("/")}
       >
+        {/* Søgningen først (ejeren 22. nov. 2026: »There is no search field«) — og de mest søgte apparater som genveje. */}
+        <div className="mt-6 max-w-2xl">
+          <SearchBox variant="hero" />
+          <p className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-2 text-sm text-ink-muted">
+            <span>Mest søgt:</span>
+            {POPULAR.filter((slug) => getAppliance(slug)).map((slug) => (
+              <Link key={slug} href={`/${slug}/`} className="rounded-pill bg-surface px-3 py-1 font-medium text-ink-body shadow-sm hover:text-accent">
+                {getAppliance(slug)!.name}
+              </Link>
+            ))}
+            <Link href="/apparater/" className="px-1 font-semibold text-accent hover:underline">Alle apparater →</Link>
+          </p>
+        </div>
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <Link href="/beregner/" className="btn-cta">
             <Calculator className="h-4 w-4" aria-hidden />

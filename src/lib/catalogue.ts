@@ -6,6 +6,7 @@
  * Kategorierne er sitets navigation: hver kategori med mindst HUB_MIN_ITEMS udgivne apparater får sin egen
  * side under /apparater/<slug>/; resten vises kun som afsnit på /apparater/.
  */
+import { getPublishedAppliances } from "./appliances";
 import type { MotifKey } from "./visuals/motifs";
 import type { ApplianceData, CalculatorOption, CatalogueMeta, CategoryKey } from "./types";
 
@@ -20,26 +21,28 @@ export interface Category {
   motif: MotifKey;
   /** Én sætning til hubbens indledning og menuen — ingen tal, ingen superlativer. */
   blurb: string;
+  /** Hubbens søgeord til title og H1 (»Strømforbrug i køkkenet«). */
+  keyword: string;
 }
 
 /** Rækkefølgen er menuens og /apparater/'s. */
 export const CATEGORIES: Category[] = [
-  { key: "koekken", label: "Køkken og madlavning", slug: "koekken", motif: "ovn", blurb: "Ovn, kogeplader, opvaskemaskine og de små køkkenmaskiner." },
-  { key: "koelFrys", label: "Køl og frys", slug: "koel-og-frys", motif: "koeleskab", blurb: "Køleskabe og frysere kører hele døgnet, hele året." },
-  { key: "vask", label: "Vask, tørring og rengøring", slug: "vask-og-toerring", motif: "vaskemaskine", blurb: "Vaskemaskine, tørretumbler, strygejern og støvsugere." },
-  { key: "varme", label: "Opvarmning", slug: "opvarmning", motif: "radiator", blurb: "Varmepumper, elradiatorer, gulvvarme og varmeblæsere." },
-  { key: "varmtVand", label: "Varmt vand", slug: "varmt-vand", motif: "radiator", blurb: "Varmtvandsbeholdere og vandvarmere." },
-  { key: "klima", label: "Køling, luft og ventilation", slug: "klima-og-luft", motif: "stik", blurb: "Affugtere, aircondition, ventilation og luftrensere." },
-  { key: "underholdning", label: "TV, lyd og spillekonsoller", slug: "tv-og-underholdning", motif: "tv", blurb: "TV, spillekonsoller, lyd og streaming." },
-  { key: "it", label: "Computer, internet og mobil", slug: "computer-og-internet", motif: "computer", blurb: "Computere, skærme, router og opladning." },
-  { key: "lys", label: "Lys og belysning", slug: "lys", motif: "lampe", blurb: "Pærer, lyskæder og belysning ude og inde." },
-  { key: "transport", label: "Elbil og transport", slug: "elbil-og-transport", motif: "elbil", blurb: "Elbil, ladeboks, elcykel og andre køretøjer med stik." },
-  { key: "have", label: "Have og udendørs", slug: "have-og-udendoers", motif: "robotklipper", blurb: "Plæneklippere, pumper og alt det, der står udenfor." },
-  { key: "poolSpa", label: "Pool, spa og sauna", slug: "pool-spa-og-sauna", motif: "sauna", blurb: "Pool, spabad og sauna — store forbrug i korte perioder." },
-  { key: "pleje", label: "Personlig pleje og sundhed", slug: "personlig-pleje", motif: "stik", blurb: "Hårtørrer, glattejern og udstyr til sundhed og pleje." },
-  { key: "vaerksted", label: "Værksted og værktøj", slug: "vaerksted", motif: "stik", blurb: "Elværktøj, kompressor og udstyr til værkstedet." },
-  { key: "hobby", label: "Hobby, dyr og smart home", slug: "hobby-og-smart-home", motif: "stik", blurb: "Akvarier, terrarier, 3D-printere og smarte hjem." },
-  { key: "energi", label: "Solceller og batteri", slug: "solceller-og-batteri", motif: "sol", blurb: "Det, der laver eller gemmer strøm i stedet for at bruge den." },
+  { key: "koekken", label: "Køkken og madlavning", slug: "koekken", motif: "ovn", blurb: "Ovn, kogeplader, opvaskemaskine og de små køkkenmaskiner.", keyword: "Strømforbrug i køkkenet" },
+  { key: "koelFrys", label: "Køl og frys", slug: "koel-og-frys", motif: "koeleskab", blurb: "Køleskabe og frysere kører hele døgnet, hele året.", keyword: "Strømforbrug for køl og frys" },
+  { key: "vask", label: "Vask, tørring og rengøring", slug: "vask-og-toerring", motif: "vaskemaskine", blurb: "Vaskemaskine, tørretumbler, strygejern og støvsugere.", keyword: "Strømforbrug til vask og tørring" },
+  { key: "varme", label: "Opvarmning", slug: "opvarmning", motif: "radiator", blurb: "Varmepumper, elradiatorer, gulvvarme og varmeblæsere.", keyword: "Strømforbrug til opvarmning" },
+  { key: "varmtVand", label: "Varmt vand", slug: "varmt-vand", motif: "radiator", blurb: "Varmtvandsbeholdere og vandvarmere.", keyword: "Strømforbrug til varmt vand" },
+  { key: "klima", label: "Køling, luft og ventilation", slug: "klima-og-luft", motif: "stik", blurb: "Affugtere, aircondition, ventilation og luftrensere.", keyword: "Strømforbrug til køling og luft" },
+  { key: "underholdning", label: "TV, lyd og spillekonsoller", slug: "tv-og-underholdning", motif: "tv", blurb: "TV, spillekonsoller, lyd og streaming.", keyword: "Strømforbrug for tv og konsoller" },
+  { key: "it", label: "Computer, internet og mobil", slug: "computer-og-internet", motif: "computer", blurb: "Computere, skærme, router og opladning.", keyword: "Strømforbrug for computer og internet" },
+  { key: "lys", label: "Lys og belysning", slug: "lys", motif: "lampe", blurb: "Pærer, lyskæder og belysning ude og inde.", keyword: "Strømforbrug for lys" },
+  { key: "transport", label: "Elbil og transport", slug: "elbil-og-transport", motif: "elbil", blurb: "Elbil, ladeboks, elcykel og andre køretøjer med stik.", keyword: "Strømforbrug for elbil og transport" },
+  { key: "have", label: "Have og udendørs", slug: "have-og-udendoers", motif: "robotklipper", blurb: "Plæneklippere, pumper og alt det, der står udenfor.", keyword: "Strømforbrug i haven" },
+  { key: "poolSpa", label: "Pool, spa og sauna", slug: "pool-spa-og-sauna", motif: "sauna", blurb: "Pool, spabad og sauna — store forbrug i korte perioder.", keyword: "Strømforbrug for pool, spa og sauna" },
+  { key: "pleje", label: "Personlig pleje og sundhed", slug: "personlig-pleje", motif: "stik", blurb: "Hårtørrer, glattejern og udstyr til sundhed og pleje.", keyword: "Strømforbrug for personlig pleje" },
+  { key: "vaerksted", label: "Værksted og værktøj", slug: "vaerksted", motif: "stik", blurb: "Elværktøj, kompressor og udstyr til værkstedet.", keyword: "Strømforbrug i værkstedet" },
+  { key: "hobby", label: "Hobby, dyr og smart home", slug: "hobby-og-smart-home", motif: "stik", blurb: "Akvarier, terrarier, 3D-printere og smarte hjem.", keyword: "Strømforbrug for hobby og smart home" },
+  { key: "energi", label: "Solceller og batteri", slug: "solceller-og-batteri", motif: "sol", blurb: "Det, der laver eller gemmer strøm i stedet for at bruge den.", keyword: "Solceller og batteri" },
 ];
 
 /** En kategori får sin egen hub-side fra så mange udgivne apparater — færre giver en tynd side. */
@@ -242,3 +245,31 @@ export function headingFor(a: ApplianceData): string {
       return `${prefix}: kWh pr. km, pris pr. opladning og billigste tidspunkt`;
   }
 }
+
+/* ---------- hubberne ---------- */
+
+
+/** Udgivne apparater i en kategori, størst forbrug først. */
+export function appliancesIn(key: CategoryKey): ApplianceData[] {
+  return getPublishedAppliances().filter((a) => metaOf(a).category === key).sort((a, b) => b.typicalKwh - a.typicalKwh);
+}
+
+/** Kategorier, der har nok apparater til deres egen side (/apparater/<slug>/). */
+export function liveHubs(): Category[] {
+  return CATEGORIES.filter((c) => appliancesIn(c.key).length >= HUB_MIN_ITEMS);
+}
+
+/** Hub-siden for et apparats kategori, hvis den findes. */
+export function hubFor(a: ApplianceData): Category | undefined {
+  const c = category(metaOf(a).category);
+  return liveHubs().some((h) => h.key === c.key) ? c : undefined;
+}
+
+/**
+ * De mest søgte apparater (Google Autocomplete for »strømforbrug«, research 22. nov. 2026) — forsidens
+ * genveje og footerens liste. Footeren viste før alle apparater på hver side; ved 250 er det en linkfarm.
+ */
+export const POPULAR_SLUGS = [
+  "opvaskemaskine", "vaskemaskine", "toerretumbler", "koeleskab", "varmepumpe", "elbil",
+  "tv", "airfryer", "fryser", "kummefryser", "ovn", "computer",
+];

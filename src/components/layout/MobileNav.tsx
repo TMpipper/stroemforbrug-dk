@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Logo from "@/components/brand/Logo";
+import SearchBox from "@/components/search/SearchBox";
 import { CHROME, CTA, NAV, NAV_SECONDARY, REGIONS, type NavItem, type NavLang } from "./nav";
 
 /**
@@ -15,7 +16,7 @@ import { CHROME, CTA, NAV, NAV_SECONDARY, REGIONS, type NavItem, type NavLang } 
  * HTML) lukker den, når man har valgt en side. Under hovedmenuen: de sekundære sider og
  * de fire landsdele som chips — byerne selv står i footerens bybånd.
  */
-export default function MobileNav({ lang = "da", items, secondary: secondaryItems }: { lang?: NavLang; items?: NavItem[]; secondary?: NavItem[] }) {
+export default function MobileNav({ lang = "da", items, secondary: secondaryItems, categories = [] }: { lang?: NavLang; items?: NavItem[]; secondary?: NavItem[]; categories?: NavItem[] }) {
   const ref = useRef<HTMLDialogElement>(null);
   const pathname = usePathname();
   const t = CHROME[lang];
@@ -52,12 +53,29 @@ export default function MobileNav({ lang = "da", items, secondary: secondaryItem
             <X className="h-6 w-6" />
           </button>
         </div>
+        <div className="border-b border-border px-5 py-4">
+          <SearchBox variant="drawer" placeholder="Søg apparat, fx airfryer" />
+        </div>
         <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label={t.mobileMenu}>
           {primary.map((n) => (
             <Link key={n.href} href={n.href} onClick={close} className="block rounded-card px-3 py-3.5 text-lg font-medium text-ink hover:bg-brand-50">
               {n.label}
             </Link>
           ))}
+          {categories.length > 0 && (
+            <div className="mt-2 border-t border-border px-3 pt-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">Apparater efter kategori</p>
+              <ul className="mt-2 flex flex-wrap gap-2">
+                {categories.map((c) => (
+                  <li key={c.href}>
+                    <Link href={c.href} onClick={close} className="inline-flex rounded-pill border border-border px-3 py-1.5 text-sm text-ink-body transition-colors hover:border-brand-500 hover:text-ink">
+                      {c.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {secondary.length > 0 && (
             <div className="mt-2 border-t border-border pt-3">
               {secondary.map((n) => (

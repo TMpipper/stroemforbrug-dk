@@ -9,7 +9,9 @@ import AuthorBox from "@/components/marketing/AuthorBox";
 import PriceBasis from "@/components/content/PriceBasis";
 import MotifChip from "@/components/visuals/MotifChip";
 import { getPublishedAppliances } from "@/lib/appliances";
-import { CATEGORIES, metaOf } from "@/lib/catalogue";
+import { CATEGORIES, liveHubs, metaOf } from "@/lib/catalogue";
+import { termsFor } from "@/lib/search";
+import FinderFilter from "@/components/search/FinderFilter";
 import { getPrices, tokenPrices } from "@/lib/prices";
 import { getBothToday, hourSpan } from "@/lib/hourly-today";
 import { formatKr, formatPrice, withCurrentYear } from "@/lib/format";
@@ -33,9 +35,12 @@ export default async function ApparaterPage() {
   const [prices, today] = await Promise.all([getPrices(), getBothToday()]);
   const t = tokenPrices(prices);
   const all = [...getPublishedAppliances()].sort((a, b) => b.typicalKwh - a.typicalKwh);
-  const groups = CATEGORIES.map((c) => ({ key: c.key, label: c.label, items: all.filter((a) => metaOf(a).category === c.key) })).filter((g) => g.items.length);
+  const hubSlugs = new Map(liveHubs().map((h) => [h.key, h.slug]));
+  const groups = CATEGORIES.map((c) => ({ key: c.key, label: c.label, hub: hubSlugs.get(c.key), items: all.filter((a) => metaOf(a).category === c.key) })).filter((g) => g.items.length);
   const url = `${SITE_CONFIG.url}${PATH}`;
-  const total = all.reduce((n, a) => n + a.typicalKwh, 0);
+  const total = all.reduce((n, a) => n + Math.max(0, a.typicalKwh), 0);
+  // Solceller producerer (negativt forbrug) — ikke enden af et forbrugsspænd.
+  const users = all.filter((a) => a.typicalKwh > 0);
 
   return (
     <>
@@ -53,7 +58,7 @@ export default async function ApparaterPage() {
         crumbs={[{ name: "Apparater" }]}
         eyebrow="Apparater"
         title={`${all.length} apparaters strømforbrug — kWh, pris og tidspunkt`}
-        lede={`Fra ${all[0].name.toLowerCase()} (${formatKr(all[0].typicalKwh)} kWh om året) til ${all[all.length - 1].name.toLowerCase()} (${formatKr(all[all.length - 1].typicalKwh)} kWh). Prisen er månedens marginalpris, ${formatPrice(t.dk)} kr./kWh; de apparater, der kan flyttes, er billigst ${hourSpan(today.DK1.cheapest)} i dag.`}
+        lede={`Fra ${users[0].name.toLowerCase()} (${formatKr(users[0].typicalKwh)} kWh om året) til ${users[users.length - 1].name.toLowerCase()} (${formatKr(users[users.length - 1].typicalKwh)} kWh). Prisen er månedens marginalpris, ${formatPrice(t.dk)} kr./kWh; de apparater, der kan flyttes, er billigst ${hourSpan(today.DK1.cheapest)} i dag.`}
         lastUpdated={pageMeta(PATH).updated}
         motif={motifForPath(PATH)}
       />
@@ -68,26 +73,50 @@ export default async function ApparaterPage() {
         <PriceBasis prices={prices} className="mt-4" />
         <AppStrip placement="apparater-top" context="cheapest-hours" className="mt-8" />
 
-        {groups.map((g) => (
-          <section key={g.key} className="mt-12" aria-labelledby={`kat-${g.key}`}>
-            <h2 id={`kat-${g.key}`} className="font-heading text-2xl font-semibold text-ink">{g.label}</h2>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {g.items.map((a) => (
-                <li key={a.slug}>
-                  <Link href={`/${a.slug}/`} className="group flex h-full items-center gap-3 rounded-card bg-surface p-3 shadow-sm transition-shadow hover:shadow-card">
-                    <MotifChip motif={applianceMotif(a.slug)} />
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-semibold text-ink group-hover:text-accent">{a.name}</span>
-                      <span className="block text-xs text-ink-muted tabular">
-                        {formatKr(a.typicalKwh)} kWh · {formatKr(a.typicalKwh * t.dk)} kr. om året · {MODE_LABEL[bestTimeMode(a)]}
+        {/* Kategorierne som genveje (ankre på siden, hubben hvor den findes) */}
+        <nav aria-label="Kategorier" className="mt-8">
+          <ul className="flex flex-wrap gap-2">
+            {groups.map((g) => (
+              <li key={g.key}>
+                <a href={`#kat-${g.key}`} className="inline-flex rounded-pill border border-border bg-surface px-3.5 py-1.5 text-sm font-medium text-ink-body hover:border-accent hover:text-ink">
+                  {g.label} <span className="ml-1 text-ink-muted tabular">{g.items.length}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="mt-6">
+          <FinderFilter targetId="apparatliste" total={all.length} />
+        </div>
+
+        <div id="apparatliste">
+          {groups.map((g) => (
+            <section key={g.key} className="mt-10 scroll-mt-40" id={`kat-${g.key}`} aria-labelledby={`kat-${g.key}-h`} data-finder-group>
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 id={`kat-${g.key}-h`} className="font-heading text-2xl font-semibold text-ink">{g.label}</h2>
+                {g.hub ? (
+                  <Link href={`/apparater/${g.hub}/`} className="text-sm font-semibold text-accent hover:underline">Se kategorien →</Link>
+                ) : null}
+              </div>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {g.items.map((a) => (
+                  <li key={a.slug} data-finder-item data-terms={termsFor([a.name, a.slug.replace(/-/g, " "), g.label, ...metaOf(a).synonyms]).join(" ")}>
+                    <Link href={`/${a.slug}/`} className="group flex h-full items-center gap-3 rounded-card bg-surface p-3 shadow-sm transition-shadow hover:shadow-card">
+                      <MotifChip motif={applianceMotif(a.slug)} />
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-semibold text-ink group-hover:text-accent">{a.name}</span>
+                        <span className="block text-xs text-ink-muted tabular">
+                          {formatKr(a.typicalKwh)} kWh · {formatKr(a.typicalKwh * t.dk)} kr. om året · {MODE_LABEL[bestTimeMode(a)]}
+                        </span>
                       </span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
       </div>
 
       <WhoHowWhy path={PATH} prices={prices} />
