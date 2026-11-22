@@ -41,6 +41,20 @@ import boschSerie8VaskeToerre from "./bosch-serie-8-vaske-toerre";
 import renault5 from "./renault-5";
 import tclC8l from "./tcl-c8l";
 import boschSerie8Toerretumbler from "./bosch-serie-8-toerretumbler";
+import gramKs771254 from "./gram-ks-771254";
+import boschKge36 from "./bosch-kge36";
+import samsungRs70f from "./samsung-rs70f";
+import boschGsn58 from "./bosch-gsn58";
+import gramFb3297 from "./gram-fb-3297";
+import aeg7000Vaskemaskine from "./aeg-7000-vaskemaskine";
+import siemensIq700VaskeToerre from "./siemens-iq700-vaske-toerre";
+import boschSerie6Toerretumbler from "./bosch-serie-6-toerretumbler";
+import samsungDv90dg from "./samsung-dv90dg";
+import ipadA16 from "./ipad-a16";
+import ipadAirM4 from "./ipad-air-m4";
+import ipadProM5 from "./ipad-pro-m5";
+import ipadMini from "./ipad-mini";
+import samsungQn90f from "./samsung-qn90f";
 
 /**
  * Modelsiderne (ejeren 22. nov. 2026): én fil pr. modelfamilie (`export default`), side på /<parent>/<slug>/.
@@ -89,4 +103,18 @@ export const MODELS_ALL: ModelData[] = [
   renault5,
   tclC8l,
   boschSerie8Toerretumbler,
+  gramKs771254,
+  boschKge36,
+  samsungRs70f,
+  boschGsn58,
+  gramFb3297,
+  aeg7000Vaskemaskine,
+  siemensIq700VaskeToerre,
+  boschSerie6Toerretumbler,
+  samsungDv90dg,
+  ipadA16,
+  ipadAirM4,
+  ipadProM5,
+  ipadMini,
+  samsungQn90f,
 ];

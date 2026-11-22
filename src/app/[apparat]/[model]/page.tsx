@@ -74,13 +74,17 @@ export default async function ModelPage({ params }: { params: Params }) {
   const isCar = m.variants.some((v) => v.whPerKm !== undefined);
   const hasLabel = m.variants.some((v) => v.kwhPer100Cycles !== undefined);
   const hasClass = m.variants.some((v) => v.energyClass);
+  // Køle-/fryseapparater: energimærkets kWh/år står direkte på mærket — ingen profil at gange med.
+  const isLabelYear = m.variants.every((v) => v.annualKwh !== undefined);
   const modes = (["off", "sleep", "standby", "idle", "on"] as ModeKey[]).filter((k) => m.variants.some((v) => v.watts[k] !== undefined));
   const lo = rows.reduce((a, b) => (b.year < a.year ? b : a));
   const hi = rows.reduce((a, b) => (b.year > a.year ? b : a));
   const krYear = (kwh: number) => (kwh * t.dk < 10 ? formatKrExact(kwh * t.dk) : formatKr(kwh * t.dk));
   const oere = (kwh: number) => da(kwh * t.dk * 100, kwh * t.dk * 100 < 10 ? 1 : 0);
 
-  const heading = isCar
+  const heading = isLabelYear
+    ? `${m.name} strømforbrug: kWh om året efter energimærket og pris`
+    : isCar
     ? `${m.name} strømforbrug: kWh pr. 100 km, pris pr. km og om året`
     : hasLabel
       ? `${m.name} strømforbrug: kWh pr. ${profile.cycleLabel ?? "program"} og pris om året`
@@ -98,8 +102,9 @@ export default async function ModelPage({ params }: { params: Params }) {
     : hasLabel
       ? `${m.name} bruger ${range(units, 2)} kWh pr. ${profile.cycleLabel ?? "program"} ${measuredBy}`
       : `${m.name} bruger ${idle.length ? `${wattRange(idle)} ${idleWord}` : "meget lidt"} ${measuredBy}`;
-  const answer =
-    `${lead} og omkring ${da(lo.year, lo.year >= 100 ? 0 : 1)}${hi.year !== lo.year ? `–${da(hi.year, hi.year >= 100 ? 0 : 1)}` : ""} kWh om året med ${profile.short}` +
+  const answer = isLabelYear
+    ? `${m.name} bruger ${range(rows.map((r) => r.year), 0)} kWh om året ${measuredBy} — ca. ${krYear(lo.year)}${hi.year !== lo.year ? `–${krYear(hi.year)}` : ""} kr. om året ved månedens elpris, eller ${range(rows.map((r) => (r.year / 365) * t.dk * 100), 0)} øre i døgnet.`
+    : `${lead} og omkring ${da(lo.year, lo.year >= 100 ? 0 : 1)}${hi.year !== lo.year ? `–${da(hi.year, hi.year >= 100 ? 0 : 1)}` : ""} kWh om året med ${profile.short}` +
     ` — ca. ${krYear(lo.year)}${hi.year !== lo.year ? `–${krYear(hi.year)}` : ""} kr. om året ved månedens elpris` +
     (isCar ? `, eller ${range(units.map((k) => k * t.dk), 0)} kr. pr. 100 km.` : "") +
     (hasBattery ? `. En fuld opladning koster ${rows.filter((r) => r.charge).map((r) => `${oere(r.charge!)} øre (${r.v.name})`).join(" og ")}.` : isCar ? "" : ".");
@@ -155,6 +160,7 @@ export default async function ModelPage({ params }: { params: Params }) {
                   ))}
                   {isCar && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">WLTP</th>}
                   {hasLabel && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Pr. 100 programmer</th>}
+                  {isLabelYear && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Energimærke kWh/år</th>}
                   {hasClass && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Energiklasse</th>}
                   {hasBattery && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Batteri</th>}
                   {m.variants.some((v) => v.adapterW) && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Målt med oplader</th>}
@@ -170,6 +176,7 @@ export default async function ModelPage({ params }: { params: Params }) {
                     ))}
                     {isCar && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.whPerKm !== undefined ? `${da(v.whPerKm / 10)} kWh/100 km` : "–"}</td>}
                     {hasLabel && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.kwhPer100Cycles !== undefined ? `${da(v.kwhPer100Cycles)} kWh` : "–"}</td>}
+                    {isLabelYear && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{da(v.annualKwh!, 0)} kWh</td>}
                     {hasClass && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.energyClass ?? "–"}</td>}
                     {hasBattery && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.batteryWh ? (v.batteryWh >= 1000 ? `${da(v.batteryWh / 1000)} kWh` : `${da(v.batteryWh)} Wh`) : "–"}</td>}
                     {m.variants.some((x) => x.adapterW) && <td className="whitespace-nowrap px-4 py-3 text-right tabular text-ink-body">{v.adapterW ? `${v.adapterW} W` : "–"}</td>}

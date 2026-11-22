@@ -80,6 +80,8 @@ export interface UsageProfile {
   kmPerYear?: number;
   /** Programmer om året (regnes med kwhPer100Cycles) */
   cyclesPerYear?: number;
+  /** Fulde opladninger om året (tablets: regnes med batteryWh ÷ opladerens effektivitet) */
+  chargesPerYear?: number;
   /** Ordet for ét program: »vask«, »opvask«, »tørring« */
   cycleLabel?: string;
   /** Kort form til svaret øverst: »seks timers brug om dagen« */
@@ -132,6 +134,23 @@ export const PROFILES: Record<string, UsageProfile> = {
     short: "tre tørringer om ugen",
     text: "3 tørringer om ugen på eco-programmet (skabstørt bomuld), som energimærket er målt på — vægtet mellem fuld og halv fyldning.",
   },
+  koeleskab: {
+    short: "energimærkets årsforbrug",
+    text: "Energimærkets årsforbrug: målt ved 25 °C i rummet, døren lukket, termostaten på standard. Et køkken på 20–22 °C giver lidt mindre, et varmt bryggers eller hyppig døråbning mere.",
+  },
+  fryser: {
+    short: "energimærkets årsforbrug",
+    text: "Energimærkets årsforbrug: målt ved 25 °C i rummet med lukket dør og −18 °C i fryseren. Står fryseren i et køligt rum, bruger den mindre; et varmt rum og tit åbning giver mere.",
+  },
+  kummefryser: {
+    short: "energimærkets årsforbrug",
+    text: "Energimærkets årsforbrug: målt ved 25 °C i rummet med lukket låg og −18 °C. I en kold garage eller kælder bruger en kummefryser typisk mindre — tjek dog, at modellen tåler lave temperaturer (klimaklassen).",
+  },
+  ipad: {
+    chargesPerYear: 208,
+    short: "fire fulde opladninger om ugen",
+    text: "4 fulde opladninger om ugen (208 om året), regnet som batteriets Wh ÷ opladerens effektivitet. Står opladeren i stikket bagefter, bruger den sit lille tomgangsforbrug oveni.",
+  },
   "vaskemaskine-med-toerretumbler": {
     cyclesPerYear: 156,
     cycleLabel: "vask og tørring",
@@ -158,6 +177,11 @@ export function annualKwh(v: ModelVariant, parent: string): number {
     if (!p.cyclesPerYear) throw new Error(`models: ${v.name} har kwhPer100Cycles, men profilen for ${parent} har ingen cyclesPerYear`);
     return (v.kwhPer100Cycles / 100) * p.cyclesPerYear;
   }
+  if (p.chargesPerYear) {
+    const c = chargeKwh(v);
+    if (c === null) throw new Error(`models: ${v.name} mangler batteryWh til profilen for ${parent}`);
+    return c * p.chargesPerYear;
+  }
   const hours = p.hours;
   if (!hours) throw new Error(`models: ${v.name} har kun watt, men profilen for ${parent} har ingen timer`);
   let wh = 0;
@@ -181,6 +205,7 @@ export function keyFigure(v: ModelVariant, parent: string): { label: string; tex
   const da = (n: number, d: number) => n.toLocaleString("da-DK", { maximumFractionDigits: d });
   if (v.whPerKm !== undefined) return { label: "WLTP", text: `${da(v.whPerKm / 10, 1)} kWh/100 km` };
   if (v.kwhPer100Cycles !== undefined) return { label: "Energimærke", text: `${da(v.kwhPer100Cycles / 100, 2)} kWh pr. ${profileFor(parent).cycleLabel ?? "program"}` };
+  if (v.annualKwh !== undefined) return { label: "Energimærke", text: `${da(v.annualKwh, 0)} kWh/år` };
   if (v.watts.idle !== undefined) return { label: "Tomgang", text: formatWatt(v.watts.idle) };
   if (v.watts.on !== undefined) return { label: "I brug", text: formatWatt(v.watts.on) };
   return null;

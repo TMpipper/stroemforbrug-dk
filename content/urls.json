@@ -282,6 +282,12 @@
     "noindex": false
   },
   {
+    "path": "/fryser/bosch-gsn58/",
+    "title": "Bosch GSN58 fryseskab strømforbrug (2026) → kWh og pris",
+    "description": "Bosch GSN58 fryseskab på 366 liter: energimærkets kWh om året i klasse E, D og C, pris om året, og hvorfor den nyeste udgave bruger en tredjedel mindre.",
+    "noindex": true
+  },
+  {
     "path": "/gaming-pc/",
     "title": "Gaming-PC strømforbrug (2026) → Watt under belastning og kWh",
     "description": "Hvor meget strøm bruger en gaming-PC? Se typisk elforbrug i kWh for gaming-computere, sammenlign opsætninger og beregn din årlige udgift i 2026.",
@@ -372,6 +378,30 @@
     "noindex": false
   },
   {
+    "path": "/ipad/ipad-a16/",
+    "title": "iPad (A16) strømforbrug (2026) → watt og pris pr. opladning",
+    "description": "iPad (A16) fra 2025: Apples egne watt-tal ved 230 V, hvad én fuld opladning koster, kWh om året, og hvad opladerens tab betyder for regningen.",
+    "noindex": true
+  },
+  {
+    "path": "/ipad/ipad-air-m4/",
+    "title": "iPad Air M4 strømforbrug (2026) → watt og pris pr. opladning",
+    "description": "iPad Air M4 i 11 og 13 tommer: Apples egne watt-tal ved 230 V, hvad én fuld opladning koster, kWh om året, og hvad den store skærm koster ekstra.",
+    "noindex": true
+  },
+  {
+    "path": "/ipad/ipad-mini/",
+    "title": "iPad mini strømforbrug (2026) → watt og pris pr. opladning",
+    "description": "iPad mini med A20 Pro (2026) og A17 Pro (2026): Apples egne watt-tal ved 230 V, hvad én fuld opladning koster, kWh om året, og hvad OLED-skærmen sparer.",
+    "noindex": true
+  },
+  {
+    "path": "/ipad/ipad-pro-m5/",
+    "title": "iPad Pro M5 strømforbrug (2026) → watt og pris pr. opladning",
+    "description": "iPad Pro M5 i 11 og 13 tommer: Apples egne watt-tal ved 230 V, hvad én fuld opladning koster, kWh om året, og hvorfor OLED-skærmen bruger lidt i tomgang.",
+    "noindex": true
+  },
+  {
     "path": "/isterningmaskine/",
     "title": "Isterningmaskine strømforbrug (2026) → watt og kWh i timen",
     "description": "Se hvor meget strøm en isterningmaskine bruger i timen og pr. kilo is, hvad en sommer med fest og iskaffe koster, og hvorfor den bør slukkes efter brug.",
@@ -414,6 +444,24 @@
     "noindex": false
   },
   {
+    "path": "/koeleskab/bosch-kge36/",
+    "title": "Bosch KGE36 strømforbrug (2026) → køle-/fryseskab i kWh",
+    "description": "Bosch KGE36 køle-/fryseskab på 308 liter: energimærkets 149 kWh om året, pris om året og døgnet, og hvad den manuelle afrimning af fryseren betyder.",
+    "noindex": true
+  },
+  {
+    "path": "/koeleskab/gram-ks-771254/",
+    "title": "Gram KS 771254 køleskab strømforbrug (2026) → kWh og pris",
+    "description": "Gram KS 771254 og søskende fra 158 til 308 liter: energimærkets kWh om året, pris om året og døgnet, og hvorfor dobbelt så stor kun bruger lidt mere.",
+    "noindex": true
+  },
+  {
+    "path": "/koeleskab/samsung-rs70f/",
+    "title": "Samsung RS70F strømforbrug (2026) → amerikanerkøleskab i kWh",
+    "description": "Samsung RS70F amerikanerkøleskab: energimærkets kWh om året fra klasse E til B, pris om året, og hvorfor samme kabinet kan bruge næsten dobbelt så meget.",
+    "noindex": true
+  },
+  {
     "path": "/kogeplade/",
     "title": "Kogeplade strømforbrug (2026) → enkelt, dobbelt og induktion",
     "description": "Se hvor meget strøm en bordkogeplade bruger pr. måltid – støbejern, glaskeramik og induktion, enkelt og dobbelt – og hvad gryden og låget betyder.",
@@ -436,6 +484,12 @@
     "title": "Kummefryser strømforbrug (2026) → kWh pr. liter og år",
     "description": "Hvad bruger en kummefryser i strøm? Se typisk elforbrug i kWh pr. år, sammenlign energimærker og beregn din årlige udgift. Opdateret 2026-data.",
     "noindex": false
+  },
+  {
+    "path": "/kummefryser/gram-fb-3297/",
+    "title": "Gram FB 3297 kummefryser strømforbrug (2026) → kWh og pris",
+    "description": "Gram FB 3297 kummefryser og søskende fra 97 til 420 liter: energimærkets kWh om året, pris om året, og hvad den nye udgave sparer mod den gamle.",
+    "noindex": true
   },
   {
     "path": "/ladestander/",
@@ -798,6 +852,12 @@
     "noindex": true
   },
   {
+    "path": "/tv/samsung-qn90f/",
+    "title": "Samsung QN90F Neo QLED strømforbrug (2026) → watt og pris",
+    "description": "Samsung QN90F Neo QLED fra 43 til 115 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året med fem timers tv om dagen, og hvad størrelsen koster.",
+    "noindex": true
+  },
+  {
     "path": "/tv/samsung-s85f/",
     "title": "Samsung S85F strømforbrug (2026) → watt, HDR og S85H",
     "description": "Samsung S85F OLED fra 2025 i 55 til 83 tommer: watt i SDR og HDR fra EU's energimærke, kWh om året, og hvor meget den nye S85H fra 2026 sparer.",
@@ -858,6 +918,12 @@
     "noindex": true
   },
   {
+    "path": "/varmepumpe-toerretumbler/bosch-serie-6-toerretumbler/",
+    "title": "Bosch Serie 6 tørretumbler strømforbrug (2026) → kWh og pris",
+    "description": "Bosch Serie 6 varmepumpetørretumblere i 8 og 9 kg: energimærkets kWh pr. tørring, pris om året, og hvad selvrensende kondensator og klasse C betyder.",
+    "noindex": true
+  },
+  {
     "path": "/varmepumpe-toerretumbler/bosch-serie-8-toerretumbler/",
     "title": "Bosch Serie 8 tørretumbler strømforbrug (2026) → kWh og tid",
     "description": "Bosch Serie 8 varmepumpetørretumbler på 9 kg: energimærkets kWh pr. tørring, pris om året, og hvorfor den lave energiklasse B koster en lang programtid.",
@@ -867,6 +933,12 @@
     "path": "/varmepumpe-toerretumbler/miele-t1/",
     "title": "Miele T1 tørretumbler strømforbrug (2026) → kWh pr. tørring",
     "description": "Miele T1 varmepumpetørretumblere i 8 og 9 kg: energimærkets kWh pr. tørring, pris om året, programtid og hvorfor 9 kg ikke bruger mere pr. kg tøj.",
+    "noindex": true
+  },
+  {
+    "path": "/varmepumpe-toerretumbler/samsung-dv90dg/",
+    "title": "Samsung DV90DG strømforbrug (2026) → tørretumbler i kWh",
+    "description": "Samsung DV90DG varmepumpetørretumblere på 9 kg: energimærkets kWh pr. tørring i klasse A og C, pris om året, og hvad den langsomme A-model sparer.",
     "noindex": true
   },
   {
@@ -906,10 +978,22 @@
     "noindex": true
   },
   {
+    "path": "/vaskemaskine-med-toerretumbler/siemens-iq700-vaske-toerre/",
+    "title": "Siemens iQ700 vaske-tørremaskine strømforbrug (2026) → kWh",
+    "description": "Siemens iQ700 vaske-tørremaskine WN54C2A0DN (10,5/6 kg): energimærkets kWh for vask med tørring og for vask alene, pris om året, og hvad tørringen koster.",
+    "noindex": true
+  },
+  {
     "path": "/vaskemaskine/",
     "title": "Vaskemaskine strømforbrug (2026) → kWh pr. vask og år",
     "description": "Hvor meget strøm bruger en vaskemaskine? Se typisk elforbrug i kWh pr. vask og pr. år, sammenlign modeller og beregn din udgift. 2026-data.",
     "noindex": false
+  },
+  {
+    "path": "/vaskemaskine/aeg-7000-vaskemaskine/",
+    "title": "AEG 7000 vaskemaskine strømforbrug (2026) → kWh og pris",
+    "description": "AEG 7000-vaskemaskiner fra 8 til 10,5 kg: energimærkets kWh pr. vask på eco 40-60, pris om året, og hvorfor den største ikke er den dyreste pr. kg.",
+    "noindex": true
   },
   {
     "path": "/vaskemaskine/bosch-serie-6/",
