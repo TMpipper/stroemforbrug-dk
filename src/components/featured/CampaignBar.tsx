@@ -25,6 +25,11 @@ interface Props {
   placement?: string;
   /** Netområdet, pladsen slås op i. Kampagnen hører til pladsen, ikke området. */
   area?: string;
+  /**
+   * Et sekundært, redaktionelt link efter annoncen (fx sitets oversigt over alle kampagnetilbud). Det er
+   * ikke en del af annoncen: almindeligt internt link uden `sponsored`.
+   */
+  more?: { href: string; label: string };
 }
 
 /**
@@ -40,7 +45,7 @@ interface Props {
  * ingen tal. Mærket »Annonce« står først, linket er `rel="sponsored nofollow"`. Kan feedet ikke
  * nås, tegnes intet — en annonce må aldrig vælte siden.
  */
-export default async function CampaignBar({ supplierSlug = "ok", goPath, placement = "bar", area = "791" }: Props) {
+export default async function CampaignBar({ supplierSlug = "ok", goPath, placement = "bar", area = "791", more }: Props) {
   let data: CampaignBarData | null = null;
   try {
     data = campaignBarData(await elFeed.featured({ area }), supplierSlug, danishToday());
@@ -48,29 +53,46 @@ export default async function CampaignBar({ supplierSlug = "ok", goPath, placeme
     return null;
   }
   if (!data) return null;
-  return <CampaignBarView data={data} href={`${goPath ?? `/go/${supplierSlug}/`}?pl=${encodeURIComponent(placement)}`} />;
+  return <CampaignBarView data={data} href={`${goPath ?? `/go/${supplierSlug}/`}?pl=${encodeURIComponent(placement)}`} more={more} />;
 }
 
 /** Selve bjælken — ren gengivelse af `data`, så den kan testes uden feedet. */
-export function CampaignBarView({ data, href }: { data: CampaignBarData; href: string }) {
+export function CampaignBarView({ data, href, more }: { data: CampaignBarData; href: string; more?: { href: string; label: string } }) {
+  const ad = (
+    <a
+      href={href}
+      rel="sponsored nofollow"
+      className="mx-auto flex min-h-11 w-full max-w-7xl flex-wrap items-center justify-center gap-x-2 gap-y-0.5 px-4 py-2 text-center text-[13px] leading-snug no-underline hover:underline focus-visible:outline-2 focus-visible:-outline-offset-4 sm:text-sm"
+      style={{ color: "var(--cb-fg)" }}
+    >
+      <span className="rounded-sm px-1.5 py-px text-[11px] font-semibold tracking-wide" style={{ background: "var(--cb-tag-bg)" }}>
+        Annonce
+      </span>
+      <span aria-hidden="true">·</span>
+      <span>{campaignBarText(data)}</span>
+      <span aria-hidden="true">·</span>
+      <span className="font-semibold underline underline-offset-2">
+        Se tilbuddet <span aria-hidden="true">→</span>
+      </span>
+    </a>
+  );
   return (
     <aside aria-label="Annonce" data-campaign-bar="" data-valid-to={data.validTo} style={VARS} className="relative w-full">
-      <a
-        href={href}
-        rel="sponsored nofollow"
-        className="mx-auto flex min-h-11 w-full max-w-7xl flex-wrap items-center justify-center gap-x-2 gap-y-0.5 px-4 py-2 text-center text-[13px] leading-snug no-underline hover:underline focus-visible:outline-2 focus-visible:-outline-offset-4 sm:text-sm"
-        style={{ color: "var(--cb-fg)" }}
-      >
-        <span className="rounded-sm px-1.5 py-px text-[11px] font-semibold tracking-wide" style={{ background: "var(--cb-tag-bg)" }}>
-          Annonce
-        </span>
-        <span aria-hidden="true">·</span>
-        <span>{campaignBarText(data)}</span>
-        <span aria-hidden="true">·</span>
-        <span className="font-semibold underline underline-offset-2">
-          Se tilbuddet <span aria-hidden="true">→</span>
-        </span>
-      </a>
+      {more ? (
+        <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-3 px-0 sm:flex-nowrap">
+          {ad}
+          <a
+            href={more.href}
+            data-campaign-bar-more=""
+            className="inline-flex min-h-8 shrink-0 items-center px-4 pb-2 sm:min-h-11 text-[13px] leading-snug font-semibold underline underline-offset-2 hover:no-underline focus-visible:outline-2 focus-visible:-outline-offset-4 sm:py-2 sm:text-sm"
+            style={{ color: "var(--cb-fg)" }}
+          >
+            {more.label}
+          </a>
+        </div>
+      ) : (
+        ad
+      )}
     </aside>
   );
 }

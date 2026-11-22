@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
@@ -76,6 +77,7 @@ export default async function LuftTilLuftPage() {
             som supplement til eksisterende opvarmning. COP er 3,0-4,0.
           </p>
         </QuickAnswer>
+        <CampaignCard />
 
         <ForbrugBeregner
           title="Luft-til-luft forbrugsberegner"

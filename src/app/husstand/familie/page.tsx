@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
@@ -85,6 +86,7 @@ export default async function FamiliePage() {
             strømslugere er køl/frys, tørretumbler og madlavning.
           </p>
         </QuickAnswer>
+        <CampaignCard />
 
         {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
         <AppStrip placement="husstand-top" context="cheapest-hours" className="mb-10" />

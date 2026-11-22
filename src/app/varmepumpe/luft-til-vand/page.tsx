@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
@@ -76,6 +77,7 @@ export default async function LuftTilVandPage() {
             fleste familier 10.500-12.800 kr./år i samlede energiudgifter.
           </p>
         </QuickAnswer>
+        <CampaignCard />
 
         <ForbrugBeregner
           title="Luft-til-vand forbrugsberegner"

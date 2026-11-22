@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
@@ -123,6 +124,7 @@ export default async function ElbilLadningPage() {
             {formatKr(f.fullCharge(30, f.cheapestMarginal))}-{formatKr(f.fullCharge(70, f.cheapestMarginal))} kr.
           </p>
         </QuickAnswer>
+        <CampaignCard />
         <PriceBasis prices={prices} className="mb-8" />
         {/* Elpriser.dk-appen (ejerens app-undtagelse 19. okt. 2026): opladningen er det forbrug, der lettest flyttes til de billige timer. */}
         <AppStrip placement="elbil-guide-top" context="cheapest-hours" className="mb-10" />

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
@@ -63,6 +64,7 @@ export default async function VarmepumpePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
       />
       <PageHero crumbs={[{ name: "Varmepumpe" }]} eyebrow="Varmepumpe" title={data.heading} lastUpdated={pageMeta("/varmepumpe/").updated} motif={motifForPath("/varmepumpe/")} />
+      <CampaignCard layout="column" />
 
       <article className="container-text py-10 md:py-14">
         <QuickAnswer><p>{renderWith(t, data.quickAnswer)}</p></QuickAnswer>

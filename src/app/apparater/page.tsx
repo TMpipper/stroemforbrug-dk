@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, articleSchema } from "@/lib/schema";
@@ -56,6 +57,7 @@ export default async function ApparaterPage() {
         lastUpdated={pageMeta(PATH).updated}
         motif={motifForPath(PATH)}
       />
+      <CampaignCard layout="column" />
 
       <div className="container-text py-10 md:py-14">
         <p className="text-ink-body">

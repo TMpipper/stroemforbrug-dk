@@ -44,6 +44,8 @@ const LIB = [
   // Kampagnebjælken (21. nov. 2026) — kun den, ikke de øvrige fremhævede kort, som sitet ikke har.
   ["components/featured/CampaignBar.tsx", "src/components/featured/CampaignBar.tsx"],
   ["components/featured/campaign-bar.ts", "src/components/featured/campaign-bar.ts"],
+  // Kampagnekortet i artiklerne (22. nov. 2026) — samme data og regler som bjælken.
+  ["components/featured/CampaignArticleCard.tsx", "src/components/featured/CampaignArticleCard.tsx"],
 ];
 const DIRS = [
   // Elpris-widgetten fra Elpriser.dk som iframe på søstersiterne (elpriser-dk selv ejer kortet og synkroniserer den ikke).

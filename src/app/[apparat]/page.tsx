@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import { notFound } from "next/navigation";
 import { SITE_CONFIG } from "@/lib/config";
 import { getPrices, tokenPrices, calculatorPrices, calculatorDeal } from "@/lib/prices";
@@ -148,6 +149,7 @@ export default async function AppliancePage({
         <QuickAnswer>
           <p>{quickAnswer}</p>
         </QuickAnswer>
+        <CampaignCard />
 
         {/* Key facts grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">

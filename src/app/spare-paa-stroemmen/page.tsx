@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
@@ -81,6 +82,7 @@ export default async function SparePaaStroemmenPage() {
             3.000-6.000 kr. om året.
           </p>
         </QuickAnswer>
+        <CampaignCard />
 
         {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
         <AppStrip placement="guide-top" context="cheapest-hours" className="mb-10" />

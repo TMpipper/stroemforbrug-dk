@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema, articleSchema } from "@/lib/schema";
@@ -78,6 +79,7 @@ export default async function ElpriserPage() {
         lastUpdated={pageMeta(PATH).updated}
         motif={motifForPath(PATH)}
       />
+      <CampaignCard layout="column" />
 
       <div className="container-text py-10 md:py-14">
         {/* Ét kort: det har selv postnummerfeltet, så læseren skifter landsdel og netområde inde i kortet.

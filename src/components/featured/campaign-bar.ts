@@ -20,6 +20,10 @@ export interface CampaignBarData {
   deadline: string;
   /** Rækkens frist, ÅÅÅÅ-MM-DD (til test og data-attribut). */
   validTo: string;
+  /** Kampagnens vilkårslinje fra feedets plads (uden beløb) — eller null. */
+  terms: string | null;
+  /** Selskabets logo fra feedet — eller null. */
+  logoUrl: string | null;
 }
 
 /** I dag i dansk tid, ÅÅÅÅ-MM-DD. */
@@ -56,10 +60,43 @@ export function campaignBarData(
     amount: `${KR.format(p.firstTimeDiscountKr)} kr.`,
     deadline: deadlineLabel(validTo),
     validTo,
+    terms: c.terms ?? null,
+    logoUrl: p.supplier.logoUrl ?? null,
   };
 }
 
 /** Bjælkens tekst uden »Annonce« og knap: »Black Week: 600 kr. i velkomstrabat hos OK – til og med søndag 29. november«. */
 export function campaignBarText(d: CampaignBarData): string {
   return `${d.label}: ${d.amount} i velkomstrabat hos ${d.supplierName} – til og med ${d.deadline}`;
+}
+
+/** »29. nov.« for en ÅÅÅÅ-MM-DD-dato — kortets korte frist. */
+export function shortDateLabel(iso: string): string {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("da-DK", { day: "numeric", month: "short", timeZone: "UTC" });
+}
+
+/**
+ * Artikelkortets (CampaignArticleCard.tsx) linjer — alle regnet af `data`: »Black Week · Kun til 29. nov.«
+ * (vises med store bogstaver via CSS), »i velkomstrabat, når du skifter til OK«.
+ */
+export function campaignCardTexts(d: CampaignBarData): { eyebrow: string; line: string } {
+  return {
+    eyebrow: `${d.label} · Kun til ${shortDateLabel(d.validTo)}`,
+    line: `i velkomstrabat, når du skifter til ${d.supplierName}`,
+  };
+}
+
+/** Kortets annonceoplysning under knappen: »<Site> får provision, hvis du skifter via linket.« */
+export function campaignCardDisclosure(siteName: string): string {
+  return `${siteName} får provision, hvis du skifter via linket.`;
+}
+
+/** Under så mange ord i brødteksten står kortet kun én gang (efter indledningen) — aldrig to gange tæt efter hinanden. */
+export const CAMPAIGN_END_CARD_MIN_WORDS = 600;
+
+/** Ord i en tekst eller i html (tags og entiteter tælles ikke). */
+export function articleWordCount(textOrHtml: string | null | undefined): number {
+  if (!textOrHtml) return 0;
+  const text = textOrHtml.replace(/<[^>]*>/g, " ").replace(/&[a-z#0-9]+;/gi, " ");
+  return text.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
 }

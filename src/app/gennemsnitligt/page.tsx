@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CampaignCard from "@/components/campaign/CampaignCard";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { breadcrumbSchema, faqSchema } from "@/lib/schema";
@@ -68,6 +69,7 @@ export default async function GennemsnitligtPage() {
             kWh/år (15.000-25.000 kr.).
           </p>
         </QuickAnswer>
+        <CampaignCard />
 
         {/* Elpriser.dk-appen (ejeren 3. nov. 2026): striben lige under det korte svar, før den lange tekst. */}
         <AppStrip placement="guide-top" context="generic" className="mb-10" />

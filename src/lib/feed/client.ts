@@ -31,6 +31,7 @@
  */
 import type {
   FeedAdvisoriesResponse,
+  FeedCampaignsResponse,
   FeedAfgifterResponse,
   FeedChangeKind,
   FeedChangesResponse,
@@ -98,6 +99,7 @@ export const FEED_TAGS = {
   gasFeatured: "el-feed:gas-featured",
   gasReports: "el-feed:gas-reports",
   ladeboks: "el-feed:ladeboks",
+  campaigns: "el-feed:campaigns",
   supplier: (slug: string) => `el-feed:supplier:${slug}`,
   gasSupplier: (slug: string) => `el-feed:gas-supplier:${slug}`,
 } as const;
@@ -416,4 +418,14 @@ export const elFeed = {
     get<FeedLadeboksContext & { area: FeedArea }>("/api/v1/ladeboks/profile", p, [FEED_TAGS.ladeboks, FEED_TAGS.rates, FEED_TAGS.products]),
 
   ladeboksHealth: () => get<FeedLadeboksHealthResponse>("/api/v1/ladeboks/health", {}, []),
+
+  /* ---------- kampagner (Black Friday / Black Week) ---------- */
+
+  /**
+   * Kampagneregistrets tilbud for en begivenhed (fx `black-friday-2026`): `active` sorteret efter beregnet
+   * værdi, `ended` til arkivet. Embargo (validFrom) og udløb regnes i feedet på dansk dato; feedet sender
+   * `el-feed:campaigns` ved dansk midnat og efter et deploy af registret. Tal og ord er feedets — skriv dem aldrig af.
+   */
+  campaigns: (p: { event: string; product?: "el" | "gas" | "ladeboks" }) =>
+    get<FeedCampaignsResponse>("/api/v1/campaigns", p, [FEED_TAGS.campaigns]),
 };

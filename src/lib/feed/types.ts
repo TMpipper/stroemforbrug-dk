@@ -2631,3 +2631,70 @@ export interface FeedLadeboksHealthResponse {
   /** Tomt, når alt er friskt. Hver tekst siger, hvad der mangler. */
   stale: string[];
 }
+
+/* ------------------------------------------------------------------ */
+/* Kampagner (Black Friday / Black Week): GET /api/v1/campaigns?event= */
+/* ------------------------------------------------------------------ */
+
+export type FeedCampaignKind = "oneOff" | "monthlyCredit" | "freeFees" | "gift" | "bundle";
+/** Udledt af `kind`, aldrig fri tekst. */
+export type FeedCampaignPayout = "på én gang" | "pr. måned" | "gavekort/gave" | "rabat på abonnement og tillæg" | "ved køb af pakke";
+/** `upcoming` (embargo) og `stale` (ikke bekræftet i 72 timer) sendes aldrig i et svar. */
+export type FeedCampaignStatus = "upcoming" | "active" | "stale" | "ended";
+
+export interface FeedCampaign {
+  id: string;
+  event: string;
+  /** `slug` er null for et selskab, feedet ikke kender; navnet er sitenes stavemåde. */
+  supplier: { slug: string | null; name: string; logoUrl: string | null; advisory: FeedAdvisory | null };
+  product: "el" | "gas" | "ladeboks";
+  /** Kalder selskabet det selv Black Friday / Black Week? */
+  labelled: boolean;
+  /** Uden cifre — beløb står i talfelterne. */
+  title: string;
+  kind: FeedCampaignKind;
+  amountKr: number | null;
+  perMonthKr: number | null;
+  months: number | null;
+  altPerMonthKr: number | null;
+  altLabel: string | null;
+  freeFees: { months: number; plusCurrentMonth: boolean; subscription: boolean; markup: boolean; referenceProductSlug: string | null } | null;
+  /** Beregnet værdi i kr. inkl. moms (oneOff/gift: beløbet; monthlyCredit: pr. md. × måneder; freeFees: se valueBasis; bundle: null). */
+  valueKr: number | null;
+  /** altPerMonthKr × months. */
+  altValueKr: number | null;
+  /** Kun freeFees: forbruget og referenceproduktet, værdien er regnet på (et »mindst«: den løbende måned tæller ikke med). */
+  valueBasis: { kwh: number; referenceProductSlug: string; gridArea: string } | null;
+  payout: FeedCampaignPayout;
+  /** Selskabets egne ord om udbetalingen, uden cifre. */
+  payoutWording: string;
+  validFrom: string;
+  validTo: string | null;
+  eligibility: string;
+  binding: string;
+  offerUrl: string;
+  sourceUrl: string;
+  /** Selskabets egne ord, ordret; hvert tal i tilbuddet står her. */
+  sourceQuote: string;
+  /** ISO-tidspunkt for seneste bekræftelse på selskabets side. */
+  checkedAt: string;
+  /** Har vi en aftale, der gælder dette tilbud via vores link? Så er `goSlug` slugget i /go/<slug>. */
+  partner: boolean;
+  goSlug: string | null;
+  status: FeedCampaignStatus;
+}
+
+export interface FeedCampaignsResponse {
+  event: string;
+  /** Dansk dato, svaret er regnet for. */
+  today: string;
+  product: "el" | "gas" | "ladeboks" | null;
+  generatedAt: string;
+  staleAfterHours: number;
+  /** Aktive tilbud, sorteret efter valueKr (højest først, null sidst). */
+  active: FeedCampaign[];
+  /** Udløbne tilbud (arkivet), nyeste slutdato først. */
+  ended: FeedCampaign[];
+  /** `invalid` er poster i registret, der ikke bestod valideringen (sendes aldrig). */
+  counts: { active: number; ended: number; stale: number; invalid: number };
+}
