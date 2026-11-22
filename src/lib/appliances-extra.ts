@@ -42,7 +42,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 </table>
 
 <h2>Airfryer vs. ovn: Hvad bruger mest strøm?</h2>
-<p>En konventionel ovn bruger typisk 2.000–3.000 watt og kræver 10–15 minutters forvarmning. Airfryeren når driftstemperatur på 2–3 minutter og bruger dermed markant mindre energi pr. tilberedning. En typisk ovnbrug koster 1–3 kr. pr. gang, mens en airfryer kun koster 0,37–1,12 kr.</p>
+<p>En konventionel ovn bruger typisk 2.000–3.000 watt og kræver 10–15 minutters forvarmning. Airfryeren når driftstemperatur på 2–3 minutter og bruger dermed markant mindre energi pr. tilberedning. En typisk ovnbrug bruger 0,6–1,6 kWh og koster {{kr 0,6–1,6}} pr. gang, mens en airfryer kun bruger 0,2–0,6 kWh og koster {{kr 0,2–0,6}} pr. tilberedning.</p>
 
 <table>
 <thead><tr><th>Apparat</th><th>Watt</th><th>Typisk tid</th><th>kWh pr. brug</th><th>Pris pr. brug</th></tr></thead>
@@ -69,7 +69,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 </table>
 
 <h2>Standbyforbrug og skjulte strømtyve</h2>
-<p>De fleste airfryere har et minimalt standbyforbrug på under 1 watt, hvilket svarer til under 1 kr. om året. Modeller med digitalt display og WiFi-forbindelse kan dog trække op til 2–3 watt i standby. Du kan slukke helt på kontakten for at eliminere standbyforbruget.</p>
+<p>De fleste airfryere har et minimalt standbyforbrug på under 1 watt, hvilket svarer til under 9 kWh eller {{kr 9}} om året. Modeller med digitalt display og WiFi-forbindelse kan dog trække op til 2–3 watt i standby. Du kan slukke helt på kontakten for at eliminere standbyforbruget.</p>
 
 <h2>Sådan reducerer du airfryerens strømforbrug</h2>
 <p>Der er flere nemme måder at minimere dit elforbrug uden at gå på kompromis med madkvaliteten. Her er de mest effektive tiltag baseret på reelle besparelser.</p>
@@ -86,7 +86,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <p>Airfryerens forbrug er relativt jævnt hen over året, men de fleste familier bruger den lidt oftere i vintermånederne, hvor man tilbereder flere varme retter. I sommermånederne falder forbruget typisk 10–20 %, da man oftere griller udendørs.</p>
 
 <h2>Er en airfryer en god investering rent energimæssigt?</h2>
-<p>Ja – hvis du erstatter en del af dit ovnforbrug med airfryeren, tjener den sig hurtigt ind. En familie der bruger ovnen dagligt og skifter halvdelen af tilberedningerne til airfryeren, sparer typisk 300–500 kr. om året. Det betyder, at en airfryer til 800–1.500 kr. er betalt hjem på 2–3 år alene i strømbesparelse.</p>
+<p>Ja – hvis du erstatter en del af dit ovnforbrug med airfryeren, tjener den sig hurtigt ind. En familie der bruger ovnen dagligt og skifter halvdelen af tilberedningerne til airfryeren, sparer typisk 75–180 kWh, svarende til {{kr 75–180}} om året. Det betyder, at en airfryer med en indkøbspris på 800–1.500 kr. kan være betalt hjem på få år alene i strømbesparelse, hvis du bruger den meget.</p>
 
 <p>Airfryeren er desuden et godt supplement til andre energieffektive apparater. Læs også om <a href="/vaskemaskine/">vaskemaskinens strømforbrug</a> og <a href="/kummefryser/">kummefryserens elforbrug</a> for at få et samlet overblik over dit husholdningsforbrug.</p>
 
@@ -95,11 +95,11 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     faqs: [
       { question: "Hvor meget koster det at bruge en airfryer i timen?", answer: "Med et typisk forbrug på 1.400 watt koster en times brug ca. {{kr 1,4}} kr. ved en elpris på {{pris_kwh_tal}} kr./kWh. De fleste tilberedninger tager dog kun 15–30 minutter." },
       { question: "Bruger en airfryer mere strøm end en ovn?", answer: "Nej, en airfryer bruger typisk 50–75 % mindre strøm end en konventionel ovn pr. tilberedning, da den varmer hurtigere op og har kortere tilberedningstid." },
-      { question: "Hvad er standbyforbruget på en airfryer?", answer: "De fleste airfryere bruger under 1 watt i standby, hvilket koster under 1 kr. om året. Modeller med WiFi kan bruge 2–3 watt." },
+      { question: "Hvad er standbyforbruget på en airfryer?", answer: "De fleste airfryere bruger under 1 watt i standby, hvilket svarer til under 9 kWh eller {{kr 9}} om året. Modeller med WiFi kan bruge 2–3 watt." },
       { question: "Hvor mange kWh bruger en airfryer om måneden?", answer: "Ved daglig brug i 25 minutter bruger en airfryer ca. 7–12 kWh om måneden, svarende til {{kr 7}}–{{kr 12}} kr." },
-      { question: "Er det billigere at bruge airfryer end komfur?", answer: "Til de fleste retter ja. En airfryer koster ca. 0,37–1,12 kr. pr. tilberedning mod 1–3 kr. for en ovn og 1–1 kr. for kogeplader." },
+      { question: "Er det billigere at bruge airfryer end komfur?", answer: "Til de fleste retter ja. En airfryer bruger ca. 0,2–0,6 kWh ({{kr 0,2–0,6}}) pr. tilberedning mod 0,6–1,6 kWh ({{kr 0,6–1,6}}) for en ovn og 0,3–1,0 kWh ({{kr 0,3–1}}) for kogeplader." },
       { question: "Bruger en stor airfryer mere strøm end en lille?", answer: "Større modeller har højere watttal, men tilbereder maden hurtigere. Pr. portion er energiforbruget ofte sammenligneligt, men en XXL-model bruger 10–20 % mere pr. tilberedning." },
-      { question: "Kan man spare strøm ved at slukke airfryeren på kontakten?", answer: "Ja, men besparelsen er minimal – under 1 kr. om året. Det er dog en god vane for alle apparater med standby." },
+      { question: "Kan man spare strøm ved at slukke airfryeren på kontakten?", answer: "Ja, men besparelsen er minimal – under 9 kWh eller {{kr 9}} om året. Det er dog en god vane for alle apparater med standby." },
       { question: "Hvor meget strøm bruger en airfryer sammenlignet med en mikroovn?", answer: "En mikroovn bruger mindre energi pr. minut, men kan ikke det samme. Til opvarmning er mikroovnen billigst; til tilberedning af friske retter er airfryeren billigere end ovnen." },
     ],
     relatedSlugs: ["ovn", "vaskemaskine", "kummefryser", "elradiator"],
@@ -152,7 +152,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <p>En kummefryser kører 24 timer i døgnet, 365 dage om året, og er dermed et af de apparater i hjemmet, der bidrager mest til den samlede elregning. Med det rette valg af model og korrekt brug kan du dog reducere forbruget markant. I denne guide gennemgår vi alt om kummefryserens energiforbrug.</p>
 
 <h2>Typisk årligt elforbrug for en kummefryser</h2>
-<p>En kummefryser bruger mellem 130 og 400 kWh årligt afhængigt af størrelse, alder og energimærke. En ny A-mærket model bruger typisk 130–160 kWh, mens en ældre model fra før 2015 let kan bruge 350–450 kWh. Det er en forskel på over 500 kr. om året.</p>
+<p>En kummefryser bruger mellem 130 og 400 kWh årligt afhængigt af størrelse, alder og energimærke. En ny A-mærket model bruger typisk 130–160 kWh, mens en ældre model fra før 2015 let kan bruge 350–450 kWh. Det er en forskel på 190–320 kWh, svarende til {{kr 190–320}} om året.</p>
 
 <table>
 <thead><tr><th>Energiklasse</th><th>Størrelse (liter)</th><th>kWh/år</th><th>Årlig pris ({{pris_kwh_tal}} kr.)</th></tr></thead>
@@ -189,7 +189,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 </ul>
 
 <h2>Hvornår kan det betale sig at udskifte kummefryser?</h2>
-<p>Hvis din nuværende kummefryser er mere end 10–15 år gammel, bruger den sandsynligvis 300–450 kWh om året. En ny A-mærket model bruger under 160 kWh. Besparelsen er ca. 350–725 kr. om året, hvilket betyder, at en ny fryser til 3.000–5.000 kr. er betalt hjem på 5–8 år.</p>
+<p>Hvis din nuværende kummefryser er mere end 10–15 år gammel, bruger den sandsynligvis 300–450 kWh om året. En ny A-mærket model bruger under 160 kWh. Besparelsen er ca. 140–290 kWh eller {{kr 140–290}} om året, så en ny fryser med en indkøbspris på 3.000–5.000 kr. kan være betalt hjem inden for frysens levetid.</p>
 
 <table>
 <thead><tr><th>Fryserens alder</th><th>Typisk forbrug</th><th>Besparelse ved ny A-model</th><th>Tilbagebetalingstid</th></tr></thead>
@@ -277,7 +277,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
       "Hvor meget strøm bruger en ovn? Se det typiske elforbrug i kWh for konventionel og varmluftovn, sammenlign modeller og beregn din udgift.",
     heading: "Strømforbrug for en ovn: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
-      "En elektrisk ovn bruger typisk 150–300 kWh om året ved normal brug. Det svarer til {{kr 150}}–{{kr 300}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Hver tilberedning koster 1,12–2,98 kr. afhængigt af temperatur, tid og om du bruger varmluft eller over-/undervarme.",
+      "En elektrisk ovn bruger typisk 150–300 kWh om året ved normal brug. Det svarer til {{kr 150}}–{{kr 300}} kr. årligt ved {{pris_kwh_tal}} kr./kWh. Hver tilberedning bruger typisk 0,6–1,6 kWh og koster {{kr 0,6–1,6}} afhængigt af temperatur, tid og om du bruger varmluft eller over-/undervarme.",
     kwhRange: [150, 350],
     typicalKwh: 220,
     wattage: 2500,
@@ -451,17 +451,15 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 </table>
 
 <h2>Hvad koster det at lade en elbil hjemme?</h2>
-<p>Hjemmeladning koster marginalprisen {{pris_kwh}} alt inklusive (el, transport og afgifter, uden abonnement). Ved et forbrug på 3.500 kWh/år bliver den årlige ladeudgift ca. {{kr 3500}} kr. Til sammenligning koster en tilsvarende benzinbil 18.000–25.000 kr. i brændstof årligt.</p>
+<p>Hjemmeladning koster marginalprisen {{pris_kwh}} alt inklusive (el, transport og afgifter, uden abonnement). Ved et forbrug på 3.500 kWh/år bliver den årlige ladeudgift ca. {{kr 3500}} kr. Til sammenligning koster en tilsvarende benzinbil 12.750–19.500 kr. i brændstof årligt ved 15.000 km.</p>
 
 <table>
 <thead><tr><th>Ladetype</th><th>Pris pr. kWh</th><th>Pris pr. 100 km</th><th>Årlig pris (15.000 km)</th></tr></thead>
 <tbody>
-<tr><td>Hjemmeladning (natstrøm)</td><td>1,80–2,20 kr.</td><td>27–40 kr.</td><td>5.400–7.500 kr.</td></tr>
-<tr><td>Hjemmeladning (gennemsnit)</td><td>2,50–3,00 kr.</td><td>38–54 kr.</td><td>7.500–10.800 kr.</td></tr>
-<tr><td>Offentlig AC-lader</td><td>3,50–5,00 kr.</td><td>53–90 kr.</td><td>10.500–18.000 kr.</td></tr>
-<tr><td>Hurtiglader (DC)</td><td>5,00–8,00 kr.</td><td>75–144 kr.</td><td>15.000–28.800 kr.</td></tr>
+<tr><td>Hjemmeladning (månedens gennemsnit)</td><td>{{pris_kwh}}</td><td>{{kr 15–20}} (15–20 kWh)</td><td>{{kr 2300–3000}} (2.300–3.000 kWh)</td></tr>
 </tbody>
 </table>
+<p>Lader du i de billigste nattetimer med en variabel elaftale, bliver prisen typisk lavere end månedens gennemsnit. Ved offentlige ladere betaler du i stedet operatørens pris, som uden abonnement typisk er 3,50–5,00 kr./kWh på en AC-lader og 5,00–8,00 kr./kWh på en hurtiglader (DC) — to til fire gange så meget som hjemmeladning.</p>
 
 <h2>Vinteren og elbilens merforbrug</h2>
 <p>Om vinteren stiger elbilens forbrug med 20–40 % pga. kabineopvarmning, batterikonditionering og højere rullemodstand. En bil der bruger 16 kWh/100 km om sommeren, kan bruge 21–23 kWh/100 km i januar. Varmepumpe reducerer merforbruget til 10–20 %.</p>
@@ -494,7 +492,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <p>Elbilens forbrug udgør ofte 50–70 % af en husstands samlede elforbrug. Se også <a href="/varmepumpe/">varmepumpens strømforbrug</a> og <a href="/elradiator/">elradiatorens elforbrug</a> for andre store forbrugere i hjemmet.</p>
 
 <h2>Elbil vs. benzinbil – driftsøkonomi</h2>
-<p>En elbil koster typisk 35–55 kr. pr. 100 km mod 85–130 kr. for en benzinbil. Over 15.000 km/år sparer du 7.000–15.000 kr. i brændstofudgifter, selv med de nuværende elpriser. Dertil kommer lavere vedligeholdelsesomkostninger.</p>
+<p>En elbil bruger typisk 15–20 kWh pr. 100 km, hvilket koster {{kr 15–20}} ved hjemmeladning, mens brændstof til en benzinbil koster 85–130 kr. pr. 100 km. Over 15.000 km/år koster brændstoffet 12.750–19.500 kr. mod {{kr 2300–3000}} i strøm, selv med de nuværende elpriser. Dertil kommer lavere vedligeholdelsesomkostninger.</p>
 <h2>Ladetab – derfor bruger du mere end bilens batteri</h2>
 <p>En elbil trækker mere fra stikkontakten, end der ender i batteriet. Noget går tabt som varme i ladeelektronikken og kablet, og bilen bruger selv strøm på at styre og temperere batteriet undervejs. Tabet er typisk 10–20 % ved hjemmeladning – det er derfor, dit målte forbrug ligger over bilens egne tal.</p>
 <p>Tabet er størst ved langsom ladning. Energistyrelsen anbefaler at lade med bilens fulde kapacitet hjemme: skruer du ampereantallet ned, tager ladningen længere tid, og styreelektronikken kører i flere timer uden at flytte mere energi. Ladning fra en almindelig stikkontakt på 10 A er derfor både langsommere og dyrere pr. kWh end en ladeboks.</p>
@@ -517,7 +515,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 `,
     faqs: [
       { question: "Hvor meget stiger elregningen med en elbil?", answer: "En elbil øger typisk husstandens elforbrug med 2.500–4.500 kWh/år, svarende til {{kr 2500}}–{{kr 4500}} kr. ekstra ved hjemmeladning." },
-      { question: "Hvad koster det at lade en elbil til fuld?", answer: "En fuld opladning af et 60 kWh batteri koster ca. {{kr 60}} kr. hjemme ({{pris_kwh_tal}} kr./kWh) og 223–357 kr. på en hurtiglader." },
+      { question: "Hvad koster det at lade en elbil til fuld?", answer: "En fuld opladning af et 60 kWh batteri koster ca. {{kr 60}} hjemme ({{pris_kwh}}). På en hurtiglader betaler du operatørens pris uden abonnement, typisk 5,00–8,00 kr./kWh, altså 300–480 kr. for 60 kWh." },
       { question: "Hvor mange kWh bruger en elbil pr. km?", answer: "Typisk 0,15–0,22 kWh/km under danske forhold. Om vinteren stiger det til 0,20–0,30 kWh/km." },
       { question: "Er det billigst at lade om natten?", answer: "Ja, natstrøm (kl. 0–6) er typisk 30–50 % billigere end dagstrøm. Mange elselskaber tilbyder specialtariffer for elbilladning." },
       { question: "Hvor meget bruger en elbil i standby?", answer: "En parkeret elbil bruger 1–5 kWh pr. dag til batteristyring og systemer ('vampirtab'). Tesla-modeller er kendt for relativt højt standbyforbrug." },
@@ -591,7 +589,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <p>De fleste danske ISP'er (YouSee, Stofa, Fibia) leverer en standard-router der bruger 5–10 watt. Hvis du køber en egen avanceret router, bruger den typisk 10–15 watt mere. Vurder om den ekstra ydeevne retfærdiggør det øgede elforbrug.</p>
 
 <h2>Mesh-systemer og elforbrug</h2>
-<p>Mesh-systemer som Google Nest WiFi, TP-Link Deco og ASUS ZenWiFi bruger 5–8 watt pr. enhed. Et typisk system med 3 enheder trækker 15–24 watt samlet, hvilket koster 325–525 kr. om året. Til sammenligning koster en enkelt kraftig router 175–300 kr. årligt.</p>
+<p>Mesh-systemer som Google Nest WiFi, TP-Link Deco og ASUS ZenWiFi bruger 5–8 watt pr. enhed. Et typisk system med 3 enheder trækker 15–24 watt samlet, hvilket svarer til 130–210 kWh eller {{kr 130–210}} om året. Til sammenligning bruger en enkelt kraftig router 70–120 kWh, svarende til {{kr 70–120}} årligt.</p>
 
 <table>
 <thead><tr><th>Mesh-system</th><th>Antal enheder</th><th>Samlet watt</th><th>kWh/år</th><th>Årlig pris</th></tr></thead>
@@ -719,7 +717,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 </table>
 
 <h2>Stationær vs. bærbar – hvad bruger mindst?</h2>
-<p>En bærbar computer bruger generelt 60–80 % mindre strøm end en tilsvarende stationær, fordi den er designet til at køre på batteri. En MacBook Air M3 bruger kun 20–30 watt under typisk brug, mens en stationær med tilsvarende ydeevne bruger 100–150 watt. Over et år er besparelsen 200–500 kr.</p>
+<p>En bærbar computer bruger generelt 60–80 % mindre strøm end en tilsvarende stationær, fordi den er designet til at køre på batteri. En MacBook Air M3 bruger kun 20–30 watt under typisk brug, mens en stationær med tilsvarende ydeevne bruger 100–150 watt. Over et år er besparelsen 80–200 kWh, svarende til {{kr 80–200}} om året.</p>
 
 <h2>Gaming-PC strømforbrug</h2>
 <p>En gaming-PC er den mest strømkrævende computertype med et forbrug på 300–600 watt under spil. Grafikkortet alene kan bruge 200–350 watt. En RTX 4090 har et TDP på 450 watt, hvilket gør den til den største enkeltkomponent.</p>
@@ -755,7 +753,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <p>Computerens forbrug bør ses i sammenhæng med andet IT-udstyr. Læs også om <a href="/router/">routerens strømforbrug</a> og <a href="/tv/">TV'ets elforbrug</a>. Har du hjemmekontor, kan det samlede IT-forbrug udgøre 10–20 % af din elregning.</p>
 
 <h2>Hjemmekontor og elforbrug</h2>
-<p>Et typisk hjemmekontor med bærbar, skærm, router og diverse opladere bruger 80–200 watt samlet. Over en 8-timers arbejdsdag bliver det 0,6–1,6 kWh ({{kr 0,6}}–{{kr 1,6}} kr./dag). Årligt (230 arbejdsdage) koster hjemmekontoret 260–684 kr. i strøm.</p>
+<p>Et typisk hjemmekontor med bærbar, skærm, router og diverse opladere bruger 80–200 watt samlet. Over en 8-timers arbejdsdag bliver det 0,6–1,6 kWh ({{kr 0,6}}–{{kr 1,6}} kr./dag). Årligt (230 arbejdsdage) bruger hjemmekontoret 138–368 kWh, svarende til {{kr 138–368}} i strøm.</p>
 <h2>Stationær eller bærbar – forskellen er stor</h2>
 <p>Formfaktoren betyder mere end noget andet for en computers strømforbrug. En bærbar er bygget til at køre på batteri og har derfor komponenter valgt efter effektivitet, mens en stationær har plads til køling og strømforsyning og derfor ikke er underlagt samme begrænsning.</p>
 <table>
@@ -784,8 +782,8 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <p>Skærmen tæller selvstændigt og overses systematisk, fordi den ikke føles som en computer. En 27" skærm bruger typisk 20–35 W, og to skærme kan dermed bruge lige så meget som selve kontormaskinen. Lysstyrken er den vigtigste knap: en skærm på 100 % lysstyrke bruger 20–30 % mere end den samme skærm på 60 %, hvilket i de fleste rum er rigeligt.</p>
 `,
     faqs: [
-      { question: "Hvor meget strøm bruger en computer i timen?", answer: "En bærbar bruger 0,02–0,06 kWh/time (5–15 øre), en stationær kontor-PC 0,08–0,15 kWh/time (20–38 øre), og en gaming-PC 0,30–0,60 kWh/time (75 øre–{{kr 0,6}} kr.)." },
-      { question: "Bruger en computer strøm i standby?", answer: "Ja, 0,5–5 watt afhængigt af type. Det koster 10–100 kr. om året. Sluk på kontakten for at eliminere det." },
+      { question: "Hvor meget strøm bruger en computer i timen?", answer: "En bærbar bruger 0,02–0,06 kWh/time ({{oere 0,02–0,06}}), en stationær kontor-PC 0,08–0,15 kWh/time ({{oere 0,08–0,15}}), og en gaming-PC 0,30–0,60 kWh/time ({{kr 0,3–0,6}})." },
+      { question: "Bruger en computer strøm i standby?", answer: "Ja, 0,5–5 watt afhængigt af type. Det svarer til 4–44 kWh eller {{kr 4–44}} om året. Sluk på kontakten for at eliminere det." },
       { question: "Hvad bruger mest strøm – computer eller TV?", answer: "En gaming-PC bruger typisk mere end et TV (300–600 W vs. 50–150 W). En bærbar bruger mindre end de fleste TV'er." },
       { question: "Hvor meget strøm bruger en gaming-PC?", answer: "300–600 watt under spil, svarende til 400–700 kWh/år ved 4 timers daglig gaming. Det koster {{kr 400}}–{{kr 700}} kr./år." },
       { question: "Er en Mac mere energieffektiv end en Windows-PC?", answer: "Apple Silicon (M1–M4) er ekstremt energieffektiv – en MacBook Air bruger kun 20–30 W. Tilsvarende Windows-bærbare bruger 40–65 W." },
@@ -917,7 +915,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <p>Timerfunktion gør det samme for tiden. Skal badeværelset være lunt fra 6.30 til 8, er der ingen grund til at holde 22 grader hele natten – og med en variabel elaftale kan du oven i købet lægge opvarmningen i de billige nattetimer, hvor rummet alligevel skal varmes op til morgenen.</p>
 `,
     faqs: [
-      { question: "Hvor meget koster det at have en elradiator kørende i timen?", answer: "En 1.500 W elradiator koster {{kr 1,5}} kr./time ved fuld effekt ({{pris_kwh_tal}} kr./kWh). Med termostat kører den typisk 50–70 % af tiden, så den reelle pris er 1,41–1,93 kr./time." },
+      { question: "Hvor meget koster det at have en elradiator kørende i timen?", answer: "En 1.500 W elradiator koster {{kr 1,5}} kr./time ved fuld effekt ({{pris_kwh_tal}} kr./kWh). Med termostat kører den typisk 50–70 % af tiden, så den reelle pris er {{kr 0,75–1,05}} pr. time (0,75–1,05 kWh)." },
       { question: "Hvad koster elvarme om måneden?", answer: "Et rum med 1.500 W radiator koster {{kr 200}}–{{kr 480}} kr./måned i fyringssæsonen. Et helt hus med elvarme kan koste {{kr 1200}}–{{kr 2000}} kr./måned om vinteren." },
       { question: "Er oliefyldte radiatorer billigere i drift end konvektorer?", answer: "Oliefyldte radiatorer bruger typisk 10–15 % mindre energi, da de holder varmen bedre og giver jævnere temperatur, hvilket reducerer termostatcykler." },
       { question: "Hvor meget kan man spare med en varmepumpe i stedet for elvarme?", answer: "En varmepumpe sparer 60–75 % af varmeudgiften. Ved 10.000 kWh elvarme ({{kr 10000}} kr./år) reduceres udgiften til {{kr 2400}}–{{kr 3200}} kr./år." },
@@ -1018,7 +1016,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 </ul>
 
 <h2>Hvornår kan det betale sig at købe ny fryser?</h2>
-<p>Hvis din fryser er over 10 år gammel, bruger den sandsynligvis 300–450 kWh/år. En ny A-klasse bruger under 170 kWh. Besparelsen er 325–700 kr./år, og en ny fryser til 4.000–7.000 kr. er betalt hjem på 6–12 år i ren strømbesparelse.</p>
+<p>Hvis din fryser er over 10 år gammel, bruger den sandsynligvis 300–450 kWh/år. En ny A-klasse bruger under 170 kWh. Besparelsen er 130–280 kWh eller {{kr 130–280}} om året, og en ny fryser med en indkøbspris på 4.000–7.000 kr. betaler sig typisk først hjem over mange år i ren strømbesparelse.</p>
 
 <h2>Tips til lavere strømforbrug</h2>
 <p>Med disse tips kan du reducere fryserens forbrug med 15–30 % uden at gå på kompromis med frysningen.</p>
@@ -1056,7 +1054,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
       { question: "Hvad er forskellen på kummefryser og skabsfryser i strøm?", answer: "En kummefryser bruger typisk 10–20 % mindre pga. bedre kuldeisolering ved åbning. Til gengæld er en skabsfryser nemmere at organisere." },
       { question: "Bruger en NoFrost-fryser mere strøm?", answer: "Ja, 5–15 % mere end statiske modeller. Men da den aldrig danner rim, forbliver den effektiv over tid – i praksis er forbruget ofte det samme." },
       { question: "Hvad koster en fryser i strøm om året?", answer: "Nye A-klasse: {{kr 130}}–{{kr 170}} kr. Middel C-klasse: {{kr 200}}–{{kr 250}} kr. Ældre E/G-klasse: {{kr 290}}–{{kr 420}} kr. ved {{pris_kwh_tal}} kr./kWh." },
-      { question: "Kan det betale sig at udskifte en 10 år gammel fryser?", answer: "Ofte ja – besparelsen er typisk 325–700 kr./år, og en ny fryser er betalt hjem på 6–12 år alene i strømbesparelse." },
+      { question: "Kan det betale sig at udskifte en 10 år gammel fryser?", answer: "Ofte ja, især hvis den gamle bruger meget – besparelsen er typisk 130–280 kWh ({{kr 130–280}}) om året, og over en ny frysers levetid kan strømbesparelsen dække en stor del af indkøbsprisen." },
       { question: "Hvad er den optimale temperatur for en fryser?", answer: "-18°C er tilstrækkeligt til sikker opbevaring. Hver grad koldere øger forbruget med ca. 5 %, så -24°C koster 30 % mere." },
       { question: "Hvor længe holder maden uden strøm i fryseren?", answer: "En fuld fryser holder maden frosset 24–48 timer ved strømafbrydelse. En halvtom fryser kun 12–24 timer." },
       { question: "Bruger en indbygget fryser mere strøm end fritstående?", answer: "Nej, energiforbruget afhænger af energiklassen, ikke af om den er indbygget. Indbyggede modeller har dog ofte lidt dårligere ventilation." },
@@ -1125,7 +1123,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 </table>
 
 <h2>Quooker vs. elkedel – hvad er billigst?</h2>
-<p>En elkedel bruger ca. 0,1 kWh pr. kogning (1 liter). Koger du kedlen 4 gange dagligt, bruger den ca. 146 kWh/år ({{kr 146}} kr.). En Quooker PRO3 bruger kun 55 kWh/år ({{kr 55}} kr.) og giver ubegrænset kogende vand. Quookeren er altså billigere i drift ved daglig brug.</p>
+<p>En elkedel bruger ca. 0,1 kWh pr. kogning (1 liter). Koger du kedlen 4 gange dagligt, bruger den ca. 146 kWh/år ({{kr 146}}). En Quooker PRO3 bruger kun 55 kWh/år ({{kr 55}} kr.) og giver ubegrænset kogende vand. Quookeren er altså billigere i drift ved daglig brug.</p>
 
 <table>
 <thead><tr><th>Apparat</th><th>Forbrug pr. kop</th><th>Dagligt (4 kopper)</th><th>kWh/år</th><th>Årlig pris</th></tr></thead>
@@ -1159,7 +1157,7 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
 <p>Quookeren er en af køkkenets mere beskedne strømforbrugere. Sammenlign med <a href="/ovn/">ovnens strømforbrug</a> eller <a href="/opvaskemaskine/">opvaskemaskinens elforbrug</a> for perspektiv. Se også <a href="/vaskemaskine/">vaskemaskinens kWh-forbrug</a>.</p>
 
 <h2>Er en Quooker en god investering energimæssigt?</h2>
-<p>Rent energimæssigt sparer en Quooker 50–150 kWh/år sammenlignet med gentagne kogninger i elkedel (afhængigt af forbrug). Med en investering på 8.000–15.000 kr. er den dog primært en komfort- og designinvestering. Energibesparelsen er en bonus, ikke hovedargumentet.</p>
+<p>Rent energimæssigt sparer en Quooker 50–150 kWh/år sammenlignet med gentagne kogninger i elkedel (afhængigt af forbrug). Med en indkøbspris på 8.000–15.000 kr. er den dog primært en komfort- og designinvestering. Energibesparelsen er en bonus, ikke hovedargumentet.</p>
 <h2>Quooker eller elkedel – hvad bruger mindst?</h2>
 <p>Spørgsmålet er mere åbent, end producenter på begge sider lader det fremstå, fordi de to apparater bruger strøm på hver sin måde. En <a href="/elkedel/">elkedel</a> bruger meget i få minutter og ingenting resten af døgnet. En Quooker bruger lidt hele døgnet for at holde tanken varm, og så næsten ingenting, når du tapper.</p>
 <table>
@@ -1184,8 +1182,8 @@ export const APPLIANCES_EXTRA: ApplianceData[] = [
     faqs: [
       { question: "Hvor meget strøm bruger en Quooker i standby?", answer: "En Quooker PRO3 bruger ca. 8–10 watt i standby for at holde 3 liter vand på 110°C. Det er ca. 70–88 kWh/år ({{kr 70}}–{{kr 88}} kr.)." },
       { question: "Er en Quooker billigere i drift end en elkedel?", answer: "Ja, ved daglig brug. En Quooker bruger ca. 55 kWh/år, mens en elkedel brugt 4 gange dagligt bruger ca. 146 kWh/år." },
-      { question: "Hvad koster en kop kogende vand fra Quookeren?", answer: "Under 1 øre pr. kop – det meste af strømmen går til at holde tanken varm, ikke til den enkelte tappning." },
-      { question: "Kan man spare strøm ved at slukke Quookeren om natten?", answer: "Teknisk set sparer du 0,11–0,19 kr./nat, men det tager 30 min. at genopvarme. De fleste finder det ikke besværet værd." },
+      { question: "Hvad koster en kop kogende vand fra Quookeren?", answer: "Under 0,01 kWh pr. kop, altså højst {{oere 0,01}} – det meste af strømmen går til at holde tanken varm, ikke til den enkelte tappning." },
+      { question: "Kan man spare strøm ved at slukke Quookeren om natten?", answer: "Teknisk set sparer du 0,06–0,08 kWh ({{kr 0,06–0,08}}) pr. nat, men det tager 30 min. at genopvarme. De fleste finder det ikke besværet værd." },
       { question: "Bruger Quooker COMBI mere strøm end PRO3?", answer: "Ja, COMBI bruger ca. 90–105 kWh/år mod PRO3's 55 kWh/år, da den også opvarmer vand til håndevask og opvask." },
       { question: "Hvor mange kWh bruger en Quooker om måneden?", answer: "En PRO3 bruger ca. 4,5 kWh/måned ({{kr 50 /md}} kr.), en PRO7 ca. 6,5 kWh/måned ({{kr 6,5}} kr.)." },
       { question: "Er Quooker dyr i strøm sammenlignet med andre køkkenapparater?", answer: "Nej, Quookeren bruger 55–105 kWh/år – det er mindre end et køleskab (120–200 kWh) og langt mindre end en ovn (150–300 kWh)." },

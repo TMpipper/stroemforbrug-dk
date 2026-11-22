@@ -132,7 +132,7 @@ export default async function ModelPage({ params }: { params: Params }) {
                     <th key={k} scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">{MODE_LABEL[k]}</th>
                   ))}
                   {hasBattery && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Batteri</th>}
-                  {m.variants.some((v) => v.adapterW) && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Oplader</th>}
+                  {m.variants.some((v) => v.adapterW) && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Målt med oplader</th>}
                   {m.variants.some((v) => v.adapterNoLoadW !== undefined) && <th scope="col" className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-ink">Oplader uden last</th>}
                 </tr>
               </thead>

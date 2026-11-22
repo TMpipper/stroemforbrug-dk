@@ -52,13 +52,13 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </table>
 
 <h2>Luft-til-vand varmepumpe — forbrug og pris</h2>
-<p>En luft-til-vand varmepumpe er den mest udbredte type til fuld opvarmning af parcelhuse. Den bruger mere strøm end luft-til-luft (4.000-6.000 kWh/år), men erstatter dit gasfyr eller oliefyr fuldstændigt. Sammenlignet med et gasfyr sparer du typisk 10.500-12.800 kr. om året.</p>
+<p>En luft-til-vand varmepumpe er den mest udbredte type til fuld opvarmning af parcelhuse. Den bruger mere strøm end luft-til-luft (4.000-6.000 kWh/år), men erstatter dit gasfyr eller oliefyr fuldstændigt. Sammenlignet med et gasfyr halverer du typisk varmeudgiften eller mere — se sammenligningen af opvarmningsformer længere nede.</p>
 <table>
-<thead><tr><th>Boligstørrelse</th><th>Forbrug/år</th><th>Pris/år</th><th>vs. gasfyr besparelse</th></tr></thead>
+<thead><tr><th>Boligstørrelse</th><th>Forbrug/år</th><th>Pris/år</th><th>Pr. måned (gns.)</th></tr></thead>
 <tbody>
-<tr><td>100 m²</td><td>3.500-4.500 kWh</td><td>{{kr 3500}}-{{kr 4500}} kr.</td><td>~{{kr 4500}} kr./år</td></tr>
-<tr><td>150 m²</td><td>4.500-5.500 kWh</td><td>{{kr 4500}}-{{kr 5500}} kr.</td><td>~14.900 kr./år</td></tr>
-<tr><td>200 m²</td><td>5.500-7.000 kWh</td><td>{{kr 5500}}-{{kr 7000}} kr.</td><td>~20.700 kr./år</td></tr>
+<tr><td>100 m²</td><td>3.500-4.500 kWh</td><td>{{kr 3500}}-{{kr 4500}} kr.</td><td>{{kr 3500-4500 /md}}</td></tr>
+<tr><td>150 m²</td><td>4.500-5.500 kWh</td><td>{{kr 4500}}-{{kr 5500}} kr.</td><td>{{kr 4500-5500 /md}}</td></tr>
+<tr><td>200 m²</td><td>5.500-7.000 kWh</td><td>{{kr 5500}}-{{kr 7000}} kr.</td><td>{{kr 5500-7000 /md}}</td></tr>
 </tbody>
 </table>
 
@@ -85,17 +85,17 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 <table>
 <thead><tr><th>Opvarmning</th><th>Årlig pris (2026)</th><th>CO₂-udledning</th></tr></thead>
 <tbody>
-<tr><td>Luft-til-vand varmepumpe</td><td>10.000-14.000 kr.</td><td>Lav (el)</td></tr>
-<tr><td>Jordvarme</td><td>8.000-12.000 kr.</td><td>Lav (el)</td></tr>
-<tr><td>Gasfyr</td><td>18.000-24.000 kr.</td><td>Høj (fossil)</td></tr>
-<tr><td>Oliefyr</td><td>22.000-30.000 kr.</td><td>Meget høj (fossil)</td></tr>
-<tr><td><a href="/elradiator/">Elradiatorer</a></td><td>25.000-40.000 kr.</td><td>Lav (el)</td></tr>
-<tr><td>Fjernvarme</td><td>12.000-18.000 kr.</td><td>Varierer</td></tr>
+<tr><td>Luft-til-vand varmepumpe (4.000-6.000 kWh el)</td><td>{{kr 4000-6000}}</td><td>Lav (el)</td></tr>
+<tr><td>Jordvarme (3.500-5.500 kWh el)</td><td>{{kr 3500-5500}}</td><td>Lav (el)</td></tr>
+<tr><td>Gasfyr (brændstof: naturgas)</td><td>18.000-24.000 kr.</td><td>Høj (fossil)</td></tr>
+<tr><td>Oliefyr (brændstof: fyringsolie)</td><td>22.000-30.000 kr.</td><td>Meget høj (fossil)</td></tr>
+<tr><td><a href="/elradiator/">Elradiatorer</a> (12.500-20.000 kWh el)</td><td>{{kr 12500-20000}}</td><td>Lav (el)</td></tr>
+<tr><td>Fjernvarme</td><td>Varierer meget fra værk til værk</td><td>Varierer</td></tr>
 </tbody>
 </table>
 
 <h2>7 tips til at spare på varmepumpens strømforbrug</h2>
-<p>Med disse syv konkrete tips kan du reducere din varmepumpes elforbrug med 15-30% — det svarer til 2.000-5.000 kr. sparet om året for en gennemsnitlig husstand.</p>
+<p>Med disse syv konkrete tips kan du reducere din varmepumpes elforbrug med 15-30% — det svarer til 600-1.200 kWh eller {{kr 600-1200}} sparet om året for en gennemsnitlig husstand med 4.000 kWh.</p>
 <ol>
 <li><strong>Sænk temperaturen 1-2 grader</strong> — Hver grad sparer ca. 5% på forbruget</li>
 <li><strong>Brug nattedsænkning</strong> — Sænk til 18-19°C om natten (men max 2-3 grader, ellers bruger genopvarmning ekstra energi)</li>
@@ -111,12 +111,12 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 <table>
 <thead><tr><th>Type</th><th>Pris inkl. installation</th><th>Tilbagebetalingstid</th></tr></thead>
 <tbody>
-<tr><td>Luft-til-luft</td><td>15.000-35.000 kr.</td><td>2-4 år</td></tr>
-<tr><td>Luft-til-vand</td><td>80.000-140.000 kr.</td><td>5-8 år</td></tr>
-<tr><td>Jordvarme</td><td>120.000-200.000 kr.</td><td>7-12 år</td></tr>
+<tr><td>Luft-til-luft (indkøb + installation)</td><td>15.000-35.000 kr.</td><td>2-4 år</td></tr>
+<tr><td>Luft-til-vand (indkøb + installation)</td><td>80.000-140.000 kr.</td><td>5-8 år</td></tr>
+<tr><td>Jordvarme (indkøb + installation)</td><td>120.000-200.000 kr.</td><td>7-12 år</td></tr>
 </tbody>
 </table>
-<p>Tilbagebetalingstiden er beregnet i forhold til et gasfyr med gasudgifter på 18.000-24.000 kr./år for et 130 m² hus, svarende til ca. 162 kr./m²/år. Elprisen er {{pris_kwh_tal}} kr./kWh.</p>
+<p>Tilbagebetalingstiden er beregnet i forhold til brændstofudgiften til et gasfyr på 18.000-24.000 kr./år for et 130 m² hus, svarende til omkring 162 kr./m²/år. Elprisen er {{pris_kwh}}.</p>
 
 <h2>Varmepumpe strømforbrug i døgnet</h2>
 <p>Et typisk døgnforbrug for en luft-til-vand varmepumpe i et 130 m² hus varierer kraftigt med årstiden. Om vinteren bruger den 20-30 kWh/døgn ({{kr 20}}-{{kr 30}} kr.), mens sommerforbruget kun er 3-5 kWh/døgn ({{kr 1200 /dag}}-{{kr 2000 /dag}} kr.) til varmt brugsvand.</p>
@@ -125,7 +125,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
       { question: "Hvor mange kWh bruger en varmepumpe om året?", answer: "En varmepumpe bruger typisk 2.000-6.000 kWh om året. Luft-til-luft bruger 2.000-4.000 kWh, luft-til-vand bruger 4.000-6.000 kWh, og jordvarme bruger 3.500-5.500 kWh. Det afhænger af boligens størrelse og isolering." },
       { question: "Hvad koster en varmepumpe i strøm om måneden?", answer: "En varmepumpe koster gennemsnitligt {{kr 280}}-{{kr 500}} kr./md. i strøm (ved {{pris_kwh_tal}} kr./kWh). Om vinteren er det {{kr 600}}-{{kr 1200}} kr./md., mens det om sommeren kun er {{kr 360 /md}}-{{kr 1800 /md}} kr./md." },
       { question: "Bruger en varmepumpe meget strøm om vinteren?", answer: "Ja, ca. 70% af det årlige forbrug ligger i vinterhalvåret (oktober-marts). I december-januar bruger varmepumpen typisk 600-1.200 kWh pr. måned, svarende til {{kr 600}}-{{kr 1200}} kr." },
-      { question: "Er en varmepumpe billigere end gasfyr?", answer: "Ja, markant. En varmepumpe koster typisk 7.400-11.200 kr./år i strøm for et 130 m² hus, mens et gasfyr koster 18.000-24.000 kr./år. Besparelsen er 10.500-12.800 kr. årligt." },
+      { question: "Er en varmepumpe billigere end gasfyr?", answer: "Ja, markant. En varmepumpe bruger typisk 4.000-6.000 kWh/år for et 130 m² hus, svarende til {{kr 4000-6000}} i strøm, mens brændstoffet til et gasfyr koster 18.000-24.000 kr./år. Varmepumpen halverer typisk varmeudgiften eller mere." },
       { question: "Hvad er COP på en varmepumpe?", answer: "COP (Coefficient of Performance) angiver effektiviteten. En COP på 3,5 betyder, at du får 3,5 kWh varme for 1 kWh strøm. Typisk COP er 3,0-4,5 afhængigt af type og udetemperatur." },
       { question: "Hvor meget strøm bruger en luft-til-luft varmepumpe?", answer: "En luft-til-luft varmepumpe bruger typisk 2.000-4.000 kWh om året, svarende til {{kr 2000}}-{{kr 4000}} kr. ved {{pris_kwh_tal}} kr./kWh. Den er billigst i drift, men opvarmer kun luften (ikke brugsvand)." },
       { question: "Kan jeg spare på varmepumpens strømforbrug?", answer: "Ja, du kan spare 15-30% ved at: sænke temperaturen 1-2 grader, bruge nattedsænkning, servicere pumpen hvert 2. år, efterisolere boligen og køre med lavere fremløbstemperatur." },
@@ -189,7 +189,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 
 <h2>Eco-program vs. normalprogram — hvad sparer du?</h2>
 <p>Eco-programmet er det mest energieffektive valg og bruges til at teste maskinens energimærkning. Det vasker ved lavere temperatur i længere tid, hvilket bruger 25-35% mindre strøm end et normalprogram — selvom det tager 3-4 timer mod normalens 1,5-2 timer.</p>
-<p>Over et år med daglig opvask sparer eco-programmet dig typisk 100-150 kr. i strøm. Kombineret med et billigere elselskab er den samlede besparelse endnu større.</p>
+<p>Over et år med daglig opvask sparer eco-programmet dig typisk 110-145 kWh (0,3-0,4 kWh pr. vask), svarende til {{kr 110-145}} i strøm. Kombineret med et billigere elselskab er den samlede besparelse endnu større.</p>
 
 <h2>Ny vs. gammel opvaskemaskine — forbrugsforskel</h2>
 <p>Har du en opvaskemaskine der er over 10 år gammel, bruger den typisk 30-50% mere strøm end en ny model. Et skifte fra en gammel D-mærket maskine til en ny A-mærket model sparer ca. 100 kWh/år — svarende til {{kr 100}} kr./år i strøm alene.</p>
@@ -218,7 +218,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 <p>Sammenligner du med et <a href="/tv/">tv på standby</a> eller en <a href="/router/">router der kører 24/7</a>, er opvaskemaskinen en af de apparater med lavest standby-forbrug i husstanden.</p>
 
 <h2>5 tips til at spare strøm på opvaskemaskinen</h2>
-<p>Med disse fem tips kan du reducere opvaskemaskinens strømforbrug med 20-35% uden at gå på kompromis med rene tallerkener. Det svarer til en besparelse på 75-250 kr. om året.</p>
+<p>Med disse fem tips kan du reducere opvaskemaskinens strømforbrug med 20-35% uden at gå på kompromis med rene tallerkener. Det svarer til en besparelse på 30-105 kWh eller {{kr 30-105}} om året.</p>
 <ol>
 <li><strong>Brug eco-programmet</strong> — det er designet til at bruge mindst mulig energi og vasker lige så rent til daglig brug</li>
 <li><strong>Fyld maskinen helt</strong> — en halvfyldt maskine bruger næsten lige så meget som en fuld</li>
@@ -228,7 +228,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </ol>
 
 <h2>Hvad koster en opvask i strøm?</h2>
-<p>En enkelt opvask koster mellem 1,75 og {{kr 2,4}} kr. i strøm afhængigt af program og maskinens energimærke. Med 365 opvaske om året bliver det samlede strømforbrug den næststørste post efter <a href="/koeleskab/">køleskabet</a> og <a href="/toerretumbler/">tørretumbleren</a> i køkkenet.</p>
+<p>En enkelt opvask (0,7-1,8 kWh) koster mellem {{kr 0,7}} og {{kr 1,8}} i strøm afhængigt af program og maskinens energimærke. Med 365 opvaske om året bliver det samlede strømforbrug den næststørste post efter <a href="/koeleskab/">køleskabet</a> og <a href="/toerretumbler/">tørretumbleren</a> i køkkenet.</p>
 <p>Den gode nyhed er, at opvaskemaskinen er et af de apparater med lavest energimærkning — nye modeller med A-mærke bruger under 0,8 kWh pr. vask og er dermed meget økonomiske at køre.</p>
 <h2>Eco-programmet er billigst – og det er ikke tæt løb</h2>
 <p>Opvaskemaskinen bruger langt det meste af sin strøm på at varme vand. Derfor er programvalget afgørende, og eco vinder af samme grund som på <a href="/vaskemaskine/">vaskemaskinen</a>: det bruger længere tid ved lavere temperatur, og tid er gratis, mens varme ikke er.</p>
@@ -255,10 +255,10 @@ export const APPLIANCES_CORE: ApplianceData[] = [
       { question: "Hvor meget strøm bruger en opvaskemaskine pr. vask?", answer: "En opvaskemaskine bruger 0,8-1,5 kWh pr. vask afhængigt af program. Eco-programmet bruger 0,7-0,9 kWh, normalprogrammet 1,0-1,3 kWh og intensivprogrammet 1,3-1,8 kWh." },
       { question: "Hvad koster det at køre opvaskemaskinen?", answer: "Det koster {{kr 0,7}}-{{kr 1,8}} kr. pr. vask i strøm (ved {{pris_kwh_tal}} kr./kWh). Med eco-programmet og daglig brug koster det ca. {{kr 240}}-{{kr 320}} kr./år." },
       { question: "Hvor mange kWh bruger en opvaskemaskine om året?", answer: "En moderne opvaskemaskine bruger 150-300 kWh/år ved daglig brug. En ny A-mærket model bruger ca. 150-180 kWh, mens ældre modeller bruger 250-400 kWh." },
-      { question: "Er eco-programmet billigere end normalprogrammet?", answer: "Ja, eco-programmet bruger 25-35% mindre strøm. Du sparer ca. 100-150 kr./år ved at bruge eco i stedet for normal — selvom eco-programmet tager længere tid." },
+      { question: "Er eco-programmet billigere end normalprogrammet?", answer: "Ja, eco-programmet bruger 25-35% mindre strøm. Du sparer ca. 110-145 kWh/år ({{kr 110-145}}) ved at bruge eco i stedet for normal — selvom eco-programmet tager længere tid." },
       { question: "Bruger opvaskemaskinen strøm på standby?", answer: "Ja, de fleste opvaskemaskiner bruger 0,5-2 watt i standby, svarende til 4-18 kWh/år ({{kr 4}}-{{kr 18}} kr.). Det er minimalt i forhold til driftsforbruget." },
       { question: "Er det billigere at vaske op i hånden?", answer: "Nej, en opvaskemaskine bruger typisk mindre energi og vand end håndopvask. Maskinen bruger 9-12 liter/gang vs. 40-60 liter ved håndopvask." },
-      { question: "Hvor gammel skal min opvaskemaskine være før det kan betale sig at skifte?", answer: "Er din maskine over 10 år gammel, bruger den typisk 30-50% mere strøm. En ny A-mærket model sparer ca. 250 kr./år i strøm — så med 10+ års levetid betaler den sig selv hjem." },
+      { question: "Hvor gammel skal min opvaskemaskine være før det kan betale sig at skifte?", answer: "Er din maskine over 10 år gammel, bruger den typisk 30-50% mere strøm. En ny A-mærket model sparer ca. 100 kWh/år ({{kr 100}}) i strøm — over 10+ års levetid dækker besparelsen en god del af prisen for en ny maskine." },
       { question: "Hvornår er det billigst at køre opvaskemaskinen?", answer: "Med fleksibel elpris (spotpris) er strømmen billigst om natten kl. 0-6 og dyrest kl. 17-20. Brug maskinens timer-funktion til at starte kl. 2-3 om natten." },
     ],
     relatedSlugs: ["koeleskab", "vaskemaskine", "toerretumbler"],
@@ -323,7 +323,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </table>
 
 <h2>TV på standby — hvad koster det?</h2>
-<p>Et tv på standby bruger typisk 1-5 watt, svarende til 9-44 kWh om året. Det koster {{kr 9}}-{{kr 44}} kr./år — altså ikke alverden, men over 10 år bliver det 164-818 kr. for ét apparat. Har du 3-4 tv'er i hjemmet plus tilhørende Apple TV, soundbar og spillekonsol, løber standby-forbruget op.</p>
+<p>Et tv på standby bruger typisk 1-5 watt, svarende til 9-44 kWh om året. Det koster {{kr 9}}-{{kr 44}} kr./år — altså ikke alverden, men over 10 år bliver det {{kr 90-440}} for ét apparat. Har du 3-4 tv'er i hjemmet plus tilhørende Apple TV, soundbar og spillekonsol, løber standby-forbruget op.</p>
 <table>
 <thead><tr><th>Udstyr</th><th>Standby watt</th><th>kWh/år</th><th>Pris/år</th></tr></thead>
 <tbody>
@@ -350,7 +350,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </ul>
 
 <h2>Tips til at spare strøm på tv'et</h2>
-<p>Du kan spare 20-40% på tv'ets strømforbrug med disse enkle justeringer. For de fleste familier svarer det til 50-150 kr. om året — mest for dem med store tv'er.</p>
+<p>Du kan spare 20-40% på tv'ets strømforbrug med disse enkle justeringer. For de fleste familier svarer det til 20-75 kWh eller {{kr 20-75}} om året — mest for dem med store tv'er.</p>
 <ol>
 <li><strong>Sænk lysstyrken</strong> — de fleste tv'er leveres med for høj lysstyrke. Sænk til 50-70% for normalt rum</li>
 <li><strong>Brug eco-tilstand</strong> — de fleste Samsung og LG-tv'er har en strømbesparende billedtilstand</li>
@@ -360,7 +360,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </ol>
 
 <h2>TV strømforbrug i timen</h2>
-<p>Et typisk 55" tv bruger 70-120 watt i timen (0,07-0,12 kWh). Det koster 18-30 øre pr. time ved {{pris_kwh_tal}} kr./kWh. Sammenligner du med andre aktiviteter i hjemmet, er tv-kigning en af de billigste — en <a href="/ovn/">ovn på 200 grader</a> bruger 10 gange så meget pr. time.</p>
+<p>Et typisk 55" tv bruger 70-120 watt i timen (0,07-0,12 kWh). Det koster {{oere 0,07-0,12}} pr. time ved {{pris_kwh}}. Sammenligner du med andre aktiviteter i hjemmet, er tv-kigning en af de billigste — en <a href="/ovn/">ovn på 200 grader</a> bruger 10 gange så meget pr. time.</p>
 
 <h2>Hvor meget strøm bruger et tv om måneden?</h2>
 <p>Ved 4 timers daglig brug bruger et 55" tv ca. 8-12 kWh pr. måned, svarende til {{kr 8}}-{{kr 12}} kr. Et 65" tv bruger 11-16 kWh/md. ({{kr 12}}-{{kr 16}} kr.). Med familiens samlede tv-tid (inkl. børnenes skærme) kan det totale tv-relaterede forbrug nå 30-50 kWh/md. inklusive tilhørende streaming-enheder og <a href="/computer/">computere</a>.</p>
@@ -386,8 +386,8 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 `,
     faqs: [
       { question: "Hvor mange kWh bruger et tv om året?", answer: "Et typisk 55\" tv bruger 80-145 kWh/år ved 4 timers daglig brug. Et 43\" bruger 65-95 kWh, og et 65\" bruger 130-220 kWh afhængigt af teknologi (LED/OLED)." },
-      { question: "Hvad koster det at have tv'et tændt i timen?", answer: "Et 55\" tv koster ca. 18-30 øre pr. time i strøm (0,07-0,12 kWh × {{pris_kwh_tal}} kr.). Et 65\" tv koster ca. 23-38 øre pr. time." },
-      { question: "Bruger et tv meget strøm på standby?", answer: "Nye tv'er (2020+) bruger 0,5-2 watt i standby, svarende til 7-33 kr./år. Ældre tv'er kan bruge op til 8 watt ({{kr 70}} kr./år). Sluk på kontakten for at spare." },
+      { question: "Hvad koster det at have tv'et tændt i timen?", answer: "Et 55\" tv koster ca. {{oere 0,07-0,12}} pr. time i strøm (0,07-0,12 kWh × {{pris_kwh}}). Et 65\" tv bruger 0,09-0,15 kWh og koster ca. {{oere 0,09-0,15}} pr. time." },
+      { question: "Bruger et tv meget strøm på standby?", answer: "Nye tv'er (2020+) bruger 0,5-2 watt i standby, svarende til 4-18 kWh/år ({{kr 4-18}}). Ældre tv'er kan bruge op til 8 watt ({{kr 70}} kr./år). Sluk på kontakten for at spare." },
       { question: "Bruger OLED mere strøm end LED?", answer: "Ja, OLED bruger typisk 10-30% mere end LED/QLED ved samme størrelse. Forskellen er ca. 20-50 kWh/år ({{kr 20}}-{{kr 50}} kr.), men varierer med billedindhold." },
       { question: "Hvor meget strøm bruger et 65\" tv?", answer: "Et 65\" LED/QLED-tv bruger ca. 90-130 watt i drift og 130-190 kWh/år ({{kr 130}}-{{kr 190}} kr.) ved 4 timers daglig brug. Et 65\" OLED bruger 145-220 kWh/år." },
       { question: "Hvad bruger mest strøm — tv eller computer?", answer: "En stationær gaming-pc bruger typisk 2-3 gange så meget som et tv (200-500W vs. 70-150W). En laptop bruger dog mindre end de fleste tv'er (30-65W)." },
@@ -458,13 +458,13 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 <h2>Gammelt vs. nyt køleskab — er det værd at skifte?</h2>
 <p>Et 15-20 år gammelt køleskab bruger typisk 350-500 kWh om året, mens et nyt A-mærket model bruger 100-130 kWh. Forskellen er 220-370 kWh/år — svarende til {{kr 220}}-{{kr 370}} kr./år i strøm. Over køleskabets levetid (15-20 år) sparer du {{kr 3200}}-{{kr 7200}} kr. ved at skifte nu.</p>
 <table>
-<thead><tr><th>Køleskabets alder</th><th>Typisk forbrug</th><th>Årlig pris</th><th>Besparelse vs. nyt</th></tr></thead>
+<thead><tr><th>Køleskabets alder</th><th>Typisk forbrug</th><th>Årlig pris</th><th>Besparelse vs. nyt (130 kWh)</th></tr></thead>
 <tbody>
 <tr><td>0-5 år (A-B)</td><td>100-170 kWh</td><td>{{kr 100}}-{{kr 170}} kr.</td><td>—</td></tr>
-<tr><td>5-10 år (C-D)</td><td>170-280 kWh</td><td>{{kr 170}}-{{kr 280}} kr.</td><td>175-275 kr./år</td></tr>
-<tr><td>10-15 år</td><td>280-400 kWh</td><td>{{kr 280}}-{{kr 400}} kr.</td><td>450-575 kr./år</td></tr>
-<tr><td>15-20 år</td><td>350-500 kWh</td><td>{{kr 350}}-{{kr 500}} kr.</td><td>625-825 kr./år</td></tr>
-<tr><td>20+ år</td><td>400-600 kWh</td><td>{{kr 400}}-{{kr 600}} kr.</td><td>{{kr 400}}-{{kr 600}} kr./år</td></tr>
+<tr><td>5-10 år (C-D)</td><td>170-280 kWh</td><td>{{kr 170}}-{{kr 280}} kr.</td><td>40-150 kWh: {{kr 40-150}}/år</td></tr>
+<tr><td>10-15 år</td><td>280-400 kWh</td><td>{{kr 280}}-{{kr 400}} kr.</td><td>150-270 kWh: {{kr 150-270}}/år</td></tr>
+<tr><td>15-20 år</td><td>350-500 kWh</td><td>{{kr 350}}-{{kr 500}} kr.</td><td>220-370 kWh: {{kr 220-370}}/år</td></tr>
+<tr><td>20+ år</td><td>400-600 kWh</td><td>{{kr 400}}-{{kr 600}} kr.</td><td>270-470 kWh: {{kr 270-470}}/år</td></tr>
 </tbody>
 </table>
 
@@ -488,7 +488,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </table>
 
 <h2>Tips til at reducere køleskabets strømforbrug</h2>
-<p>Køleskabet kan du ikke slukke, men du kan optimere dets drift og spare 10-20% på det årlige forbrug — svarende til 25-85 kr./år for et nyt køleskab og 100-250 kr./år for et ældre.</p>
+<p>Køleskabet kan du ikke slukke, men du kan optimere dets drift og spare 10-20% på det årlige forbrug — svarende til 10-35 kWh ({{kr 10-35}}) om året for et nyt køleskab og 35-100 kWh ({{kr 35-100}}) for et ældre.</p>
 <ol>
 <li><strong>Indstil korrekt temperatur</strong> — 4-5°C i køleskabet, -18°C i fryseren. Hver grad koldere øger forbruget 5%</li>
 <li><strong>Hold tætningslisten ren</strong> — en utæt dør kan øge forbruget 10-20%</li>
@@ -499,8 +499,8 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </ol>
 
 <h2>Hvad koster et køleskab i strøm over 10 år?</h2>
-<p>Over et køleskabs typiske levetid (15-20 år) bruger du mere på strøm end selve køleskabet kostede at købe. Et nyt A-mærket køle/fryseskab til 5.000-8.000 kr. bruger strøm for ca. 3.500-6.500 kr. over 15 år. Et billigt D-mærket køleskab til 3.000 kr. bruger derimod strøm for 8.000-14.000 kr. i samme periode.</p>
-<p>Konklusion: det kan altid betale sig at vælge et energieffektivt køleskab, selvom det koster mere i indkøb. Du tjener merudgiften hjem på 3-5 år i sparede strømudgifter — og køleskabet holder i 15+ år. Se også vores guide til <a href="/opvaskemaskine/">opvaskemaskine strømforbrug</a> for lignende beregninger.</p>
+<p>Over et køleskabs typiske levetid (15-20 år) kan strømmen koste mere end selve køleskabet — især for en billig, energislugende model. Et nyt A-mærket køle/fryseskab med en indkøbspris på 5.000-8.000 kr. bruger 100-170 kWh/år, altså 1.500-2.550 kWh og strøm for {{kr 1500-2550}} over 15 år. Et billigt D-mærket køleskab med en indkøbspris på 3.000 kr. bruger derimod 250-450 kWh/år — 3.750-6.750 kWh og strøm for {{kr 3750-6750}} i samme periode.</p>
+<p>Konklusion: det kan altid betale sig at vælge et energieffektivt køleskab, selvom det koster mere i indkøb. Du tjener typisk merudgiften hjem i sparede strømudgifter i løbet af køleskabets levetid — og køleskabet holder i 15+ år. Se også vores guide til <a href="/opvaskemaskine/">opvaskemaskine strømforbrug</a> for lignende beregninger.</p>
 <h2>Køl og frys er en femtedel af elregningen</h2>
 <p>Energistyrelsen opgør, at danskerne bruger omkring en femtedel af deres strøm på køl og frys. Det er usædvanligt, fordi ingen af apparaterne føles energikrævende – de står bare og summer. Men de står der døgnet rundt, året rundt, og det er netop pointen.</p>
 <p>Tre vaner flytter mest, og de koster ingenting: lad varm mad køle af, før den sættes ind, tø frostvarer op i køleskabet i stedet for på køkkenbordet – så gør de kølearbejdet for dig – og hold døren lukket, mens du finder ud af, hvad du vil have.</p>
@@ -520,13 +520,13 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 `,
     faqs: [
       { question: "Hvor mange kWh bruger et køleskab om året?", answer: "Et nyt køle/fryseskab bruger 100-170 kWh/år. Et 10+ år gammelt bruger 250-400 kWh/år. Et amerikanerkøleskab bruger 200-400 kWh/år." },
-      { question: "Hvad koster et køleskab i strøm om måneden?", answer: "Et nyt køleskab koster ca. {{kr 100 /md}}-{{kr 170 /md}} kr./md. i strøm (ved {{pris_kwh_tal}} kr./kWh). Et gammelt køleskab kan koste 58-100+ kr./md." },
+      { question: "Hvad koster et køleskab i strøm om måneden?", answer: "Et nyt køleskab koster ca. {{kr 100 /md}}-{{kr 170 /md}} kr./md. i strøm (ved {{pris_kwh_tal}} kr./kWh). Et gammelt køleskab (250-400 kWh/år) kan koste {{kr 250-400 /md}} om måneden." },
       { question: "Bruger et køleskab strøm hele tiden?", answer: "Køleskabet er tilsluttet 24/7, men kompressoren kører kun 30-50% af tiden. Den gennemsnitlige effekt er 11-35 watt afhængigt af model og alder." },
-      { question: "Hvornår skal jeg skifte køleskab?", answer: "Er dit køleskab over 15 år gammelt, bruger det typisk 3x mere strøm end et nyt. Skiftet sparer 550-925 kr./år i strøm og tjener sig hjem på 3-5 år." },
+      { question: "Hvornår skal jeg skifte køleskab?", answer: "Er dit køleskab over 15 år gammelt, bruger det typisk 3x mere strøm end et nyt. Skiftet sparer 220-370 kWh/år ({{kr 220-370}}) i strøm og tjener en stor del af indkøbsprisen hjem over køleskabets levetid." },
       { question: "Bruger køleskabet mere strøm om sommeren?", answer: "Ja, 10-25% mere pga. højere omgivelsestemperatur. Placér køleskabet køligt og væk fra ovn/sol for at minimere ekstraforbruget." },
       { question: "Hvor mange watt bruger et køleskab?", answer: "Kompressoren trækker 80-150 watt når den kører, men gennemsnittet over døgnet er kun 11-35 watt fordi den kører i cyklusser." },
       { question: "Er amerikanerkøleskab dyrere i drift?", answer: "Ja, et amerikanerkøleskab bruger ca. dobbelt så meget som et standard køle/fryseskab — typisk 200-400 kWh/år ({{kr 200}}-{{kr 400}} kr.) vs. 100-170 kWh/år." },
-      { question: "Hvad koster et køleskab i strøm over 10 år?", answer: "Et nyt A-mærket køleskab koster ca. 2.500-4.250 kr. i strøm over 10 år. Et gammelt køleskab koster 6.250-10.000 kr. Besparelsen ved at skifte er 3.750-5.750 kr. over 10 år." },
+      { question: "Hvad koster et køleskab i strøm over 10 år?", answer: "Et nyt A-mærket køleskab bruger 1.000-1.700 kWh over 10 år, svarende til {{kr 1000-1700}} i strøm. Et gammelt køleskab bruger 2.500-4.000 kWh, svarende til {{kr 2500-4000}}. Besparelsen ved at skifte er 1.500-2.300 kWh eller {{kr 1500-2300}} over 10 år." },
     ],
     relatedSlugs: ["fryser", "opvaskemaskine", "vaskemaskine"],
     sources: [
@@ -557,7 +557,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
     title: "Tørretumbler strømforbrug (2026) → Se kWh pr. tørring",
     description: "En tørretumbler bruger 1,5-5,0 kWh pr. tørring. Se forskel på varmepumpe, kondens og aftræk — og beregn din årlige strømudgift.",
     heading: "Strømforbrug for en tørretumbler: kWh, pris pr. gang og billigste tidspunkt",
-    quickAnswer: "En tørretumbler bruger 1,5-5,0 kWh pr. tørring afhængigt af type. En moderne varmepumpetumbler (A+++) bruger kun 1,5-2,0 kWh, mens en gammel aftrækstumbler bruger 4,0-5,0 kWh. Med 3 tørringer/uge koster det 585-1.950 kr./år.",
+    quickAnswer: "En tørretumbler bruger 1,5-5,0 kWh pr. tørring afhængigt af type. En moderne varmepumpetumbler (A+++) bruger kun 1,5-2,0 kWh, mens en gammel aftrækstumbler bruger 4,0-5,0 kWh. Med 3 tørringer/uge bruger den 235-780 kWh/år, svarende til {{kr 235-780}} om året.",
     kwhRange: [200, 750],
     typicalKwh: 350,
     wattage: 2500,
@@ -576,7 +576,7 @@ export const APPLIANCES_CORE: ApplianceData[] = [
     ],
     seasonalProfile: [1.2, 1.2, 1.1, 1.0, 0.8, 0.7, 0.6, 0.7, 0.9, 1.1, 1.3, 1.4],
     content: `<h2>Tørretumbler strømforbrug — oversigt pr. type</h2>
-<p>Tørretumbleren er et af hjemmets mest strømkrævende apparater — men forskellen mellem typerne er enorm. En moderne varmepumpetumbler bruger under halvdelen af strømmen sammenlignet med en gammel kondenstumbler. Hvis du har en tumbler der er over 8-10 år gammel, kan et skifte spare dig 500-1.000 kr./år i strøm.</p>
+<p>Tørretumbleren er et af hjemmets mest strømkrævende apparater — men forskellen mellem typerne er enorm. En moderne varmepumpetumbler bruger under halvdelen af strømmen sammenlignet med en gammel kondenstumbler. Hvis du har en tumbler der er over 8-10 år gammel, kan et skifte spare dig 390-550 kWh eller {{kr 390-550}} om året i strøm.</p>
 <table>
 <thead><tr><th>Type tørretumbler</th><th>kWh pr. tørring</th><th>Pris pr. tørring</th><th>Pris/år (3×/uge)</th></tr></thead>
 <tbody>
@@ -589,11 +589,11 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </table>
 
 <h2>Varmepumpetumbler vs. kondenstumbler — besparelse</h2>
-<p>Forskellen mellem en varmepumpetumbler og en gammel kondenstumbler er dramatisk. En varmepumpe genbruger varmen i processen, mens en kondenstumbler bare udleder den. Ved 3 tørringer om ugen sparer varmepumpemodellen dig 600-1.200 kr./år i strøm — merudgiften ved køb (2.000-4.000 kr.) er tjent hjem på 2-4 år.</p>
+<p>Forskellen mellem en varmepumpetumbler og en gammel kondenstumbler er dramatisk. En varmepumpe genbruger varmen i processen, mens en kondenstumbler bare udleder den. Ved 3 tørringer om ugen sparer varmepumpemodellen dig 235-550 kWh/år i forhold til en kondens- eller ældre tumbler, svarende til {{kr 235-550}} i strøm. Merprisen ved køb (2.000-4.000 kr.) er typisk tjent hjem inden for tumblerens levetid.</p>
 
 <h2>Gammel tørretumbler — hvad koster den virkelig?</h2>
-<p>En gammel tørretumbler (10+ år, C-mærket) er en af de dyreste strømslugere i hjemmet. Med 3 tørringer om ugen bruger den ca. 625-860 kWh/år — over dobbelt så meget som en ny varmepumpemodel. Over 5 år koster forskellen 3.000-6.000 kr. i strøm alene.</p>
-<p>Har du en gammel tumbler? Overvej at skifte nu — nye varmepumpetumblere fås fra 4.000-5.000 kr. og betaler sig selv hjem på 3-4 år i sparede strømudgifter.</p>
+<p>En gammel tørretumbler (10+ år, C-mærket) er en af de dyreste strømslugere i hjemmet. Med 3 tørringer om ugen bruger den ca. 625-860 kWh/år — over dobbelt så meget som en ny varmepumpemodel. Over 5 år er forskellen 1.950-2.750 kWh, svarende til {{kr 1950-2750}} i strøm alene.</p>
+<p>Har du en gammel tumbler? Overvej at skifte nu — nye varmepumpetumblere koster fra 4.000-5.000 kr. og betaler sig hjem i sparede strømudgifter inden for tumblerens levetid.</p>
 
 <h2>Sæsonvariation — hvornår bruger du tumbleren mest?</h2>
 <p>Tørretumblerens forbrug varierer kraftigt med årstiden. Om sommeren (juni-august) bruger de fleste familier tumbleren sjældnere, fordi tøjet tørrer udenfor. Om vinteren (november-februar) kan forbruget fordobles, da alt tøj skal i tumbleren. En typisk dansk familie bruger tumbleren 1-2 gange/uge om sommeren og 4-6 gange/uge om vinteren.</p>
@@ -610,10 +610,10 @@ export const APPLIANCES_CORE: ApplianceData[] = [
 </ol>
 
 <h2>Tørretumbler vs. tørresnor — hvad sparer du?</h2>
-<p>En tørresnor koster {{kr 2 /uge}} kr. i strøm. Med 3 tørringer/uge à 2 kWh sparer du ca. 580 kr./år ved at tørre udendørs. Om vinteren er det dog ikke altid praktisk i Danmark, og mange lejligheder har ikke mulighed for udendørs tørring. En god kombination er tumbler om vinteren + tørresnor om sommeren, hvilket halverer det årlige forbrug.</p>
+<p>En tørresnor bruger ingen strøm. Med 3 tørringer/uge à 2 kWh sparer du ca. 310 kWh/år ({{kr 312}}) ved at tørre udendørs. Om vinteren er det dog ikke altid praktisk i Danmark, og mange lejligheder har ikke mulighed for udendørs tørring. En god kombination er tumbler om vinteren + tørresnor om sommeren, hvilket halverer det årlige forbrug.</p>
 
 <h2>Hvad koster en tørring i strøm?</h2>
-<p>En enkelt tørring koster mellem 3,75 og 10,23 kr. i strøm afhængigt af maskinens type og alder. Tørringstype (bomuldstør, skabstør, strygetør) påvirker også — bomuldstør bruger 15-20% mere end skabstør, da tøjet skal være helt tørt. Sammenligner du med <a href="/opvaskemaskine/">opvaskemaskinen</a> (1,30-3,35 kr./gang), er tumbleren klart det dyrere apparat at køre.</p>
+<p>En enkelt tørring (1,5-5,5 kWh) koster mellem {{kr 1,5}} og {{kr 5,5}} i strøm afhængigt af maskinens type og alder. Tørringstype (bomuldstør, skabstør, strygetør) påvirker også — bomuldstør bruger 15-20% mere end skabstør, da tøjet skal være helt tørt. Sammenligner du med <a href="/opvaskemaskine/">opvaskemaskinen</a> (0,7-1,8 kWh, {{kr 0,7-1,8}} pr. gang), er tumbleren klart det dyrere apparat at køre.</p>
 <h2>Centrifugering er halvdelen af regnestykket</h2>
 <p>En tørretumbler bruger strøm på at fordampe vand. Hvert gram vand, der bliver i tøjet efter vask, skal derfor betales to gange: en gang i <a href="/vaskemaskine/">vaskemaskinen</a> og en gang i tumbleren. Energistyrelsen peger på centrifugering som det enkleste greb – den fjerner vandet mekanisk i stedet for med varme, og mekanisk er billigere.</p>
 <table>
@@ -630,12 +630,12 @@ export const APPLIANCES_CORE: ApplianceData[] = [
     faqs: [
       { question: "Hvor meget strøm bruger en tørretumbler pr. tørring?", answer: "En varmepumpetumbler (A+++) bruger 1,5-2,0 kWh pr. tørring. En kondenstumbler (B) bruger 3,0-3,8 kWh, og en gammel model bruger 4,0-5,5 kWh." },
       { question: "Hvad koster det at køre tørretumbleren?", answer: "Det koster {{kr 1,5}}-{{kr 5,5}} kr. pr. tørring afhængigt af type. En ny varmepumpemodel koster ca. {{kr 1,6}}-{{kr 2,2}} kr., mens en gammel model koster {{kr 3,8}}-{{kr 5,5}} kr. pr. gang." },
-      { question: "Bruger en gammel tørretumbler meget strøm?", answer: "Ja, en 10+ år gammel tumbler bruger typisk 4-5,5 kWh pr. tørring — over dobbelt så meget som en ny varmepumpemodel. Det koster {{kr 235}}-{{kr 470}} kr./år ekstra." },
-      { question: "Er en varmepumpetumbler billigere i drift?", answer: "Ja, markant. En varmepumpetumbler bruger 40-60% mindre strøm end en kondenstumbler — besparelsen er {{kr 235}}-{{kr 470}} kr./år ved 3 tørringer/uge." },
+      { question: "Bruger en gammel tørretumbler meget strøm?", answer: "Ja, en 10+ år gammel tumbler bruger typisk 4-5,5 kWh pr. tørring — over dobbelt så meget som en ny varmepumpemodel. Det er 390-550 kWh mere om året ved 3 tørringer/uge, svarende til {{kr 390-550}} ekstra." },
+      { question: "Er en varmepumpetumbler billigere i drift?", answer: "Ja, markant. En varmepumpetumbler bruger 40-60% mindre strøm end en kondenstumbler — besparelsen er 235-280 kWh eller {{kr 235-280}} om året ved 3 tørringer/uge." },
       { question: "Hvor mange kWh bruger en tørretumbler om året?", answer: "Med 3 tørringer/uge: varmepumpe (A+++) ca. 235-310 kWh/år, kondenstumbler (B) ca. 470-590 kWh/år, gammel model 625-860 kWh/år." },
-      { question: "Hvornår kan det betale sig at skifte tørretumbler?", answer: "Er din tumbler 8+ år gammel og C-mærket eller dårligere, sparer du {{kr 235}}-{{kr 470}} kr./år ved at skifte. En ny varmepumpemodel ({{kr 1600}}-{{kr 2400}} kr.) tjener sig hjem på 3-5 år." },
+      { question: "Hvornår kan det betale sig at skifte tørretumbler?", answer: "Er din tumbler 8+ år gammel og C-mærket eller dårligere, sparer du 310-550 kWh eller {{kr 310-550}} om året ved at skifte. En ny varmepumpemodel koster fra 4.000-5.000 kr. og tjener sig hjem inden for tumblerens levetid." },
       { question: "Bruger tørretumbleren strøm på standby?", answer: "Ja, ca. 0,5-2 watt i standby — svarende til 4-18 kWh/år ({{kr 4}}-{{kr 18}} kr.). Det er minimalt i forhold til driftsforbruget." },
-      { question: "Hvad bruger mest strøm — vaskemaskine eller tørretumbler?", answer: "Tørretumbleren bruger 3-5 gange mere strøm end vaskemaskinen. En vask koster ca. 1-1 kr. i strøm, mens en tørring koster 3-10 kr." },
+      { question: "Hvad bruger mest strøm — vaskemaskine eller tørretumbler?", answer: "Tørretumbleren bruger 3-5 gange mere strøm end vaskemaskinen. En vask (0,5-1,5 kWh) koster ca. {{kr 0,5-1,5}} i strøm, mens en tørring (1,5-5,5 kWh) koster {{kr 1,5-5,5}}." },
     ],
     relatedSlugs: ["vaskemaskine", "opvaskemaskine", "koeleskab"],
     sources: [

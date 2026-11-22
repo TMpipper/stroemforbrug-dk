@@ -43,7 +43,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 </table>
 
 <h2>Laptop vs. stationær computer – energiforbrug</h2>
-<p>En stationær computer bruger typisk 3–5 gange mere strøm end en laptop med tilsvarende ydelse. Det skyldes laptoppens optimerede komponenter, der er designet til at køre på batteri. Skifter du fra stationær til laptop, kan du spare 200–600 kr. om året på elregningen.</p>
+<p>En stationær computer bruger typisk 3–5 gange mere strøm end en laptop med tilsvarende ydelse. Det skyldes laptoppens optimerede komponenter, der er designet til at køre på batteri. Skifter du fra stationær til laptop, kan du spare 80–200 kWh, svarende til {{kr 80–200}} om året på elregningen.</p>
 
 <table>
 <thead><tr><th>Enhed</th><th>Typisk wattforbrug</th><th>Årligt kWh (6 t/dag)</th><th>Årlig pris</th></tr></thead>
@@ -114,11 +114,11 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om laptoppens strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om laptoppens energiforbrug baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at lade en laptop op?", answer: "En fuld opladning koster typisk 0,07–0,19 kr. afhængigt af batteriets størrelse (50–100 Wh). Ved daglig opladning bliver det 27–68 kr. om året." },
+      { question: "Hvor meget koster det at lade en laptop op?", answer: "En fuld opladning bruger 0,05–0,10 kWh og koster typisk {{kr 0,05–0,1}} afhængigt af batteriets størrelse (50–100 Wh). Ved daglig opladning bliver det 18–37 kWh eller {{kr 18–37}} om året." },
       { question: "Bruger en laptop strøm, når den er slukket?", answer: "Ja, hvis laderen sidder i stikkontakten, trækker den 0,1–0,5 watt. Det koster under {{kr 2}} kr. om året, men du kan spare det ved at tage laderen ud." },
       { question: "Hvad bruger mest strøm på en laptop?", answer: "Skærmen og processoren er de to største strømforbrugere. En dedikeret GPU kan dog overhale begge under gaming eller videoredigering." },
       { question: "Bruger en gaming-laptop meget strøm?", answer: "Ja, en gaming-laptop kan bruge 80–180 watt under spil, svarende til 60–80 kWh om året ved 4 timers daglig brug – ca. {{kr 60}}–{{kr 80}} kr." },
-      { question: "Er det billigere at bruge laptop end stationær PC?", answer: "Ja, en laptop bruger typisk 3–5 gange mindre strøm end en stationær PC med skærm. Du sparer 200–600 kr. om året ved at skifte." },
+      { question: "Er det billigere at bruge laptop end stationær PC?", answer: "Ja, en laptop bruger typisk 3–5 gange mindre strøm end en stationær PC med skærm. Du sparer 80–200 kWh, svarende til {{kr 80–200}} om året, ved at skifte." },
       { question: "Bruger en MacBook mindre strøm end en Windows-laptop?", answer: "Generelt ja. Apple Silicon-chips (M1–M3) er meget energieffektive og bruger 30–50 % mindre end tilsvarende Intel/AMD-processer." },
       { question: "Hvor mange watt bruger en laptop under opladning?", answer: "En standard laptop-oplader er typisk 45–65 W, gaming-laptops 120–240 W. Den faktiske effekt varierer med batteriets ladeniveau." },
       { question: "Skal man tage laderen ud, når batteriet er fuldt?", answer: "Moderne laptops stopper automatisk opladningen ved 100 %. Men laderen trækker stadig 0,5–2 W i standby, så tag den ud for at spare lidt strøm og forlænge batteriets levetid." },
@@ -226,7 +226,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 </table>
 
 <h2>Sådan reducerer du PlayStations strømforbrug</h2>
-<p>Du kan spare 50–100 kr. om året ved at optimere dine indstillinger og vaner. Her er de mest effektive tiltag.</p>
+<p>Du kan spare 25–50 kWh, svarende til {{kr 25–50}} om året, ved at optimere dine indstillinger og vaner. Her er de mest effektive tiltag.</p>
 
 <ul>
 <li><strong>Sluk helt i stedet for rest mode:</strong> Spar 5–60 kWh om året afhængigt af model og rest mode-indstillinger.</li>
@@ -242,11 +242,11 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om PlayStations strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om PlayStations energiforbrug baseret på danske gameres søgninger.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at game på PlayStation i timen?", answer: "Med et forbrug på ca. 150 watt koster en times gaming på PS5 ca. 0,28 kr. ved en elpris på {{pris_kwh_tal}} kr./kWh. Over en hel aften (4 timer) bliver det ca. 1,12 kr." },
+      { question: "Hvor meget koster det at game på PlayStation i timen?", answer: "Med et forbrug på ca. 150 watt koster en times gaming på PS5 (0,15 kWh) ca. {{kr 0,15}} ved en elpris på {{pris_kwh}}. Over en hel aften (4 timer, 0,6 kWh) bliver det ca. {{kr 0,6}}." },
       { question: "Bruger PS5 mere strøm end PS4?", answer: "Under krævende spil ja – PS5 bruger op til 200 W mod PS4 Pros 165 W. Men PS5 er markant mere effektiv i rest mode og til streaming." },
-      { question: "Hvad koster det at have PlayStation i rest mode?", answer: "PS5 i rest mode koster 1–5 kr. om året. PS4 Pro kan koste op til 37–108 kr. om året i rest mode med USB-opladning aktiveret." },
+      { question: "Hvad koster det at have PlayStation i rest mode?", answer: "PS5 i rest mode bruger 7–11 kWh om året, svarende til {{kr 7–11}}. PS4 Pro kan bruge op til 22–58 kWh ({{kr 22–58}}) om året i rest mode med USB-opladning aktiveret." },
       { question: "Bruger PlayStation strøm, når den er slukket?", answer: "Ja, selv helt slukket trækker den 0,3–0,5 watt. Det koster under {{kr 1,6}} kr. om året og er praktisk talt ubemærkeligt." },
-      { question: "Er det billigere at spille på PlayStation end på gaming-PC?", answer: "Ja, en PS5 bruger typisk 150–200 W mod en gaming-PC's 300–500 W. Du sparer ca. 200–400 kr. om året i strøm." },
+      { question: "Er det billigere at spille på PlayStation end på gaming-PC?", answer: "Ja, en PS5 bruger typisk 150–200 W mod en gaming-PC's 300–500 W. Ved 3 timers daglig gaming sparer du ca. 160–330 kWh, svarende til {{kr 160–330}} om året i strøm." },
       { question: "Hvor meget strøm bruger en PlayStation om måneden?", answer: "Ved 3 timers daglig brug bruger en PS5 ca. 10–14 kWh om måneden, svarende til {{kr 10}}–{{kr 14}} kr." },
       { question: "Bruger PlayStation mere strøm med 4K eller HDR?", answer: "Ja, 4K-gaming øger GPU-belastningen og dermed strømforbruget med 10–25 % sammenlignet med 1080p." },
       { question: "Skal man slukke PlayStation helt eller bruge rest mode?", answer: "Helt sluk sparer mest strøm. Brug kun rest mode, hvis du har brug for download af spil/opdateringer natten over." },
@@ -376,14 +376,14 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om robotstøvsugerens strømforbrug</h2>
 <p>Her finder du svar på de hyppigste spørgsmål om robotstøvsugeres energiforbrug.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at køre en robotstøvsuger dagligt?", answer: "En daglig rengøring koster typisk 5–15 øre i strøm for selve rengøringen. Ladestationens standby koster dog yderligere 12–30 øre pr. dag." },
+      { question: "Hvor meget koster det at køre en robotstøvsuger dagligt?", answer: "En daglig rengøring bruger 0,03–0,08 kWh og koster typisk {{oere 0,03–0,08}} i strøm for selve rengøringen. Ladestationens standby bruger dog yderligere 0,06–0,15 kWh ({{oere 0,06–0,15}}) pr. dag." },
       { question: "Bruger en robotstøvsuger mere strøm end en normal støvsuger?", answer: "Nej, markant mindre. En robotstøvsuger bruger 25–70 W mod en traditionel støvsugers 700–2.000 W. Årligt bruger robotten 20–50 kWh mod 55–156 kWh." },
       { question: "Hvor meget strøm bruger ladestationen i standby?", answer: "En simpel ladestation bruger 2–4 W i standby, en selvtømningsstation 4–8 W. Det bliver 18–70 kWh om året – ofte mere end selve rengøringen." },
       { question: "Skal man slukke ladestationen om natten?", answer: "Det er ikke nødvendigt, men du kan spare {{kr 18}}–{{kr 70}} kr. om året ved at sætte ladestationen på en timer, der kun giver strøm i rengøringstiden." },
       { question: "Hvor mange kWh bruger en Roomba om måneden?", answer: "En iRobot Roomba bruger typisk 2–4 kWh om måneden inklusiv ladestationens standby, svarende til {{kr 26 /md}}–{{kr 45 /md}} kr." },
       { question: "Bruger turbo-tilstand meget mere strøm?", answer: "Ja, turbo-tilstand øger effektforbruget med 30–50 % og forkorter batteritiden. Brug kun turbo på tæpper med dyrehår." },
       { question: "Hvad bruger mest strøm – robotten eller ladestationen?", answer: "Overraskende nok kan ladestationens standby-forbrug udgøre 50–70 % af det samlede årlige elforbrug, især for modeller med selvtømning." },
-      { question: "Er en robotstøvsuger en god investering rent energimæssigt?", answer: "Ja, du sparer typisk 50–200 kr. om året i strøm sammenlignet med en traditionel støvsuger – plus tiden du sparer på manuel rengøring." },
+      { question: "Er en robotstøvsuger en god investering rent energimæssigt?", answer: "Ja, du sparer typisk op til 15–50 kWh, svarende til {{kr 15–50}} om året i strøm, sammenlignet med en traditionel støvsuger – plus tiden du sparer på manuel rengøring." },
     ],
     relatedSlugs: ["stoevsuger", "robotplaeneklipper", "vaskemaskine"],
     sources: [
@@ -442,7 +442,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 </table>
 
 <h2>Hvad koster én kogning?</h2>
-<p>Prisen pr. kogning afhænger af vandmængden og elkedlens effekt. En typisk kogning af 1 liter vand med en 2.200 W elkedel tager ca. 3,5 minutter og bruger 0,13 kWh, hvilket koster ca. 33 øre. En kop te koster altså blot 8–10 øre i strøm.</p>
+<p>Prisen pr. kogning afhænger af vandmængden og elkedlens effekt. En typisk kogning af 1 liter vand med en 2.200 W elkedel tager ca. 3,5 minutter og bruger 0,13 kWh, hvilket koster ca. {{oere 0,13}}. En kop te (0,03–0,04 kWh) koster altså blot {{oere 0,03–0,04}} i strøm.</p>
 
 <table>
 <thead><tr><th>Vandmængde</th><th>Kogetid (2.200 W)</th><th>kWh pr. kogning</th><th>Pris pr. kogning</th></tr></thead>
@@ -514,7 +514,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om elkedlens strømforbrug</h2>
 <p>Her er svar på de mest almindelige spørgsmål om elkedlens energiforbrug baseret på danske forbrugeres søgninger.</p>`,
     faqs: [
-      { question: "Hvad koster det at koge en kop vand i elkedlen?", answer: "At koge 250 ml vand (én kop) koster ca. 8 øre i strøm ved en elpris på {{pris_kwh_tal}} kr./kWh. En fuld kedel på 1,5 liter koster ca. 48 øre." },
+      { question: "Hvad koster det at koge en kop vand i elkedlen?", answer: "At koge 250 ml vand (én kop, ca. 0,033 kWh) koster ca. {{oere 0,033}} i strøm ved en elpris på {{pris_kwh}}. En fuld kedel på 1,5 liter (ca. 0,19 kWh) koster ca. {{oere 0,19}}." },
       { question: "Bruger en elkedel mere strøm end et komfur?", answer: "Nej, en elkedel er 30–50 % mere effektiv end et keramisk komfur til at koge vand. Kun induktion kommer tæt på elkedlens effektivitet." },
       { question: "Er det billigere at bruge Quooker end elkedel?", answer: "Nej, en Quooker bruger typisk 800–1.200 kWh om året i standby alene. En elkedel bruger 70–220 kWh årligt og er langt billigere i drift." },
       { question: "Hvor mange kWh bruger en elkedel pr. kogning?", answer: "En typisk kogning af 1 liter vand bruger 0,10–0,15 kWh afhængigt af elkedlens effekt og starttemperatur." },
@@ -598,14 +598,14 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 </table>
 
 <h2>Varmtvandsbeholder vs. varmepumpe til varmt vand</h2>
-<p>En varmepumpe-vandvarmer (brugsvandsvarmepumpe) bruger typisk 60–70 % mindre strøm end en traditionel el-varmtvandsbeholder. Investeringen er højere (15.000–25.000 kr.), men besparelsen på 3.000–5.000 kr. årligt gør den rentabel inden for 3–5 år for de fleste familier.</p>
+<p>En varmepumpe-vandvarmer (brugsvandsvarmepumpe) bruger typisk 60–70 % mindre strøm end en traditionel el-varmtvandsbeholder. Indkøbsprisen inkl. installation er højere (15.000–25.000 kr.), men besparelsen på 1.500–1.700 kWh, svarende til {{kr 1500–1700}} årligt, gør den rentabel over nogle år for de fleste familier.</p>
 
 <table>
 <thead><tr><th>Type</th><th>Årligt kWh (familie)</th><th>Årlig pris</th><th>Investering</th><th>Tilbagebetalingstid</th></tr></thead>
 <tbody>
-<tr><td>El-varmtvandsbeholder</td><td>2.500 kWh</td><td>{{kr 2500}} kr.</td><td>{{kr 1200}}–{{kr 3200}} kr.</td><td>—</td></tr>
-<tr><td>Varmepumpe-vandvarmer</td><td>800–1.000 kWh</td><td>{{kr 800}}–{{kr 1000}} kr.</td><td>15.000–25.000 kr.</td><td>3–5 år</td></tr>
-<tr><td>Solvarme + beholder</td><td>1.000–1.500 kWh</td><td>{{kr 1000}}–{{kr 1500}} kr.</td><td>30.000–50.000 kr.</td><td>8–12 år</td></tr>
+<tr><td>El-varmtvandsbeholder</td><td>2.500 kWh</td><td>{{kr 2500}} kr.</td><td>Installeret: 3.000–8.000 kr.</td><td>—</td></tr>
+<tr><td>Varmepumpe-vandvarmer</td><td>800–1.000 kWh</td><td>{{kr 800}}–{{kr 1000}} kr.</td><td>Installeret: 15.000–25.000 kr.</td><td>3–5 år</td></tr>
+<tr><td>Solvarme + beholder</td><td>1.000–1.500 kWh</td><td>{{kr 1000}}–{{kr 1500}} kr.</td><td>Installeret: 30.000–50.000 kr.</td><td>8–12 år</td></tr>
 </tbody>
 </table>
 
@@ -647,7 +647,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>Her er svar på de hyppigste spørgsmål om varmtvandsbeholderens energiforbrug.</p>`,
     faqs: [
       { question: "Hvor meget strøm bruger en varmtvandsbeholder om måneden?", answer: "En typisk 120-liters beholder bruger 170–230 kWh om måneden, svarende til {{kr 170}}–{{kr 230}} kr. ved {{pris_kwh_tal}} kr./kWh. Om vinteren kan det være op til 280 kWh." },
-      { question: "Er en varmepumpe-vandvarmer bedre end en el-beholder?", answer: "Ja, en varmepumpe-vandvarmer bruger 60–70 % mindre strøm. En familie kan spare 3.000–5.000 kr. om året, og investeringen er betalt hjem på 3–5 år." },
+      { question: "Er en varmepumpe-vandvarmer bedre end en el-beholder?", answer: "Ja, en varmepumpe-vandvarmer bruger 60–70 % mindre strøm. En familie kan spare 1.500–1.700 kWh, svarende til {{kr 1500–1700}} om året, og investeringen er typisk betalt hjem over nogle år." },
       { question: "Hvad koster et brusebad i strøm?", answer: "Et 8-minutters brusebad med 10 L/min bruger ca. 3–4 kWh varmt vand, svarende til {{kr 3}}–{{kr 3,8}} kr. i strøm med en el-varmtvandsbeholder." },
       { question: "Skal man slukke varmtvandsbeholderen om natten?", answer: "Ja, et tidsur kan spare 10–15 % af standby-tabet. Vandet holder temperaturen i mange timer pga. isoleringen, så du har stadig varmt vand om morgenen." },
       { question: "Hvilken temperatur skal varmtvandsbeholderen stå på?", answer: "55°C er det anbefalede minimum for at undgå legionella. Hver grad over 55°C øger forbruget med 3–5 %, så sæt den ikke højere end nødvendigt." },
@@ -734,7 +734,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <tr><td>Varmeblæser (2.000 W)</td><td>1,0 (100 %)</td><td>600–1.200 kWh</td><td>{{kr 600}}–{{kr 1200}} kr.</td></tr>
 <tr><td>Elradiator (1.500 W)</td><td>1,0 (100 %)</td><td>600–1.200 kWh</td><td>{{kr 600}}–{{kr 1200}} kr.</td></tr>
 <tr><td>Luft-luft varmepumpe</td><td>3,0–4,5</td><td>150–400 kWh</td><td>{{kr 150}}–{{kr 400}} kr.</td></tr>
-<tr><td>Fjernvarme</td><td>—</td><td>—</td><td>600–1.200 kr.</td></tr>
+<tr><td>Fjernvarme</td><td>—</td><td>—</td><td>Varierer fra værk til værk</td></tr>
 </tbody>
 </table>
 
@@ -782,13 +782,13 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>Her er svar på de hyppigste spørgsmål om varmeblæserens energiforbrug.</p>`,
     faqs: [
       { question: "Hvad koster det at bruge en varmeblæser i timen?", answer: "Ved 2.000 W koster den {{kr 2}} kr. pr. time ved en elpris på {{pris_kwh_tal}} kr./kWh. Ved 1.000 W koster den {{kr 1}} kr." },
-      { question: "Er en varmeblæser dyr i drift?", answer: "Ja, sammenlignet med alternativer. 4 timers daglig brug ved 2.000 W koster ca. 600 kr./måned. En varmepumpe leverer samme varme for 150–200 kr./måned." },
+      { question: "Er en varmeblæser dyr i drift?", answer: "Ja, sammenlignet med alternativer. 4 timers daglig brug ved 2.000 W er ca. 240 kWh og koster ca. {{kr 240}} om måneden. En varmepumpe leverer samme varme for 60–80 kWh, svarende til {{kr 60–80}} om måneden." },
       { question: "Bruger en varmeblæser mere strøm end en elradiator?", answer: "Nej, begge omdanner strøm til varme med 100 % effektivitet. Men varmeblæseren har ofte højere watttal og bruges mere intensivt." },
       { question: "Kan en varmeblæser opvarme et helt rum?", answer: "Ja, en 2.000 W varmeblæser kan opvarme et rum på 15–20 m², men det er dyrt. For større rum eller langvarig brug er en varmepumpe langt billigere." },
       { question: "Er det farligt at have en varmeblæser kørende om natten?", answer: "Det anbefales ikke pga. brandrisiko. Moderne modeller har overvågning mod overophedning, men brug altid et tidsur og lad den aldrig stå tildækket." },
       { question: "Hvor meget strøm bruger en varmeblæser om måneden?", answer: "Ved 3 timers daglig brug på 2.000 W bruger den ca. 180 kWh om måneden, svarende til {{kr 180}} kr. i strøm." },
-      { question: "Er en varmeblæser billigere end fjernvarme?", answer: "Nej, fjernvarme koster typisk 0,50–0,80 kr./kWh mod {{pris_kwh_tal}} kr./kWh for el. En varmeblæser er 3–5 gange dyrere pr. kWh varme." },
-      { question: "Kan en varmeblæser erstatte centralvarme?", answer: "Ikke anbefalet for hele boligen. En 2.000 W varmeblæser i ét rum koster 1.500–3.000 kr./år i strøm. For hele boligen vil det koste 10.000+ kr." },
+      { question: "Er en varmeblæser billigere end fjernvarme?", answer: "Nej, fjernvarmens pris afhænger af dit lokale værk, men ligger typisk langt under el til {{pris_kwh}}. En varmeblæser er typisk flere gange dyrere pr. kWh varme." },
+      { question: "Kan en varmeblæser erstatte centralvarme?", answer: "Ikke anbefalet for hele boligen. En 2.000 W varmeblæser i ét rum bruger 600–1.200 kWh og koster {{kr 600–1200}} om året i strøm. For hele boligen kan forbruget nemt overstige 10.000 kWh, svarende til mere end {{kr 10000}} om året." },
     ],
     relatedSlugs: ["elradiator", "varmepumpe", "gulvvarme"],
     sources: [
@@ -820,7 +820,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
       "Hvor meget strøm bruger en lyskæde? Se elforbrug for LED og glødepærer i kWh, beregn din udgift for hele julen. Opdateret med 2026-data.",
     heading: "Strømforbrug for en lyskæde: kWh, pris pr. gang og billigste tidspunkt",
     quickAnswer:
-      "En LED-lyskæde bruger typisk 2–10 watt og koster kun 5–25 kr. for en hel julemåned. Ældre glødepærelyskæder bruger 20–100 watt og koster 50–250 kr. for samme periode. Over et helt år bruger en LED-lyskæde blot 3–15 kWh hvis den bruges til udendørs dekoration året rundt.",
+      "En LED-lyskæde bruger typisk 2–10 watt og koster kun {{kr 0,4–1,9}} for en hel julemåned ved 6 timers daglig brug. Ældre glødepærelyskæder bruger 20–100 watt og koster {{kr 3,7–18,6}} for samme periode. Over et helt år bruger en LED-lyskæde blot 3–15 kWh hvis den bruges til udendørs dekoration året rundt.",
     kwhRange: [1, 50],
     typicalKwh: 8,
     wattage: 6,
@@ -857,7 +857,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <tbody>
 <tr><td>Watt (200 pærer)</td><td>4–8 W</td><td>60–100 W</td><td>90–95 %</td></tr>
 <tr><td>kWh december (6 t/dag)</td><td>0,7–1,4 kWh</td><td>10,8–18,0 kWh</td><td>10–17 kWh</td></tr>
-<tr><td>Pris december</td><td>2–4 kr.</td><td>27–45 kr.</td><td>25–43 kr.</td></tr>
+<tr><td>Pris december</td><td>{{kr 0,7–1,4}}</td><td>{{kr 10,8–18}}</td><td>{{kr 10–17}}</td></tr>
 <tr><td>Levetid</td><td>25.000–50.000 timer</td><td>1.000–2.000 timer</td><td>15–25x længere</td></tr>
 <tr><td>Brandrisiko</td><td>Meget lav (ingen varme)</td><td>Moderat (varmeudvikling)</td><td>Sikkerhed</td></tr>
 </tbody>
@@ -866,14 +866,14 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <p>Læs også om <a href="/led-paere/">LED-pærers strømforbrug</a> for at optimere belysningen i hele boligen.</p>
 
 <h2>Hvad koster julelyset i strøm?</h2>
-<p>En typisk dansk julebelysning med 3–5 LED-lyskæder indendørs og 1–2 udendørs koster {{kr 8}}–{{kr 27}} kr. for hele december ved 6 timers daglig brug. Med glødepærer kan den samme opsætning koste 150–400 kr. Forskellen er endnu større, hvis du bruger lys fra november til januar.</p>
+<p>En typisk dansk julebelysning med 3–5 LED-lyskæder indendørs og 1–2 udendørs bruger 3–10 kWh og koster {{kr 3–10}} for hele december ved 6 timers daglig brug. Med glødepærer bruger den samme opsætning 45–125 kWh og kan koste {{kr 45–125}} i december. Forskellen er endnu større, hvis du bruger lys fra november til januar.</p>
 
 <table>
 <thead><tr><th>Juleopsætning</th><th>LED – pris/december</th><th>Gløde – pris/december</th></tr></thead>
 <tbody>
-<tr><td>Lille (2 lyskæder inde)</td><td>{{kr 1,6}}–{{kr 3,2}} kr.</td><td>30–55 kr.</td></tr>
-<tr><td>Middel (4 inde + 1 ude)</td><td>{{kr 3,8}}–{{kr 8}} kr.</td><td>67–134 kr.</td></tr>
-<tr><td>Stor (6 inde + 3 ude + figurer)</td><td>25–50 kr.</td><td>200–400 kr.</td></tr>
+<tr><td>Lille (2 lyskæder inde)</td><td>{{kr 1,4–2,8}} (1,4–2,8 kWh)</td><td>{{kr 22–36}} (22–36 kWh)</td></tr>
+<tr><td>Middel (4 inde + 1 ude)</td><td>{{kr 3,5–7}} (3,5–7 kWh)</td><td>{{kr 54–90}} (54–90 kWh)</td></tr>
+<tr><td>Stor (6 inde + 3 ude + figurer)</td><td>{{kr 10–20}} (10–20 kWh)</td><td>{{kr 100–160}} (100–160 kWh)</td></tr>
 </tbody>
 </table>
 
@@ -899,7 +899,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <li><strong>Brug tidsur:</strong> Sæt lyskæderne til 16–22 (6 timer) i stedet for hele aftenen/natten.</li>
 <li><strong>Skumringsrelæ:</strong> Tænder automatisk ved mørke og sikrer, at lyset kun er tændt, når det giver mening.</li>
 <li><strong>Tag transformatoren ud:</strong> Når sæsonen er slut, spar standbyforbruget ved at tage stikket ud.</li>
-<li><strong>Solcelle-lyskæder:</strong> Til udendørs brug koster de 0 kr. i drift og er nemme at installere.</li>
+<li><strong>Solcelle-lyskæder:</strong> Til udendørs brug bruger de ingen strøm fra nettet og er nemme at installere.</li>
 </ul>
 
 <h2>Sæsonvariation i lyskæders forbrug</h2>
@@ -908,13 +908,13 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om lyskædens strømforbrug</h2>
 <p>Her er svar på de mest stillede spørgsmål om lyskæders energiforbrug.</p>`,
     faqs: [
-      { question: "Hvad koster det at have en lyskæde tændt hele december?", answer: "En LED-lyskæde med 200 pærer (6 W) koster ca. 1–2 kr. for hele december ved 6 timers daglig brug. En glødepærekæde koster 22–33 kr." },
+      { question: "Hvad koster det at have en lyskæde tændt hele december?", answer: "En LED-lyskæde med 200 pærer (6 W) bruger ca. 1,1 kWh og koster ca. {{kr 1,1}} for hele december ved 6 timers daglig brug. En glødepærekæde med 100–200 pærer bruger 7,2–14,4 kWh og koster {{kr 7,2–14,4}}." },
       { question: "Bruger LED-lyskæder meget strøm?", answer: "Nej, LED-lyskæder er ekstremt energieffektive. En typisk 200-pæres kæde bruger kun 4–8 watt – mindre end en enkelt gammel glødepære." },
-      { question: "Hvad koster julebelysning i strøm?", answer: "Med LED-lyskæder koster en typisk dansk julebelysning (4–6 kæder) kun 15–40 kr. for hele december. Med glødepærer kan det koste 150–400 kr." },
-      { question: "Skal man skifte gamle lyskæder til LED?", answer: "Absolut. LED-lyskæder sparer 80–95 % strøm, holder 15–25x længere og har ingen brandrisiko pga. varme. Prisen er fra 50 kr. for en kvalitetskæde." },
-      { question: "Bruger en lyskæde strøm, når den er slukket?", answer: "Ja, transformatoren bruger typisk 0,3–1 W i standby. Tag den ud af stikkontakten for at spare. Over et år koster det {{kr 1,1}}–{{kr 4,3}} kr." },
+      { question: "Hvad koster julebelysning i strøm?", answer: "Med LED-lyskæder koster en typisk dansk julebelysning (4–6 kæder, 3–8 kWh) kun {{kr 3–8}} for hele december. Med glødepærer (45–110 kWh) kan det koste {{kr 45–110}}." },
+      { question: "Skal man skifte gamle lyskæder til LED?", answer: "Absolut. LED-lyskæder sparer 80–95 % strøm, holder 15–25x længere og har ingen brandrisiko pga. varme. En kvalitetskæde koster fra 50 kr." },
+      { question: "Bruger en lyskæde strøm, når den er slukket?", answer: "Ja, transformatoren bruger typisk 0,3–1 W i standby. Tag den ud af stikkontakten for at spare. Over et år er det 2,6–8,8 kWh, svarende til {{kr 2,6–8,8}}." },
       { question: "Hvad bruger mest strøm – lyskæder eller juletræslys?", answer: "Rigtige stearinlys bruger naturligvis ingen strøm. Elektrisk juletræsbelysning (LED) bruger typisk 3–10 W – sammenligneligt med en lyskæde." },
-      { question: "Er solcelle-lyskæder et godt alternativ?", answer: "Ja, til udendørs brug. De koster 0 kr. i drift, er nemme at installere og giver typisk 6–8 timers lys efter en dags opladning om sommeren, mindre om vinteren." },
+      { question: "Er solcelle-lyskæder et godt alternativ?", answer: "Ja, til udendørs brug. De bruger ingen strøm fra nettet, er nemme at installere og giver typisk 6–8 timers lys efter en dags opladning om sommeren, mindre om vinteren." },
       { question: "Hvor mange lyskæder kan man have tændt uden problemer?", answer: "Med LED kan du nemt have 20–30 lyskæder uden at belaste el-installationen mærkbart. Det samlede forbrug er under 100 W – som én glødepære." },
     ],
     relatedSlugs: ["led-paere", "tv", "router"],
@@ -972,7 +972,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <tr><td>Lille ferskvand</td><td>50–80 L</td><td>Varme, filter, LED</td><td>150–250 kWh</td><td>{{kr 150}}–{{kr 250}} kr.</td></tr>
 <tr><td>Medium ferskvand</td><td>100–200 L</td><td>Varme, filter, LED</td><td>250–400 kWh</td><td>{{kr 250}}–{{kr 400}} kr.</td></tr>
 <tr><td>Stort ferskvand</td><td>300–500 L</td><td>Varme, filter, LED, CO₂</td><td>400–650 kWh</td><td>{{kr 400}}–{{kr 650}} kr.</td></tr>
-<tr><td>Saltvand (rev)</td><td>200–400 L</td><td>Varme, pumper, skimmer, LED</td><td>500–800+ kWh</td><td>1.250–2.000+ kr.</td></tr>
+<tr><td>Saltvand (rev)</td><td>200–400 L</td><td>Varme, pumper, skimmer, LED</td><td>500–800+ kWh</td><td>{{kr 500–800}} eller mere</td></tr>
 </tbody>
 </table>
 
@@ -1036,7 +1036,7 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om akvariets strømforbrug</h2>
 <p>Her er svar på de mest stillede spørgsmål om akvariets energiforbrug.</p>`,
     faqs: [
-      { question: "Hvad koster det at have et akvarium kørende?", answer: "Et standard ferskvandsakvarium på 100–200 liter koster typisk 625–1.000 kr. om året i strøm. Et saltvandsakvarium kan koste 1.250–2.000+ kr." },
+      { question: "Hvad koster det at have et akvarium kørende?", answer: "Et standard ferskvandsakvarium på 100–200 liter bruger typisk 250–400 kWh, svarende til {{kr 250–400}} om året i strøm. Et saltvandsakvarium kan bruge 500–800 kWh eller mere, svarende til {{kr 500–800}}." },
       { question: "Hvad bruger mest strøm i et akvarium?", answer: "Varmelegemet er den største forbruger (50–65 %), efterfulgt af belysning (15–25 %) og filterpumpe (10–15 %)." },
       { question: "Bruger et saltvandsakvarium mere strøm end ferskvand?", answer: "Ja, typisk 50–100 % mere pga. ekstra strømpumper, protein skimmer og ofte kraftigere belysning til koraller." },
       { question: "Hvor meget strøm bruger et akvarium om måneden?", answer: "Et 200 L ferskvandsakvarium bruger ca. 20–35 kWh om måneden, svarende til {{kr 20}}–{{kr 35}} kr. Om vinteren kan det være 30–50 kWh." },
@@ -1121,10 +1121,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Opvarmningsmetode</th><th>COP</th><th>kWh/sæson (8x4 m pool)</th><th>Pris/sæson</th><th>Investering</th></tr></thead>
 <tbody>
-<tr><td>Pool-varmepumpe</td><td>4–6</td><td>2.000–3.500 kWh</td><td>{{kr 2000}}–{{kr 3500}} kr.</td><td>15.000–35.000 kr.</td></tr>
-<tr><td>Elpatron (3 kW)</td><td>1,0</td><td>8.000–14.000 kWh</td><td>{{kr 8000}}–{{kr 14000}} kr.</td><td>{{kr 1200}}–{{kr 3200}} kr.</td></tr>
-<tr><td>Solvarme (paneler)</td><td>Gratis</td><td>0 kWh (el)</td><td>0 kr. (el)</td><td>10.000–25.000 kr.</td></tr>
-<tr><td>Hybrid (varmepumpe + sol)</td><td>—</td><td>1.000–2.000 kWh</td><td>{{kr 1000}}–{{kr 2000}} kr.</td><td>20.000–45.000 kr.</td></tr>
+<tr><td>Pool-varmepumpe</td><td>4–6</td><td>2.000–3.500 kWh</td><td>{{kr 2000}}–{{kr 3500}} kr.</td><td>Indkøb: 15.000–35.000 kr.</td></tr>
+<tr><td>Elpatron (3 kW)</td><td>1,0</td><td>8.000–14.000 kWh</td><td>{{kr 8000}}–{{kr 14000}} kr.</td><td>Indkøb: 3.000–8.000 kr.</td></tr>
+<tr><td>Solvarme (paneler)</td><td>Gratis</td><td>0 kWh (el)</td><td>Ingen eludgift</td><td>Indkøb: 10.000–25.000 kr.</td></tr>
+<tr><td>Hybrid (varmepumpe + sol)</td><td>—</td><td>1.000–2.000 kWh</td><td>{{kr 1000}}–{{kr 2000}} kr.</td><td>Indkøb: 20.000–45.000 kr.</td></tr>
 </tbody>
 </table>
 
@@ -1136,10 +1136,10 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <table>
 <thead><tr><th>Afdækningstype</th><th>Varmtabsreduktion</th><th>Investering</th><th>Årlig besparelse</th></tr></thead>
 <tbody>
-<tr><td>Termisk bobleplast</td><td>50–60 %</td><td>500–2.000 kr.</td><td>1.500–2.500 kWh</td></tr>
-<tr><td>Termocover (fast)</td><td>60–75 %</td><td>3.000–8.000 kr.</td><td>2.000–3.500 kWh</td></tr>
-<tr><td>Automatisk lamelcover</td><td>70–85 %</td><td>30.000–80.000 kr.</td><td>2.500–4.000 kWh</td></tr>
-<tr><td>Poolhus/overdækning</td><td>80–95 %</td><td>50.000–200.000 kr.</td><td>3.000–5.000 kWh</td></tr>
+<tr><td>Termisk bobleplast</td><td>50–60 %</td><td>Indkøb: 500–2.000 kr.</td><td>1.500–2.500 kWh</td></tr>
+<tr><td>Termocover (fast)</td><td>60–75 %</td><td>Indkøb: 3.000–8.000 kr.</td><td>2.000–3.500 kWh</td></tr>
+<tr><td>Automatisk lamelcover</td><td>70–85 %</td><td>Indkøb: 30.000–80.000 kr.</td><td>2.500–4.000 kWh</td></tr>
+<tr><td>Poolhus/overdækning</td><td>80–95 %</td><td>Indkøb: 50.000–200.000 kr.</td><td>3.000–5.000 kWh</td></tr>
 </tbody>
 </table>
 
@@ -1173,13 +1173,13 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om poolens strømforbrug</h2>
 <p>Her er svar på de hyppigste spørgsmål om poolens energiforbrug i Danmark.</p>`,
     faqs: [
-      { question: "Hvor meget koster det at drive en pool om året?", answer: "En typisk villahavepool (8x4 m) med varmepumpe koster 7.500–17.500 kr. om året i strøm. Med afdækning og inverter-pumpe kan du reducere det til 5.000–10.000 kr." },
+      { question: "Hvor meget koster det at drive en pool om året?", answer: "En typisk villahavepool (8x4 m) med varmepumpe bruger 4.500–7.000 kWh, svarende til {{kr 4500–7000}} om året i strøm. Med afdækning og inverter-pumpe kan du reducere det til 2.000–4.000 kWh eller {{kr 2000–4000}}." },
       { question: "Hvad bruger mest strøm i en pool?", answer: "Opvarmning (50–70 %) er den største post, efterfulgt af filterpumpen (20–30 %). Belysning, robotrenser og saltanlæg udgør de resterende 10–20 %." },
       { question: "Er en pool-varmepumpe bedre end elpatron?", answer: "Ja, markant. En varmepumpe med COP 5 leverer 5 kWh varme pr. kWh strøm. En elpatron leverer kun 1 kWh pr. kWh. Du sparer 60–80 % på opvarmningen." },
       { question: "Hvor mange kWh bruger en poolpumpe om måneden?", answer: "En standard 750 W pumpe ved 10 timers daglig drift bruger ca. 225 kWh/måned ({{kr 225}} kr.). En inverter-pumpe bruger 60–112 kWh/måned ({{kr 60}}–{{kr 112}} kr.)." },
       { question: "Kan solceller betale for poolens strømforbrug?", answer: "Ja, et 6–10 kW solcelleanlæg producerer nok strøm til at dække det meste af poolens forbrug i sæsonen, da sol og poolbrug falder sammen." },
       { question: "Hvor meget sparer en poolafdækning?", answer: "En termisk bobleplast reducerer varmetabet med 50–60 % og sparer typisk 1.500–2.500 kWh/år, svarende til {{kr 1500}}–{{kr 2500}} kr." },
-      { question: "Hvad koster det at opvarme en pool til 28°C?", answer: "Med en varmepumpe koster det typisk 5.000–8.750 kr. for en 8x4 m pool i en dansk sæson. Med elpatron kan det koste 20.000–35.000 kr." },
+      { question: "Hvad koster det at opvarme en pool til 28°C?", answer: "Med en varmepumpe bruger det typisk 2.000–3.500 kWh, svarende til {{kr 2000–3500}} for en 8x4 m pool i en dansk sæson. Med elpatron bruger det 8.000–14.000 kWh og kan koste {{kr 8000–14000}}." },
       { question: "Bruger en pool strøm om vinteren?", answer: "Minimalt. En frostsikringspumpe bruger 50–100 kWh over vinteren ({{kr 50}}–{{kr 100}} kr.). Uden frostsikring: 0 kWh, men risiko for frostskader." },
     ],
     relatedSlugs: ["varmepumpe", "varmtvandsbeholder", "sauna"],
@@ -1317,12 +1317,12 @@ export const APPLIANCES_PHASE2B: ApplianceData[] = [
 <h2>Ofte stillede spørgsmål om saunaens strømforbrug</h2>
 <p>Her er svar på de hyppigste spørgsmål om saunaens energiforbrug.</p>`,
     faqs: [
-      { question: "Hvad koster en saunasession i strøm?", answer: "En typisk session i en finsk sauna (1,5 time inkl. opvarmning) koster {{kr 8}}–{{kr 16}} kr. i strøm. En infrarød sauna koster 5–10 kr. pr. session." },
+      { question: "Hvad koster en saunasession i strøm?", answer: "En typisk session i en finsk sauna (1,5 time inkl. opvarmning) koster {{kr 8}}–{{kr 16}} kr. i strøm. En infrarød sauna bruger 2–4 kWh og koster {{kr 2–4}} pr. session." },
       { question: "Hvor meget strøm bruger en sauna om måneden?", answer: "Ved 2 sessioner pr. uge bruger en finsk sauna ca. 60–100 kWh om måneden, svarende til {{kr 60}}–{{kr 100}} kr. Om vinteren kan det være 80–130 kWh." },
       { question: "Er en infrarød sauna billigere i drift?", answer: "Ja, markant. En infrarød sauna bruger 50–70 % mindre strøm end en finsk sauna og har kun 10–15 minutters opvarmningstid." },
       { question: "Kan en sauna køre på en almindelig stikkontakt?", answer: "Kun ovne under 4,5 kW (230V). De fleste finske saunaovne kræver 400V (trefaset) og installation af autoriseret elektriker." },
       { question: "Hvor lang tid tager det at opvarme en sauna?", answer: "En finsk sauna: 30–60 minutter til 80–90°C. En infrarød sauna: 10–15 minutter til 40–60°C. God isolering kan reducere opvarmningstiden med 30–40 %." },
-      { question: "Er det dyrt at have sauna i hjemmet?", answer: "Ved 2 ugentlige sessioner koster en finsk sauna 1.500–2.750 kr. om året i strøm. Det svarer til 125–230 kr./måned – billigere end de fleste fitnessabonnementer." },
+      { question: "Er det dyrt at have sauna i hjemmet?", answer: "Ved 2 ugentlige sessioner bruger en finsk sauna 700–1.100 kWh, svarende til {{kr 700–1100}} om året i strøm. Det svarer til {{kr 700–1100 /md}} om måneden – billigere end de fleste fitnessabonnementer." },
       { question: "Bruger en sauna strøm, når den er slukket?", answer: "Nej, en saunaovn har intet standbyforbrug. Den bruger kun strøm, når den er tændt. Husk at slukke helt efter brug." },
       { question: "Hvilken ovnstørrelse skal jeg vælge til min sauna?", answer: "Tommelfingerregel: 1 kW pr. 1–1,5 m³ kabinevolumen. En 6 m³ kabine kræver en 4,5–6 kW ovn. En for lille ovn bruger mere energi totalt." },
     ],

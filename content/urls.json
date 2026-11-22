@@ -96,6 +96,36 @@
     "noindex": false
   },
   {
+    "path": "/computer/imac-m4/",
+    "title": "iMac M4 strømforbrug (2026) → watt med skærm og pris",
+    "description": "iMac M4 fra 2024 med 24\" skærm: Apples watt-tal ved 230 V, kWh om året med skærmen regnet med, dvale og hvad den eksterne strømforsyning bruger.",
+    "noindex": true
+  },
+  {
+    "path": "/computer/imac-m6/",
+    "title": "iMac M6 strømforbrug (2026) → 24 tommer, watt og pris",
+    "description": "iMac M6 fra oktober 2026: Apples watt-tal ved 230 V med den indbyggede 24\" skærm, kWh om året, dvale, og hvor meget den sparer i forhold til M4.",
+    "noindex": true
+  },
+  {
+    "path": "/computer/mac-mini-m4/",
+    "title": "Mac mini M4 strømforbrug (2026) → watt, kWh og pris",
+    "description": "Mac mini M4 og M4 Pro fra 2024: Apples watt-tal ved 230 V, kWh om året, hvad det koster at lade den køre døgnet rundt, og hvad skærmen lægger til.",
+    "noindex": true
+  },
+  {
+    "path": "/computer/mac-mini-m6/",
+    "title": "Mac mini M6 strømforbrug (2026) → dvale, tomgang og pris",
+    "description": "Mac mini med M6 eller M5 Pro fra august 2026: Apples watt ved 230 V, kWh om året, døgndrift som server, og hvorfor dvale fylder mere end før.",
+    "noindex": true
+  },
+  {
+    "path": "/computer/mac-studio/",
+    "title": "Mac Studio strømforbrug (2026) → M5 Ultra, M4 Max og pris",
+    "description": "Mac Studio med M5 Max eller M5 Ultra (2026) og M4 Max eller M3 Ultra (2026): Apples watt ved 230 V, kWh om året, dvale og hvad fuld last koster.",
+    "noindex": true
+  },
+  {
     "path": "/el-loebehjul/",
     "title": "El-løbehjul strømforbrug (2026) → kWh pr. km og opladning",
     "description": "Et el-løbehjul bruger ca. 0,3-0,8 kWh på en fuld opladning og 10-17 Wh pr. km. Se prisen pr. opladning, pr. 100 km og om året, og hvornår du skal lade.",
@@ -294,10 +324,46 @@
     "noindex": false
   },
   {
+    "path": "/laptop/macbook-air-m3/",
+    "title": "MacBook Air M3 strømforbrug (2026) → 13 og 15 tommer",
+    "description": "MacBook Air M3 fra 2024 i 13 og 15 tommer: Apples målte watt ved 230 V, kWh om året, pris pr. opladning, og hvad et slidt batteri betyder.",
+    "noindex": true
+  },
+  {
     "path": "/laptop/macbook-air-m4/",
     "title": "MacBook Air M4 strømforbrug (2026) → watt, kWh og pris",
     "description": "MacBook Air M4 i 13 og 15 tommer: Apples egne watt-tal ved 230 V, kWh om året, hvad én fuld opladning koster, og hvor lidt den bruger på dvale.",
     "noindex": false
+  },
+  {
+    "path": "/laptop/macbook-air-m5/",
+    "title": "MacBook Air M5 strømforbrug (2026) → watt og opladning",
+    "description": "MacBook Air M5 i 13 og 15 tommer: Apples målte watt ved 230 V, kWh om året, prisen for én fuld opladning, og hvorfor opladeren ikke følger med.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/macbook-pro-m4/",
+    "title": "MacBook Pro M4 strømforbrug (2026) → M4, Pro og Max målt",
+    "description": "MacBook Pro fra 2024 med M4, M4 Pro og M4 Max i 14 og 16 tommer: Apples watt ved 230 V, kWh om året og hvad en fuld opladning koster.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/macbook-pro-m5/",
+    "title": "MacBook Pro M5 strømforbrug (2026) → 14 og 16 tommer",
+    "description": "MacBook Pro M5, M5 Pro og M5 Max i 14 og 16 tommer: Apples watt ved 230 V, kWh om året, pris pr. opladning og hvad tung last koster i timen.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/macbook-pro-m6/",
+    "title": "MacBook Pro M6 strømforbrug (2026) → tomgang og ladning",
+    "description": "MacBook Pro 14\" med M6 fra oktober 2026: Apples watt ved 230 V, kWh om året, pris pr. opladning, og hvordan den står mod M5 og M4.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/macbook-pro-proled-xdr/",
+    "title": "MacBook Pro PROLED XDR strømforbrug (2026) → watt og pris",
+    "description": "MacBook Pro med PROLED XDR-skærm i 14 og 16 tommer: Apples watt ved 230 V, kWh om året, pris pr. opladning og hvad OLED gør ved forbruget.",
+    "noindex": true
   },
   {
     "path": "/led-paere/",
