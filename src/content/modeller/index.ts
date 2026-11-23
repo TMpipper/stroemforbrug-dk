@@ -106,6 +106,30 @@ import suzukiEVitara from "./suzuki-e-vitara";
 import toyotaCHrPlus from "./toyota-c-hr-plus";
 import mercedesGlcElectric from "./mercedes-glc-electric";
 import citroenEC5Aircross from "./citroen-e-c5-aircross";
+import galaxyTabS11 from "./galaxy-tab-s11";
+import asusZenbook14 from "./asus-zenbook-14";
+import galaxyTabS12 from "./galaxy-tab-s12";
+import asusVivobook from "./asus-vivobook";
+import galaxyTabA from "./galaxy-tab-a";
+import acerSwiftGo from "./acer-swift-go";
+import lenovoIdeaTab from "./lenovo-idea-tab";
+import acerAspire from "./acer-aspire";
+import lenovoTab from "./lenovo-tab";
+import dell14 from "./dell-14";
+import dellXps from "./dell-xps";
+import lenovoIdeapadSlim5 from "./lenovo-ideapad-slim-5";
+import lgVaskemaskine from "./lg-vaskemaskine";
+import gorenjeNrk418 from "./gorenje-nrk418";
+import samsungAiWashVaskemaskine from "./samsung-ai-wash-vaskemaskine";
+import samsungRz70h from "./samsung-rz70h";
+import mieleW2 from "./miele-w2";
+import lgGsgv80 from "./lg-gsgv80";
+import boschSerie2Vaskemaskine from "./bosch-serie-2-vaskemaskine";
+import electroluxLtb1ae from "./electrolux-ltb1ae";
+import aeg6000Vaskemaskine from "./aeg-6000-vaskemaskine";
+import scandomesticCf from "./scandomestic-cf";
+import lgVaskeToerre from "./lg-vaske-toerre";
+import siemensKf96 from "./siemens-kf96";
 
 /**
  * Modelsiderne (ejeren 22. nov. 2026): én fil pr. modelfamilie (`export default`), side på /<parent>/<slug>/.
@@ -219,4 +243,28 @@ export const MODELS_ALL: ModelData[] = [
   toyotaCHrPlus,
   mercedesGlcElectric,
   citroenEC5Aircross,
+  galaxyTabS11,
+  asusZenbook14,
+  galaxyTabS12,
+  asusVivobook,
+  galaxyTabA,
+  acerSwiftGo,
+  lenovoIdeaTab,
+  acerAspire,
+  lenovoTab,
+  dell14,
+  dellXps,
+  lenovoIdeapadSlim5,
+  lgVaskemaskine,
+  gorenjeNrk418,
+  samsungAiWashVaskemaskine,
+  samsungRz70h,
+  mieleW2,
+  lgGsgv80,
+  boschSerie2Vaskemaskine,
+  electroluxLtb1ae,
+  aeg6000Vaskemaskine,
+  scandomesticCf,
+  lgVaskeToerre,
+  siemensKf96,
 ];

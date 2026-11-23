@@ -474,6 +474,12 @@
     "noindex": true
   },
   {
+    "path": "/fryser/samsung-rz70h/",
+    "title": "Samsung RZ70H fryseskab strømforbrug (2026) → kWh og pris",
+    "description": "Samsung RZ70H fryseskab på 323 liter: energimærkets kWh om året i klasse D og E, pris om året og i døgnet, og hvorfor skabet ikke hører til i en kold garage.",
+    "noindex": true
+  },
+  {
     "path": "/gaming-pc/",
     "title": "Gaming-PC strømforbrug (2026) → Watt under belastning og kWh",
     "description": "Hvor meget strøm bruger en gaming-PC? Se typisk elforbrug i kWh for gaming-computere, sammenlign opsætninger og beregn din årlige udgift i 2026.",
@@ -630,6 +636,24 @@
     "noindex": false
   },
   {
+    "path": "/ipad/galaxy-tab-a/",
+    "title": "Galaxy Tab A strømforbrug (2026) → A11+, A9+ og A9 i watt",
+    "description": "Samsungs billige tablets Galaxy Tab A11+, A9+ og A9: watt i tomgang og dvale fra ENERGY STAR, batteriets Wh, prisen pr. opladning og EU-mærket for A11.",
+    "noindex": true
+  },
+  {
+    "path": "/ipad/galaxy-tab-s11/",
+    "title": "Galaxy Tab S11 strømforbrug (2026) → watt og opladning",
+    "description": "Galaxy Tab S11 og S11 Ultra: watt i tomgang og dvale fra Samsungs ENERGY STAR-målinger, batteriets Wh, hvad én opladning koster og kWh om året.",
+    "noindex": true
+  },
+  {
+    "path": "/ipad/galaxy-tab-s12/",
+    "title": "Galaxy Tab S12 strømforbrug (2026) → S12+ og S12 Ultra",
+    "description": "Galaxy Tab S12+ og S12 Ultra fra oktober 2026: watt i tomgang og dvale efter ENERGY STAR, batteriets Wh, prisen for én opladning og forbruget om året.",
+    "noindex": true
+  },
+  {
     "path": "/ipad/ipad-a16/",
     "title": "iPad (A16) strømforbrug (2026) → watt og pris pr. opladning",
     "description": "iPad (A16) fra 2025: Apples egne watt-tal ved 230 V, hvad én fuld opladning koster, kWh om året, og hvad opladerens tab betyder for regningen.",
@@ -651,6 +675,18 @@
     "path": "/ipad/ipad-pro-m5/",
     "title": "iPad Pro M5 strømforbrug (2026) → watt og pris pr. opladning",
     "description": "iPad Pro M5 i 11 og 13 tommer: Apples egne watt-tal ved 230 V, hvad én fuld opladning koster, kWh om året, og hvorfor OLED-skærmen bruger lidt i tomgang.",
+    "noindex": true
+  },
+  {
+    "path": "/ipad/lenovo-idea-tab/",
+    "title": "Lenovo Idea Tab strømforbrug (2026) → Pro, Plus og Idea Tab",
+    "description": "Lenovo Idea Tab Pro, Idea Tab Pro Gen 2, Idea Tab Plus og Idea Tab: watt efter ENERGY STAR, batteriets Wh, prisen for én opladning og EU-energimærket.",
+    "noindex": true
+  },
+  {
+    "path": "/ipad/lenovo-tab/",
+    "title": "Lenovo Tab strømforbrug (2026) → Tab, Tab M11 og Tab Plus",
+    "description": "Lenovos billige tablets Lenovo Tab, Tab One, Tab M11 og Tab Plus Gen 2: watt efter ENERGY STAR, batteriets Wh, prisen pr. opladning og energiklassen.",
     "noindex": true
   },
   {
@@ -720,15 +756,39 @@
     "noindex": true
   },
   {
+    "path": "/koeleskab/electrolux-ltb1ae/",
+    "title": "Electrolux LTB1AE strømforbrug (2026) → kWh om året og pris",
+    "description": "Electrolux LTB1AE24W0 og LTB1AE28W0 køle-/fryseskab på 206 og 244 liter: energimærkets kWh om året i klasse E, pris om året og døgnet, og hvad højden betyder.",
+    "noindex": true
+  },
+  {
+    "path": "/koeleskab/gorenje-nrk418/",
+    "title": "Gorenje NRK418 strømforbrug (2026) → kWh om året og pris",
+    "description": "Gorenje NRK418 køle-/fryseskab i 55 cm bredde: energimærkets kWh om året for ECW4, DCW4, EEW4, DEW4 og den integrerede NRKI418EP1, og hvad klassen betyder.",
+    "noindex": true
+  },
+  {
     "path": "/koeleskab/gram-ks-771254/",
     "title": "Gram KS 771254 køleskab strømforbrug (2026) → kWh og pris",
     "description": "Gram KS 771254 og søskende fra 158 til 308 liter: energimærkets kWh om året, pris om året og døgnet, og hvorfor dobbelt så stor kun bruger lidt mere.",
     "noindex": true
   },
   {
+    "path": "/koeleskab/lg-gsgv80/",
+    "title": "LG GSGV80 amerikanerkøleskab strømforbrug (2026) → kWh",
+    "description": "LG GSGV80 amerikanerkøleskab på 635 liter: energimærkets kWh om året for EPLL, EPLD, PYLL og PYLD i klasse D og E, pris om året og mod Samsung RS70F.",
+    "noindex": true
+  },
+  {
     "path": "/koeleskab/samsung-rs70f/",
     "title": "Samsung RS70F strømforbrug (2026) → amerikanerkøleskab i kWh",
     "description": "Samsung RS70F amerikanerkøleskab: energimærkets kWh om året fra klasse E til B, pris om året, og hvorfor samme kabinet kan bruge næsten dobbelt så meget.",
+    "noindex": true
+  },
+  {
+    "path": "/koeleskab/siemens-kf96/",
+    "title": "Siemens KF96 strømforbrug (2026) → kWh om året og pris",
+    "description": "Siemens KF96 køle-/fryseskab med franske døre: energimærkets kWh om året for KF96RSBEA, KF96NVPEA, KF96DAXEA og KF96IAPEA i iQ300, iQ500 og iQ700, og pris.",
     "noindex": true
   },
   {
@@ -774,6 +834,12 @@
     "noindex": true
   },
   {
+    "path": "/kummefryser/scandomestic-cf/",
+    "title": "Scandomestic kummefryser strømforbrug (2026) → kWh og pris",
+    "description": "Scandomestic CF kummefryser fra 51 til 400 liter: energimærkets kWh om året for CF51WE, CF100WD, CF200WD, CF300WD og CF400WE, pris om året og klasse D mod E.",
+    "noindex": true
+  },
+  {
     "path": "/ladestander/",
     "title": "Ladestander strømforbrug (2026) → kWh, ladetab og pris",
     "description": "Hvor meget strøm bruger en ladestander til elbil? Se kWh pr. opladning, årligt forbrug og pris. Sammenlign hjemmeladere og beregn med 2026-priser.",
@@ -786,6 +852,42 @@
     "noindex": false
   },
   {
+    "path": "/laptop/acer-aspire/",
+    "title": "Acer Aspire strømforbrug (2026) → Aspire Lite, Go og 14 AI",
+    "description": "Acer Aspire Lite, Aspire Go og Aspire 14 AI: watt i tomgang og dvale fra Acers ENERGY STAR-målinger, kWh om året og prisen for at lade en billig bærbar op.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/acer-swift-go/",
+    "title": "Acer Swift Go strømforbrug (2026) → watt for 14 og 16 tommer",
+    "description": "Acer Swift Go 14 og Swift Go 16 med Intel Core Ultra og AMD Ryzen AI: watt i tomgang og dvale fra ENERGY STAR, kWh om året og prisen for en opladning.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/asus-vivobook/",
+    "title": "ASUS Vivobook strømforbrug (2026) → Vivobook 14 og 16 i watt",
+    "description": "ASUS Vivobook 14 og 16 med Intel, AMD og Snapdragon: watt i tomgang og dvale fra ASUS' ENERGY STAR-målinger, kWh om året og prisen for en fuld opladning.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/asus-zenbook-14/",
+    "title": "ASUS Zenbook 14 strømforbrug (2026) → watt for Intel og AMD",
+    "description": "ASUS Zenbook 14 (UX3480) fra 2026 og Zenbook 14 OLED (UM3406, UX3405): watt i tomgang og dvale fra ENERGY STAR, kWh om året og prisen for en opladning.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/dell-14/",
+    "title": "Dell 14 og Dell 15 strømforbrug (2026) → watt og kWh om året",
+    "description": "Dells almindelige bærbare Dell 14 og Dell 15 med Intel og AMD: watt i tomgang og dvale fra Dells ENERGY STAR-målinger, kWh om året og prisen for en opladning.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/dell-xps/",
+    "title": "Dell XPS strømforbrug (2026) → watt for XPS 13, 14 og 16",
+    "description": "Dell XPS 13, XPS 14 og XPS 16 fra 2026 og XPS 13 fra 2024: watt i tomgang og dvale fra Dells ENERGY STAR-målinger, kWh om året og prisen for en opladning.",
+    "noindex": true
+  },
+  {
     "path": "/laptop/hp-omnibook/",
     "title": "HP OmniBook strømforbrug (2026) → watt for OmniBook 5 og 3",
     "description": "HP OmniBook 5 og OmniBook 3 i 14 og 16 tommer: watt i tomgang og dvale fra HPs ENERGY STAR-målinger, kWh om året og prisen for en fuld opladning.",
@@ -795,6 +897,12 @@
     "path": "/laptop/lenovo-ideapad-slim-3/",
     "title": "Lenovo IdeaPad Slim 3 strømforbrug (2026) → watt og kWh",
     "description": "Lenovo IdeaPad Slim 3 med Snapdragon, Intel og AMD: watt i tomgang og dvale fra Lenovos ENERGY STAR-målinger, kWh om året og prisen for en opladning.",
+    "noindex": true
+  },
+  {
+    "path": "/laptop/lenovo-ideapad-slim-5/",
+    "title": "Lenovo IdeaPad Slim 5 strømforbrug (2026) → watt og kWh",
+    "description": "Lenovo IdeaPad Slim 5 og Slim 5 Ultra i 13, 14, 15 og 16 tommer med Intel, AMD og Snapdragon: watt fra ENERGY STAR, kWh om året og prisen for en opladning.",
     "noindex": true
   },
   {
@@ -1590,6 +1698,12 @@
     "noindex": true
   },
   {
+    "path": "/vaskemaskine-med-toerretumbler/lg-vaske-toerre/",
+    "title": "LG vaske-tørremaskine strømforbrug (2026) → kWh og pris",
+    "description": "LG vaske-tørremaskine fra 8/5 til 11/6 kg: energimærkets kWh for vask og for vask med tørring, pris om året og sammenlignet med to separate maskiner.",
+    "noindex": true
+  },
+  {
     "path": "/vaskemaskine-med-toerretumbler/siemens-iq700-vaske-toerre/",
     "title": "Siemens iQ700 vaske-tørremaskine strømforbrug (2026) → kWh",
     "description": "Siemens iQ700 vaske-tørremaskine WN54C2A0DN (10,5/6 kg): energimærkets kWh for vask med tørring og for vask alene, pris om året, og hvad tørringen koster.",
@@ -1600,6 +1714,12 @@
     "title": "Vaskemaskine strømforbrug (2026) → kWh pr. vask og år",
     "description": "Hvor meget strøm bruger en vaskemaskine? Se typisk elforbrug i kWh pr. vask og pr. år, sammenlign modeller og beregn din udgift. 2026-data.",
     "noindex": false
+  },
+  {
+    "path": "/vaskemaskine/aeg-6000-vaskemaskine/",
+    "title": "AEG 6000 vaskemaskine strømforbrug (2026) → kWh pr. vask",
+    "description": "AEG 6000 ProSense vaskemaskine på 9, 10 og 10,5 kg: energimærkets kWh pr. vask på eco 40-60 for LR624P14A og søskende, pris om året og AEG 6000 mod 7000.",
+    "noindex": true
   },
   {
     "path": "/vaskemaskine/aeg-7000-vaskemaskine/",
@@ -1614,15 +1734,39 @@
     "noindex": true
   },
   {
+    "path": "/vaskemaskine/bosch-serie-2-vaskemaskine/",
+    "title": "Bosch Serie 2 vaskemaskine strømforbrug (2026) → pr. vask",
+    "description": "Bosch Serie 2 vaskemaskine på 7 og 8 kg: energimærkets kWh pr. vask for WGE03400SN, WGE02400SN og WGE0340LSN, pris om året, standby og billigste tid at vaske.",
+    "noindex": true
+  },
+  {
     "path": "/vaskemaskine/bosch-serie-6/",
     "title": "Bosch Serie 6 vaskemaskine strømforbrug (2026) → kWh og pris",
     "description": "Bosch Serie 6 vaskemaskine i 9, 10 og 11 kg: energimærkets kWh pr. vask på eco 40-60, kWh og pris om året, og hvornår på døgnet vasken er billigst.",
     "noindex": true
   },
   {
+    "path": "/vaskemaskine/lg-vaskemaskine/",
+    "title": "LG vaskemaskine strømforbrug (2026) → kWh pr. vask og pris",
+    "description": "LG vaskemaskine på 9 og 11 kg: energimærkets kWh pr. vask på eco 40-60 for FV94ENS2WN, F4Y5EYP6W0F og F4A1009NWK, pris om året og billigste tid at vaske.",
+    "noindex": true
+  },
+  {
     "path": "/vaskemaskine/miele-w1/",
     "title": "Miele W1 vaskemaskine strømforbrug (2026) → kWh og pris",
     "description": "Miele W1 vaskemaskiner fra WWA128 til WWE380: energimærkets kWh pr. vask på eco 40-60, pris om året, og hvorfor den mest sparsomme bruger en tredjedel mindre.",
+    "noindex": true
+  },
+  {
+    "path": "/vaskemaskine/miele-w2/",
+    "title": "Miele W2 vaskemaskine strømforbrug (2026) → kWh pr. vask",
+    "description": "Miele W2 vaskemaskine WQ 1000 WPS Nova Edition på 9 kg: energimærkets kWh pr. vask på eco 40-60, pris om året, søstermodellen WQ 1200 og W2 mod Miele W1.",
+    "noindex": true
+  },
+  {
+    "path": "/vaskemaskine/samsung-ai-wash-vaskemaskine/",
+    "title": "Samsung AI Wash vaskemaskine strømforbrug (2026) → pr. vask",
+    "description": "Samsung AI Wash vaskemaskine på 9 og 11 kg: energimærkets kWh pr. vask for 6400 Series, Bespoke 8400 Series og Bespoke AI Home, pris om året og billigste tid.",
     "noindex": true
   },
   {
