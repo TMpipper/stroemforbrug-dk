@@ -82,6 +82,30 @@ import mieleTq1000 from "./miele-tq-1000";
 import boschKir81 from "./bosch-kir81";
 import boschSerie2Opvaskemaskine from "./bosch-serie-2-opvaskemaskine";
 import lgDualInverterToerretumbler from "./lg-dual-inverter-toerretumbler";
+import samsungCrystalUhd from "./samsung-crystal-uhd";
+import hpOmnibook from "./hp-omnibook";
+import dellP2725h from "./dell-p2725h";
+import sonyBravia8Ii from "./sony-bravia-8-ii";
+import microsoftSurfaceLaptop from "./microsoft-surface-laptop";
+import lgQned85 from "./lg-qned85";
+import asusXg32ucwmg from "./asus-xg32ucwmg";
+import lenovoThinkpadE14 from "./lenovo-thinkpad-e14";
+import philipsOled760 from "./philips-oled760";
+import alienwareAw3425dw from "./alienware-aw3425dw";
+import hisenseU7s from "./hisense-u7s";
+import lenovoYogaSlim7 from "./lenovo-yoga-slim-7";
+import nintendoSwitch2 from "./nintendo-switch-2";
+import toyotaUrbanCruiser from "./toyota-urban-cruiser";
+import renaultScenic from "./renault-scenic";
+import mercedesEqa from "./mercedes-eqa";
+import bmwIx3 from "./bmw-ix3";
+import zeekr7x from "./zeekr-7x";
+import fordExplorer from "./ford-explorer";
+import polestar4 from "./polestar-4";
+import suzukiEVitara from "./suzuki-e-vitara";
+import toyotaCHrPlus from "./toyota-c-hr-plus";
+import mercedesGlcElectric from "./mercedes-glc-electric";
+import citroenEC5Aircross from "./citroen-e-c5-aircross";
 
 /**
  * Modelsiderne (ejeren 22. nov. 2026): én fil pr. modelfamilie (`export default`), side på /<parent>/<slug>/.
@@ -171,4 +195,28 @@ export const MODELS_ALL: ModelData[] = [
   boschKir81,
   boschSerie2Opvaskemaskine,
   lgDualInverterToerretumbler,
+  samsungCrystalUhd,
+  hpOmnibook,
+  dellP2725h,
+  sonyBravia8Ii,
+  microsoftSurfaceLaptop,
+  lgQned85,
+  asusXg32ucwmg,
+  lenovoThinkpadE14,
+  philipsOled760,
+  alienwareAw3425dw,
+  hisenseU7s,
+  lenovoYogaSlim7,
+  nintendoSwitch2,
+  toyotaUrbanCruiser,
+  renaultScenic,
+  mercedesEqa,
+  bmwIx3,
+  zeekr7x,
+  fordExplorer,
+  polestar4,
+  suzukiEVitara,
+  toyotaCHrPlus,
+  mercedesGlcElectric,
+  citroenEC5Aircross,
 ];

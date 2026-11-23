@@ -121,6 +121,11 @@ export const PROFILES: Record<string, UsageProfile> = {
     short: "to timers spil om dagen",
     text: "2 timers spil om dagen og hvile (rest mode) resten af døgnet, alle årets dage. Hvile med opladning af controllere og opdateringer slået til bruger mere end tallet her.",
   },
+  "nintendo-switch": {
+    hours: { on: 2, sleep: 22 },
+    short: "to timers spil om dagen",
+    text: "2 timers spil om dagen i dock på tv'et og dvale resten af døgnet, alle årets dage. Dvale med netværk slået til (til opdateringer) bruger mere end tallet her; håndholdt spil bruger mindre fra stikket.",
+  },
   vaskemaskine: {
     cyclesPerYear: 260,
     cycleLabel: "vask",
