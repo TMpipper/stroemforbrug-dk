@@ -39,6 +39,8 @@ jobs:
         if: env.VERCEL_TOKEN != ''
         run: npx vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
       - name: Byg (prebuild + next build + postbuild-audits)
+        # Eget loft under jobbets 30 min: hænger bygget, fejler trinnet med log i stedet for at jobbet annulleres uden (23. nov. 2026).
+        timeout-minutes: 20
         run: |
           if [ -n "$VERCEL_TOKEN" ]; then npx vercel build --prod --token="$VERCEL_TOKEN"; else npm run build; fi
       - name: Playwright til audit-mobile
