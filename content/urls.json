@@ -78,6 +78,18 @@
     "noindex": false
   },
   {
+    "path": "/babyalarm/",
+    "title": "Babyalarm strømforbrug (2026) → watt, opladning og kWh/år",
+    "description": "En babyalarm bruger få watt, også med kamera og skærm. Se watt for lyd- og videoalarmer, hvad en opladning af forældreenheden koster, og kWh på et år.",
+    "noindex": false
+  },
+  {
+    "path": "/barbermaskine/",
+    "title": "Barbermaskine strømforbrug (2026) → opladning og laderen",
+    "description": "En elektrisk barbermaskine bruger under 1 kWh om året ifølge Philips. Se watt under opladning, laderens forbrug uden last og prisen pr. opladning.",
+    "noindex": false
+  },
+  {
     "path": "/beregner/",
     "title": "Strømberegner (2026) → Beregn dit strømforbrug og pris",
     "description": "Beregn dit strømforbrug og se hvad det koster i kr. Vælg apparat, indstil forbrug og få præcist resultat pr. dag, måned og år.",
@@ -150,6 +162,12 @@
     "noindex": true
   },
   {
+    "path": "/cpap/",
+    "title": "CPAP strømforbrug (2026) → med og uden befugter pr. nat",
+    "description": "En CPAP-maskine med befugter og varmeslange bruger ca. 0,45 kWh pr. nat ifølge ResMeds typiske tal. Uden befugter er det langt mindre. Se kWh pr. nat og år.",
+    "noindex": false
+  },
+  {
     "path": "/dampovn/",
     "title": "Dampovn strømforbrug (2026) → kWh med damp og energimærke",
     "description": "Se hvor meget strøm en dampovn bruger pr. gang med damp og varmluft, hvad energimærket måler og ikke måler, og hvordan den klarer sig mod gryden.",
@@ -159,6 +177,12 @@
     "path": "/dehydrator/",
     "title": "Dehydrator strømforbrug (2026) → kWh pr. tørring vs. ovn",
     "description": "Se hvor meget strøm en dehydrator eller madtørrer bruger i timen og pr. tørring, hvad frugt, svampe og jerky koster, og om ovnen kan gøre det billigere.",
+    "noindex": false
+  },
+  {
+    "path": "/drivhusvarme/",
+    "title": "Drivhusvarme strømforbrug (2026) → frostvagt og kWh/vinter",
+    "description": "Se hvad det koster at holde drivhuset frostfrit med en frostvagt eller varmeblæser: kWh pr. frostnat og pr. vinter, og hvor meget bobleplast sparer.",
     "noindex": false
   },
   {
@@ -177,6 +201,12 @@
     "path": "/el-scooter/",
     "title": "El-scooter strømforbrug (2026) → kWh pr. 100 km og knallert",
     "description": "Se hvor meget strøm en el-scooter eller el-knallert bruger pr. km og pr. opladning: 1,5-2,8 kWh batterier, 25-35 Wh pr. km og hvad et år på knallert koster.",
+    "noindex": false
+  },
+  {
+    "path": "/el-tandboerste/",
+    "title": "El-tandbørste strømforbrug (2026) → oplader, kWh og pris",
+    "description": "En el-tandbørste, der står i laderen hele året, bruger ca. 11 kWh. Lades den kun efter behov, er det under 1 kWh. Se Bolius, Tænk og Philips om forbruget.",
     "noindex": false
   },
   {
@@ -354,6 +384,12 @@
     "noindex": false
   },
   {
+    "path": "/flaskevarmer/",
+    "title": "Flaskevarmer strømforbrug (2026) → watt og kWh pr. flaske",
+    "description": "En flaskevarmer bruger 80-400 watt i få minutter, under 0,03 kWh pr. flaske. Se tallene for kold og stuevarm mælk, varmhold og natflasker på et helt år.",
+    "noindex": false
+  },
+  {
     "path": "/fryser/",
     "title": "Fryser strømforbrug (2026) → Se kWh, rim og årlig pris",
     "description": "Hvor meget strøm bruger en skabsfryser? Se typisk elforbrug i kWh, sammenlign energiklasser og modeller, og beregn din årlige udgift. 2026-data.",
@@ -396,6 +432,12 @@
     "noindex": false
   },
   {
+    "path": "/glattejern/",
+    "title": "Glattejern strømforbrug (2026) → watt, kWh og pris pr. gang",
+    "description": "Et glattejern har typisk 35-80 W og bruger omkring 0,01 kWh på et kvarter. Se Remingtons og Philips tal, prisen pr. gang og hvad sikkerhedsslukningen betyder.",
+    "noindex": false
+  },
+  {
     "path": "/gulvvarme-el/",
     "title": "El-gulvvarme strømforbrug (2026) → kWh pr. m² og årlig pris",
     "description": "Hvor meget strøm bruger el-gulvvarmemåtter? Se kWh for badeværelse og renovering. Sammenlign med varmekabel og beregn din årlige pris i 2026.",
@@ -408,6 +450,12 @@
     "noindex": false
   },
   {
+    "path": "/gaabaand/",
+    "title": "Gåbånd strømforbrug (2026) → walking pad under skrivebordet",
+    "description": "Et gåbånd under skrivebordet har en motor på op til 735 W, men bruger efter vores skøn 150-300 W ved gang. Se kWh pr. time, pr. uge og pr. år.",
+    "noindex": false
+  },
+  {
     "path": "/haekkeklipper/",
     "title": "Hækkeklipper strømforbrug (2026) → watt og kWh pr. hæk",
     "description": "Se hvor meget strøm en hækkeklipper bruger i timen og pr. opladning: ledningsmodeller på 420-500 W mod batterimodeller på 18 V, og hvad en sæson koster.",
@@ -417,6 +465,12 @@
     "path": "/hoejtryksrenser/",
     "title": "Højtryksrenser strømforbrug (2026) → kWh pr. time og m²",
     "description": "Se hvor meget strøm en højtryksrenser bruger i timen og pr. m² terrasse: fra 1,4 kW i de små klasser til 3 kW i de store, og hvad en forårsrengøring koster.",
+    "noindex": false
+  },
+  {
+    "path": "/hoensehus/",
+    "title": "Hønsehus strømforbrug (2026) → vandvarmer, lys og varmelampe",
+    "description": "Se hvad et hønsehus bruger om vinteren: varmeplade under vandet, lys til æglægning og varmelampe. kWh pr. døgn og pr. vinter, og hvornår varme giver mening.",
     "noindex": false
   },
   {
@@ -477,6 +531,12 @@
     "path": "/haartoerrere/",
     "title": "Hårtørrer strømforbrug (2026) → Watt, kWh og pris pr. brug",
     "description": "Hvor meget strøm bruger en hårtørrer? Se elforbrug i kWh pr. brug og pr. år, sammenlign modeller og beregn din udgift. Opdateret 2026-priser.",
+    "noindex": false
+  },
+  {
+    "path": "/iltkoncentrator/",
+    "title": "Iltkoncentrator strømforbrug (2026) → watt, døgn og refusion",
+    "description": "En iltkoncentrator til hjemmet bruger 280-350 W og kører ofte 16 timer i døgnet. Se kWh pr. døgn og år, Philips og Invacares tal og refusionen af eludgiften.",
     "noindex": false
   },
   {
@@ -630,6 +690,12 @@
     "noindex": false
   },
   {
+    "path": "/kroellejern/",
+    "title": "Krøllejern strømforbrug (2026) → watt og pris pr. krølning",
+    "description": "Et krøllejern bruger typisk 30-80 W, så et kvarter koster få øre i strøm. Se Tescoms tal, forskellen på krøllestav og varmluft og hvornår jernet slukker selv.",
+    "noindex": false
+  },
+  {
     "path": "/kummefryser/",
     "title": "Kummefryser strømforbrug (2026) → kWh pr. liter og år",
     "description": "Hvad bruger en kummefryser i strøm? Se typisk elforbrug i kWh pr. år, sammenlign energimærker og beregn din årlige udgift. Opdateret 2026-data.",
@@ -714,6 +780,12 @@
     "noindex": false
   },
   {
+    "path": "/loebebaand/",
+    "title": "Løbebånd strømforbrug (2026) → watt ved 8, 10 og 16 km/t",
+    "description": "Et løbebånd bruger 370-820 W, mens du løber, alt efter fart og vægt. Se Decathlons målte tal ved 8, 10 og 16 km/t, kWh pr. time og pr. km og prisen pr. tur.",
+    "noindex": false
+  },
+  {
     "path": "/loevblaeser/",
     "title": "Løvblæser strømforbrug (2026) → watt i timen og løvsuger",
     "description": "Se hvor meget strøm en løvblæser eller løvsuger bruger i timen: ledning på op til 3.000 W mod batteri på 18 og 36 V, og hvad et efterår koster.",
@@ -747,6 +819,12 @@
     "path": "/maelkeskummer/",
     "title": "Mælkeskummer strømforbrug (2026) → kWh pr. kop og standby",
     "description": "Se hvor meget strøm en elektrisk mælkeskummer bruger pr. kop, hvad varm mælk og koldt skum koster, og hvorfor standby kan veje tungere end selve skummet.",
+    "noindex": false
+  },
+  {
+    "path": "/massagestol/",
+    "title": "Massagestol strømforbrug (2026) → watt, standby og pris",
+    "description": "En massagestol bruger typisk 80-360 W under et program på et kvarter og 0,3 W slukket. Se Panasonics tal, kWh pr. massage, pr. år og hvad varmen lægger til.",
     "noindex": false
   },
   {
@@ -906,6 +984,12 @@
     "noindex": true
   },
   {
+    "path": "/plejeseng/",
+    "title": "Plejeseng strømforbrug (2026) → motor, standby og madras",
+    "description": "En el-plejeseng bruger under 10 kWh om året, fordi motoren kun kører få minutter. Se standby, motorens watt og hvad en vekseltryksmadras lægger oveni.",
+    "noindex": false
+  },
+  {
     "path": "/pool/",
     "title": "Pool strømforbrug (2026) → Varmepumpe, pumpe og årlig pris",
     "description": "Hvor meget strøm bruger en pool? Se elforbrug for pumpe, opvarmning og rensning i kWh, og beregn din årlige udgift. Opdateret 2026-priser.",
@@ -978,6 +1062,12 @@
     "noindex": false
   },
   {
+    "path": "/rugemaskine/",
+    "title": "Rugemaskine strømforbrug (2026) → kWh pr. udrugning af æg",
+    "description": "En rugemaskine til hønseæg bruger 6-15 kWh på 21 dage, afhængigt af størrelse. Se tallene for ænder og vagtler, og hvad kyllingemoderen bruger bagefter.",
+    "noindex": false
+  },
+  {
     "path": "/sandwichgrill/",
     "title": "Sandwichgrill strømforbrug (2026) → kWh pr. toast og grill",
     "description": "Se hvor meget strøm en sandwichgrill, et toastjern eller en kontaktgrill bruger pr. gang, hvad forvarmningen koster, og hvordan den klarer sig mod ovnen.",
@@ -1032,6 +1122,12 @@
     "noindex": false
   },
   {
+    "path": "/solarie/",
+    "title": "Solarie strømforbrug (2026) → hjemmesolarie og ansigtssol",
+    "description": "Et hjemmesolarie med højtrykslamper bruger omkring 0,5 kWh på 20 minutter. Se watt pr. lampe, kWh pr. session og år, og hvad Kræftens Bekæmpelse siger.",
+    "noindex": false
+  },
+  {
     "path": "/solceller/",
     "title": "Solceller (2026) → Produktion i kWh og eget forbrug",
     "description": "Hvor meget strøm producerer og bruger solceller? Se kWh-produktion, egetforbrug og besparelse. Beregn dit solcelleanlægs økonomi med 2026-priser.",
@@ -1074,6 +1170,12 @@
     "noindex": false
   },
   {
+    "path": "/sterilisator/",
+    "title": "Sterilisator strømforbrug (2026) → damp, tørring og kWh",
+    "description": "En dampsterilisator til sutteflasker bruger cirka 0,1 kWh pr. gang, med tørring mere. Se watt og tid for damp, mikroovn og UV, og hvornår opvasken er nok.",
+    "noindex": false
+  },
+  {
     "path": "/stoevsuger/",
     "title": "Støvsuger strømforbrug (2026) → Watt, kWh og årlig pris",
     "description": "Hvor meget strøm bruger en støvsuger? Se elforbrug i kWh for lednings- og akku-støvsugere, sammenlign modeller og beregn din udgift. 2026-priser.",
@@ -1098,6 +1200,12 @@
     "noindex": false
   },
   {
+    "path": "/terrarie/",
+    "title": "Terrarie strømforbrug (2026) → varmespot, UVB og kWh om året",
+    "description": "Et terrarie til en skægagam bruger omkring 1,3 kWh i døgnet og 480 kWh om året. Se tallene for gekko og slange, og hvad varmespot, UVB og termostat betyder.",
+    "noindex": false
+  },
+  {
     "path": "/terrassevarmer/",
     "title": "Terrassevarmer strømforbrug (2026) → watt og kWh pr. aften",
     "description": "Se hvor meget strøm en el-terrassevarmer bruger i timen, pr. aften og over en sæson – infrarød, halogen og carbon – og hvordan den klarer sig mod gas.",
@@ -1107,6 +1215,12 @@
     "path": "/toerretumbler/",
     "title": "Tørretumbler strømforbrug (2026) → Se kWh pr. tørring",
     "description": "En tørretumbler bruger 1,5-5,0 kWh pr. tørring. Se forskel på varmepumpe, kondens og aftræk — og beregn din årlige strømudgift.",
+    "noindex": false
+  },
+  {
+    "path": "/trappelift/",
+    "title": "Trappelift strømforbrug (2026) → batteri, lader og kWh/år",
+    "description": "En trappelift bruger 20-35 kWh om året, mest til laderen, der holder batteriet fuldt. Se watt for motor og lader, energi pr. tur og lige mod buet trappe.",
     "noindex": false
   },
   {
@@ -1305,6 +1419,12 @@
     "path": "/varmepumpe/luft-til-vand/",
     "title": "Luft-til-vand varmepumpe strømforbrug (2026) → Pris og kWh",
     "description": "En luft-til-vand varmepumpe bruger 4.000-6.000 kWh/år. Se forbrug pr. måned, sammenligning med gasfyr, og beregn din besparelse.",
+    "noindex": false
+  },
+  {
+    "path": "/varmetaeppe/",
+    "title": "Varmetæppe strømforbrug (2026) → watt, nat og varmepude",
+    "description": "Et el-varmetæppe bruger 60-150 watt, mens det varmer. Se kWh pr. nat for tæppe, plaid og varmepude, og hvad det sparer mod at varme soveværelset op.",
     "noindex": false
   },
   {

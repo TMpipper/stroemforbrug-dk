@@ -80,6 +80,26 @@ import vinkelsliber from "./vinkelsliber";
 import motorvarmer from "./motorvarmer";
 import campingvogn from "./campingvogn";
 import elScooter from "./el-scooter";
+import glattejern from "./glattejern";
+import varmetaeppe from "./varmetaeppe";
+import plejeseng from "./plejeseng";
+import kroellejern from "./kroellejern";
+import elTandboerste from "./el-tandboerste";
+import trappelift from "./trappelift";
+import babyalarm from "./babyalarm";
+import barbermaskine from "./barbermaskine";
+import solarie from "./solarie";
+import flaskevarmer from "./flaskevarmer";
+import sterilisator from "./sterilisator";
+import massagestol from "./massagestol";
+import cpap from "./cpap";
+import iltkoncentrator from "./iltkoncentrator";
+import terrarie from "./terrarie";
+import rugemaskine from "./rugemaskine";
+import loebebaand from "./loebebaand";
+import gaabaand from "./gaabaand";
+import drivhusvarme from "./drivhusvarme";
+import hoensehus from "./hoensehus";
 
 /**
  * Nye apparater fra 22. nov. 2026: én fil pr. apparat (src/content/apparater/<slug>.ts, `export default`),
@@ -169,4 +189,24 @@ export const APPLIANCES_NEW: ApplianceData[] = [
   motorvarmer,
   campingvogn,
   elScooter,
+  glattejern,
+  varmetaeppe,
+  plejeseng,
+  kroellejern,
+  elTandboerste,
+  trappelift,
+  babyalarm,
+  barbermaskine,
+  solarie,
+  flaskevarmer,
+  sterilisator,
+  massagestol,
+  cpap,
+  iltkoncentrator,
+  terrarie,
+  rugemaskine,
+  loebebaand,
+  gaabaand,
+  drivhusvarme,
+  hoensehus,
 ];
