@@ -15,6 +15,9 @@ const SECURITY_HEADERS = [
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  // CI-løberen (4 CPU, 16 GB → 3 workers) døde midt i den statiske generering ved 303 sider (23.–24. nov. 2026):
+  // med standardens 8 samtidige sider pr. worker toppede én worker på 3,1 GB i UTC; med 2 er toppen 1,8 GB (+13 s).
+  experimental: { staticGenerationMaxConcurrency: 2 },
   images: {
     formats: ["image/avif", "image/webp"],
   },
