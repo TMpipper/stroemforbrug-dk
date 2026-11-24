@@ -130,6 +130,26 @@ import aeg6000Vaskemaskine from "./aeg-6000-vaskemaskine";
 import scandomesticCf from "./scandomestic-cf";
 import lgVaskeToerre from "./lg-vaske-toerre";
 import siemensKf96 from "./siemens-kf96";
+import cupraTavascan from "./cupra-tavascan";
+import mieleG7000 from "./miele-g-7000";
+import hyundaiIoniq5 from "./hyundai-ioniq-5";
+import boschKgn from "./bosch-kgn";
+import kiaEv6 from "./kia-ev6";
+import gorenjeVaskemaskine from "./gorenje-vaskemaskine";
+import hyundaiKonaElectric from "./hyundai-kona-electric";
+import samsungRb from "./samsung-rb";
+import hyundaiInster from "./hyundai-inster";
+import gramFryseskab from "./gram-fryseskab";
+import samsungQn80h from "./samsung-qn80h";
+import lgUltragearOled from "./lg-ultragear-oled";
+import tclC7l from "./tcl-c7l";
+import lenovoLoq15 from "./lenovo-loq-15";
+import sonyBravia5 from "./sony-bravia-5";
+import samsungOdysseyG5 from "./samsung-odyssey-g5";
+import philipsAmbilightPus8000 from "./philips-ambilight-pus8000";
+import asusTufGaming from "./asus-tuf-gaming";
+import samsungViewfinityS8 from "./samsung-viewfinity-s8";
+import hpOmen from "./hp-omen";
 
 /**
  * Modelsiderne (ejeren 22. nov. 2026): én fil pr. modelfamilie (`export default`), side på /<parent>/<slug>/.
@@ -267,4 +287,24 @@ export const MODELS_ALL: ModelData[] = [
   scandomesticCf,
   lgVaskeToerre,
   siemensKf96,
+  cupraTavascan,
+  mieleG7000,
+  hyundaiIoniq5,
+  boschKgn,
+  kiaEv6,
+  gorenjeVaskemaskine,
+  hyundaiKonaElectric,
+  samsungRb,
+  hyundaiInster,
+  gramFryseskab,
+  samsungQn80h,
+  lgUltragearOled,
+  tclC7l,
+  lenovoLoq15,
+  sonyBravia5,
+  samsungOdysseyG5,
+  philipsAmbilightPus8000,
+  asusTufGaming,
+  samsungViewfinityS8,
+  hpOmen,
 ];
