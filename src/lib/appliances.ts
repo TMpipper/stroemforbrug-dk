@@ -1,5 +1,6 @@
 import type { ApplianceData } from "./types";
 import { isLive } from "./publish";
+import { UPGRADE } from "./pages";
 import { APPLIANCES_CORE } from "./appliances-core";
 import { APPLIANCES_EXTRA } from "./appliances-extra";
 import { APPLIANCES_PHASE2A } from "./appliances-phase2a";
@@ -14,14 +15,10 @@ try {
   if (mod.APPLIANCES_PHASE3) phase3 = mod.APPLIANCES_PHASE3;
 } catch { /* not yet available */ }
 
-export const APPLIANCES: ApplianceData[] = [
-  ...APPLIANCES_CORE,
-  ...APPLIANCES_EXTRA,
-  ...APPLIANCES_PHASE2A,
-  ...APPLIANCES_PHASE2B,
-  ...phase3,
-  ...APPLIANCES_NEW,
-];
+/** De 43 gamle sider har ingen egen `updated`; alle blev gennemgået ved opgraderingen (se UPGRADE i pages.ts). */
+const legacy = [...APPLIANCES_CORE, ...APPLIANCES_EXTRA, ...APPLIANCES_PHASE2A, ...APPLIANCES_PHASE2B, ...phase3].map((a) => ({ updated: UPGRADE, ...a }));
+
+export const APPLIANCES: ApplianceData[] = [...legacy, ...APPLIANCES_NEW];
 
 /**
  * Er apparatet udgivet? (ingen publishDate = altid). Samme regel som resten af sitet (`isLive`, dansk dag):

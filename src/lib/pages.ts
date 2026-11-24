@@ -14,9 +14,18 @@
 
 export const RELAUNCH = "2026-10-11";
 export const FIRST_PUBLISHED = "2026-07-29";
+/**
+ * Opgraderingen 22. nov. 2026 (a8e0c79, cf012f1, 0c6f3d5, af422c3): forside med søgning, /apparater/ som produktfinder,
+ * beregneren rettet (én årspris), og hver af de 43 gamle apparatsider fik ny H1 efter brug, fjernede opdigtede
+ * energimærketabeller og ingen skrevne kronebeløb — reelle ændringer af substansen, så de sider rykkes til den dag.
+ */
+export const UPGRADE = "2026-11-22";
 
 /** Sider, hvis indhold er ændret EFTER relanceringen — path uden skråstreger. */
 const OVERRIDES: Record<string, { updated?: string; published?: string }> = {
+  "": { updated: UPGRADE },
+  apparater: { updated: UPGRADE },
+  beregner: { updated: UPGRADE },
   kontakt: { updated: RELAUNCH },
   privatlivspolitik: { updated: RELAUNCH },
   // Elpriser.dk-appens side (ejerens app-undtagelse 19. okt. 2026).
