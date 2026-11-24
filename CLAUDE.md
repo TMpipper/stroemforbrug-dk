@@ -54,6 +54,11 @@ npm run prices         # udskriver byggets priser fra feedet
   Elpriser.dk-iframe og ingen `SwitchCta` på `[apparat]`; i stedet ét `AppPromo band` (`apparat-tail`) før FAQ'en på ALLE apparatsider.
   Tilbage: annoncebjælken, beregnerens elaftale (under resultatet), båndet og `PartnerCta`. Kortet (iframe) kun på `/`, `/elpriser/`,
   `/varmepumpe/`. Kampagneenhederne (CampaignBar/CampaignCard) følger kampagnen. `audit-widget` håndhæver det.
+- **24. nov. 2026 (ejeren: »yes, do it«)**: én appens linje INDE i `BestTimeToday` på apparater, der kan flyttes (`bestTimeMode` = `window`,
+  ~40 sider): `data-family-app data-app-line="tidspunkt"`, kittets ordlyd (»påmindelse før dagens billigste timer«), ingen tal,
+  ingen `data-app-promo` (det er en linje, ikke en promo). Telefon → butikken (`tidspunkt:store`, Google Play via `data-android-href`),
+  computer → `/app/` (`tidspunkt:app-page`). Grund: `apparat-top` gav flest app-klik (14 af 42, 25. okt.–24. nov.), før den blev fjernet
+  22. nov. Mål `tidspunkt` mod den i Vercel Analytics efter 2–3 uger.
 - Aldrig en promo over beregnerens elaftale (`data-calculator-deal`), intet bånd/kort over `SwitchCta` (`data-switch-cta`), og ingen promo
   under/inde i `PartnerCta` (`data-partner-cta`). Sitet har ingen pengesider; en fremtidig sammenligningsside skal bære `data-comparison`
   (config `comparisonMarker`) og stå i config `money`.

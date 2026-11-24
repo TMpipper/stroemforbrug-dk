@@ -4,6 +4,8 @@ import { articleFor, possessiveFor } from "@/lib/appliance-insights";
 import { formatKrExact, formatPrice, danishDate } from "@/lib/format";
 import { hourSpan, hourlyBasisAttrs, type TodayPrices } from "@/lib/hourly-today";
 import { calcModel, isShiftable, metaOf } from "@/lib/catalogue";
+import { playStoreUrl, storeUrl } from "@/lib/feed/app-promo";
+import { APP_PROMO_SITE } from "@/lib/app-promo-site";
 
 /**
  * »Billigst at bruge X i dag« — sidens differentiator: hvornår på dagen apparatet er billigst at bruge,
@@ -113,6 +115,27 @@ export default function BestTimeToday({ data, today }: { data: ApplianceData; to
           ) : (
             <p className="mt-3 text-sm text-ink-muted">Morgendagens priser kommer omkring kl. 14, når Nord Pools auktion er afgjort.</p>
           )}
+          {mode === "window" ? (
+            // Appens linje ved timerne (ejeren 24. nov. 2026): erstatter `apparat-top`, der gav flest app-klik (14 af 42 på 30 dage) før
+            // 22. nov. En linje i blokken, ikke en promo (`data-app-promo`) — kittets ordlyd (»påmindelse før dagens billigste timer«), ingen tal.
+            <p data-family-app data-app-line="tidspunkt" className="mt-4 border-t border-ink/10 pt-4 text-ink-body">
+              Vil du ikke selv holde øje med timerne? Elpriser.dk-appen giver dig en påmindelse før dagens billigste timer — gratis på iPhone og
+              Android.{" "}
+              <a
+                href={storeUrl(APP_PROMO_SITE.key)}
+                data-android-href={playStoreUrl(APP_PROMO_SITE.key)}
+                target="_blank"
+                rel="noopener"
+                data-app-cta="tidspunkt:store"
+                className="content-link font-semibold sm:hidden"
+              >
+                Hent appen gratis
+              </a>
+              <a href={APP_PROMO_SITE.appPage} data-app-cta="tidspunkt:app-page" className="content-link hidden font-semibold sm:inline">
+                Se appen
+              </a>
+            </p>
+          ) : null}
         </>
       )}
 
