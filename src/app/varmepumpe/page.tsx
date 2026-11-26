@@ -26,6 +26,7 @@ import { motifForPath } from "@/lib/visuals/defaults";
 import WhoHowWhy from "@/components/marketing/WhoHowWhy";
 import AuthorBox from "@/components/marketing/AuthorBox";
 import FaqBand from "@/components/marketing/FaqBand";
+import ModelLinks from "@/components/appliance/ModelLinks";
 import AppStrip from "@/components/app-popup/AppStrip";
 
 export const metadata: Metadata = {
@@ -141,6 +142,8 @@ export default async function VarmepumpePage() {
         <div className="prose-content" dangerouslySetInnerHTML={{ __html: wrapTables(renderWith(t, data.content)) }} />
 
         <SwitchCta kwh={9000} household="et hus med varmepumpe" />
+
+        <ModelLinks parent="varmepumpe" name={data.name} />
 
         <RelatedAppliances slugs={data.relatedSlugs} />
       </article>

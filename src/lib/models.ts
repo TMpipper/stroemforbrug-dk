@@ -49,6 +49,8 @@ export interface ModelData {
   slug: string;
   /** Apparatets slug: siden ligger på /<parent>/<slug>/ */
   parent: string;
+  /** Undergruppe, der kun sammenlignes indbyrdes (varmepumper: »luft-til-luft« / »luft-til-vand« — ét rum mod et helt hus). */
+  group?: string;
   brand: string;
   /** Familiens navn, fx »MacBook Air M4« */
   name: string;
@@ -143,6 +145,11 @@ export const PROFILES: Record<string, UsageProfile> = {
     cycleLabel: "tørring",
     short: "tre tørringer om ugen",
     text: "3 tørringer om ugen på eco-programmet (skabstørt bomuld), som energimærket er målt på — vægtet mellem fuld og halv fyldning.",
+  },
+  // Varmepumper (24. nov. 2026): energimærkets årsforbrug til opvarmning i det »gennemsnitlige« klima, som mærket i Danmark viser.
+  varmepumpe: {
+    short: "energimærkets årsforbrug til varme",
+    text: "Energimærkets årsforbrug til opvarmning i EU-mærkets gennemsnitlige klima og ved pumpens dimensionerende varmebehov. Et koldere år og et større eller dårligere isoleret hus giver mere (for luft-til-vand også en højere fremløbstemperatur); som supplement til brændeovn eller fjernvarme bruger pumpen mindre.",
   },
   koeleskab: {
     short: "energimærkets årsforbrug",

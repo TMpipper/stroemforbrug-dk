@@ -155,6 +155,17 @@ import hpOmen from "./hp-omen";
  * Modelsiderne (ejeren 22. nov. 2026): én fil pr. modelfamilie (`export default`), side på /<parent>/<slug>/.
  * Kun officielle tal i filerne; årsforbrug og pris regnes i src/lib/models.ts. Tjek: npx tsx scripts/check-model.mts <slug>.
  */
+import panasonicHz from "./panasonic-hz";
+import mitsubishiHero from "./mitsubishi-hero";
+import daikinPerfera from "./daikin-perfera";
+import nibeS2125 from "./nibe-s2125";
+import panasonicEthereaNz from "./panasonic-etherea-nz";
+import vaillantArothermPlus from "./vaillant-arotherm-plus";
+import mitsubishiMszRz from "./mitsubishi-msz-rz";
+import panasonicAquareaL from "./panasonic-aquarea-l";
+import mitsubishiMszFt from "./mitsubishi-msz-ft";
+import daikinAltherma3R from "./daikin-altherma-3-r";
+
 export const MODELS_ALL: ModelData[] = [
   macbookAirM4,
   macbookAirM5,
@@ -307,4 +318,14 @@ export const MODELS_ALL: ModelData[] = [
   asusTufGaming,
   samsungViewfinityS8,
   hpOmen,
+  panasonicHz,
+  mitsubishiHero,
+  daikinPerfera,
+  nibeS2125,
+  panasonicEthereaNz,
+  vaillantArothermPlus,
+  mitsubishiMszRz,
+  panasonicAquareaL,
+  mitsubishiMszFt,
+  daikinAltherma3R,
 ];

@@ -6,6 +6,7 @@ import { getPrices, tokenPrices } from "@/lib/prices";
 import { collapseAbbreviationPeriods, renderWith, wrapTables } from "@/lib/tokens";
 import { getAppliance } from "@/lib/appliances";
 import { hubFor } from "@/lib/catalogue";
+import { isReserved } from "@/lib/routes";
 import {
   allModels, annualKwh, chargeKwh, formatWatt, wattRange, getModel, isModelPublished, keyFigure, MODE_LABEL, modelPath, modelsFor, possessive, profileFor, unitKwh,
   type ModeKey,
@@ -28,7 +29,10 @@ import AuthorBox from "@/components/marketing/AuthorBox";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return allModels().map((m) => ({ apparat: m.parent, model: m.slug }));
+  // Apparater med egen rute (/varmepumpe/) bygger deres modelsider dér (src/app/varmepumpe/[model]/).
+  return allModels()
+    .filter((m) => !isReserved(m.parent))
+    .map((m) => ({ apparat: m.parent, model: m.slug }));
 }
 
 type Params = Promise<{ apparat: string; model: string }>;
@@ -76,6 +80,8 @@ export default async function ModelPage({ params }: { params: Params }) {
   const hasClass = m.variants.some((v) => v.energyClass);
   // Køle-/fryseapparater: energimærkets kWh/år står direkte på mærket — ingen profil at gange med.
   const isLabelYear = m.variants.every((v) => v.annualKwh !== undefined);
+  // Opvarmning bruges i fyringssæsonen — et døgngennemsnit over hele året ville snyde (varmepumper, 26. nov. 2026).
+  const seasonal = m.parent === "varmepumpe";
   const modes = (["off", "sleep", "standby", "idle", "on"] as ModeKey[]).filter((k) => m.variants.some((v) => v.watts[k] !== undefined));
   const lo = rows.reduce((a, b) => (b.year < a.year ? b : a));
   const hi = rows.reduce((a, b) => (b.year > a.year ? b : a));
@@ -103,7 +109,7 @@ export default async function ModelPage({ params }: { params: Params }) {
       ? `${m.name} bruger ${range(units, 2)} kWh pr. ${profile.cycleLabel ?? "program"} ${measuredBy}`
       : `${m.name} bruger ${idle.length ? `${wattRange(idle)} ${idleWord}` : "meget lidt"} ${measuredBy}`;
   const answer = isLabelYear
-    ? `${m.name} bruger ${range(rows.map((r) => r.year), 0)} kWh om året ${measuredBy} — ca. ${krYear(lo.year)}${hi.year !== lo.year ? `–${krYear(hi.year)}` : ""} kr. om året ved månedens elpris, eller ${range(rows.map((r) => (r.year / 365) * t.dk * 100), 0)} øre i døgnet.`
+    ? `${m.name} bruger ${range(rows.map((r) => r.year), 0)} kWh om året ${measuredBy} — ca. ${krYear(lo.year)}${hi.year !== lo.year ? `–${krYear(hi.year)}` : ""} kr. om året ved månedens elpris${seasonal ? " — det meste af det i fyringssæsonen." : `, eller ${range(rows.map((r) => (r.year / 365) * t.dk * 100), 0)} øre i døgnet.`}`
     : `${lead} og omkring ${da(lo.year, lo.year >= 100 ? 0 : 1)}${hi.year !== lo.year ? `–${da(hi.year, hi.year >= 100 ? 0 : 1)}` : ""} kWh om året med ${profile.short}` +
     ` — ca. ${krYear(lo.year)}${hi.year !== lo.year ? `–${krYear(hi.year)}` : ""} kr. om året ved månedens elpris` +
     (isCar ? `, eller ${range(units.map((k) => k * t.dk), 0)} kr. pr. 100 km.` : "") +
@@ -111,6 +117,7 @@ export default async function ModelPage({ params }: { params: Params }) {
 
   // Sammenligningen: alle udgivne modeller under samme apparat, samme profil — så de kan stilles op mod hinanden.
   const family = modelsFor(m.parent)
+    .filter((x) => (x.group ?? "") === (m.group ?? ""))
     .flatMap((x) => x.variants.map((v) => ({ m: x, v, year: annualKwh(v, x.parent) })))
     .sort((a, b) => a.year - b.year);
 
@@ -233,7 +240,9 @@ export default async function ModelPage({ params }: { params: Params }) {
         {family.length > m.variants.length && (
           <section aria-labelledby="sammenlign" className="mt-12">
             <h2 id="sammenlign" className="font-heading text-2xl font-semibold text-ink">Sammenlignet med andre modeller</h2>
-            <p className="mt-2 text-ink-body">Samme brugsprofil for alle, sorteret efter forbrug.</p>
+            <p className="mt-2 text-ink-body">
+              {m.group ? `Kun ${m.group}-varmepumper, alle efter energimærkets årsforbrug, sorteret efter forbrug.` : "Samme brugsprofil for alle, sorteret efter forbrug."}
+            </p>
             <div className="scroll-hint not-prose my-6 overflow-x-auto rounded-card bg-surface shadow-card">
               <table className="w-full text-sm">
                 <thead className="bg-bg-blue">
