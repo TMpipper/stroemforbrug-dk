@@ -38,10 +38,21 @@ jobs:
       - name: Vercel pull (produktionsmiljø)
         if: env.VERCEL_TOKEN != ''
         run: npx vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+      # Løberen (16 GB) blev dræbt midt i den statiske generering ved 300+ sider (»runner has received a shutdown signal«,
+      # 23.–25. nov. 2026, ca. hvert andet byg). Ekstra swap gør en hukommelsestop langsom i stedet for dødelig.
+      - name: Ekstra swap (8 GB)
+        run: |
+          sudo fallocate -l 8G /swapfile-extra && sudo chmod 600 /swapfile-extra && sudo mkswap /swapfile-extra >/dev/null && sudo swapon /swapfile-extra
+          free -m
       - name: Byg (prebuild + next build + postbuild-audits)
         # Eget loft under jobbets 30 min: hænger bygget, fejler trinnet med log i stedet for at jobbet annulleres uden (23. nov. 2026).
         timeout-minutes: 20
+        env:
+          # Lavere heap-loft pr. worker, så Node rydder op tidligere i stedet for at vokse mod maskinens grænse.
+          NODE_OPTIONS: --max-old-space-size=2048
         run: |
+          # Hukommelseslog hvert 10. s, så næste fejl viser tallene (brugt/ledig/swap i MB).
+          (while true; do free -m | awk 'NR==2{u=$3;a=$7} NR==3{s=$3} END{printf "MEM used=%s avail=%s swap=%s\n",u,a,s}'; sleep 10; done) &
           if [ -n "$VERCEL_TOKEN" ]; then npx vercel build --prod --token="$VERCEL_TOKEN"; else npm run build; fi
       - name: Playwright til audit-mobile
         run: npx playwright install --with-deps chromium
