@@ -17,7 +17,9 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   // CI-løberen (4 CPU, 16 GB → 3 workers) døde midt i den statiske generering ved 303 sider (23.–24. nov. 2026):
   // med standardens 8 samtidige sider pr. worker toppede én worker på 3,1 GB i UTC; med 2 er toppen 1,8 GB (+13 s).
-  experimental: { staticGenerationMaxConcurrency: 2 },
+  // 26. nov.: på CI fylder hver worker ~5–6 GB (lokalt ≤ 1,7 GB) — 3 workers sprængte 16 GB og ét bygge hang i swap.
+  // 2 workers på CI holder toppen under RAM; lokalt bestemmer Next selv.
+  experimental: { staticGenerationMaxConcurrency: 2, ...(process.env.CI ? { cpus: 2 } : {}) },
   images: {
     formats: ["image/avif", "image/webp"],
   },
