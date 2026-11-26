@@ -29,7 +29,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # 24 som lokalt og på Vercel (26. nov. 2026): på 22 voksede byggets workers til ~6,7 GB RSS, lokalt på 24 ≤ 0,8 GB.
+          node-version: 24
           cache: npm
       - run: npm ci
       - name: Mangler VERCEL_TOKEN?
@@ -51,9 +52,6 @@ jobs:
         env:
           # Lavere heap-loft pr. worker, så Node rydder op tidligere i stedet for at vokse mod maskinens grænse.
           NODE_OPTIONS: --max-old-space-size=2048
-          # 26. nov.: workerne voksede til ~6 GB RSS på Linux trods 2 GB heap (lokalt på macOS ≤ 1,5 GB) — hukommelse uden for
-          # heapen, typisk glibc-arenaer. Færre arenaer holder RSS nede.
-          MALLOC_ARENA_MAX: "2"
         run: |
           # Hukommelseslog hvert 10. s, så næste fejl viser tallene (brugt/ledig/swap i MB).
           # + de tre største processer (RSS i MB og kommandoens start), så det kan ses, HVAD der vokser.
