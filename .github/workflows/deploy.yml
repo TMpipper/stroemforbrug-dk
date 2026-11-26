@@ -51,6 +51,9 @@ jobs:
         env:
           # Lavere heap-loft pr. worker, så Node rydder op tidligere i stedet for at vokse mod maskinens grænse.
           NODE_OPTIONS: --max-old-space-size=2048
+          # 26. nov.: workerne voksede til ~6 GB RSS på Linux trods 2 GB heap (lokalt på macOS ≤ 1,5 GB) — hukommelse uden for
+          # heapen, typisk glibc-arenaer. Færre arenaer holder RSS nede.
+          MALLOC_ARENA_MAX: "2"
         run: |
           # Hukommelseslog hvert 10. s, så næste fejl viser tallene (brugt/ledig/swap i MB).
           # + de tre største processer (RSS i MB og kommandoens start), så det kan ses, HVAD der vokser.
